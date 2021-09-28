@@ -1,0 +1,45 @@
+@startuml ER
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity TestSuite {
+  * path: string
+  --
+  * kind: enum(string)
+  * status: enum(string)
+}
+
+entity Feature {
+  * name: string
+  --
+  description: string
+}
+
+entity Scenario {
+  * id: string
+  --
+  * description: string
+}
+
+entity Subsystem {
+  * name: string
+  --
+  description: string
+}
+
+entity System {
+  * name: string
+  --
+  description: string
+}
+
+Feature ||--|{ Scenario
+Scenario }|--o{ TestSuite
+TestSuite }|-right-|| Subsystem
+Subsystem }|-up-|| System
+
+@enduml

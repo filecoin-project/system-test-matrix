@@ -35,17 +35,12 @@ Here's the (simplified) lifecycle flow for the System Test Matrix:
     5. Token
     6. Storage Mining
     7. Markets
-- _Subsystem_: A logical part of one of the systems listed above. See each system spec and implementation for possible subsystems.
+- _Subsystem_: A logical part of one of the systems listed above. See each system spec for possible subsystems.
 - _Feature_: A component that implements a specific behaviour.
 - _Scenario_: One specific behaviour of a _Feature_.
-- _Test Suite_: A path to a test file in the Lotus repository[^1] that implements the test for a certain _Test Scenario_
-
-### Example
-Let's look at a simple (textual) example:
-- There is a feature called: `FileImport`
-- One scenario is: `Given a non-empty file, produce a .car file with identical contents, padded up to a power of 2`
-- The tests for this scenario are implemented inside: `node/impl/client/client_test.go` which is of `kind="integration"` and it's passing
-- It belongs to the `Client` subsystem inside the `Files&Data` system [^4]
+- _Test Suite_: A path to a test file (`*_test.go`) that implements the test for a certain _Test Scenario_
+- _Package_: A golang package
+- _Repository_: Source code repository
 
 ## Contributing
 

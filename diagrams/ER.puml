@@ -13,6 +13,19 @@ entity TestSuite {
   * status: enum(string)
 }
 
+
+entity System {
+  * name: string
+  --
+  description: string
+}
+
+entity Subsystem {
+  * name: string
+  --
+  description: string
+}
+
 entity Feature {
   * name: string
   --
@@ -25,21 +38,23 @@ entity Scenario {
   * description: string
 }
 
-entity Subsystem {
+entity Repository {
+  * url: string
+  --
+  description: string
+}
+
+entity Package {
   * name: string
   --
   description: string
 }
 
-entity System {
-  * name: string
-  --
-  description: string
-}
-
+System ||--|{ Subsystem
+Subsystem ||--|{ Feature
 Feature ||--|{ Scenario
-Scenario }|--o{ TestSuite
-TestSuite }|-right-|| Subsystem
-Subsystem }|-up-|| System
+Scenario }|-right-o{ TestSuite
+TestSuite }o-up-|| Package
+Package }|-up-|| Repository
 
 @enduml

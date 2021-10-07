@@ -13,38 +13,39 @@ The main goal of this project is closing the discrepancy between specification a
 
 Here's the (simplified) lifecycle flow for the System Test Matrix:
 
-1. Filecoin contributors with domain knowledge write new requirements (features) and submit them via a PR to one of the Filecoin repositories. The features are enumerated inside one or more large YAML files.
-2. After the PR is reviewed and accepted, the new content is parsed and the build script enriches the input data with test status information, fetched from the CI.
-3. The "rich data" input is transformed into the **System Test Matrix Table**. This table is basically the end result of our work. 
-4. Users can browse this table and:
-    1. See the desired behavior of each feature
-    2. Click on links that lead to test files that test that behavior
-    3. Perform various visualizations such as grouping by feature, system, subsystem etc
-5. This table will should be embeddable (or at least linked to) inside other websites, such as the Filecoin Specification [^1]
+1. Filecoin contributors with domain knowledge write new behaviors (test scenarios) and submit them via a PR to this repository. The features are enumerated inside one or more large YAML files. Every scenario has an unique ID.
+2. The Test Crawler™️® (jk no trademark 🙂) scans the repository for tests and parses test annotations (written in our custom format) that map test functions to test behaviors from the previous step. It outputs a JSON report.
+3. After the PR is reviewed and accepted, the data resulting from Step 1 and Step 2 is parsed and rendered into the **System Test Matrix** -- a rich UI where you can explore the full database of behaviors and tests and perform various queries and visualizations.
 
 ## The Data Model
 
 ![ER Diagram](diagrams/ER.png)
 
-### Legend
-- _System_: A system as identified by the specification. One of: 
-    1. Filecoin Nodes
-    2. Files & Data
-    3. Virtual Machine
-    4. Blockchain
-    5. Token
-    6. Storage Mining
-    7. Markets
-- _Subsystem_: A logical part of one of the systems listed above. See each system spec for possible subsystems.
-- _Feature_: A component that implements a specific behaviour.
-- _Scenario_: One specific behaviour of a _Feature_.
-- _Test Suite_: A path to a test file (`*_test.go`) that implements the test for a certain _Test Scenario_
-- _Package_: A golang package
-- _Repository_: Source code repository
+## Test Annotations
+### File-Level annotations
+File-Level annotations are comments at the top of your `_test.go` files.
+
+The expected format is: `//stm:tags=...;ignore=...`
+
+- Examples of tags are: `unit`, `integration`, `cli`, `api` ...
+- Ignore can be `true` or `false`. If true, the crawler will skip this file.
+- Mind that there is **no whitespace** between `//` and `stm`. This is a go convention for comments that are not meant to be read by humans.
+- **Example:** `//stm:tags=integration,api;ignore=false`
+
+### Function-Level annotations
+Function-Level annotations are comments above your `TestSomething(t *testing.T)` functions.
+
+The expected format is: `//stm:scenarios=...;ignore=...`
+
+- Scenarios are a list of scenario IDs.
+- Ignore can be `true` or `false`. If true, the crawler will skip this test case.
+- **Example:** `//stm:scenarios=VOUCH_CREATE_001,PAYCH_ALLOC_001;ignore=false`
 
 ## Contributing
 
 - To generate diagrams from PlantUML files use: `make diagrams`
+- To contribute to the Test Crawler see the [Test Crawler README](test-crawler/README.md).
+- To contribute to the Frontend see the [Frontend README](frontend/README.md)
 
 ---
 [^1]: https://spec.filecoin.io/

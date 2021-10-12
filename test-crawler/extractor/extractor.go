@@ -83,22 +83,24 @@ func getFunctions(content string, filePath string) []Function {
 			if testExists {
 				var fScenarios []c.Scenario
 
-				for _, stmt := range fn.Body.List {
-					if exprStmt, ok := stmt.(*ast.ExprStmt); ok {
-						if call, ok := exprStmt.X.(*ast.CallExpr); ok {
-							if fun, ok := call.Fun.(*ast.SelectorExpr); ok {
-								if fun.Sel.Name == "Run" {
-									if arg, ok := call.Args[0].(*ast.BasicLit); ok {
-										fScenarios = append(fScenarios, c.Scenario{
-											Id:   MakeID(filePath, TrimQuotes(fn.Name.String()), TrimQuotes(arg.Value)),
-											Name: TrimQuotes(arg.Value),
-										})
-									}
-								}
-							}
-						}
-					}
-				}
+				//docComment := fn.Doc.Text()
+
+				// for _, stmt := range fn.Body.List {
+				// 	if exprStmt, ok := stmt.(*ast.ExprStmt); ok {
+				// 		if call, ok := exprStmt.X.(*ast.CallExpr); ok {
+				// 			if fun, ok := call.Fun.(*ast.SelectorExpr); ok {
+				// 				if fun.Sel.Name == "Run" {
+				// 					if arg, ok := call.Args[0].(*ast.BasicLit); ok {
+				// 						fScenarios = append(fScenarios, c.Scenario{
+				// 							Id:   MakeID(filePath, TrimQuotes(fn.Name.String()), TrimQuotes(arg.Value)),
+				// 							Name: TrimQuotes(arg.Value),
+				// 						})
+				// 					}
+				// 				}
+				// 			}
+				// 		}
+				// 	}
+				// }
 
 				functions = append(functions, Function{
 					Name:      fn.Name.Name,

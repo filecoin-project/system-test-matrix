@@ -16,6 +16,15 @@ const (
 	Unknown  Annotation = "unknown"
 )
 
+func (p *Parser) Parse(input string, annotation Annotation) (*interface{}, error) {
+	parsed, err := tryParse(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return nil, nil
+}
+
 func tryParse(input string) (Annotation, error) {
 	var ret Annotation = Unknown
 
@@ -45,8 +54,4 @@ func getType(input string) Annotation {
 			return Unknown
 		}
 	}
-}
-
-func (p *Parser) Parse(input string) {
-	tryParse(input)
 }

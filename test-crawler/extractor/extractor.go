@@ -19,10 +19,10 @@ type Function struct {
 	Scenarios []c.Scenario
 }
 
-func ExtractScenarios(file c.TestFile) (err error, functions []c.Function) {
-	err, content := getFileContent(file.Path)
+func ExtractScenarios(file c.TestFile) (functions []c.Function, err error) {
+	content, err := getFileContent(file.Path)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 
 	funcData := getFunctions(content, file.Path)
@@ -33,23 +33,23 @@ func ExtractScenarios(file c.TestFile) (err error, functions []c.Function) {
 		})
 
 	}
-	return nil, functions
+	return functions, nil
 }
 
-func getFileContent(filePath string) (err error, content string) {
+func getFileContent(filePath string) (content string, err error) {
 
 	file, err := os.Open(filePath)
 	if err != nil {
-		return err, ""
+		return "", err
 	}
 	defer file.Close()
 
 	src, err := ioutil.ReadAll(file)
 	if err != nil {
-		return err, ""
+		return "", err
 	}
 
-	return nil, string(src)
+	return string(src), nil
 }
 
 func getFunctions(content string, filePath string) []Function {
@@ -117,10 +117,7 @@ func getFunctions(content string, filePath string) []Function {
 
 func TrimQuotes(input string) string {
 	return strings.TrimFunc(input, func(r rune) bool {
-		if r == '"' {
-			return true
-		}
-		return false
+		return r == '"'
 	})
 }
 

@@ -1,8 +1,11 @@
 package extractor
 
 import (
+	"errors"
 	"regexp"
 )
+
+type Parser struct{}
 
 type Annotation string
 
@@ -13,19 +16,25 @@ const (
 	Unknown  Annotation = "unknown"
 )
 
-func TryParse(input string) (Annotation, error) {
+func tryParse(input string) (Annotation, error) {
 	var ret Annotation = Unknown
 
 	reg := regexp.MustCompile("stm:([A-z+]);")
 
 	match := reg.FindString(input)
+	if len(match) < 1 {
+		return ret, errors.New("failed to match regex")
+	}
 
-	AnnotationType := GetType(match)
+	ret = getType(match)
+	if ret == Unknown {
+		return ret, errors.New("unknown type")
+	}
 
 	return ret, nil
 }
 
-func GetType(input string) Annotation {
+func getType(input string) Annotation {
 	switch Annotation(input) {
 	case Header, Func, Scenario:
 		{
@@ -36,4 +45,8 @@ func GetType(input string) Annotation {
 			return Unknown
 		}
 	}
+}
+
+func (p *Parser) Parse(input string) {
+	tryParse(input)
 }

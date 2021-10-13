@@ -1,16 +1,16 @@
 package annotations
 
 type HeaderType struct {
-	TestType string
-	System   string
-	Ignore   bool
+	TestType string `json:"test_type"`
+	System   string `json:"system"`
+	Ignore   bool   `json:"ignore"`
 }
 
 type FunctionType struct {
-	Ignore bool
+	Ignore bool `json:"ignore"`
 }
 
 type ScenarioType struct {
-	Description string `json:"description"`
+	Description string `json:"scenario_name"`
 	Ignore      bool   `json:"ignore"`
 }

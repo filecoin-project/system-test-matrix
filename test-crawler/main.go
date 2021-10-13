@@ -21,7 +21,7 @@ func main() {
 	}
 
 	for i, file := range files {
-		err, scenarios := ex.ExtractScenarios(file)
+		scenarios, err := ex.ExtractScenarios(file)
 		if err != nil {
 			fmt.Println(err)
 			continue

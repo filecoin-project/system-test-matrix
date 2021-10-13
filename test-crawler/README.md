@@ -13,5 +13,5 @@ It will also pull spec-actors
 
 Current annotation format examples:  
 header: //stm:header;type=integration;system=api;ignore=false  
-function: //stm:func;ignore=false
+function: //stm:func;ignore=false  
 scenario: //stm:scen;desc="list packages";ignore=false  

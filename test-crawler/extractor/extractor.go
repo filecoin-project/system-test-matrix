@@ -4,14 +4,14 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
-	"go/ast"
-	"go/parser"
-	"go/token"
 	"io/ioutil"
 	"os"
 	"strings"
 
 	c "testsuites/collector"
+
+	"github.com/dave/dst"
+	"github.com/dave/dst/decorator"
 )
 
 type Function struct {
@@ -66,77 +66,60 @@ func getFunctions(content string, filePath string) ([]Function, *Metadata, error
 
 	var annotationParser Parser
 
-	fileSet := token.NewFileSet()
-	node, err := parser.ParseFile(fileSet, "test.go", content, 0)
+	f, err := decorator.Parse(content)
 	if err != nil {
-		return nil, nil, err
+		panic(err)
 	}
 
-	ast.Inspect(node, func(n ast.Node) bool {
+	metadata.Package = f.Name.Name
 
-		switch fn := n.(type) {
+	headerData, err := annotationParser.Parse(f.Decs.NodeDecs.Start[0], Header)
+	if err == nil {
+		metadata.TestType = headerData.(*HeaderType).TestType
+		metadata.System = headerData.(*HeaderType).System
+		metadata.Ignore = headerData.(*HeaderType).Ignore
+	}
 
-		case *ast.File:
-			splited := strings.Split(content, "\n")
+	for _, obj := range f.Scope.Objects {
+		testExists := false
 
-			metadata.Package = fn.Name.Name
+		params := findFunctionParamsFromDST(obj)
 
-			headerData, err := annotationParser.Parse(splited[0], Header)
-			if err != nil {
-				return false
-			}
-			metadata.TestType = headerData.(*HeaderType).TestType
-			metadata.System = headerData.(*HeaderType).System
-			metadata.Ignore = headerData.(*HeaderType).Ignore
-
-		case *ast.FuncDecl:
-
-			testExists := false
-
-			for _, elem := range fn.Type.Params.List {
-				start := elem.Type.Pos() - 1
-				end := elem.Type.End() - 1
-
-				paramName := content[start:end]
-
-				if strings.Contains(paramName, "testing.T") {
-					testExists = true
-				}
-			}
-
-			if testExists {
-				var fScenarios []c.Scenario
-
-				//docComment := fn.Doc.Text()
-
-				for _, stmt := range fn.Body.List {
-					if exprStmt, ok := stmt.(*ast.ExprStmt); ok {
-						if call, ok := exprStmt.X.(*ast.CallExpr); ok {
-							if fun, ok := call.Fun.(*ast.SelectorExpr); ok {
-								if fun.Sel.Name == "Run" {
-									if arg, ok := call.Args[0].(*ast.BasicLit); ok {
-										fScenarios = append(fScenarios, c.Scenario{
-											Id:   MakeID(filePath, TrimQuotes(fn.Name.String()), TrimQuotes(arg.Value)),
-											Name: TrimQuotes(arg.Value),
-										})
-									}
-								}
-							}
-						}
-					}
-				}
-
-				functions = append(functions, Function{
-					Name:      fn.Name.Name,
-					Scenarios: fScenarios,
-				})
+		for _, param := range params {
+			if strings.Contains(param, "testing.T") {
+				testExists = true
 			}
 		}
 
-		return true
-	})
+		if testExists {
+			var fScenarios []c.Scenario
+
+			functions = append(functions, Function{
+				Name:      obj.Name,
+				Scenarios: fScenarios,
+			})
+		}
+
+	}
 
 	return functions, &metadata, nil
+}
+
+func findFunctionParamsFromDST(object *dst.Object) []string {
+
+	var params []string
+
+	if object.Decl.(*dst.FuncDecl) != nil {
+		paramList := object.Decl.(*dst.FuncDecl).Type.Params.List
+		for _, param := range paramList {
+			pkg := param.Type.(*dst.StarExpr).X.(*dst.SelectorExpr).X.(*dst.Ident).Name
+			pkgType := param.Type.(*dst.StarExpr).X.(*dst.SelectorExpr).Sel.Name
+
+			params = append(params, fmt.Sprintf("%s.%s", pkg, pkgType))
+		}
+	}
+
+	return params
 }
 
 func TrimQuotes(input string) string {

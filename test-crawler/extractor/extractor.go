@@ -97,7 +97,7 @@ func getFunctions(content string, filePath string) ([]Function, *Metadata, error
 
 			functions = append(functions, Function{
 				Name:      function.Name,
-				Scenarios: fScenarios,
+				Scenarios: makeCollectorScenarios(filePath, function.Name, fScenarios),
 			})
 		}
 
@@ -148,13 +148,13 @@ func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
 	return scenarios
 }
 
-func TrimQuotes(input string) string {
-	return strings.TrimFunc(input, func(r rune) bool {
-		return r == '"'
-	})
+func makeCollectorScenarios(filePath string, funcName string, scenarios []a.ScenarioType) []c.Scenario {
+	var fScenarios []c.Scenario
+
+	return fScenarios
 }
 
-func MakeID(filePath string, funcName string, scenario string) string {
+func makeID(filePath string, funcName string, scenario string) string {
 	hash := md5.Sum([]byte(fmt.Sprintf("%s_%s_%s", filePath, funcName, scenario)))
 	return string(hex.EncodeToString(hash[:]))
 }

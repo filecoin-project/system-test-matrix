@@ -77,21 +77,17 @@ func getFunctions(content string, filePath string) ([]Function, *Metadata, error
 		switch fn := n.(type) {
 
 		case *ast.File:
-			if fn.Name.Name == "api" && filePath == "_modules/lotus/api/api_test.go" {
-				ast.Print(fileSet, node)
-
-				splited := strings.Split(content, "\n")
-
-				headerData, err := annotationParser.Parse(splited[0], Header)
-				if err != nil {
-					return false
-				}
-				metadata.TestType = headerData.(*HeaderType).TestType
-				metadata.System = headerData.(*HeaderType).System
-				metadata.Ignore = headerData.(*HeaderType).Ignore
-			}
+			splited := strings.Split(content, "\n")
 
 			metadata.Package = fn.Name.Name
+
+			headerData, err := annotationParser.Parse(splited[0], Header)
+			if err != nil {
+				return false
+			}
+			metadata.TestType = headerData.(*HeaderType).TestType
+			metadata.System = headerData.(*HeaderType).System
+			metadata.Ignore = headerData.(*HeaderType).Ignore
 
 		case *ast.FuncDecl:
 

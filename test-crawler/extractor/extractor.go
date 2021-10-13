@@ -19,13 +19,21 @@ type Function struct {
 	Scenarios []c.Scenario
 }
 
+type Metadata struct {
+	Package string
+	HeaderType
+}
+
 func ExtractScenarios(file c.TestFile) (functions []c.Function, err error) {
 	content, err := getFileContent(file.Path)
 	if err != nil {
 		return nil, err
 	}
 
-	funcData := getFunctions(content, file.Path)
+	funcData, _, err := getFunctions(content, file.Path)
+	if err != nil {
+		return nil, err
+	}
 	for _, s := range funcData {
 		functions = append(functions, c.Function{
 			Name:      s.Name,
@@ -52,13 +60,16 @@ func getFileContent(filePath string) (content string, err error) {
 	return string(src), nil
 }
 
-func getFunctions(content string, filePath string) []Function {
+func getFunctions(content string, filePath string) ([]Function, *Metadata, error) {
 	var functions []Function
+	var metadata Metadata
+
+	var annotationParser Parser
 
 	fileSet := token.NewFileSet()
 	node, err := parser.ParseFile(fileSet, "test.go", content, 0)
 	if err != nil {
-		return nil
+		return nil, nil, err
 	}
 
 	ast.Inspect(node, func(n ast.Node) bool {
@@ -66,8 +77,19 @@ func getFunctions(content string, filePath string) []Function {
 		switch fn := n.(type) {
 
 		case *ast.File:
-			if fn.Name.Name == "api" {
+			if fn.Name.Name == "api" && filePath == "_modules/lotus/api/api_test.go" {
 				ast.Print(fileSet, node)
+			}
+
+			metadata.Package = fn.Name.Name
+			if fn.Doc != nil {
+				headerData, err := annotationParser.Parse(fn.Doc.Text(), Header)
+				if err != nil {
+					return false
+				}
+				metadata.TestType = headerData.(HeaderType).TestType
+				metadata.System = headerData.(HeaderType).System
+				metadata.Ignore = headerData.(HeaderType).Ignore
 			}
 
 		case *ast.FuncDecl:
@@ -117,7 +139,7 @@ func getFunctions(content string, filePath string) []Function {
 		return true
 	})
 
-	return functions
+	return functions, &metadata, nil
 }
 
 func TrimQuotes(input string) string {

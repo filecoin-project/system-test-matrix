@@ -21,12 +21,15 @@ func main() {
 	}
 
 	for i, file := range files {
-		functions, err := ex.ExtractScenarios(file)
+		functions, meta, err := ex.ExtractScenarios(file)
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
 
+		files[i].Package = meta.Package
+		files[i].TestType = meta.TestType
+		files[i].Ignore = meta.Ignore
 		files[i].Functions = functions
 	}
 

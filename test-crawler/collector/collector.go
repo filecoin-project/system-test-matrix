@@ -11,6 +11,9 @@ type TestFile struct {
 	Path         string     `json:"path"`
 	Project      string     `json:"project"`
 	ParentFolder string     `json:"parent_folder"`
+	Package      string     `json:"package"`
+	TestType     string     `json:"test_type"`
+	Ignore       bool       `json:"ignore"`
 	Functions    []Function `json:"functions"`
 }
 

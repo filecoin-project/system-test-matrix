@@ -24,15 +24,15 @@ type Metadata struct {
 	HeaderType
 }
 
-func ExtractScenarios(file c.TestFile) (functions []c.Function, err error) {
+func ExtractScenarios(file c.TestFile) (functions []c.Function, meta *Metadata, err error) {
 	content, err := getFileContent(file.Path)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	funcData, _, err := getFunctions(content, file.Path)
+	funcData, meta, err := getFunctions(content, file.Path)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	for _, s := range funcData {
 		functions = append(functions, c.Function{
@@ -41,7 +41,7 @@ func ExtractScenarios(file c.TestFile) (functions []c.Function, err error) {
 		})
 
 	}
-	return functions, nil
+	return functions, meta, nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -79,18 +79,19 @@ func getFunctions(content string, filePath string) ([]Function, *Metadata, error
 		case *ast.File:
 			if fn.Name.Name == "api" && filePath == "_modules/lotus/api/api_test.go" {
 				ast.Print(fileSet, node)
-			}
 
-			metadata.Package = fn.Name.Name
-			if fn.Doc != nil {
-				headerData, err := annotationParser.Parse(fn.Doc.Text(), Header)
+				splited := strings.Split(content, "\n")
+
+				headerData, err := annotationParser.Parse(splited[0], Header)
 				if err != nil {
 					return false
 				}
-				metadata.TestType = headerData.(HeaderType).TestType
-				metadata.System = headerData.(HeaderType).System
-				metadata.Ignore = headerData.(HeaderType).Ignore
+				metadata.TestType = headerData.(*HeaderType).TestType
+				metadata.System = headerData.(*HeaderType).System
+				metadata.Ignore = headerData.(*HeaderType).Ignore
 			}
+
+			metadata.Package = fn.Name.Name
 
 		case *ast.FuncDecl:
 

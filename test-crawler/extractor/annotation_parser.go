@@ -56,14 +56,14 @@ func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error)
 func tryParse(input string) (Annotation, error) {
 	var ret Annotation = Unknown
 
-	reg := regexp.MustCompile("stm:([A-z+]);")
+	reg := regexp.MustCompile("stm:([A-z]+);")
 
-	match := reg.FindString(input)
+	match := reg.FindAllStringSubmatch(input, -1)
 	if len(match) < 1 {
 		return ret, errors.New("failed to match regex")
 	}
 
-	ret = getType(match)
+	ret = getType(match[0][1])
 	if ret == Unknown {
 		return ret, errors.New("unknown type")
 	}
@@ -131,12 +131,12 @@ func getScenarioInfo(input string) (*ScenarioType, error) {
 func findInStringByKey(input string, key string) (string, error) {
 	reg := regexp.MustCompile(fmt.Sprintf("%s=([A-z]+);?", key))
 
-	match := reg.FindString(input)
+	match := reg.FindAllStringSubmatch(input, -1)
 	if len(match) < 1 {
 		return "", fmt.Errorf("failed to find by key (%s)", key)
 	}
 
-	return match, nil
+	return match[0][1], nil
 }
 
 func getType(input string) Annotation {

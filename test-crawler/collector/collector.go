@@ -4,6 +4,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	a "testsuites/annotations"
 )
 
 type TestFile struct {
@@ -25,6 +27,7 @@ type Function struct {
 type Scenario struct {
 	Id   string `json:"scenario_id"`
 	Name string `json:"scenario_name"`
+	a.ScenarioType
 }
 
 func GetTestFiles(root string) (err error, files []TestFile) {

@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 
+	a "testsuites/annotations"
 	c "testsuites/collector"
 
 	"github.com/dave/dst"
@@ -21,7 +22,7 @@ type Function struct {
 
 type Metadata struct {
 	Package string
-	HeaderType
+	a.HeaderType
 }
 
 func ExtractScenarios(file c.TestFile) (functions []c.Function, meta *Metadata, err error) {
@@ -64,7 +65,7 @@ func getFunctions(content string, filePath string) ([]Function, *Metadata, error
 	var functions []Function
 	var metadata Metadata
 
-	var annotationParser Parser
+	var annotationParser a.Parser
 
 	f, err := decorator.Parse(content)
 	if err != nil {
@@ -73,17 +74,17 @@ func getFunctions(content string, filePath string) ([]Function, *Metadata, error
 
 	metadata.Package = f.Name.Name
 
-	headerData, err := annotationParser.Parse(f.Decs.NodeDecs.Start[0], Header)
+	headerData, err := annotationParser.Parse(f.Decs.NodeDecs.Start[0], a.Header)
 	if err == nil {
-		metadata.TestType = headerData.(*HeaderType).TestType
-		metadata.System = headerData.(*HeaderType).System
-		metadata.Ignore = headerData.(*HeaderType).Ignore
+		metadata.TestType = headerData.(*a.HeaderType).TestType
+		metadata.System = headerData.(*a.HeaderType).System
+		metadata.Ignore = headerData.(*a.HeaderType).Ignore
 	}
 
-	for _, obj := range f.Scope.Objects {
+	for _, function := range f.Scope.Objects {
 		testExists := false
 
-		params := findFunctionParamsFromDST(obj)
+		params := findFunctionParamsFromDST(function)
 
 		for _, param := range params {
 			if strings.Contains(param, "testing.T") {
@@ -92,10 +93,10 @@ func getFunctions(content string, filePath string) ([]Function, *Metadata, error
 		}
 
 		if testExists {
-			var fScenarios []c.Scenario
+			fScenarios := findScenariosFromDST(function)
 
 			functions = append(functions, Function{
-				Name:      obj.Name,
+				Name:      function.Name,
 				Scenarios: fScenarios,
 			})
 		}
@@ -120,6 +121,31 @@ func findFunctionParamsFromDST(object *dst.Object) []string {
 	}
 
 	return params
+}
+
+func findFunctionAnnotation(object *dst.Object) a.FunctionType {
+	var fType a.FunctionType
+
+	return fType
+}
+
+func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
+	var scenarios []a.ScenarioType
+	var annotationParser a.Parser
+
+	bodyObjects := object.Decl.(*dst.FuncDecl).Body.List
+
+	for _, object := range bodyObjects {
+
+		comment := object.(*dst.ExprStmt).Decs.NodeDecs.Start[0]
+
+		scenario, err := annotationParser.Parse(comment, a.Scenario)
+		if err != nil {
+			scenarios = append(scenarios, scenario.(a.ScenarioType))
+		}
+	}
+
+	return scenarios
 }
 
 func TrimQuotes(input string) string {

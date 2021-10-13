@@ -1,4 +1,4 @@
-package extractor
+package annotations
 
 type HeaderType struct {
 	TestType string
@@ -11,6 +11,6 @@ type FunctionType struct {
 }
 
 type ScenarioType struct {
-	Description string
-	Ignore      bool
+	Description string `json:"description"`
+	Ignore      bool   `json:"ignore"`
 }

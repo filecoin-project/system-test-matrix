@@ -1,4 +1,4 @@
-package extractor
+package annotations
 
 import (
 	"errors"

@@ -65,6 +65,11 @@ func getFunctions(content string, filePath string) []Function {
 
 		switch fn := n.(type) {
 
+		case *ast.File:
+			if fn.Name.Name == "api" {
+				ast.Print(fileSet, node)
+			}
+
 		case *ast.FuncDecl:
 
 			testExists := false

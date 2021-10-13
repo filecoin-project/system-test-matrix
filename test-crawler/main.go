@@ -21,13 +21,13 @@ func main() {
 	}
 
 	for i, file := range files {
-		scenarios, err := ex.ExtractScenarios(file)
+		functions, err := ex.ExtractScenarios(file)
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
 
-		files[i].Functions = scenarios
+		files[i].Functions = functions
 	}
 
 	SaveToFile(files)

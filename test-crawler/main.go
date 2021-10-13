@@ -14,7 +14,7 @@ const OUTPUT_FOLDER = "outputs"
 
 func main() {
 	//
-	err, files := c.GetTestFiles("_modules/")
+	files, err := c.GetTestFiles("_modules/")
 	if err != nil {
 		fmt.Println(err)
 		return

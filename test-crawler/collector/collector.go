@@ -30,7 +30,7 @@ type Scenario struct {
 }
 
 func GetTestFiles(root string) (files []TestFile, err error) {
-	err, fileArray := listTestFiles(root)
+	fileArray, err := listTestFiles(root)
 	if err != nil {
 		return nil, err
 	}

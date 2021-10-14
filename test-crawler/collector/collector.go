@@ -4,30 +4,37 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	a "testsuites/annotations"
 )
 
 type TestFile struct {
 	File         string     `json:"file"`
 	Path         string     `json:"path"`
-	Project      string     `json:"project"`
+	Project      string     `json:"repository"`
 	ParentFolder string     `json:"parent_folder"`
+	Package      string     `json:"package"`
+	TestType     string     `json:"test_type"`
+	System       string     `json:"system"`
+	Ignore       bool       `json:"ignore"`
 	Functions    []Function `json:"functions"`
 }
 
 type Function struct {
 	Name      string     `json:"function"`
 	Scenarios []Scenario `json:"scenarios"`
+	a.FunctionType
 }
 
 type Scenario struct {
-	Id   string `json:"scenario_id"`
-	Name string `json:"scenario_name"`
+	Id string `json:"scenario_id"`
+	a.ScenarioType
 }
 
-func GetTestFiles(root string) (err error, files []TestFile) {
-	err, fileArray := listTestFiles(root)
+func GetTestFiles(root string) (files []TestFile, err error) {
+	fileArray, err := listTestFiles(root)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 
 	if len(fileArray) == 0 {
@@ -39,10 +46,10 @@ func GetTestFiles(root string) (err error, files []TestFile) {
 		files = append(files, testFile)
 	}
 
-	return nil, files
+	return files, nil
 }
 
-func listTestFiles(root string) (err error, files []string) {
+func listTestFiles(root string) (files []string, err error) {
 	err = filepath.Walk(root,
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
@@ -57,11 +64,11 @@ func listTestFiles(root string) (err error, files []string) {
 		})
 
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 
 	if len(files) != 0 {
-		return nil, files
+		return files, nil
 	}
 
 	return nil, nil

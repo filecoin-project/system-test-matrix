@@ -153,11 +153,11 @@ func findFunctionParamsFromDST(object *dst.Object) []string {
 }
 
 //TODO
-func findFunctionAnnotation(object *dst.Object) a.FunctionType {
-	var fType a.FunctionType
+// func findFunctionAnnotation(object *dst.Object) a.FunctionType {
+// 	var fType a.FunctionType
 
-	return fType
-}
+// 	return fType
+// }
 
 func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
 	var scenarios []a.ScenarioType
@@ -170,9 +170,12 @@ func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
 		comment := getCommentFromStmt(object)
 
 		scenario, err := annotationParser.Parse(comment, a.Scenario)
-		if err != nil {
+		if err == nil {
 			if scenario != nil {
-				scenarios = append(scenarios, scenario.(a.ScenarioType))
+				switch scenType := scenario.(type) {
+				case *a.ScenarioType:
+					scenarios = append(scenarios, *scenType)
+				}
 			} else {
 				scenarios = append(scenarios, a.ScenarioType{})
 			}

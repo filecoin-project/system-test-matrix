@@ -29,6 +29,7 @@ func main() {
 
 		files[i].Package = meta.Package
 		files[i].TestType = meta.TestType
+		files[i].System = meta.System
 		files[i].Ignore = meta.Ignore
 		files[i].Functions = functions
 	}

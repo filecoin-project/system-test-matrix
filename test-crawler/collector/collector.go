@@ -14,8 +14,10 @@ type TestFile struct {
 	Project      string     `json:"project"`
 	ParentFolder string     `json:"parent_folder"`
 	Package      string     `json:"package"`
+	TestType     string     `json:"test_type"`
+	System       string     `json:"system"`
+	Ignore       bool       `json:"ignore"`
 	Functions    []Function `json:"functions"`
-	a.HeaderType
 }
 
 type Function struct {

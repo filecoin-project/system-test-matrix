@@ -91,15 +91,7 @@ func getFunctions(content string, filePath string) ([]c.Function, *Metadata, err
 
 		if testExists {
 
-			var fType a.FunctionType
-			var functionData interface{}
-
-			if len(function.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start) > 0 {
-				functionData, err = annotationParser.Parse(function.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Func)
-				if err == nil {
-					fType.Ignore = functionData.(*a.FunctionType).Ignore
-				}
-			}
+			fType := findFunctionFromDST(function)
 
 			fScenarios := findScenariosFromDST(function)
 
@@ -152,12 +144,18 @@ func findFunctionParamsFromDST(object *dst.Object) []string {
 	return params
 }
 
-//TODO
-// func findFunctionAnnotation(object *dst.Object) a.FunctionType {
-// 	var fType a.FunctionType
+func findFunctionFromDST(object *dst.Object) a.FunctionType {
+	var fType a.FunctionType
+	var annotationParser a.Parser
 
-// 	return fType
-// }
+	if len(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start) > 0 {
+		IfType, err := annotationParser.Parse(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Func)
+		if err == nil {
+			fType.Ignore = IfType.(*a.FunctionType).Ignore
+		}
+	}
+	return fType
+}
 
 func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
 	var scenarios []a.ScenarioType

@@ -35,7 +35,7 @@ header goes as first line in source file
 {
         "file": "api_test.go",
         "path": "_modules/lotus/api/api_test.go",
-        "project": "lotus",
+        "repository": "lotus",
         "parent_folder": "api",
         "package": "api",
         "test_type": "integration",
@@ -43,37 +43,24 @@ header goes as first line in source file
         "ignore": false,
         "functions": [
             {
-                "function": "TestPermTags",
-                "scenarios": [
-                    {
-                        "scenario_id": "c2401c26cf713e5094fb88544f840fac",
-                        "scenario_name": "permision tags for full node",
-                        "ignore": false
-                    },
-                    {
-                        "scenario_id": "8bd595c245000e85cba781ffb873827c",
-                        "scenario_name": "permision tags for storage miner node",
-                        "ignore": false
-                    },
-                    {
-                        "scenario_id": "3c2174f2ff3222466246a3989f0dd536",
-                        "scenario_name": "permision tags for worker node",
-                        "ignore": false
-                    }
-                ],
-                "ignore": false
-            },
-            {
                 "function": "TestDoesntDependOnFFI",
                 "scenarios": [
                     {
                         "scenario_id": "370ea7be14c0084707f8470ffaf36e75",
                         "scenario_name": "list packages",
+                        "behaviors": [
+                            "TEST1",
+                            "TEST2"
+                        ],
                         "ignore": false
                     },
                     {
                         "scenario_id": "fb4e6f2cbf182aeb0bae8ad880eb5cbd",
                         "scenario_name": "check dependency on filecoin",
+                        "behaviors": [
+                            "TEST1",
+                            "TEST2"
+                        ],
                         "ignore": false
                     }
                 ],

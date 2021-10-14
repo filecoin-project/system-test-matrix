@@ -11,7 +11,7 @@ import (
 type TestFile struct {
 	File         string     `json:"file"`
 	Path         string     `json:"path"`
-	Project      string     `json:"project"`
+	Project      string     `json:"repository"`
 	ParentFolder string     `json:"parent_folder"`
 	Package      string     `json:"package"`
 	TestType     string     `json:"test_type"`

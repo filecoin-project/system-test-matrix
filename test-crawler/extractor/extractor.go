@@ -15,11 +15,6 @@ import (
 	"github.com/dave/dst/decorator"
 )
 
-type Function struct {
-	Name      string
-	Scenarios []c.Scenario
-}
-
 type Metadata struct {
 	Package string
 	a.HeaderType
@@ -61,27 +56,29 @@ func getFileContent(filePath string) (content string, err error) {
 	return string(src), nil
 }
 
-func getFunctions(content string, filePath string) ([]Function, *Metadata, error) {
-	var functions []Function
+func getFunctions(content string, filePath string) ([]c.Function, *Metadata, error) {
+	var functions []c.Function
 	var metadata Metadata
 
 	var annotationParser a.Parser
 
-	f, err := decorator.Parse(content)
+	file, err := decorator.Parse(content)
 	if err != nil {
 		panic(err)
 	}
 
-	metadata.Package = f.Name.Name
+	metadata.Package = file.Name.Name
 
-	headerData, err := annotationParser.Parse(f.Decs.NodeDecs.Start[0], a.Header)
-	if err == nil {
-		metadata.TestType = headerData.(*a.HeaderType).TestType
-		metadata.System = headerData.(*a.HeaderType).System
-		metadata.Ignore = headerData.(*a.HeaderType).Ignore
+	if len(file.Decs.NodeDecs.Start) > 0 {
+		headerData, err := annotationParser.Parse(file.Decs.NodeDecs.Start[0], a.Header)
+		if err == nil {
+			metadata.TestType = headerData.(*a.HeaderType).TestType
+			metadata.System = headerData.(*a.HeaderType).System
+			metadata.Ignore = headerData.(*a.HeaderType).Ignore
+		}
 	}
 
-	for _, function := range f.Scope.Objects {
+	for _, function := range file.Scope.Objects {
 		testExists := false
 
 		params := findFunctionParamsFromDST(function)
@@ -93,11 +90,23 @@ func getFunctions(content string, filePath string) ([]Function, *Metadata, error
 		}
 
 		if testExists {
+
+			var fType a.FunctionType
+			var functionData interface{}
+
+			if len(function.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start) > 0 {
+				functionData, err = annotationParser.Parse(function.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Func)
+				if err == nil {
+					fType.Ignore = functionData.(*a.FunctionType).Ignore
+				}
+			}
+
 			fScenarios := findScenariosFromDST(function)
 
-			functions = append(functions, Function{
-				Name:      function.Name,
-				Scenarios: makeCollectorScenarios(filePath, function.Name, fScenarios),
+			functions = append(functions, c.Function{
+				Name:         function.Name,
+				Scenarios:    makeCollectorScenarios(filePath, function.Name, fScenarios),
+				FunctionType: fType,
 			})
 		}
 
@@ -110,19 +119,40 @@ func findFunctionParamsFromDST(object *dst.Object) []string {
 
 	var params []string
 
-	if object.Decl.(*dst.FuncDecl) != nil {
-		paramList := object.Decl.(*dst.FuncDecl).Type.Params.List
-		for _, param := range paramList {
-			pkg := param.Type.(*dst.StarExpr).X.(*dst.SelectorExpr).X.(*dst.Ident).Name
-			pkgType := param.Type.(*dst.StarExpr).X.(*dst.SelectorExpr).Sel.Name
+	switch object.Decl.(type) {
+	case *dst.FuncDecl:
+		{
+			if object.Decl.(*dst.FuncDecl) != nil {
+				paramList := object.Decl.(*dst.FuncDecl).Type.Params.List
+				for _, param := range paramList {
+					switch outer := param.Type.(type) {
+					case *dst.FuncType:
+						{
 
-			params = append(params, fmt.Sprintf("%s.%s", pkg, pkgType))
+						}
+					case *dst.StarExpr:
+						{
+							switch inner := outer.X.(type) {
+							case *dst.SelectorExpr:
+								{
+									pkg := inner.X.(*dst.Ident).Name
+									pkgType := inner.Sel.Name
+
+									params = append(params, fmt.Sprintf("%s.%s", pkg, pkgType))
+								}
+							}
+
+						}
+					}
+				}
+			}
 		}
 	}
 
 	return params
 }
 
+//TODO
 func findFunctionAnnotation(object *dst.Object) a.FunctionType {
 	var fType a.FunctionType
 
@@ -137,11 +167,15 @@ func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
 
 	for _, object := range bodyObjects {
 
-		comment := object.(*dst.ExprStmt).Decs.NodeDecs.Start[0]
+		comment := getCommentFromStmt(object)
 
 		scenario, err := annotationParser.Parse(comment, a.Scenario)
 		if err != nil {
-			scenarios = append(scenarios, scenario.(a.ScenarioType))
+			if scenario != nil {
+				scenarios = append(scenarios, scenario.(a.ScenarioType))
+			} else {
+				scenarios = append(scenarios, a.ScenarioType{})
+			}
 		}
 	}
 
@@ -151,10 +185,106 @@ func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
 func makeCollectorScenarios(filePath string, funcName string, scenarios []a.ScenarioType) []c.Scenario {
 	var fScenarios []c.Scenario
 
+	for _, scenario := range scenarios {
+		fScenarios = append(fScenarios, c.Scenario{
+			Id:           makeID(filePath, funcName, scenario.Description),
+			ScenarioType: scenario,
+		})
+	}
+
 	return fScenarios
 }
 
 func makeID(filePath string, funcName string, scenario string) string {
 	hash := md5.Sum([]byte(fmt.Sprintf("%s_%s_%s", filePath, funcName, scenario)))
 	return string(hex.EncodeToString(hash[:]))
+}
+
+func getCommentFromStmt(statment dst.Stmt) string {
+	var result string
+
+	switch v := statment.(type) {
+	case *dst.BadStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.DeclStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.EmptyStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.LabeledStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.ExprStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.SendStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.IncDecStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.AssignStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.GoStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.DeferStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.ReturnStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.BranchStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.IfStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.CaseClause:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.SwitchStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.TypeSwitchStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.CommClause:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.SelectStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.ForStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	case *dst.RangeStmt:
+		if len(v.Decs.NodeDecs.Start) > 0 {
+			return v.Decs.NodeDecs.Start[0]
+		}
+	}
+
+	return result
 }

@@ -129,7 +129,7 @@ func getScenarioInfo(input string) (*ScenarioType, error) {
 }
 
 func findInStringByKey(input string, key string) (string, error) {
-	reg := regexp.MustCompile(fmt.Sprintf("%s=([A-z]+);?", key))
+	reg := regexp.MustCompile(fmt.Sprintf("%s=(([A-z0-9]+\\s?){1,});?", key))
 
 	match := reg.FindAllStringSubmatch(input, -1)
 	if len(match) < 1 {

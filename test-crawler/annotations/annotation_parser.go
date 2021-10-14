@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 type Parser struct{}
@@ -73,18 +74,12 @@ func tryParse(input string) (Annotation, error) {
 
 func getHeaderInfo(input string) (*HeaderType, error) {
 
-	testType, err := findInStringByKey(input, "type")
-	if err != nil {
-		return nil, err
-	}
+	testType := findInStringByKey(input, "type")
 
-	system, err := findInStringByKey(input, "system")
-	if err != nil {
-		return nil, err
-	}
+	system := findInStringByKey(input, "system")
 
 	ignore := false
-	ignoreKey, _ := findInStringByKey(input, "ignore")
+	ignoreKey := findInStringByKey(input, "ignore")
 	if ignoreKey != "false" && len(ignoreKey) > 0 {
 		ignore = true
 	}
@@ -99,7 +94,7 @@ func getHeaderInfo(input string) (*HeaderType, error) {
 func getFunctionInfo(input string) (*FunctionType, error) {
 
 	ignore := false
-	ignoreKey, _ := findInStringByKey(input, "ignore")
+	ignoreKey := findInStringByKey(input, "ignore")
 	if ignoreKey != "false" && len(ignoreKey) > 0 {
 		ignore = true
 	}
@@ -111,32 +106,37 @@ func getFunctionInfo(input string) (*FunctionType, error) {
 
 func getScenarioInfo(input string) (*ScenarioType, error) {
 
-	description, err := findInStringByKey(input, "desc")
-	if err != nil {
-		return nil, err
+	description := findInStringByKey(input, "desc")
+
+	behaviors := findInStringByKey(input, "behaviors")
+
+	behaviorArray := strings.Split(behaviors, ",")
+	for i := range behaviorArray {
+		behaviorArray[i] = strings.TrimSpace(behaviorArray[i])
 	}
 
 	ignore := false
-	ignoreKey, _ := findInStringByKey(input, "ignore")
+	ignoreKey := findInStringByKey(input, "ignore")
 	if ignoreKey != "false" && len(ignoreKey) > 0 {
 		ignore = true
 	}
 
 	return &ScenarioType{
 		Description: description,
+		Behaviors:   behaviorArray,
 		Ignore:      ignore,
 	}, nil
 }
 
-func findInStringByKey(input string, key string) (string, error) {
-	reg := regexp.MustCompile(fmt.Sprintf("%s=(([A-z0-9]+\\s?){1,});?", key))
+func findInStringByKey(input string, key string) string {
+	reg := regexp.MustCompile(fmt.Sprintf("%s=(([A-z0-9]+\\s?(,?\\s?)){1,});?", key))
 
 	match := reg.FindAllStringSubmatch(input, -1)
 	if len(match) < 1 {
-		return "", fmt.Errorf("failed to find by key (%s)", key)
+		return ""
 	}
 
-	return match[0][1], nil
+	return match[0][1]
 }
 
 func getType(input string) Annotation {

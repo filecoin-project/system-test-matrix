@@ -11,6 +11,7 @@ type FunctionType struct {
 }
 
 type ScenarioType struct {
-	Description string `json:"scenario_name"`
-	Ignore      bool   `json:"ignore"`
+	Description string   `json:"scenario_name"`
+	Behaviors   []string `json:"behaviors"`
+	Ignore      bool     `json:"ignore"`
 }

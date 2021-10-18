@@ -22,8 +22,7 @@ It will also pull spec-actors
 ----
 Current annotation format examples:  
 header:     //stm:header;type=integration;system=api;ignore=false  
-function:   //stm:func;ignore=false  
-scenario:   //stm:scen;desc=describe scenario;ignore=false  
+scenario:   //stm:scen;code=SCEN_CODE_1, SCEN_CODE_34;ignore=false  
 
 header goes as first line in source file  
 

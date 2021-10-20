@@ -20,24 +20,25 @@ type Metadata struct {
 	a.HeaderType
 }
 
-func ExtractScenarios(file c.TestFile) (functions []c.Function, meta *Metadata, err error) {
+func ExtractScenarios(file c.TestFile) (scenarios []c.Scenario, meta *Metadata, err error) {
 	content, err := getFileContent(file.Path)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	funcData, meta, err := getFunctions(content, file.Path)
+	scenData, meta, err := getScenarios(content, file.Path)
 	if err != nil {
 		return nil, nil, err
 	}
-	for _, s := range funcData {
-		functions = append(functions, c.Function{
-			Name:      s.Name,
-			Scenarios: s.Scenarios,
+	for _, s := range scenData {
+		scenarios = append(scenarios, c.Scenario{
+			Id:        s.Id,
+			Tag:       s.Tag,
+			Behaviors: s.Behaviors,
 		})
 
 	}
-	return functions, meta, nil
+	return scenarios, meta, nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -56,8 +57,8 @@ func getFileContent(filePath string) (content string, err error) {
 	return string(src), nil
 }
 
-func getFunctions(content string, filePath string) ([]c.Function, *Metadata, error) {
-	var functions []c.Function
+func getScenarios(content string, filePath string) ([]c.Scenario, *Metadata, error) {
+	var scenarios []c.Scenario
 	var metadata Metadata
 
 	var annotationParser a.Parser
@@ -91,14 +92,11 @@ func getFunctions(content string, filePath string) ([]c.Function, *Metadata, err
 
 		if testExists {
 
-			fType := findFunctionFromDST(function)
+			behaviors := findBehaviorsFromDST(function)
 
-			fScenarios := findScenariosFromDST(function)
-
-			functions = append(functions, c.Function{
-				Name:         function.Name,
-				Scenarios:    makeCollectorScenarios(filePath, function.Name, fScenarios),
-				FunctionType: fType,
+			scenarios = append(scenarios, c.Scenario{
+				Id:        behaviors,
+				Behaviors: makeCollectorScenarios(filePath, function.Name, fScenarios),
 			})
 		}
 
@@ -157,8 +155,8 @@ func findFunctionFromDST(object *dst.Object) a.FunctionType {
 	return fType
 }
 
-func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
-	var scenarios []a.ScenarioType
+func findBehaviorsFromDST(object *dst.Object) []a.BehaviorType {
+	var scenarios []a.BehaviorType
 	var annotationParser a.Parser
 
 	bodyObjects := object.Decl.(*dst.FuncDecl).Body.List
@@ -183,11 +181,15 @@ func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
 	return scenarios
 }
 
-func makeCollectorScenarios(filePath string, funcName string, behavior a.BehaviorType) c.Scenario {
+func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType) c.Scenario {
+
+	for _, behavior := range behaviors {
+		behavior.Id = makeID(filePath, funcName, behavior.Tag)
+	}
 
 	fScenario := c.Scenario{
-		Id:           makeID(filePath, funcName, behavior.Tag),
-		BehaviorType: behavior,
+		Function:  funcName,
+		Behaviors: behaviors,
 	}
 
 	return fScenario

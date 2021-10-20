@@ -32,8 +32,7 @@ func ExtractScenarios(file c.TestFile) (scenarios []c.Scenario, meta *Metadata, 
 	}
 	for _, s := range scenData {
 		scenarios = append(scenarios, c.Scenario{
-			Id:        s.Id,
-			Tag:       s.Tag,
+			Function:  s.Function,
 			Behaviors: s.Behaviors,
 		})
 
@@ -94,15 +93,12 @@ func getScenarios(content string, filePath string) ([]c.Scenario, *Metadata, err
 
 			behaviors := findBehaviorsFromDST(function)
 
-			scenarios = append(scenarios, c.Scenario{
-				Id:        behaviors,
-				Behaviors: makeCollectorScenarios(filePath, function.Name, fScenarios),
-			})
+			scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
 		}
 
 	}
 
-	return functions, &metadata, nil
+	return scenarios, &metadata, nil
 }
 
 func findFunctionParamsFromDST(object *dst.Object) []string {
@@ -142,14 +138,14 @@ func findFunctionParamsFromDST(object *dst.Object) []string {
 	return params
 }
 
-func findFunctionFromDST(object *dst.Object) a.FunctionType {
-	var fType a.FunctionType
+func findScenarioFromDST(object *dst.Object) a.ScenarioType {
+	var fType a.ScenarioType
 	var annotationParser a.Parser
 
 	if len(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start) > 0 {
-		IfType, err := annotationParser.Parse(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Func)
+		IfType, err := annotationParser.Parse(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Scenario)
 		if err == nil {
-			fType.Ignore = IfType.(*a.FunctionType).Ignore
+			fType.Ignore = IfType.(*a.ScenarioType).Ignore
 		}
 	}
 	return fType
@@ -165,15 +161,15 @@ func findBehaviorsFromDST(object *dst.Object) []a.BehaviorType {
 
 		comment := getCommentFromStmt(object)
 
-		scenario, err := annotationParser.Parse(comment, a.Scenario)
+		scenario, err := annotationParser.Parse(comment, a.Behavior)
 		if err == nil {
 			if scenario != nil {
-				switch scenType := scenario.(type) {
-				case *a.ScenarioType:
-					scenarios = append(scenarios, *scenType)
+				switch behaviorType := scenario.(type) {
+				case *a.BehaviorType:
+					scenarios = append(scenarios, *behaviorType)
 				}
 			} else {
-				scenarios = append(scenarios, a.ScenarioType{})
+				scenarios = append(scenarios, a.BehaviorType{})
 			}
 		}
 	}

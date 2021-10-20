@@ -183,21 +183,18 @@ func findScenariosFromDST(object *dst.Object) []a.ScenarioType {
 	return scenarios
 }
 
-func makeCollectorScenarios(filePath string, funcName string, scenarios []a.ScenarioType) []c.Scenario {
-	var fScenarios []c.Scenario
+func makeCollectorScenarios(filePath string, funcName string, behavior a.BehaviorType) c.Scenario {
 
-	for _, scenario := range scenarios {
-		fScenarios = append(fScenarios, c.Scenario{
-			Id:           makeID(filePath, funcName, scenario.Description),
-			ScenarioType: scenario,
-		})
+	fScenario := c.Scenario{
+		Id:           makeID(filePath, funcName, behavior.Tag),
+		BehaviorType: behavior,
 	}
 
-	return fScenarios
+	return fScenario
 }
 
-func makeID(filePath string, funcName string, scenario string) string {
-	hash := md5.Sum([]byte(fmt.Sprintf("%s_%s_%s", filePath, funcName, scenario)))
+func makeID(filePath string, funcName string, behavior string) string {
+	hash := md5.Sum([]byte(fmt.Sprintf("%s_%s_%s", filePath, funcName, behavior)))
 	return string(hex.EncodeToString(hash[:]))
 }
 

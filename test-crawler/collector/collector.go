@@ -23,12 +23,11 @@ type TestFile struct {
 type Function struct {
 	Name      string     `json:"function"`
 	Scenarios []Scenario `json:"scenarios"`
-	a.FunctionType
 }
 
 type Scenario struct {
 	Id string `json:"scenario_id"`
-	a.ScenarioType
+	a.BehaviorType
 }
 
 func GetTestFiles(root string) (files []TestFile, err error) {

@@ -140,8 +140,8 @@ func findBehaviorsFromString(input string, key string) []string {
 
 	behaviors := []string{}
 
-	for i := 1; i < len(match[0]); i++ {
-		behaviors = append(behaviors, match[0][i])
+	for i := 0; i < len(match); i++ {
+		behaviors = append(behaviors, match[i][1])
 	}
 
 	return behaviors

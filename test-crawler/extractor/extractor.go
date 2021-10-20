@@ -179,8 +179,8 @@ func findBehaviorsFromDST(object *dst.Object) []a.BehaviorType {
 
 func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType) c.Scenario {
 
-	for _, behavior := range behaviors {
-		behavior.Id = makeID(filePath, funcName, behavior.Tag)
+	for i := range behaviors {
+		behaviors[i].Id = makeID(filePath, funcName, behaviors[i].Tag)
 	}
 
 	fScenario := c.Scenario{

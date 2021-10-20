@@ -13,8 +13,8 @@ type Annotation string
 
 const (
 	Header   Annotation = "header"
-	Func     Annotation = "func"
-	Scenario Annotation = "scen"
+	Scenario Annotation = "scenarios"
+	Behavior Annotation = "@"
 	Unknown  Annotation = "unknown"
 )
 
@@ -33,14 +33,6 @@ func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error)
 			}
 			return header, nil
 		}
-	case Func:
-		{
-			function, err := getFunctionInfo(input)
-			if err != nil {
-				return nil, err
-			}
-			return function, nil
-		}
 	case Scenario:
 		{
 			scenario, err := getScenarioInfo(input)
@@ -48,6 +40,14 @@ func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error)
 				return nil, err
 			}
 			return scenario, nil
+		}
+	case Behavior:
+		{
+			behaviors, err := getBehaviorInfo(input)
+			if err != nil {
+				return nil, err
+			}
+			return behaviors, nil
 		}
 	}
 
@@ -91,22 +91,20 @@ func getHeaderInfo(input string) (*HeaderType, error) {
 	}, nil
 }
 
-func getFunctionInfo(input string) (*FunctionType, error) {
+func getBehaviorInfo(input string) (*BehaviorType, error) {
 
 	ignore := false
-	ignoreKey := findInStringByKey(input, "ignore")
+	ignoreKey := findInStringByKey(input, "@")
 	if ignoreKey != "false" && len(ignoreKey) > 0 {
 		ignore = true
 	}
 
-	return &FunctionType{
+	return &BehaviorType{
 		Ignore: ignore,
 	}, nil
 }
 
 func getScenarioInfo(input string) (*ScenarioType, error) {
-
-	description := findInStringByKey(input, "desc")
 
 	behaviors := findInStringByKey(input, "behaviors")
 
@@ -122,9 +120,8 @@ func getScenarioInfo(input string) (*ScenarioType, error) {
 	}
 
 	return &ScenarioType{
-		Description: description,
-		Behaviors:   behaviorArray,
-		Ignore:      ignore,
+		Behaviors: behaviorArray,
+		Ignore:    ignore,
 	}, nil
 }
 
@@ -141,7 +138,7 @@ func findInStringByKey(input string, key string) string {
 
 func getType(input string) Annotation {
 	switch Annotation(input) {
-	case Header, Func, Scenario:
+	case Header, Scenario, Behavior:
 		{
 			return Annotation(input)
 		}

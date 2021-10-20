@@ -22,7 +22,7 @@ It will also pull spec-actors
 ----
 Current annotation format examples:  
 header:     //stm:header;type=integration;system=api;ignore=false  
-scenario:   //stm:scen;code=SCEN_CODE_1, SCEN_CODE_34;ignore=false  
+behavior:   //stm @TEST_BEHAVIOR_T1, @TEST_BEHAVIOR_T2
 
 header goes as first line in source file  
 
@@ -40,30 +40,36 @@ header goes as first line in source file
         "test_type": "integration",
         "system": "api",
         "ignore": false,
-        "functions": [
+        "scenarios": [
             {
-                "function": "TestDoesntDependOnFFI",
-                "scenarios": [
+                "function": "TestDoesntDependOnBuild",
+                "Behaviors": [
                     {
-                        "scenario_id": "370ea7be14c0084707f8470ffaf36e75",
-                        "scenario_name": "list packages",
-                        "behaviors": [
-                            "TEST1",
-                            "TEST2"
-                        ],
+                        "behavior_id": "595dcc2a305993ee23de301a06ce7c99",
+                        "behavior": "TEST_BEHAVIOR_14",
                         "ignore": false
                     },
                     {
-                        "scenario_id": "fb4e6f2cbf182aeb0bae8ad880eb5cbd",
-                        "scenario_name": "check dependency on filecoin",
-                        "behaviors": [
-                            "TEST1",
-                            "TEST2"
-                        ],
+                        "behavior_id": "a8097d71ad6638bd2e548df07e6297d4",
+                        "behavior": "TEST_BEHAVIOR_15",
+                        "ignore": false
+                    },
+                    {
+                        "behavior_id": "38b993dc4547de2c66acdbadf65265d2",
+                        "behavior": "TEST_BEHAVIOR_16",
+                        "ignore": false
+                    },
+                    {
+                        "behavior_id": "5b028f0c65a81667b39698b7b869f02a",
+                        "behavior": "TEST_BEHAVIOR_17",
+                        "ignore": false
+                    },
+                    {
+                        "behavior_id": "f694532ec2bee806086638e8969f8d31",
+                        "behavior": "TEST_BEHAVIOR_18",
                         "ignore": false
                     }
-                ],
-                "ignore": false
+                ]
             }
 }
 ```

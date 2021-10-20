@@ -138,21 +138,21 @@ func findFunctionParamsFromDST(object *dst.Object) []string {
 	return params
 }
 
-func findScenarioFromDST(object *dst.Object) a.ScenarioType {
-	var fType a.ScenarioType
-	var annotationParser a.Parser
+// func findScenarioFromDST(object *dst.Object) a.ScenarioType {
+// 	var fType a.ScenarioType
+// 	var annotationParser a.Parser
 
-	if len(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start) > 0 {
-		IfType, err := annotationParser.Parse(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Scenario)
-		if err == nil {
-			fType.Ignore = IfType.(*a.ScenarioType).Ignore
-		}
-	}
-	return fType
-}
+// 	if len(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start) > 0 {
+// 		IfType, err := annotationParser.Parse(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Scenario)
+// 		if err == nil {
+// 			fType.Ignore = IfType.(*a.ScenarioType).Ignore
+// 		}
+// 	}
+// 	return fType
+// }
 
 func findBehaviorsFromDST(object *dst.Object) []a.BehaviorType {
-	var scenarios []a.BehaviorType
+	var behaviors []a.BehaviorType
 	var annotationParser a.Parser
 
 	bodyObjects := object.Decl.(*dst.FuncDecl).Body.List
@@ -161,20 +161,20 @@ func findBehaviorsFromDST(object *dst.Object) []a.BehaviorType {
 
 		comment := getCommentFromStmt(object)
 
-		scenario, err := annotationParser.Parse(comment, a.Behavior)
+		behavior, err := annotationParser.Parse(comment, a.Behavior)
 		if err == nil {
-			if scenario != nil {
-				switch behaviorType := scenario.(type) {
-				case *a.BehaviorType:
-					scenarios = append(scenarios, *behaviorType)
+			if behavior != nil {
+				switch behaviorType := behavior.(type) {
+				case []a.BehaviorType:
+					behaviors = append(behaviors, behaviorType...)
 				}
 			} else {
-				scenarios = append(scenarios, a.BehaviorType{})
+				behaviors = append(behaviors, a.BehaviorType{})
 			}
 		}
 	}
 
-	return scenarios
+	return behaviors
 }
 
 func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType) c.Scenario {

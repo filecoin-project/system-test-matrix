@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"regexp"
-	"strings"
 )
 
 type Parser struct{}
@@ -13,7 +12,6 @@ type Annotation string
 
 const (
 	Header   Annotation = "header"
-	Scenario Annotation = "scenarios"
 	Behavior Annotation = "@"
 	Unknown  Annotation = "unknown"
 )
@@ -33,14 +31,6 @@ func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error)
 			}
 			return header, nil
 		}
-	case Scenario:
-		{
-			scenario, err := getScenarioInfo(input)
-			if err != nil {
-				return nil, err
-			}
-			return scenario, nil
-		}
 	case Behavior:
 		{
 			behaviors, err := getBehaviorInfo(input)
@@ -57,7 +47,7 @@ func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error)
 func tryParse(input string) (Annotation, error) {
 	var ret Annotation = Unknown
 
-	reg := regexp.MustCompile("stm:([A-z]+);")
+	reg := regexp.MustCompile(`stm: ?([A-z]+|@);?`)
 
 	match := reg.FindAllStringSubmatch(input, -1)
 	if len(match) < 1 {
@@ -91,39 +81,43 @@ func getHeaderInfo(input string) (*HeaderType, error) {
 	}, nil
 }
 
-func getBehaviorInfo(input string) (*BehaviorType, error) {
+func getBehaviorInfo(input string) ([]BehaviorType, error) {
 
-	ignore := false
-	ignoreKey := findInStringByKey(input, "@")
-	if ignoreKey != "false" && len(ignoreKey) > 0 {
-		ignore = true
+	var behaviors []BehaviorType
+
+	behaviorsTags := findBehaviorsFromString(input, "@")
+
+	for _, tag := range behaviorsTags {
+		behaviors = append(behaviors, BehaviorType{
+			Id:     "",
+			Tag:    tag,
+			Ignore: false,
+		})
 	}
 
-	return &BehaviorType{
-		Ignore: ignore,
-	}, nil
+	return behaviors, nil
 }
 
-func getScenarioInfo(input string) (*ScenarioType, error) {
+// func getScenarioInfo(input string) (*ScenarioType, error) {
 
-	behaviors := findInStringByKey(input, "behaviors")
+// 	behaviors := findInStringByKey(input, "behaviors")
 
-	behaviorArray := strings.Split(behaviors, ",")
-	for i := range behaviorArray {
-		behaviorArray[i] = strings.TrimSpace(behaviorArray[i])
-	}
+// 	behaviorArray := strings.Split(behaviors, ",")
+// 	for i := range behaviorArray {
+// 		behaviorArray[i] = strings.TrimSpace(behaviorArray[i])
+// 	}
 
-	ignore := false
-	ignoreKey := findInStringByKey(input, "ignore")
-	if ignoreKey != "false" && len(ignoreKey) > 0 {
-		ignore = true
-	}
+// 	ignore := false
+// 	ignoreKey := findInStringByKey(input, "ignore")
+// 	if ignoreKey != "false" && len(ignoreKey) > 0 {
+// 		ignore = true
+// 	}
 
-	return &ScenarioType{
-		Behaviors: behaviorArray,
-		Ignore:    ignore,
-	}, nil
-}
+// 	return &ScenarioType{
+// 		Behaviors: behaviorArray,
+// 		Ignore:    ignore,
+// 	}, nil
+// }
 
 func findInStringByKey(input string, key string) string {
 	reg := regexp.MustCompile(fmt.Sprintf("%s=(([A-z0-9]+\\s?(,?\\s?)){1,});?", key))
@@ -136,9 +130,26 @@ func findInStringByKey(input string, key string) string {
 	return match[0][1]
 }
 
+func findBehaviorsFromString(input string, key string) []string {
+	reg := regexp.MustCompile(fmt.Sprintf("%s([a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*)", key))
+
+	match := reg.FindAllStringSubmatch(input, -1)
+	if len(match) < 1 {
+		return nil
+	}
+
+	behaviors := []string{}
+
+	for i := 1; i < len(match[0]); i++ {
+		behaviors = append(behaviors, match[0][i])
+	}
+
+	return behaviors
+}
+
 func getType(input string) Annotation {
 	switch Annotation(input) {
-	case Header, Scenario, Behavior:
+	case Header, Behavior:
 		{
 			return Annotation(input)
 		}

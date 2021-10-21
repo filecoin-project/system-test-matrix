@@ -22,7 +22,7 @@ It will also pull spec-actors
 ----
 Current annotation format examples:  
 header:     //stm:header;type=integration;system=api;ignore=false  
-behavior:   //stm @TEST_BEHAVIOR_T1, @TEST_BEHAVIOR_T2
+behavior:   //stm: @TEST_BEHAVIOR_T1, @TEST_BEHAVIOR_T2
 
 header goes as first line in source file  
 

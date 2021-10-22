@@ -21,7 +21,7 @@ func main() {
 	}
 
 	for i, file := range files {
-		functions, meta, err := ex.ExtractScenarios(file)
+		scenarios, meta, err := ex.ExtractScenarios(file)
 		if err != nil {
 			fmt.Println(err)
 			continue
@@ -31,7 +31,7 @@ func main() {
 		files[i].TestType = meta.TestType
 		files[i].System = meta.System
 		files[i].Ignore = meta.Ignore
-		files[i].Functions = functions
+		files[i].Scenarios = scenarios
 	}
 
 	SaveToFile(files)

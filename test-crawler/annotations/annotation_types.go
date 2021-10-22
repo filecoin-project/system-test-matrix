@@ -5,13 +5,13 @@ type HeaderType struct {
 	System   string `json:"system"`
 	Ignore   bool   `json:"ignore"`
 }
-
-type FunctionType struct {
-	Ignore bool `json:"ignore"`
+type ScenarioType struct {
+	Behaviors []string `json:"behaviors"`
+	Ignore    bool     `json:"ignore"`
 }
 
-type ScenarioType struct {
-	Description string   `json:"scenario_name"`
-	Behaviors   []string `json:"behaviors"`
-	Ignore      bool     `json:"ignore"`
+type BehaviorType struct {
+	Id     string `json:"behavior_id"`
+	Tag    string `json:"behavior"`
+	Ignore bool   `json:"ignore"`
 }

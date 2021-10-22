@@ -17,18 +17,12 @@ type TestFile struct {
 	TestType     string     `json:"test_type"`
 	System       string     `json:"system"`
 	Ignore       bool       `json:"ignore"`
-	Functions    []Function `json:"functions"`
-}
-
-type Function struct {
-	Name      string     `json:"function"`
-	Scenarios []Scenario `json:"scenarios"`
-	a.FunctionType
+	Scenarios    []Scenario `json:"scenarios"`
 }
 
 type Scenario struct {
-	Id string `json:"scenario_id"`
-	a.ScenarioType
+	Function  string `json:"function"`
+	Behaviors []a.BehaviorType
 }
 
 func GetTestFiles(root string) (files []TestFile, err error) {

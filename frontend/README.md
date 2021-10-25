@@ -4,6 +4,7 @@
 
 ## Installation
 
+Required Node and NPM versions are: 14.15.0 and 6.14.8. We recommend to use `nvm` package to install and use specific versions.
 In frontend project directory run `yarn` to install all needed packages
 
 ## Development

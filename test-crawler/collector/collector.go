@@ -15,7 +15,6 @@ type TestFile struct {
 	ParentFolder string     `json:"parent_folder"`
 	Package      string     `json:"package"`
 	TestType     string     `json:"test_type"`
-	System       string     `json:"system"`
 	Ignore       bool       `json:"ignore"`
 	Scenarios    []Scenario `json:"scenarios"`
 }

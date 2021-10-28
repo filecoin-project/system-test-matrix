@@ -17,6 +17,7 @@ import (
 
 type Metadata struct {
 	Package string
+	Ignore  bool
 	a.HeaderType
 }
 
@@ -73,8 +74,6 @@ func getScenarios(content string, filePath string) ([]c.Scenario, *Metadata, err
 		headerData, err := annotationParser.Parse(file.Decs.NodeDecs.Start[0], a.Header)
 		if err == nil {
 			metadata.TestType = headerData.(*a.HeaderType).TestType
-			metadata.System = headerData.(*a.HeaderType).System
-			metadata.Ignore = headerData.(*a.HeaderType).Ignore
 		}
 	}
 

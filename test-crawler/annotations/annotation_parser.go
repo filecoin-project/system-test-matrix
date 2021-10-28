@@ -17,10 +17,10 @@ const (
 	Unknown  Annotation = "unknown"
 )
 
-func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error) {
+func (p *Parser) Parse(input string) (interface{}, Annotation, error) {
 	parsedType, err := tryParse(input)
 	if err != nil {
-		return nil, err
+		return nil, Unknown, err
 	}
 
 	switch parsedType {
@@ -28,25 +28,25 @@ func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error)
 		{
 			header, err := getHeaderInfo(input)
 			if err != nil {
-				return nil, err
+				return nil, Unknown, err
 			}
-			return header, nil
+			return header, Header, nil
 		}
 	case Behavior:
 		{
 			behaviors, err := getBehaviorInfo(input)
 			if err != nil {
-				return nil, err
+				return nil, Unknown, err
 			}
-			return behaviors, nil
+			return behaviors, Behavior, nil
 		}
 	case Ignore:
 		{
-			return Ignore, nil
+			return true, Ignore, nil
 		}
 	}
 
-	return nil, nil
+	return nil, Unknown, nil
 }
 
 func tryParse(input string) (Annotation, error) {
@@ -59,7 +59,7 @@ func tryParse(input string) (Annotation, error) {
 		return ret, errors.New("failed to match regex")
 	}
 
-	ret = getType(match[0][1])
+	ret = getTypeFromString(match[0][1])
 	if ret == Unknown {
 		return ret, errors.New("unknown type")
 	}
@@ -124,9 +124,9 @@ func findItemBySymbol(input string, key string) []string {
 	return behaviors
 }
 
-func getType(input string) Annotation {
+func getTypeFromString(input string) Annotation {
 	switch Annotation(input) {
-	case Header, Behavior:
+	case Header, Behavior, Ignore:
 		{
 			return Annotation(input)
 		}

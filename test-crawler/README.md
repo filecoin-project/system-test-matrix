@@ -21,8 +21,9 @@ It will also pull spec-actors
    
 ----
 Current annotation format examples:  
-header:     //stm:header;type=integration;system=api;ignore=false  
+header:     //stm: #integration
 behavior:   //stm: @TEST_BEHAVIOR_T1, @TEST_BEHAVIOR_T2
+ignore:     //stm: ignore
 
 header goes as first line in source file  
 
@@ -38,7 +39,6 @@ header goes as first line in source file
         "parent_folder": "api",
         "package": "api",
         "test_type": "integration",
-        "system": "api",
         "ignore": false,
         "scenarios": [
             {

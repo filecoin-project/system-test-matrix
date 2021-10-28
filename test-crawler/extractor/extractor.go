@@ -70,10 +70,14 @@ func getScenarios(content string, filePath string) ([]c.Scenario, *Metadata, err
 
 	metadata.Package = file.Name.Name
 
-	if len(file.Decs.NodeDecs.Start) > 0 {
-		headerData, err := annotationParser.Parse(file.Decs.NodeDecs.Start[0], a.Header)
+	for _, stmt := range file.Decs.NodeDecs.Start {
+		data, parsedType, err := annotationParser.Parse(stmt)
 		if err == nil {
-			metadata.TestType = headerData.(*a.HeaderType).TestType
+			if parsedType == a.Header {
+				metadata.TestType = data.(*a.HeaderType).TestType
+			} else if parsedType == a.Ignore {
+				metadata.Ignore = data.(bool)
+			}
 		}
 	}
 
@@ -160,9 +164,9 @@ func findBehaviorsFromDST(object *dst.Object) []a.BehaviorType {
 
 		comment := getCommentFromStmt(object)
 
-		behavior, err := annotationParser.Parse(comment, a.Behavior)
+		behavior, parsedType, err := annotationParser.Parse(comment)
 		if err == nil {
-			if behavior != nil {
+			if behavior != nil && parsedType == a.Behavior {
 				switch behaviorType := behavior.(type) {
 				case []a.BehaviorType:
 					behaviors = append(behaviors, behaviorType...)

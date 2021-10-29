@@ -11,15 +11,16 @@ type Parser struct{}
 type Annotation string
 
 const (
-	Header   Annotation = "header"
+	Header   Annotation = "#"
 	Behavior Annotation = "@"
+	Ignore   Annotation = "ignore"
 	Unknown  Annotation = "unknown"
 )
 
-func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error) {
+func (p *Parser) Parse(input string) (interface{}, Annotation, error) {
 	parsedType, err := tryParse(input)
 	if err != nil {
-		return nil, err
+		return nil, Unknown, err
 	}
 
 	switch parsedType {
@@ -27,34 +28,38 @@ func (p *Parser) Parse(input string, annotation Annotation) (interface{}, error)
 		{
 			header, err := getHeaderInfo(input)
 			if err != nil {
-				return nil, err
+				return nil, Unknown, err
 			}
-			return header, nil
+			return header, Header, nil
 		}
 	case Behavior:
 		{
 			behaviors, err := getBehaviorInfo(input)
 			if err != nil {
-				return nil, err
+				return nil, Unknown, err
 			}
-			return behaviors, nil
+			return behaviors, Behavior, nil
+		}
+	case Ignore:
+		{
+			return true, Ignore, nil
 		}
 	}
 
-	return nil, nil
+	return nil, Unknown, nil
 }
 
 func tryParse(input string) (Annotation, error) {
 	var ret Annotation = Unknown
 
-	reg := regexp.MustCompile(`stm: ?([A-z]+|@);?`)
+	reg := regexp.MustCompile(`stm: ?([A-z]+|@|#);?`)
 
 	match := reg.FindAllStringSubmatch(input, -1)
 	if len(match) < 1 {
 		return ret, errors.New("failed to match regex")
 	}
 
-	ret = getType(match[0][1])
+	ret = getTypeFromString(match[0][1])
 	if ret == Unknown {
 		return ret, errors.New("unknown type")
 	}
@@ -64,20 +69,10 @@ func tryParse(input string) (Annotation, error) {
 
 func getHeaderInfo(input string) (*HeaderType, error) {
 
-	testType := findInStringByKey(input, "type")
-
-	system := findInStringByKey(input, "system")
-
-	ignore := false
-	ignoreKey := findInStringByKey(input, "ignore")
-	if ignoreKey != "false" && len(ignoreKey) > 0 {
-		ignore = true
-	}
+	testType := findItemBySymbol(input, "#")
 
 	return &HeaderType{
-		TestType: testType,
-		System:   system,
-		Ignore:   ignore,
+		TestType: testType[0],
 	}, nil
 }
 
@@ -85,10 +80,11 @@ func getBehaviorInfo(input string) ([]BehaviorType, error) {
 
 	var behaviors []BehaviorType
 
-	behaviorsTags := findBehaviorsFromString(input, "@")
+	behaviorsTags := findItemBySymbol(input, "@")
 
 	for _, tag := range behaviorsTags {
 		behaviors = append(behaviors, BehaviorType{
+			// Id is calculated later
 			Id:     "",
 			Tag:    tag,
 			Ignore: false,
@@ -98,27 +94,7 @@ func getBehaviorInfo(input string) ([]BehaviorType, error) {
 	return behaviors, nil
 }
 
-// func getScenarioInfo(input string) (*ScenarioType, error) {
-
-// 	behaviors := findInStringByKey(input, "behaviors")
-
-// 	behaviorArray := strings.Split(behaviors, ",")
-// 	for i := range behaviorArray {
-// 		behaviorArray[i] = strings.TrimSpace(behaviorArray[i])
-// 	}
-
-// 	ignore := false
-// 	ignoreKey := findInStringByKey(input, "ignore")
-// 	if ignoreKey != "false" && len(ignoreKey) > 0 {
-// 		ignore = true
-// 	}
-
-// 	return &ScenarioType{
-// 		Behaviors: behaviorArray,
-// 		Ignore:    ignore,
-// 	}, nil
-// }
-
+/**** Not needed anymore but might be useful in the future ****
 func findInStringByKey(input string, key string) string {
 	reg := regexp.MustCompile(fmt.Sprintf("%s=(([A-z0-9]+\\s?(,?\\s?)){1,});?", key))
 
@@ -129,8 +105,9 @@ func findInStringByKey(input string, key string) string {
 
 	return match[0][1]
 }
+*/
 
-func findBehaviorsFromString(input string, key string) []string {
+func findItemBySymbol(input string, key string) []string {
 	reg := regexp.MustCompile(fmt.Sprintf("%s([a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*)", key))
 
 	match := reg.FindAllStringSubmatch(input, -1)
@@ -147,9 +124,9 @@ func findBehaviorsFromString(input string, key string) []string {
 	return behaviors
 }
 
-func getType(input string) Annotation {
+func getTypeFromString(input string) Annotation {
 	switch Annotation(input) {
-	case Header, Behavior:
+	case Header, Behavior, Ignore:
 		{
 			return Annotation(input)
 		}

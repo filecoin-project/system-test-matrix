@@ -1,0 +1,45 @@
+{
+  "name": "@filecoin/web",
+  "version": "1.0.0",
+  "private": false,
+  "description": "FILECOIN web application",
+  "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
+  "license": "ISC",
+  "main": "src/main.tsx",
+  "scripts": {
+    "start": "http-server dist -P http://localhost:8080? -g",
+    "preserve": "yarn prebuild",
+    "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
+    "prebuild": "concurrently \"yarn generate:routes\"",
+    "generate:routes": "node scripts/routes.js",
+    "build": "webpack --config ./config/webpack.prod.js"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
+  "devDependencies": {
+    "@babel/runtime": "^7.14.6",
+    "@types/react-dates": "^21.8.1",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/yup": "^0.29.11",
+    "concurrently": "^6.0.0",
+    "http-server": "^14.0.0",
+    "react-with-direction": "^1.3.1",
+    "webpack-cli": "^4.4.0",
+    "webpack-dev-server": "^4.0.0"
+  },
+  "dependencies": {
+    "@filecoin/build": "^1.0.0",
+    "@filecoin/core": "^1.0.0",
+    "@filecoin/ui": "^1.0.0",
+    "formik": "^2.2.6",
+    "md5": "^2.3.0",
+    "query-string": "^7.0.0",
+    "react-dates": "^21.8.0",
+    "react-phone-number-input": "^3.1.22",
+    "react-router-dom": "^5.2.0",
+    "unstated-next": "^1.1.0",
+    "yup": "^0.32.9"
+  }
+}

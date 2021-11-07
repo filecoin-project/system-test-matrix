@@ -1,0 +1,23 @@
+{
+  "name": "@filecoin/types",
+  "version": "1.0.0",
+  "private": true,
+  "description": "> TODO: description",
+  "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/filecoin-project/system-test-matrix.git"
+  },
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/filecoin-project/system-test-matrix/issues"
+  }
+}

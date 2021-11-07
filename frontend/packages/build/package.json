@@ -1,0 +1,27 @@
+{
+  "name": "@filecoin/build",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "babel-loader": "^8.2.2",
+    "circular-dependency-plugin": "^5.2.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^9.0.0",
+    "copy-webpack-plugin": "^9.0.0",
+    "cssnano": "^5.0.2",
+    "dotenv-webpack": "^7.0.1",
+    "fork-ts-checker-webpack-plugin": "^6",
+    "html-webpack-plugin": "^5.4.0",
+    "style-loader": "^3.0.0",
+    "svg-inline-loader": "^0.8.2",
+    "webpack-bundle-analyzer": "^4",
+    "webpack-merge": "^5.3.0",
+    "workbox-webpack-plugin": "^6.0.0"
+  }
+}

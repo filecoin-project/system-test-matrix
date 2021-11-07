@@ -1,0 +1,9 @@
+**/node_modules/**/*
+**/dhtmlx/**/*
+
+**/dist/**/*
+**/build/**/*
+**/coverage/**/*
+
+**/__tests__/**/*
+**/__mocks__/**/*

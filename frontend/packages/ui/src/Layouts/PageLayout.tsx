@@ -9,6 +9,7 @@ import { PageLayoutSection } from './PageLayoutSection'
 import { StackLayout } from './StackLayout'
 import { GridLayout } from './GridLayout'
 import { CoverLayout } from './CoverLayout'
+import { PageLayoutHeader } from './PageLayoutHeader'
 
 /**
  * Whether something (usually a sidebar) is in open or closed state.
@@ -159,6 +160,7 @@ export interface PageLayout
    * The `<PageLayout.Section>` component is a container used to section off PageLayout content.
    */
   Section: typeof PageLayoutSection
+  Header: typeof PageLayoutHeader
 }
 
 /**
@@ -172,9 +174,7 @@ export const Page: PageLayout = Object.assign(
     return (
       <div {...props} className={className} ref={ref}>
         <PageContent gap={4}>{children}</PageContent>
-        {header != null && (
-          <div className={'c-page-layout__header'}>{header}</div>
-        )}
+        {header != null && header}
         {navigation != null && (
           <div className={'c-page-layout__nav'}>{navigation}</div>
         )}
@@ -183,10 +183,11 @@ export const Page: PageLayout = Object.assign(
   }),
   {
     Section: PageLayoutSection,
+    Header: PageLayoutHeader,
   },
 )
 
-const HEADER_HEIGHT = 80
+const HEADER_HEIGHT = 185
 const NAV_WIDTH = 300
 const CONTENT_MAX_WIDTH = 1100
 
@@ -238,9 +239,15 @@ export const PageLayout = styled(Page)`
     z-index: ${zIndex.layer200};
     background: ${Colors.headerBackground};
     border-bottom: 1px solid ${Colors.borderColor};
+    padding: 5.5rem 3.75rem 2rem 3.75rem;
 
-    > * {
-      height: ${HEADER_HEIGHT}px;
+    &--logo {
+      background: ${Colors.logoBackground};
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-left: 2.75rem;
     }
   }
 

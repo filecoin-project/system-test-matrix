@@ -14,7 +14,15 @@ import { useHistory } from 'react-router-dom'
 import { RepositoryData } from '@/mocks'
 
 const Dashboard = () => {
-  const pageLayout = usePageLayout()
+  const pageLayout = usePageLayout({
+    header: (
+      <PageLayout.Header>
+        <StackLayout>
+          <Text type="heading 5">Systems</Text>
+        </StackLayout>
+      </PageLayout.Header>
+    ),
+  })
   const history = useHistory()
 
   return (

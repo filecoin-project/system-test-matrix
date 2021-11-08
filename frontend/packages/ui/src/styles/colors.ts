@@ -1,8 +1,9 @@
 export const Colors = {
   // layout colors
-  headerBackground: '#f9f9fe',
+  headerBackground: '#F6F8FA',
+  logoBackground: '#57606A',
   background: '#FFFFFF',
-  borderColor: '#eaecf7',
+  borderColor: '#D0D7DE',
   backgroundShadow: '#E6E9F0',
   titleBackground: '#F7F9FC',
   shadowColor: 'rgba(0, 0, 0, 0.16)',

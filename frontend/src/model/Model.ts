@@ -16,6 +16,8 @@ export interface IModel {
 }
 
 export class Model implements IModel {
+  private systemCache = new Map<string, System>();
+
   getAllSystems(): System[] {
     return Object.entries(behaviors.systems).map(
       ([systemName, systemDetails]) => {
@@ -36,6 +38,12 @@ export class Model implements IModel {
   }
 
   private renderSystem(systemName: string, systemDetails: any): System {
+    const cached = this.systemCache.get(systemName);
+    if (cached) {
+      cached.cached = true;
+      return cached;
+    }
+
     // First find all behaviors for this system.
     // Since the input format is nested, we have to do some "flattening" (unwrapping)
     const systemBehaviors: any[] = _.flattenDeep(
@@ -90,12 +98,16 @@ export class Model implements IModel {
       ),
     ]);
 
-    return new System(
+    const rendered = new System(
       systemName,
       new PercentageSet(kindStatistics),
       statusStats,
       0,
       []
     );
+
+    this.systemCache.set(systemName, rendered);
+
+    return rendered;
   }
 }

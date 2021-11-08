@@ -8,8 +8,7 @@ export class System {
     public testKindStats: PercentageSet,
     public testStatusStats: PercentageSet,
     public score: number,
-    public subsystems: SubSystem[],
-    public tests: Test[]
+    public subsystems: SubSystem[]
   ) {}
 }
 

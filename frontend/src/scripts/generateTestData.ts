@@ -16,6 +16,8 @@ const TEST_KIND_PROBABILITIES = [
 
 // (Up to) How many behaviors should we generate per every test
 const MAX_RANDOM_BEHAVIORS_PER_TEST = 5;
+// exclude some behaviors, so we end up with some missing tests (to simulate a realistic situation)
+const EXCLUDE_BEHAVIORS = 30;
 
 // Generate a random test kind using a probability table
 const generateRandomTestKind = (probabilityTable: any) => {
@@ -48,7 +50,10 @@ const getAllBehaviors = (): string[] => {
 
 // Assign a random set of behaviors to every test that is not annotated (for frontend testing purposes)
 const enrichWithFakeData = (tests: any[]): any[] => {
-  const allBehaviors = getAllBehaviors();
+  const allBehaviors = getAllBehaviors()
+    .sort(() => 0.5 - Math.random())
+    .slice(EXCLUDE_BEHAVIORS);
+
   return tests.map((t) => {
     if (t.test_type === "") {
       t.test_type = generateRandomTestKind(TEST_KIND_PROBABILITIES);

@@ -26,7 +26,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "convert": "ts-node --compiler-options='{\"module\":\"commonjs\"}' src/scripts/behaviorsToYML.ts "
+    "convert-airtable": "ts-node --compiler-options='{\"module\":\"commonjs\"}' src/scripts/convertAirtable.ts",
+    "convert-yaml": "yq -j eval src/model/data/production/behaviors.yml > src/model/data/production/behaviors.json",
+    "generate-test-data": "ts-node --compiler-options='{\"module\":\"commonjs\"}' src/scripts/generateTestData.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +53,7 @@
     "@types/react-router-dom": "^5.3.1",
     "@types/styled-components": "^5.1.15",
     "csv": "^5.5.3",
+    "uuid": "^8.3.2",
     "yaml": "^1.10.2"
   }
 }

@@ -2,10 +2,9 @@ import parse from "csv-parse/lib/sync";
 import fs from "fs";
 import _ from "lodash";
 import yaml from "yaml";
-import util from "util";
 
-const CSV_PATH = "src/scripts/behaviors.csv";
-const OUTPUT_PATH = "src/scripts/behaviors.yml";
+const CSV_PATH = "src/model/data/production/behaviors.csv";
+const OUTPUT_PATH = "src/model/data/production/behaviors.yml";
 
 // Stupid key format (with spaces) is because airtable exports it like that
 interface ICSVRow {
@@ -16,23 +15,6 @@ interface ICSVRow {
   Created: string;
   Subsystem: string;
   "System (from Subsystem)": string;
-}
-
-// Output YML format
-interface IOutputFormat {
-  systems: Array<{
-    name: string;
-    subsystems: Array<{
-      name: string;
-      features: Array<{
-        name: string;
-        behaviors: Array<{
-          id: string;
-          description: string;
-        }>;
-      }>;
-    }>;
-  }>;
 }
 
 const format = (rows: ICSVRow[]) => {

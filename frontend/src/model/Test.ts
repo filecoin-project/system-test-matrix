@@ -1,5 +1,5 @@
 import { Behavior } from "./Behavior";
-import { Repository, TestKind, TestStatus } from "./types";
+import { Repository, TestKind, TestStatus } from "./shared";
 
 export class Test {
   constructor(

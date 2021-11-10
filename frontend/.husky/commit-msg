@@ -1,5 +1,6 @@
 #!/bin/sh
-. "$(dirname "$0")/frontend/_/husky.sh"
+# shellcheck disable=SC1090
+. "frontend/$(dirname "$0")/_/husky.sh"
 
 # shellcheck disable=SC2164
 cd frontend

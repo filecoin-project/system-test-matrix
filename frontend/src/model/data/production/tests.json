@@ -1,0 +1,2919 @@
+[
+  {
+    "file": "api_test.go",
+    "path": "_modules/lotus/api/api_test.go",
+    "repository": "lotus",
+    "parent_folder": "api",
+    "package": "api",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDoesntDependOnBuild", "Behaviors": null },
+      { "function": "TestReturnTypes", "Behaviors": null },
+      { "function": "TestPermTags", "Behaviors": null },
+      { "function": "TestDoesntDependOnFFI", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "proxy_util_test.go",
+    "path": "_modules/lotus/api/proxy_util_test.go",
+    "repository": "lotus",
+    "parent_folder": "api",
+    "package": "api",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestNestedInternalStructs", "Behaviors": null },
+      { "function": "TestGetInternalStructs", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "blockstore_test.go",
+    "path": "_modules/lotus/blockstore/badger/blockstore_test.go",
+    "repository": "lotus",
+    "parent_folder": "badger",
+    "package": "badgerbs",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "testMove", "Behaviors": null },
+      { "function": "TestMoveNoPrefix", "Behaviors": null },
+      { "function": "TestMoveWithPrefix", "Behaviors": null },
+      { "function": "TestBadgerBlockstore", "Behaviors": null },
+      { "function": "TestStorageKey", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "markset_test.go",
+    "path": "_modules/lotus/blockstore/splitstore/markset_test.go",
+    "repository": "lotus",
+    "parent_folder": "splitstore",
+    "package": "splitstore",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMapMarkSet", "Behaviors": null },
+      { "function": "TestBadgerMarkSet", "Behaviors": null },
+      { "function": "testMarkSet", "Behaviors": null },
+      { "function": "testMarkSetVisitor", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "splitstore_test.go",
+    "path": "_modules/lotus/blockstore/splitstore/splitstore_test.go",
+    "repository": "lotus",
+    "parent_folder": "splitstore",
+    "package": "splitstore",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "testSplitStore", "Behaviors": null },
+      { "function": "TestSplitStoreCompaction", "Behaviors": null },
+      { "function": "TestSplitStoreCompactionWithBadger", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "timed_test.go",
+    "path": "_modules/lotus/blockstore/timed_test.go",
+    "repository": "lotus",
+    "parent_folder": "blockstore",
+    "package": "blockstore",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestTimedCacheBlockstoreSimple", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "union_test.go",
+    "path": "_modules/lotus/blockstore/union_test.go",
+    "repository": "lotus",
+    "parent_folder": "blockstore",
+    "package": "blockstore",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestUnionBlockstore_Get", "Behaviors": null },
+      {
+        "function": "TestUnionBlockstore_Put_PutMany_Delete_AllKeysChan",
+        "Behaviors": null
+      }
+    ]
+  },
+  {
+    "file": "openrpc_test.go",
+    "path": "_modules/lotus/build/openrpc_test.go",
+    "repository": "lotus",
+    "parent_folder": "build",
+    "package": "build",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestOpenRPCDiscoverJSON_Version", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "diff_adt_test.go",
+    "path": "_modules/lotus/chain/actors/adt/diff_adt_test.go",
+    "repository": "lotus",
+    "parent_folder": "adt",
+    "package": "adt",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDiffAdtArray", "Behaviors": null },
+      { "function": "TestDiffAdtMap", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "error_test.go",
+    "path": "_modules/lotus/chain/actors/aerrors/error_test.go",
+    "repository": "lotus",
+    "parent_folder": "aerrors",
+    "package": "aerrors_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestFatalError", "Behaviors": null },
+      { "function": "TestAbsorbeError", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "policy_test.go",
+    "path": "_modules/lotus/chain/actors/policy/policy_test.go",
+    "repository": "lotus",
+    "parent_folder": "policy",
+    "package": "policy",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSupportedProofTypes", "Behaviors": null },
+      { "function": "TestAssumptions", "Behaviors": null },
+      { "function": "TestPartitionSizes", "Behaviors": null },
+      { "function": "TestPoStSize", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "drand_test.go",
+    "path": "_modules/lotus/chain/beacon/drand/drand_test.go",
+    "repository": "lotus",
+    "parent_folder": "drand",
+    "package": "drand",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestPrintGroupInfo", "Behaviors": null }]
+  },
+  {
+    "file": "events_test.go",
+    "path": "_modules/lotus/chain/events/events_test.go",
+    "repository": "lotus",
+    "parent_folder": "events",
+    "package": "events",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCalledNull", "Behaviors": null },
+      { "function": "TestCalledOrder", "Behaviors": null },
+      { "function": "TestRemoveTriggersOnMessage", "Behaviors": null },
+      { "function": "TestAtNullTrigger", "Behaviors": null },
+      { "function": "TestAtChainedConfidence", "Behaviors": null },
+      { "function": "TestAtStart", "Behaviors": null },
+      { "function": "TestAt", "Behaviors": null },
+      { "function": "TestReconnect", "Behaviors": null },
+      { "function": "TestAtChainedConfidenceNull", "Behaviors": null },
+      { "function": "TestAtNullConf", "Behaviors": null },
+      { "function": "TestAtStartConfidence", "Behaviors": null },
+      { "function": "TestAtChained", "Behaviors": null },
+      { "function": "TestStateChangedTimeout", "Behaviors": null },
+      { "function": "TestCalledMultiplePerEpoch", "Behaviors": null },
+      { "function": "newFakeCS", "Behaviors": null },
+      { "function": "TestCalled", "Behaviors": null },
+      { "function": "TestCalledTimeout", "Behaviors": null },
+      { "function": "TestStateChanged", "Behaviors": null },
+      { "function": "TestCachedSameBlock", "Behaviors": null },
+      { "function": "TestStateChangedRevert", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "predicates_test.go",
+    "path": "_modules/lotus/chain/events/state/predicates_test.go",
+    "repository": "lotus",
+    "parent_folder": "state",
+    "package": "state",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "createSectorsAMT", "Behaviors": null },
+      { "function": "TestMarketPredicates", "Behaviors": null },
+      { "function": "createProposalAMT", "Behaviors": null },
+      { "function": "createMarketState", "Behaviors": null },
+      { "function": "createEmptyMinerState", "Behaviors": null },
+      { "function": "TestMinerSectorChange", "Behaviors": null },
+      { "function": "createBalanceTable", "Behaviors": null },
+      { "function": "createMinerState", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "tscache_test.go",
+    "path": "_modules/lotus/chain/events/tscache_test.go",
+    "repository": "lotus",
+    "parent_folder": "events",
+    "package": "events",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestTsCacheNulls", "Behaviors": null },
+      { "function": "TestTsCacheEmpty", "Behaviors": null },
+      { "function": "TestTsCacheSkip", "Behaviors": null },
+      { "function": "newCacheharness", "Behaviors": null },
+      { "function": "TestTsCache", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "gen_test.go",
+    "path": "_modules/lotus/chain/gen/gen_test.go",
+    "repository": "lotus",
+    "parent_folder": "gen",
+    "package": "gen",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestChainGeneration", "Behaviors": null }]
+  },
+  {
+    "file": "fundmanager_test.go",
+    "path": "_modules/lotus/chain/market/fundmanager_test.go",
+    "repository": "lotus",
+    "parent_folder": "market",
+    "package": "market",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "checkWithdrawMessageFields", "Behaviors": null },
+      { "function": "checkAddMessageFields", "Behaviors": null },
+      { "function": "TestFundManagerRestart", "Behaviors": null },
+      { "function": "TestFundManagerReleaseAfterPublish", "Behaviors": null },
+      { "function": "setup", "Behaviors": null },
+      { "function": "TestFundManagerReserveByWallet", "Behaviors": null },
+      { "function": "TestFundManagerWithdrawalLimit", "Behaviors": null },
+      { "function": "TestFundManagerParallel", "Behaviors": null },
+      { "function": "TestFundManagerBasic", "Behaviors": null },
+      { "function": "TestFundManagerWithdrawByWallet", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "block_proba_test.go",
+    "path": "_modules/lotus/chain/messagepool/block_proba_test.go",
+    "repository": "lotus",
+    "parent_folder": "messagepool",
+    "package": "messagepool",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestBlockProbability", "Behaviors": null },
+      { "function": "TestWinnerProba", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "messagepool_test.go",
+    "path": "_modules/lotus/chain/messagepool/messagepool_test.go",
+    "repository": "lotus",
+    "parent_folder": "messagepool",
+    "package": "messagepool",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "assertNonce", "Behaviors": null },
+      { "function": "mustAdd", "Behaviors": null },
+      { "function": "TestMessagePool", "Behaviors": null },
+      { "function": "TestRevertMessages", "Behaviors": null },
+      { "function": "TestCheckMessageBig", "Behaviors": null },
+      { "function": "TestClearAll", "Behaviors": null },
+      { "function": "TestMessagePoolMessagesInEachBlock", "Behaviors": null },
+      { "function": "TestClearNonLocal", "Behaviors": null },
+      { "function": "TestUpdates", "Behaviors": null },
+      { "function": "TestPruningSimple", "Behaviors": null },
+      { "function": "TestLoadLocal", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "repub_test.go",
+    "path": "_modules/lotus/chain/messagepool/repub_test.go",
+    "repository": "lotus",
+    "parent_folder": "messagepool",
+    "package": "messagepool",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestRepubMessages", "Behaviors": null }]
+  },
+  {
+    "file": "selection_test.go",
+    "path": "_modules/lotus/chain/messagepool/selection_test.go",
+    "repository": "lotus",
+    "parent_folder": "messagepool",
+    "package": "messagepool",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestBasicMessageSelection", "Behaviors": null },
+      { "function": "TestPriorityMessageSelection3", "Behaviors": null },
+      { "function": "TestPriorityMessageSelection", "Behaviors": null },
+      { "function": "testCompetitiveMessageSelection", "Behaviors": null },
+      { "function": "TestOptimalMessageSelection2", "Behaviors": null },
+      { "function": "TestRealWorldSelection", "Behaviors": null },
+      { "function": "TestMessageChainSkipping", "Behaviors": null },
+      { "function": "TestOptimalMessageSelection3", "Behaviors": null },
+      { "function": "TestGasReward", "Behaviors": null },
+      { "function": "TestCompetitiveMessageSelectionExp", "Behaviors": null },
+      { "function": "TestCompetitiveMessageSelectionZipf", "Behaviors": null },
+      { "function": "TestMessageSelectionTrimming", "Behaviors": null },
+      { "function": "TestOptimalMessageSelection1", "Behaviors": null },
+      { "function": "TestMessageChains", "Behaviors": null },
+      { "function": "TestPriorityMessageSelection2", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "messagesigner_test.go",
+    "path": "_modules/lotus/chain/messagesigner/messagesigner_test.go",
+    "repository": "lotus",
+    "parent_folder": "messagesigner",
+    "package": "messagesigner",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMessageSignerSignMessage", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "rand_test.go",
+    "path": "_modules/lotus/chain/rand/rand_test.go",
+    "repository": "lotus",
+    "parent_folder": "rand",
+    "package": "rand_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestNullRandomnessV2", "Behaviors": null },
+      { "function": "TestNullRandomnessV3", "Behaviors": null },
+      { "function": "TestNullRandomnessV1", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "statetree_test.go",
+    "path": "_modules/lotus/chain/state/statetree_test.go",
+    "repository": "lotus",
+    "parent_folder": "state",
+    "package": "state",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSetCache", "Behaviors": null },
+      { "function": "TestSnapshots", "Behaviors": null },
+      { "function": "assertHas", "Behaviors": null },
+      { "function": "TestResolveCache", "Behaviors": null },
+      { "function": "TestStateTreeConsistency", "Behaviors": null },
+      { "function": "assertNotHas", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "forks_test.go",
+    "path": "_modules/lotus/chain/stmgr/forks_test.go",
+    "repository": "lotus",
+    "parent_folder": "stmgr",
+    "package": "stmgr_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestForkHeightTriggers", "Behaviors": null },
+      { "function": "TestForkRefuseCall", "Behaviors": null },
+      { "function": "testForkRefuseCall", "Behaviors": null },
+      { "function": "TestForkPreMigration", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "searchwait_test.go",
+    "path": "_modules/lotus/chain/stmgr/searchwait_test.go",
+    "repository": "lotus",
+    "parent_folder": "stmgr",
+    "package": "stmgr_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSearchForMessageReplacements", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "basefee_test.go",
+    "path": "_modules/lotus/chain/store/basefee_test.go",
+    "repository": "lotus",
+    "parent_folder": "store",
+    "package": "store",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestBaseFee", "Behaviors": null }]
+  },
+  {
+    "file": "checkpoint_test.go",
+    "path": "_modules/lotus/chain/store/checkpoint_test.go",
+    "repository": "lotus",
+    "parent_folder": "store",
+    "package": "store_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestChainCheckpoint", "Behaviors": null }]
+  },
+  {
+    "file": "coalescer_test.go",
+    "path": "_modules/lotus/chain/store/coalescer_test.go",
+    "repository": "lotus",
+    "parent_folder": "store",
+    "package": "store",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestHeadChangeCoalescer", "Behaviors": null }]
+  },
+  {
+    "file": "index_test.go",
+    "path": "_modules/lotus/chain/store/index_test.go",
+    "repository": "lotus",
+    "parent_folder": "store",
+    "package": "store_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestIndexSeeks", "Behaviors": null }]
+  },
+  {
+    "file": "store_test.go",
+    "path": "_modules/lotus/chain/store/store_test.go",
+    "repository": "lotus",
+    "parent_folder": "store",
+    "package": "store_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestChainExportImport", "Behaviors": null },
+      { "function": "TestChainExportImportFull", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "incoming_test.go",
+    "path": "_modules/lotus/chain/sub/incoming_test.go",
+    "repository": "lotus",
+    "parent_folder": "sub",
+    "package": "sub",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestFetchCidsWithDedup", "Behaviors": null }]
+  },
+  {
+    "file": "sync_manager_test.go",
+    "path": "_modules/lotus/chain/sync_manager_test.go",
+    "repository": "lotus",
+    "parent_folder": "chain",
+    "package": "chain",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "runSyncMgrTest", "Behaviors": null },
+      { "function": "assertTsEqual", "Behaviors": null },
+      { "function": "assertNoOp", "Behaviors": null },
+      { "function": "assertGetSyncOp", "Behaviors": null },
+      { "function": "TestSyncManagerEdgeCase", "Behaviors": null },
+      { "function": "TestSyncManager", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "sync_test.go",
+    "path": "_modules/lotus/chain/sync_test.go",
+    "repository": "lotus",
+    "parent_folder": "chain",
+    "package": "chain_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestInvalidHeight", "Behaviors": null },
+      { "function": "TestBadNonce", "Behaviors": null },
+      { "function": "TestSyncSimple", "Behaviors": null },
+      { "function": "TestSyncMining", "Behaviors": null },
+      { "function": "TestSyncInputs", "Behaviors": null },
+      { "function": "TestSyncBadWinningPoSt", "Behaviors": null },
+      { "function": "TestSyncFork", "Behaviors": null },
+      { "function": "TestSyncCheckpointHead", "Behaviors": null },
+      { "function": "TestSyncBadTimestamp", "Behaviors": null },
+      { "function": "TestDuplicateNonce", "Behaviors": null },
+      { "function": "TestMismatchedNoncesRobustID", "Behaviors": null },
+      { "function": "TestMatchedNoncesRobustID", "Behaviors": null },
+      { "function": "TestSyncCheckpointEarlierThanHead", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "bigint_test.go",
+    "path": "_modules/lotus/chain/types/bigint_test.go",
+    "repository": "lotus",
+    "parent_folder": "types",
+    "package": "types",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSizeStr", "Behaviors": null },
+      { "function": "TestSizeStrUnitsSymmetry", "Behaviors": null },
+      { "function": "TestSizeStrBig", "Behaviors": null },
+      { "function": "TestBigIntSerializationRoundTrip", "Behaviors": null },
+      { "function": "TestFilRoundTrip", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "blockheader_test.go",
+    "path": "_modules/lotus/chain/types/blockheader_test.go",
+    "repository": "lotus",
+    "parent_folder": "types",
+    "package": "types",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestBlockHeaderSerialization", "Behaviors": null },
+      { "function": "TestInteropBH", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "electionproof_test.go",
+    "path": "_modules/lotus/chain/types/electionproof_test.go",
+    "repository": "lotus",
+    "parent_folder": "types",
+    "package": "types",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestExpFunction", "Behaviors": null },
+      { "function": "TestElectionLam", "Behaviors": null },
+      { "function": "TestWinCounts", "Behaviors": null },
+      { "function": "TestPoissonFunction", "Behaviors": null },
+      { "function": "TestLambdaFunction", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "fil_test.go",
+    "path": "_modules/lotus/chain/types/fil_test.go",
+    "repository": "lotus",
+    "parent_folder": "types",
+    "package": "types",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestFilShort", "Behaviors": null }]
+  },
+  {
+    "file": "message_test.go",
+    "path": "_modules/lotus/chain/types/message_test.go",
+    "repository": "lotus",
+    "parent_folder": "types",
+    "package": "types",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestEqualCall", "Behaviors": null },
+      { "function": "TestMessageJson", "Behaviors": null },
+      { "function": "TestSignedMessageJson", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "signature_test.go",
+    "path": "_modules/lotus/chain/types/signature_test.go",
+    "repository": "lotus",
+    "parent_folder": "types",
+    "package": "types",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSignatureSerializeRoundTrip", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "tipset_key_test.go",
+    "path": "_modules/lotus/chain/types/tipset_key_test.go",
+    "repository": "lotus",
+    "parent_folder": "types",
+    "package": "types",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestTipSetKey", "Behaviors": null },
+      { "function": "verifyJSON", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "types_test.go",
+    "path": "_modules/lotus/chain/types/types_test.go",
+    "repository": "lotus",
+    "parent_folder": "types",
+    "package": "types",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": null
+  },
+  {
+    "file": "types_test.go",
+    "path": "_modules/lotus/chain/types_test.go",
+    "repository": "lotus",
+    "parent_folder": "chain",
+    "package": "chain",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestAddressType", "Behaviors": null },
+      { "function": "TestSignedMessageJsonRoundtrip", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "vectors_test.go",
+    "path": "_modules/lotus/chain/vectors/vectors_test.go",
+    "repository": "lotus",
+    "parent_folder": "vectors",
+    "package": "vectors",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMessageSigningVectors", "Behaviors": null },
+      { "function": "TestUnsignedMessageVectors", "Behaviors": null },
+      { "function": "LoadVector", "Behaviors": null },
+      { "function": "TestBlockHeaderVectors", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "burn_test.go",
+    "path": "_modules/lotus/chain/vm/burn_test.go",
+    "repository": "lotus",
+    "parent_folder": "vm",
+    "package": "vm",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestGasBurn", "Behaviors": null },
+      { "function": "TestGasOutputs", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "gas_v0_test.go",
+    "path": "_modules/lotus/chain/vm/gas_v0_test.go",
+    "repository": "lotus",
+    "parent_folder": "vm",
+    "package": "vm",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestStepGasCost", "Behaviors": null }]
+  },
+  {
+    "file": "invoker_test.go",
+    "path": "_modules/lotus/chain/vm/invoker_test.go",
+    "repository": "lotus",
+    "parent_folder": "vm",
+    "package": "vm",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestInvokerBasic", "Behaviors": null }]
+  },
+  {
+    "file": "runtime_test.go",
+    "path": "_modules/lotus/chain/vm/runtime_test.go",
+    "repository": "lotus",
+    "parent_folder": "vm",
+    "package": "vm",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestRuntimePutErrors", "Behaviors": null }]
+  },
+  {
+    "file": "init_test.go",
+    "path": "_modules/lotus/cli/init_test.go",
+    "repository": "lotus",
+    "parent_folder": "cli",
+    "package": "cli",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": null
+  },
+  {
+    "file": "send_test.go",
+    "path": "_modules/lotus/cli/send_test.go",
+    "repository": "lotus",
+    "parent_folder": "cli",
+    "package": "cli",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "newMockApp", "Behaviors": null },
+      { "function": "TestSendCLI", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "services_send_test.go",
+    "path": "_modules/lotus/cli/services_send_test.go",
+    "repository": "lotus",
+    "parent_folder": "cli",
+    "package": "cli",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "setupMockSrvcs", "Behaviors": null },
+      { "function": "TestSendService", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "servicesmock_test.go",
+    "path": "_modules/lotus/cli/servicesmock_test.go",
+    "repository": "lotus",
+    "parent_folder": "cli",
+    "package": "cli",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": null
+  },
+  {
+    "file": "stats_test.go",
+    "path": "_modules/lotus/cmd/lotus-bench/stats_test.go",
+    "repository": "lotus",
+    "parent_folder": "lotus-bench",
+    "package": "main",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCovar", "Behaviors": null },
+      { "function": "TestMeanVar", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "rate_limiter_test.go",
+    "path": "_modules/lotus/cmd/lotus-fountain/rate_limiter_test.go",
+    "repository": "lotus",
+    "parent_folder": "lotus-fountain",
+    "package": "main",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestRateLimit", "Behaviors": null }]
+  },
+  {
+    "file": "main_test.go",
+    "path": "_modules/lotus/cmd/lotus-health/main_test.go",
+    "repository": "lotus",
+    "parent_folder": "lotus-health",
+    "package": "main",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCheckWindow", "Behaviors": null },
+      { "function": "TestAppendCIDsToWindow", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "actor_test.go",
+    "path": "_modules/lotus/cmd/lotus-miner/actor_test.go",
+    "repository": "lotus",
+    "parent_folder": "lotus-miner",
+    "package": "main",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestWorkerKeyChange", "Behaviors": null }]
+  },
+  {
+    "file": "allinfo_test.go",
+    "path": "_modules/lotus/cmd/lotus-miner/allinfo_test.go",
+    "repository": "lotus",
+    "parent_folder": "lotus-miner",
+    "package": "main",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestMinerAllInfo", "Behaviors": null }]
+  },
+  {
+    "file": "commit_queue_test.go",
+    "path": "_modules/lotus/cmd/lotus-sim/simulation/stages/commit_queue_test.go",
+    "repository": "lotus",
+    "parent_folder": "stages",
+    "package": "stages",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestCommitQueue", "Behaviors": null }]
+  },
+  {
+    "file": "codenames_test.go",
+    "path": "_modules/lotus/cmd/tvx/codenames_test.go",
+    "repository": "lotus",
+    "parent_folder": "tvx",
+    "package": "main",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestProtocolCodenames", "Behaviors": null }]
+  },
+  {
+    "file": "actor_test.go",
+    "path": "_modules/lotus/conformance/chaos/actor_test.go",
+    "repository": "lotus",
+    "parent_folder": "chaos",
+    "package": "chaos",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestAbortWith", "Behaviors": null },
+      { "function": "TestMutateStateReadonly", "Behaviors": null },
+      { "function": "TestCallerValidationIs", "Behaviors": null },
+      { "function": "TestCallerValidationInvalidBranch", "Behaviors": null },
+      { "function": "TestMutateStateAfterTransaction", "Behaviors": null },
+      { "function": "TestMutateStateInvalidBranch", "Behaviors": null },
+      { "function": "TestSingleton", "Behaviors": null },
+      { "function": "TestInspectRuntime", "Behaviors": null },
+      { "function": "TestCallerValidationType", "Behaviors": null },
+      { "function": "TestMutateStateInTransaction", "Behaviors": null },
+      { "function": "TestCallerValidationNone", "Behaviors": null },
+      { "function": "TestDeleteActor", "Behaviors": null },
+      { "function": "TestAbortWithUncontrolled", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "corpus_test.go",
+    "path": "_modules/lotus/conformance/corpus_test.go",
+    "repository": "lotus",
+    "parent_folder": "conformance",
+    "package": "conformance",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestConformance", "Behaviors": null }]
+  },
+  {
+    "file": "sealer_test.go",
+    "path": "_modules/lotus/extern/sector-storage/ffiwrapper/sealer_test.go",
+    "repository": "lotus",
+    "parent_folder": "ffiwrapper",
+    "package": "ffiwrapper",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSealAndVerify", "Behaviors": null },
+      { "function": "openFDs", "Behaviors": null },
+      { "function": "setupLogger", "Behaviors": null },
+      { "function": "corrupt", "Behaviors": null },
+      { "function": "TestDownloadParams", "Behaviors": null },
+      { "function": "TestAddPiece512M", "Behaviors": null },
+      { "function": "TestSealAndVerifyAggregate", "Behaviors": null },
+      { "function": "TestGenerateUnsealedCID", "Behaviors": null },
+      { "function": "TestAddPiece512MPadded", "Behaviors": null },
+      { "function": "TestSealAndVerify3", "Behaviors": null },
+      { "function": "post", "Behaviors": null },
+      { "function": "TestSealPoStNoCommit", "Behaviors": null },
+      { "function": "TestMulticoreSDR", "Behaviors": null },
+      { "function": "requireFDsClosed", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "fr32_ffi_cmp_test.go",
+    "path": "_modules/lotus/extern/sector-storage/fr32/fr32_ffi_cmp_test.go",
+    "repository": "lotus",
+    "parent_folder": "fr32",
+    "package": "fr32_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestWriteTwoPcs", "Behaviors": null }]
+  },
+  {
+    "file": "fr32_test.go",
+    "path": "_modules/lotus/extern/sector-storage/fr32/fr32_test.go",
+    "repository": "lotus",
+    "parent_folder": "fr32",
+    "package": "fr32_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestRoundtrip", "Behaviors": null },
+      { "function": "TestRoundtripChunkRand", "Behaviors": null },
+      { "function": "TestPadChunkFFI", "Behaviors": null },
+      { "function": "TestPadChunkRandEqFFI", "Behaviors": null },
+      { "function": "TestRoundtrip16MRand", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "readers_test.go",
+    "path": "_modules/lotus/extern/sector-storage/fr32/readers_test.go",
+    "repository": "lotus",
+    "parent_folder": "fr32",
+    "package": "fr32_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestUnpadReader", "Behaviors": null }]
+  },
+  {
+    "file": "manager_test.go",
+    "path": "_modules/lotus/extern/sector-storage/manager_test.go",
+    "repository": "lotus",
+    "parent_folder": "sector-storage",
+    "package": "sectorstorage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "newTestStorage", "Behaviors": null },
+      { "function": "newTestMgr", "Behaviors": null },
+      { "function": "TestSimple", "Behaviors": null },
+      { "function": "TestRedoPC1", "Behaviors": null },
+      { "function": "TestRestartManager", "Behaviors": null },
+      { "function": "TestRestartWorker", "Behaviors": null },
+      { "function": "TestReenableWorker", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "mock_test.go",
+    "path": "_modules/lotus/extern/sector-storage/mock/mock_test.go",
+    "repository": "lotus",
+    "parent_folder": "mock",
+    "package": "mock",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestOpFinish", "Behaviors": null }]
+  },
+  {
+    "file": "piece_provider_test.go",
+    "path": "_modules/lotus/extern/sector-storage/piece_provider_test.go",
+    "repository": "lotus",
+    "parent_folder": "sector-storage",
+    "package": "sectorstorage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "newPieceProviderTestHarness", "Behaviors": null },
+      {
+        "function": "TestPieceProviderSimpleNoRemoteWorker",
+        "Behaviors": null
+      },
+      { "function": "TestReadPieceRemoteWorkers", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "request_queue_test.go",
+    "path": "_modules/lotus/extern/sector-storage/request_queue_test.go",
+    "repository": "lotus",
+    "parent_folder": "sector-storage",
+    "package": "sectorstorage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestRequestQueue", "Behaviors": null }]
+  },
+  {
+    "file": "sched_test.go",
+    "path": "_modules/lotus/extern/sector-storage/sched_test.go",
+    "repository": "lotus",
+    "parent_folder": "sector-storage",
+    "package": "sectorstorage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSchedStartStop", "Behaviors": null },
+      { "function": "TestWithPriority", "Behaviors": null },
+      { "function": "addTestWorker", "Behaviors": null },
+      { "function": "TestWindowCompact", "Behaviors": null },
+      { "function": "TestSched", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "http_handler_test.go",
+    "path": "_modules/lotus/extern/sector-storage/stores/http_handler_test.go",
+    "repository": "lotus",
+    "parent_folder": "stores",
+    "package": "stores_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestRemoteGetAllocated", "Behaviors": null },
+      { "function": "TestRemoteGetSector", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "index_locks_test.go",
+    "path": "_modules/lotus/extern/sector-storage/stores/index_locks_test.go",
+    "repository": "lotus",
+    "parent_folder": "stores",
+    "package": "stores",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCanLock", "Behaviors": null },
+      { "function": "TestIndexLocksSeq", "Behaviors": null },
+      { "function": "TestIndexLocksBlockOn", "Behaviors": null },
+      { "function": "TestIndexLocksBlockWonR", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "local_test.go",
+    "path": "_modules/lotus/extern/sector-storage/stores/local_test.go",
+    "repository": "lotus",
+    "parent_folder": "stores",
+    "package": "stores",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestLocalStorage", "Behaviors": null }]
+  },
+  {
+    "file": "remote_test.go",
+    "path": "_modules/lotus/extern/sector-storage/stores/remote_test.go",
+    "repository": "lotus",
+    "parent_folder": "stores",
+    "package": "stores_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "createTestStorage", "Behaviors": null },
+      { "function": "TestMoveShared", "Behaviors": null },
+      { "function": "TestReader", "Behaviors": null },
+      { "function": "TestCheckIsUnsealed", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "teststorage_test.go",
+    "path": "_modules/lotus/extern/sector-storage/teststorage_test.go",
+    "repository": "lotus",
+    "parent_folder": "sector-storage",
+    "package": "sectorstorage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": null
+  },
+  {
+    "file": "testworker_test.go",
+    "path": "_modules/lotus/extern/sector-storage/testworker_test.go",
+    "repository": "lotus",
+    "parent_folder": "sector-storage",
+    "package": "sectorstorage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": null
+  },
+  {
+    "file": "commit_batch_test.go",
+    "path": "_modules/lotus/extern/storage-sealing/commit_batch_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage-sealing",
+    "package": "sealing_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestCommitBatcher", "Behaviors": null }]
+  },
+  {
+    "file": "currentdealinfo_test.go",
+    "path": "_modules/lotus/extern/storage-sealing/currentdealinfo_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage-sealing",
+    "package": "sealing",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestGetCurrentDealInfo", "Behaviors": null },
+      { "function": "makePublishDealsReturnBytes", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "fsm_test.go",
+    "path": "_modules/lotus/extern/storage-sealing/fsm_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage-sealing",
+    "package": "sealing",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestHappyPath", "Behaviors": null },
+      { "function": "TestCommitFinalizeFailed", "Behaviors": null },
+      {
+        "function": "TestPlanCommittingHandlesSectorCommitFailed",
+        "Behaviors": null
+      },
+      { "function": "TestTicketExpired", "Behaviors": null },
+      { "function": "TestHappyPathFinalizeEarly", "Behaviors": null },
+      { "function": "TestSeedRevert", "Behaviors": null },
+      { "function": "TestPlannerList", "Behaviors": null },
+      { "function": "TestBrokenState", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "precommit_batch_test.go",
+    "path": "_modules/lotus/extern/storage-sealing/precommit_batch_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage-sealing",
+    "package": "sealing_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestPrecommitBatcher", "Behaviors": null }]
+  },
+  {
+    "file": "precommit_policy_test.go",
+    "path": "_modules/lotus/extern/storage-sealing/precommit_policy_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage-sealing",
+    "package": "sealing_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "fakePieceCid", "Behaviors": null },
+      { "function": "TestMissingDealIsIgnored", "Behaviors": null },
+      {
+        "function": "TestBasicPolicyIgnoresExistingScheduleIfExpired",
+        "Behaviors": null
+      },
+      {
+        "function": "TestBasicPolicyMostConstrictiveSchedule",
+        "Behaviors": null
+      },
+      { "function": "TestBasicPolicyEmptySector", "Behaviors": null },
+      { "function": "TestCustomCCSectorConfig", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "states_failed_test.go",
+    "path": "_modules/lotus/extern/storage-sealing/states_failed_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage-sealing",
+    "package": "sealing_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestStateRecoverDealIDs", "Behaviors": null }]
+  },
+  {
+    "file": "types_test.go",
+    "path": "_modules/lotus/extern/storage-sealing/types_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage-sealing",
+    "package": "sealing",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSectorInfoSerialization", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "utils_test.go",
+    "path": "_modules/lotus/extern/storage-sealing/utils_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage-sealing",
+    "package": "sealing",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "testFill", "Behaviors": null },
+      { "function": "TestFillersFromRem", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "node_test.go",
+    "path": "_modules/lotus/gateway/node_test.go",
+    "repository": "lotus",
+    "parent_folder": "gateway",
+    "package": "gateway",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestGatewayVersion", "Behaviors": null },
+      { "function": "TestGatewayAPIChainGetTipSetByHeight", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "api_test.go",
+    "path": "_modules/lotus/itests/api_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestAPI", "Behaviors": null },
+      { "function": "runAPITest", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "batch_deal_test.go",
+    "path": "_modules/lotus/itests/batch_deal_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestBatchDealInput", "Behaviors": null }]
+  },
+  {
+    "file": "ccupgrade_test.go",
+    "path": "_modules/lotus/itests/ccupgrade_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCCUpgrade", "Behaviors": null },
+      { "function": "runTestCCUpgrade", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "cli_test.go",
+    "path": "_modules/lotus/itests/cli_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestClient", "Behaviors": null }]
+  },
+  {
+    "file": "deadlines_test.go",
+    "path": "_modules/lotus/itests/deadlines_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestDeadlineToggling", "Behaviors": null }]
+  },
+  {
+    "file": "deals_512mb_test.go",
+    "path": "_modules/lotus/itests/deals_512mb_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestStorageDealMissingBlock", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deals_concurrent_test.go",
+    "path": "_modules/lotus/itests/deals_concurrent_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDealWithMarketAndMinerNode", "Behaviors": null },
+      { "function": "TestDealCyclesConcurrent", "Behaviors": null },
+      { "function": "TestSimultanenousTransferLimit", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deals_max_staging_deals_test.go",
+    "path": "_modules/lotus/itests/deals_max_staging_deals_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestMaxStagingDeals", "Behaviors": null }]
+  },
+  {
+    "file": "deals_offline_test.go",
+    "path": "_modules/lotus/itests/deals_offline_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestOfflineDealFlow", "Behaviors": null }]
+  },
+  {
+    "file": "deals_padding_test.go",
+    "path": "_modules/lotus/itests/deals_padding_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestDealPadding", "Behaviors": null }]
+  },
+  {
+    "file": "deals_partial_retrieval_test.go",
+    "path": "_modules/lotus/itests/deals_partial_retrieval_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestPartialRetrieval", "Behaviors": null }]
+  },
+  {
+    "file": "deals_power_test.go",
+    "path": "_modules/lotus/itests/deals_power_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestFirstDealEnablesMining", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deals_pricing_test.go",
+    "path": "_modules/lotus/itests/deals_pricing_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestZeroPricePerByteRetrieval", "Behaviors": null },
+      { "function": "TestQuotePriceForUnsealedRetrieval", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deals_publish_test.go",
+    "path": "_modules/lotus/itests/deals_publish_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestPublishDealsBatching", "Behaviors": null }]
+  },
+  {
+    "file": "deals_retry_deal_no_funds_test.go",
+    "path": "_modules/lotus/itests/deals_retry_deal_no_funds_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      {
+        "function": "TestDealsRetryLackOfFunds_blockInPublishDeal",
+        "Behaviors": null
+      },
+      { "function": "TestDealsRetryLackOfFunds_belowLimit", "Behaviors": null },
+      { "function": "TestDealsRetryLackOfFunds", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deals_test.go",
+    "path": "_modules/lotus/itests/deals_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDealsWithSealingAndRPC", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "gateway_test.go",
+    "path": "_modules/lotus/itests/gateway_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "startNodes", "Behaviors": null },
+      { "function": "TestGatewayWalletMsig", "Behaviors": null },
+      { "function": "TestGatewayCLIDealFlow", "Behaviors": null },
+      { "function": "startNodesWithFunds", "Behaviors": null },
+      { "function": "TestGatewayMsigCLI", "Behaviors": null },
+      { "function": "TestGatewayDealFlow", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "get_messages_in_ts_test.go",
+    "path": "_modules/lotus/itests/get_messages_in_ts_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestChainGetMessagesInTs", "Behaviors": null }]
+  },
+  {
+    "file": "multisig_test.go",
+    "path": "_modules/lotus/itests/multisig_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestMultisig", "Behaviors": null }]
+  },
+  {
+    "file": "nonce_test.go",
+    "path": "_modules/lotus/itests/nonce_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestNonceIncremental", "Behaviors": null }]
+  },
+  {
+    "file": "paych_api_test.go",
+    "path": "_modules/lotus/itests/paych_api_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestPaymentChannelsAPI", "Behaviors": null },
+      { "function": "waitForBlocks", "Behaviors": null },
+      { "function": "waitForMessage", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "paych_cli_test.go",
+    "path": "_modules/lotus/itests/paych_cli_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "startPaychCreatorReceiverMiner", "Behaviors": null },
+      { "function": "checkVoucherOutput", "Behaviors": null },
+      { "function": "getPaychState", "Behaviors": null },
+      { "function": "TestPaymentChannelVouchers", "Behaviors": null },
+      { "function": "TestPaymentChannelsBasic", "Behaviors": null },
+      {
+        "function": "TestPaymentChannelVoucherCreateShortfall",
+        "Behaviors": null
+      },
+      { "function": "TestPaymentChannelStatus", "Behaviors": null },
+      { "function": "waitForHeight", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "sdr_upgrade_test.go",
+    "path": "_modules/lotus/itests/sdr_upgrade_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestSDRUpgrade", "Behaviors": null }]
+  },
+  {
+    "file": "sector_finalize_early_test.go",
+    "path": "_modules/lotus/itests/sector_finalize_early_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDealsWithFinalizeEarly", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "sector_miner_collateral_test.go",
+    "path": "_modules/lotus/itests/sector_miner_collateral_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMinerBalanceCollateral", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "sector_pledge_test.go",
+    "path": "_modules/lotus/itests/sector_pledge_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestPledgeBeforeNv13", "Behaviors": null },
+      { "function": "TestPledgeSectors", "Behaviors": null },
+      { "function": "TestPledgeBatching", "Behaviors": null },
+      { "function": "TestPledgeMaxBatching", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "sector_terminate_test.go",
+    "path": "_modules/lotus/itests/sector_terminate_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestTerminate", "Behaviors": null }]
+  },
+  {
+    "file": "tape_test.go",
+    "path": "_modules/lotus/itests/tape_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestTapeFix", "Behaviors": null },
+      { "function": "testTapeFix", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "verifreg_test.go",
+    "path": "_modules/lotus/itests/verifreg_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestVerifiedClientTopUp", "Behaviors": null }]
+  },
+  {
+    "file": "wdpost_dispute_test.go",
+    "path": "_modules/lotus/itests/wdpost_dispute_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestWindowPostDispute", "Behaviors": null },
+      { "function": "TestWindowPostDisputeFails", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "wdpost_test.go",
+    "path": "_modules/lotus/itests/wdpost_test.go",
+    "repository": "lotus",
+    "parent_folder": "itests",
+    "package": "itests",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestWindowPostBaseFeeBurn", "Behaviors": null },
+      { "function": "TestWindowedPost", "Behaviors": null },
+      { "function": "testWindowPostUpgrade", "Behaviors": null },
+      { "function": "TestWindowPostBaseFeeNoBurn", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "alerts_test.go",
+    "path": "_modules/lotus/journal/alerting/alerts_test.go",
+    "repository": "lotus",
+    "parent_folder": "alerting",
+    "package": "alerting",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestAlerting", "Behaviors": null }]
+  },
+  {
+    "file": "registry_test.go",
+    "path": "_modules/lotus/journal/registry_test.go",
+    "repository": "lotus",
+    "parent_folder": "journal",
+    "package": "journal",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDisabledEvents", "Behaviors": null },
+      { "function": "TestParseDisableEvents", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "backupds_test.go",
+    "path": "_modules/lotus/lib/backupds/backupds_test.go",
+    "repository": "lotus",
+    "parent_folder": "backupds",
+    "package": "backupds",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "putVals", "Behaviors": null },
+      { "function": "checkVals", "Behaviors": null },
+      { "function": "TestNoLogRestore", "Behaviors": null },
+      { "function": "TestLogRestore", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "reader_test.go",
+    "path": "_modules/lotus/lib/rpcenc/reader_test.go",
+    "repository": "lotus",
+    "parent_folder": "rpcenc",
+    "package": "rpcenc",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestNullReaderProxy", "Behaviors": null },
+      { "function": "TestReaderRedirect", "Behaviors": null },
+      { "function": "TestReaderProxy", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "bls_bench_test.go",
+    "path": "_modules/lotus/lib/sigs/bls/bls_bench_test.go",
+    "repository": "lotus",
+    "parent_folder": "bls",
+    "package": "bls",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": null
+  },
+  {
+    "file": "bls_test.go",
+    "path": "_modules/lotus/lib/sigs/bls/bls_test.go",
+    "repository": "lotus",
+    "parent_folder": "bls",
+    "package": "bls_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestRoundtrip", "Behaviors": null },
+      { "function": "TestUncompressedFails", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "stats_test.go",
+    "path": "_modules/lotus/lib/stati/stats_test.go",
+    "repository": "lotus",
+    "parent_folder": "stati",
+    "package": "stati",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMeanVar", "Behaviors": null },
+      { "function": "TestCovar", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "tablewiter_test.go",
+    "path": "_modules/lotus/lib/tablewriter/tablewiter_test.go",
+    "repository": "lotus",
+    "parent_folder": "tablewriter",
+    "package": "tablewriter",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestTableWriter", "Behaviors": null }]
+  },
+  {
+    "file": "ulimit_test.go",
+    "path": "_modules/lotus/lib/ulimit/ulimit_test.go",
+    "repository": "lotus",
+    "parent_folder": "ulimit",
+    "package": "ulimit",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestManageFdLimit", "Behaviors": null },
+      { "function": "TestManageInvalidNFds", "Behaviors": null },
+      { "function": "TestManageFdLimitWithEnvSet", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "miner_api_test.go",
+    "path": "_modules/lotus/markets/dagstore/miner_api_test.go",
+    "repository": "lotus",
+    "parent_folder": "dagstore",
+    "package": "dagstore",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestLotusAccessorFetchUnsealedPiece", "Behaviors": null },
+      { "function": "TestLotusAccessorGetUnpaddedCARSize", "Behaviors": null },
+      { "function": "TestThrottle", "Behaviors": null },
+      { "function": "getPieceStore", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "mount_test.go",
+    "path": "_modules/lotus/markets/dagstore/mount_test.go",
+    "repository": "lotus",
+    "parent_folder": "dagstore",
+    "package": "dagstore",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestLotusMount", "Behaviors": null },
+      { "function": "TestLotusMountDeserialize", "Behaviors": null },
+      { "function": "TestLotusMountRegistration", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "wrapper_migration_test.go",
+    "path": "_modules/lotus/markets/dagstore/wrapper_migration_test.go",
+    "repository": "lotus",
+    "parent_folder": "dagstore",
+    "package": "dagstore",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestShardRegistration", "Behaviors": null }]
+  },
+  {
+    "file": "wrapper_test.go",
+    "path": "_modules/lotus/markets/dagstore/wrapper_test.go",
+    "repository": "lotus",
+    "parent_folder": "dagstore",
+    "package": "dagstore",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestWrapperBackground", "Behaviors": null },
+      { "function": "getShardAccessor", "Behaviors": null },
+      { "function": "TestWrapperAcquireRecovery", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "provider_test.go",
+    "path": "_modules/lotus/markets/retrievaladapter/provider_test.go",
+    "repository": "lotus",
+    "parent_folder": "retrievaladapter",
+    "package": "retrievaladapter",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestGetPricingInput", "Behaviors": null }]
+  },
+  {
+    "file": "dealpublisher_test.go",
+    "path": "_modules/lotus/markets/storageadapter/dealpublisher_test.go",
+    "repository": "lotus",
+    "parent_folder": "storageadapter",
+    "package": "storageadapter",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "publishDeal", "Behaviors": null },
+      { "function": "TestDealPublisher", "Behaviors": null },
+      { "function": "getClientActor", "Behaviors": null },
+      { "function": "checkPublishedDeals", "Behaviors": null },
+      { "function": "newDPAPI", "Behaviors": null },
+      { "function": "getProviderActor", "Behaviors": null },
+      { "function": "getWorkerActor", "Behaviors": null },
+      { "function": "TestForcePublish", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "dealstatematcher_test.go",
+    "path": "_modules/lotus/markets/storageadapter/dealstatematcher_test.go",
+    "repository": "lotus",
+    "parent_folder": "storageadapter",
+    "package": "storageadapter",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDealStateMatcher", "Behaviors": null },
+      { "function": "createMarketState", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "ondealsectorcommitted_test.go",
+    "path": "_modules/lotus/markets/storageadapter/ondealsectorcommitted_test.go",
+    "repository": "lotus",
+    "parent_folder": "storageadapter",
+    "package": "storageadapter",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "makeMessage", "Behaviors": null },
+      { "function": "TestOnDealSectorCommitted", "Behaviors": null },
+      { "function": "TestOnDealSectorPreCommitted", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "def_test.go",
+    "path": "_modules/lotus/node/config/def_test.go",
+    "repository": "lotus",
+    "parent_folder": "config",
+    "package": "config",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDefaultFullNodeRoundtrip", "Behaviors": null },
+      { "function": "TestDefaultMinerRoundtrip", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "load_test.go",
+    "path": "_modules/lotus/node/config/load_test.go",
+    "repository": "lotus",
+    "parent_folder": "config",
+    "package": "config",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDecodeNothing", "Behaviors": null },
+      { "function": "TestParitalConfig", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "client_test.go",
+    "path": "_modules/lotus/node/impl/client/client_test.go",
+    "repository": "lotus",
+    "parent_folder": "client",
+    "package": "client",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestImportLocal", "Behaviors": null }]
+  },
+  {
+    "file": "import_test.go",
+    "path": "_modules/lotus/node/impl/client/import_test.go",
+    "repository": "lotus",
+    "parent_folder": "client",
+    "package": "client",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestRoundtripUnixFS_Filestore", "Behaviors": null },
+      { "function": "newTmpFile", "Behaviors": null },
+      { "function": "genInputFile", "Behaviors": null },
+      { "function": "TestRoundtripUnixFS_Dense", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "gas_test.go",
+    "path": "_modules/lotus/node/impl/full/gas_test.go",
+    "repository": "lotus",
+    "parent_folder": "full",
+    "package": "full",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestMedian", "Behaviors": null }]
+  },
+  {
+    "file": "fsrepo_test.go",
+    "path": "_modules/lotus/node/repo/fsrepo_test.go",
+    "repository": "lotus",
+    "parent_folder": "repo",
+    "package": "repo",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "genFsRepo", "Behaviors": null },
+      { "function": "TestFsBasic", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "memrepo_test.go",
+    "path": "_modules/lotus/node/repo/memrepo_test.go",
+    "repository": "lotus",
+    "parent_folder": "repo",
+    "package": "repo",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestMemBasic", "Behaviors": null }]
+  },
+  {
+    "file": "repo_test.go",
+    "path": "_modules/lotus/node/repo/repo_test.go",
+    "repository": "lotus",
+    "parent_folder": "repo",
+    "package": "repo",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "basicTest", "Behaviors": null }]
+  },
+  {
+    "file": "shutdown_test.go",
+    "path": "_modules/lotus/node/shutdown_test.go",
+    "repository": "lotus",
+    "parent_folder": "node",
+    "package": "node",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestMonitorShutdown", "Behaviors": null }]
+  },
+  {
+    "file": "mock_test.go",
+    "path": "_modules/lotus/paychmgr/mock_test.go",
+    "repository": "lotus",
+    "parent_folder": "paychmgr",
+    "package": "paychmgr",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": null
+  },
+  {
+    "file": "msglistener_test.go",
+    "path": "_modules/lotus/paychmgr/msglistener_test.go",
+    "repository": "lotus",
+    "parent_folder": "paychmgr",
+    "package": "paychmgr",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMsgListener", "Behaviors": null },
+      { "function": "TestMsgListenerNilErr", "Behaviors": null },
+      { "function": "TestMsgListenerUnsub", "Behaviors": null },
+      { "function": "TestMsgListenerMulti", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "paych_test.go",
+    "path": "_modules/lotus/paychmgr/paych_test.go",
+    "repository": "lotus",
+    "parent_folder": "paychmgr",
+    "package": "paychmgr",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "testGenerateKeyPair", "Behaviors": null },
+      { "function": "createTestVoucher", "Behaviors": null },
+      { "function": "TestCheckSpendable", "Behaviors": null },
+      {
+        "function": "TestAllocateLaneWithExistingLaneState",
+        "Behaviors": null
+      },
+      { "function": "TestBestSpendable", "Behaviors": null },
+      { "function": "TestCreateVoucher", "Behaviors": null },
+      { "function": "TestAddVoucherNextLane", "Behaviors": null },
+      { "function": "testSetupMgrWithChannel", "Behaviors": null },
+      { "function": "TestAddVoucherInboundWalletKey", "Behaviors": null },
+      { "function": "TestCheckVoucherValid", "Behaviors": null },
+      { "function": "TestAllocateLane", "Behaviors": null },
+      { "function": "TestSubmitVoucher", "Behaviors": null },
+      { "function": "createTestVoucherWithExtra", "Behaviors": null },
+      { "function": "TestAddVoucherDelta", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "paychget_test.go",
+    "path": "_modules/lotus/paychmgr/paychget_test.go",
+    "repository": "lotus",
+    "parent_folder": "paychmgr",
+    "package": "paychmgr",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestPaychGetCreateChannelMsg", "Behaviors": null },
+      { "function": "TestPaychAvailableFunds", "Behaviors": null },
+      { "function": "TestPaychGetWait", "Behaviors": null },
+      { "function": "waitForQueueSize", "Behaviors": null },
+      { "function": "TestPaychGetMergeAddFunds", "Behaviors": null },
+      {
+        "function": "TestPaychGetMergeAddFundsCtxCancelOne",
+        "Behaviors": null
+      },
+      {
+        "function": "TestPaychGetMergeAddFundsCtxCancelAll",
+        "Behaviors": null
+      },
+      {
+        "function": "TestPaychGetCreateChannelWithErrorThenCreateAgain",
+        "Behaviors": null
+      },
+      {
+        "function": "TestPaychGetRestartAfterCreateChannelMsg",
+        "Behaviors": null
+      },
+      { "function": "testChannelResponse", "Behaviors": null },
+      { "function": "TestPaychGetWaitErr", "Behaviors": null },
+      { "function": "TestPaychGetWaitCtx", "Behaviors": null },
+      {
+        "function": "TestPaychGetRecoverAfterAddFundsError",
+        "Behaviors": null
+      },
+      { "function": "TestPaychGetRestartAfterAddFundsMsg", "Behaviors": null },
+      { "function": "TestPaychGetRecoverAfterError", "Behaviors": null },
+      { "function": "TestPaychGetCreateChannelThenAddFunds", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "paychvoucherfunds_test.go",
+    "path": "_modules/lotus/paychmgr/paychvoucherfunds_test.go",
+    "repository": "lotus",
+    "parent_folder": "paychmgr",
+    "package": "paychmgr",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestPaychAddVoucherAfterAddFunds", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "settle_test.go",
+    "path": "_modules/lotus/paychmgr/settle_test.go",
+    "repository": "lotus",
+    "parent_folder": "paychmgr",
+    "package": "paychmgr",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestPaychSettle", "Behaviors": null }]
+  },
+  {
+    "file": "store_test.go",
+    "path": "_modules/lotus/paychmgr/store_test.go",
+    "repository": "lotus",
+    "parent_folder": "paychmgr",
+    "package": "paychmgr",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestStore", "Behaviors": null }]
+  },
+  {
+    "file": "wdpost_changehandler_test.go",
+    "path": "_modules/lotus/storage/wdpost_changehandler_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage",
+    "package": "storage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      {
+        "function": "TestChangeHandlerDontStartUntilProvingPeriod",
+        "Behaviors": null
+      },
+      { "function": "TestChangeHandlerSubmittingRevert", "Behaviors": null },
+      { "function": "TestChangeHandlerSubmitExpiry", "Behaviors": null },
+      { "function": "TestChangeHandlerProveRevert", "Behaviors": null },
+      {
+        "function": "TestChangeHandlerStartProvingNextDeadline",
+        "Behaviors": null
+      },
+      {
+        "function": "TestChangeHandlerFromProvingEmptyProofsToComplete",
+        "Behaviors": null
+      },
+      {
+        "function": "TestChangeHandlerSubmitRevertAdvanceLess",
+        "Behaviors": null
+      },
+      { "function": "makeScaffolding", "Behaviors": null },
+      { "function": "TestChangeHandlerSubmitErrorRecovery", "Behaviors": null },
+      {
+        "function": "TestChangeHandlerSubmitCompleteRevert",
+        "Behaviors": null
+      },
+      { "function": "TestChangeHandlerProvingRounds", "Behaviors": null },
+      { "function": "TestChangeHandlerBasic", "Behaviors": null },
+      {
+        "function": "TestChangeHandlerSubmitRevertTwoEpochs",
+        "Behaviors": null
+      },
+      {
+        "function": "TestChangeHandlerProvingErrorRecovery",
+        "Behaviors": null
+      },
+      { "function": "makeTs", "Behaviors": null },
+      {
+        "function": "TestChangeHandlerFromProvingToSubmittingNoHeadChange",
+        "Behaviors": null
+      },
+      { "function": "triggerHeadAdvance", "Behaviors": null },
+      { "function": "triggerHeadChange", "Behaviors": null },
+      { "function": "TestChangeHandlerProveExpiry", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "wdpost_nextdl_test.go",
+    "path": "_modules/lotus/storage/wdpost_nextdl_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage",
+    "package": "storage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestNextDeadline", "Behaviors": null }]
+  },
+  {
+    "file": "wdpost_run_test.go",
+    "path": "_modules/lotus/storage/wdpost_run_test.go",
+    "repository": "lotus",
+    "parent_folder": "storage",
+    "package": "storage",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestWDPostDoPost", "Behaviors": null },
+      { "function": "mockTipSet", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "head_buffer_test.go",
+    "path": "_modules/lotus/tools/stats/head_buffer_test.go",
+    "repository": "lotus",
+    "parent_folder": "stats",
+    "package": "stats",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestHeadBuffer", "Behaviors": null }]
+  },
+  {
+    "file": "account_test.go",
+    "path": "_modules/specs-actors/actors/builtin/account/account_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "account",
+    "package": "account_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestAccountactor", "Behaviors": null },
+      { "function": "checkState", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "cron_test.go",
+    "path": "_modules/specs-actors/actors/builtin/cron/cron_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "cron",
+    "package": "cron_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestEpochTick", "Behaviors": null },
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestConstructor", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "actors_test.go",
+    "path": "_modules/specs-actors/actors/builtin/exported/actors_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "exported",
+    "package": "exported",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestKnownActors", "Behaviors": null }]
+  },
+  {
+    "file": "init_test.go",
+    "path": "_modules/specs-actors/actors/builtin/init/init_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "init",
+    "package": "init_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestConstructor", "Behaviors": null },
+      { "function": "TestExec", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "market_test.go",
+    "path": "_modules/specs-actors/actors/builtin/market/market_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "market",
+    "package": "market_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "processEpoch", "Behaviors": null },
+      { "function": "TestActivateDealFailures", "Behaviors": null },
+      { "function": "TestRandomCronEpochDuringPublish", "Behaviors": null },
+      { "function": "TestLockedFundTrackingStates", "Behaviors": null },
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestActivateDeals", "Behaviors": null },
+      { "function": "TestMarketActorDeals", "Behaviors": null },
+      { "function": "TestMaxDealLabelSize", "Behaviors": null },
+      { "function": "TestCronTickDealExpiry", "Behaviors": null },
+      { "function": "TestComputeDataCommitment", "Behaviors": null },
+      { "function": "TestDealOpsByEpochOffset", "Behaviors": null },
+      { "function": "TestPublishStorageDealsFailures", "Behaviors": null },
+      { "function": "TestCronTick", "Behaviors": null },
+      { "function": "TestCronTickDealSlashing", "Behaviors": null },
+      { "function": "TestMarketActor", "Behaviors": null },
+      { "function": "TestVerifyDealsForActivation", "Behaviors": null },
+      { "function": "basicMarketSetup", "Behaviors": null },
+      { "function": "TestCronTickTimedoutDeals", "Behaviors": null },
+      { "function": "TestPublishStorageDeals", "Behaviors": null },
+      { "function": "TestOnMinerSectorsTerminate", "Behaviors": null },
+      { "function": "TestRemoveAllError", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "bitfield_queue_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/bitfield_queue_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "emptyBitfieldQueueWithQuantizing", "Behaviors": null },
+      { "function": "emptyBitfieldQueue", "Behaviors": null },
+      { "function": "TestBitfieldQueue", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "bitfield_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/bitfield_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "assertBitfieldsEqual", "Behaviors": null },
+      { "function": "assertBitfieldEquals", "Behaviors": null },
+      { "function": "assertBitfieldEmpty", "Behaviors": null },
+      { "function": "seq", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deadline_assignment_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/deadline_assignment_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMaxPartitionsPerDeadline", "Behaviors": null },
+      { "function": "TestDeadlineAssignment", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deadline_state_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/deadline_state_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDeadlines", "Behaviors": null },
+      { "function": "emptyDeadline", "Behaviors": null },
+      { "function": "checkDeadlineInvariants", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deadlines_helper_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/deadlines_helper_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCompactionWindow", "Behaviors": null },
+      { "function": "TestChallengeWindow", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "deadlines_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/deadlines_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestProvingPeriodDeadlines", "Behaviors": null },
+      { "function": "TestDeadlineInfoFromOffsetAndEpoch", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "expiration_queue_internal_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/expiration_queue_internal_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestExpirationsEmpty", "Behaviors": null },
+      { "function": "assertSectorSet", "Behaviors": null },
+      { "function": "TestExpirations", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "expiration_queue_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/expiration_queue_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestExpirationQueue", "Behaviors": null },
+      { "function": "requireNoExpirationGroupsBefore", "Behaviors": null },
+      { "function": "emptyExpirationQueueWithQuantizing", "Behaviors": null },
+      { "function": "emptyExpirationQueue", "Behaviors": null },
+      { "function": "TestExpirationSet", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "miner_commitment_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/miner_commitment_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestAggregateProveCommit", "Behaviors": null },
+      { "function": "TestBatchMethodNetworkFees", "Behaviors": null },
+      { "function": "TestCommitments", "Behaviors": null },
+      { "function": "TestPreCommitBatch", "Behaviors": null },
+      { "function": "TestProveCommit", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "miner_internal_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/miner_internal_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestFaultFeeInvariants", "Behaviors": null },
+      { "function": "TestAssignProvingPeriodBoundary", "Behaviors": null },
+      { "function": "TestCurrentProvingPeriodStart", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "miner_state_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/miner_state_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSectorNumberAllocation", "Behaviors": null },
+      { "function": "TestRepayDebtInPriorityOrder", "Behaviors": null },
+      { "function": "constructStateHarness", "Behaviors": null },
+      { "function": "TestVesting_AddLockedFunds_Table", "Behaviors": null },
+      { "function": "TestVestingFunds_UnvestedFunds", "Behaviors": null },
+      { "function": "TestPrecommittedSectorsStore", "Behaviors": null },
+      { "function": "TestSectorAssignment", "Behaviors": null },
+      { "function": "TestVestingFunds_AddLockedFunds", "Behaviors": null },
+      { "function": "TestSectorsStore", "Behaviors": null },
+      { "function": "TestAddPreCommitExpiry", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "miner_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/miner_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDeadlineCronDefersStopsRestarts", "Behaviors": null },
+      { "function": "TestConfirmUpdateWorkerKey", "Behaviors": null },
+      { "function": "TestWindowPost", "Behaviors": null },
+      { "function": "assertEmptyBitfield", "Behaviors": null },
+      { "function": "TestDeclareRecoveries", "Behaviors": null },
+      { "function": "TestExtendSectorExpiration", "Behaviors": null },
+      { "function": "TestApplyRewards", "Behaviors": null },
+      { "function": "TestReportConsensusFault", "Behaviors": null },
+      { "function": "TestChangeMultiAddrs", "Behaviors": null },
+      { "function": "TestWithdrawBalance", "Behaviors": null },
+      { "function": "TestConstruction", "Behaviors": null },
+      { "function": "TestTerminateSectors", "Behaviors": null },
+      { "function": "TestControlAddresses", "Behaviors": null },
+      { "function": "TestChangeOwnerAddress", "Behaviors": null },
+      { "function": "TestChangeWorkerAddress", "Behaviors": null },
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestDeclareFaults", "Behaviors": null },
+      { "function": "TestDeadlineCron", "Behaviors": null },
+      { "function": "TestCompactSectorNumbers", "Behaviors": null },
+      { "function": "TestRepayDebts", "Behaviors": null },
+      { "function": "TestChangePeerID", "Behaviors": null },
+      { "function": "TestCompactPartitions", "Behaviors": null },
+      { "function": "TestCheckSectorProven", "Behaviors": null },
+      { "function": "TestPeerInfo", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "monies_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/monies_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestPledgePenaltyForTermination", "Behaviors": null },
+      { "function": "TestNegativeBRClamp", "Behaviors": null },
+      { "function": "TestContinuedFault", "Behaviors": null },
+      {
+        "function": "TestExpectedRewardForPowerClamptedAtAttoFIL",
+        "Behaviors": null
+      },
+      {
+        "function": "TestPrecommitDepositAndInitialPledgePostiive",
+        "Behaviors": null
+      },
+      { "function": "TestAggregateNetworkFee", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "partition_state_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/partition_state_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestRecordSkippedFaults", "Behaviors": null },
+      { "function": "assertPartitionState", "Behaviors": null },
+      { "function": "selectSectors", "Behaviors": null },
+      { "function": "emptyPartition", "Behaviors": null },
+      { "function": "assertPartitionExpirationQueue", "Behaviors": null },
+      { "function": "TestPartitions", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "policy_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/policy_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "assertEqual", "Behaviors": null },
+      { "function": "TestQuality", "Behaviors": null },
+      { "function": "TestPower", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "sector_map_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/sector_map_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestDeadlineSectorMapValues", "Behaviors": null },
+      { "function": "TestDeadlineSectorMapOverflow", "Behaviors": null },
+      { "function": "TestDeadlineSectorMapSorted", "Behaviors": null },
+      { "function": "TestDeadlineSectorMap", "Behaviors": null },
+      { "function": "TestDeadlineSectorMapError", "Behaviors": null },
+      { "function": "TestPartitionSectorMapValues", "Behaviors": null },
+      { "function": "TestDeadlineSectorMapEmpty", "Behaviors": null },
+      { "function": "TestPartitionSectorMapOverflow", "Behaviors": null },
+      { "function": "TestPartitionSectorMapEmpty", "Behaviors": null },
+      { "function": "TestPartitionSectorMapSorted", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "sectors_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/sectors_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "sectorsArr", "Behaviors": null },
+      { "function": "TestSectors", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "termination_test.go",
+    "path": "_modules/specs-actors/actors/builtin/miner/termination_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "miner",
+    "package": "miner_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestTerminationResult", "Behaviors": null }]
+  },
+  {
+    "file": "multisig_test.go",
+    "path": "_modules/specs-actors/actors/builtin/multisig/multisig_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "multisig",
+    "package": "multisig_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestAddSigner", "Behaviors": null },
+      { "function": "TestVesting", "Behaviors": null },
+      { "function": "TestConstruction", "Behaviors": null },
+      { "function": "makeProposalHash", "Behaviors": null },
+      { "function": "TestChangeThreshold", "Behaviors": null },
+      { "function": "TestApprove", "Behaviors": null },
+      { "function": "TestLockBalance", "Behaviors": null },
+      { "function": "TestCancel", "Behaviors": null },
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestPropose", "Behaviors": null },
+      { "function": "TestSwapSigners", "Behaviors": null },
+      { "function": "TestRemoveSigner", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "paych_test.go",
+    "path": "_modules/specs-actors/actors/builtin/paych/paych_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "paych",
+    "package": "paych_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      {
+        "function": "TestActor_UpdateChannelStateMergeSuccess",
+        "Behaviors": null
+      },
+      { "function": "voucherBytes", "Behaviors": null },
+      { "function": "getLaneState", "Behaviors": null },
+      {
+        "function": "TestActor_UpdateChannelStateMergeFailure",
+        "Behaviors": null
+      },
+      { "function": "TestActor_UpdateChannelStateSettling", "Behaviors": null },
+      { "function": "verifyInitialState", "Behaviors": null },
+      { "function": "TestActor_UpdateChannelStateExtra", "Behaviors": null },
+      { "function": "verifyState", "Behaviors": null },
+      { "function": "assertLaneStatesLength", "Behaviors": null },
+      { "function": "TestPaymentChannelActor_CreateLane", "Behaviors": null },
+      { "function": "requireCreateChannelWithLanes", "Behaviors": null },
+      { "function": "constructLaneStateAMT", "Behaviors": null },
+      { "function": "TestActor_UpdateChannelStateRedeem", "Behaviors": null },
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestActor_Collect", "Behaviors": null },
+      { "function": "TestPaymentChannelActor_Constructor", "Behaviors": null },
+      {
+        "function": "TestActor_UpdateChannelStateSecretPreimage",
+        "Behaviors": null
+      },
+      { "function": "TestActor_Settle", "Behaviors": null },
+      { "function": "requireAddNewLane", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "power_test.go",
+    "path": "_modules/specs-actors/actors/builtin/power/power_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "power",
+    "package": "power_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCron", "Behaviors": null },
+      { "function": "TestConstruction", "Behaviors": null },
+      { "function": "TestCreateMinerFailures", "Behaviors": null },
+      { "function": "TestPowerAndPledgeAccounting", "Behaviors": null },
+      { "function": "TestCronBatchProofVerifies", "Behaviors": null },
+      { "function": "basicPowerSetup", "Behaviors": null },
+      { "function": "TestEnrollCronEpoch", "Behaviors": null },
+      { "function": "TestUpdatePledgeTotal", "Behaviors": null },
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "newHarness", "Behaviors": null },
+      { "function": "TestUpdateClaimedPowerFailures", "Behaviors": null },
+      { "function": "TestSubmitPoRepForBulkVerify", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "quantize_test.go",
+    "path": "_modules/specs-actors/actors/builtin/quantize_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "builtin",
+    "package": "builtin_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestQuantizeUp", "Behaviors": null },
+      { "function": "TestQuantizeDown", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "reward_logic_test.go",
+    "path": "_modules/specs-actors/actors/builtin/reward/reward_logic_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "reward",
+    "package": "reward",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestComputeRTeta", "Behaviors": null },
+      { "function": "TestBaselineReward", "Behaviors": null },
+      { "function": "TestSimpleReward", "Behaviors": null },
+      { "function": "TestBaselineRewardGrowth", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "reward_test.go",
+    "path": "_modules/specs-actors/actors/builtin/reward/reward_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "reward",
+    "package": "reward_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestConstructor", "Behaviors": null },
+      { "function": "TestAwardBlockReward", "Behaviors": null },
+      { "function": "TestThisEpochReward", "Behaviors": null },
+      { "function": "TestSuccessiveKPIUpdates", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "system_test.go",
+    "path": "_modules/specs-actors/actors/builtin/system/system_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "system",
+    "package": "system_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestConstruction", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "testing_test.go",
+    "path": "_modules/specs-actors/actors/builtin/testing_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "builtin",
+    "package": "builtin_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestMessageAccumulator", "Behaviors": null }]
+  },
+  {
+    "file": "verified_registry_test.go",
+    "path": "_modules/specs-actors/actors/builtin/verifreg/verified_registry_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "verifreg",
+    "package": "verifreg_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestConstruction", "Behaviors": null },
+      { "function": "basicVerifRegSetup", "Behaviors": null },
+      { "function": "TestUseBytes", "Behaviors": null },
+      { "function": "TestRestoreBytes", "Behaviors": null },
+      { "function": "TestExports", "Behaviors": null },
+      { "function": "TestAddVerifier", "Behaviors": null },
+      { "function": "TestRemoveVerifier", "Behaviors": null },
+      { "function": "TestAddVerifiedClient", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "parallel_migration_test.go",
+    "path": "_modules/specs-actors/actors/migration/nv15/test/parallel_migration_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestParallelMigrationCalls", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "election_test.go",
+    "path": "_modules/specs-actors/actors/states/election_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "states",
+    "package": "states_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMinerEligibleForElection", "Behaviors": null },
+      { "function": "TestMinerEligibleAtLookback", "Behaviors": null },
+      { "function": "constructMinerState", "Behaviors": null },
+      { "function": "constructPowerStateWithMiner", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "tree_test.go",
+    "path": "_modules/specs-actors/actors/states/tree_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "states",
+    "package": "states_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestSetCache", "Behaviors": null },
+      { "function": "TestStateTreeConsistency", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "commit_post_test.go",
+    "path": "_modules/specs-actors/actors/test/commit_post_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestMeasureAggregatePorepGas", "Behaviors": null },
+      { "function": "TestBatchOnboarding", "Behaviors": null },
+      { "function": "TestMeasurePoRepGas", "Behaviors": null },
+      { "function": "TestAggregateBadSender", "Behaviors": null },
+      { "function": "TestAggregateSizeLimits", "Behaviors": null },
+      { "function": "TestAggregateOnePreCommitExpires", "Behaviors": null },
+      { "function": "preCommitSectors", "Behaviors": null },
+      { "function": "TestCommitPoStFlow", "Behaviors": null },
+      { "function": "TestMeasurePreCommitGas", "Behaviors": null },
+      { "function": "TestAggregateBadSectorNumber", "Behaviors": null },
+      { "function": "proveCommitSectors", "Behaviors": null },
+      { "function": "submitWindowPoSt", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "common_test.go",
+    "path": "_modules/specs-actors/actors/test/common_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "createMiner", "Behaviors": null },
+      { "function": "publishDeal", "Behaviors": null },
+      { "function": "requireActor", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "extend_sectors_test.go",
+    "path": "_modules/specs-actors/actors/test/extend_sectors_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestExtendSectorWithDeals", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "market_miner_withdrawal_test.go",
+    "path": "_modules/specs-actors/actors/test/market_miner_withdrawal_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "assertAddCollateralAndWithdraw", "Behaviors": null },
+      { "function": "TestMarketWithdraw", "Behaviors": null },
+      { "function": "TestMinerWithdraw", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "multisig_delete_self_test.go",
+    "path": "_modules/specs-actors/actors/test/multisig_delete_self_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      {
+        "function": "TestMultisigDeleteSelf2Of3RemovedIsApprover",
+        "Behaviors": null
+      },
+      { "function": "TestMultisigDeleteSelf2Of2", "Behaviors": null },
+      { "function": "TestMultisigSwapsSelf2Of3", "Behaviors": null },
+      { "function": "TestMultisigDeleteSigner1Of2", "Behaviors": null },
+      { "function": "TestMultisigSwapsSelf1Of2", "Behaviors": null },
+      {
+        "function": "TestMultisigDeleteSelf2Of3RemovedIsProposer",
+        "Behaviors": null
+      }
+    ]
+  },
+  {
+    "file": "multisig_proposal_hash_test.go",
+    "path": "_modules/specs-actors/actors/test/multisig_proposal_hash_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestProposalHash", "Behaviors": null }]
+  },
+  {
+    "file": "power_scenario_test.go",
+    "path": "_modules/specs-actors/actors/test/power_scenario_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCreateMiner", "Behaviors": null },
+      { "function": "TestOnEpochTickEnd", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "publish-deals_test.go",
+    "path": "_modules/specs-actors/actors/test/publish-deals_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestPublishStorageDealsFailure", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "terminate_sectors_scenario_test.go",
+    "path": "_modules/specs-actors/actors/test/terminate_sectors_scenario_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "test",
+    "package": "test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestTerminateSectors", "Behaviors": null }]
+  },
+  {
+    "file": "array_test.go",
+    "path": "_modules/specs-actors/actors/util/adt/array_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "adt",
+    "package": "adt_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestArrayNotFound", "Behaviors": null }]
+  },
+  {
+    "file": "balancetable_test.go",
+    "path": "_modules/specs-actors/actors/util/adt/balancetable_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "adt",
+    "package": "adt_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestBalanceTable", "Behaviors": null },
+      { "function": "TestSubtractWithMinimum", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "bitfield_test.go",
+    "path": "_modules/specs-actors/actors/util/bitfield_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "util",
+    "package": "util_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestBitFieldUnset", "Behaviors": null },
+      { "function": "roundtripMarshal", "Behaviors": null },
+      { "function": "TestBitFieldContains", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "exp_test.go",
+    "path": "_modules/specs-actors/actors/util/math/exp_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "math",
+    "package": "math_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestExpBySquaring", "Behaviors": null }]
+  },
+  {
+    "file": "expneg_test.go",
+    "path": "_modules/specs-actors/actors/util/math/expneg_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "math",
+    "package": "math_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestExpFunction", "Behaviors": null }]
+  },
+  {
+    "file": "ln_test.go",
+    "path": "_modules/specs-actors/actors/util/math/ln_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "math",
+    "package": "math_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [{ "function": "TestNaturalLog", "Behaviors": null }]
+  },
+  {
+    "file": "alpha_beta_filter_test.go",
+    "path": "_modules/specs-actors/actors/util/smoothing/alpha_beta_filter_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "smoothing",
+    "package": "smoothing_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestCumSumRatioProjection", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "cases_test.go",
+    "path": "_modules/specs-actors/support/agent/cases_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "agent",
+    "package": "agent_test",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "getV5VM", "Behaviors": null },
+      { "function": "TestCCUpgrades", "Behaviors": null },
+      { "function": "TestCreate20Miners", "Behaviors": null },
+      { "function": "TestCommitPowerAndCheckInvariants", "Behaviors": null },
+      { "function": "TestCommitAndCheckReadWriteStats", "Behaviors": null },
+      { "function": "Test500Epochs", "Behaviors": null },
+      { "function": "TestCreateDeals", "Behaviors": null }
+    ]
+  },
+  {
+    "file": "mockrt_state_test.go",
+    "path": "_modules/specs-actors/support/mock/mockrt_state_test.go",
+    "repository": "specs-actors",
+    "parent_folder": "mock",
+    "package": "mock",
+    "test_type": "",
+    "ignore": false,
+    "scenarios": [
+      { "function": "TestIllegalStateModifications", "Behaviors": null }
+    ]
+  }
+]

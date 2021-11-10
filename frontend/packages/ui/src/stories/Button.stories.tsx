@@ -2,39 +2,35 @@ import { Meta } from '@storybook/react'
 import { styled } from '@storybook/theming'
 import React from 'react'
 import { BoxLayout } from '..'
-import { Button, ButtonAppearance } from '../Button'
+import { Button } from '../Button'
 
 export default {
   title: 'Button',
   component: Button,
-  argTypes: {
-    appearance: {
-      name: 'system',
-      defaultValue: 'system',
-      options: ButtonAppearance,
-    },
-  },
+  argTypes: {},
 } as Meta
 
 export const System = () => (
   <Wrapper>
-    <Row>System Buttons</Row>
+    <Row>Rounded Buttons</Row>
     <Row>
       <Column>
-        <Button appearance="system">Good</Button>
+        <Button variant="rounded" size="small" color="success">
+          Good
+        </Button>
       </Column>
       <Column>
-        <Button appearance="system" color="red">
+        <Button variant="rounded" size="small" color="error">
           Bad
         </Button>
       </Column>
       <Column>
-        <Button appearance="system" color="orange">
+        <Button variant="rounded" size="small" color="warning">
           Mediocre
         </Button>
       </Column>
       <Column>
-        <Button appearance="system" color="gray">
+        <Button variant="rounded" size="small" color="secondary">
           Missing
         </Button>
       </Column>
@@ -47,10 +43,14 @@ export const Ghost = () => (
     <Row>Ghost Buttons</Row>
     <Row>
       <Column>
-        <Button appearance="ghost">All Behaviours</Button>
+        <Button variant="outline" size="medium">
+          All Behaviours
+        </Button>
       </Column>
       <Column>
-        <Button appearance="ghostSmall">All Tests</Button>
+        <Button variant="outline" size="medium">
+          All Tests
+        </Button>
       </Column>
     </Row>
   </Wrapper>

@@ -2,7 +2,6 @@ import { useDebounce } from '@filecoin/core'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import { BaseInput } from './BaseInput'
 import { Button } from './Button'
 import { Icon } from './Icon'
@@ -60,7 +59,8 @@ export const SearchInput: FunctionComponent<SearchInputProps> = ({
       {(isLoading && <SearchLoader />) ||
         (query && (
           <Button
-            appearance="system"
+            variant="outline"
+            size="medium"
             onClick={() => {
               setIsLoading(true)
               setQuery('')

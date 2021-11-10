@@ -34,7 +34,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
       <Backdrop />
       <Content gap={2}>
         {showCloseButton && (
-          <CloseButton appearance="ghost" onClick={onClose} />
+          <CloseButton variant="outline" size="medium" onClick={onClose} />
         )}
         {props.children}
       </Content>

@@ -1,35 +1,34 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
-import { ButtonAppearanceType } from '.'
-import { ButtonProps } from './Button'
+import { ButtonProps, ButtonVariant } from './Button'
 import { Colors } from './styles/colors'
 import { FullWidth } from './styles/mixins'
 
 export const Sizing = {
   height: {
-    ghost: 39,
-    ghostSmall: 39,
-    system: 32,
+    medium: 38,
+    small: 32,
   },
   width: {
-    ghost: 131,
-    ghostSmall: 92,
-    system: 124,
+    medium: 131,
+    small: 124,
   },
 }
 
 export const getBackgroundColor = color => {
   switch (color) {
-    case 'green':
+    case 'success':
       return `${Colors.greenBtn}`
-    case 'orange':
+    case 'warning':
       return `${Colors.orangeBtn}`
-    case 'red':
+    case 'error':
       return `${Colors.redBtn}`
-    case 'gray':
+    case 'primary':
+      return `${Colors.ghostBtn}`
+    case 'secondary':
       return `${Colors.grayBtn}`
     default:
-      return `${Colors.greenBtn}`
+      return `${Colors.ghostBtn}`
   }
 }
 
@@ -45,8 +44,8 @@ const ButtonComponent = forwardRef<HTMLButtonElement, ButtonProps>(
 
 export const ButtonBase = styled(ButtonComponent)`
   position: relative;
-  height: ${props => Sizing.height[props.appearance]}px;
-  width: ${props => Sizing.width[props.appearance]}px;
+  height: ${props => Sizing.height[props.size]}px;
+  width: ${props => Sizing.width[props.size]}px;
   ${props => FullWidth({ className: props.className })};
   display: inline-flex;
   align-items: center;
@@ -71,27 +70,25 @@ export const ButtonBase = styled(ButtonComponent)`
   }
 `
 
-const ButtonSystem = styled(ButtonBase)`
+const ButtonRounded = styled(ButtonBase)`
   border-radius: 20px;
   background-color: ${props => getBackgroundColor(props.color)};
   color: ${Colors.white};
 `
-const ButtonGhost = styled(ButtonBase)`
-  background-color: ${Colors.ghostBtn};
+const ButtonOutline = styled(ButtonBase)`
+  background-color: ${props => getBackgroundColor(props.color)};
   border: 1px solid ${Colors.borderColor};
   border-radius: 5px;
   color: ${Colors.ghostBtnText};
 `
 
-export const getActiveComponent = (appearance: ButtonAppearanceType) => {
-  switch (appearance) {
-    case 'system':
-      return ButtonSystem
-    case 'ghost':
-      return ButtonGhost
-    case 'ghostSmall':
-      return ButtonGhost
+export const getActiveComponent = (variant: ButtonVariant) => {
+  switch (variant) {
+    case 'rounded':
+      return ButtonRounded
+    case 'outline':
+      return ButtonOutline
     default:
-      return ButtonSystem
+      return ButtonRounded
   }
 }

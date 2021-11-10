@@ -83,8 +83,9 @@ const Dashboard = () => {
                   return (
                     <Button
                       onClick={() => history.push('/repository-details')}
-                      appearance="system"
-                      color="green"
+                      variant="rounded"
+                      size="small"
+                      color="success"
                     >
                       Good
                     </Button>
@@ -94,8 +95,9 @@ const Dashboard = () => {
                   return (
                     <Button
                       onClick={() => history.push('/repository-details')}
-                      appearance="system"
-                      color="red"
+                      variant="rounded"
+                      size="small"
+                      color="error"
                     >
                       Bad
                     </Button>
@@ -104,8 +106,9 @@ const Dashboard = () => {
                 return (
                   <Button
                     onClick={() => history.push('/repository-details')}
-                    appearance="system"
-                    color="orange"
+                    variant="rounded"
+                    size="small"
+                    color="warning"
                   >
                     Mediocre
                   </Button>

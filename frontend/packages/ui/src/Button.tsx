@@ -1,33 +1,45 @@
 import React, { ButtonHTMLAttributes, FunctionComponent } from 'react'
 import { getActiveComponent } from './ButtonVariants'
 
-export const ButtonAppearance = ['system', 'ghost', 'ghostSmall'] as const
-export type ButtonAppearanceType = typeof ButtonAppearance[number]
-
-export const ButtonColor = ['green', 'orange', 'red', 'gray'] as const
-export type ButtonColorType = typeof ButtonColor[number]
+export const ButtonColor = [
+  'success',
+  'error',
+  'warning',
+  'primary',
+  'secondary',
+] as const
+export const ButtonSize = ['small', 'medium'] as const
+export const ButtonVariant = ['rounded', 'outline'] as const
+export type ButtonColor = typeof ButtonColor[number]
+export type ButtonSize = typeof ButtonSize[number]
+export type ButtonVariant = typeof ButtonVariant[number]
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button variant.
    */
-  color?: ButtonColorType
+  variant: ButtonVariant
   /**
-   * Button appearance. Refers to button colors
+   * Button size.
    */
-  appearance?: ButtonAppearanceType
+  size: ButtonSize
+  /**
+   * Button color.
+   */
+  color?: ButtonColor
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
   color,
-  appearance,
+  variant,
+  size,
   ...props
 }) => {
-  const ActiveComponent = getActiveComponent(appearance)
+  const ActiveComponent = getActiveComponent(variant)
 
   return (
     <>
-      <ActiveComponent appearance={appearance} color={color} {...props}>
+      <ActiveComponent variant={variant} size={size} color={color} {...props}>
         {props.children}
       </ActiveComponent>
     </>

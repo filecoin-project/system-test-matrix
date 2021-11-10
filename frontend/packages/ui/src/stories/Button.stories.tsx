@@ -10,7 +10,7 @@ export default {
   argTypes: {
     appearance: {
       name: 'system',
-      defaultValue: 'brand',
+      defaultValue: 'system',
       options: ButtonAppearance,
     },
   },

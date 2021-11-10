@@ -1,6 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd ./frontend && yarn format && yarn lint && yarn commitlint --edit $1
+cd ./frontend && yarn format && yarn lint && yarn commitlint --edit $1 
 
 

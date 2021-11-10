@@ -1,0 +1,1421 @@
+systems:
+  Blockchain:
+    subsystems:
+      Blockstore:
+        features:
+          - name: Chain Notify
+            behaviors:
+              - id: CHAIN_NOTIFY_001
+                description: returns a channel that streams chain head updates
+              - id: CHAIN_NOTIFY_002
+                description: first message is guaranteed to be of len == 1, and type ==
+                  “current”
+          - name: Non Prefixed
+            behaviors:
+              - id: CHAIN_BLOCKSTORE_001
+                description: Runs all Non-Prefixed methods from a suite
+          - name: Prefixed
+            behaviors:
+              - id: CHAIN_BLOCKSTORE_002
+                description: Runs all Prefixed methods from a suite
+          - name: Chain Get Blockstore Info
+            behaviors:
+              - id: CHAIN_BLOCKSTORE_INFO_001
+                description: Returns basic information about the underlying blockstore
+          - name: Chain Check Blockstore
+            behaviors:
+              - id: CHAIN_CHECK_BLOCKSTORE_001
+                description: Performs an (async) health check on the chain/state blockstore if
+                  supported by the underlying implementation
+          - name: Chain Delete Object
+            behaviors:
+              - id: CHAIN_DELETE_OBJ_001
+                description: Given a known CID and the user has admin privileges, delete the
+                  node with the specified CID from the chain blockstore
+          - name: Chain Export
+            behaviors:
+              - id: CHAIN_EXPORT_001
+                description: Given a known Tipset key and nroots, return a stream of bytes
+                  including the header chain from the given tipset back to
+                  genesis, the entire genesis state, and the most recent nroots
+                  state trees
+              - id: CHAIN_EXPORT_002
+                description: Given oldmsgskip is true, messages from before the requested roots
+                  are not included
+          - name: Get Block
+            behaviors:
+              - id: CHAIN_GET_BLOCK_001
+                description: Given a known block CID, returns the corresponding block
+              - id: CHAIN_GET_BLOCK_002
+                description: Given an unknown block CID, return a "Not Found" error
+          - name: Get Block Messages
+            behaviors:
+              - id: CHAIN_GET_BLOCK_MESSAGES_001
+                description: Given an existing block CID, returns messages in the specified
+                  block
+          - name: Chain Get Genesis
+            behaviors:
+              - id: CHAIN_GET_GENESIS_001
+                description: Returns the genesis tipset
+          - name: Chain Get Message
+            behaviors:
+              - id: CHAIN_GET_MESSAGE_001
+                description: Given a known message CID, return the message from the blockstore
+                  with specifed CID
+          - name: Get Messages in Tipset
+            behaviors:
+              - id: CHAIN_GET_MESSAGES_IN_TIPSET_001
+                description: Given a known tipset key, return messsages stored in the specified
+                  tipset
+          - name: Get Parent Messages
+            behaviors:
+              - id: CHAIN_GET_PARENT_MESSAGES_001
+                description: Given a known block CID, returns messages stored in parent tipset
+                  of the specified block
+              - id: CHAIN_GET_PARENT_MESSAGES_002
+                description: Given a known block CID, return the same list of messages as
+                  CHAIN_GET_PARENT_RECEIPTS_001
+          - name: Get Parent Receipts
+            behaviors:
+              - id: CHAIN_GET_PARENT_RECEIPTS_001
+                description: Given a known block CID, returns receipts for messages in the
+                  parent tipset of the specified block
+              - id: CHAIN_GET_PARENT_RECEIPTS_002
+                description: Given a known block CID, return the same list of messages as
+                  CHAIN_GET_PARENT_MESSAGES_001
+          - name: Chain Get Path
+            behaviors:
+              - id: CHAIN_GET_PATH_001
+                description: Given two known Tipset keys, return a set of revert/apply
+                  operations needed to get from one tipset to another
+          - name: Get Tipset
+            behaviors:
+              - id: CHAIN_GET_TIPSET_001
+                description: Given a Tipset key, return the tipset
+          - name: Get Tipset after height
+            behaviors:
+              - id: CHAIN_GET_TIPSET_AFTER_HEIGHT_001
+                description: Given a chain epoch (height), return the tipset at the specified
+                  epoch
+              - id: CHAIN_GET_TIPSET_AFTER_HEIGHT_001
+                description: Given there are no blocks at the specified epoch, return the first
+                  non-ni tipset at a later epoch
+          - name: Get Tipset by height
+            behaviors:
+              - id: CHAIN_GET_TIPSET_BY_HEIGHT_001
+                description: Given a chain epoch (height), return the tipset at the specified
+                  epoch
+              - id: CHAIN_GET_TIPSET_BY_HEIGHT_002
+                description: Given there are no blocks at the specified epoch, return a tipset
+                  at an earlier epoch
+          - name: Chain Has Object
+            behaviors:
+              - id: CHAIN_HAS_OBJ_001
+                description: Given a CID of an object that exists in the chain blockstore,
+                  return true
+              - id: CHAIN_HAS_OBJ_002
+                description: Given a CID of an object that doesn't exist in the chain
+                  blockstore, return false
+          - name: Get Chain Head
+            behaviors:
+              - id: CHAIN_HEAD_001
+                description: Returns the current TipSet of the chain
+          - name: Chain Read Object
+            behaviors:
+              - id: CHAIN_READ_OBJ_001
+                description: Given a known CID, return raw bytes of IPLD nodes from the chain
+                  blockstore referenced by the specifed CID
+          - name: Chain Set Head
+            behaviors:
+              - id: CHAIN_SET_HEAD_001
+                description: Given a known tipset key and that the user has admin privileges,
+                  forcefully set the current chain head
+          - name: Chain Stat Object
+            behaviors:
+              - id: CHAIN_STAT_OBJ_001
+                description: Given a known CID, return statistics about the graph referenced by
+                  the specified CID
+              - id: CHAIN_STAT_OBJ_002
+                description: Given a known CID and a base CID, return the difference betwen the
+                  objects referenced by the two CIDs
+          - name: Chain Tipset Weight
+            behaviors:
+              - id: CHAIN_TIPSET_WEIGHT_001
+                description: Given a known tipset key, compute and return the weight of the
+                  specifed tipset
+          - name: Read/Write blockstore
+            behaviors:
+              - id: CLIENT_BLOCKSTORE_001
+                description: Creates a new Read/Write at the given path with a provided set of
+                  root CIDs and options.
+      State Tree:
+        features:
+          - name: State Search Message
+            behaviors:
+              - id: STATE_SEARCH_001
+                description: Returns the message receipt and the tipset where it was executed
+              - id: STATE_SEARCH_002
+                description: Given a replacing message existing on the chain and
+                  allowReplaced=true , it returns the replacing message (not the
+                  original)
+              - id: STATE_SEARCH_003
+                description: given a replacing message exists on the chain and
+                  allowReplaced=false, it returns the original message
+          - name: State list miner
+            behaviors:
+              - id: STATE_LIST_MINERS_001
+                description: Returns the addresses of every miner that has claimed power in the
+                  power actor
+          - name: Chain State
+            behaviors:
+              - id: STATE_CALL_001
+                description: Given the message and tipset key, queries, inspects or interacts
+                  with chain state
+              - id: STATE_REPLAY_001
+                description: Replays a given message, assuming it was included in a block in the
+                  specified tipset
+              - id: STATE_REPLAY_002
+                description: When no tipset key is provided, the appropriate tipset is looked
+                  up, and if the message was gas-repriced, the on-chain message
+                  will be replayed
+              - id: STATE_LIST_MESSAGES_001
+                description: Looks back and returns all messages with a matching to or from
+                  address, stopping at the given height
+              - id: STATE_LIST_MESSAGES_002
+                description: Fails if address from and address to is undefined / Must specify at
+                  least one
+              - id: STATE_DECODE_PARAMS_001
+                description: Attempts to decode the provided params, based on the recipient
+                  actor address and method number
+              - id: STATE_DECODE_PARAMS_002
+                description: Fails with invalid address for state actor
+              - id: STATE_ENCODE_PARAMS_001
+                description: Attempts to encode the provided json params to the binary form,
+                  provided CID and method
+              - id: STATE_ENCODE_PARAMS_002
+                description: Fails if invalid params are provided
+              - id: STATE_NETWORK_NAME
+                description: Returns name of the network that node is synced to
+          - name: Chain State Actor
+            behaviors:
+              - id: STATE_GET_ACTOR_001
+                description: Returns the indicated actor's nonce and balance given the actor and
+                  tipset
+              - id: STATE_GET_ACTOR_STATE_001
+                description: Returns the indicated actor's state given the actor and tipset
+          - name: Miner Sectors State
+            behaviors:
+              - id: STATE_MINER_SECTORS_001
+                description: Returns info about the given miner's sectors given the address,
+                  tipset and bitfield for given sector
+              - id: STATE_MINER_SECTORS_002
+                description: If the filter bitfield is nil, all sectors are included when
+                  returning info for sectors, given the address, tipset and
+                  bitfield
+              - id: STATE_MINER_ACTIVE_SECTORS_001
+                description: Returns info about sectors that a given miner is actively proving
+                  given the actor address and tipset
+          - name: Miner Proving Deadline
+            behaviors:
+              - id: STATE_MINER_PROVING_DEADLINE_001
+                description: Calculates the deadline at some epoch for a proving period and
+                  returns the deadline-related calculations given the actor and
+                  tipset
+          - name: State Miner Power
+            behaviors:
+              - id: STATE_MINER_POWER_001
+                description: Returns the power of the indicated miner, given the actor and
+                  tipset
+          - name: Miner Info
+            behaviors:
+              - id: STATE_MINER_INFO_001
+                description: "Returns info about the indicated miner, given the actor and tipset
+                  information "
+          - name: Miner Deadlines
+            behaviors:
+              - id: STATE_MINER_DEADLINES_001
+                description: Returns all the proving deadlines for the given miner, given the
+                  actor and tipset
+          - name: State Miner Partitions
+            behaviors:
+              - id: STATE_MINER_PARTITIONS_001
+                description: Returns all partitions in the specified deadline, given the actor,
+                  tipset and deadline index
+          - name: State Miner Faults
+            behaviors:
+              - id: STATE_MINER_FAULTS_001
+                description: Returns a bitfield indicating the faulty sectors of the miner,
+                  given the actor and tipset
+              - id: STATE_ALL_MINER_FAULTS_001
+                description: Returns all non-expired Faults that occur within lookback epochs of
+                  the given tipset
+          - name: State Miner Recoveries
+            behaviors:
+              - id: STATE_MINER_RECOVERIES_001
+                description: Returns a bitfield indicating the recovering sectors of the given
+                  miner, given the actor address and tipset
+          - name: State Miner
+            behaviors:
+              - id: STATE_MINER_PRE_COM_DEPOSIT_FOR_POWER
+                description: Returns the pre-commit deposit for the specified miner's sector,
+                  given the address, pre-commit sector info and tipset key
+              - id: STATE_MINER_INITIAL_PLEDGE_COLLATERAL
+                description: Returns the initial pledge collateral for the specified miner's
+                  sector, given the address, pre-commit sector info and tipset
+                  key
+              - id: STATE_MINER_AVAILABLE_BALANCE_001
+                description: Returns the portion of a miner's balance that can be withdrawn or
+                  spent, given the address and tipset key
+              - id: STATE_MINER_SECTOR_ALLOCATED_001
+                description: Checks if a sector is allocated, given the sector number and
+                  address
+          - name: State Sector
+            behaviors:
+              - id: STATE_SECTOR_PRE_COM_INFO_001
+                description: Returns the PreCommit info for the specified miner's sector, given
+                  the address, sector and tipset key
+              - id: STATE_SECTOR_GET_INFO_001
+                description: Returns the on-chain info for the specified miner's sector, given
+                  the actor, sector info and tipset key
+              - id: STATE_SECTOR_GET_INFO_002
+                description: When sector is not found, return should be null
+              - id: STATE_SECTOR_EXPIRATION_001
+                description: Returns epoch at which given sector will expire
+              - id: STATE_SECTOR_PARTITION_001
+                description: Finds deadline/partition with the specified sector
+          - name: State Search
+            behaviors:
+              - id: STATE_SEARCH_MSG_001
+                description: Looks back up to limit epochs in the chain for a message, and
+                  returns its receipt and the tipset where it was executed
+              - id: STATE_SEARCH_MSG_002
+                description: If a replacing message is found on chain, this method will return a
+                  Message Lookup for the replacing message
+          - name: State Wait
+            behaviors:
+              - id: STATE_WAIT_MSG_001
+                description: Looks back up to limit epochs in the chain for a message
+              - id: STATE_WAIT_MSG_002
+                description: If a replacing message is found on chain, this method will return a
+                  Message Lookup for the replacing message
+          - name: State List Miners
+            behaviors:
+              - id: STATE_LIST_MINERS_001
+                description: Returns the addresses of every miner that has claimed power in the
+                  Power Actor given the tipset key
+          - name: State List Actors
+            behaviors:
+              - id: STATE_LIST_ACTORS_001
+                description: Returns the addresses of every actor in the state
+          - name: State Market Balance
+            behaviors:
+              - id: STATE_MARKET_BALANCE
+                description: Looks up the Escrow and Locked balances of the given address in the
+                  Storage Market
+          - name: State Market Participants
+            behaviors:
+              - id: STATE_MARKET_PARTICIPANTS_001
+                description: Returns the Escrow and Locked balances of every participant in the
+                  Storage Market
+          - name: State Market Deals
+            behaviors:
+              - id: STATE_MARKET_DEALS_001
+                description: Returns information about every deal in the Storage Market
+          - name: State Market Storage Deal
+            behaviors:
+              - id: STATE_MARKET_STORAGE_DEAL_001
+                description: Returns information about the indicated deal
+          - name: State Lookup ID
+            behaviors:
+              - id: STATE_LOOKUP_ID_001
+                description: Retrieves the ID address of the given address, given the address
+                  and tipset
+          - name: State Account Key
+            behaviors:
+              - id: STATE_ACCOUNT_KEY_001
+                description: Returns the public key address of the given ID address
+          - name: State Changed Actors
+            behaviors:
+              - id: STATE_CHANGED_ACTORS_001
+                description: Returns all the actors whose states change between the two given
+                  state CIDs
+          - name: State Miner Sector Count
+            behaviors:
+              - id: STATE_MINER_SECTOR_COUNT_001
+                description: Returns the number of sectors in a miner's sector set and proving
+                  set
+          - name: State Compute
+            behaviors:
+              - id: STATE_COMPUTE_001
+                description: Load the provided tipset, or use the current chain head if not
+                  provided
+              - id: STATE_COMPUTE_002
+                description: Compute the tipset state of the provided tipset on top of the
+                  parent state
+              - id: STATE_COMPUTE_003
+                description: Execute state upgrade if any were scheduled at the epoch, or in
+                  null blocks preceding the tipset
+              - id: STATE_COMPUTE_004
+                description: Call the cron actor on null blocks preceding the tipset
+              - id: STATE_COMPUTE_005
+                description: For each block in the tipset apply messages in blocks in the
+                  specified
+              - id: STATE_COMPUTE_006
+                description: For each block in the tipset  award block reward by calling the
+                  reward actor
+              - id: STATE_COMPUTE_007
+                description: If the specified vmheight is higher than the current epoch, apply
+                  any needed state upgrades to the state
+              - id: STATE_COMPUTE_008
+                description: Apply the specified messages to the state
+          - name: State Verifiers Status
+            behaviors:
+              - id: STATE_VERIFIERS_STATUS_001
+                description: Returns the data cap for the given address
+              - id: STATE_VERIFIERS_STATUS_002
+                description: Returns nil if there is no entry in the data cap table for the
+                  address
+          - name: State Verified Client Status
+            behaviors:
+              - id: STATE_VERIFIED_CLIENT_STATUS_001
+                description: Returns the data cap for the given address
+              - id: STATE_VERIFIED_CLIENT_STATUS_002
+                description: Returns nil if there is no entry in the data cap table for the
+                  address
+          - name: State Verified Registry Root Key
+            behaviors:
+              - id: STATE_VERIFIED_REGISTRY_ROOT_KEY_001
+                description: Returns the address of the Verified Registry's root key
+          - name: State Deal Provider Collateral Bounds
+            behaviors:
+              - id: STATE_DEAL_PROVIDER_COLLATERAL_BOUNDS_001
+                description: Returns the min and max collateral a storage provider can issue. It
+                  takes the deal size and verified status as parameters.
+          - name: State Circulating Supply
+            behaviors:
+              - id: STATE_CIRCULATING_SUPPLY_001
+                description: Returns the exact circulating supply of Filecoin at the given
+                  tipset
+          - name: State VM Circulating Supply Internal
+            behaviors:
+              - id: STATE_VM_CIRCULATING_SUPPLY_INTERNAL
+                description: Returns an approximation of the circulating supply of Filecoin at
+                  the given tipset
+          - name: State Network Version
+            behaviors:
+              - id: STATE_NETWORK_VERSION_001
+                description: Returns the network version at the given tipset
+          - name: State Get Randomness From Tickets
+            behaviors:
+              - id: STATE_GET_RANDOMNESS_FROM_TICKETS_001
+                description: Sample the chain for randomness
+          - name: State Get Randomness From Beacon
+            behaviors:
+              - id: STATE_GET_RANDOMNESS_FROM_BEACON_001
+                description: Sample the beacon for randomness
+      Common:
+        features:
+          - name: "Big Int "
+            behaviors:
+              - id: BIG_INT_001
+                description: Succeeds if bigint conversion, marshal, unmarshal and comparison
+                  work
+          - name: Big Int
+            behaviors:
+              - id: BIG_INT_002
+                description: Succeeds if FIL value parses correctly and values match
+              - id: BIG_INT_003
+                description: Succeeds if the number value equals to the string value
+              - id: BIG_INT_005
+                description: "Succeeds if ZiB converts properly "
+          - name: Block Header
+            behaviors:
+              - id: BLOCK_HDR_001
+                description: "Succeeds if CBOR marshals and unmarshals properly. "
+              - id: BLOCK_HDR_002
+                description: Succeeds if a Block Header is properly encoded
+              - id: BLOCK_HDR_003
+                description: "Succeeds if Block Headers get properly marshalled "
+          - name: FIL Value Parse
+            behaviors:
+              - id: FIL_PARSE_001
+                description: "Succeeds if FIL value is validly parsed\t"
+          - name: Signature Round Trip
+            behaviors:
+              - id: SIG_RTR_001
+                description: Suceeds if a successful round trip is peformed (CBOR marshal ->
+                  unmarshal)
+          - name: Tipset Key Create
+            behaviors:
+              - id: TIPSET_KEY_001
+                description: Succeeds if a tipset key is valid and generated in a proper format
+          - name: Miner Initialization
+            behaviors:
+              - id: MINER_INIT_006
+                description: Given a file path, initialize the miner repo from the backup file
+                  specified by the file path
+      Message Pool:
+        features:
+          - name: Message Pool Batch Push
+            behaviors:
+              - id: MPOOL_BATCH_PUSH_001
+                description: Given a list of signed messages from a trusted source, perform a
+                  batch of mpool pushes (see "Message Pool Push")
+          - name: Message Pool Batch Push Untrusted
+            behaviors:
+              - id: MPOOL_BATCH_PUSH_UNTRUSTED_001
+                description: Given a list of signed messages from an untrusted source, perform a
+                  batch of mpool pushes (see "Message Pool Push Untrusted")
+          - name: Message Pool Check Messages
+            behaviors:
+              - id: MPOOL_CHECK_MESSAGES_001
+                description: "Given a list of messages, perform logical checks: check the actor
+                  balance, serialization, message size, syntax validity, gas
+                  limit, min base fee, base fee, nonce, required funds and
+                  balance and return the status of each check "
+          - name: Message Pool Check Pending Messages
+            behaviors:
+              - id: MPOOL_CHECK_PENDING_MESSAGES_001
+                description: Given an address, perform logical checks (see "Message Pool Check
+                  Messages") for all pending messages from the specified address
+          - name: Message Pool Clear
+            behaviors:
+              - id: MPOOL_CLEAR_001
+                description: Clear all pending messages from the mempool
+          - name: Message Pool Get Nonce
+            behaviors:
+              - id: MPOOL_GET_NONCE_001
+                description: Given an sender address, returns the next nonce for the specified
+                  sender
+          - name: Message Pool Pending
+            behaviors:
+              - id: MPOOL_PENDING_001
+                description: Given a known tipset key, return all pending mempool messages
+          - name: Message Pool Push
+            behaviors:
+              - id: MPOOL_PUSH_001
+                description: Given a signed Message, add it to the mempool and return its CID.
+                  Don't perform extra strict checks
+          - name: Message Pool Push Message
+            behaviors:
+              - id: MPOOL_PUSH_MESSAGE_001
+                description: Given an unsigned Message, atomically asign a nonce, sign it and
+                  push it to the mempool
+          - name: Message Pool Push Untrusted
+            behaviors:
+              - id: MPOOL_PUSH_UNTRUSTED_001
+                description: "Given a signed Message from an untrusted source, push it to the
+                  mempool and return its CID. Perform extra strict checks such
+                  as: no nonce gaps, at most 10 pending messages for the actor"
+          - name: Message Pool Select
+            behaviors:
+              - id: MPOOL_SELECT_001
+                description: Given a known Tipset key and a ticket quality, return the "optimal"
+                  list of messages for inclusion in the next block
+      Syncer:
+        features:
+          - name: Sync Check Bad
+            behaviors:
+              - id: SYNC_CHECK_BAD_001
+                description: Given a known block CID, return if it was marked as bad and the
+                  reason
+          - name: Sync Checkpoint
+            behaviors:
+              - id: SYNC_CHECKPOINT_001
+                description: Given a known Tipset key, mark those blocks as checkpointed,
+                  meaning that it won't ever fork away from it
+          - name: Sync Incoming Blocks
+            behaviors:
+              - id: SYNC_INCOMING_BLOCKS_001
+                description: Returns a channel streaming incoming, potentially not yet synced
+                  block headers
+          - name: Sync Mark Bad
+            behaviors:
+              - id: SYNC_MARK_BAD_001
+                description: Given a known block CID, mark it as bad, meaning that it won't ever
+                  be synced
+          - name: Sync State
+            behaviors:
+              - id: SYNC_STATE_001
+                description: Returns a list of sync states for each sync worker of the local
+                  node
+          - name: Sync Submit Block
+            behaviors:
+              - id: SYNC_SUBMIT_BLOCK_001
+                description: Given a newly created block, submit it to the network through the
+                  local node
+          - name: Sync Unmark All Bad
+            behaviors:
+              - id: SYNC_UNMARK_ALL_BAD_001
+                description: Unmarks all blocks marked as bad, making them possible to sync
+          - name: Sync Unmark Bad
+            behaviors:
+              - id: SYNC_UNMARK_BAD_001
+                description: Given a CID of a block that's marked as bad, unmark it, making it
+                  possible to be validated and synced again
+          - name: Sync Validate Tipset
+            behaviors:
+              - id: SYNC_VALIDATE_TIPSET_001
+                description: Given a known Tipset key, return if the specified tipset is valid
+                  or not
+      MultiSig:
+        features:
+          - name: MSig Available Balance
+            behaviors:
+              - id: MSIG_GET_AVAILABLE_BALANCE_001
+                description: Takes address and tipset key and returns the portion of a
+                  multisig's balance that can be withdrawn or spent
+          - name: MSig Get Vesting Schedule
+            behaviors:
+              - id: MSING_GET_VESTING_SCHEDULE_001
+                description: Returns the vesting details of a given multisig
+          - name: MSig Get Vested
+            behaviors:
+              - id: MSIG_GET_VESTED_001
+                description: Returns the amount of FIL that vested in a multisig in a certain
+                  period. It takes multisig address, start epoch and end epoch.
+          - name: MSig Get Pending
+            behaviors:
+              - id: MSIG_GET_PENDING_001
+                description: Returns pending transactions for the given multisig wallet
+          - name: Msig Create
+            behaviors:
+              - id: MSIG_CREATE_001
+                description: Creates a multisig wallet
+          - name: Msig Propose
+            behaviors:
+              - id: MSIG_PROPOSE_001
+                description: Proposes a multisig message
+          - name: Msig Approve
+            behaviors:
+              - id: MSIG_APPROVE_001
+                description: Approves a previously-proposed multisig message by transaction ID
+          - name: Msig Approve Transaction Hash
+            behaviors:
+              - id: MSIG_APPROVE_TRANSACTION_HASH_001
+                description: Approves a previously-proposed multisig message, specified using
+                  both transaction ID and a hash of the parameters used in the
+                  proposal
+          - name: MSig Cancel
+            behaviors:
+              - id: MSIG_CANCEL_001
+                description: Cancels a previously-proposed multisig message
+          - name: MSig Add Propose
+            behaviors:
+              - id: MSIG_ADD_PROPOSE_001
+                description: Proposes adding a signer in the multisig
+          - name: MSig Add Approve
+            behaviors:
+              - id: MSIG_ADD_APPROVE_001
+                description: Approves a previously proposed AddSigner message
+          - name: MSig Add Cancel
+            behaviors:
+              - id: MSIG_ADD_CANCEL_001
+                description: Cancels a previously proposed AddSigner message
+          - name: MSig Swap Propose
+            behaviors:
+              - id: MSIG_SWAP_PROPOSE_001
+                description: Proposes swapping 2 signers in the multisig
+          - name: MSig Swap Approve
+            behaviors:
+              - id: MSIG_SWAP_APPROVE_001
+                description: Approves a previously proposed SwapSigner
+          - name: MSig Swap Cancel
+            behaviors:
+              - id: MSIG_SWAP_CANCEL_001
+                description: Cancels a previously proposed SwapSigner message
+          - name: MSig Remove Singer
+            behaviors:
+              - id: MSIG_REMOVE_SINGER_001
+                description: Proposes the removal of a signer from the multisig
+  API:
+    subsystems:
+      Common:
+        features:
+          - name: API Version
+            behaviors:
+              - id: API_VERSION_001
+                description: Returns the actual build version of the node
+          - name: API Shutdown
+            behaviors:
+              - id: API_SHUTDOWN_001
+                description: Trigger a graceful shutdown of the node
+      Auth:
+        features:
+          - name: API Auth Verify
+            behaviors:
+              - id: API_AUTH_VERIFY_001
+                description: Given a JWT token, verify the token and return a list of
+                  permissions associated with the specified token
+          - name: API Auth New
+            behaviors:
+              - id: API_AUTH_NEW_001
+                description: Given a list of permissions, return a new JWT token with specified
+                  permissions
+  Client:
+    subsystems:
+      Common:
+        features:
+          - name: Client Calculate CommP
+            behaviors:
+              - id: CLIENT_CALC_COMMP_001
+                description: Given a file path, calculate the CommP for the specified file
+          - name: Client Deal Size
+            behaviors:
+              - id: CLIENT_DEAL_SIZE_001
+                description: Given a root CID, calculate the real data size for the specified
+                  CID
+          - name: Client Generate CAR
+            behaviors:
+              - id: CLIENT_GEN_CAR_001
+                description: Given a file reference and an output path, generate a CAR file for
+                  the specified file
+          - name: Client Has Local
+            behaviors:
+              - id: CLIENT_HAS_LOCAL_001
+                description: Given a CID, returns true if data referenced by the CID is stored
+                  locally
+      Storage Deals:
+        features:
+          - name: Client Create Deal
+            behaviors:
+              - id: CLIENT_CREATE_DEAL_001
+                description: Given a start epoch, CID, miner address, price & duration,  create
+                  a deal
+          - name: Client Get Deal Info
+            behaviors:
+              - id: CLIENT_GET_DEAL_INFO_001
+                description: Given an existing deal CID, return info about the specified deal
+          - name: Client List Deals
+            behaviors:
+              - id: CLIENT_GET_DEAL_UPDATES_001
+                description: Returns a channel that streams information about deal updates
+              - id: CLIENT_LIST_DEALS
+                description: Returns information about the deals made by the local node
+              - id: CLIENT_LIST_DEALS_001
+                description: Return information about all deals made by the local client
+          - name: Client Query Ask
+            behaviors:
+              - id: CLIENT_QUERY_ASK_001
+                description: Given an address and a peer ID, returns a signed storage ask from
+                  the specified miner
+          - name: Client Start Deal
+            behaviors:
+              - id: CLIENT_START_DEAL_001
+                description: Given an imported data CID, existing miner address, price &
+                  duration, propose a deal to the miner
+      Retrieval:
+        features:
+          - name: Client Deal Piece CID
+            behaviors:
+              - id: CLIENT_DEAL_PIECE_CID_001
+                description: Given a root CID, calculate the CommP and data size of the
+                  specified CID
+          - name: Client Find Data
+            behaviors:
+              - id: CLIENT_FIND_DATA_001
+                description: Given root and piece CIDs, return query offers from peers that have
+                  the file piece referenced by CIDs
+          - name: Client List Data Transfers
+            behaviors:
+              - id: CLIENT_LIST_DATA_TRANSFERS_001
+                description: Returns the status of all ongoing transfers of data
+          - name: Client List Retrievals
+            behaviors:
+              - id: CLIENT_LIST_RETRIEVALS_001
+                description: Return information about all retrievals made by the local client
+          - name: Client Miner Query Offer
+            behaviors:
+              - id: CLIENT_MINER_QUERY_OFFER_001
+                description: Given a miner address, root & piece CIDs, returns the query offer
+                  for the specified miner and CIDs
+          - name: Client Query Ask
+            behaviors:
+              - id: CLIENT_QUERY_ASK_001
+                description: Given a miner address, return a signed storage ask from the
+                  specified miner
+          - name: Client Retrieve
+            behaviors:
+              - id: CLIENT_RETRIEVE_001
+                description: initiates the retrieval of a file, as specified in the order
+              - id: CLIENT_RETRIEVE_001
+                description: Given an existing retrieval order and a file reference, initiate
+                  the retrieval of the file specified in the order
+          - name: Data Transfer Updates
+            behaviors:
+              - id: CLIENT_DATA_TRANSFER_UPDATES_001
+                description: Fetch data transfer channels that were updated
+          - name: Data Transfer Restart on Insufficient funds
+            behaviors:
+              - id: CLIENT_RETRIEVE_INSUFFICIENT_FUNDS_001
+                description: Attempts to restart stalled retrievals on a given payment channel
+          - name: Cancel Retrieval Deal
+            behaviors:
+              - id: CLIENT_CANCEL_RETRIEVAL_DEAL_001
+                description: Cancels an ongoing retrieval deal based on Deal ID
+              - id: CLIENT_CANCEL_RETRIEVAL_DEAL_002
+                description: Fails if underlying state store doesn't succeed
+      Import:
+        features:
+          - name: Client Import
+            behaviors:
+              - id: CLIENT_IMPORT
+                description: Imports the file under the specified path into the filestore
+          - name: Import to UnixFS DAG using CARv2
+            behaviors:
+              - id: CLIENT_IMPORT_001
+                description: Import a file to a Unixfs DAG using a CARv2 read/write blockstore.
+          - name: "Client build UnixFS DAG "
+            behaviors:
+              - id: CLIENT_IMPORT_002
+                description: Builds a UnixFS DAG out of the supplied reader, and imports the DAG
+                  into the supplied service.
+          - name: Import to Node
+            behaviors:
+              - id: CLIENT_IMPORT_003
+                description: Imports a standard file into this node as a UnixFS payload, storing
+                  it in a CARv2 file.
+          - name: List Imports
+            behaviors:
+              - id: CLIENT_IMPORT_004
+                description: Lists all Imports
+          - name: Retrieve Import
+            behaviors:
+              - id: CLIENT_IMPORT_005
+                description: Retrieves Import as UnixFS
+          - name: Open CARv2
+            behaviors:
+              - id: CLIENT_IMPORT_006
+                description: Open the CARv2 being custodied by the import manager
+          - name: Get Root CIDs
+            behaviors:
+              - id: CLIENT_IMPORT_007
+                description: Returns the root CIDs
+          - name: Client Remove Import
+            behaviors:
+              - id: CLIENT_REMOVE_IMPORT_001
+                description: Given an existing import ID, deletes the imported file
+      Data Transfer:
+        features:
+          - name: Restart Data Transfer
+            behaviors:
+              - id: CLIENT_RESTART_DATA_TRANSFER_001
+                description: Attempt to restart a data transfer with the given transfer ID and
+                  other peer
+          - name: Restart Data Transfer Self Peer
+            behaviors:
+              - id: CLIENT_RESTART_DATA_TRANSFER_002
+                description: Attemp to restart a data transfer with the given transfer ID and
+                  other peer and set yourself as initiator peer for data
+                  transfer
+          - name: Cancel Data Transfer
+            behaviors:
+              - id: CLIENT_CANCEL_DATA_TRANSFER_001
+                description: Cancels a data transfer with the given transfer ID and other peer
+          - name: Cancel Data Transfer Self Peer
+            behaviors:
+              - id: CLIENT_CANCEL_DATA_TRANSFER_002
+                description: Cancels a data transfer with the given transfer ID and other peer
+                  and set yourself as initiator peer for data transfer
+  Repository:
+    subsystems:
+      File Store:
+        features:
+          - name: Create UnixFS Filestore
+            behaviors:
+              - id: CLIENT_FS_001
+                description: Takes a standard file whose path is src, forms a UnixFS DAG, and
+                  writes a CARv2 file with positional mapping
+          - name: CARv2 to Normal File
+            behaviors:
+              - id: CLIENT_FS_002
+                description: Opens the CAR in the specified path as as a read-only blockstore,
+                  and fronts it with a Filestore whose positional mappings are
+                  stored inside the CAR itself.
+          - name: Create a File
+            behaviors:
+              - id: CLIENT_FS_003
+                description: Create file and return file name
+          - name: Generate input file
+            behaviors:
+              - id: CLIENT_FS_004
+                description: Generate input file
+      Node:
+        features:
+          - name: Read Empty File
+            behaviors:
+              - id: NODE_CONFIG_001
+                description: Config from empty file should be the same as default
+          - name: Read Non-existent File
+            behaviors:
+              - id: NODE_CONFIG_002
+                description: Config from not exisiting file should be the same as default
+          - name: Default Full Node Config
+            behaviors:
+              - id: NODE_CONFIG_003
+                description: Write config based on default full node
+          - name: Default Miner Node Config
+            behaviors:
+              - id: NODE_CONFIG_004
+                description: Write config based on default miner node
+          - name: Shutdown Handler
+            behaviors:
+              - id: NODE_SHUTDOWN_001
+                description: Create shutdown handler
+          - name: Shutdown Monitor
+            behaviors:
+              - id: NODE_SHUTDOWN_002
+                description: Manages shutdown requests, by watching signals and invoking the
+                  supplied handlers in order.
+          - name: Median Gas
+            behaviors:
+              - id: REPO_GAS_001
+                description: Finds 55th percentile instead of median to put negative pressure on
+                  gas price
+          - name: Node Lock
+            behaviors:
+              - id: REPO_MUT_001
+                description: Node should be able to lock once
+          - name: Node Already Locked
+            behaviors:
+              - id: REPO_MUT_002
+                description: Already locked nodes should return errors
+          - name: Node Unlock
+            behaviors:
+              - id: REPO_MUT_003
+                description: Node should be able to unlock
+      Common:
+        features:
+          - name: Filesystem Based Repo
+            behaviors:
+              - id: REPO_FS_001
+                description: Creates a repository instance based on a path on file system
+          - name: Filesystem Repo Initialization
+            behaviors:
+              - id: REPO_FS_002
+                description: Initializes Filesystem based repository
+          - name: Memory Based Repo
+            behaviors:
+              - id: REPO_MEM_001
+                description: " Creates new memory based repository with provided options"
+      Key Store:
+        features:
+          - name: Create KeyStore Object
+            behaviors:
+              - id: REPO_KEYSTR_001
+                description: Should be able to create KeyStore object
+          - name: List Keys
+            behaviors:
+              - id: REPO_KEYSTR_002
+                description: Should be able to list keys from KeyStore
+          - name: Insert Key
+            behaviors:
+              - id: REPO_KEYSTR_003
+                description: Inserts key/value pair into KeyStore
+          - name: Key Conflict
+            behaviors:
+              - id: REPO_KEYSTR_004
+                description: Inserting Key that already exists should error out
+          - name: Delete Key
+            behaviors:
+              - id: REPO_KEYSTR_006
+                description: Deletes the record from KeyStore given the Key as argument
+      Network:
+        features:
+          - name: Api Endpoint
+            behaviors:
+              - id: REPO_NET_001
+                description: Api endpoint should return multiaddress for communication with
+                  Lotus API
+          - name: Set Api Endpoint
+            behaviors:
+              - id: REPO_NET_002
+                description: Set the endpoint of the current API so it can be read by API
+                  clients
+          - name: Api Endpoint with closed repo
+            behaviors:
+              - id: REPO_NET_003
+                description: When node closes, multiaddress should be null
+  Virtual Machine:
+    subsystems:
+      Common:
+        features:
+          - name: Gas Estimate Cap
+            behaviors:
+              - id: GAS_ESTIMATE_CAP_001
+                description: Given a Message and a known Tipset key, return an estimated gas fee
+                  cap for the specified message
+          - name: Gas Estimate Limit
+            behaviors:
+              - id: GAS_ESTIMATE_LIMIT_001
+                description: Given a Message and a known Tipset key, return the estimated gas
+                  limit for the specified message
+              - id: GAS_ESTIMATE_LIMIT_002
+                description: Fails if given message fails to execute
+          - name: Gas Estimate Premium
+            behaviors:
+              - id: GAS_ESTIMATE_PREMIUM_001
+                description: Given a number of epochs nblocksincl, estimate what gas price
+                  should be used for a message to have high likelihood of
+                  inclusion in specified number of epochs
+      Runtime:
+        features:
+          - name: Message Call
+            behaviors:
+              - id: MSG_CALL_001
+                description: Succeeds if message struct does not differ in method in an actor's
+                  function table
+              - id: MSG_CALL_002
+                description: "Succeeds if a regular (unsigned) message performs a full round
+                  trip (marshal -> unmarshal) "
+              - id: MSG_CALL_003
+                description: Succeeds if a signed message performs a full round trip (marshal ->
+                  unmarshal)
+          - name: Message Serialize
+            behaviors:
+              - id: SERIALIZE_MSG_001
+                description: Succeeds if a message's byte serialization does not fail
+          - name: Message Serialization
+            behaviors:
+              - id: SIGNED_MSG_001
+                description: Succeeds if JSON marshal and unmarshal succeeds
+  Miner:
+    subsystems:
+      Mining:
+        features:
+          - name: Miner Create Block
+            behaviors:
+              - id: MINER_CREATE_BLOCK_001
+                description: Given a block template, create a new block and return a full block
+                  message signed by the local (miner) node
+          - name: Miner Run
+            behaviors:
+              - id: MINER_RUN_001
+                description: Start mining using GPU
+              - id: MINER_RUN_002
+                description: Given that GPU proving is disabled, start mining without the GPU
+          - name: Miner Stop
+            behaviors:
+              - id: MINER_STOP_001
+                description: Stop a running miner
+      Common:
+        features:
+          - name: Miner Get Base Info
+            behaviors:
+              - id: MINER_GET_BASE_INFO_001
+                description: "Given a miner address return the miner power, network power,
+                  sectors, worker key, sector size, beacon entries and if the
+                  miner is eligible for mining "
+          - name: Miner Initialization
+            behaviors:
+              - id: MINER_INIT_001
+                description: Given miner and worker keys, sector size, initialize the miner
+                  repository on the local file system
+              - id: MINER_INIT_002
+                description: Fails if it can't connect to the full node API
+              - id: MINER_INIT_003
+                description: Fails if the full node API doesn't support API v1
+              - id: MINER_INIT_004
+                description: Fails if the miner repo was already initialized
+              - id: MINER_INIT_005
+                description: Given some metadata about presealed sectors, initialize the repo as
+                  a genesis miner
+      Sectors:
+        features:
+          - name: Miner Sector Status
+            behaviors:
+              - id: MINER_SECTOR_STATUS_001
+                description: Given a sector number, return the information about the sector
+                  specified
+          - name: Sector Add Piece to any
+            behaviors:
+              - id: SECTOR_ADD_PIECE_TO_ANY_001
+                description: Given a piece, add it to an open sector. If no sectors with enough
+                  space are open, create a new sector
+              - id: SECTOR_ADD_PIECE_TO_ANY_002
+                description: If a new sector can't be created, wait until more space is
+                  available
+          - name: Miner Sector List
+            behaviors:
+              - id: MINER_SECTOR_LIST_001
+                description: Return a list of all pledged sectors
+          - name: Miner Sectors Summary
+            behaviors:
+              - id: MINER_SECTORS_SUMMARY
+                description: Return summary info of all pledged sectors, grouped by state
+          - name: Sectors List in States
+            behaviors:
+              - id: SECTORS_LIST_IN_STATES_001
+                description: Given a list of sector states, return all pledged sectors in
+                  specified states
+          - name: Sector Start Sealing
+            behaviors:
+              - id: SECTOR_START_SEALING_001
+                description: Given a number of a sector that is either in Empty or WaitDeals
+                  state, trigger sealing early
+          - name: Sector Set Seal Delay
+            behaviors:
+              - id: SECTOR_SET_SEAL_DELAY_001
+                description: Given a duration, set the time that a newly-created sector waits
+                  for more deals before it starts sealing
+          - name: Sector Get Seal Delay
+            behaviors:
+              - id: SECTOR_GET_SEAL_DELAY_002
+                description: Return the time that a newly-created sector waits for more deals
+                  before it starts sealing
+          - name: Sector Set Expected Seal Duration
+            behaviors:
+              - id: SECTOR_SET_EXPECTED_SEAL_DURATION_001
+                description: Given a duration, set the expected time for a sector to seal
+          - name: Sector Get Expected Seal Duration
+            behaviors:
+              - id: SECTOR_GET_EXPECTED_SEAL_DURATION_001
+                description: Return the expected time for a sector to seal
+          - name: Sector Remove
+            behaviors:
+              - id: SECTOR_REMOVE_001
+                description: Given a sector number, remove the sector from storage, without
+                  terminating it on chain
+          - name: Sector Terminate
+            behaviors:
+              - id: SECTOR_TERMINATE_001
+                description: Given a sector number, terminate the sector on-chain (add it to a
+                  termination batch first), then remove it from storage
+          - name: Sector Terminate Pending
+            behaviors:
+              - id: SECTOR_TERMINATE_PENDING_001
+                description: Return a list of sectors pending to be terminated
+          - name: Sector Mark for Upgrade
+            behaviors:
+              - id: SECTOR_MARK_FOR_UPGRADE_001
+                description: Given a number of a committed capacity sector, mark the specified
+                  sector for upgrade
+          - name: Sector Pre Commit Flush
+            behaviors:
+              - id: SECTOR_PRE_COMMIT_FLUSH_001
+                description: Immediately sends a PreCommit message with sectors batched for
+                  PreCommit. Returns null if message wasn't sent
+          - name: Sector Pre Commit Pending
+            behaviors:
+              - id: SECTOR_PRE_COMMIT_PENDING_001
+                description: Return a list of pending PreCommit sectors to be sent in the next
+                  batch message
+          - name: Sector Commit Flush
+            behaviors:
+              - id: SECTOR_COMMIT_FLUSH_001
+                description: Immediately sends a Commit message with sectors aggregated for
+                  Commit. Returns null if message wasn't sent
+          - name: Sector Commit Pending
+            behaviors:
+              - id: SECTOR_COMMIT_PENDING_001
+                description: Returns a list of pending Commit sectors to be sent in the next
+                  aggregate message
+      Workers:
+        features:
+          - name: Worker Connect
+            behaviors:
+              - id: WORKER_CONNECT_001
+                description: Connects to all workers RPC
+          - name: Worker Stats
+            behaviors:
+              - id: WORKER_STATS_001
+                description: Returns information for worker nodes, grouped by worker ID
+          - name: Worker Jobs
+            behaviors:
+              - id: WORKER_JOBS_001
+                description: Return information about active worker jobs, grouped by worker ID
+      Storage:
+        features:
+          - name: Storage Attach
+            behaviors:
+              - id: STORAGE_ATTACH_001
+                description: Given information about external storage, attach it to the local
+                  storage index
+          - name: Storage Info
+            behaviors:
+              - id: STORAGE_INFO_001
+                description: Given a store ID, return information about attached storage
+          - name: Storage Report Health
+            behaviors:
+              - id: STORAGE_REPORT_HEALTH_001
+                description: Given an attached storage ID, return a health report for the
+                  specified store
+          - name: Storage Declare Sector
+            behaviors:
+              - id: STORAGE_DECLARE_SECTOR_001
+                description: Given an attached storage ID and a sector number, create a sector
+                  in the specified store
+          - name: Storage Drop Sector
+            behaviors:
+              - id: STORAGE_DROP_SECTOR_001
+                description: Given an attached storage ID and a sector number, delete a sector
+                  from the specified store
+          - name: Storage Find Sector
+            behaviors:
+              - id: STORAGE_FIND_SECTOR_001
+                description: Given a sector number, return the attached storage ID where the
+                  sector is located
+          - name: Storage Best Allocate
+            behaviors:
+              - id: STORAGE_BEST_ALLOC_001
+                description: Given a sector type and size, return the list of best (optimal)
+                  attached stores for specified sector sorted by available space
+          - name: Storage Stat
+            behaviors:
+              - id: STORAGE_STAT_001
+                description: Given an attached storage ID, return statistics (capacity,
+                  available, reserved,...) about the specified store
+      Storage Deals:
+        features:
+          - name: Miner Import Deal Data
+            behaviors:
+              - id: MINER_IMPORT_DEAL_DATA_001
+                description: Given a file path, import data about the deal stored in the
+                  specified file
+  Token:
+    subsystems:
+      Payment Channels:
+        features:
+          - name: Payment Channel Allocate Lane
+            behaviors:
+              - id: PAYCH_ALLOC_001
+                description: Succeeds if channel address and lane number are valid
+          - name: Payment Channel Best Spendable
+            behaviors:
+              - id: PAYCH_BEST_001
+                description: Returns the best spendable voucher if channel address is valid
+          - name: Payment Channel Collect
+            behaviors:
+              - id: PAYCH_COLLECT_001
+                description: Transfers the ToPay amount to the recipient and the remaining
+                  change to the sender, if it's called either by the sender or
+                  recipient
+              - id: PAYCH_COLLECT_002
+                description: Fails if not signed by both parties
+          - name: Payment Channel Create
+            behaviors:
+              - id: PAYCH_CREATE_001
+                description: Succeeds if sender, recipient and amount are valid
+              - id: PAYCH_CREATE_002
+                description: Supports both ID and non-ID sender and recipient addresses
+              - id: PAYCH_CREATE_003
+                description: Fails if sender or recipient addresses are not resolvable to an ID
+                  address
+          - name: Payment Channel List Vouchers
+            behaviors:
+              - id: PAYCH_LIST_001
+                description: Returns a list of vouchers if channel address is valid
+          - name: Payment Channel Settle
+            behaviors:
+              - id: PAYCH_SETTLE_001
+                description: Succeeds if called by either the sender or recipient
+              - id: PAYCH_SETTLE_002
+                description: Fails if called twice
+          - name: Payment Channel Status
+            behaviors:
+              - id: PAYCH_STATUS_001
+                description: Returns  "Channel does not exist" if sender and recipient addresses
+                  don't have an open channel
+              - id: PAYCH_STATUS_002
+                description: Returns channel status, balance and a list of vouchers, if the
+                  channel was created
+          - name: Voucher Create
+            behaviors:
+              - id: VOUCH_CREATE_001
+                description: Succeeds if the channel address, nonce and amount are valid
+              - id: VOUCH_CREATE_002
+                description: Fails if voucher address does not match the channel address
+              - id: VOUCH_CREATE_003
+                description: Fails if creator balance < voucher amount
+              - id: VOUCH_CREATE_004
+                description: Fails if sum of voucher amounts > channel balance
+              - id: VOUCH_CREATE_005
+                description: Fails if voucher signature is invalid
+              - id: VOUCH_CREATE_006
+                description: Fails when signed by channel recipient instead of sender
+              - id: VOUCH_CREATE_007
+                description: Fails when nonce too low
+          - name: Voucher Redeem
+            behaviors:
+              - id: VOUCH_REDEEM_001
+                description: Succeeds, given a valid channel address, voucher and lane
+              - id: VOUCH_REDEEM_002
+                description: Fails on nonce reuse
+              - id: VOUCH_REDEEM_004
+                description: Fails if voucher balance < 0
+              - id: VOUCH_REDEEM_005
+                description: Fails if >12hrs since the channel was settled
+              - id: VOUCH_REDEEM_006
+                description: Succeds if <12hrs since the channel was settled
+              - id: VOUCH_REDEEM_007
+                description: Fails if current height < Voucher.TimeLock
+              - id: VOUCH_REDEEM_008
+                description: Fails if voucher signature is invalid
+              - id: VOUCH_REDEEM_009
+                description: Fails if current height >= Voucher.TimeLockMax
+          - name: Payment Channel Get
+            behaviors:
+              - id: PAYMENT_CHANNEL_GET_001
+                description: Gets channel information. It takes from and to addresses and amount
+          - name: Payment Channel Wait Ready
+            behaviors:
+              - id: PAYMENT_CHANNEL_WAIT_READY_001
+                description: waits until the create channel / add funds message with the given
+                  message CID arrives
+          - name: Payment Channel Available Funds
+            behaviors:
+              - id: PAYMENT_CHANNEL_AVAILABLE_FUNDS_001
+                description: Gets the total available funds currently in the channel, given the
+                  address
+              - id: PAYMENT_CHANNEL_AVAILABLE_FUNDS_FROM_TO_001
+                description: Gets the total available funds in the channel, given the address
+                  from and address to
+              - id: PAYMENT_CHANNEL_AVAILABLE_FUNDS_FROM_TO_001
+                description: If there is no active channel between from / to we still want to
+                  return an empty result object
+          - name: Payment Channel List
+            behaviors:
+              - id: PAYMENT_CHANNEL_LIST_001
+                description: List channels with given address
+          - name: Payment Channel Voucher Valid
+            behaviors:
+              - id: PAYMENT_CHANNEL_VOUCHER_001
+                description: Checks if vaucher is valid in case when voucher amount < balance
+              - id: PAYMENT_CHANNEL_VOUCHER_002
+                description: Checks if vaucher is valid and fails when funds are too low
+              - id: PAYMENT_CHANNEL_VOUCHER_003
+                description: Checks if vaucher is valid and fails when signature is invalid
+              - id: PAYMENT_CHANNEL_VOUCHER_004
+                description: Checks if vaucher is valid and fails when signed by channel To
+                  account (instead of From account)
+              - id: PAYMENT_CHANNEL_VOUCHER_005
+                description: Checks if vaucher is valid and fails when nonce is too low
+              - id: PAYMENT_CHANNEL_VOUCHER_006
+                description: Checks if vaucher is valid and passes when nonce is higher
+              - id: PAYMENT_CHANNEL_VOUCHER_007
+                description: Checks if vaucher is valid and passes when nonce for is different
+                  lane
+              - id: PAYMENT_CHANNEL_VOUCHER_008
+                description: Checks if vaucher is valid and fails when voucher has higher nonce
+                  but lower value than lane state
+              - id: PAYMENT_CHANNEL_VOUCHER_009
+                description: Checks if vaucher is valid and passes when voucher total redeemed
+                  <= balance
+              - id: PAYMENT_CHANNEL_VOUCHER_010
+                description: Checks if vaucher is valid and fails when voucher total redeemed >
+                  balance
+      Wallet:
+        features:
+          - name: Wallet Balance
+            behaviors:
+              - id: WALLET_BALANCE_001
+                description: Given a known address, returns the balance of the specified address
+                  at the current head of the chain
+          - name: Wallet Default Address
+            behaviors:
+              - id: WALLET_DEFAULT_ADDRESS_001
+                description: Returns the address marked as default in the wallet
+          - name: Wallet Delete
+            behaviors:
+              - id: WALLET_DELETE_001
+                description: Given a (local) address, delete the specified address from the
+                  wallet
+          - name: Wallet Export
+            behaviors:
+              - id: WALLET_EXPORT_001
+                description: Given a (local) address, return the private key of the specified
+                  address
+          - name: Wallet Has
+            behaviors:
+              - id: WALLET_HAS_001
+                description: Given an address, return true if the specified address is in the
+                  wallet
+          - name: Wallet Import
+            behaviors:
+              - id: WALLET_IMPORT_001
+                description: Given a private key, import it to the wallet and return the
+                  associated address
+          - name: Wallet List
+            behaviors:
+              - id: WALLET_LIST_001
+                description: Return a list of all addresses in the wallet
+          - name: Wallet New
+            behaviors:
+              - id: WALLET_NEW_001
+                description: "Creates and returns a new address with the given sigType, one of:
+                  bls, secp256k1, secp256k1-ledger"
+          - name: Wallet Set Default
+            behaviors:
+              - id: WALLET_SET_DEFAULT_001
+                description: Given a (local) address, mark it as the default
+          - name: Wallet Sign
+            behaviors:
+              - id: WALLET_SIGN_001
+                description: Given an (local) address and an array of bytes, return the
+                  signature of the specified bytes
+          - name: Wallet Sign Message
+            behaviors:
+              - id: WALLET_SIGN_MESSAGE_001
+                description: Given a (local) address and an unsigned message, sign and return a
+                  signed message
+          - name: Wallet Validate Address
+            behaviors:
+              - id: WALLET_VALIDATE_ADDRESS_001
+                description: Given a string, return the address if it can be decoded
+          - name: Wallet Verify
+            behaviors:
+              - id: WALLET_VERIFY_001
+                description: Given (any) address, a signature and some bytes, return true if the
+                  signature is valid for the specified address and input bytes
+  Network:
+    subsystems:
+      Common:
+        features:
+          - name: Net Connectedness
+            behaviors:
+              - id: NET_CONNECTEDNESS_001
+                description: Given a peer ID, return the capacity for a connection with the
+                  specified peer
+  "":
+    subsystems:
+      "":
+        features:
+          - name: Net Peers
+            behaviors:
+              - id: NET_PEERS_001
+                description: Return the list of peers connected to the local node
+          - name: Net Connect
+            behaviors:
+              - id: NET_CONNECT_001
+                description: Given a peer address, connect to the specified peer
+          - name: ""
+            behaviors:
+              - id: ""
+                description: ""
+              - id: ""
+                description: ""
+  Market:
+    subsystems:
+      Market:
+        features:
+          - name: Market Add Balance
+            behaviors:
+              - id: MARKET_ADD_BALANCE_001
+                description: Adds funds to the market actor
+          - name: Market Get Reserved
+            behaviors:
+              - id: MARKET_GET_RESERVED_001
+                description: Gets the amount of funds that are currently reserved for the
+                  address
+          - name: Market Reserve Funds
+            behaviors:
+              - id: MARKET_RESERVE_FUNDS_001
+                description: Reserves funds for a deal
+          - name: Market Release Funds
+            behaviors:
+              - id: MARKET_RELEASE_FUNDS_001
+                description: Releases reserved funds
+          - name: Market Withdraw
+            behaviors:
+              - id: IdNotSnakeCase
+                description: Withdraws unlocked funds from the market actor

@@ -111,4 +111,6 @@ storybook-static/
 **/routes.json
 **/feeder.json
 **/countries.json
+**/behaviors.json
+**/tests.json
 .npmrc

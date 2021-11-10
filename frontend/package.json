@@ -14,8 +14,7 @@
     "lint": "eslint --ext .ts,.tsx --cache --color apps/ packages/ && stylelint --cache \"packages/**/*.tsx\" \"apps/**/*.tsx\"",
     "format": "prettier --write \"packages/**/*.tsx\" \"packages/**/*.ts\" \"apps/**/*.tsx\" \"apps/**/*.ts\"",
     "storybook": "start-storybook -p 6006 -s ./apps/web/src/public,./packages/ui/src/fonts",
-    "build-storybook": "build-storybook --quiet -s ./apps/web/src/public,./packages/ui/src/fonts",
-    "prepare": "cd .. husky install"
+    "build-storybook": "build-storybook --quiet -s ./apps/web/src/public,./packages/ui/src/fonts"
   },
   "dependencies": {
     "axios": "^0.23.0",
@@ -78,7 +77,6 @@
     "eslint-plugin-react": "^7.23.2",
     "file-loader": "^6.2.0",
     "glob": "^7.1.6",
-    "husky": "^7.0.0",
     "jest": "^26.1.0",
     "jest-fetch-mock": "^3.0.3",
     "jest-styled-components": "^7.0.3",

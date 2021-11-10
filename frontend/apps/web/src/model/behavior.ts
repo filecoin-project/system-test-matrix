@@ -3,7 +3,7 @@ export class Behavior {
     public id: string,
     public parentFeatureName: string,
     public description: string,
-    public tested = false
+    public tested = false,
   ) {}
 }
 
@@ -11,7 +11,7 @@ export class Feature {
   constructor(
     public name: string,
     public parentSubsystemName: string,
-    public behaviors: Behavior[]
+    public behaviors: Behavior[],
   ) {}
 }
 

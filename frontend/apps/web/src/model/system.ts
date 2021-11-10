@@ -1,6 +1,6 @@
-import { Test } from "./Test";
-import { PercentageSet, TestKind, TestStatus } from "./shared";
-import { Feature } from "./Behavior";
+import { Test } from './test'
+import { PercentageSet, TestKind, TestStatus } from './shared'
+import { Feature } from './behavior'
 
 // System is a top-level (architectural) denomination of a software project.
 export class System {
@@ -10,7 +10,7 @@ export class System {
     public testStatusStats: PercentageSet,
     public score: SystemScore,
     public subsystems: SubSystem[] = [],
-    public cached = false
+    public cached = false,
   ) {}
 }
 
@@ -22,7 +22,7 @@ export class SubSystem extends System {
     public tests: Test[],
     ...p: ConstructorParameters<typeof System>
   ) {
-    super(...p);
+    super(...p)
   }
 }
 
@@ -39,7 +39,7 @@ export class TestStatusStatistic {
 }
 
 export enum SystemScore {
-  bad = "bad",
-  mediocre = "mediocre",
-  good = "good",
+  bad = 'bad',
+  mediocre = 'mediocre',
+  good = 'good',
 }

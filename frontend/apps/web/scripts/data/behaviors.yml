@@ -1376,6 +1376,10 @@ systems:
               - id: NET_CONNECTEDNESS_001
                 description: Given a peer ID, return the capacity for a connection with the
                   specified peer
+  "":
+    subsystems:
+      "":
+        features:
           - name: Net Peers
             behaviors:
               - id: NET_PEERS_001
@@ -1384,6 +1388,12 @@ systems:
             behaviors:
               - id: NET_CONNECT_001
                 description: Given a peer address, connect to the specified peer
+          - name: ""
+            behaviors:
+              - id: ""
+                description: ""
+              - id: ""
+                description: ""
   Market:
     subsystems:
       Market:

@@ -1,5 +1,5 @@
-import { Behavior } from "./Behavior";
-import { Repository, TestKind, TestStatus } from "./shared";
+import { Behavior } from './behavior'
+import { Repository, TestKind, TestStatus } from './shared'
 
 export class Test {
   constructor(
@@ -9,6 +9,6 @@ export class Test {
     public repository: Repository,
     public kind: TestKind,
     public status: TestStatus,
-    public linkedBehaviors: Behavior[]
+    public linkedBehaviors: Behavior[],
   ) {}
 }

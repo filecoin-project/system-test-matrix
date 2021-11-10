@@ -1,6 +1,8 @@
 import { Model } from "./Model";
 
 describe("Model", () => {
+  const model = Model.New();
+
   const expectedSystemNames = [
     "Blockchain",
     "API",
@@ -14,7 +16,6 @@ describe("Model", () => {
   ];
 
   describe("getAllSystems", () => {
-    const model = Model.New();
     it("returns all expected systems", () => {
       const systems = model.getAllSystems();
 
@@ -30,7 +31,6 @@ describe("Model", () => {
   });
 
   describe("findSystemByName", () => {
-    const model = Model.New();
     it("works for all system names", () => {
       for (const systemName of expectedSystemNames) {
         const sys = model.findSystemByName(systemName);
@@ -38,19 +38,32 @@ describe("Model", () => {
         expect(sys!.name).toBe(systemName);
         expect(sys!.testKindStats.percentages.length).toBeGreaterThan(0);
         expect(sys!.testStatusStats.percentages.length).toBeGreaterThan(0);
-        // expect(sys.cached).toBe(false);
       }
     });
   });
 
   describe("getAllTests", () => {
-    const model = Model.New();
     // I dunno the exact number of tests, but this ballpark estimate is ok
     const expectedNumTests = 500;
 
     it("returns the expected number of tests", () => {
       const allTests = model.getAllTests();
       expect(allTests.length).toBeGreaterThanOrEqual(expectedNumTests);
+    });
+  });
+
+  describe("getAllTestKinds", () => {
+    it("returns all expected test kinds", () => {
+      const testKinds = model.getAllTestKinds();
+      expect(testKinds.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe("getAllBehaviors", () => {
+    const expectedBehaviorsMin = 300;
+    it("returns all behaviors", () => {
+      const allBehaviors = model.getAllBehaviors();
+      expect(allBehaviors.length).toBeGreaterThanOrEqual(expectedBehaviorsMin);
     });
   });
 });

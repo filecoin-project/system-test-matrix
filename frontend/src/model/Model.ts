@@ -2,6 +2,7 @@ import { Behavior, Feature } from "./Behavior";
 import {
   SubSystem,
   System,
+  SystemScore,
   TestKindStatistic,
   TestStatusStatistic,
 } from "./System";
@@ -9,7 +10,7 @@ import { Test } from "./Test";
 import behaviors from "./data/production/behaviors.json";
 import tests from "./data/test/tests.json";
 import _ from "lodash";
-import { PercentageSet, TestStatus } from "./shared";
+import { PercentageSet, TestKind, TestStatus } from "./shared";
 
 // Abstract Model interface.
 // I recommend importing this instead of the implementation, because the implementation may change
@@ -122,6 +123,18 @@ export class Model implements IModel {
           )
       );
       subsystem.testStatusStats = new PercentageSet(statusStatistics);
+
+      // TODO: Apply failing tests to the score calculation
+      const stats = subsystem.testStatusStats
+        .percentages as TestStatusStatistic[];
+      const missing = stats.find((s) => s.status === "missing");
+      if (missing && missing.percentage > 50) {
+        subsystem.score = SystemScore.bad;
+      } else if (missing && missing.percentage > 10) {
+        subsystem.score = SystemScore.mediocre;
+      } else {
+        subsystem.score = SystemScore.good;
+      }
     }
 
     for (const system of Array.from(systemCache.values())) {
@@ -277,6 +290,10 @@ export class Model implements IModel {
     return Array.from(this.testCache.values());
   }
   getAllBehaviors(): Behavior[] {
-    throw Array.from(this.behaviorCache.values());
+    return Array.from(this.behaviorCache.values());
+  }
+
+  getAllTestKinds(): TestKind[] {
+    return Array.from(this.testKinds);
   }
 }

@@ -8,7 +8,7 @@ export class System {
     public name: string,
     public testKindStats: PercentageSet,
     public testStatusStats: PercentageSet,
-    public score: number,
+    public score: SystemScore,
     public subsystems: SubSystem[] = [],
     public cached = false
   ) {}
@@ -36,4 +36,10 @@ export class TestKindStatistic {
 // Example: status=fail, percentage=5
 export class TestStatusStatistic {
   constructor(public status: TestStatus, public percentage: number) {}
+}
+
+export enum SystemScore {
+  bad = "bad",
+  mediocre = "mediocre",
+  good = "good",
 }

@@ -1,0 +1,17 @@
+{
+  "name": "@filecoin/core",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "i18next": "^21.3.2",
+    "i18next-browser-languagedetector": "^6.0.0",
+    "moment-timezone": "^0.5.28",
+    "react-i18next": "^11.0.0"
+  }
+}

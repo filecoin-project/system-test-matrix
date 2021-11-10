@@ -1,0 +1,26 @@
+{
+  "name": "@filecoin/ui",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "private": true,
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/filecoin-project/system-test-matrix.git",
+    "directory": "frontend/packages/ui"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "scripts": {
+    "build": "webpack --config ./config/webpack.prod.js"
+  },
+  "dependencies": {
+    "react-easy-crop": "^3.3.3",
+    "react-tooltip": "^4.2.18",
+    "recharts": "^2.0.8"
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2"
+  }
+}

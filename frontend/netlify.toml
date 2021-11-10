@@ -1,0 +1,9 @@
+[build]
+  base = "/"
+  publish = "apps/web/dist"
+  command = "cd frontend && yarn global add lerna && yarn bootstrap && cp apps/web/.env.example apps/web/.env && yarn build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

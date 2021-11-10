@@ -67,10 +67,6 @@ const Column = styled.div`
   margin: 0 1.9rem;
   justify-content: center;
   flex: 1;
-
-  &.badge {
-    flex: none;
-  }
 `
 const Row = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-SRC_PATTERN="diagrams/"
+SRC_PATTERN="frontend/"
 
 if git diff @{push} --cached --name-only | grep --quiet "$SRC_PATTERN"
 then

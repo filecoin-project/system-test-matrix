@@ -27,15 +27,6 @@ describe("Model", () => {
         expect(sys.cached).toBe(false);
       }
     });
-
-    it("returns systems from cache after first call", () => {
-      const systems = model.getAllSystems();
-      const systemNames = systems.map((s) => s.name);
-      expect(systemNames.sort()).toEqual(expectedSystemNames.sort());
-      for (const sys of systems) {
-        expect(sys.cached).toBe(true);
-      }
-    });
   });
 
   describe("findSystemByName", () => {
@@ -43,18 +34,23 @@ describe("Model", () => {
     it("works for all system names", () => {
       for (const systemName of expectedSystemNames) {
         const sys = model.findSystemByName(systemName);
-        expect(sys.name).toBe(systemName);
-        expect(sys.testKindStats.percentages.length).toBeGreaterThan(0);
-        expect(sys.testStatusStats.percentages.length).toBeGreaterThan(0);
-        expect(sys.cached).toBe(false);
+        expect(sys).toBeDefined();
+        expect(sys!.name).toBe(systemName);
+        expect(sys!.testKindStats.percentages.length).toBeGreaterThan(0);
+        expect(sys!.testStatusStats.percentages.length).toBeGreaterThan(0);
+        // expect(sys.cached).toBe(false);
       }
     });
+  });
 
-    it("returns systems from cache after first call", () => {
-      for (const systemName of expectedSystemNames) {
-        const sys = model.findSystemByName(systemName);
-        expect(sys.cached).toBe(true);
-      }
+  describe("getAllTests", () => {
+    const model = new Model();
+    // I dunno the exact number of tests, but this ballpark estimate is ok
+    const expectedNumTests = 500;
+
+    it("returns the expected number of tests", () => {
+      const allTests = model.getAllTests();
+      expect(allTests.length).toBeGreaterThanOrEqual(expectedNumTests);
     });
   });
 });

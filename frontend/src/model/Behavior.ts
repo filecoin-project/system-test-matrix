@@ -1,12 +1,18 @@
-import { SubSystem } from "./System";
-
 export class Behavior {
   constructor(
     public id: string,
-    public feature: Feature,
+    public parentFeatureName: string,
     public description: string,
-    public parent: SubSystem
+    public tested = false
   ) {}
 }
 
-type Feature = string;
+export class Feature {
+  constructor(
+    public name: string,
+    public parentSubsystemName: string,
+    public behaviors: Behavior[]
+  ) {}
+}
+
+// type Feature = string;

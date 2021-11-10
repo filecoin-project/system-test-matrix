@@ -1,5 +1,6 @@
 import { Test } from "./Test";
 import { PercentageSet, TestKind, TestStatus } from "./shared";
+import { Feature } from "./Behavior";
 
 // System is a top-level (architectural) denomination of a software project.
 export class System {
@@ -8,7 +9,7 @@ export class System {
     public testKindStats: PercentageSet,
     public testStatusStats: PercentageSet,
     public score: number,
-    public subsystems: SubSystem[],
+    public subsystems: SubSystem[] = [],
     public cached = false
   ) {}
 }
@@ -16,7 +17,9 @@ export class System {
 // Subsystem is a child of a System - second level (architectural) denomination of a software project
 export class SubSystem extends System {
   constructor(
-    public parent: System,
+    public parentSystemName: string,
+    public features: Feature[],
+    public tests: Test[],
     ...p: ConstructorParameters<typeof System>
   ) {
     super(...p);

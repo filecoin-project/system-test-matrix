@@ -1,5 +1,5 @@
 #!/bin/sh
-./frontend "$(dirname "$0")/_/husky.sh"
+frontend "$(dirname "$0")/_/husky.sh"
 
 cd frontend
 yarn format 

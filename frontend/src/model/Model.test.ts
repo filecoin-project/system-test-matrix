@@ -14,7 +14,7 @@ describe("Model", () => {
   ];
 
   describe("getAllSystems", () => {
-    const model = new Model();
+    const model = Model.New();
     it("returns all expected systems", () => {
       const systems = model.getAllSystems();
 
@@ -30,7 +30,7 @@ describe("Model", () => {
   });
 
   describe("findSystemByName", () => {
-    const model = new Model();
+    const model = Model.New();
     it("works for all system names", () => {
       for (const systemName of expectedSystemNames) {
         const sys = model.findSystemByName(systemName);
@@ -44,7 +44,7 @@ describe("Model", () => {
   });
 
   describe("getAllTests", () => {
-    const model = new Model();
+    const model = Model.New();
     // I dunno the exact number of tests, but this ballpark estimate is ok
     const expectedNumTests = 500;
 

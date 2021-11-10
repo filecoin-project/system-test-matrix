@@ -15,7 +15,7 @@
     "format": "prettier --write \"packages/**/*.tsx\" \"packages/**/*.ts\" \"apps/**/*.tsx\" \"apps/**/*.ts\"",
     "storybook": "start-storybook -p 6006 -s ./apps/web/src/public,./packages/ui/src/fonts",
     "build-storybook": "build-storybook --quiet -s ./apps/web/src/public,./packages/ui/src/fonts",
-    "prepare": "cd .. && husky install"
+    "prepare": "cd .. && husky install frontend/.husky"
   },
   "dependencies": {
     "axios": "^0.23.0",

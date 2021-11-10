@@ -1,17 +1,16 @@
-import React from 'react'
-import {
-  PageLayout,
-  Table,
-  usePageLayout,
-  StackLayout,
-  Text,
-  NativeLink,
-  TreeMap,
-  Button,
-} from '@filecoin/ui'
-import { useHistory } from 'react-router-dom'
-
 import { RepositoryData } from '@/mocks'
+import {
+  Button,
+  NativeLink,
+  PageLayout,
+  StackLayout,
+  Table,
+  Text,
+  TreeMap,
+  usePageLayout,
+} from '@filecoin/ui'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 const Dashboard = () => {
   const pageLayout = usePageLayout({
@@ -84,8 +83,8 @@ const Dashboard = () => {
                   return (
                     <Button
                       onClick={() => history.push('/repository-details')}
-                      appearance="success"
-                      size="small"
+                      appearance="system"
+                      color="green"
                     >
                       Good
                     </Button>
@@ -95,8 +94,8 @@ const Dashboard = () => {
                   return (
                     <Button
                       onClick={() => history.push('/repository-details')}
-                      appearance="destructive"
-                      size="small"
+                      appearance="system"
+                      color="red"
                     >
                       Bad
                     </Button>
@@ -105,8 +104,8 @@ const Dashboard = () => {
                 return (
                   <Button
                     onClick={() => history.push('/repository-details')}
-                    appearance="brand"
-                    size="small"
+                    appearance="system"
+                    color="orange"
                   >
                     Mediocre
                   </Button>

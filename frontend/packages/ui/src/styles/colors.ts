@@ -80,4 +80,12 @@ export const Colors = {
 
   //modal
   modalBackgroud: '#716f85',
+
+  //filecoin colors
+  redBtn: '#FF837F',
+  greenBtn: '#77DF79',
+  orangeBtn: '#FFB347',
+  grayBtn: '#B2BAC7',
+  ghostBtn: '#F6F8FA',
+  ghostBtnText: '#24292F',
 }

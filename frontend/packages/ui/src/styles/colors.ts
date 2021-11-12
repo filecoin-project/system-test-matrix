@@ -4,6 +4,7 @@ export const Colors = {
   logoBackground: '#57606A',
   background: '#FFFFFF',
   borderColor: '#D0D7DE',
+  borderColorAlternate: '#AFB8C1',
   backgroundShadow: '#E6E9F0',
   titleBackground: '#F7F9FC',
   shadowColor: 'rgba(0, 0, 0, 0.16)',

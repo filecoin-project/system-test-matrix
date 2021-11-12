@@ -10,6 +10,7 @@ import { StackLayout } from './StackLayout'
 import { GridLayout } from './GridLayout'
 import { CoverLayout } from './CoverLayout'
 import { PageLayoutHeader } from './PageLayoutHeader'
+import { PageLayoutFooter } from './PageLayoutFooter'
 
 /**
  * Whether something (usually a sidebar) is in open or closed state.
@@ -24,6 +25,10 @@ export interface PageLayoutState {
    * A React node to use to render the header. If navigation node is present header is not rendered.
    */
   header?: React.ReactNode
+  /**
+   * A React node to use to render the footer.
+   */
+  footer?: React.ReactNode
   /**
    * A React node to use to render the navigation sidebar.
    */
@@ -45,6 +50,16 @@ export interface PageLayoutActions {
    */
   setHeader(
     header?:
+      | React.ReactNode
+      | ((previousState: PageLayoutState) => React.ReactNode),
+  ): void
+  /**
+   * Set the footer React node (set to `null` to hide footer).
+   *
+   * @param footer A React node to render in the footer area.
+   */
+   setFooter(
+    footer?:
       | React.ReactNode
       | ((previousState: PageLayoutState) => React.ReactNode),
   ): void
@@ -71,11 +86,13 @@ export interface PageLayoutActions {
  */
 export function usePageLayout({
   header,
+  footer,
   navigation,
   navigationState = 'closed',
 }: PageLayoutState = {}): PageLayoutState & PageLayoutActions {
   const [state, setState] = useState<PageLayoutState>({
     header,
+    footer,
     navigation,
     navigationState,
   })
@@ -93,6 +110,27 @@ export function usePageLayout({
           return {
             ...previousState,
             header,
+          }
+        }
+        return previousState
+      })
+    },
+    [],
+  )
+
+  const setFooter = useCallback(
+    (
+      value:
+        | React.ReactNode
+        | ((previousState: PageLayoutState) => React.ReactNode),
+    ) => {
+      setState(previousState => {
+        const footer =
+          typeof value === 'function' ? value(previousState) : value
+        if (footer !== previousState.footer) {
+          return {
+            ...previousState,
+            footer,
           }
         }
         return previousState
@@ -139,6 +177,7 @@ export function usePageLayout({
   return {
     ...state,
     setHeader,
+    setFooter,
     setNavigation,
     toggleNavigationState,
   }
@@ -161,6 +200,7 @@ export interface PageLayout
    */
   Section: typeof PageLayoutSection
   Header: typeof PageLayoutHeader
+  Footer: typeof PageLayoutFooter
 }
 
 /**
@@ -168,7 +208,7 @@ export interface PageLayout
  */
 export const Page: PageLayout = Object.assign(
   React.forwardRef(function PageLayout(
-    { className, children, header, navigation, ...props }: PageLayoutProps,
+    { className, children, header, footer, navigation, ...props }: PageLayoutProps,
     ref: React.Ref<HTMLDivElement>,
   ) {
     return (
@@ -178,12 +218,14 @@ export const Page: PageLayout = Object.assign(
         {navigation != null && (
           <div className={'c-page-layout__nav'}>{navigation}</div>
         )}
+        {footer != null && footer}
       </div>
     )
   }),
   {
     Section: PageLayoutSection,
     Header: PageLayoutHeader,
+    Footer: PageLayoutFooter
   },
 )
 
@@ -248,6 +290,22 @@ export const PageLayout = styled(Page)`
       left: 0;
       width: 100%;
       padding-left: 2.75rem;
+    }
+  }
+
+  .c-page-layout__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-width: calc(1100px - 4rem);
+    height: 100px;
+    margin: 0 auto;
+    border-top: 1px solid ${Colors.borderColorAlternate};
+    color: ${Colors.logoBackground};
+    > div {
+      padding-left: 0;
     }
   }
 

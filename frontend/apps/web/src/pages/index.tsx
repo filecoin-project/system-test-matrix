@@ -21,6 +21,7 @@ const Dashboard = () => {
         </StackLayout>
       </PageLayout.Header>
     ),
+    footer: (<PageLayout.Footer></PageLayout.Footer>)
   })
   const history = useHistory()
 

@@ -1,4 +1,3 @@
-import { RepositoryData } from '@/mocks'
 import {
   Button,
   NativeLink,
@@ -12,6 +11,8 @@ import {
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
+import { RepositoryData } from '@/mocks'
+
 const Dashboard = () => {
   const pageLayout = usePageLayout({
     header: (
@@ -21,7 +22,7 @@ const Dashboard = () => {
         </StackLayout>
       </PageLayout.Header>
     ),
-    footer: (<PageLayout.Footer></PageLayout.Footer>)
+    footer: <PageLayout.Footer />,
   })
   const history = useHistory()
 
@@ -78,7 +79,7 @@ const Dashboard = () => {
             score: {
               header: 'Score',
               width: 155,
-              Cell: ({ data, index }) => {
+              Cell: ({ index }) => {
                 //TODO@voja update this when we have some logic
                 if (index === 0) {
                   return (

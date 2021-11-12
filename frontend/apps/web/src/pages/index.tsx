@@ -79,7 +79,7 @@ const Dashboard = () => {
             score: {
               header: 'Score',
               width: 155,
-              Cell: ({ data, index }) => {
+              Cell: ({ index }) => {
                 //TODO@voja update this when we have some logic
                 if (index === 0) {
                   return (

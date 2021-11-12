@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
+
 import { ButtonProps, ButtonVariant } from './Button'
 import { Colors } from './styles/colors'
 import { FullWidth } from './styles/mixins'
@@ -55,6 +56,7 @@ export const ButtonBase = styled(ButtonComponent)`
   border-radius: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
+
   &[disabled] {
     pointer-events: none;
     border: 0;

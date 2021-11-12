@@ -1,9 +1,9 @@
 import React from 'react'
 import {
+  MatrixMap,
   PageLayout,
   StackLayout,
   Text,
-  TreeMap,
   usePageLayout,
 } from '@filecoin/ui'
 
@@ -28,7 +28,7 @@ const RepositoryDetails = () => {
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
-        <TreeMap data={systems[0].subsystems[1].tests} onClick={() => null} />
+        <MatrixMap data={systems[0].subsystems[1].tests} onClick={() => null} />
       </PageLayout.Section>
     </PageLayout>
   )

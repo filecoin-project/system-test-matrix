@@ -25,7 +25,8 @@
     "normalize.css": "^8.0.1",
     "react-inlinesvg": "^2.3.0",
     "styled-components": "^5.1.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "react-tooltip": "^4.2.18"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

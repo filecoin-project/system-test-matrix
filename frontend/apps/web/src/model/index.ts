@@ -1,15 +1,17 @@
 import _ from 'lodash'
-
-import { Behavior, Feature } from './behavior'
 import {
+  Behavior,
+  Feature,
+  PercentageSet,
+  TestKind,
+  TestStatus,
+  Test,
   SubSystem,
   System,
   SystemScore,
   TestKindStatistic,
   TestStatusStatistic,
-} from './system'
-import { Test } from './test'
-import { PercentageSet, TestKind, TestStatus } from './shared'
+} from '@filecoin/types'
 
 import behaviors from '@/behaviors.json'
 import tests from '@/tests.json'

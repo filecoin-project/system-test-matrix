@@ -12,6 +12,7 @@ export const Colors = {
 
   //Shadows
   shadowLevel1: '0px 2px 4px rgba(20, 20, 43, 0.1)',
+  shadowLevel2: '0px 0px 3px rgba(36, 41, 47, 0.2)',
 
   //input colors
   inputBackground: '#FFFFFF',

@@ -1,2 +1,6 @@
 export * from './container'
 export * from './utils'
+export * from './behavior'
+export * from './shared'
+export * from './system'
+export * from './test'

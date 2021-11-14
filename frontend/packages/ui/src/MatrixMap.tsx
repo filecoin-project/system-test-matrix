@@ -1,5 +1,6 @@
 import React from 'react'
-import { Tooltip, Treemap as Chart } from 'recharts'
+import { Treemap as Chart } from 'recharts'
+import { Test, TestStatus } from '@filecoin/types'
 
 const NUMBER_OF_ROWS = 10
 const NUMBER_OF_COLUMNS = 10
@@ -11,23 +12,37 @@ interface Props {
   onClick: () => void
 }
 
+const getStatusColor = (status?: Test['status']) => {
+  switch (status) {
+    case TestStatus.pass:
+      return '#77DF79'
+    case TestStatus.fail:
+      return '#FF837F'
+    case TestStatus.missing:
+      return '#B2BAC7'
+    default:
+      return '#F5F5F5'
+  }
+}
+
 export const MatrixMap = (props: Props) => {
   const data = props.data
     .filter((_, index) => index < NODES_LIMIT)
     .map(node => ({
       ...node,
       value: 1,
-      color: node.status === 'pass' ? '#77DF79' : '#FF837F',
+      color: getStatusColor(node.status as TestStatus),
     }))
   const countMissingNodes = Math.max(NODES_LIMIT - data.length, 0)
   const missingData = Array(countMissingNodes).fill({
     value: 1,
-    name: 'missing',
-    color: '#F5F5F5',
+    functionName: 'missing',
+    status: 'null',
+    color: getStatusColor('null' as TestStatus),
   })
 
   const CustomizedContent = (props: any) => {
-    const { color, index, functionName } = props
+    const { color, index, functionName, path, repository } = props
     const rowNumber = Math.floor(Math.max(index / NUMBER_OF_ROWS, 0))
     const columnIndex = index % NUMBER_OF_COLUMNS
 
@@ -38,6 +53,7 @@ export const MatrixMap = (props: Props) => {
     return (
       <g>
         <rect
+          data-tip={JSON.stringify({ functionName, path, repository })}
           x={NODE_SIZE * columnIndex}
           y={NODE_SIZE * rowNumber}
           width={NODE_SIZE}
@@ -54,6 +70,7 @@ export const MatrixMap = (props: Props) => {
       </g>
     )
   }
+
   // const numberOfRows = Math.floor(props.data.length / 10)
   // const isWrapped = props.data.length > 100
   // const exceededNodes = props.data.length - 100
@@ -62,16 +79,16 @@ export const MatrixMap = (props: Props) => {
   // console.log({ numberOfRows, isWrapped, exceededNodes, rowHeight })
 
   return (
-    <Chart
-      width={NODE_SIZE * NUMBER_OF_COLUMNS}
-      height={NODE_SIZE * NUMBER_OF_ROWS}
-      {...props}
-      data={[...data, ...missingData]}
-      nameKey="functionName"
-      animationDuration={500}
-      content={<CustomizedContent />}
-    >
-      <Tooltip allowEscapeViewBox={{ x: true, y: true }} cursor={false} />
-    </Chart>
+    <>
+      <Chart
+        width={NODE_SIZE * NUMBER_OF_COLUMNS}
+        height={NODE_SIZE * NUMBER_OF_ROWS}
+        {...props}
+        data={[...data, ...missingData]}
+        nameKey="functionName"
+        isAnimationActive={false}
+        content={<CustomizedContent />}
+      />
+    </>
   )
 }

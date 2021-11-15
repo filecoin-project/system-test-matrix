@@ -183,15 +183,6 @@ export const TableDefault = ({
   )
 }
 
-export const Table = ({
-  variant,
-
-  ...props
-}: TableProps) => {
-  const ActiveComponent = getActiveComponent(variant)
-  return <ActiveComponent variant={variant} {...props}></ActiveComponent>
-}
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -386,4 +377,13 @@ const getActiveComponent = variant => {
     default:
       return TableDefault
   }
+}
+
+export const Table = ({
+  variant,
+
+  ...props
+}: TableProps) => {
+  const ActiveComponent = getActiveComponent(variant)
+  return <ActiveComponent variant={variant} {...props}></ActiveComponent>
 }

@@ -188,7 +188,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   background-color: #fff;
 
-  table {
+  > table {
     border: 1px solid ${Colors.borderColor};
     border-radius: 5px;
     border-spacing: 0;
@@ -202,7 +202,7 @@ const Wrapper = styled.div`
       }
     }
 
-    tbody tr div {
+    > tbody tr div {
       color: ${Colors.grey};
     }
   }
@@ -212,9 +212,11 @@ const TableHeaderRow = styled.tr`
 
   td {
     height: 72px;
+
     &:first-child {
       border-top-left-radius: 5px;
     }
+
     &:last-child {
       border-top-right-radius: 5px;
     }
@@ -249,7 +251,7 @@ export const Column = styled.td<{
   ${({ width, isFirst, isLast, variant }: any) => {
     return `
     border-bottom: 1px solid ${Colors.borderColor};
-    height: ${Sizing[variant]}px;
+    ${variant && `height: ${Sizing[variant]}px;`}
     padding: 1rem 0;
 
       ${
@@ -278,14 +280,18 @@ export const LoadingColumn = styled(Column)`
 const TableLight = styled(TableDefault)`
   table {
     border: none;
+
     tr {
       border: none;
     }
+
     ${TableHeaderText} {
       color: ${Colors.logoBackground};
     }
+
     ${TableHeaderRow} {
       background-color: ${Colors.white};
+
       td {
         border: none;
       }
@@ -298,6 +304,7 @@ const TableLight = styled(TableDefault)`
         &:first-child {
           border-left: 1px solid ${Colors.borderColor};
         }
+
         &:last-child {
           border-right: 1px solid ${Colors.borderColor};
         }
@@ -306,20 +313,25 @@ const TableLight = styled(TableDefault)`
       &:first-child {
         td {
           border-top: 1px solid ${Colors.borderColor};
+
           &:first-child {
             border-top-left-radius: 5px;
           }
+
           &:last-child {
             border-top-right-radius: 5px;
           }
         }
       }
+
       &:last-child {
         td {
           border-bottom: 1px solid ${Colors.borderColor};
+
           &:first-child {
             border-bottom-left-radius: 5px;
           }
+
           &:last-child {
             border-bottom-right-radius: 5px;
           }
@@ -335,6 +347,7 @@ const TableSubtle = styled(TableLight)`
         &:first-child {
           border-left: none;
         }
+
         &:last-child {
           border-right: none;
         }
@@ -343,22 +356,27 @@ const TableSubtle = styled(TableLight)`
       &:first-child {
         td {
           border-top: 1px solid ${Colors.borderColor};
+
           &:first-child {
-            border-top-left-radius: 0px;
+            border-top-left-radius: 0;
           }
+
           &:last-child {
-            border-top-right-radius: 0px;
+            border-top-right-radius: 0;
           }
         }
       }
+
       &:last-child {
         td {
           border-bottom: 1px solid ${Colors.borderColor};
+
           &:first-child {
-            border-bottom-left-radius: 0px;
+            border-bottom-left-radius: 0;
           }
+
           &:last-child {
-            border-bottom-right-radius: 0px;
+            border-bottom-right-radius: 0;
           }
         }
       }

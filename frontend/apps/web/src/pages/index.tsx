@@ -28,6 +28,7 @@ const Dashboard = () => {
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
         <Table
+          variant="default"
           columns={{
             repository: {
               header: 'Repository',

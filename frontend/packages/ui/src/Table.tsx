@@ -187,11 +187,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  > table {
+
+  table {
     border: 1px solid ${Colors.borderColor};
     border-radius: 5px;
     border-spacing: 0;
     width: 100%;
+
     tr {
       &:last-child {
         td {
@@ -199,8 +201,22 @@ const Wrapper = styled.div`
         }
       }
     }
-    > tbody tr div {
+
+    tbody tr div {
       color: ${Colors.grey};
+    }
+  }
+`
+const TableHeaderRow = styled.tr`
+  background-color: ${Colors.headerBackground};
+
+  td {
+    height: 72px;
+    &:first-child {
+      border-top-left-radius: 5px;
+    }
+    &:last-child {
+      border-top-right-radius: 5px;
     }
   }
 `
@@ -222,19 +238,6 @@ const TableHeaderText = styled(TruncatedText)`
   font-weight: normal;
   text-transform: uppercase;
   vertical-align: middle;
-`
-const TableHeaderRow = styled.tr`
-  background-color: ${Colors.headerBackground};
-
-  td {
-    height: 72px;
-    &:first-child {
-      border-top-left-radius: 5px;
-    }
-    &:last-child {
-      border-top-right-radius: 5px;
-    }
-  }
 `
 
 export const Column = styled.td<{

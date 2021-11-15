@@ -10,9 +10,13 @@
     "start": "http-server dist -P http://localhost:8080? -g",
     "preserve": "yarn prebuild",
     "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
-    "prebuild": "concurrently \"yarn generate:routes\"",
+    "prebuild": "concurrently \"yarn generate:routes\" \"yarn generate:behaviors\"",
     "generate:routes": "node scripts/routes.js",
-    "build": "webpack --config ./config/webpack.prod.js"
+    "generate:behaviors": "yarn convert-airtable && yarn convert-yaml && yarn generate-test-data",
+    "build": "webpack --config ./config/webpack.prod.js",
+    "convert-airtable": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/convertAirtable.ts",
+    "convert-yaml": "yq -j eval scripts/data/behaviors.yml > src/behaviors.json",
+    "generate-test-data": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/generateTestData.ts"
   },
   "browserslist": [
     "defaults",
@@ -27,7 +31,9 @@
     "http-server": "^14.0.0",
     "react-with-direction": "^1.3.1",
     "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^4.0.0"
+    "webpack-dev-server": "^4.0.0",
+    "csv": "^5.5.3",
+    "yaml": "^1.10.2"
   },
   "dependencies": {
     "@filecoin/build": "^1.0.0",

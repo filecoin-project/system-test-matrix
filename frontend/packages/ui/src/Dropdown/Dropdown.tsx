@@ -388,7 +388,12 @@ export const Dropdown: FunctionComponent<Props> = ({
         filterLabel = props.value.join('')
       }
       return (
-        <FilterButton appearance="system" tabIndex={-1} value={filterLabel}>
+        <FilterButton
+          variant="outline"
+          size="medium"
+          tabIndex={-1}
+          value={filterLabel}
+        >
           {(!props.multiple && label) || props.placeholder || t('global.empty')}
         </FilterButton>
       )
@@ -537,7 +542,8 @@ export const Dropdown: FunctionComponent<Props> = ({
             props.onClearFilter && (
               <ApplyFilterWrapper>
                 <ApplyFilter
-                  appearance="system"
+                  variant="outline"
+                  size="medium"
                   onClick={e => {
                     props.onApplyFilter()
                     remove(e, true)
@@ -546,6 +552,8 @@ export const Dropdown: FunctionComponent<Props> = ({
                   {t('orioly.dashboard.list.activityFilter.apply')}
                 </ApplyFilter>
                 <CancelFilter
+                  variant="outline"
+                  size="medium"
                   onClick={e => {
                     props.onClearFilter()
                     remove(e, true)

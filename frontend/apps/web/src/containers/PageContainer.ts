@@ -2,12 +2,16 @@ import { useReducer } from 'react'
 import { createContainer } from 'unstated-next'
 import i18n from 'i18next'
 
+import { Model } from '@/model'
+
 interface State {
   title: string
+  model: Model
 }
 
-const initialState: State = {
+const defaultState: State = {
   title: 'Filecoin',
+  model: null,
 }
 
 const reducer = (state: State, action) => {
@@ -25,7 +29,7 @@ const reducer = (state: State, action) => {
 }
 
 // TODO: type
-function usePage() {
+function usePage(initialState = defaultState) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   function setTitle(title = 'Filecoin') {

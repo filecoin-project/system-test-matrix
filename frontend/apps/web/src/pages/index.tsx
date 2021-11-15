@@ -1,14 +1,14 @@
-import React from 'react'
 import {
-  PageLayout,
-  Table,
-  usePageLayout,
-  StackLayout,
-  Text,
-  NativeLink,
-  TreeMap,
   Button,
+  NativeLink,
+  PageLayout,
+  StackLayout,
+  Table,
+  Text,
+  TreeMap,
+  usePageLayout,
 } from '@filecoin/ui'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { RepositoryData } from '@/mocks'
@@ -22,7 +22,7 @@ const Dashboard = () => {
         </StackLayout>
       </PageLayout.Header>
     ),
-    footer: (<PageLayout.Footer></PageLayout.Footer>)
+    footer: <PageLayout.Footer />,
   })
   const history = useHistory()
 
@@ -79,14 +79,15 @@ const Dashboard = () => {
             score: {
               header: 'Score',
               width: 155,
-              Cell: ({ data, index }) => {
+              Cell: ({ index }) => {
                 //TODO@voja update this when we have some logic
                 if (index === 0) {
                   return (
                     <Button
                       onClick={() => history.push('/repository-details')}
-                      appearance="success"
+                      variant="rounded"
                       size="small"
+                      color="success"
                     >
                       Good
                     </Button>
@@ -96,8 +97,9 @@ const Dashboard = () => {
                   return (
                     <Button
                       onClick={() => history.push('/repository-details')}
-                      appearance="destructive"
+                      variant="rounded"
                       size="small"
+                      color="error"
                     >
                       Bad
                     </Button>
@@ -106,8 +108,9 @@ const Dashboard = () => {
                 return (
                   <Button
                     onClick={() => history.push('/repository-details')}
-                    appearance="brand"
+                    variant="rounded"
                     size="small"
+                    color="warning"
                   >
                     Mediocre
                   </Button>

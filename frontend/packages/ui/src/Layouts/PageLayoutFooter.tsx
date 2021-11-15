@@ -26,9 +26,9 @@ export const PageLayoutFooter = React.forwardRef(
     )
     return (
       <Component ref={ref} {...props} className={className}>
-          <BoxLayout>
-            <Text type="text xs">&copy; 2021 FileCoin</Text>
-          </BoxLayout>
+        <BoxLayout>
+          <Text type="text xs">&copy; 2021 FileCoin</Text>
+        </BoxLayout>
       </Component>
     )
   },

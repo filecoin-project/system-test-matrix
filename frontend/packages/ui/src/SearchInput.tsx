@@ -60,7 +60,8 @@ export const SearchInput: FunctionComponent<SearchInputProps> = ({
       {(isLoading && <SearchLoader />) ||
         (query && (
           <Button
-            appearance="system"
+            variant="outline"
+            size="medium"
             onClick={() => {
               setIsLoading(true)
               setQuery('')

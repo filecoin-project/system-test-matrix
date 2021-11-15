@@ -58,7 +58,7 @@ export interface PageLayoutActions {
    *
    * @param footer A React node to render in the footer area.
    */
-   setFooter(
+  setFooter(
     footer?:
       | React.ReactNode
       | ((previousState: PageLayoutState) => React.ReactNode),
@@ -208,7 +208,14 @@ export interface PageLayout
  */
 export const Page: PageLayout = Object.assign(
   React.forwardRef(function PageLayout(
-    { className, children, header, footer, navigation, ...props }: PageLayoutProps,
+    {
+      className,
+      children,
+      header,
+      footer,
+      navigation,
+      ...props
+    }: PageLayoutProps,
     ref: React.Ref<HTMLDivElement>,
   ) {
     return (
@@ -225,7 +232,7 @@ export const Page: PageLayout = Object.assign(
   {
     Section: PageLayoutSection,
     Header: PageLayoutHeader,
-    Footer: PageLayoutFooter
+    Footer: PageLayoutFooter,
   },
 )
 
@@ -281,7 +288,7 @@ export const PageLayout = styled(Page)`
     z-index: ${zIndex.layer200};
     background: ${Colors.headerBackground};
     border-bottom: 1px solid ${Colors.borderColor};
-    padding: 5.5rem 3.75rem 2rem 3.75rem;
+    padding: 5.5rem 3.75rem 2rem;
 
     &--logo {
       background: ${Colors.logoBackground};
@@ -304,6 +311,7 @@ export const PageLayout = styled(Page)`
     margin: 0 auto;
     border-top: 1px solid ${Colors.borderColorAlternate};
     color: ${Colors.logoBackground};
+
     > div {
       padding-left: 0;
     }

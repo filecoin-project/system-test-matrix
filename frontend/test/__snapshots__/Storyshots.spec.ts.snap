@@ -1817,17 +1817,16 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
 </div>
 `;
 
-exports[`Storyshots Button Badge 1`] = `
+exports[`Storyshots Button Ghost 1`] = `
 .c0 {
   display: block;
   padding: 1rem;
 }
 
-.c4 {
+.c1 {
   position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
+  height: 38px;
+  width: 131px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1844,13 +1843,16 @@ exports[`Storyshots Button Badge 1`] = `
   transition: all 0.3s;
   border: 0;
   border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
 }
 
-.c4 > span {
+.c1[disabled] {
+  pointer-events: none;
+  border: 0;
+}
+
+.c1 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -1858,4810 +1860,50 @@ exports[`Storyshots Button Badge 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c4:focus {
+.c1:focus {
   outline: 0;
-}
-
-.c4.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c8 {
-  position: relative;
-  padding: 0 0.5rem;
-  height: 36px;
-  width: 120px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 0.75rem;
-  cursor: pointer;
-}
-
-.c8 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c8[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c8:focus {
-  outline: 0;
-}
-
-.c8.button-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c8.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c8.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c8.button-icon-unset-border:active,
-.c8.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c5 {
-  font-size: 0.75rem;
-  font-family: 'Open Sans',sans-serif;
-  font-weight: 600;
-  background-color: #F3EFF5;
-  color: #5B1F7B;
-  width: auto;
-  height: auto;
-  min-width: auto;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
-}
-
-.c5 > span {
-  line-height: 22.4px;
-  -webkit-letter-spacing: 0.1px;
-  -moz-letter-spacing: 0.1px;
-  -ms-letter-spacing: 0.1px;
-  letter-spacing: 0.1px;
-}
-
-.c9 {
-  font-size: 0.75rem;
-  font-family: 'Open Sans',sans-serif;
-  font-weight: 600;
-  background-color: #F3EFF5;
-  color: #5B1F7B;
-  width: auto;
-  height: auto;
-  min-width: auto;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
-}
-
-.c9 > span {
-  line-height: 20.8px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c6 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c7.icon-left {
-  margin-right: auto;
-}
-
-.c7.icon-right {
-  margin-left: auto;
-}
-
-.c7.icon-hidden {
-  visibility: hidden;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0 1.9rem;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.c3.badge {
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
 }
 
 .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1.3rem 0;
-  width: 100%;
+  background-color: #F6F8FA;
+  border: 1px solid #D0D7DE;
+  border-radius: 5px;
+  color: #24292F;
 }
 
 <div
-  className="c0 c1"
+  className="c0 css-1svwtgt"
 >
   <div
-    className="c2"
+    className="css-w7o6d5"
   >
-    <div
-      className="c3 badge"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="badge"
-      >
-        <span
-          className="c6"
-        >
-          Badge
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3 badge"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="badge"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Badge
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3 badge"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="badge"
-      >
-        <div
-          className="c7 icon-left  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Badge
-        </span>
-        <div
-          className="c7 icon-right  false"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3 badge"
-    >
-       
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="badge"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Badge
-        </span>
-        <div
-          className="c7 icon-right  false"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-      </button>
-    </div>
+    Ghost Buttons
   </div>
   <div
-    className="c2"
+    className="css-w7o6d5"
   >
     <div
-      className="c3 badge"
+      className="css-1evrh9t"
     >
       <button
-        appearance="brand"
-        className="c8 c9"
+        className="c1 c2"
         data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="badge"
-      >
-        <span
-          className="c6"
-        >
-          Badge
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3 badge"
-    >
-      <button
-        appearance="brand"
-        className="c8 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="badge"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Badge
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3 badge"
-    >
-      <button
-        appearance="brand"
-        className="c8 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="badge"
-      >
-        <div
-          className="c7 icon-left  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Badge
-        </span>
-        <div
-          className="c7 icon-right  false"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3 badge"
-    >
-      <button
-        appearance="brand"
-        className="c8 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="badge"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Badge
-        </span>
-        <div
-          className="c7 icon-right  false"
-        >
-          <svg
-            id="/assets/icons/filled_star.svg"
-          />
-        </div>
-      </button>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Button Brand 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c4 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c4 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c4:focus {
-  outline: 0;
-}
-
-.c4.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c10 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c10 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c10[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c10:focus {
-  outline: 0;
-}
-
-.c10.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c10.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c10.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c10.button-icon-unset-border:active,
-.c10.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c5 {
-  background-color: #5B1F7B;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c5:hover {
-  background-color: #440864;
-}
-
-.c5:focus {
-  background-color: #3F035F;
-  box-shadow: 0 0 0.5rem rgba(79,60,255,0.12);
-}
-
-.c5:active {
-  background-color: #5B1F7B;
-  box-shadow: 0 0 0 2px #BE96D4;
-}
-
-.c5[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c5 [data-element='loader'] {
-  border: 4px solid #5B1F7B;
-  border-left-color: #fff;
-}
-
-.c8 {
-  background-color: #fff;
-  border: 2px solid #D9DBE9;
-  color: #4E4B66;
-}
-
-.c8:hover {
-  background-color: rgba(0,21,63,0.06);
-}
-
-.c8:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #6E7191;
-}
-
-.c8:active {
-  background-color: rgba(79,60,255,0.12);
-  border: 1px solid #9E6FB7;
-  color: #440864;
-}
-
-.c8[disabled] {
-  background-color: #fff;
-  border: 2px solid #D9DBE9;
-  opacity: 0.5;
-}
-
-.c8 [data-element='loader'] {
-  border: 4px solid #A6A9C3;
-  border-left-color: #6E7191;
-}
-
-.c9 {
-  color: #5B1F7B;
-  background-color: transparent;
-}
-
-.c9:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #440864;
-}
-
-.c9:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #3F035F;
-}
-
-.c9:active,
-.c9.active {
-  background-color: rgba(79,60,255,0.12);
-  color: #5B1F7B;
-}
-
-.c9[disabled] {
-  opacity: 0.5;
-}
-
-.c11 {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  font-size: 10px;
-  position: relative;
-  border: 4px solid transparent;
-  border-left-color: #192345;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: ka-DIcF 1.1s infinite linear;
-  animation: ka-DIcF 1.1s infinite linear;
-}
-
-.c11::after {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-}
-
-.c12 {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: auto;
-}
-
-.c12::after {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-}
-
-.c6 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c7.icon-left {
-  margin-right: auto;
-}
-
-.c7.icon-right {
-  margin-left: auto;
-}
-
-.c7.icon-hidden {
-  visibility: hidden;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0 1.9rem;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.c3.badge {
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1.3rem 0;
-  width: 100%;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    Button medium
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Full
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Icon
-           
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c4 c8"
-        data-element="button"
-        onClick={[Function]}
         size="medium"
         variant="outline"
       >
-        <span
-          className="c6"
-        >
-          Outline
-        </span>
+        All Behaviours
       </button>
     </div>
     <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c4 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Text
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
+      className="css-1evrh9t"
     >
       <button
-        appearance="brand"
-        className="c4 c5"
+        className="c1 c2"
         data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c4 c8"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
         size="medium"
         variant="outline"
       >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c4 c9"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c10 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c10 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        Loading...
-      </button>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Button Destructive 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c4 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c4 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c4:focus {
-  outline: 0;
-}
-
-.c4.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c10 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c10 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c10[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c10:focus {
-  outline: 0;
-}
-
-.c10.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c10.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c10.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c10.button-icon-unset-border:active,
-.c10.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c5 {
-  background-color: #DB3568;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c5:hover {
-  background-color: #CF295C;
-}
-
-.c5:focus {
-  background-color: #BD174A;
-  box-shadow: 0 0 0.5rem rgba(79,60,255,0.12);
-}
-
-.c5:active {
-  background-color: #DB3568;
-  box-shadow: 0 0 0 2px #FF95B5;
-}
-
-.c5[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c5 [data-element='loader'] {
-  border: 4px solid #DB3568;
-  border-left-color: #fff;
-}
-
-.c8 {
-  background-color: #fff;
-  border: 2px solid #DB3568;
-  color: #DB3568;
-}
-
-.c8:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #CF295C;
-}
-
-.c8:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #BD174A;
-}
-
-.c8:active {
-  background-color: #FFEAF1;
-  border: 1px solid #DB3568;
-  color: #DB3568;
-}
-
-.c8[disabled] {
-  background-color: #fff;
-  border: 2px solid #DB3568;
-  opacity: 0.5;
-}
-
-.c8 [data-element='loader'] {
-  border: 4px solid #A6A9C3;
-  border-left-color: #6E7191;
-}
-
-.c9 {
-  color: #DB3568;
-  background-color: transparent;
-}
-
-.c9:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #CF295C;
-}
-
-.c9:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #BD174A;
-}
-
-.c9:active,
-.c9.active {
-  background-color: #FFEAF1;
-  color: #DB3568;
-}
-
-.c9[disabled] {
-  opacity: 0.5;
-}
-
-.c11 {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  font-size: 10px;
-  position: relative;
-  border: 4px solid transparent;
-  border-left-color: #192345;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: ka-DIcF 1.1s infinite linear;
-  animation: ka-DIcF 1.1s infinite linear;
-}
-
-.c11::after {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-}
-
-.c12 {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: auto;
-}
-
-.c12::after {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-}
-
-.c6 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c7.icon-left {
-  margin-right: auto;
-}
-
-.c7.icon-right {
-  margin-left: auto;
-}
-
-.c7.icon-hidden {
-  visibility: hidden;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0 1.9rem;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.c3.badge {
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1.3rem 0;
-  width: 100%;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    Button medium
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="destructive"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Full
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="destructive"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Icon
-           
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="destructive"
-        className="c4 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Outline
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="destructive"
-        className="c4 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Text
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="destructive"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="destructive"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="destructive"
-        className="c4 c8"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="destructive"
-        className="c4 c9"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="destructive"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="destructive"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="destructive"
-        className="c10 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="destructive"
-        className="c10 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        Loading...
-      </button>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Button Details 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c2 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c2 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c2[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c2:focus {
-  outline: 0;
-}
-
-.c2.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c2.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c2.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c2.button-icon-unset-border:active,
-.c2.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c3 {
-  background-color: #5B1F7B;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c3:hover {
-  background-color: #440864;
-}
-
-.c3:focus {
-  background-color: #3F035F;
-  box-shadow: 0 0 0.5rem rgba(79,60,255,0.12);
-}
-
-.c3:active {
-  background-color: #5B1F7B;
-  box-shadow: 0 0 0 2px #BE96D4;
-}
-
-.c3[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c3 [data-element='loader'] {
-  border: 4px solid #5B1F7B;
-  border-left-color: #fff;
-}
-
-.c5 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c4.icon-left {
-  margin-right: auto;
-}
-
-.c4.icon-right {
-  margin-left: auto;
-}
-
-.c4.icon-hidden {
-  visibility: hidden;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-<div
-  className="c0 c1"
->
-  <button
-    appearance="brand"
-    className="c2 c3"
-    data-element="button"
-    onClick={[Function]}
-    size="medium"
-    variant="full"
-  >
-    <div
-      className="c4 icon-left  false"
-    >
-      <svg
-        id="/assets/icons/cart.svg"
-      />
-    </div>
-    <span
-      className="c5"
-    >
-      Button
-       
-    </span>
-    <div
-      className="c4 icon-right  icon-hidden"
-    >
-      <svg
-        id="/assets/icons/cart.svg"
-      />
-    </div>
-  </button>
-</div>
-`;
-
-exports[`Storyshots Button Icon 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c4 {
-  position: relative;
-  padding: 0rem;
-  height: 56px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c4 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c4:focus {
-  outline: 0;
-}
-
-.c4.button-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c7 {
-  position: relative;
-  padding: 0rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c7 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c7[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c7:focus {
-  outline: 0;
-}
-
-.c7.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c7.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c7.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c7.button-icon-unset-border:active,
-.c7.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c8 {
-  position: relative;
-  padding: 0rem;
-  height: 36px;
-  width: 120px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 0.75rem;
-  cursor: pointer;
-}
-
-.c8 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c8[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c8:focus {
-  outline: 0;
-}
-
-.c8.button-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c8.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c8.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c8.button-icon-unset-border:active,
-.c8.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c9 {
-  position: relative;
-  padding: 0rem;
-  height: 56px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c9 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c9[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c9:focus {
-  outline: 0;
-}
-
-.c9.button-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c9.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c9.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c9.button-icon-unset-border:active,
-.c9.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c11 {
-  position: relative;
-  padding: 0rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c11 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c11[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c11:focus {
-  outline: 0;
-}
-
-.c11.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c11.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c11.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c11.button-icon-unset-border:active,
-.c11.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c12 {
-  position: relative;
-  padding: 0rem;
-  height: 36px;
-  width: 120px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 0.75rem;
-  cursor: pointer;
-}
-
-.c12 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c12[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c12:focus {
-  outline: 0;
-}
-
-.c12.button-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c12.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c12.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c12.button-icon-unset-border:active,
-.c12.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c5 {
-  background-color: #EFF0F6;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c5:hover {
-  background-color: rgba(0,21,63,0.06);
-}
-
-.c5:focus {
-  background-color: rgba(20,20,43,0.12);
-  box-shadow: 0 0 0.5rem none;
-}
-
-.c5:active {
-  box-shadow: 0 0 0 2px;
-}
-
-.c5[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c5 [data-element='loader'] {
-  border: 4px solid;
-  border-left-color: #fff;
-}
-
-.c10 {
-  background-color: #5B1F7B;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c10:hover {
-  background-color: #440864;
-}
-
-.c10:focus {
-  background-color: #3F035F;
-  box-shadow: 0 0 0.5rem rgba(79,60,255,0.12);
-}
-
-.c10:active {
-  background-color: #5B1F7B;
-  box-shadow: 0 0 0 2px #BE96D4;
-}
-
-.c10[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c10 [data-element='loader'] {
-  border: 4px solid #5B1F7B;
-  border-left-color: #fff;
-}
-
-.c13 {
-  background-color: #fff;
-  border: 2px solid #D9DBE9;
-  color: #4E4B66;
-}
-
-.c13:hover {
-  background-color: rgba(0,21,63,0.06);
-}
-
-.c13:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #6E7191;
-}
-
-.c13:active {
-  background-color: rgba(79,60,255,0.12);
-  border: 1px solid #D9DBE9;
-  color: #4E4B66;
-}
-
-.c13[disabled] {
-  background-color: #fff;
-  border: 2px solid #D9DBE9;
-  opacity: 0.5;
-}
-
-.c13 [data-element='loader'] {
-  border: 4px solid #A6A9C3;
-  border-left-color: #6E7191;
-}
-
-.c14 {
-  color: #4E4B66;
-  background-color: transparent;
-}
-
-.c14:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #4E4B66;
-}
-
-.c14:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #6E7191;
-}
-
-.c14:active,
-.c14.active {
-  background-color: rgba(79,60,255,0.12);
-  color: #4E4B66;
-}
-
-.c14[disabled] {
-  opacity: 0.5;
-}
-
-.c6 {
-  background-color: #EFF0F6;
-  border: none;
-}
-
-.c15 {
-  background-color: transparent;
-  border: none;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0 1.9rem;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.c3.badge {
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1.3rem 0;
-  width: 100%;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      Gray
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="gray"
-        className="c4 c5 c6 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="gray"
-        className="c7 c5 c6 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="gray"
-        className="c8 c5 c6 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="gray"
-        className="c7 c5 c6 button-icon button-icon-unset-border"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      Brand
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c9 c10 button-icon"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c11 c10 button-icon"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c12 c10 button-icon"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c11 c10 button-icon"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      System
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c4 c13 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c7 c13 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c8 c13 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c7 c13 button-icon button-icon-unset-border"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      Text
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="blank"
-        className="c4 c14 c15 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="blank"
-        className="c7 c14 c15 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="blank"
-        className="c8 c14 c15 button-icon button-icon-unset-border"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="blank"
-        className="c7 c14 c15 button-icon button-icon-unset-border"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="icon"
-      >
-        <svg
-          id="/assets/icons/settings.svg"
-        />
-         
-         
-      </button>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Button Sizing 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c4 {
-  position: relative;
-  padding: 0 1rem;
-  height: 56px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c4 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c4:focus {
-  outline: 0;
-}
-
-.c4.button-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c10 {
-  position: relative;
-  padding: 0 1rem;
-  height: 56px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c10 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c10[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c10:focus {
-  outline: 0;
-}
-
-.c10.button-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c10.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c10.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c10.button-icon-unset-border:active,
-.c10.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c13 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c13 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c13[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c13:focus {
-  outline: 0;
-}
-
-.c13.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c13.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c13.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c13.button-icon-unset-border:active,
-.c13.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c14 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c14 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c14[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c14:focus {
-  outline: 0;
-}
-
-.c14.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c14.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c14.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c14.button-icon-unset-border:active,
-.c14.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c15 {
-  position: relative;
-  padding: 0 0.5rem;
-  height: 36px;
-  width: 120px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 0.75rem;
-  cursor: pointer;
-}
-
-.c15 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c15[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c15:focus {
-  outline: 0;
-}
-
-.c15.button-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c15.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c15.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c15.button-icon-unset-border:active,
-.c15.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c16 {
-  position: relative;
-  padding: 0 0.5rem;
-  height: 36px;
-  width: 120px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 0.75rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c16 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c16[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c16:focus {
-  outline: 0;
-}
-
-.c16.button-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c16.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c16.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c16.button-icon-unset-border:active,
-.c16.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c17 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  width: 100%;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c17 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c17[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c17:focus {
-  outline: 0;
-}
-
-.c17.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c17.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c17.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c17.button-icon-unset-border:active,
-.c17.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c5 {
-  background-color: #5B1F7B;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c5:hover {
-  background-color: #440864;
-}
-
-.c5:focus {
-  background-color: #3F035F;
-  box-shadow: 0 0 0.5rem rgba(79,60,255,0.12);
-}
-
-.c5:active {
-  background-color: #5B1F7B;
-  box-shadow: 0 0 0 2px #BE96D4;
-}
-
-.c5[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c5 [data-element='loader'] {
-  border: 4px solid #5B1F7B;
-  border-left-color: #fff;
-}
-
-.c8 {
-  background-color: #fff;
-  border: 2px solid #D9DBE9;
-  color: #4E4B66;
-}
-
-.c8:hover {
-  background-color: rgba(0,21,63,0.06);
-}
-
-.c8:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #6E7191;
-}
-
-.c8:active {
-  background-color: rgba(79,60,255,0.12);
-  border: 1px solid #9E6FB7;
-  color: #440864;
-}
-
-.c8[disabled] {
-  background-color: #fff;
-  border: 2px solid #D9DBE9;
-  opacity: 0.5;
-}
-
-.c8 [data-element='loader'] {
-  border: 4px solid #A6A9C3;
-  border-left-color: #6E7191;
-}
-
-.c9 {
-  color: #5B1F7B;
-  background-color: transparent;
-}
-
-.c9:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #440864;
-}
-
-.c9:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #3F035F;
-}
-
-.c9:active,
-.c9.active {
-  background-color: rgba(79,60,255,0.12);
-  color: #5B1F7B;
-}
-
-.c9[disabled] {
-  opacity: 0.5;
-}
-
-.c11 {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  font-size: 10px;
-  position: relative;
-  border: 4px solid transparent;
-  border-left-color: #192345;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: ka-DIcF 1.1s infinite linear;
-  animation: ka-DIcF 1.1s infinite linear;
-}
-
-.c11::after {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-}
-
-.c12 {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: auto;
-}
-
-.c12::after {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-}
-
-.c6 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c7.icon-left {
-  margin-right: auto;
-}
-
-.c7.icon-right {
-  margin-left: auto;
-}
-
-.c7.icon-hidden {
-  visibility: hidden;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0 1.9rem;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.c3.badge {
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1.3rem 0;
-  width: 100%;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    Button large
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Full
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Icon
-           
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Outline
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c4 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Text
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="large"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="large"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c4 c8"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="large"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c4 c9"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="large"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c10 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="outline"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c10 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="large"
-        variant="text"
-      >
-        Loading...
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    Button medium
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c13 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Full
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c13 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Icon
-           
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c13 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Outline
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c13 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Text
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c13 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c13 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c13 c8"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c13 c9"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c14 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c14 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c14 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c14 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        Loading...
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    Button small
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c15 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Full
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c15 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Icon
-           
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c15 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Outline
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c15 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Text
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c15 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="small"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c15 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="small"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c15 c8"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="small"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c15 c9"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="small"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c16 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c16 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c16 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="outline"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="brand"
-        className="c16 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="small"
-        variant="text"
-      >
-        Loading...
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    Full width
-  </div>
-  <button
-    appearance="brand"
-    className="c17 c5 u-full-width"
-    data-element="button"
-    onClick={[Function]}
-    size="medium"
-    variant="full"
-  >
-    <span
-      className="c6"
-    >
-      Button
-    </span>
-  </button>
-</div>
-`;
-
-exports[`Storyshots Button Success 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c4 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c4 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c4:focus {
-  outline: 0;
-}
-
-.c4.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c10 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c10 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c10[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c10:focus {
-  outline: 0;
-}
-
-.c10.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c10.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c10.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c10.button-icon-unset-border:active,
-.c10.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c5 {
-  background-color: #0C9576;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c5:hover {
-  background-color: #098469;
-}
-
-.c5:focus {
-  background-color: #007666;
-  box-shadow: 0 0 0.5rem;
-}
-
-.c5:active {
-  background-color: #0C9576;
-  box-shadow: 0 0 0 2px;
-}
-
-.c5[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c5 [data-element='loader'] {
-  border: 4px solid #0C9576;
-  border-left-color: #fff;
-}
-
-.c8 {
-  background-color: #fff;
-  border: 2px solid #0C9576;
-  color: #0C9576;
-}
-
-.c8:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #098469;
-}
-
-.c8:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #007666;
-}
-
-.c8:active {
-  background-color: #D2FFF4;
-  border: 1px solid #0C9576;
-  color: #0C9576;
-}
-
-.c8[disabled] {
-  background-color: #fff;
-  border: 2px solid #0C9576;
-  opacity: 0.5;
-}
-
-.c8 [data-element='loader'] {
-  border: 4px solid #A6A9C3;
-  border-left-color: #6E7191;
-}
-
-.c9 {
-  color: #0C9576;
-  background-color: transparent;
-}
-
-.c9:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #098469;
-}
-
-.c9:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #007666;
-}
-
-.c9:active,
-.c9.active {
-  background-color: #D2FFF4;
-  color: #0C9576;
-}
-
-.c9[disabled] {
-  opacity: 0.5;
-}
-
-.c11 {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  font-size: 10px;
-  position: relative;
-  border: 4px solid transparent;
-  border-left-color: #192345;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: ka-DIcF 1.1s infinite linear;
-  animation: ka-DIcF 1.1s infinite linear;
-}
-
-.c11::after {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-}
-
-.c12 {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: auto;
-}
-
-.c12::after {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-}
-
-.c6 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c7.icon-left {
-  margin-right: auto;
-}
-
-.c7.icon-right {
-  margin-left: auto;
-}
-
-.c7.icon-hidden {
-  visibility: hidden;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0 1.9rem;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.c3.badge {
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1.3rem 0;
-  width: 100%;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    Button medium
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="success"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Full
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="success"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Icon
-           
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="success"
-        className="c4 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Outline
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="success"
-        className="c4 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Text
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="success"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="success"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="success"
-        className="c4 c8"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="success"
-        className="c4 c9"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="success"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="success"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="success"
-        className="c10 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="success"
-        className="c10 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        Loading...
+        All Tests
       </button>
     </div>
   </div>
@@ -6674,1273 +1916,132 @@ exports[`Storyshots Button System 1`] = `
   padding: 1rem;
 }
 
-.c4 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c4 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c4:focus {
-  outline: 0;
-}
-
-.c4.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c10 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c10 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c10[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c10:focus {
-  outline: 0;
-}
-
-.c10.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c10.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c10.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c10.button-icon-unset-border:active,
-.c10.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c5 {
-  background-color: #0C9576;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c5:hover {
-  background-color: #098469;
-}
-
-.c5:focus {
-  background-color: #007666;
-  box-shadow: 0 0 0.5rem rgba(20,20,43,0.12);
-}
-
-.c5:active {
-  background-color: #0C9576;
-  box-shadow: 0 0 0 2px #5AEFCC;
-}
-
-.c5[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c5 [data-element='loader'] {
-  border: 4px solid #0C9576;
-  border-left-color: #fff;
-}
-
-.c8 {
-  background-color: #fff;
-  border: 2px solid #D9DBE9;
-  color: #4E4B66;
-}
-
-.c8:hover {
-  background-color: rgba(0,21,63,0.06);
-}
-
-.c8:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #6E7191;
-}
-
-.c8:active {
-  background-color: rgba(79,60,255,0.12);
-  border: 1px solid #D9DBE9;
-  color: #4E4B66;
-}
-
-.c8[disabled] {
-  background-color: #fff;
-  border: 2px solid #D9DBE9;
-  opacity: 0.5;
-}
-
-.c8 [data-element='loader'] {
-  border: 4px solid #A6A9C3;
-  border-left-color: #6E7191;
-}
-
-.c9 {
-  color: #4E4B66;
-  background-color: transparent;
-}
-
-.c9:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #4E4B66;
-}
-
-.c9:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #6E7191;
-}
-
-.c9:active,
-.c9.active {
-  background-color: rgba(79,60,255,0.12);
-  color: #4E4B66;
-}
-
-.c9[disabled] {
-  opacity: 0.5;
-}
-
-.c11 {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  font-size: 10px;
-  position: relative;
-  border: 4px solid transparent;
-  border-left-color: #192345;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: ka-DIcF 1.1s infinite linear;
-  animation: ka-DIcF 1.1s infinite linear;
-}
-
-.c11::after {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-}
-
-.c12 {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: auto;
-}
-
-.c12::after {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-}
-
-.c6 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c7.icon-left {
-  margin-right: auto;
-}
-
-.c7.icon-right {
-  margin-left: auto;
-}
-
-.c7.icon-hidden {
-  visibility: hidden;
-}
-
 .c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0 1.9rem;
+  position: relative;
+  height: 32px;
+  width: 124px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-.c3.badge {
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
+.c1[disabled] {
+  pointer-events: none;
+  border: 0;
+}
+
+.c1 > span {
+  line-height: 1rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+}
+
+.c1:focus {
+  outline: 0;
 }
 
 .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1.3rem 0;
-  width: 100%;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    Button medium
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Full
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Icon
-           
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="system"
-        className="c4 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Outline
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="system"
-        className="c4 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Text
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c7 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-        <div
-          className="c7 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="system"
-        className="c4 c8"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="system"
-        className="c4 c9"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        <span
-          className="c6"
-        >
-          Disabled
-        </span>
-      </button>
-    </div>
-  </div>
-  <div
-    className="c2"
-  >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="system"
-        className="c10 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="system"
-        className="c10 c8"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="outline"
-      >
-        <div
-          className="c11 c12"
-          data-element="loader"
-        />
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-       
-      <button
-        appearance="system"
-        className="c10 c9"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="text"
-      >
-        Loading...
-      </button>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Button With Icons 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c4 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c4 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c4:focus {
-  outline: 0;
-}
-
-.c4.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c8 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c8 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c8[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c8:focus {
-  outline: 0;
-}
-
-.c8.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c8.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c8.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c8.button-icon-unset-border:active,
-.c8.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c11 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c11 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c11[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c11:focus {
-  outline: 0;
-}
-
-.c11.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c11.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c11.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c11.button-icon-unset-border:active,
-.c11.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c13 {
-  position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  pointer-events: none;
-}
-
-.c13 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c13[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c13:focus {
-  outline: 0;
-}
-
-.c13.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c13.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c13.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c13.button-icon-unset-border:active,
-.c13.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c5 {
-  background-color: #5B1F7B;
+  border-radius: 20px;
+  background-color: #77DF79;
   color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c5:hover {
-  background-color: #440864;
-}
-
-.c5:focus {
-  background-color: #3F035F;
-  box-shadow: 0 0 0.5rem rgba(79,60,255,0.12);
-}
-
-.c5:active {
-  background-color: #5B1F7B;
-  box-shadow: 0 0 0 2px #BE96D4;
-}
-
-.c5[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c5 [data-element='loader'] {
-  border: 4px solid #5B1F7B;
-  border-left-color: #fff;
-}
-
-.c12 {
-  background-color: #0C9576;
-  color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c12:hover {
-  background-color: #098469;
-}
-
-.c12:focus {
-  background-color: #007666;
-  box-shadow: 0 0 0.5rem rgba(20,20,43,0.12);
-}
-
-.c12:active {
-  background-color: #0C9576;
-  box-shadow: 0 0 0 2px #5AEFCC;
-}
-
-.c12[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c12 [data-element='loader'] {
-  border: 4px solid #0C9576;
-  border-left-color: #fff;
-}
-
-.c9 {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  font-size: 10px;
-  position: relative;
-  border: 4px solid transparent;
-  border-left-color: #192345;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: ka-DIcF 1.1s infinite linear;
-  animation: ka-DIcF 1.1s infinite linear;
-}
-
-.c9::after {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-}
-
-.c10 {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: auto;
-}
-
-.c10::after {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-}
-
-.c7 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c6.icon-left {
-  margin-right: auto;
-}
-
-.c6.icon-right {
-  margin-left: auto;
-}
-
-.c6.icon-hidden {
-  visibility: hidden;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
 }
 
 .c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0 1.9rem;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+  border-radius: 20px;
+  background-color: #FF837F;
+  color: #fff;
 }
 
-.c3.badge {
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
+.c4 {
+  border-radius: 20px;
+  background-color: #FFB347;
+  color: #fff;
 }
 
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 1.3rem 0;
-  width: 100%;
+.c5 {
+  border-radius: 20px;
+  background-color: #B2BAC7;
+  color: #fff;
 }
 
 <div
-  className="c0 c1"
+  className="c0 css-1svwtgt"
 >
   <div
-    className="c2"
+    className="css-w7o6d5"
   >
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c6 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c7"
-        >
-          Button
-           
-        </span>
-        <div
-          className="c6 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c6 icon-left  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c7"
-        >
-          Button
-           
-        </span>
-        <div
-          className="c6 icon-right  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c4 c5"
-        data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c6 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c7"
-        >
-          Disabled
-           
-        </span>
-        <div
-          className="c6 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="c3"
-    >
-      <button
-        appearance="brand"
-        className="c8 c5"
-        data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
-      >
-        <div
-          className="c9 c10"
-          data-element="loader"
-        />
-      </button>
-    </div>
+    Rounded Buttons
   </div>
   <div
-    className="c2"
+    className="css-w7o6d5"
   >
     <div
-      className="c3"
+      className="css-1evrh9t"
     >
       <button
-        appearance="system"
-        className="c11 c12"
+        className="c1 c2"
+        color="success"
         data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
+        size="small"
+        variant="rounded"
       >
-        <div
-          className="c6 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c7"
-        >
-          Button
-           
-        </span>
-        <div
-          className="c6 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
+        Good
       </button>
     </div>
     <div
-      className="c3"
+      className="css-1evrh9t"
     >
       <button
-        appearance="system"
-        className="c11 c12"
+        className="c1 c3"
+        color="error"
         data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
+        size="small"
+        variant="rounded"
       >
-        <div
-          className="c6 icon-left  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c7"
-        >
-          Button
-           
-        </span>
-        <div
-          className="c6 icon-right  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
+        Bad
       </button>
     </div>
     <div
-      className="c3"
+      className="css-1evrh9t"
     >
       <button
-        appearance="system"
-        className="c11 c12"
+        className="c1 c4"
+        color="warning"
         data-element="button"
-        disabled={true}
-        onClick={[Function]}
-        size="medium"
-        variant="full"
+        size="small"
+        variant="rounded"
       >
-        <div
-          className="c6 icon-left  false"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
-        <span
-          className="c7"
-        >
-          Disabled
-           
-        </span>
-        <div
-          className="c6 icon-right  icon-hidden"
-        >
-          <svg
-            id="/assets/icons/cart.svg"
-          />
-        </div>
+        Mediocre
       </button>
     </div>
     <div
-      className="c3"
+      className="css-1evrh9t"
     >
       <button
-        appearance="system"
-        className="c13 c12"
+        className="c1 c5"
+        color="secondary"
         data-element="button"
-        onClick={[Function]}
-        size="medium"
-        variant="full"
+        size="small"
+        variant="rounded"
       >
-        <div
-          className="c9 c10"
-          data-element="loader"
-        />
+        Missing
       </button>
     </div>
   </div>
@@ -8642,6 +2743,29 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   padding-right: 1rem;
 }
 
+.c5 {
+  font-weight: bold;
+  font-family: "OpenSans",sans-serif;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+  color: #979AB8;
+}
+
+.c12 {
+  font-weight: normal;
+  font-family: "OpenSans",sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  -webkit-letter-spacing: 0.1px;
+  -moz-letter-spacing: 0.1px;
+  -ms-letter-spacing: 0.1px;
+  letter-spacing: 0.1px;
+  color: #4E4B66;
+}
+
 .c11 {
   position: relative;
   width: 24px;
@@ -8714,29 +2838,6 @@ exports[`Storyshots Dropdown Multiple 1`] = `
 
 .c11:disabled {
   pointer-events: none;
-}
-
-.c5 {
-  font-weight: bold;
-  font-family: "OpenSans",sans-serif;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  color: #979AB8;
-}
-
-.c12 {
-  font-weight: normal;
-  font-family: "OpenSans",sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.375rem;
-  -webkit-letter-spacing: 0.1px;
-  -moz-letter-spacing: 0.1px;
-  -ms-letter-spacing: 0.1px;
-  letter-spacing: 0.1px;
-  color: #4E4B66;
 }
 
 .c10 {
@@ -11074,14 +5175,20 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   left: 0;
   top: 0;
   width: 100vw;
-  height: 80px;
+  height: 185px;
   z-index: 200;
-  background: #f9f9fe;
-  border-bottom: 1px solid #eaecf7;
+  background: #F6F8FA;
+  border-bottom: 1px solid #D0D7DE;
+  padding: 5.5rem 3.75rem 2rem 3.75rem;
 }
 
-.c0 .c-page-layout__header > * {
-  height: 80px;
+.c0 .c-page-layout__header--logo {
+  background: #57606A;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 2.75rem;
 }
 
 .c2 {
@@ -11404,14 +5511,20 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   left: 0;
   top: 0;
   width: 100vw;
-  height: 80px;
+  height: 185px;
   z-index: 200;
-  background: #f9f9fe;
-  border-bottom: 1px solid #eaecf7;
+  background: #F6F8FA;
+  border-bottom: 1px solid #D0D7DE;
+  padding: 5.5rem 3.75rem 2rem 3.75rem;
 }
 
-.c0 .c-page-layout__header > * {
-  height: 80px;
+.c0 .c-page-layout__header--logo {
+  background: #57606A;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 2.75rem;
 }
 
 .c2 {
@@ -11950,14 +6063,20 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   left: 0;
   top: 0;
   width: 100vw;
-  height: 80px;
+  height: 185px;
   z-index: 200;
-  background: #f9f9fe;
-  border-bottom: 1px solid #eaecf7;
+  background: #F6F8FA;
+  border-bottom: 1px solid #D0D7DE;
+  padding: 5.5rem 3.75rem 2rem 3.75rem;
 }
 
-.c0 .c-page-layout__header > * {
-  height: 80px;
+.c0 .c-page-layout__header--logo {
+  background: #57606A;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 2.75rem;
 }
 
 .c2 {
@@ -12977,9 +7096,8 @@ exports[`Storyshots Loader Default 1`] = `
 exports[`Storyshots Modal Modal Example 1`] = `
 .c0 {
   position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
+  height: px;
+  width: px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -12996,10 +7114,13 @@ exports[`Storyshots Modal Modal Example 1`] = `
   transition: all 0.3s;
   border: 0;
   border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.c0[disabled] {
+  pointer-events: none;
+  border: 0;
 }
 
 .c0 > span {
@@ -13010,87 +7131,22 @@ exports[`Storyshots Modal Modal Example 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c0[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
 .c0:focus {
   outline: 0;
 }
 
-.c0.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c0.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c0.button-icon[disabled] {
-  background: #5B1F7B;
-  opacity: 0.5;
-  border: none;
-}
-
-.c0.button-icon-unset-border:active,
-.c0.button-icon-unset-border:focus {
-  border: unset;
-}
-
 .c1 {
-  background-color: #5B1F7B;
+  border-radius: 20px;
+  background-color: #F6F8FA;
   color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c1:hover {
-  background-color: #440864;
-}
-
-.c1:focus {
-  background-color: #3F035F;
-  box-shadow: 0 0 0.5rem rgba(79,60,255,0.12);
-}
-
-.c1:active {
-  background-color: #5B1F7B;
-  box-shadow: 0 0 0 2px #BE96D4;
-}
-
-.c1[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c1 [data-element='loader'] {
-  border: 4px solid #5B1F7B;
-  border-left-color: #fff;
-}
-
-.c2 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
 }
 
 <button
-  appearance="brand"
   className="c0 c1"
   data-element="button"
   onClick={[Function]}
-  size="medium"
-  variant="full"
 >
-  <span
-    className="c2"
-  >
-    Open Modal
-  </span>
+  Open Modal
 </button>
 `;
 
@@ -13114,7 +7170,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   padding-right: 2rem;
 }
 
-.c8 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -13132,24 +7188,41 @@ exports[`Storyshots Modal Verification Status 1`] = `
   align-items: center;
 }
 
-.c8 > * {
+.c7 > * {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.c8 > * + * {
+.c7 > * + * {
   margin-top: 1.5rem;
 }
 
-.c8:only-child {
+.c7:only-child {
   height: 100%;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: #14142B;
+}
+
+.c11 {
+  font-weight: normal;
+  font-family: "OpenSans",sans-serif;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+  color: #6E7191;
 }
 
 .c4 {
   position: relative;
-  padding: 0rem;
-  height: 48px;
-  width: 160px;
+  height: 38px;
+  width: 131px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -13166,10 +7239,13 @@ exports[`Storyshots Modal Verification Status 1`] = `
   transition: all 0.3s;
   border: 0;
   border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.c4[disabled] {
+  pointer-events: none;
+  border: 0;
 }
 
 .c4 > span {
@@ -13180,43 +7256,14 @@ exports[`Storyshots Modal Verification Status 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c4[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
 .c4:focus {
   outline: 0;
 }
 
-.c4.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c4.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c4.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c4.button-icon-unset-border:active,
-.c4.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c13 {
+.c12 {
   position: relative;
-  padding: 0 1rem;
-  height: 48px;
-  width: 160px;
+  height: px;
+  width: px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -13233,13 +7280,16 @@ exports[`Storyshots Modal Verification Status 1`] = `
   transition: all 0.3s;
   border: 0;
   border-radius: 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
 }
 
-.c13 > span {
+.c12[disabled] {
+  pointer-events: none;
+  border: 0;
+}
+
+.c12 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -13247,120 +7297,21 @@ exports[`Storyshots Modal Verification Status 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c13[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c13:focus {
+.c12:focus {
   outline: 0;
 }
 
-.c13.button-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  min-width: auto;
-}
-
-.c13.button-icon i {
-  margin: 0;
-  left: auto;
-}
-
-.c13.button-icon[disabled] {
-  background: #fff;
-  opacity: 0.5;
-  border: none;
-}
-
-.c13.button-icon-unset-border:active,
-.c13.button-icon-unset-border:focus {
-  border: unset;
-}
-
-.c14 {
-  background-color: #0C9576;
+.c13 {
+  border-radius: 20px;
+  background-color: #F6F8FA;
   color: #fff;
-  box-shadow: 0 0 0 2px transparent;
-}
-
-.c14:hover {
-  background-color: #098469;
-}
-
-.c14:focus {
-  background-color: #007666;
-  box-shadow: 0 0 0.5rem rgba(20,20,43,0.12);
-}
-
-.c14:active {
-  background-color: #0C9576;
-  box-shadow: 0 0 0 2px #5AEFCC;
-}
-
-.c14[disabled] {
-  background-color: #EAECF6;
-  color: #A6A9C3;
-}
-
-.c14 [data-element='loader'] {
-  border: 4px solid #0C9576;
-  border-left-color: #fff;
 }
 
 .c5 {
-  color: #4E4B66;
-  background-color: transparent;
-}
-
-.c5:hover {
-  background-color: rgba(0,21,63,0.06);
-  color: #4E4B66;
-}
-
-.c5:focus {
-  background-color: rgba(20,20,43,0.12);
-  color: #6E7191;
-}
-
-.c5:active,
-.c5.active {
-  background-color: rgba(79,60,255,0.12);
-  color: #4E4B66;
-}
-
-.c5[disabled] {
-  opacity: 0.5;
-}
-
-.c6 {
-  background-color: transparent;
-  border: none;
-}
-
-.c16 {
-  padding: 0 0.5rem;
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
-.c11 {
-  font-weight: bold;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  color: #14142B;
-}
-
-.c12 {
-  font-weight: normal;
-  font-family: "OpenSans",sans-serif;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  color: #6E7191;
+  background-color: #F6F8FA;
+  border: 1px solid #D0D7DE;
+  border-radius: 5px;
+  color: #24292F;
 }
 
 .c0 {
@@ -13414,22 +7365,22 @@ exports[`Storyshots Modal Verification Status 1`] = `
   z-index: 101;
 }
 
-.c7 {
+.c6 {
   margin-left: auto;
 }
 
-.c10 {
+.c9 {
   padding: 20px;
   border: 1px solid gray;
   border-radius: 50%;
 }
 
-.c9 {
+.c8 {
   width: 450px;
   text-align: center;
 }
 
-.c15 {
+.c14 {
   margin-top: 36px;
 }
 
@@ -13445,7 +7396,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 @media (max-width:420px) {
-  .c9 {
+  .c8 {
     width: 320px;
     margin-top: auto;
     margin-bottom: auto;
@@ -13453,7 +7404,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 @media (max-width:420px) {
-  .c15 {
+  .c14 {
     width: 100%;
   }
 }
@@ -13469,25 +7420,18 @@ exports[`Storyshots Modal Verification Status 1`] = `
     gap={2}
   >
     <button
-      appearance="blank"
-      className="c4 c5 c6 c7 button-icon button-icon-unset-border"
+      className="c4 c5 c6"
       data-element="button"
       size="medium"
-      variant="icon"
-    >
-      <svg
-        id="/assets/icons/close.svg"
-      />
-       
-       
-    </button>
+      variant="outline"
+    />
     <div
       center={true}
-      className="c8 c9"
+      className="c7 c8"
       gap={1.5}
     >
       <div
-        className="c10"
+        className="c9"
       >
         <svg
           id="/assets/icons/warning_line.svg"
@@ -13495,28 +7439,22 @@ exports[`Storyshots Modal Verification Status 1`] = `
       </div>
       <span
         bold={true}
-        className="c11 c-text--text-xl"
+        className="c10 c-text--text-xl"
       >
         iam.modal.verificationStatus
       </span>
       <span
-        className="c12 c-text--text-m c-text--color-gray80"
+        className="c11 c-text--text-m c-text--color-gray80"
       >
         iam.modal.description
       </span>
     </div>
     <button
       appearance="system"
-      className="c13 c14 c15"
+      className="c12 c13 c14"
       data-element="button"
-      size="medium"
-      variant="full"
     >
-      <span
-        className="c16"
-      >
-        iam.modal.okBtn
-      </span>
+      iam.modal.okBtn
     </button>
   </div>
 </div>
@@ -14280,7 +8218,7 @@ exports[`Storyshots Table Default 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  border: 1px solid #eaecf7;
+  border: 1px solid #D0D7DE;
   background-color: #fff;
   border-bottom: 0;
 }
@@ -14315,14 +8253,14 @@ exports[`Storyshots Table Default 1`] = `
 }
 
 .c4 {
-  border-bottom: 1px solid #eaecf7;
+  border-bottom: 1px solid #D0D7DE;
   padding: 1rem 0;
   padding-left: 1.4rem;
   padding-right: 0.7rem;
 }
 
 .c7 {
-  border-bottom: 1px solid #eaecf7;
+  border-bottom: 1px solid #D0D7DE;
   padding: 1rem 0;
   padding-left: 0.7rem;
   padding-right: 1.4rem;
@@ -14483,92 +8421,6 @@ exports[`Storyshots Text Headings 1`] = `
 
 .c3:only-child {
   height: 100%;
-}
-
-.c0 {
-  display: grid;
-  position: relative;
-  min-height: 100vh;
-  z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
-  background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
-}
-
-.c0 .c-page-layout__header {
-  position: -webkit-sticky;
-  position: sticky;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 80px;
-  z-index: 200;
-  background: #f9f9fe;
-  border-bottom: 1px solid #eaecf7;
-}
-
-.c0 .c-page-layout__header > * {
-  height: 80px;
-}
-
-.c2 {
-  width: 100%;
-  height: 100%;
-  grid-column: 2;
-  grid-row: 2;
-  padding-bottom: 4rem;
-}
-
-.c2 .c-page-layout__section {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  max-width: 1100px;
-}
-
-.c2 .c-page-layout__section:first-child {
-  padding-top: 4rem;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.c4 > * {
-  margin-left: 0;
-  margin-right: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c4 > * + * {
-  margin-left: 2rem;
-}
-
-.c4:only-child {
-  height: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
 }
 
 .c7 {
@@ -14732,6 +8584,98 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.3px;
   letter-spacing: 0.3px;
   color: #14142B;
+}
+
+.c0 {
+  display: grid;
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+  grid-template-columns: 0 100%;
+  grid-template-rows: 0 100%;
+  background: #FFFFFF;
+  will-change: grid-template-columns;
+  -webkit-transition: grid-template-columns 0.3s;
+  transition: grid-template-columns 0.3s;
+}
+
+.c0 .c-page-layout__header {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 185px;
+  z-index: 200;
+  background: #F6F8FA;
+  border-bottom: 1px solid #D0D7DE;
+  padding: 5.5rem 3.75rem 2rem 3.75rem;
+}
+
+.c0 .c-page-layout__header--logo {
+  background: #57606A;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 2.75rem;
+}
+
+.c2 {
+  width: 100%;
+  height: 100%;
+  grid-column: 2;
+  grid-row: 2;
+  padding-bottom: 4rem;
+}
+
+.c2 .c-page-layout__section {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.c2 .c-page-layout__section:first-child {
+  padding-top: 4rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.c4 > * {
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c4 > * + * {
+  margin-left: 2rem;
+}
+
+.c4:only-child {
+  height: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c6 h1,
@@ -15266,92 +9210,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
   height: 100%;
 }
 
-.c0 {
-  display: grid;
-  position: relative;
-  min-height: 100vh;
-  z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
-  background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
-}
-
-.c0 .c-page-layout__header {
-  position: -webkit-sticky;
-  position: sticky;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 80px;
-  z-index: 200;
-  background: #f9f9fe;
-  border-bottom: 1px solid #eaecf7;
-}
-
-.c0 .c-page-layout__header > * {
-  height: 80px;
-}
-
-.c2 {
-  width: 100%;
-  height: 100%;
-  grid-column: 2;
-  grid-row: 2;
-  padding-bottom: 4rem;
-}
-
-.c2 .c-page-layout__section {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  max-width: 1100px;
-}
-
-.c2 .c-page-layout__section:first-child {
-  padding-top: 4rem;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.c4 > * {
-  margin-left: 0;
-  margin-right: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c4 > * + * {
-  margin-left: 2rem;
-}
-
-.c4:only-child {
-  height: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c7 {
   font-weight: normal;
   font-size: 1.25rem;
@@ -15472,6 +9330,98 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.4px;
   letter-spacing: 0.4px;
   color: #14142B;
+}
+
+.c0 {
+  display: grid;
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+  grid-template-columns: 0 100%;
+  grid-template-rows: 0 100%;
+  background: #FFFFFF;
+  will-change: grid-template-columns;
+  -webkit-transition: grid-template-columns 0.3s;
+  transition: grid-template-columns 0.3s;
+}
+
+.c0 .c-page-layout__header {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 185px;
+  z-index: 200;
+  background: #F6F8FA;
+  border-bottom: 1px solid #D0D7DE;
+  padding: 5.5rem 3.75rem 2rem 3.75rem;
+}
+
+.c0 .c-page-layout__header--logo {
+  background: #57606A;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 2.75rem;
+}
+
+.c2 {
+  width: 100%;
+  height: 100%;
+  grid-column: 2;
+  grid-row: 2;
+  padding-bottom: 4rem;
+}
+
+.c2 .c-page-layout__section {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.c2 .c-page-layout__section:first-child {
+  padding-top: 4rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.c4 > * {
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c4 > * + * {
+  margin-left: 2rem;
+}
+
+.c4:only-child {
+  height: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c6 h1,
@@ -15857,92 +9807,6 @@ exports[`Storyshots Text Rest 1`] = `
   height: 100%;
 }
 
-.c0 {
-  display: grid;
-  position: relative;
-  min-height: 100vh;
-  z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
-  background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
-}
-
-.c0 .c-page-layout__header {
-  position: -webkit-sticky;
-  position: sticky;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 80px;
-  z-index: 200;
-  background: #f9f9fe;
-  border-bottom: 1px solid #eaecf7;
-}
-
-.c0 .c-page-layout__header > * {
-  height: 80px;
-}
-
-.c2 {
-  width: 100%;
-  height: 100%;
-  grid-column: 2;
-  grid-row: 2;
-  padding-bottom: 4rem;
-}
-
-.c2 .c-page-layout__section {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  max-width: 1100px;
-}
-
-.c2 .c-page-layout__section:first-child {
-  padding-top: 4rem;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.c4 > * {
-  margin-left: 0;
-  margin-right: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c4 > * + * {
-  margin-left: 2rem;
-}
-
-.c4:only-child {
-  height: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c7 {
   font-weight: normal;
   font-size: 1.25rem;
@@ -16030,6 +9894,98 @@ exports[`Storyshots Text Rest 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+}
+
+.c0 {
+  display: grid;
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+  grid-template-columns: 0 100%;
+  grid-template-rows: 0 100%;
+  background: #FFFFFF;
+  will-change: grid-template-columns;
+  -webkit-transition: grid-template-columns 0.3s;
+  transition: grid-template-columns 0.3s;
+}
+
+.c0 .c-page-layout__header {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 185px;
+  z-index: 200;
+  background: #F6F8FA;
+  border-bottom: 1px solid #D0D7DE;
+  padding: 5.5rem 3.75rem 2rem 3.75rem;
+}
+
+.c0 .c-page-layout__header--logo {
+  background: #57606A;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 2.75rem;
+}
+
+.c2 {
+  width: 100%;
+  height: 100%;
+  grid-column: 2;
+  grid-row: 2;
+  padding-bottom: 4rem;
+}
+
+.c2 .c-page-layout__section {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.c2 .c-page-layout__section:first-child {
+  padding-top: 4rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.c4 > * {
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c4 > * + * {
+  margin-left: 2rem;
+}
+
+.c4:only-child {
+  height: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c6 h1,

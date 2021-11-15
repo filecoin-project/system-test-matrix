@@ -220,11 +220,11 @@ export const Page: PageLayout = Object.assign(
   ) {
     return (
       <div {...props} className={className} ref={ref}>
-        <PageContent gap={4}>{children}</PageContent>
         {header != null && header}
         {navigation != null && (
           <div className={'c-page-layout__nav'}>{navigation}</div>
-        )}
+          )}
+        <PageContent gap={4}>{children}</PageContent>
         {footer != null && footer}
       </div>
     )
@@ -241,26 +241,18 @@ const NAV_WIDTH = 300
 const CONTENT_MAX_WIDTH = 1100
 
 export const PageLayout = styled(Page)`
-  display: grid;
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
   background: ${Colors.background};
   will-change: grid-template-columns;
-  transition: grid-template-columns 0.3s;
-  ${props =>
-    props.header != null &&
-    `
-      grid-template-rows: ${HEADER_HEIGHT}px calc(100% - ${HEADER_HEIGHT}px);
-  `}
+  transition: grid-template-columns 0.3s;  
 
   ${props =>
     props.navigation != null &&
-    `
-      grid-template-columns: ${NAV_WIDTH}px 1fr;
-      
+    `      
       .c-page-layout__nav {
         position: fixed;
         left: 0;
@@ -301,14 +293,10 @@ export const PageLayout = styled(Page)`
   }
 
   .c-page-layout__footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     width: 100vw;
     max-width: calc(1100px - 4rem);
     height: 100px;
-    margin: 0 auto;
+    margin: auto auto 0;
     border-top: 1px solid ${Colors.borderColorAlternate};
     color: ${Colors.logoBackground};
 

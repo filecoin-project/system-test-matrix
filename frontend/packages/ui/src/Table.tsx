@@ -90,18 +90,7 @@ const Row = (props: any) => {
     return Row
   }
 }
-const getActiveComponent = variant => {
-  switch (variant) {
-    case 'default':
-      return TableDefault
-    case 'light':
-      return TableLight
-    case 'subtle':
-      return TableSubtle
-    default:
-      return TableDefault
-  }
-}
+
 const Sizing = {
   subtle: 99,
   default: 78,
@@ -193,6 +182,7 @@ export const TableDefault = ({
     </Wrapper>
   )
 }
+
 export const Table = ({
   variant,
 
@@ -384,3 +374,16 @@ const TableSubtle = styled(TableLight)`
 const TableRow = styled.tr`
   border-bottom: 1px solid ${Colors.borderColor};
 `
+
+const getActiveComponent = variant => {
+  switch (variant) {
+    case 'default':
+      return TableDefault
+    case 'light':
+      return TableLight
+    case 'subtle':
+      return TableSubtle
+    default:
+      return TableDefault
+  }
+}

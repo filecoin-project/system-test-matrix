@@ -4,6 +4,7 @@ export const Colors = {
   logoBackground: '#57606A',
   background: '#FFFFFF',
   borderColor: '#D0D7DE',
+  borderColorAlternate: '#AFB8C1',
   backgroundShadow: '#E6E9F0',
   titleBackground: '#F7F9FC',
   shadowColor: 'rgba(0, 0, 0, 0.16)',
@@ -11,6 +12,7 @@ export const Colors = {
 
   //Shadows
   shadowLevel1: '0px 2px 4px rgba(20, 20, 43, 0.1)',
+  shadowLevel2: '0px 0px 3px rgba(36, 41, 47, 0.2)',
 
   //input colors
   inputBackground: '#FFFFFF',

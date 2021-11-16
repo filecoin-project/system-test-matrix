@@ -5,7 +5,7 @@ import {
   StackLayout,
   Table,
   Text,
-  TreeMap,
+  ProgressBar,
   usePageLayout,
 } from '@filecoin/ui'
 import React from 'react'
@@ -49,7 +49,7 @@ const Dashboard = () => {
               width: 222,
               Cell: ({ data }) => {
                 return (
-                  <TreeMap
+                  <ProgressBar
                     onClick={() => history.push('/repository-details')}
                     data={data.testKindsData.map(
                       ({ value, description, color }) => {
@@ -65,7 +65,7 @@ const Dashboard = () => {
               width: 222,
               Cell: ({ data }) => {
                 return (
-                  <TreeMap
+                  <ProgressBar
                     onClick={() => history.push('/repository-details')}
                     data={data.testStatusData.map(
                       ({ value, description, color }) => {

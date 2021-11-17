@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-
-import { Colors } from './styles/colors'
+import styled from 'styled-components'
 import { Loader } from './Loader'
 import { Paginator } from './Paginator'
+import { Colors } from './styles/colors'
 
 interface ColumnData {
   header: string
   Cell: (data: any) => React.ReactNode
   width?: number
 }
+const TableVariant = ['default', 'light', 'subtle'] as const
+
+type TableVariant = typeof TableVariant[number]
 
 interface TableProps {
+  variant: TableVariant
   data: any[]
   columns: Record<string, ColumnData>
   action?: Function
@@ -37,10 +40,11 @@ const Row = (props: any) => {
     }
   }
   const Row = (
-    <tr>
+    <TableRow>
       {Object.values(props.columns).map(({ Cell }: any, index) => {
         return Cell ? (
           <Column
+            variant={props.variant}
             isFirst={index === 0}
             isLast={--Object.keys(props.columns).length === index}
             key={index}
@@ -54,7 +58,7 @@ const Row = (props: any) => {
           </Column>
         ) : null
       })}
-    </tr>
+    </TableRow>
   )
   if (props.expandable) {
     return (
@@ -87,7 +91,13 @@ const Row = (props: any) => {
   }
 }
 
-export const Table = ({
+const Sizing = {
+  subtle: 99,
+  default: 78,
+  light: 65,
+}
+
+export const TableDefault = ({
   data,
   columns,
   action,
@@ -117,7 +127,7 @@ export const Table = ({
       )}
       <TableWrapper data-element="table">
         <THead>
-          <tr>
+          <TableHeaderRow>
             {columns &&
               Object.values(columns).map(({ header, width }, index) => {
                 return header && !isLoading ? (
@@ -137,13 +147,14 @@ export const Table = ({
                   </Column>
                 ) : null
               })}
-          </tr>
+          </TableHeaderRow>
         </THead>
         <tbody>
           {data &&
             !isLoading &&
             data.map((rowData, rowIndex) => (
               <Row
+                variant={props.variant}
                 key={rowIndex}
                 expandable={expandable}
                 columns={columns}
@@ -177,23 +188,51 @@ export const Table = ({
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid ${Colors.borderColor};
   background-color: #fff;
-  border-bottom: 0;
 
   > table {
+    border: 1px solid ${Colors.borderColor};
+    border-radius: 5px;
+    border-spacing: 0;
     width: 100%;
-    border-collapse: collapse;
+
+    tr {
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
 
     > tbody tr div {
       color: ${Colors.grey};
+    }
+
+    > tbody {
+      tr {
+        &:first-child {
+          td {
+            border-top: 1px solid ${Colors.borderColor};
+          }
+        }
+      }
+    }
+  }
+`
+const TableHeaderRow = styled.tr`
+  td {
+    &:first-child {
+      border-top-left-radius: 5px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 5px;
     }
   }
 `
 
 const TableWrapper = styled.table`
   table-layout: fixed;
-  border-spacing: 0;
 `
 
 export const TruncatedText = styled.div`
@@ -215,11 +254,14 @@ export const Column = styled.td<{
   width?: number | string
   isFirst?: boolean
   isLast?: boolean
+  variant?: TableVariant
 }>`
-  ${({ width, isFirst, isLast }: any) => {
+  ${({ width, isFirst, isLast, variant }: any) => {
     return `
-      border-bottom: 1px solid ${Colors.borderColor};
-      padding: 1rem 0;
+    border-bottom: 1px solid ${Colors.borderColor};
+    ${variant && `height: ${Sizing[variant]}px;`}
+    padding: 1rem 0;
+
       ${
         typeof width === 'number'
           ? `width: ${width}px;`
@@ -243,6 +285,134 @@ export const LoadingColumn = styled(Column)`
   margin: auto;
 `
 
-const THead = styled.thead`
-  background-color: ${Colors.chartTitleBackground};
+const TableLight = styled(TableDefault)`
+  table {
+    border: none;
+
+    tr {
+      border: none;
+    }
+
+    ${TableHeaderText} {
+      color: ${Colors.logoBackground};
+    }
+
+    ${TableHeaderRow} {
+      background-color: ${Colors.white};
+
+      td {
+        border: none;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        &:first-child {
+          border-left: 1px solid ${Colors.borderColor};
+        }
+
+        &:last-child {
+          border-right: 1px solid ${Colors.borderColor};
+        }
+      }
+
+      &:first-child {
+        td {
+          &:first-child {
+            border-top-left-radius: 5px;
+          }
+
+          &:last-child {
+            border-top-right-radius: 5px;
+          }
+        }
+      }
+
+      &:last-child {
+        td {
+          border-bottom: 1px solid ${Colors.borderColor};
+
+          &:first-child {
+            border-bottom-left-radius: 5px;
+          }
+
+          &:last-child {
+            border-bottom-right-radius: 5px;
+          }
+        }
+      }
+    }
+  }
 `
+const TableSubtle = styled(TableLight)`
+  tbody {
+    tr {
+      td {
+        &:first-child {
+          border-left: none;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+
+      &:first-child {
+        td {
+          &:first-child {
+            border-top-left-radius: 0;
+          }
+
+          &:last-child {
+            border-top-right-radius: 0;
+          }
+        }
+      }
+
+      &:last-child {
+        td {
+          border-bottom: 1px solid ${Colors.borderColor};
+
+          &:first-child {
+            border-bottom-left-radius: 0;
+          }
+
+          &:last-child {
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+  }
+`
+const TableRow = styled.tr`
+  border-bottom: 1px solid ${Colors.borderColor};
+`
+const THead = styled.thead`
+  height: 72px;
+  background-color: ${Colors.headerBackground};
+`
+
+const getActiveComponent = variant => {
+  switch (variant) {
+    case 'default':
+      return TableDefault
+    case 'light':
+      return TableLight
+    case 'subtle':
+      return TableSubtle
+    default:
+      return TableDefault
+  }
+}
+
+export const Table = ({
+  variant,
+
+  ...props
+}: TableProps) => {
+  const ActiveComponent = getActiveComponent(variant)
+  return <ActiveComponent variant={variant} {...props}></ActiveComponent>
+}

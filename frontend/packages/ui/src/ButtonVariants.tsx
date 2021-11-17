@@ -1,6 +1,6 @@
+import { darken, lighten } from 'polished'
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
-
 import { ButtonProps, ButtonVariant } from './Button'
 import { Colors } from './styles/colors'
 import { FullWidth } from './styles/mixins'
@@ -51,7 +51,8 @@ export const ButtonBase = styled(ButtonComponent)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
+  background-color: ${props => getBackgroundColor(props.color)};
+  transition: background 0.3s;
   border: 0;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -67,18 +68,20 @@ export const ButtonBase = styled(ButtonComponent)`
     letter-spacing: 0.2px;
   }
 
+  &:hover {
+    background-color: ${props => darken(0.2, getBackgroundColor(props.color))};
+  }
+
   &:focus {
-    outline: 0;
+    background-color: ${props => lighten(0.1, getBackgroundColor(props.color))};
   }
 `
 
 const ButtonRounded = styled(ButtonBase)`
   border-radius: 20px;
-  background-color: ${props => getBackgroundColor(props.color)};
   color: ${Colors.white};
 `
 const ButtonOutline = styled(ButtonBase)`
-  background-color: ${props => getBackgroundColor(props.color)};
   border: 1px solid ${Colors.borderColor};
   border-radius: 5px;
   color: ${Colors.ghostBtnText};

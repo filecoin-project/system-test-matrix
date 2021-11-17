@@ -10,7 +10,7 @@
     "start": "http-server dist -P http://localhost:8080? -g",
     "preserve": "yarn prebuild",
     "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
-    "prebuild": "concurrently \"yarn generate:routes\"",
+    "prebuild": "concurrently \"yarn generate:routes\" \"yarn generate:behaviors\"",
     "generate:routes": "node scripts/routes.js",
     "generate:behaviors": "yarn convert-airtable && yarn convert-yaml && yarn generate-test-data",
     "build": "webpack --config ./config/webpack.prod.js",

@@ -126,27 +126,29 @@ export const TableDefault = ({
         </table>
       )}
       <TableWrapper data-element="table">
-        <TableHeaderRow>
-          {columns &&
-            Object.values(columns).map(({ header, width }, index) => {
-              return header && !isLoading ? (
-                <Column
-                  width={index === 0 && isLoading ? '100%' : width}
-                  isFirst={index === 0}
-                  isLast={Object.keys(columns).length - 1 === index}
-                  key={index}
-                >
-                  <TableHeaderText>
-                    {typeof header === 'object' ? header : `${t(header)}`}
-                  </TableHeaderText>
-                </Column>
-              ) : index === 0 && isLoading ? (
-                <Column width={'100%'} isFirst isLast key={index}>
-                  <TableHeaderText> </TableHeaderText>
-                </Column>
-              ) : null
-            })}
-        </TableHeaderRow>
+        <THead>
+          <TableHeaderRow>
+            {columns &&
+              Object.values(columns).map(({ header, width }, index) => {
+                return header && !isLoading ? (
+                  <Column
+                    width={index === 0 && isLoading ? '100%' : width}
+                    isFirst={index === 0}
+                    isLast={Object.keys(columns).length - 1 === index}
+                    key={index}
+                  >
+                    <TableHeaderText>
+                      {typeof header === 'object' ? header : `${t(header)}`}
+                    </TableHeaderText>
+                  </Column>
+                ) : index === 0 && isLoading ? (
+                  <Column width={'100%'} isFirst isLast key={index}>
+                    <TableHeaderText> </TableHeaderText>
+                  </Column>
+                ) : null
+              })}
+          </TableHeaderRow>
+        </THead>
         <tbody>
           {data &&
             !isLoading &&
@@ -205,14 +207,20 @@ const Wrapper = styled.div`
     > tbody tr div {
       color: ${Colors.grey};
     }
+
+    > tbody {
+      tr {
+        &:first-child {
+          td {
+            border-top: 1px solid ${Colors.borderColor};
+          }
+        }
+      }
+    }
   }
 `
 const TableHeaderRow = styled.tr`
-  background-color: ${Colors.headerBackground};
-
   td {
-    height: 72px;
-
     &:first-child {
       border-top-left-radius: 5px;
     }
@@ -312,8 +320,6 @@ const TableLight = styled(TableDefault)`
 
       &:first-child {
         td {
-          border-top: 1px solid ${Colors.borderColor};
-
           &:first-child {
             border-top-left-radius: 5px;
           }
@@ -355,8 +361,6 @@ const TableSubtle = styled(TableLight)`
 
       &:first-child {
         td {
-          border-top: 1px solid ${Colors.borderColor};
-
           &:first-child {
             border-top-left-radius: 0;
           }
@@ -385,6 +389,10 @@ const TableSubtle = styled(TableLight)`
 `
 const TableRow = styled.tr`
   border-bottom: 1px solid ${Colors.borderColor};
+`
+const THead = styled.thead`
+  height: 72px;
+  background-color: ${Colors.headerBackground};
 `
 
 const getActiveComponent = variant => {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { Colors } from './styles/colors'
+import styled from 'styled-components'
 
 interface Props {
   data: { 
@@ -12,11 +13,15 @@ interface Props {
     kind?: string;
     status?: string; }[]
   onClick: () => void
+  legend?: boolean
 }
 
 const HEIGHT = 20
 
-export const ProgressBar = (props: Props) => {
+export const ProgressBar = ({
+    legend = false,
+    ...props
+  }: Props) => {
 
   const [barData, setBarData] = useState(null)
   const [barColors, setBarColors] = useState(null)
@@ -61,34 +66,80 @@ export const ProgressBar = (props: Props) => {
         fill={barColors[bar]}
         dataKey={bar}
         stackId={'a'}
-        radius={i === 0 && [20, 0, 0, 20] || i === isLastBar && [0, 20, 20, 0]}
+        radius={i === 0 && [20, 0, 0, 20] || i === isLastBar && [0, 20, 20, 0] || 0}
       />
     )
+  }
+
+  const renderLegend = () => {
+    console.log(barColors)
+    return Object.keys(barData).map(bar => {
+      return (
+        <LegendPiece>
+          <LegendCircle color={barColors[bar]}/>
+          { bar }: <LegendValue>{parseFloat(barData[bar].toFixed(2))}%</LegendValue>
+        </LegendPiece>
+      )
+    })
   }
 
   const renderBarChart = () => {
     if (!barData) return null
     return (
-      <ResponsiveContainer width="100%" height={HEIGHT}>
-        <BarChart 
-          layout="vertical"
-          height={HEIGHT}
-          data={[barData]}>
-          <XAxis hide type="number"/>
-          <YAxis hide dataKey="name" type="category"/>
-          <Tooltip
-            allowEscapeViewBox={{ x: true, y: true }}
-            position={{ y: 30, x: 0 }}
-            cursor={false}
-            wrapperStyle={{ zIndex: 50, width: '100%' }}
-            contentStyle={{ backgroundColor: Colors.logoBackground }}
-            itemStyle={{ color: 'white', fontSize: 12 }}
-          />
-          {renderBars()}
-        </BarChart>
-      </ResponsiveContainer>
+      <>
+        <ResponsiveContainer width="100%" height={HEIGHT}>
+          <BarChart 
+            layout="vertical"
+            height={HEIGHT}
+            data={[barData]}>
+            <XAxis hide type="number"/>
+            <YAxis hide dataKey="name" type="category"/>
+            <Tooltip
+              allowEscapeViewBox={{ x: true, y: true }}
+              position={{ y: 30, x: 0 }}
+              cursor={false}
+              wrapperStyle={{ zIndex: 50, width: '100%' }}
+              contentStyle={{ backgroundColor: Colors.logoBackground }}
+              itemStyle={{ color: 'white', fontSize: 12 }}
+            />
+            {renderBars()}
+          </BarChart>
+        </ResponsiveContainer>
+        { legend && <Legend>{ renderLegend() }</Legend> }
+      </>
     )
   }
 
   return renderBarChart()
 }
+
+const Legend = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding: 0 1rem;
+`
+
+const LegendPiece = styled.li`
+  display: flex;
+  align-items: center;
+  flex-basis: calc(33% - 0.7rem);
+  margin-right: 0.7rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.75rem;
+  color: ${Colors.textColor};
+`
+
+const LegendCircle = styled.span<{ color: string }>`
+  display: block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.5rem;
+  background-color: ${({color}) => color};
+  border-radius: 50%;
+`
+
+const LegendValue = styled.span`
+  margin-left: 0.25rem;
+  color: ${Colors.logoBackground}
+`

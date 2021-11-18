@@ -30,10 +30,6 @@ export interface LinkProps extends RouterLinkProps {
    */
   appearance?: LinkAppearance
   /**
-   * Is link active
-   */
-  active?: boolean
-  /**
    * Link disabled
    */
   disabled?: boolean
@@ -41,7 +37,6 @@ export interface LinkProps extends RouterLinkProps {
 
 const LinkComponent = styled(RouterLink)<{
   appearance: LinkAppearance
-  active: boolean
 }>`
   font-family: ${Fonts.Manrope};
   font-weight: bold;
@@ -85,14 +80,13 @@ const System = styled(LinkComponent)`
   }
 `
 
-const Default = styled(LinkComponent)<Pick<LinkProps, 'active'>>`
+const Default = styled(LinkComponent)`
   font-family: ${Fonts.OpenSans};
   color: ${Colors.black};
   font-weight: 600;
-  text-decoration: ${({ active }) => (active ? 'underline' : null)};
 
   &:hover {
-    color: ${darken(0.2, `${Colors.gray70}`)};
+    text-decoration: underline;
   }
 
   &:focus {
@@ -107,7 +101,6 @@ const Default = styled(LinkComponent)<Pick<LinkProps, 'active'>>`
 export const Link: FunctionComponent<LinkProps> = ({
   icon,
   appearance = 'default',
-  active = false,
   children,
   ...props
 }) => {
@@ -125,7 +118,7 @@ export const Link: FunctionComponent<LinkProps> = ({
   const ActiveComponent = getActiveComponent()
   return (
     <span>
-      <ActiveComponent appearance={appearance} active={active} {...props}>
+      <ActiveComponent appearance={appearance} {...props}>
         {icon && (
           <Icon
             size="medium"

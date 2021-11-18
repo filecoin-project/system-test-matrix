@@ -65,17 +65,6 @@ export const Default = () => (
           pathname,
         }}
         target="blank"
-        active
-      >
-        Blockchain
-      </Link>
-
-      <Link
-        className="u-text--large"
-        to={{
-          pathname,
-        }}
-        target="blank"
         disabled
       >
         Blockchain

@@ -72,7 +72,6 @@ export const ProgressBar = ({
   }
 
   const renderLegend = () => {
-    console.log(barColors)
     return Object.keys(barData).map(bar => {
       return (
         <LegendPiece>

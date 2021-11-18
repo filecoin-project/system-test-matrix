@@ -1,10 +1,10 @@
+import { darken, lighten } from 'polished'
 import React, { FunctionComponent } from 'react'
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from 'react-router-dom'
 import styled from 'styled-components'
-
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
 import { Fonts } from './styles/fonts'
@@ -30,6 +30,10 @@ export interface LinkProps extends RouterLinkProps {
    */
   appearance?: LinkAppearance
   /**
+   * Is link active
+   */
+  active?: boolean
+  /**
    * Link disabled
    */
   disabled?: boolean
@@ -37,21 +41,17 @@ export interface LinkProps extends RouterLinkProps {
 
 const LinkComponent = styled(RouterLink)<{
   appearance: LinkAppearance
+  active: boolean
 }>`
   font-family: ${Fonts.Manrope};
   font-weight: bold;
   ${props => Size({ className: props.className })};
-  line-height: 16px;
-  letter-spacing: 0.2px;
   display: inline-flex;
   align-items: center;
+  transition: color 0.3s;
 
-  & [data-element='icon'] {
-    margin: 0.1rem 0.25rem 0;
-  }
-
-  &:hover {
-    text-decoration: underline;
+  svg {
+    margin-right: 6px;
   }
 
   &[disabled] {
@@ -60,40 +60,39 @@ const LinkComponent = styled(RouterLink)<{
     pointer-events: none;
   }
 `
-const Brand = styled(LinkComponent)`
-  color: ${Colors.purple70};
-
-  &:hover {
-    color: ${Colors.purple80};
-  }
-
-  &[disabled] {
-    color: ${Colors.purple80};
-  }
-`
 
 const System = styled(LinkComponent)`
-  color: ${Colors.gray90};
+  color: ${Colors.blueLink};
 
   &:hover {
-    color: ${Colors.gray90};
+    color: ${darken(0.2, `${Colors.blueLink}`)};
+    svg {
+      fill: ${darken(0.2, `${Colors.blueLink}`)};
+    }
   }
-
+  &:focus {
+    color: ${lighten(0.2, `${Colors.blueLink}`)};
+    svg {
+      fill: ${lighten(0.2, `${Colors.blueLink}`)};
+    }
+  }
   &[disabled] {
     color: ${Colors.gray80};
   }
 `
 
-const Default = styled(LinkComponent)`
+const Default = styled(LinkComponent)<Pick<LinkProps, 'active'>>`
   font-family: ${Fonts.OpenSans};
-  color: ${Colors.gray80};
-  font-weight: 400;
+  color: ${Colors.black};
+  font-weight: 600;
+  text-decoration: ${({ active }) => (active ? 'underline' : null)};
 
   &:hover {
-    color: ${Colors.gray90};
-    text-decoration: none;
+    color: ${darken(0.2, `${Colors.gray70}`)};
   }
-
+  &:focus {
+    color: ${lighten(0.2, `${Colors.gray90}`)};
+  }
   &[disabled] {
     color: ${Colors.gray60};
   }
@@ -102,13 +101,14 @@ const Default = styled(LinkComponent)`
 export const Link: FunctionComponent<LinkProps> = ({
   icon,
   appearance = 'default',
+  active = false,
   children,
   ...props
 }) => {
   const getActiveComponent = () => {
     switch (appearance) {
-      case 'brand':
-        return Brand
+      case 'default':
+        return Default
       case 'system':
         return System
 
@@ -119,9 +119,15 @@ export const Link: FunctionComponent<LinkProps> = ({
   const ActiveComponent = getActiveComponent()
   return (
     <span>
-      <ActiveComponent appearance={appearance} {...props}>
+      <ActiveComponent appearance={appearance} active={active} {...props}>
+        {icon && (
+          <Icon
+            size="medium"
+            name={icon}
+            color={props.disabled ? 'gray' : 'blue'}
+          />
+        )}
         {children}
-        <Icon size="xsmall" name={icon} color="gray" />
       </ActiveComponent>
     </span>
   )

@@ -66,16 +66,20 @@ const System = styled(LinkComponent)`
 
   &:hover {
     color: ${darken(0.2, `${Colors.blueLink}`)};
+
     svg {
       fill: ${darken(0.2, `${Colors.blueLink}`)};
     }
   }
+
   &:focus {
     color: ${lighten(0.2, `${Colors.blueLink}`)};
+
     svg {
       fill: ${lighten(0.2, `${Colors.blueLink}`)};
     }
   }
+
   &[disabled] {
     color: ${Colors.gray80};
   }
@@ -90,9 +94,11 @@ const Default = styled(LinkComponent)<Pick<LinkProps, 'active'>>`
   &:hover {
     color: ${darken(0.2, `${Colors.gray70}`)};
   }
+
   &:focus {
     color: ${lighten(0.2, `${Colors.gray90}`)};
   }
+
   &[disabled] {
     color: ${Colors.gray60};
   }

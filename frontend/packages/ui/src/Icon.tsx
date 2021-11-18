@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import React from 'react'
 import InlineSVG, { Props } from 'react-inlinesvg'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
 
 export const IconNames = [
@@ -134,13 +133,14 @@ export const IconSizes = [
 
 export type IconSizes = typeof IconSizes[number]
 
-export const IconColor = ['gray', 'green', 'red', 'white'] as const
+export const IconColor = ['gray', 'green', 'red', 'white', 'blue'] as const
 export type IconColorType = typeof IconColor[number]
 export const ColorHex = {
-  gray: Colors.gray90,
+  gray: Colors.gray80,
   green: Colors.green70,
   red: Colors.red70,
   white: Colors.white,
+  blue: Colors.blueLink,
 }
 
 /**

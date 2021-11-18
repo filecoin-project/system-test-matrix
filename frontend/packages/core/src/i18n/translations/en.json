@@ -1,5 +1,7 @@
 {
-  "filecoin": {},
+  "filecoin": {
+    "system": { "totalTests": "tests in the system" }
+  },
   "global": {
     "tableHeaders": {
       "name": "Name",

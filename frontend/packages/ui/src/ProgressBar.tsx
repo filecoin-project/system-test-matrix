@@ -4,7 +4,13 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recha
 import { Colors } from './styles/colors'
 
 interface Props {
-  data: { name: string; size: number; color: string }[]
+  data: { 
+    name?: string;
+    size?: number; 
+    color?: string;
+    percentage?: number;
+    kind?: string;
+    status?: string; }[]
   onClick: () => void
 }
 
@@ -15,7 +21,18 @@ export const ProgressBar = (props: Props) => {
   const [barData, setBarData] = useState(null)
   const [barColors, setBarColors] = useState(null)
 
-  const prepareBarChartValues = () => {
+  const preparePercentageChartValues = (name: 'kind' | 'status') => {
+    const data = {}
+    const colors = {}
+    props.data.map((value, i) => {
+      data[value[name]] = value.percentage
+      colors[value[name]] = Colors.progressBarColors[i%10]
+    })
+    setBarData(data)
+    setBarColors(colors)
+  }
+
+  const prepareNonPercentageChartValues = () => {
     const data = {}
     const colors = {}
     props.data.map(value => {
@@ -26,43 +43,52 @@ export const ProgressBar = (props: Props) => {
     setBarColors(colors)
   }
 
-  useEffect(prepareBarChartValues, [])
+  const prepareBarChartValues = () => 
+    props.data[0].percentage
+    ? preparePercentageChartValues(props.data[0].kind ? 'kind' : 'status')
+    : prepareNonPercentageChartValues()
+
+  useEffect(prepareBarChartValues, [props.data])
 
   
   const renderBars = () => {
-    const totalBars = Object.keys(barColors).length
-    return Object.keys(barColors).map((b, i) =>
+    const isLastBar = Object.keys(barColors).length -1
+    return Object.keys(barColors).map((bar, i) =>
       <Bar 
         isAnimationActive={false}
-        onClick={() => props.onClick()}
-        key={i}
-        fill={barColors[b]}
-        dataKey={b}
+        onClick={props.onClick}
+        key={bar}
+        fill={barColors[bar]}
+        dataKey={bar}
         stackId={'a'}
-        radius={i === 0 && [20, 0, 0, 20] || i === totalBars -1 && [0, 20, 20, 0]}
+        radius={i === 0 && [20, 0, 0, 20] || i === isLastBar && [0, 20, 20, 0]}
       />
     )
   }
 
-  return (
-    barData &&
-    <ResponsiveContainer width="100%" height={HEIGHT}>
-      <BarChart 
-        layout="vertical"
-        height={HEIGHT}
-        data={[barData]}>
-        <XAxis hide type="number"/>
-        <YAxis hide dataKey="name" type="category"/>
-        <Tooltip
-          allowEscapeViewBox={{ x: true, y: true }}
-          position={{ y: 30, x: 0 }}
-          cursor={false}
-          wrapperStyle={{ zIndex: 50, width: '100%' }}
-          contentStyle={{ backgroundColor: Colors.logoBackground }}
-          itemStyle={{ color: 'white', fontSize: 12 }}
-        />
-        {renderBars()}
-      </BarChart>
-    </ResponsiveContainer>
-  )
+  const renderBarChart = () => {
+    if (!barData) return null
+    return (
+      <ResponsiveContainer width="100%" height={HEIGHT}>
+        <BarChart 
+          layout="vertical"
+          height={HEIGHT}
+          data={[barData]}>
+          <XAxis hide type="number"/>
+          <YAxis hide dataKey="name" type="category"/>
+          <Tooltip
+            allowEscapeViewBox={{ x: true, y: true }}
+            position={{ y: 30, x: 0 }}
+            cursor={false}
+            wrapperStyle={{ zIndex: 50, width: '100%' }}
+            contentStyle={{ backgroundColor: Colors.logoBackground }}
+            itemStyle={{ color: 'white', fontSize: 12 }}
+          />
+          {renderBars()}
+        </BarChart>
+      </ResponsiveContainer>
+    )
+  }
+
+  return renderBarChart()
 }

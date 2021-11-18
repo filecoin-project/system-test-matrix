@@ -8,9 +8,12 @@ import {
   CardLayout,
   ColumnLayout,
   BoxLayout,
+  Colors,
 } from '@filecoin/ui'
 import styled from 'styled-components'
 import ReactTooltip from 'react-tooltip'
+import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { PageContainer } from '@/containers/PageContainer'
 
@@ -18,8 +21,14 @@ const RepositoryDetails = () => {
   const {
     state: { model },
   } = PageContainer.useContainer()
-  const systems = model.getAllSystems()
+  const params: { name: string } = useParams()
+  const { t } = useTranslation()
+  const system = model.findSystemByName(params.name)
   const testKinds = model.getAllTestKinds()
+  const totalTests = system.subsystems.reduce((totalTests, subsystem) => {
+    return totalTests + subsystem.tests.length
+  }, 0)
+
   const pageLayout = usePageLayout({
     header: (
       <PageLayout.Header>
@@ -30,11 +39,13 @@ const RepositoryDetails = () => {
     ),
     footer: <PageLayout.Footer />,
   })
-  const currentSystem = systems[0]
 
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
+        <Text type={'subtitle l'} color={'gray80'}>
+          {totalTests} {t('filecoin.system.totalTests')}
+        </Text>
         <DetailedView>
           <ReactTooltip
             effect="solid"
@@ -45,9 +56,11 @@ const RepositoryDetails = () => {
                   <div>
                     <b>Name</b>: <span>{functionName}</span>
                   </div>
+
                   <div>
                     <b>Path</b>: <span>{path}</span>
                   </div>
+
                   <div>
                     <b>Repository</b>: <span>{repository}</span>
                   </div>
@@ -55,6 +68,7 @@ const RepositoryDetails = () => {
               )
             }}
           />
+
           <BoxLayout gap={1.5}>
             <StackLayout gap={1}>
               <ColumnLayout className={'c-matrix__header'} gap={1}>
@@ -63,7 +77,7 @@ const RepositoryDetails = () => {
                 })}
               </ColumnLayout>
 
-              {currentSystem.subsystems.map(subsystem => {
+              {system.subsystems.map(subsystem => {
                 return (
                   <ColumnLayout
                     className={'c-matrix__row'}
@@ -88,6 +102,18 @@ const RepositoryDetails = () => {
                   </ColumnLayout>
                 )
               })}
+
+              <Legend>
+                <div>
+                  Missing tests <div />
+                </div>
+                <div>
+                  Passing tests <div />
+                </div>
+                <div>
+                  Failing tests <div />
+                </div>
+              </Legend>
             </StackLayout>
           </BoxLayout>
         </DetailedView>
@@ -96,9 +122,53 @@ const RepositoryDetails = () => {
   )
 }
 
+//TODO make it pretty and separate to a component
+const Legend = styled.div`
+  display: flex;
+  justify-content: end;
+
+  > div {
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+
+    > div {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+    }
+
+    &:first-child {
+      > div {
+        background: ${Colors.grayBtn};
+      }
+    }
+
+    &:nth-child(2) {
+      > div {
+        background: ${Colors.greenBtn};
+      }
+    }
+
+    &:last-child {
+      > div {
+        background: ${Colors.redBtn};
+      }
+    }
+  }
+`
+
 const DetailedView = styled(CardLayout)`
+  margin-top: 1.25rem;
+
   .c-matrix__header {
     padding-left: 116px;
+
+    > * {
+      width: 160px;
+    }
   }
 
   .c-matrix__row {
@@ -106,6 +176,7 @@ const DetailedView = styled(CardLayout)`
       display: flex;
       align-items: end;
       width: 100px;
+      min-width: 100px;
     }
   }
 `

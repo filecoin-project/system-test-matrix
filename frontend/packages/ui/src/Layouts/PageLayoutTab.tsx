@@ -54,5 +54,4 @@ const Tab = styled.a<Pick<TabProps, 'active'>>`
   ${({ active }) =>
     active &&
     `border-bottom: 2px solid ${Colors.tabHover}; padding-bottom: 10px;`}
-  cursor: pointer;
 `

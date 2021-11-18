@@ -22,21 +22,13 @@ export type OpenState = 'open' | 'closed'
  */
 export interface PageLayoutState {
   /**
-   * A React node to use to render the header. If navigation node is present header is not rendered.
+   * A React node to use to render the header.
    */
   header?: React.ReactNode
   /**
    * A React node to use to render the footer.
    */
   footer?: React.ReactNode
-  /**
-   * A React node to use to render the navigation sidebar.
-   */
-  navigation?: React.ReactNode
-  /**
-   * The open state of the navigation sidebar (whether the navigation is expanded - `'open'` or not - `'closed'`).
-   */
-  navigationState?: OpenState
 }
 
 /**
@@ -62,21 +54,7 @@ export interface PageLayoutActions {
     footer?:
       | React.ReactNode
       | ((previousState: PageLayoutState) => React.ReactNode),
-  ): void
-  /**
-   * Set the navigation React node (set to `null` to hide navigation).
-   *
-   * @param navigation A React node to render in the navigation sidebar.
-   */
-  setNavigation(
-    navigation?:
-      | React.ReactNode
-      | ((previousState: PageLayoutState) => React.ReactNode),
-  ): void
-  /**
-   * Toggle navigation open state (i.e. toggle expanded/collapsed mode).
-   */
-  toggleNavigationState(): void
+  ): void  
 }
 
 /**
@@ -87,14 +65,10 @@ export interface PageLayoutActions {
 export function usePageLayout({
   header,
   footer,
-  navigation,
-  navigationState = 'closed',
 }: PageLayoutState = {}): PageLayoutState & PageLayoutActions {
   const [state, setState] = useState<PageLayoutState>({
     header,
-    footer,
-    navigation,
-    navigationState,
+    footer
   })
 
   const setHeader = useCallback(
@@ -138,48 +112,12 @@ export function usePageLayout({
     },
     [],
   )
-
-  const setNavigation = useCallback(
-    (
-      value:
-        | React.ReactNode
-        | ((previousState: PageLayoutState) => React.ReactNode),
-    ) => {
-      setState(previousState => {
-        const navigation =
-          typeof value === 'function' ? value(previousState) : value
-        if (navigation !== previousState.navigation) {
-          return {
-            ...previousState,
-            navigation,
-          }
-        }
-        return previousState
-      })
-    },
-    [],
-  )
-
-  const toggleNavigationState = useCallback((event?: React.MouseEvent) => {
-    event?.preventDefault?.()
-    setState(previousState => {
-      if (previousState.navigation == null) {
-        return previousState
-      }
-      return {
-        ...previousState,
-        navigationState:
-          previousState.navigationState === 'open' ? 'closed' : 'open',
-      }
-    })
-  }, [])
+  
 
   return {
     ...state,
     setHeader,
-    setFooter,
-    setNavigation,
-    toggleNavigationState,
+    setFooter
   }
 }
 
@@ -213,7 +151,6 @@ export const Page: PageLayout = Object.assign(
       children,
       header,
       footer,
-      navigation,
       ...props
     }: PageLayoutProps,
     ref: React.Ref<HTMLDivElement>,
@@ -221,9 +158,6 @@ export const Page: PageLayout = Object.assign(
     return (
       <div {...props} className={className} ref={ref}>
         {header != null && header}
-        {navigation != null && (
-          <div className={'c-page-layout__nav'}>{navigation}</div>
-          )}
         <PageContent gap={4}>{children}</PageContent>
         {footer != null && footer}
       </div>
@@ -246,30 +180,7 @@ export const PageLayout = styled(Page)`
   flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  background: ${Colors.background};
-  will-change: grid-template-columns;
-  transition: grid-template-columns 0.3s;  
-
-  ${props =>
-    props.navigation != null &&
-    `      
-      .c-page-layout__nav {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 0;
-        height: 100%;
-        overflow-x: hidden;
-        background: ${Colors.background};
-        width: ${NAV_WIDTH}px;
-        transform: translateX(-100%);
-        transition: transform 0.4s ease;
-        z-index: ${zIndex.layer300};
-        will-change: transform;
-        ${props =>
-          props.navigationState === 'open' && 'transform: translateX(100%)'} 
-      }
-  `}
+  background: ${Colors.background}; 
   
   .c-page-layout__header {
     position: sticky;

@@ -90,4 +90,6 @@ export const Colors = {
   grayBtn: '#B2BAC7',
   ghostBtn: '#F6F8FA',
   ghostBtnText: '#24292F',
+  textGray: '#57606A',
+  tabHover: '#218BFF',
 }

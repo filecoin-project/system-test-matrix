@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
 import { Fonts } from './styles/fonts'
 import { FullWidth, Hidden } from './styles/mixins'
@@ -62,7 +61,15 @@ type TextProps = {
    * If text is required to have different color than default.
    * Class 'u-text--color-colorName' will be created so it can be styled outside this component
    */
-  color?: 'red' | 'green' | 'white' | 'gray60' | 'gray70' | 'gray80' | 'gray90'
+  color?:
+    | 'red'
+    | 'green'
+    | 'white'
+    | 'gray60'
+    | 'gray70'
+    | 'gray80'
+    | 'gray90'
+    | 'textGray'
   /**
    * Use bold or light variant of font
    */

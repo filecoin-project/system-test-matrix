@@ -1,16 +1,16 @@
+import { ReactProps, RefForwardingComponent } from '@filecoin/types'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { ReactProps, RefForwardingComponent } from '@filecoin/types'
-
 import { Colors } from '../styles/colors'
 import { zIndex } from '../styles/constants'
-
-import { PageLayoutSection } from './PageLayoutSection'
-import { StackLayout } from './StackLayout'
-import { GridLayout } from './GridLayout'
 import { CoverLayout } from './CoverLayout'
-import { PageLayoutHeader } from './PageLayoutHeader'
+import { GridLayout } from './GridLayout'
 import { PageLayoutFooter } from './PageLayoutFooter'
+import { PageLayoutHeader } from './PageLayoutHeader'
+import { PageLayoutSection } from './PageLayoutSection'
+import { PageLayoutTab } from './PageLayoutTab'
+import { PageLayoutTabs } from './PageLayoutTabs'
+import { StackLayout } from './StackLayout'
 
 /**
  * Whether something (usually a sidebar) is in open or closed state.
@@ -25,6 +25,14 @@ export interface PageLayoutState {
    * A React node to use to render the header. If navigation node is present header is not rendered.
    */
   header?: React.ReactNode
+  /**
+   * A React node to use to render the tabs.
+   */
+  tabs?: React.ReactNode
+  /**
+   * A React node to use to render the tab.
+   */
+  tab?: React.ReactNode
   /**
    * A React node to use to render the footer.
    */
@@ -86,12 +94,16 @@ export interface PageLayoutActions {
  */
 export function usePageLayout({
   header,
+  tabs,
+  tab,
   footer,
   navigation,
   navigationState = 'closed',
 }: PageLayoutState = {}): PageLayoutState & PageLayoutActions {
   const [state, setState] = useState<PageLayoutState>({
     header,
+    tabs,
+    tab,
     footer,
     navigation,
     navigationState,
@@ -200,6 +212,8 @@ export interface PageLayout
    */
   Section: typeof PageLayoutSection
   Header: typeof PageLayoutHeader
+  Tabs: typeof PageLayoutTabs
+  Tab: typeof PageLayoutTab
   Footer: typeof PageLayoutFooter
 }
 
@@ -212,6 +226,8 @@ export const Page: PageLayout = Object.assign(
       className,
       children,
       header,
+      tabs,
+      tab,
       footer,
       navigation,
       ...props
@@ -222,6 +238,8 @@ export const Page: PageLayout = Object.assign(
       <div {...props} className={className} ref={ref}>
         <PageContent gap={4}>{children}</PageContent>
         {header != null && header}
+        {tabs != null && tabs}
+        {tab != null && tab}
         {navigation != null && (
           <div className={'c-page-layout__nav'}>{navigation}</div>
         )}
@@ -232,6 +250,8 @@ export const Page: PageLayout = Object.assign(
   {
     Section: PageLayoutSection,
     Header: PageLayoutHeader,
+    Tabs: PageLayoutTabs,
+    Tab: PageLayoutTab,
     Footer: PageLayoutFooter,
   },
 )

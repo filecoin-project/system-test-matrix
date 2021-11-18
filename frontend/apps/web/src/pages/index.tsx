@@ -1,5 +1,7 @@
+import { RepositoryData } from '@/mocks'
 import {
   Button,
+  Icon,
   NativeLink,
   PageLayout,
   StackLayout,
@@ -8,18 +10,50 @@ import {
   TreeMap,
   usePageLayout,
 } from '@filecoin/ui'
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { RepositoryData } from '@/mocks'
-
 const Dashboard = () => {
+  const [isActive, setActive] = useState(true)
+
+  const toggleActive = () => {
+    setActive(!isActive)
+  }
+
   const pageLayout = usePageLayout({
     header: (
       <PageLayout.Header>
         <StackLayout>
           <Text type="heading 5">Systems</Text>
         </StackLayout>
+        <PageLayout.Tabs
+          onClick={() => {
+            console.log(setActive(!isActive))
+            setActive(!isActive)
+          }}
+        >
+          <PageLayout.Tab
+            onClick={() => console.log('nesto1')}
+            active={isActive}
+          >
+            <Icon name="congress" />
+            <Text>This is tab</Text>
+          </PageLayout.Tab>
+          <PageLayout.Tab
+            onClick={() => console.log('nesto2')}
+            active={isActive}
+          >
+            <Icon name="bell" />
+            <Text>This is tab</Text>
+          </PageLayout.Tab>
+          <PageLayout.Tab
+            onClick={() => console.log('nesto3')}
+            active={isActive}
+          >
+            <Icon name="export" />
+            <Text>This is tab</Text>
+          </PageLayout.Tab>
+        </PageLayout.Tabs>
       </PageLayout.Header>
     ),
     footer: <PageLayout.Footer />,

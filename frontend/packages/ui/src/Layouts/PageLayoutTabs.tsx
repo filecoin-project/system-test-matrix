@@ -13,14 +13,18 @@ export interface TabsProps {
   readonly children?: React.ReactNode
 }
 const defaultElement = 'div'
-export const PageLayoutTabs = React.forwardRef(
+
+/**
+ * TODO@Voja
+ */
+const Tabs = React.forwardRef(
   (
     { as: Component = defaultElement, children, ...props }: TabsProps,
     ref: React.Ref<Element>,
   ) => {
     return (
       <Component ref={ref} {...props}>
-        <Tabs>{children}</Tabs>
+        {children}
       </Component>
     )
   },
@@ -28,7 +32,7 @@ export const PageLayoutTabs = React.forwardRef(
   props: { as?: T } & Omit<ReactProps<T>, 'as'> & TabsProps,
 ) => JSX.Element
 
-const Tabs = styled.a`
+export const PageLayoutTabs = styled(Tabs)`
   max-width: 1100px;
   display: flex;
   gap: 12px;

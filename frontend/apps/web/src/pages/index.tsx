@@ -1,4 +1,3 @@
-import { RepositoryData } from '@/mocks'
 import {
   Button,
   Icon,
@@ -10,52 +9,45 @@ import {
   TreeMap,
   usePageLayout,
 } from '@filecoin/ui'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-const Dashboard = () => {
+import { RepositoryData } from '@/mocks'
+
+const Header = props => {
   const [isActive, setActive] = useState(true)
+  return (
+    <PageLayout.Header>
+      <StackLayout>
+        <Text type="heading 5">Systems{isActive ? 'hahahaah' : null}</Text>
+      </StackLayout>
 
-  const toggleActive = () => {
-    setActive(!isActive)
-  }
-
-  const pageLayout = usePageLayout({
-    header: (
-      <PageLayout.Header>
-        <StackLayout>
-          <Text type="heading 5">Systems</Text>
-        </StackLayout>
-        <PageLayout.Tabs
+      <PageLayout.Tabs>
+        <PageLayout.Tab
           onClick={() => {
-            console.log(setActive(!isActive))
-            setActive(!isActive)
+            console.log(isActive)
+            setActive(prev => !prev)
           }}
+          active={isActive}
         >
-          <PageLayout.Tab
-            onClick={() => console.log('nesto1')}
-            active={isActive}
-          >
-            <Icon name="congress" />
-            <Text>This is tab</Text>
-          </PageLayout.Tab>
-          <PageLayout.Tab
-            onClick={() => console.log('nesto2')}
-            active={isActive}
-          >
-            <Icon name="bell" />
-            <Text>This is tab</Text>
-          </PageLayout.Tab>
-          <PageLayout.Tab
-            onClick={() => console.log('nesto3')}
-            active={isActive}
-          >
-            <Icon name="export" />
-            <Text>This is tab</Text>
-          </PageLayout.Tab>
-        </PageLayout.Tabs>
-      </PageLayout.Header>
-    ),
+          <Icon name="congress" />
+          <Text>This is tab</Text>
+        </PageLayout.Tab>
+        <PageLayout.Tab onClick={() => console.log('nesto2')}>
+          <Icon name="bell" />
+          <Text>This is tab</Text>
+        </PageLayout.Tab>
+        <PageLayout.Tab onClick={() => console.log('nesto3')}>
+          <Icon name="export" />
+          <Text>This is tab</Text>
+        </PageLayout.Tab>
+      </PageLayout.Tabs>
+    </PageLayout.Header>
+  )
+}
+const Dashboard = () => {
+  const pageLayout = usePageLayout({
+    header: <Header />,
     footer: <PageLayout.Footer />,
   })
   const history = useHistory()

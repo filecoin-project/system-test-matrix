@@ -1,8 +1,10 @@
 import { ReactProps, RefForwardingComponent } from '@filecoin/types'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
+
 import { Colors } from '../styles/colors'
 import { zIndex } from '../styles/constants'
+
 import { CoverLayout } from './CoverLayout'
 import { GridLayout } from './GridLayout'
 import { PageLayoutFooter } from './PageLayoutFooter'

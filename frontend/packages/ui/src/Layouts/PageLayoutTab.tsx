@@ -1,41 +1,37 @@
 import { ReactProps } from '@filecoin/types'
 import { styled } from '@storybook/theming'
 import React from 'react'
+
 import { Colors } from '../styles/colors'
 
-export interface TabProps {
+export interface TabProps extends ReactProps<'div'> {
   /**
    * Is tab active
    */
-  active: boolean
-  /**
-   * Action dispatched on tab click
-   */
-  onClick: () => void
+  active?: boolean
   /**
    * The element to render the `<Tab>` as. Defaults to 'div'.
    */
   readonly as?: React.ElementType
-  /**
-   * The tab content.
-   */
-  readonly children?: React.ReactNode
 }
 const defaultElement = 'div'
-export const PageLayoutTab = React.forwardRef(
+
+/**
+ * TODO@Voja
+ */
+const Tab = React.forwardRef(
   (
     {
       as: Component = defaultElement,
-      onClick,
-      active,
       children,
+      active = false,
       ...props
     }: TabProps,
     ref: React.Ref<Element>,
   ) => {
     return (
-      <Component onClick={onClick()} ref={ref} {...props}>
-        <Tab active={active}>{children}</Tab>
+      <Component active={active} ref={ref} {...props}>
+        {children}
       </Component>
     )
   },
@@ -43,7 +39,7 @@ export const PageLayoutTab = React.forwardRef(
   props: { as?: T } & Omit<ReactProps<T>, 'as'> & TabProps,
 ) => JSX.Element
 
-const Tab = styled.a<Pick<TabProps, 'active'>>`
+export const PageLayoutTab = styled(Tab)`
   display: flex;
   padding: 12px;
   gap: 12px;

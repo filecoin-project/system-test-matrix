@@ -1,0 +1,185 @@
+#
+# This workflow runs when a comment starting with "/deploy storybook"
+# is created or edited on a pull request (note: not a review comment).
+#
+# The storybook is built from the HEAD of the pull request branch (i.e. the latest commit).
+#
+# If the build is successfull, results are uploaded to S3 and a link is posed as a new comment.
+# In case of a failure, a new comment with link to workflow run results will be posted.
+#
+# Usage notes:
+#
+#   /deploy storybook             - uses latest commit's hash for S3 folder name (preferred)
+#   /deploy storybook as <name>   - uses <name> for S3 folder name
+#
+name: On-demand Storybook deployment
+on:
+  issue_comment:
+    types: [created, edited]
+
+env:
+  AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+  S3_BUCKET: 's3://fc-storybook'
+  PUBLIC_URL: 'http://fc-storybook.s3-website.eu-central-1.amazonaws.com'
+
+jobs:
+  storybook-s3-deploy:
+    if: |
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/deploy storybook')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      #
+      # Prepare the environment and let the requestor know we've accepted the command
+      #
+      - name: Acknowledge command
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const owner = context.payload.organization.login;
+            const repo = context.payload.repository.name;
+            const comment_id = context.payload.comment.id;
+
+            github.reactions.createForIssueComment({
+                owner,
+                repo,
+                comment_id,
+                content: '+1'
+            });
+
+            const { data: pull_request } = await github.pulls.get({
+                owner,
+                repo,
+                pull_number: context.payload.issue.number,
+            });
+
+            const folder = /^\/deploy storybook as ([a-z0-9_-]+)\b/i.test(
+                  context.payload.comment.body
+              ) ?
+                  RegExp.$1 :
+                  pull_request.head.sha;
+
+            core.exportVariable('GITHUB_PR', pull_request.number);
+            core.exportVariable('GITHUB_PR_HEAD_SHA', pull_request.head.sha);
+            core.exportVariable('S3_FOLDER', folder);
+
+      #
+      # Checkout the repository.
+      #
+      - name: Checkout project
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.GITHUB_PR_HEAD_SHA }}
+
+      #
+      # Install dependencies and build Storybook
+      #
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile && yarn build-storybook
+
+      #
+      # Upload storybook-static to S3
+      #
+      - name: Upload to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          declare -A type
+
+          type[html]=text/html
+          type[css]=text/css
+          type[js]=application/javascript
+          type[png]=image/png
+          type[gif]=image/gif
+          type[jpg]=image/jpeg
+          type[jpeg]=image/jpeg
+          type[info]=text/plain
+          type[xml]=application/xml
+          type[json]=application/json
+          type[svg]=image/svg+xml
+          type[ttf]=application/x-font-truetype
+          type[otf]=application/x-font-opentype
+          type[woff]=application/font-woff
+          type[woff2]=application/font-woff2
+          type[eot]=application/vnd.ms-fontobject
+          type[txt]=text/plain
+          type[map]=text/plain
+
+          for ext in "${!type[@]}"; do
+              aws s3 cp                                          \
+                  ./storybook-static "${S3_BUCKET}/${S3_FOLDER}" \
+                  --content-type "${type[$ext]}"                 \
+                  --exclude "*" --include "*.${ext}"             \
+                  --recursive
+          done
+
+      #
+      # Post a comment with result URL
+      #
+      - name: Post success result
+        if: success()
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const owner = context.payload.organization.login;
+            const repo = context.payload.repository.name;
+            const comment_id = context.payload.comment.id;
+            const requestor = context.payload.comment.user.login;
+
+            github.reactions.createForIssueComment({
+                owner,
+                repo,
+                comment_id,
+                content: 'rocket'
+            });
+
+            const url = `${process.env.PUBLIC_URL}/${process.env.S3_FOLDER}`;
+            const body = `@${requestor} here is your requested Storybook deployment:\n\n` +
+                  `:rocket: [${url}](${url})`
+
+            await github.issues.createComment({
+              owner,
+              repo,
+              issue_number: process.env.GITHUB_PR,
+              body,
+            });
+
+      #
+      # Post a comment informing of the failure
+      #
+      - name: Post failure information
+        if: failure()
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const owner = context.payload.organization.login;
+            const repo = context.payload.repository.name;
+            const comment_id = context.payload.comment.id;
+            const requestor = context.payload.comment.user.login;
+
+            github.reactions.createForIssueComment({
+              owner,
+              repo,
+              comment_id,
+              content: 'eyes'
+            });
+
+            const { data: run } = await github.actions.getWorkflowRun({
+              owner,
+              repo,
+              run_id: process.env.GITHUB_RUN_ID,
+            });
+
+            const body = ':rotating_light: **Failed to deploy Storybook** :rotating_light:\n\n' +
+                  `@${requestor} deploy action failed, please see `+
+                  `[the workflow run details](${run.html_url}) for more information.`;
+
+            await github.issues.createComment({
+              owner,
+              repo,
+              issue_number: process.env.GITHUB_PR,
+              body,
+            });

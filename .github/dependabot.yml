@@ -1,0 +1,69 @@
+# Please see the documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: 'frontend/apps/web/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    target-branch: main
+    versioning-strategy: increase-if-necessary
+    ignore:
+      - dependency-name: '@filecoin/ui'
+      - dependency-name: '@filecoin/core'
+      - dependency-name: '@filecoin/build'
+
+  - package-ecosystem: 'npm'
+    directory: 'frontend/packages/ui'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: main
+
+  - package-ecosystem: 'npm'
+    directory: 'frontend/packages/build'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: main
+
+  - package-ecosystem: 'npm'
+    directory: 'frontend/packages/types'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: main
+
+  - package-ecosystem: 'npm'
+    directory: 'frontend/packages/core'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: main
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: main
+
+  - package-ecosystem: 'npm'
+    directory: 'frontend/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 30
+    versioning-strategy: increase-if-necessary
+    target-branch: main
+    ignore:
+      - dependency-name: 'react'
+        versions: ['17.x']
+      - dependency-name: 'react-dom'
+        versions: ['17.x']

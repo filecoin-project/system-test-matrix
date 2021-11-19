@@ -63,6 +63,7 @@ jobs:
       - name: Build React App
         id: build-project
         run: yarn install --frozen-lockfile && yarn bootstrap && yarn build
+        working-directory: ./frontend
 
       #
       # Upload the build as artifact

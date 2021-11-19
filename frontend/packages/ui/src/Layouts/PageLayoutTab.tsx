@@ -38,6 +38,7 @@ const Tab = React.forwardRef(
 export const PageLayoutTab = styled(Tab)`
   display: flex;
   padding: 12px;
+  gap: 12px;
   cursor: pointer;
   color: ${Colors.textGray};
   ${({ active }) =>

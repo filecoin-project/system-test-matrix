@@ -35,4 +35,8 @@ export const PageLayoutTabs = styled(Tabs)`
   gap: 12px;
   position: absolute;
   bottom: 0;
+
+  svg {
+    margin: auto;
+  }
 `

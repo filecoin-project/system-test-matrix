@@ -27,7 +27,7 @@ const Header = props => {
             onClick={() => setActiveTab(1)}
             active={activeTab === 1}
           >
-            <Icon name="mind_puzzle" />
+            <Icon name="book" size="small" />
             <Text>Overview</Text>
           </PageLayout.Tab>
         </NavLink>
@@ -36,7 +36,7 @@ const Header = props => {
             onClick={() => setActiveTab(2)}
             active={activeTab === 2}
           >
-            <Icon name="book" />
+            <Icon name="detailed_view" size="small" />
             <Text>Detailed view</Text>
           </PageLayout.Tab>
         </NavLink>

@@ -44,7 +44,7 @@
     "query-string": "^7.0.0",
     "react-dates": "^21.8.0",
     "react-phone-number-input": "^3.1.22",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.0.2",
     "unstated-next": "^1.1.0",
     "yup": "^0.32.9"
   }

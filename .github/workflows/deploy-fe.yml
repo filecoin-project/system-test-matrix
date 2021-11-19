@@ -51,6 +51,13 @@ jobs:
             develop-fe-
 
       #
+      # Install yq library for conversion yaml-to-json
+      #
+      - name: Get yq libary
+        id: yaml-library
+        uses: mikefarah/yq@master
+
+      #
       # Install dependencies and build the app
       #
       - name: Build React App

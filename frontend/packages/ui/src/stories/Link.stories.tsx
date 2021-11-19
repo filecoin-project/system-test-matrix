@@ -1,8 +1,8 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import styled from 'styled-components'
-import { BoxLayout } from '../Layouts/BoxLayout'
-import { ColumnLayout } from '../Layouts/ColumnLayout'
+
+import { BoxLayout , ColumnLayout } from '../Layouts'
 import { Link, LinkAppearance } from '../Link'
 
 const pathname = 'http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/'

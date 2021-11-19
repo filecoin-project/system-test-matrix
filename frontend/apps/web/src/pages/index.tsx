@@ -9,7 +9,7 @@ import {
   usePageLayout,
 } from '@filecoin/ui'
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { RepositoryData } from '@/mocks'
 
@@ -24,7 +24,7 @@ const Dashboard = () => {
     ),
     footer: <PageLayout.Footer />,
   })
-  const history = useHistory()
+  const navigate = useNavigate()
 
   return (
     <PageLayout {...pageLayout}>
@@ -51,7 +51,7 @@ const Dashboard = () => {
               Cell: ({ data }) => {
                 return (
                   <TreeMap
-                    onClick={() => history.push('/repository-details')}
+                    onClick={() => navigate('/repository-details')}
                     data={data.testKindsData.map(
                       ({ value, description, color }) => {
                         return { name: description, size: value, color }
@@ -67,7 +67,7 @@ const Dashboard = () => {
               Cell: ({ data }) => {
                 return (
                   <TreeMap
-                    onClick={() => history.push('/repository-details')}
+                    onClick={() => navigate('/repository-details')}
                     data={data.testStatusData.map(
                       ({ value, description, color }) => {
                         return { name: description, size: value, color }
@@ -85,7 +85,7 @@ const Dashboard = () => {
                 if (index === 0) {
                   return (
                     <Button
-                      onClick={() => history.push('/repository-details')}
+                      onClick={() => navigate('/repository-details')}
                       variant="rounded"
                       size="small"
                       color="success"
@@ -97,7 +97,7 @@ const Dashboard = () => {
                 if (index === 1) {
                   return (
                     <Button
-                      onClick={() => history.push('/repository-details')}
+                      onClick={() => navigate('/repository-details')}
                       variant="rounded"
                       size="small"
                       color="error"
@@ -108,7 +108,7 @@ const Dashboard = () => {
                 }
                 return (
                   <Button
-                    onClick={() => history.push('/repository-details')}
+                    onClick={() => navigate('/repository-details')}
                     variant="rounded"
                     size="small"
                     color="warning"

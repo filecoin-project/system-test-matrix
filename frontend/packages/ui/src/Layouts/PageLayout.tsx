@@ -54,7 +54,7 @@ export interface PageLayoutActions {
     footer?:
       | React.ReactNode
       | ((previousState: PageLayoutState) => React.ReactNode),
-  ): void  
+  ): void
 }
 
 /**
@@ -68,7 +68,7 @@ export function usePageLayout({
 }: PageLayoutState = {}): PageLayoutState & PageLayoutActions {
   const [state, setState] = useState<PageLayoutState>({
     header,
-    footer
+    footer,
   })
 
   const setHeader = useCallback(
@@ -112,12 +112,11 @@ export function usePageLayout({
     },
     [],
   )
-  
 
   return {
     ...state,
     setHeader,
-    setFooter
+    setFooter,
   }
 }
 
@@ -146,13 +145,7 @@ export interface PageLayout
  */
 export const Page: PageLayout = Object.assign(
   React.forwardRef(function PageLayout(
-    {
-      className,
-      children,
-      header,
-      footer,
-      ...props
-    }: PageLayoutProps,
+    { className, children, header, footer, ...props }: PageLayoutProps,
     ref: React.Ref<HTMLDivElement>,
   ) {
     return (
@@ -180,8 +173,8 @@ export const PageLayout = styled(Page)`
   flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  background: ${Colors.background}; 
-  
+  background: ${Colors.background};
+
   .c-page-layout__header {
     position: sticky;
     left: 0;

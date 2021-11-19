@@ -92,4 +92,6 @@ export const Colors = {
   ghostBtnText: '#24292F',
   textGray: '#57606A',
   tabHover: '#218BFF',
+  blueLink: '#218BFF',
+  black: '#000000',
 }

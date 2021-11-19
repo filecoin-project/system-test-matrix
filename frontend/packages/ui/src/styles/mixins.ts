@@ -27,13 +27,15 @@ export const Size = ({ className = '' }: ClassNameProp) => {
   const classes = className.split(' ')
   const getFontSize = () => {
     if (classes.includes('u-text--xsmall')) {
-      return 0.5
-    } else if (classes.includes('u-text--small')) {
-      return 0.75
-    } else if (classes.includes('u-text--medium')) {
       return 0.875
+    } else if (classes.includes('u-text--small')) {
+      return 1
+    } else if (classes.includes('u-text--medium')) {
+      return 1.25
+    } else if (classes.includes('u-text--large')) {
+      return 1.5
     }
-    return 1
+    return 1.25
   }
   return css`
     font-size: ${getFontSize()}rem;

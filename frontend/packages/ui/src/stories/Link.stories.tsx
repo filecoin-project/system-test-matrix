@@ -1,7 +1,6 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import styled from 'styled-components'
-
 import { BoxLayout } from '../Layouts/BoxLayout'
 import { ColumnLayout } from '../Layouts/ColumnLayout'
 import { Link, LinkAppearance } from '../Link'
@@ -35,6 +34,7 @@ export default {
           xsmall: 'u-text--xsmall',
           small: 'u-text--small',
           regular: 'u-text--regular',
+          large: 'u-text--large',
         },
       },
     },
@@ -51,50 +51,23 @@ export const Default = () => (
   <Wrapper>
     <ColumnLayout>
       <Link
-        to={{
-          pathname,
-        }}
-        target="blank"
-        icon={'arrow_right'}
-      >
-        Forgot your password?
-      </Link>
-
-      <Link
+        className="u-text--large"
         to={{
           pathname,
         }}
         target="blank"
       >
-        Forgot your password?
+        Blockchain
       </Link>
-
       <Link
+        className="u-text--large"
         to={{
           pathname,
         }}
         target="blank"
         disabled
       >
-        Forgot your password?
-      </Link>
-    </ColumnLayout>
-  </Wrapper>
-)
-
-export const Brand = () => (
-  <Wrapper>
-    <ColumnLayout>
-      <Link to="#" icon="arrow_right" appearance="brand">
-        Learn more
-      </Link>
-
-      <Link to="#" appearance="brand">
-        Learn more
-      </Link>
-
-      <Link to="#" appearance="brand" disabled>
-        Learn more
+        Blockchain
       </Link>
     </ColumnLayout>
   </Wrapper>
@@ -104,33 +77,37 @@ export const System = () => (
   <Wrapper>
     <ColumnLayout>
       <Link
-        to={{
-          pathname,
-        }}
-        target="blank"
-        icon={'arrow_right'}
-        appearance="system"
-      >
-        Learn more
-      </Link>
-      <Link
+        className="u-text--medium"
         to={{
           pathname,
         }}
         target="blank"
         appearance="system"
       >
-        Learn more
+        Blockchain
       </Link>
       <Link
+        className="u-text--xsmall"
         to={{
           pathname,
         }}
         target="blank"
         appearance="system"
+        icon="link"
+      >
+        /lotus/miner
+      </Link>
+      <Link
+        className="u-text--xsmall"
+        to={{
+          pathname,
+        }}
+        target="blank"
+        appearance="system"
+        icon="link"
         disabled
       >
-        Learn more
+        /lotus/miner
       </Link>
     </ColumnLayout>
   </Wrapper>
@@ -145,7 +122,16 @@ export const Sizing = () => (
         }}
         appearance="brand"
         target="blank"
-        icon={'arrow_right'}
+        className="u-text--large"
+      >
+        Large
+      </Link>
+      <Link
+        to={{
+          pathname,
+        }}
+        appearance="brand"
+        target="blank"
       >
         Regular
       </Link>
@@ -155,7 +141,6 @@ export const Sizing = () => (
         }}
         appearance="brand"
         target="blank"
-        icon={'arrow_right'}
         className="u-text--small"
       >
         Small
@@ -166,26 +151,9 @@ export const Sizing = () => (
           pathname,
         }}
         target="blank"
-        icon={'arrow_right'}
         className="u-text--xsmall"
       >
         XS Small
-      </Link>
-    </ColumnLayout>
-  </Wrapper>
-)
-export const Details = args => (
-  <Wrapper>
-    <ColumnLayout>
-      <Link
-        to={{
-          pathname,
-        }}
-        target="blank"
-        icon={'arrow_right'}
-        {...args}
-      >
-        Learn more
       </Link>
     </ColumnLayout>
   </Wrapper>

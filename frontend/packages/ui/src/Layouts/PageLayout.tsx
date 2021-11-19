@@ -1,10 +1,8 @@
 import { ReactProps, RefForwardingComponent } from '@filecoin/types'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-
 import { Colors } from '../styles/colors'
 import { zIndex } from '../styles/constants'
-
 import { CoverLayout } from './CoverLayout'
 import { GridLayout } from './GridLayout'
 import { PageLayoutFooter } from './PageLayoutFooter'
@@ -24,7 +22,7 @@ export type OpenState = 'open' | 'closed'
  */
 export interface PageLayoutState {
   /**
-   * A React node to use to render the header. If navigation node is present header is not rendered.
+   * A React node to use to render the header.
    */
   header?: React.ReactNode
   /**
@@ -39,14 +37,6 @@ export interface PageLayoutState {
    * A React node to use to render the footer.
    */
   footer?: React.ReactNode
-  /**
-   * A React node to use to render the navigation sidebar.
-   */
-  navigation?: React.ReactNode
-  /**
-   * The open state of the navigation sidebar (whether the navigation is expanded - `'open'` or not - `'closed'`).
-   */
-  navigationState?: OpenState
 }
 
 /**
@@ -73,20 +63,6 @@ export interface PageLayoutActions {
       | React.ReactNode
       | ((previousState: PageLayoutState) => React.ReactNode),
   ): void
-  /**
-   * Set the navigation React node (set to `null` to hide navigation).
-   *
-   * @param navigation A React node to render in the navigation sidebar.
-   */
-  setNavigation(
-    navigation?:
-      | React.ReactNode
-      | ((previousState: PageLayoutState) => React.ReactNode),
-  ): void
-  /**
-   * Toggle navigation open state (i.e. toggle expanded/collapsed mode).
-   */
-  toggleNavigationState(): void
 }
 
 /**
@@ -99,16 +75,12 @@ export function usePageLayout({
   tabs,
   tab,
   footer,
-  navigation,
-  navigationState = 'closed',
 }: PageLayoutState = {}): PageLayoutState & PageLayoutActions {
   const [state, setState] = useState<PageLayoutState>({
     header,
     tabs,
     tab,
     footer,
-    navigation,
-    navigationState,
   })
 
   const setHeader = useCallback(
@@ -153,47 +125,10 @@ export function usePageLayout({
     [],
   )
 
-  const setNavigation = useCallback(
-    (
-      value:
-        | React.ReactNode
-        | ((previousState: PageLayoutState) => React.ReactNode),
-    ) => {
-      setState(previousState => {
-        const navigation =
-          typeof value === 'function' ? value(previousState) : value
-        if (navigation !== previousState.navigation) {
-          return {
-            ...previousState,
-            navigation,
-          }
-        }
-        return previousState
-      })
-    },
-    [],
-  )
-
-  const toggleNavigationState = useCallback((event?: React.MouseEvent) => {
-    event?.preventDefault?.()
-    setState(previousState => {
-      if (previousState.navigation == null) {
-        return previousState
-      }
-      return {
-        ...previousState,
-        navigationState:
-          previousState.navigationState === 'open' ? 'closed' : 'open',
-      }
-    })
-  }, [])
-
   return {
     ...state,
     setHeader,
     setFooter,
-    setNavigation,
-    toggleNavigationState,
   }
 }
 
@@ -231,20 +166,16 @@ export const Page: PageLayout = Object.assign(
       tabs,
       tab,
       footer,
-      navigation,
       ...props
     }: PageLayoutProps,
     ref: React.Ref<HTMLDivElement>,
   ) {
     return (
       <div {...props} className={className} ref={ref}>
-        <PageContent gap={4}>{children}</PageContent>
         {header != null && header}
         {tabs != null && tabs}
         {tab != null && tab}
-        {navigation != null && (
-          <div className={'c-page-layout__nav'}>{navigation}</div>
-        )}
+        <PageContent gap={4}>{children}</PageContent>
         {footer != null && footer}
       </div>
     )
@@ -263,44 +194,13 @@ const NAV_WIDTH = 300
 const CONTENT_MAX_WIDTH = 1100
 
 export const PageLayout = styled(Page)`
-  display: grid;
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
   background: ${Colors.background};
-  will-change: grid-template-columns;
-  transition: grid-template-columns 0.3s;
-  ${props =>
-    props.header != null &&
-    `
-      grid-template-rows: ${HEADER_HEIGHT}px calc(100% - ${HEADER_HEIGHT}px);
-  `}
 
-  ${props =>
-    props.navigation != null &&
-    `
-      grid-template-columns: ${NAV_WIDTH}px 1fr;
-      
-      .c-page-layout__nav {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 0;
-        height: 100%;
-        overflow-x: hidden;
-        background: ${Colors.background};
-        width: ${NAV_WIDTH}px;
-        transform: translateX(-100%);
-        transition: transform 0.4s ease;
-        z-index: ${zIndex.layer300};
-        will-change: transform;
-        ${props =>
-          props.navigationState === 'open' && 'transform: translateX(100%)'} 
-      }
-  `}
-  
   .c-page-layout__header {
     position: sticky;
     left: 0;
@@ -323,14 +223,10 @@ export const PageLayout = styled(Page)`
   }
 
   .c-page-layout__footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     width: 100vw;
     max-width: calc(1100px - 4rem);
     height: 100px;
-    margin: 0 auto;
+    margin: auto auto 0;
     border-top: 1px solid ${Colors.borderColorAlternate};
     color: ${Colors.logoBackground};
 

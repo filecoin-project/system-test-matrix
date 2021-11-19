@@ -14,9 +14,6 @@ export interface TabsProps {
 }
 const defaultElement = 'div'
 
-/**
- * TODO@Voja
- */
 const Tabs = React.forwardRef(
   (
     { as: Component = defaultElement, children, ...props }: TabsProps,

@@ -1,3 +1,4 @@
+import { RepositoryData } from '@/mocks'
 import {
   Button,
   Icon,
@@ -9,38 +10,36 @@ import {
   TreeMap,
   usePageLayout,
 } from '@filecoin/ui'
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-
-import { RepositoryData } from '@/mocks'
+import React, { useState } from 'react'
+import { NavLink, useHistory } from 'react-router-dom'
 
 const Header = props => {
-  const [isActive, setActive] = useState(true)
+  const [activeTab, setActiveTab] = useState(1)
+
   return (
     <PageLayout.Header>
       <StackLayout>
-        <Text type="heading 5">Systems{isActive ? 'hahahaah' : null}</Text>
+        <Text type="heading 5">Systems</Text>
       </StackLayout>
-
       <PageLayout.Tabs>
-        <PageLayout.Tab
-          onClick={() => {
-            console.log(isActive)
-            setActive(prev => !prev)
-          }}
-          active={isActive}
-        >
-          <Icon name="congress" />
-          <Text>This is tab</Text>
-        </PageLayout.Tab>
-        <PageLayout.Tab onClick={() => console.log('nesto2')}>
-          <Icon name="bell" />
-          <Text>This is tab</Text>
-        </PageLayout.Tab>
-        <PageLayout.Tab onClick={() => console.log('nesto3')}>
-          <Icon name="export" />
-          <Text>This is tab</Text>
-        </PageLayout.Tab>
+        <NavLink to={'/system/overview'}>
+          <PageLayout.Tab
+            onClick={() => setActiveTab(1)}
+            active={activeTab === 1}
+          >
+            <Icon name="mind_puzzle" />
+            <Text>Overview</Text>
+          </PageLayout.Tab>
+        </NavLink>
+        <NavLink to={'/system/detailed-view'}>
+          <PageLayout.Tab
+            onClick={() => setActiveTab(2)}
+            active={activeTab === 2}
+          >
+            <Icon name="book" />
+            <Text>Detailed view</Text>
+          </PageLayout.Tab>
+        </NavLink>
       </PageLayout.Tabs>
     </PageLayout.Header>
   )

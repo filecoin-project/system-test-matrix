@@ -1,7 +1,6 @@
 import { ReactProps } from '@filecoin/types'
 import { styled } from '@storybook/theming'
 import React from 'react'
-
 import { Colors } from '../styles/colors'
 
 export interface TabProps extends ReactProps<'div'> {
@@ -16,9 +15,6 @@ export interface TabProps extends ReactProps<'div'> {
 }
 const defaultElement = 'div'
 
-/**
- * TODO@Voja
- */
 const Tab = React.forwardRef(
   (
     {
@@ -30,7 +26,7 @@ const Tab = React.forwardRef(
     ref: React.Ref<Element>,
   ) => {
     return (
-      <Component active={active} ref={ref} {...props}>
+      <Component active={active} ref={ref} onClick={props.onClick} {...props}>
         {children}
       </Component>
     )
@@ -42,10 +38,7 @@ const Tab = React.forwardRef(
 export const PageLayoutTab = styled(Tab)`
   display: flex;
   padding: 12px;
-  gap: 12px;
   cursor: pointer;
-  position: relative;
-  z-index: 3;
   color: ${Colors.textGray};
   ${({ active }) =>
     active &&

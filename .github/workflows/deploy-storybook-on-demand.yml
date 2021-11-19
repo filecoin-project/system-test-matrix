@@ -19,8 +19,8 @@ on:
 
 env:
   AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-  S3_BUCKET: 's3://fc-storybook'
-  PUBLIC_URL: 'http://fc-storybook.s3-website.eu-central-1.amazonaws.com'
+  S3_BUCKET: "s3://fc-storybook"
+  PUBLIC_URL: "http://fc-storybook.s3-website.eu-central-1.amazonaws.com"
 
 jobs:
   storybook-s3-deploy:
@@ -78,6 +78,7 @@ jobs:
       #
       - name: Install dependencies
         run: yarn install --frozen-lockfile && yarn build-storybook
+        working-directory: ./frontend
 
       #
       # Upload storybook-static to S3
@@ -115,6 +116,7 @@ jobs:
                   --exclude "*" --include "*.${ext}"             \
                   --recursive
           done
+        working-directory: ./frontend
 
       #
       # Post a comment with result URL

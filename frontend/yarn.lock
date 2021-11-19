@@ -10757,9 +10757,9 @@ jest-specific-snapshot@^4.0.0:
     jest-snapshot "^26.3.0"
 
 jest-styled-components@^7.0.3:
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/jest-styled-components/-/jest-styled-components-7.0.5.tgz#6da3f1a1c8bd98bccc6bcf9aabfdefdcd88fd92c"
-  integrity sha512-ZR/r3IKNkgaaVIOThn0Qis4sNQtA352qHjhbxSHeLS3FDIvHSUSJoI2b3kzk+bHHQ1VOeV630usERtnyhyZh4A==
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/jest-styled-components/-/jest-styled-components-7.0.6.tgz#f30a39f778f50b2619636523abee6e4fd50d5654"
+  integrity sha512-asCitkJfaO1TX60nbIBXDUglblDFvKl9aKA5IV09AmO2zL6DC89MgrK73/e7zXzMOpzyVmuXQLLYlsDUSYIb7g==
   dependencies:
     css "^3.0.0"
 
@@ -13106,7 +13106,7 @@ polished@^3.3.1:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-polished@^4.0.5:
+polished@^4.0.5, polished@^4.1.3:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/polished/-/polished-4.1.3.tgz#7a3abf2972364e7d97770b827eec9a9e64002cfc"
   integrity sha512-ocPAcVBUOryJEKe0z2KLd1l9EBa1r5mSwlKpExmrLzsnIzJo4axsoU9O2BjOTkDGDT4mZ0WFE5XKTlR3nLnZOA==

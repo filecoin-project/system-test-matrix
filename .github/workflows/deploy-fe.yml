@@ -1,0 +1,179 @@
+#
+# This workflow runs on push events and pull_requests of the main branch (i.e. PR merges) which
+# contain changes to the frontend/** files.
+#
+# Web app is built and deployed to AWS S3 Bucket.
+#
+name: deploy-fe
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - frontend/**
+  pull_request:
+    branches:
+      - develop
+    paths:
+      - frontend/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      #
+      # Checkout the repository.
+      #
+      - uses: actions/checkout@v2
+        id: checkout
+
+      #
+      # Cache files in ./frontend
+      #
+      - name: Cache
+        uses: actions/cache@v2
+        id: use-cache
+        with:
+          path: |
+            frontend/node_modules/
+            frontend/.eslintcache
+            frontend/.stylelintcache
+            frontend/**/.cache
+            frontend/apps/**/node_modules/
+            frontend/apps/**/tests.json
+            frontend/apps/**/behaviors.json
+            frontend/packages/**/node_modules/
+          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            develop-fe-
+
+      #
+      # Install dependencies and build the app
+      #
+      - name: Build React App
+        id: build-project
+        run: yarn install --frozen-lockfile && yarn bootstrap && yarn build
+
+      #
+      # Upload the build as artifact
+      #
+      - name: Artifacts
+        id: upload-artifact-build
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-fe
+          path: |
+            frontend/apps/web/dist/
+            frontend/packages/**/dist/
+
+      #
+      # Notify on slack if there is a failure
+      #
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: failure()
+
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      #
+      # Checkout the repository.
+      #
+      - uses: actions/checkout@v2
+        id: checkout
+
+      #
+      # Cache files in ./frontend
+      #
+      - name: Cache
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            frontend/node_modules/
+            frontend/.eslintcache
+            frontend/.stylelintcache
+            frontend/**/.cache
+            frontend/apps/**/node_modules/
+            frontend/apps/**/tests.json
+            frontend/apps/**/behaviors.json
+            frontend/packages/**/node_modules/
+          key: develop-fe-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            develop-fe-
+      #
+      # Run lint
+      #
+      - name: Lint
+        id: lint
+        run: NODE=production yarn lint
+        working-directory: ./frontend
+
+      #
+      # Run tests
+      #
+      - name: Test
+        id: unit-tests
+        run: yarn test
+        working-directory: ./frontend
+
+      #
+      # Notify if there is a failure or if this is a pull_request event
+      #
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: ${{ github.event_name == 'pull_request' || failure() }}
+
+  deploy:
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      #
+      # Configure AWS credentials
+      #
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        id: init-aws
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      #
+      # Download the artifact
+      #
+      - uses: actions/download-artifact@v2
+        with:
+          name: artifact-fe
+
+      #
+      # Upload the app on S3 bucket
+      #
+      - name: Deploy app build to S3 bucket
+        id: deploy
+        run: aws s3 sync ./apps/web/dist/ s3://fc-fe-dev --cache-control "max-age=120000" --delete
+        working-directory: ./frontend
+
+      #
+      # Notify the status of deploy on slack
+      #
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: always()

@@ -2,11 +2,6 @@ import React from 'react'
 import { Treemap as Chart } from 'recharts'
 import { Test, TestStatus } from '@filecoin/types'
 
-const NUMBER_OF_ROWS = 10
-const NUMBER_OF_COLUMNS = 10
-const NODES_LIMIT = NUMBER_OF_COLUMNS * NUMBER_OF_ROWS
-const NODE_SIZE = 16
-
 interface Props {
   data: { functionName: string; status: string }[]
   onClick: () => void
@@ -26,13 +21,25 @@ const getStatusColor = (status?: Test['status']) => {
 }
 
 export const MatrixMap = (props: Props) => {
-  const data = props.data
-    .filter((_, index) => index < NODES_LIMIT)
-    .map(node => ({
-      ...node,
-      value: 1,
-      color: getStatusColor(node.status as TestStatus),
-    }))
+  const data = props.data.length
+    ? props.data.map(node => ({
+        ...node,
+        value: 1,
+        color: getStatusColor(node.status as TestStatus),
+      }))
+    : [
+        {
+          value: 1,
+          functionName: 'missing',
+          status: 'null',
+          color: getStatusColor('null' as TestStatus),
+        },
+      ]
+  const NUMBER_OF_ROWS = Math.ceil(160 / Math.sqrt((160 * 160) / data.length))
+  const NUMBER_OF_COLUMNS = NUMBER_OF_ROWS
+  const NODES_LIMIT = NUMBER_OF_COLUMNS * NUMBER_OF_ROWS
+  const NODE_SIZE = 160 / NUMBER_OF_ROWS
+
   const countMissingNodes = Math.max(NODES_LIMIT - data.length, 0)
   const missingData = Array(countMissingNodes).fill({
     value: 1,
@@ -63,7 +70,7 @@ export const MatrixMap = (props: Props) => {
             pointerEvents: functionName === 'missing' ? 'none' : null,
             fill: color,
             stroke: '#fff',
-            strokeWidth: 1,
+            strokeWidth: NODE_SIZE * 0.0625,
             strokeOpacity: 1,
           }}
         />

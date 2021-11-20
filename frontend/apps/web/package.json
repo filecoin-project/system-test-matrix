@@ -1,6 +1,6 @@
 {
   "name": "@filecoin/web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "FILECOIN web application",
   "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",

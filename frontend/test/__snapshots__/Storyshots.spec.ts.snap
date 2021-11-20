@@ -1839,8 +1839,9 @@ exports[`Storyshots Button Ghost 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  background-color: #F6F8FA;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
   border: 0;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -1860,12 +1861,15 @@ exports[`Storyshots Button Ghost 1`] = `
   letter-spacing: 0.2px;
 }
 
+.c1:hover {
+  background-color: #b4c5d6;
+}
+
 .c1:focus {
-  outline: 0;
+  background-color: #fff;
 }
 
 .c2 {
-  background-color: #F6F8FA;
   border: 1px solid #D0D7DE;
   border-radius: 5px;
   color: #24292F;
@@ -1932,8 +1936,9 @@ exports[`Storyshots Button System 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  background-color: #77DF79;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
   border: 0;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -1953,31 +1958,154 @@ exports[`Storyshots Button System 1`] = `
   letter-spacing: 0.2px;
 }
 
+.c1:hover {
+  background-color: #2ec231;
+}
+
 .c1:focus {
-  outline: 0;
+  background-color: #a0e9a2;
+}
+
+.c3 {
+  position: relative;
+  height: 32px;
+  width: 124px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #FF837F;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.c3[disabled] {
+  pointer-events: none;
+  border: 0;
+}
+
+.c3 > span {
+  line-height: 1rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+}
+
+.c3:hover {
+  background-color: #ff2019;
+}
+
+.c3:focus {
+  background-color: #ffb4b2;
+}
+
+.c4 {
+  position: relative;
+  height: 32px;
+  width: 124px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #FFB347;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.c4[disabled] {
+  pointer-events: none;
+  border: 0;
+}
+
+.c4 > span {
+  line-height: 1rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+}
+
+.c4:hover {
+  background-color: #e08300;
+}
+
+.c4:focus {
+  background-color: #ffc87a;
+}
+
+.c5 {
+  position: relative;
+  height: 32px;
+  width: 124px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #B2BAC7;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.c5[disabled] {
+  pointer-events: none;
+  border: 0;
+}
+
+.c5 > span {
+  line-height: 1rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+}
+
+.c5:hover {
+  background-color: #77859c;
+}
+
+.c5:focus {
+  background-color: #d0d4dc;
 }
 
 .c2 {
   border-radius: 20px;
-  background-color: #77DF79;
-  color: #fff;
-}
-
-.c3 {
-  border-radius: 20px;
-  background-color: #FF837F;
-  color: #fff;
-}
-
-.c4 {
-  border-radius: 20px;
-  background-color: #FFB347;
-  color: #fff;
-}
-
-.c5 {
-  border-radius: 20px;
-  background-color: #B2BAC7;
   color: #fff;
 }
 
@@ -2009,7 +2137,7 @@ exports[`Storyshots Button System 1`] = `
       className="css-1evrh9t"
     >
       <button
-        className="c1 c3"
+        className="c3 c2"
         color="error"
         data-element="button"
         size="small"
@@ -2022,7 +2150,7 @@ exports[`Storyshots Button System 1`] = `
       className="css-1evrh9t"
     >
       <button
-        className="c1 c4"
+        className="c4 c2"
         color="warning"
         data-element="button"
         size="small"
@@ -2035,7 +2163,7 @@ exports[`Storyshots Button System 1`] = `
       className="css-1evrh9t"
     >
       <button
-        className="c1 c5"
+        className="c5 c2"
         color="secondary"
         data-element="button"
         size="small"
@@ -5157,16 +5285,17 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
 }
 
 .c0 {
-  display: grid;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
   background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
 }
 
 .c0 .c-page-layout__header {
@@ -5179,7 +5308,7 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem 3.75rem;
+  padding: 5.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -5189,6 +5318,19 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   left: 0;
   width: 100%;
   padding-left: 2.75rem;
+}
+
+.c0 .c-page-layout__footer {
+  width: 100vw;
+  max-width: calc(1100px - 4rem);
+  height: 100px;
+  margin: auto auto 0;
+  border-top: 1px solid #AFB8C1;
+  color: #57606A;
+}
+
+.c0 .c-page-layout__footer > div {
+  padding-left: 0;
 }
 
 .c2 {
@@ -5214,15 +5356,13 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
 
 <div
   className="c0"
-  navigationState="closed"
+  setFooter={[Function]}
   setHeader={[Function]}
-  setNavigation={[Function]}
   style={
     Object {
       "backgroundColor": "#f9f9fe",
     }
   }
-  toggleNavigationState={[Function]}
 >
   <div
     className="c1 c2"
@@ -5493,16 +5633,17 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
 }
 
 .c0 {
-  display: grid;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
   background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
 }
 
 .c0 .c-page-layout__header {
@@ -5515,7 +5656,7 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem 3.75rem;
+  padding: 5.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -5525,6 +5666,19 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   left: 0;
   width: 100%;
   padding-left: 2.75rem;
+}
+
+.c0 .c-page-layout__footer {
+  width: 100vw;
+  max-width: calc(1100px - 4rem);
+  height: 100px;
+  margin: auto auto 0;
+  border-top: 1px solid #AFB8C1;
+  color: #57606A;
+}
+
+.c0 .c-page-layout__footer > div {
+  padding-left: 0;
 }
 
 .c2 {
@@ -5560,10 +5714,8 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
 
 <div
   className="c0"
-  navigationState="closed"
+  setFooter={[Function]}
   setHeader={[Function]}
-  setNavigation={[Function]}
-  toggleNavigationState={[Function]}
 >
   <div
     className="c1 c2"
@@ -6045,16 +6197,17 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
 }
 
 .c0 {
-  display: grid;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
   background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
 }
 
 .c0 .c-page-layout__header {
@@ -6067,7 +6220,7 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem 3.75rem;
+  padding: 5.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -6077,6 +6230,19 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   left: 0;
   width: 100%;
   padding-left: 2.75rem;
+}
+
+.c0 .c-page-layout__footer {
+  width: 100vw;
+  max-width: calc(1100px - 4rem);
+  height: 100px;
+  margin: auto auto 0;
+  border-top: 1px solid #AFB8C1;
+  color: #57606A;
+}
+
+.c0 .c-page-layout__footer > div {
+  padding-left: 0;
 }
 
 .c2 {
@@ -6102,10 +6268,8 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
 
 <div
   className="c0"
-  navigationState="closed"
+  setFooter={[Function]}
   setHeader={[Function]}
-  setNavigation={[Function]}
-  toggleNavigationState={[Function]}
 >
   <div
     className="c1 c2"
@@ -6280,149 +6444,6 @@ exports[`Storyshots Layout/StackLayout Overview 1`] = `
 </div>
 `;
 
-exports[`Storyshots Link Brand 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.c2 > * {
-  margin-left: 0;
-  margin-right: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c2 > * + * {
-  margin-left: 1rem;
-}
-
-.c2:only-child {
-  height: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c3 {
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c3[disabled] {
-  opacity: 0.5;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  pointer-events: none;
-}
-
-.c4 {
-  color: #5B1F7B;
-}
-
-.c4:hover {
-  color: #440864;
-}
-
-.c4[disabled] {
-  color: #440864;
-}
-
-.c1 {
-  margin: 1.3rem 0;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    <span>
-      <a
-        appearance="brand"
-        className="c3 c4"
-        href="/"
-        onClick={[Function]}
-      >
-        Learn more
-        <svg
-          id="/assets/icons/arrow_right.svg"
-        />
-      </a>
-    </span>
-    <span>
-      <a
-        appearance="brand"
-        className="c3 c4"
-        href="/"
-        onClick={[Function]}
-      >
-        Learn more
-        <svg
-          id="/assets/icons/undefined.svg"
-        />
-      </a>
-    </span>
-    <span>
-      <a
-        appearance="brand"
-        className="c3 c4"
-        disabled={true}
-        href="/"
-        onClick={[Function]}
-      >
-        Learn more
-        <svg
-          id="/assets/icons/undefined.svg"
-        />
-      </a>
-    </span>
-  </div>
-</div>
-`;
-
 exports[`Storyshots Link Default 1`] = `
 .c0 {
   display: block;
@@ -6468,12 +6489,7 @@ exports[`Storyshots Link Default 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1.5rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -6482,15 +6498,12 @@ exports[`Storyshots Link Default 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c3 svg {
+  margin-right: 6px;
 }
 
 .c3[disabled] {
@@ -6502,14 +6515,17 @@ exports[`Storyshots Link Default 1`] = `
 
 .c4 {
   font-family: "OpenSans",sans-serif;
-  color: #6E7191;
-  font-weight: 400;
+  color: #000000;
+  font-weight: 600;
 }
 
 .c4:hover {
-  color: #4E4B66;
-  -webkit-text-decoration: none;
-  text-decoration: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c4:focus {
+  color: #7e7a9d;
 }
 
 .c4[disabled] {
@@ -6529,166 +6545,24 @@ exports[`Storyshots Link Default 1`] = `
     <span>
       <a
         appearance="default"
-        className="c3 c4"
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        className="c3 c4 u-text--large"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
         target="blank"
       >
-        Forgot your password?
-        <svg
-          id="/assets/icons/arrow_right.svg"
-        />
+        Blockchain
       </a>
     </span>
     <span>
       <a
         appearance="default"
-        className="c3 c4"
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
-        onClick={[Function]}
-        target="blank"
-      >
-        Forgot your password?
-        <svg
-          id="/assets/icons/undefined.svg"
-        />
-      </a>
-    </span>
-    <span>
-      <a
-        appearance="default"
-        className="c3 c4"
+        className="c3 c4 u-text--large"
         disabled={true}
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
         target="blank"
       >
-        Forgot your password?
-        <svg
-          id="/assets/icons/undefined.svg"
-        />
-      </a>
-    </span>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Link Details 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.c2 > * {
-  margin-left: 0;
-  margin-right: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c2 > * + * {
-  margin-left: 1rem;
-}
-
-.c2:only-child {
-  height: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c3 {
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c3[disabled] {
-  opacity: 0.5;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  pointer-events: none;
-}
-
-.c4 {
-  font-family: "OpenSans",sans-serif;
-  color: #6E7191;
-  font-weight: 400;
-}
-
-.c4:hover {
-  color: #4E4B66;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-}
-
-.c4[disabled] {
-  color: #A6A9C3;
-}
-
-.c1 {
-  margin: 1.3rem 0;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    <span>
-      <a
-        appearance="default"
-        className="c3 c4"
-        disabled={false}
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
-        onClick={[Function]}
-        target="blank"
-      >
-        Learn more
-        <svg
-          id="/assets/icons/arrow_right.svg"
-        />
+        Blockchain
       </a>
     </span>
   </div>
@@ -6740,12 +6614,7 @@ exports[`Storyshots Link Sizing 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1.5rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -6754,15 +6623,12 @@ exports[`Storyshots Link Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c3 svg {
+  margin-right: 6px;
 }
 
 .c3[disabled] {
@@ -6775,12 +6641,7 @@ exports[`Storyshots Link Sizing 1`] = `
 .c5 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 0.75rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1.25rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -6789,15 +6650,12 @@ exports[`Storyshots Link Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c5 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c5:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c5 svg {
+  margin-right: 6px;
 }
 
 .c5[disabled] {
@@ -6810,12 +6668,7 @@ exports[`Storyshots Link Sizing 1`] = `
 .c6 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 0.5rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -6824,15 +6677,12 @@ exports[`Storyshots Link Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c6 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c6:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c6 svg {
+  margin-right: 6px;
 }
 
 .c6[disabled] {
@@ -6842,16 +6692,50 @@ exports[`Storyshots Link Sizing 1`] = `
   pointer-events: none;
 }
 
+.c7 {
+  font-family: "Manrope",sans-serif;
+  font-weight: bold;
+  font-size: 0.875rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.c7 svg {
+  margin-right: 6px;
+}
+
+.c7[disabled] {
+  opacity: 0.5;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  pointer-events: none;
+}
+
 .c4 {
-  color: #5B1F7B;
+  font-family: "OpenSans",sans-serif;
+  color: #000000;
+  font-weight: 600;
 }
 
 .c4:hover {
-  color: #440864;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c4:focus {
+  color: #7e7a9d;
 }
 
 .c4[disabled] {
-  color: #440864;
+  color: #A6A9C3;
 }
 
 .c1 {
@@ -6867,43 +6751,45 @@ exports[`Storyshots Link Sizing 1`] = `
     <span>
       <a
         appearance="brand"
-        className="c3 c4"
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        className="c3 c4 u-text--large"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        Large
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="brand"
+        className="c5 c4"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
         target="blank"
       >
         Regular
-        <svg
-          id="/assets/icons/arrow_right.svg"
-        />
       </a>
     </span>
     <span>
       <a
         appearance="brand"
-        className="c5 c4 u-text--small"
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        className="c6 c4 u-text--small"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
         target="blank"
       >
         Small
-        <svg
-          id="/assets/icons/arrow_right.svg"
-        />
       </a>
     </span>
     <span>
       <a
         appearance="brand"
-        className="c6 c4 u-text--xsmall"
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        className="c7 c4 u-text--xsmall"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
         target="blank"
       >
         XS Small
-        <svg
-          id="/assets/icons/arrow_right.svg"
-        />
       </a>
     </span>
   </div>
@@ -6955,12 +6841,7 @@ exports[`Storyshots Link System 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1.25rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -6969,15 +6850,12 @@ exports[`Storyshots Link System 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c3 svg {
+  margin-right: 6px;
 }
 
 .c3[disabled] {
@@ -6987,12 +6865,51 @@ exports[`Storyshots Link System 1`] = `
   pointer-events: none;
 }
 
+.c5 {
+  font-family: "Manrope",sans-serif;
+  font-weight: bold;
+  font-size: 0.875rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.c5 svg {
+  margin-right: 6px;
+}
+
+.c5[disabled] {
+  opacity: 0.5;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  pointer-events: none;
+}
+
 .c4 {
-  color: #4E4B66;
+  color: #218BFF;
 }
 
 .c4:hover {
-  color: #4E4B66;
+  color: #0059ba;
+}
+
+.c4:hover svg {
+  fill: #0059ba;
+}
+
+.c4:focus {
+  color: #87c0ff;
+}
+
+.c4:focus svg {
+  fill: #87c0ff;
 }
 
 .c4[disabled] {
@@ -7012,44 +6929,41 @@ exports[`Storyshots Link System 1`] = `
     <span>
       <a
         appearance="system"
-        className="c3 c4"
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        className="c3 c4 u-text--medium"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
         target="blank"
       >
-        Learn more
-        <svg
-          id="/assets/icons/arrow_right.svg"
-        />
+        Blockchain
       </a>
     </span>
     <span>
       <a
         appearance="system"
-        className="c3 c4"
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        className="c5 c4 u-text--xsmall"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
         target="blank"
       >
-        Learn more
         <svg
-          id="/assets/icons/undefined.svg"
+          id="/assets/icons/link.svg"
         />
+        /lotus/miner
       </a>
     </span>
     <span>
       <a
         appearance="system"
-        className="c3 c4"
+        className="c5 c4 u-text--xsmall"
         disabled={true}
-        href="http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
+        href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
         target="blank"
       >
-        Learn more
         <svg
-          id="/assets/icons/undefined.svg"
+          id="/assets/icons/link.svg"
         />
+        /lotus/miner
       </a>
     </span>
   </div>
@@ -7110,8 +7024,9 @@ exports[`Storyshots Modal Modal Example 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  background-color: #F6F8FA;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
   border: 0;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -7131,13 +7046,16 @@ exports[`Storyshots Modal Modal Example 1`] = `
   letter-spacing: 0.2px;
 }
 
+.c0:hover {
+  background-color: #b4c5d6;
+}
+
 .c0:focus {
-  outline: 0;
+  background-color: #fff;
 }
 
 .c1 {
   border-radius: 20px;
-  background-color: #F6F8FA;
   color: #fff;
 }
 
@@ -7235,8 +7153,9 @@ exports[`Storyshots Modal Verification Status 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  background-color: #F6F8FA;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
   border: 0;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -7256,8 +7175,12 @@ exports[`Storyshots Modal Verification Status 1`] = `
   letter-spacing: 0.2px;
 }
 
+.c4:hover {
+  background-color: #b4c5d6;
+}
+
 .c4:focus {
-  outline: 0;
+  background-color: #fff;
 }
 
 .c12 {
@@ -7276,8 +7199,9 @@ exports[`Storyshots Modal Verification Status 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  background-color: #F6F8FA;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
   border: 0;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -7297,18 +7221,20 @@ exports[`Storyshots Modal Verification Status 1`] = `
   letter-spacing: 0.2px;
 }
 
+.c12:hover {
+  background-color: #b4c5d6;
+}
+
 .c12:focus {
-  outline: 0;
+  background-color: #fff;
 }
 
 .c13 {
   border-radius: 20px;
-  background-color: #F6F8FA;
   color: #fff;
 }
 
 .c5 {
-  background-color: #F6F8FA;
   border: 1px solid #D0D7DE;
   border-radius: 5px;
   color: #24292F;
@@ -7505,7 +7431,7 @@ exports[`Storyshots NativeLink Brand 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -7651,7 +7577,7 @@ exports[`Storyshots NativeLink Default 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -7792,7 +7718,7 @@ exports[`Storyshots NativeLink Details 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -7911,7 +7837,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -7946,7 +7872,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 .c5 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 0.75rem;
+  font-size: 1rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -7981,7 +7907,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 .c6 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 0.5rem;
+  font-size: 0.875rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -8117,7 +8043,7 @@ exports[`Storyshots NativeLink System 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -8205,146 +8131,6 @@ exports[`Storyshots NativeLink System 1`] = `
         id="/assets/icons/undefined.svg"
       />
     </a>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Table Default 1`] = `
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  border: 1px solid #D0D7DE;
-  background-color: #fff;
-  border-bottom: 0;
-}
-
-.c1 > table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.c1 > table > tbody tr div {
-  color: #939AAD;
-}
-
-.c2 {
-  table-layout: fixed;
-  border-spacing: 0;
-}
-
-.c5 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: middle;
-  max-width: 100%;
-}
-
-.c6 {
-  color: #14142B;
-  font-weight: normal;
-  text-transform: uppercase;
-  vertical-align: middle;
-}
-
-.c4 {
-  border-bottom: 1px solid #D0D7DE;
-  padding: 1rem 0;
-  padding-left: 1.4rem;
-  padding-right: 0.7rem;
-}
-
-.c7 {
-  border-bottom: 1px solid #D0D7DE;
-  padding: 1rem 0;
-  padding-left: 0.7rem;
-  padding-right: 1.4rem;
-}
-
-.c3 {
-  background-color: #F7F9FC;
-}
-
-.c0 {
-  height: 100%;
-  padding: 4rem;
-}
-
-<div
-  className="c0"
->
-  <div
-    className="c1"
-    data-element="tableWrapper"
-  >
-    <table
-      className="c2"
-      data-element="table"
-    >
-      <thead
-        className="c3"
-      >
-        <tr>
-          <td
-            className="c4"
-          >
-            <div
-              className="c5 c6"
-            >
-              Title
-            </div>
-          </td>
-          <td
-            className="c7"
-          >
-            <div
-              className="c5 c6"
-            >
-              Price
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            className="c4"
-          >
-            <span>
-              One
-            </span>
-          </td>
-          <td
-            className="c7"
-          >
-            <span>
-              100
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="c4"
-          >
-            <span>
-              Two
-            </span>
-          </td>
-          <td
-            className="c7"
-          >
-            <span>
-              200
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
 `;
@@ -8587,16 +8373,17 @@ exports[`Storyshots Text Headings 1`] = `
 }
 
 .c0 {
-  display: grid;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
   background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
 }
 
 .c0 .c-page-layout__header {
@@ -8609,7 +8396,7 @@ exports[`Storyshots Text Headings 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem 3.75rem;
+  padding: 5.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -8619,6 +8406,19 @@ exports[`Storyshots Text Headings 1`] = `
   left: 0;
   width: 100%;
   padding-left: 2.75rem;
+}
+
+.c0 .c-page-layout__footer {
+  width: 100vw;
+  max-width: calc(1100px - 4rem);
+  height: 100px;
+  margin: auto auto 0;
+  border-top: 1px solid #AFB8C1;
+  color: #57606A;
+}
+
+.c0 .c-page-layout__footer > div {
+  padding-left: 0;
 }
 
 .c2 {
@@ -8701,10 +8501,8 @@ exports[`Storyshots Text Headings 1`] = `
 
 <div
   className="c0"
-  navigationState="closed"
+  setFooter={[Function]}
   setHeader={[Function]}
-  setNavigation={[Function]}
-  toggleNavigationState={[Function]}
 >
   <div
     className="c1 c2"
@@ -9333,16 +9131,17 @@ exports[`Storyshots Text Paragraphs 1`] = `
 }
 
 .c0 {
-  display: grid;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
   background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
 }
 
 .c0 .c-page-layout__header {
@@ -9355,7 +9154,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem 3.75rem;
+  padding: 5.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -9365,6 +9164,19 @@ exports[`Storyshots Text Paragraphs 1`] = `
   left: 0;
   width: 100%;
   padding-left: 2.75rem;
+}
+
+.c0 .c-page-layout__footer {
+  width: 100vw;
+  max-width: calc(1100px - 4rem);
+  height: 100px;
+  margin: auto auto 0;
+  border-top: 1px solid #AFB8C1;
+  color: #57606A;
+}
+
+.c0 .c-page-layout__footer > div {
+  padding-left: 0;
 }
 
 .c2 {
@@ -9447,10 +9259,8 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 <div
   className="c0"
-  navigationState="closed"
+  setFooter={[Function]}
   setHeader={[Function]}
-  setNavigation={[Function]}
-  toggleNavigationState={[Function]}
 >
   <div
     className="c1 c2"
@@ -9897,16 +9707,17 @@ exports[`Storyshots Text Rest 1`] = `
 }
 
 .c0 {
-  display: grid;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   min-height: 100vh;
   z-index: 0;
-  grid-template-columns: 0 100%;
-  grid-template-rows: 0 100%;
   background: #FFFFFF;
-  will-change: grid-template-columns;
-  -webkit-transition: grid-template-columns 0.3s;
-  transition: grid-template-columns 0.3s;
 }
 
 .c0 .c-page-layout__header {
@@ -9919,7 +9730,7 @@ exports[`Storyshots Text Rest 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem 3.75rem;
+  padding: 5.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -9929,6 +9740,19 @@ exports[`Storyshots Text Rest 1`] = `
   left: 0;
   width: 100%;
   padding-left: 2.75rem;
+}
+
+.c0 .c-page-layout__footer {
+  width: 100vw;
+  max-width: calc(1100px - 4rem);
+  height: 100px;
+  margin: auto auto 0;
+  border-top: 1px solid #AFB8C1;
+  color: #57606A;
+}
+
+.c0 .c-page-layout__footer > div {
+  padding-left: 0;
 }
 
 .c2 {
@@ -10011,10 +9835,8 @@ exports[`Storyshots Text Rest 1`] = `
 
 <div
   className="c0"
-  navigationState="closed"
+  setFooter={[Function]}
   setHeader={[Function]}
-  setNavigation={[Function]}
-  toggleNavigationState={[Function]}
 >
   <div
     className="c1 c2"

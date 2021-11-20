@@ -7010,8 +7010,8 @@ exports[`Storyshots Loader Default 1`] = `
 exports[`Storyshots Modal Modal Example 1`] = `
 .c0 {
   position: relative;
-  height: px;
-  width: px;
+  height: 38px;
+  width: 131px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -7063,6 +7063,8 @@ exports[`Storyshots Modal Modal Example 1`] = `
   className="c0 c1"
   data-element="button"
   onClick={[Function]}
+  size="medium"
+  variant="rounded"
 >
   Open Modal
 </button>
@@ -7184,52 +7186,6 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 .c12 {
-  position: relative;
-  height: px;
-  width: px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  background-color: #F6F8FA;
-  -webkit-transition: background 0.3s;
-  transition: background 0.3s;
-  border: 0;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.c12[disabled] {
-  pointer-events: none;
-  border: 0;
-}
-
-.c12 > span {
-  line-height: 1rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-}
-
-.c12:hover {
-  background-color: #b4c5d6;
-}
-
-.c12:focus {
-  background-color: #fff;
-}
-
-.c13 {
   border-radius: 20px;
   color: #fff;
 }
@@ -7306,7 +7262,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   text-align: center;
 }
 
-.c14 {
+.c13 {
   margin-top: 36px;
 }
 
@@ -7330,7 +7286,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 @media (max-width:420px) {
-  .c14 {
+  .c13 {
     width: 100%;
   }
 }
@@ -7376,9 +7332,10 @@ exports[`Storyshots Modal Verification Status 1`] = `
       </span>
     </div>
     <button
-      appearance="system"
-      className="c12 c13 c14"
+      className="c4 c12 c13"
       data-element="button"
+      size="medium"
+      variant="rounded"
     >
       iam.modal.okBtn
     </button>

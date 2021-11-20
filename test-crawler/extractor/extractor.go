@@ -37,7 +37,7 @@ func ExtractInfo(file c.TestFile, ctx context.Context) (scenarios []c.Scenario, 
 
 	cursor := sitter.NewTreeCursor(tree.RootNode())
 
-	scenData, meta, err := getScenarios(content, cursor, file.Path)
+	scenData, meta, err := parseContent(content, cursor, file.Path)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -67,7 +67,7 @@ func getFileContent(filePath string) (content string, err error) {
 	return string(src), nil
 }
 
-func getScenarios(content string, treeCursor *sitter.TreeCursor, filePath string) ([]c.Scenario, *Metadata, error) {
+func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string) ([]c.Scenario, *Metadata, error) {
 	var scenarios []c.Scenario
 	var metadata Metadata
 

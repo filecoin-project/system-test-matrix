@@ -1,6 +1,14 @@
 package main
 
+/*
+	TODO: Need to know when the function starts and ends so we know if behevior is inside the function body
+	TODO: Above function and on top of the source file should be flag for ignore and we should support that
+	TODO: Header support
+	TODO: Detect language and pass it to parser
+*/
+
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -20,8 +28,10 @@ func main() {
 		return
 	}
 
+	ctx := context.Background()
+
 	for i, file := range files {
-		scenarios, meta, err := ex.ExtractScenarios(file)
+		scenarios, meta, err := ex.ExtractInfo(file, ctx)
 		if err != nil {
 			fmt.Println(err)
 			continue

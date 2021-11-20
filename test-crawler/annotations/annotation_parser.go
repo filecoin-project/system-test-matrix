@@ -94,19 +94,6 @@ func getBehaviorInfo(input string) ([]BehaviorType, error) {
 	return behaviors, nil
 }
 
-/**** Not needed anymore but might be useful in the future ****
-func findInStringByKey(input string, key string) string {
-	reg := regexp.MustCompile(fmt.Sprintf("%s=(([A-z0-9]+\\s?(,?\\s?)){1,});?", key))
-
-	match := reg.FindAllStringSubmatch(input, -1)
-	if len(match) < 1 {
-		return ""
-	}
-
-	return match[0][1]
-}
-*/
-
 func findItemBySymbol(input string, key string) []string {
 	reg := regexp.MustCompile(fmt.Sprintf("%s([a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*)", key))
 

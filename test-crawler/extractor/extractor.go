@@ -1,18 +1,18 @@
 package extractor
 
 import (
+	"context"
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
-	"strings"
 
 	a "testsuites/annotations"
 	c "testsuites/collector"
 
-	"github.com/dave/dst"
-	"github.com/dave/dst/decorator"
+	sitter "github.com/smacker/go-tree-sitter"
+	"github.com/smacker/go-tree-sitter/golang"
 )
 
 type Metadata struct {
@@ -21,13 +21,23 @@ type Metadata struct {
 	a.HeaderType
 }
 
-func ExtractScenarios(file c.TestFile) (scenarios []c.Scenario, meta *Metadata, err error) {
+func ExtractInfo(file c.TestFile, ctx context.Context) (scenarios []c.Scenario, meta *Metadata, err error) {
 	content, err := getFileContent(file.Path)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	scenData, meta, err := getScenarios(content, file.Path)
+	parser := sitter.NewParser()
+	parser.SetLanguage(golang.GetLanguage())
+
+	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
+	if err != nil {
+		return nil, nil, err
+	}
+
+	cursor := sitter.NewTreeCursor(tree.RootNode())
+
+	scenData, meta, err := getScenarios(content, cursor, file.Path)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -49,7 +59,7 @@ func getFileContent(filePath string) (content string, err error) {
 	}
 	defer file.Close()
 
-	src, err := ioutil.ReadAll(file)
+	src, err := io.ReadAll(file)
 	if err != nil {
 		return "", err
 	}
@@ -57,125 +67,112 @@ func getFileContent(filePath string) (content string, err error) {
 	return string(src), nil
 }
 
-func getScenarios(content string, filePath string) ([]c.Scenario, *Metadata, error) {
+func getScenarios(content string, treeCursor *sitter.TreeCursor, filePath string) ([]c.Scenario, *Metadata, error) {
 	var scenarios []c.Scenario
 	var metadata Metadata
 
-	var annotationParser a.Parser
+	//var annotationParser a.Parser
 
-	file, err := decorator.Parse(content)
-	if err != nil {
-		panic(err)
-	}
+	// file, err := decorator.Parse(content)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	metadata.Package = file.Name.Name
+	// metadata.Package = file.Name.Name
 
-	for _, stmt := range file.Decs.NodeDecs.Start {
-		data, parsedType, err := annotationParser.Parse(stmt)
-		if err == nil {
-			if parsedType == a.Header {
-				metadata.TestType = data.(*a.HeaderType).TestType
-			} else if parsedType == a.Ignore {
-				metadata.Ignore = data.(bool)
-			}
-		}
-	}
+	// for _, stmt := range file.Decs.NodeDecs.Start {
+	// 	data, parsedType, err := annotationParser.Parse(stmt)
+	// 	if err == nil {
+	// 		if parsedType == a.Header {
+	// 			metadata.TestType = data.(*a.HeaderType).TestType
+	// 		} else if parsedType == a.Ignore {
+	// 			metadata.Ignore = data.(bool)
+	// 		}
+	// 	}
+	// }
 
-	for _, function := range file.Scope.Objects {
-		testExists := false
+	// for _, function := range file.Scope.Objects {
+	// 	testExists := false
 
-		params := findFunctionParamsFromDST(function)
+	// 	params := findFunctionParamsFromDST(function)
 
-		for _, param := range params {
-			if strings.Contains(param, "testing.T") {
-				testExists = true
-			}
-		}
+	// 	for _, param := range params {
+	// 		if strings.Contains(param, "testing.T") {
+	// 			testExists = true
+	// 		}
+	// 	}
 
-		if testExists {
+	// 	if testExists {
 
-			behaviors := findBehaviorsFromDST(function)
+	// 		behaviors := findBehaviorsFromDST(function)
 
-			scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
-		}
+	// 		scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
+	// 	}
 
-	}
+	// }
 
 	return scenarios, &metadata, nil
 }
 
-func findFunctionParamsFromDST(object *dst.Object) []string {
+func findFunctionParamsFromDST() []string {
 
 	var params []string
 
-	switch object.Decl.(type) {
-	case *dst.FuncDecl:
-		{
-			if object.Decl.(*dst.FuncDecl) != nil {
-				paramList := object.Decl.(*dst.FuncDecl).Type.Params.List
-				for _, param := range paramList {
-					switch outer := param.Type.(type) {
-					case *dst.FuncType:
-						{
+	// switch object.Decl.(type) {
+	// case *dst.FuncDecl:
+	// 	{
+	// 		if object.Decl.(*dst.FuncDecl) != nil {
+	// 			paramList := object.Decl.(*dst.FuncDecl).Type.Params.List
+	// 			for _, param := range paramList {
+	// 				switch outer := param.Type.(type) {
+	// 				//case *dst.FuncType:
+	// 					{
 
-						}
-					case *dst.StarExpr:
-						{
-							switch inner := outer.X.(type) {
-							case *dst.SelectorExpr:
-								{
-									pkg := inner.X.(*dst.Ident).Name
-									pkgType := inner.Sel.Name
+	// 					}
+	// 				case *dst.StarExpr:
+	// 					{
+	// 						switch inner := outer.X.(type) {
+	// 						case *dst.SelectorExpr:
+	// 							{
+	// 								pkg := inner.X.(*dst.Ident).Name
+	// 								pkgType := inner.Sel.Name
 
-									params = append(params, fmt.Sprintf("%s.%s", pkg, pkgType))
-								}
-							}
+	// 								params = append(params, fmt.Sprintf("%s.%s", pkg, pkgType))
+	// 							}
+	// 						}
 
-						}
-					}
-				}
-			}
-		}
-	}
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	return params
 }
 
-// func findScenarioFromDST(object *dst.Object) a.ScenarioType {
-// 	var fType a.ScenarioType
-// 	var annotationParser a.Parser
-
-// 	if len(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start) > 0 {
-// 		IfType, err := annotationParser.Parse(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Scenario)
-// 		if err == nil {
-// 			fType.Ignore = IfType.(*a.ScenarioType).Ignore
-// 		}
-// 	}
-// 	return fType
-// }
-
-func findBehaviorsFromDST(object *dst.Object) []a.BehaviorType {
+func findBehaviorsFromDST() []a.BehaviorType {
 	var behaviors []a.BehaviorType
 	var annotationParser a.Parser
 
-	bodyObjects := object.Decl.(*dst.FuncDecl).Body.List
+	//bodyObjects := object.Decl.(*dst.FuncDecl).Body.List
 
-	for _, object := range bodyObjects {
+	//for _, object := range bodyObjects {
 
-		comment := getCommentFromStmt(object)
+	comment := getCommentFromStmt()
 
-		behavior, parsedType, err := annotationParser.Parse(comment)
-		if err == nil {
-			if behavior != nil && parsedType == a.Behavior {
-				switch behaviorType := behavior.(type) {
-				case []a.BehaviorType:
-					behaviors = append(behaviors, behaviorType...)
-				}
-			} else {
-				behaviors = append(behaviors, a.BehaviorType{})
+	behavior, parsedType, err := annotationParser.Parse(comment)
+	if err == nil {
+		if behavior != nil && parsedType == a.Behavior {
+			switch behaviorType := behavior.(type) {
+			case []a.BehaviorType:
+				behaviors = append(behaviors, behaviorType...)
 			}
+		} else {
+			behaviors = append(behaviors, a.BehaviorType{})
 		}
 	}
+	//}
 
 	return behaviors
 }
@@ -199,91 +196,8 @@ func makeID(filePath string, funcName string, behavior string) string {
 	return string(hex.EncodeToString(hash[:]))
 }
 
-func getCommentFromStmt(statment dst.Stmt) string {
+func getCommentFromStmt() string {
 	var result string
-
-	switch v := statment.(type) {
-	case *dst.BadStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.DeclStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.EmptyStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.LabeledStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.ExprStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.SendStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.IncDecStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.AssignStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.GoStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.DeferStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.ReturnStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.BranchStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.IfStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.CaseClause:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.SwitchStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.TypeSwitchStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.CommClause:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.SelectStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.ForStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.RangeStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	}
 
 	return result
 }

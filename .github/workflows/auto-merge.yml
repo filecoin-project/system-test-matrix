@@ -6,6 +6,10 @@ name: auto-merge
 
 on:
   pull_request:
+    branches:
+      - main
+    paths:
+      - '**/package.json'
 
 jobs:
   auto-merge:

@@ -14,7 +14,7 @@ on:
       - frontend/**
   pull_request:
     branches:
-      - develop
+      - main
     paths:
       - frontend/**
 

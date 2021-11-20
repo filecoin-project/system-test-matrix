@@ -173,7 +173,7 @@ jobs:
       #
       - name: Deploy app build to S3 bucket
         id: deploy
-        run: aws s3 sync ./frontend/apps/web/dist/ s3://fc-fe-dev --cache-control "max-age=120000" --delete
+        run: aws s3 sync ./apps/web/dist/ s3://fc-fe-dev --cache-control "max-age=120000" --delete
 
       #
       # Notify the status of deploy on slack

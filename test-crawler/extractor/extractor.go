@@ -69,27 +69,11 @@ func getFileContent(filePath string) (content string, err error) {
 
 func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string) ([]c.Scenario, *Metadata, error) {
 	var scenarios []c.Scenario
-	var metadata Metadata
+	var metadata *Metadata
 
-	//var annotationParser a.Parser
+	var annotationParser a.Parser
 
-	// file, err := decorator.Parse(content)
-	// if err != nil {
-	// 	panic(err)
-	// }
-
-	// metadata.Package = file.Name.Name
-
-	// for _, stmt := range file.Decs.NodeDecs.Start {
-	// 	data, parsedType, err := annotationParser.Parse(stmt)
-	// 	if err == nil {
-	// 		if parsedType == a.Header {
-	// 			metadata.TestType = data.(*a.HeaderType).TestType
-	// 		} else if parsedType == a.Ignore {
-	// 			metadata.Ignore = data.(bool)
-	// 		}
-	// 	}
-	// }
+	metadata = getMetadata(content, treeCursor, &annotationParser)
 
 	// for _, function := range file.Scope.Objects {
 	// 	testExists := false
@@ -111,7 +95,37 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 
 	// }
 
-	return scenarios, &metadata, nil
+	return scenarios, metadata, nil
+}
+
+func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) *Metadata {
+
+	meta := Metadata{}
+
+	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
+	for childId := 0; numChildsRootNode > 0; childId++ {
+		child := treeCursor.CurrentNode().Child(childId)
+
+		if child != nil {
+
+			value, annotationType, _ := parser.Parse(content[child.StartByte():child.EndByte()])
+
+			if value != nil && (annotationType == a.Header || annotationType == a.Ignore) {
+				switch dynType := value.(type) {
+				case *a.HeaderType:
+					{
+						meta.HeaderType = *dynType
+					}
+				case bool:
+					{
+						meta.Ignore = dynType
+					}
+				}
+			}
+		}
+	}
+
+	return &meta
 }
 
 func findFunctionParamsFromDST() []string {

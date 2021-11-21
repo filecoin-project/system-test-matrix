@@ -1,7 +1,5 @@
 import '@filecoin/ui/src/fonts/fonts.less'
 import 'normalize.css'
-import 'react-dates/initialize'
-import 'react-dates/lib/css/_datepicker.css'
 import './polyfills/color.js'
 import './sw'
 

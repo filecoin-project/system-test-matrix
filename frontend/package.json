@@ -1,5 +1,6 @@
 {
   "name": "filecoin",
+  "version": "1.0.0",
   "main": "index.js",
   "private": true,
   "workspaces": [
@@ -17,7 +18,7 @@
     "build-storybook": "build-storybook --quiet -s ./apps/web/src/public,./packages/ui/src/fonts"
   },
   "dependencies": {
-    "axios": "^0.23.0",
+    "axios": "^0.24.0",
     "babel-plugin-transform-require-context": "^0.1.1",
     "dotenv": "^10.0.0",
     "lodash": "^4.17.19",
@@ -37,8 +38,8 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@storybook/addon-actions": "^6.1.11",
     "@storybook/addon-controls": "^6.3.2",
     "@storybook/addon-docs": "^6.3.2",
@@ -55,7 +56,6 @@
     "@storybook/theming": "^6.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
-    "@testing-library/react-hooks": "^7.0.0",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.0.0",
     "@types/ramda": "^0.27.40",

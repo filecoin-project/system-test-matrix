@@ -90,6 +90,8 @@ export const Colors = {
   grayBtn: '#B2BAC7',
   ghostBtn: '#F6F8FA',
   ghostBtnText: '#24292F',
+  blueLink: '#218BFF',
+  black: '#000000',
 
   progressBarColors: [
     '#FFB347',

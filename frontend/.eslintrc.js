@@ -9,9 +9,9 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'plugin:import/recommended',
-    'plugin:import/typescript',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'plugin:import/typescript',
   ],
   env: {
     es6: true,

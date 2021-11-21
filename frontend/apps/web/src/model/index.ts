@@ -86,7 +86,9 @@ export class Model implements Model {
     systemCache: Map<string, System>,
   ) {
     for (const subsystem of Array.from(subsystemCache.values())) {
-      const testsByKind = _.groupBy(subsystem.tests, 'kind')
+      const testsByKind = _.groupBy(subsystem.tests, 'kind') as {
+        [key: string]: Test[]
+      }
       const kindStatistics = Object.entries(testsByKind).map(
         ([kind, tests]) =>
           new TestKindStatistic(
@@ -118,7 +120,9 @@ export class Model implements Model {
       }
 
       // now calculate the testStatus statistics
-      const testsByStatus = _.groupBy(subsystem.tests, 'status')
+      const testsByStatus = _.groupBy(subsystem.tests, 'status') as {
+        [key: string]: Test[]
+      }
       const statusStatistics = Object.entries(testsByStatus).map(
         ([status, tests]) =>
           new TestStatusStatistic(
@@ -143,7 +147,9 @@ export class Model implements Model {
 
     for (const system of Array.from(systemCache.values())) {
       const allSystemTests = _.flatten(system.subsystems.map(ss => ss.tests))
-      const testsByKind = _.groupBy(allSystemTests, 'kind')
+      const testsByKind = _.groupBy(allSystemTests, 'kind') as {
+        [key: string]: Test[]
+      }
       const kindStatistics = Object.entries(testsByKind).map(
         ([kind, tests]) =>
           new TestKindStatistic(
@@ -153,7 +159,9 @@ export class Model implements Model {
       )
       system.testKindStats = new PercentageSet(kindStatistics)
 
-      const testsByStatus = _.groupBy(allSystemTests, 'status')
+      const testsByStatus = _.groupBy(allSystemTests, 'status') as {
+        [key: string]: Test[]
+      }
       const statusStatistics = Object.entries(testsByStatus).map(
         ([status, tests]) =>
           new TestStatusStatistic(

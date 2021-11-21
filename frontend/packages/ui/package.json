@@ -16,7 +16,6 @@
     "build": "webpack --config ./config/webpack.prod.js"
   },
   "dependencies": {
-    "react-easy-crop": "^3.3.3",
     "recharts": "^2.0.8",
     "polished": "^4.1.3"
   },

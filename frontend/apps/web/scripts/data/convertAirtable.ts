@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'node:path'
 
-import parse from 'csv-parse/lib/sync'
+import { parse } from 'csv-parse'
 import _ from 'lodash'
 import yaml from 'yaml'
 
@@ -59,24 +59,25 @@ const format = (rows: CSVRow[]) => {
   return result
 }
 
-const parseCsv = (path: string): CSVRow[] => {
-  const csvContents = fs.readFileSync(path)
-  return parse(csvContents, {
-    columns: true,
-    skip_empty_lines: true,
-    // ⚠️ if you don't specify this parameter you'll get a nasty bug
-    // where some invisible whitespace is appended to the first key (spent an hour debugging)
-    bom: true,
-  })
-}
-
 // Take the Airtable csv export and convert it into a well-formatted YML Behavior file
 // This is a one-time script that won't be used after we transition away from Airtable
 const convert = (csvPath: string, outputPath: string) => {
-  const csvRows = parseCsv(csvPath)
-  const formatted = format(csvRows)
-  const yamlString = yaml.stringify(formatted)
-  fs.writeFileSync(outputPath, yamlString)
+  const csvContents = fs.readFileSync(csvPath)
+  parse(
+    csvContents,
+    {
+      columns: true,
+      skip_empty_lines: true,
+      // ⚠️ if you don't specify this parameter you'll get a nasty bug
+      // where some invisible whitespace is appended to the first key (spent an hour debugging)
+      bom: true,
+    },
+    function (err, csvRows: CSVRow[]) {
+      const formatted = format(csvRows)
+      const yamlString = yaml.stringify(formatted)
+      fs.writeFileSync(outputPath, yamlString)
+    },
+  )
 }
 
 // MAIN

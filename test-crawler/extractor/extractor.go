@@ -75,27 +75,15 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	var annotationParser a.Parser
 
 	metadata = getMetadata(content, treeCursor, &annotationParser)
-	_ = getFunctionNodes(content, treeCursor, &annotationParser)
+	functions := getFunctionNodes(content, treeCursor, &annotationParser)
 
-	// for _, function := range file.Scope.Objects {
-	// 	testExists := false
+	for _, function := range functions {
 
-	// 	params := findFunctionParamsFromDST(function)
+		behaviors := findBehaviorsFromNode(content, function.Node)
 
-	// 	for _, param := range params {
-	// 		if strings.Contains(param, "testing.T") {
-	// 			testExists = true
-	// 		}
-	// 	}
+		scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
 
-	// 	if testExists {
-
-	// 		behaviors := findBehaviorsFromDST(function)
-
-	// 		scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
-	// 	}
-
-	// }
+	}
 
 	return scenarios, metadata, nil
 }
@@ -144,7 +132,7 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 	prevNode := &sitter.Node{}
 	funcName := ""
 	isIgnored := false
-	for childId := 0; numChildsRootNode > 0; childId++ {
+	for childId := 0; int(numChildsRootNode) > childId; childId++ {
 		child := treeCursor.CurrentNode().Child(childId)
 
 		if child != nil {
@@ -190,31 +178,33 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 		}
 	}
 
-	return nil
+	return funcAnnoPair
 }
 
-func findBehaviorsFromDST() []a.BehaviorType {
+func findBehaviorsFromNode(content string, node *sitter.Node) []a.BehaviorType {
 	var behaviors []a.BehaviorType
 	var annotationParser a.Parser
 
-	//bodyObjects := object.Decl.(*dst.FuncDecl).Body.List
+	numChildsNode := node.ChildCount()
 
-	//for _, object := range bodyObjects {
+	for childId := 0; int(numChildsNode) > childId; childId++ {
+		child := node.Child(childId)
 
-	comment := getCommentFromStmt()
-
-	behavior, parsedType, err := annotationParser.Parse(comment)
-	if err == nil {
-		if behavior != nil && parsedType == a.Behavior {
-			switch behaviorType := behavior.(type) {
-			case []a.BehaviorType:
-				behaviors = append(behaviors, behaviorType...)
+		if child != nil && child.Type() == "comment" {
+			behavior, parsedType, err := annotationParser.Parse(content[child.StartByte():child.EndByte()])
+			if err == nil {
+				if behavior != nil && parsedType == a.Behavior {
+					switch behaviorType := behavior.(type) {
+					case []a.BehaviorType:
+						behaviors = append(behaviors, behaviorType...)
+					}
+				} else {
+					behaviors = append(behaviors, a.BehaviorType{})
+				}
 			}
-		} else {
-			behaviors = append(behaviors, a.BehaviorType{})
 		}
+
 	}
-	//}
 
 	return behaviors
 }
@@ -236,10 +226,4 @@ func makeCollectorScenario(filePath string, funcName string, behaviors []a.Behav
 func makeID(filePath string, funcName string, behavior string) string {
 	hash := md5.Sum([]byte(fmt.Sprintf("%s_%s_%s", filePath, funcName, behavior)))
 	return string(hex.EncodeToString(hash[:]))
-}
-
-func getCommentFromStmt() string {
-	var result string
-
-	return result
 }

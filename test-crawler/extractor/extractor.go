@@ -75,6 +75,8 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 
 	metadata = getMetadata(content, treeCursor, &annotationParser)
 
+	//TODO: get function nodes
+
 	// for _, function := range file.Scope.Objects {
 	// 	testExists := false
 
@@ -106,7 +108,11 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	for childId := 0; numChildsRootNode > 0; childId++ {
 		child := treeCursor.CurrentNode().Child(childId)
 
-		if child != nil {
+		if !child.IsNull() {
+
+			if child.Type() == "package_clause" {
+				break
+			}
 
 			value, annotationType, _ := parser.Parse(content[child.StartByte():child.EndByte()])
 

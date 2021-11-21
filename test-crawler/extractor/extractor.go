@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 
 	a "testsuites/annotations"
 	c "testsuites/collector"
@@ -74,8 +75,7 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	var annotationParser a.Parser
 
 	metadata = getMetadata(content, treeCursor, &annotationParser)
-
-	//TODO: get function nodes
+	_ = getFunctionNodes(content, treeCursor, &annotationParser)
 
 	// for _, function := range file.Scope.Objects {
 	// 	testExists := false
@@ -134,41 +134,63 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	return &meta
 }
 
-func findFunctionParamsFromDST() []string {
+func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) (funcAnnoPair []struct {
+	Node *sitter.Node
+	Name string
+}) {
 
-	var params []string
+	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
+	node := &sitter.Node{}
+	prevNode := &sitter.Node{}
+	funcName := ""
+	isIgnored := false
+	for childId := 0; numChildsRootNode > 0; childId++ {
+		child := treeCursor.CurrentNode().Child(childId)
 
-	// switch object.Decl.(type) {
-	// case *dst.FuncDecl:
-	// 	{
-	// 		if object.Decl.(*dst.FuncDecl) != nil {
-	// 			paramList := object.Decl.(*dst.FuncDecl).Type.Params.List
-	// 			for _, param := range paramList {
-	// 				switch outer := param.Type.(type) {
-	// 				//case *dst.FuncType:
-	// 					{
+		if child != nil {
+			if child.Type() == "function_declaration" {
+				if prevNode.Type() == "comment" {
 
-	// 					}
-	// 				case *dst.StarExpr:
-	// 					{
-	// 						switch inner := outer.X.(type) {
-	// 						case *dst.SelectorExpr:
-	// 							{
-	// 								pkg := inner.X.(*dst.Ident).Name
-	// 								pkgType := inner.Sel.Name
+					value, annotationType, _ := parser.Parse(content[prevNode.StartByte():prevNode.EndByte()])
+					if value != nil && annotationType == a.Ignore {
+						isIgnored = value.(bool)
+					}
+				}
 
-	// 								params = append(params, fmt.Sprintf("%s.%s", pkg, pkgType))
-	// 							}
-	// 						}
+				funcName = content[child.Child(1).StartByte():child.Child(1).EndByte()]
+				if child.Child(2).Type() == "parameter_list" {
+					funcParamString := content[child.Child(2).StartByte():child.Child(2).EndByte()]
+					if !strings.Contains(funcParamString, "testing.T") {
+						isIgnored = true
+					} else {
+						node = child
+					}
 
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
+				}
 
-	return params
+				if isIgnored {
+					prevNode = child
+					isIgnored = false
+					continue
+				}
+
+				funcAnnoPair = append(funcAnnoPair, struct {
+					Node *sitter.Node
+					Name string
+				}{
+					Node: node,
+					Name: funcName,
+				})
+
+				node = nil
+				funcName = ""
+				isIgnored = false
+			}
+			prevNode = child
+		}
+	}
+
+	return nil
 }
 
 func findBehaviorsFromDST() []a.BehaviorType {

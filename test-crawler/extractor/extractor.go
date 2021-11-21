@@ -16,6 +16,15 @@ import (
 	"github.com/smacker/go-tree-sitter/golang"
 )
 
+type NodeType string
+
+const (
+	COMMENT              NodeType = "comment"
+	PACKAGE_CLAUSE       NodeType = "package_clause"
+	FUNCTION_DECLARATION NodeType = "function_declaration"
+	PARAMETER_LIST       NodeType = "parameter_list"
+)
+
 type Metadata struct {
 	Package string
 	Ignore  bool
@@ -98,7 +107,7 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 
 		if !child.IsNull() {
 
-			if child.Type() == "package_clause" {
+			if child.Type() == string(PACKAGE_CLAUSE) {
 				break
 			}
 
@@ -136,8 +145,8 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 		child := treeCursor.CurrentNode().Child(childId)
 
 		if child != nil {
-			if child.Type() == "function_declaration" {
-				if prevNode.Type() == "comment" {
+			if child.Type() == string(FUNCTION_DECLARATION) {
+				if prevNode.Type() == string(COMMENT) {
 
 					value, annotationType, _ := parser.Parse(content[prevNode.StartByte():prevNode.EndByte()])
 					if value != nil && annotationType == a.Ignore {
@@ -146,7 +155,7 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 				}
 
 				funcName = content[child.Child(1).StartByte():child.Child(1).EndByte()]
-				if child.Child(2).Type() == "parameter_list" {
+				if child.Child(2).Type() == string(PARAMETER_LIST) {
 					funcParamString := content[child.Child(2).StartByte():child.Child(2).EndByte()]
 					if !strings.Contains(funcParamString, "testing.T") {
 						isIgnored = true
@@ -190,7 +199,7 @@ func findBehaviorsFromNode(content string, node *sitter.Node) []a.BehaviorType {
 	for childId := 0; int(numChildsNode) > childId; childId++ {
 		child := node.Child(childId)
 
-		if child != nil && child.Type() == "comment" {
+		if child != nil && child.Type() == string(COMMENT) {
 			behavior, parsedType, err := annotationParser.Parse(content[child.StartByte():child.EndByte()])
 			if err == nil {
 				if behavior != nil && parsedType == a.Behavior {

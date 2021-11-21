@@ -23,6 +23,7 @@ const (
 	PACKAGE_CLAUSE       NodeType = "package_clause"
 	FUNCTION_DECLARATION NodeType = "function_declaration"
 	PARAMETER_LIST       NodeType = "parameter_list"
+	BLOCK                NodeType = "block"
 )
 
 type Metadata struct {
@@ -190,17 +191,17 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 	return funcAnnoPair
 }
 
-func findBehaviorsFromNode(content string, node *sitter.Node) []a.BehaviorType {
-	var behaviors []a.BehaviorType
+func findBehaviorsFromNode(content string, node *sitter.Node) (behaviors []a.BehaviorType) {
+	if node == nil {
+		return nil
+	}
+
 	var annotationParser a.Parser
 
-	numChildsNode := node.ChildCount()
-
-	for childId := 0; int(numChildsNode) > childId; childId++ {
-		child := node.Child(childId)
-
-		if child != nil && child.Type() == string(COMMENT) {
-			behavior, parsedType, err := annotationParser.Parse(content[child.StartByte():child.EndByte()])
+	iter := sitter.NewIterator(node, sitter.DFSMode)
+	iter.ForEach(func(iterChild *sitter.Node) error {
+		if iterChild.Type() == string(COMMENT) {
+			behavior, parsedType, err := annotationParser.Parse(content[iterChild.StartByte():iterChild.EndByte()])
 			if err == nil {
 				if behavior != nil && parsedType == a.Behavior {
 					switch behaviorType := behavior.(type) {
@@ -212,8 +213,8 @@ func findBehaviorsFromNode(content string, node *sitter.Node) []a.BehaviorType {
 				}
 			}
 		}
-
-	}
+		return nil
+	})
 
 	return behaviors
 }

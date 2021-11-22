@@ -60,10 +60,9 @@ export const ProgressBar = ({
     })
   }
 
-  const renderBarChart = () => {
-    if (!barData) return null
-    return (
-      <>
+  if(!barData) { return null }
+  return (
+    <>
         <ResponsiveContainer width="100%" height={HEIGHT}>
           <BarChart 
             layout="vertical"
@@ -86,10 +85,7 @@ export const ProgressBar = ({
         </ResponsiveContainer>
         { legend && <Legend>{ renderLegend() }</Legend> }
       </>
-    )
-  }
-
-  return renderBarChart()
+  )
 }
 
 const Legend = styled.ul`

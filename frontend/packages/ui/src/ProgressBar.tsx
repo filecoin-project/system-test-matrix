@@ -1,13 +1,12 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { Colors } from './styles/colors'
 import styled from 'styled-components'
 
 interface Props {
   data: { 
-    name: string;
-    percentage: number;
+    name: string
+    percentage: number
   }[]
   onClick: () => void
   legend?: boolean

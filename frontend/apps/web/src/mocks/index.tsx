@@ -9,11 +9,11 @@ export const chartDataWithPercentageAndKind = [
   },
   {
     kind: 'integration',
-    percentage: 15.5555550
+    percentage: 15.55555
   },
   {
     kind: 'benchmark',
-    percentage: 24.5555550
+    percentage: 24.455555
   },
   {
     kind: 'e2e',

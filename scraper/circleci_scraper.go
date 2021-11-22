@@ -13,9 +13,12 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	//	"testsuites/TestFile"
+	//	"testsuites/Function"
+	//	"testsuites/Scenario"
 )
 
-const CIRCLECI_API_ENDPOINT = "https://circleci.com/api/v2/"
+const circleCiApiEndpoint = "https://circleci.com/api/v2/"
 
 // Initialize structures for scraping JSON data
 // Hold the Pipelines extracted data. This is the only static URL that is going to be used.
@@ -42,6 +45,10 @@ type Payload struct {
 	}
 }
 
+// func testCrawlerResults() {
+
+// }
+
 func circleciApiCall(url string) []byte {
 	req, _ := http.NewRequest("GET", url, nil)
 	res, err := http.DefaultClient.Do(req)
@@ -52,7 +59,12 @@ func circleciApiCall(url string) []byte {
 	}
 
 	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
 	return body
 }
@@ -60,7 +72,7 @@ func circleciApiCall(url string) []byte {
 func getPipelines(branch string) Pipelines {
 	var pipelines Pipelines
 
-	body := circleciApiCall(CIRCLECI_API_ENDPOINT + "project/gh/filecoin-project/lotus/pipeline?branch=" + branch)
+	body := circleciApiCall(circleCiApiEndpoint + "project/gh/filecoin-project/lotus/pipeline?branch=" + branch)
 	err := json.Unmarshal(body, &pipelines)
 
 	if err != nil {
@@ -77,7 +89,7 @@ func getWorkloads() Payload {
 
 	for i := range pipelines.Items {
 		if pipelines.Items[i].Trigger.Type == "webhook" { // Only use the _ci_ workflows. Discuss nightly builds.
-			body = circleciApiCall(CIRCLECI_API_ENDPOINT + "pipeline/" + pipelines.Items[i].ID + "/workflow") // Todo: maybe select a hash via command line
+			body = circleciApiCall(circleCiApiEndpoint + "pipeline/" + pipelines.Items[i].ID + "/workflow") // Todo: maybe select a hash via command line
 			break
 		}
 	}
@@ -96,7 +108,7 @@ func getJobs() Payload {
 	var jobs Payload
 
 	workflows := getWorkloads()
-	body := circleciApiCall(CIRCLECI_API_ENDPOINT + "workflow/" + workflows.Items[0].ID + "/job") // There should be only one item
+	body := circleciApiCall(circleCiApiEndpoint + "workflow/" + workflows.Items[0].ID + "/job") // There should be only one item
 
 	err := json.Unmarshal(body, &jobs)
 

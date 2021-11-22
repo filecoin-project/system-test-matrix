@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {
   Bar,
   BarChart,
@@ -22,21 +22,14 @@ interface Props {
 const HEIGHT = 20
 
 export const ProgressBar = ({ legend = false, ...props }: Props) => {
-  const [barData, setBarData] = useState(null)
-
-  const prepareBarChartValues = () => {
-    const barData = props.data.reduce((acc, value) => {
-      acc[value.name] = value.percentage
-      return acc
-    }, {})
-    setBarData(barData)
-  }
-
-  useEffect(prepareBarChartValues, [props.data])
+  const data = props.data.reduce((acc, value) => {
+    acc[value.name] = value.percentage
+    return acc
+  }, {})
 
   const renderBars = () => {
-    const isLastBar = Object.keys(barData).length - 1
-    return Object.keys(barData).map((bar, i) => (
+    const isLastBar = Object.keys(data).length - 1
+    return Object.keys(data).map((bar, i) => (
       <Bar
         isAnimationActive={false}
         onClick={props.onClick}
@@ -54,24 +47,23 @@ export const ProgressBar = ({ legend = false, ...props }: Props) => {
   }
 
   const renderLegend = () => {
-    return Object.keys(barData).map((bar, i) => {
+    return Object.keys(data).map((bar, i) => {
       return (
         <LegendPiece key={i}>
           <LegendCircle color={Colors.progressBarColors[i % 10]} />
-          {bar}:{' '}
-          <LegendValue>{parseFloat(barData[bar].toFixed(2))}%</LegendValue>
+          {bar}: <LegendValue>{parseFloat(data[bar].toFixed(2))}%</LegendValue>
         </LegendPiece>
       )
     })
   }
 
-  if (!barData) {
+  if (!data) {
     return null
   }
   return (
     <>
       <ResponsiveContainer width="100%" height={HEIGHT}>
-        <BarChart layout="vertical" height={HEIGHT} data={[barData]}>
+        <BarChart layout="vertical" height={HEIGHT} data={[data]}>
           <XAxis hide type="number" />
           <YAxis hide dataKey="name" type="category" />
           {!legend && (

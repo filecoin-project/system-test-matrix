@@ -92,4 +92,5 @@ export const Colors = {
   ghostBtnText: '#24292F',
   blueLink: '#218BFF',
   black: '#000000',
+  tableHeaderText: '#57606A',
 }

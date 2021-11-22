@@ -1,16 +1,14 @@
+import { ReactProps, RefForwardingComponent } from '@filecoin/types'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { ReactProps, RefForwardingComponent } from '@filecoin/types'
-
 import { Colors } from '../styles/colors'
 import { zIndex } from '../styles/constants'
-
+import { CoverLayout } from './CoverLayout'
+import { GridLayout } from './GridLayout'
+import { PageLayoutFooter } from './PageLayoutFooter'
+import { PageLayoutHeader } from './PageLayoutHeader'
 import { PageLayoutSection } from './PageLayoutSection'
 import { StackLayout } from './StackLayout'
-import { GridLayout } from './GridLayout'
-import { CoverLayout } from './CoverLayout'
-import { PageLayoutHeader } from './PageLayoutHeader'
-import { PageLayoutFooter } from './PageLayoutFooter'
 
 /**
  * Whether something (usually a sidebar) is in open or closed state.
@@ -184,7 +182,7 @@ export const PageLayout = styled(Page)`
     z-index: ${zIndex.layer200};
     background: ${Colors.headerBackground};
     border-bottom: 1px solid ${Colors.borderColor};
-    padding: 5.5rem 3.75rem 2rem;
+    padding: 3.5rem 3.75rem 2rem;
 
     &--logo {
       background: ${Colors.logoBackground};

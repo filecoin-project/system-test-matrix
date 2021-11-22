@@ -1,88 +1,108 @@
+import { PageContainer } from '@/containers/PageContainer'
 import {
   Button,
-  NativeLink,
+  Colors,
+  Link,
   PageLayout,
   StackLayout,
   Table,
   Text,
-  TreeMap,
   usePageLayout,
 } from '@filecoin/ui'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import { RepositoryData } from '@/mocks'
+import styled from 'styled-components'
 
 const Dashboard = () => {
+  const {
+    state: { model },
+  } = PageContainer.useContainer()
+
+  const systems = model.getAllSystems()
+  const navigate = useNavigate()
   const pageLayout = usePageLayout({
     header: (
       <PageLayout.Header>
-        <StackLayout>
+        <Header>
           <Text type="heading 5">Systems</Text>
-        </StackLayout>
+          <Buttons>
+            <Button
+              onClick={() => navigate('/repository-details')}
+              variant="outline"
+              size="medium"
+            >
+              All Tests
+            </Button>
+            <Button
+              onClick={() => navigate('/repository-details')}
+              variant="outline"
+              size="medium"
+            >
+              All Behaviours
+            </Button>
+          </Buttons>
+        </Header>
       </PageLayout.Header>
     ),
     footer: <PageLayout.Footer />,
   })
-  const navigate = useNavigate()
 
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
         <Table
-          variant="default"
+          variant="subtle"
           columns={{
             repository: {
-              header: 'Repository',
+              header: 'System',
               Cell: ({ data }) => {
                 return (
                   <StackLayout>
-                    <Text>{data.projectName}</Text>
-                    <NativeLink href={data.projectURL} target={'_blank'}>
-                      {data.projectURL}
-                    </NativeLink>
+                    <Link to="/system/Blockchain" appearance="system">
+                      {data.name}
+                    </Link>
+                    <Subsystems>{data.subsystems.length} subsystems</Subsystems>
                   </StackLayout>
                 )
               },
             },
-            testKinds: {
-              header: 'Test Kinds',
-              width: 222,
-              Cell: ({ data }) => {
-                return (
-                  <TreeMap
-                    onClick={() => navigate('/repository-details')}
-                    data={data.testKindsData.map(
-                      ({ value, description, color }) => {
-                        return { name: description, size: value, color }
-                      },
-                    )}
-                  />
-                )
-              },
-            },
-            testStatus: {
-              header: 'Test Status',
-              width: 222,
-              Cell: ({ data }) => {
-                return (
-                  <TreeMap
-                    onClick={() => navigate('/repository-details')}
-                    data={data.testStatusData.map(
-                      ({ value, description, color }) => {
-                        return { name: description, size: value, color }
-                      },
-                    )}
-                  />
-                )
-              },
-            },
+            // testKinds: {
+            //   header: 'Test Kinds',
+            //   width: 222,
+            //   Cell: ({ data }) => {
+            //     return (
+            //       <TreeMap
+            //         onClick={() => navigate('/repository-details')}
+            //         data={data.testKindStats.map(
+            //           ({ value, description, color }) => {
+            //             return { name: description, size: value, color }
+            //           },
+            //         )}
+            //       />
+            //     )
+            //   },
+            // },
+            // testStatus: {
+            //   header: 'Test Status',
+            //   width: 222,
+            //   Cell: ({ data }) => {
+            //     return (
+            //       <TreeMap
+            //         onClick={() => navigate('/repository-details')}
+            //         data={data.testStatusStats.map(
+            //           ({ value, description, color }) => {
+            //             return { name: description, size: value, color }
+            //           },
+            //         )}
+            //       />
+            //     )
+            //   },
+            // },
             score: {
               header: 'Score',
               width: 155,
-              Cell: ({ index }) => {
-                //TODO@voja update this when we have some logic
-                if (index === 0) {
+              Cell: ({ data }) => {
+                if (data.score === 'good') {
                   return (
                     <Button
                       onClick={() => navigate('/repository-details')}
@@ -94,7 +114,7 @@ const Dashboard = () => {
                     </Button>
                   )
                 }
-                if (index === 1) {
+                if (data.score === 'bad') {
                   return (
                     <Button
                       onClick={() => navigate('/repository-details')}
@@ -106,20 +126,22 @@ const Dashboard = () => {
                     </Button>
                   )
                 }
-                return (
-                  <Button
-                    onClick={() => navigate('/repository-details')}
-                    variant="rounded"
-                    size="small"
-                    color="warning"
-                  >
-                    Mediocre
-                  </Button>
-                )
+                if (data.score === 'mediocre') {
+                  return (
+                    <Button
+                      onClick={() => navigate('/repository-details')}
+                      variant="rounded"
+                      size="small"
+                      color="warning"
+                    >
+                      Bad
+                    </Button>
+                  )
+                }
               },
             },
           }}
-          data={RepositoryData}
+          data={systems}
         />
       </PageLayout.Section>
     </PageLayout>
@@ -127,3 +149,21 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+
+const Subsystems = styled.div`
+  color: ${Colors.tableHeaderText};
+`
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const Buttons = styled.div`
+  margin-top: auto;
+  margin-bottom: auto;
+
+  button {
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+`

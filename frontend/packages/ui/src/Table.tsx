@@ -245,9 +245,8 @@ export const TruncatedText = styled.div`
 `
 
 const TableHeaderText = styled(TruncatedText)`
-  color: ${Colors.textColor};
-  font-weight: normal;
-  text-transform: uppercase;
+  color: ${Colors.tableHeaderText};
+  font-weight: 600;
   vertical-align: middle;
 `
 

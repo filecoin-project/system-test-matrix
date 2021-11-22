@@ -55,27 +55,36 @@ func main() {
 		files[i].Scenarios = scenarios
 	}
 
-	//SaveToFile(files)
+	Save(files, config.OutputMode)
 }
 
-func SaveToFile(files []c.TestFile) {
-	now := time.Now()
-	timestamp := now.Unix()
-
-	filename := fmt.Sprintf("%s/output_%d.json", OUTPUT_FOLDER, timestamp)
-
-	file, err := os.Create(filename)
-	if err != nil {
-		return
-	}
-	defer file.Close()
+func Save(files []c.TestFile, mode OutputMode) {
 
 	content, err := json.Marshal(files)
 	if err != nil {
 		return
 	}
 
-	file.Write(content)
+	switch mode {
+	case MODE_FILE:
+		now := time.Now()
+		timestamp := now.Unix()
+
+		filename := fmt.Sprintf("%s/output_%d.json", OUTPUT_FOLDER, timestamp)
+
+		file, err := os.Create(filename)
+		if err != nil {
+			return
+		}
+		defer file.Close()
+
+		file.Write(content)
+	case MODE_STDOUT:
+		fmt.Print(string(content))
+	default:
+		fmt.Print(string(content))
+	}
+
 }
 
 func Shell(command string, destination string) (string, string, error) {

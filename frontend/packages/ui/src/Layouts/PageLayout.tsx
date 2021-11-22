@@ -1,16 +1,16 @@
+import { ReactProps, RefForwardingComponent } from '@filecoin/types'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { ReactProps, RefForwardingComponent } from '@filecoin/types'
-
 import { Colors } from '../styles/colors'
 import { zIndex } from '../styles/constants'
-
-import { PageLayoutSection } from './PageLayoutSection'
-import { StackLayout } from './StackLayout'
-import { GridLayout } from './GridLayout'
 import { CoverLayout } from './CoverLayout'
-import { PageLayoutHeader } from './PageLayoutHeader'
+import { GridLayout } from './GridLayout'
 import { PageLayoutFooter } from './PageLayoutFooter'
+import { PageLayoutHeader } from './PageLayoutHeader'
+import { PageLayoutSection } from './PageLayoutSection'
+import { PageLayoutTab } from './PageLayoutTab'
+import { PageLayoutTabs } from './PageLayoutTabs'
+import { StackLayout } from './StackLayout'
 
 /**
  * Whether something (usually a sidebar) is in open or closed state.
@@ -137,6 +137,8 @@ export interface PageLayout
    */
   Section: typeof PageLayoutSection
   Header: typeof PageLayoutHeader
+  Tabs: typeof PageLayoutTabs
+  Tab: typeof PageLayoutTab
   Footer: typeof PageLayoutFooter
 }
 
@@ -159,6 +161,8 @@ export const Page: PageLayout = Object.assign(
   {
     Section: PageLayoutSection,
     Header: PageLayoutHeader,
+    Tabs: PageLayoutTabs,
+    Tab: PageLayoutTab,
     Footer: PageLayoutFooter,
   },
 )

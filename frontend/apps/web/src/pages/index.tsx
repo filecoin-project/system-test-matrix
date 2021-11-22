@@ -1,29 +1,53 @@
+import { RepositoryData } from '@/mocks'
 import {
   Button,
+  Icon,
   NativeLink,
   PageLayout,
   StackLayout,
   Table,
   Text,
-  TreeMap,
-  Modal,
+  ProgressBar,
   BoxLayout,
   usePageLayout,
 } from '@filecoin/ui'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 
-import { RepositoryData } from '@/mocks'
+const Header = props => {
+  const [activeTab, setActiveTab] = useState(1)
 
+  return (
+    <PageLayout.Header>
+      <StackLayout>
+        <Text type="heading 5">Systems</Text>
+      </StackLayout>
+      <PageLayout.Tabs>
+        <NavLink to={'/system/overview'}>
+          <PageLayout.Tab
+            onClick={() => setActiveTab(1)}
+            active={activeTab === 1}
+          >
+            <Icon name="book" size="small" />
+            <Text>Overview</Text>
+          </PageLayout.Tab>
+        </NavLink>
+        <NavLink to={'/system/detailed-view'}>
+          <PageLayout.Tab
+            onClick={() => setActiveTab(2)}
+            active={activeTab === 2}
+          >
+            <Icon name="detailed_view" size="small" />
+            <Text>Detailed view</Text>
+          </PageLayout.Tab>
+        </NavLink>
+      </PageLayout.Tabs>
+    </PageLayout.Header>
+  )
+}
 const Dashboard = () => {
   const pageLayout = usePageLayout({
-    header: (
-      <PageLayout.Header>
-        <StackLayout>
-          <Text type="heading 5">Systems</Text>
-        </StackLayout>
-      </PageLayout.Header>
-    ),
+    header: <Header />,
     footer: (
       <PageLayout.Footer>
         <BoxLayout>
@@ -58,13 +82,12 @@ const Dashboard = () => {
               width: 222,
               Cell: ({ data }) => {
                 return (
-                  <TreeMap
+                  <ProgressBar
                     onClick={() => navigate('/repository-details')}
-                    data={data.testKindsData.map(
-                      ({ value, description, color }) => {
-                        return { name: description, size: value, color }
-                      },
-                    )}
+                    data={data.testKindsData.map(({ kind, percentage }) => ({
+                      name: kind,
+                      percentage,
+                    }))}
                   />
                 )
               },
@@ -74,13 +97,12 @@ const Dashboard = () => {
               width: 222,
               Cell: ({ data }) => {
                 return (
-                  <TreeMap
+                  <ProgressBar
                     onClick={() => navigate('/repository-details')}
-                    data={data.testStatusData.map(
-                      ({ value, description, color }) => {
-                        return { name: description, size: value, color }
-                      },
-                    )}
+                    data={data.testStatusData.map(({ status, percentage }) => ({
+                      name: status,
+                      percentage,
+                    }))}
                   />
                 )
               },

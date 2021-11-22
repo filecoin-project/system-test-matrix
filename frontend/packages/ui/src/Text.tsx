@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
 import { Fonts } from './styles/fonts'
 import { FullWidth, Hidden } from './styles/mixins'
@@ -27,6 +26,17 @@ const TextStyle = [
 ] as const
 type TextStyle = typeof TextStyle[number]
 
+const TextColors = [
+  'red',
+  'green',
+  'white',
+  'gray60',
+  'gray70',
+  'gray80',
+  'gray90',
+  'textGray',
+]
+type TextColors = typeof TextColors[number]
 const defaultElement = 'span'
 const defaultHTMLElement = new Map<TextStyle, React.ElementType>([
   ['heading 1', 'h1'],
@@ -62,7 +72,8 @@ type TextProps = {
    * If text is required to have different color than default.
    * Class 'u-text--color-colorName' will be created so it can be styled outside this component
    */
-  color?: 'red' | 'green' | 'white' | 'gray60' | 'gray70' | 'gray80' | 'gray90'
+  color?: TextColors
+
   /**
    * Use bold or light variant of font
    */

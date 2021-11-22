@@ -55,8 +55,8 @@ func NewConfig() Config {
 func Default() Config {
 	return Config{
 		Repo: Repository{
-			Name:        []string{"lotus", "spec-actors"},
-			Origin:      []string{"https://github.com/filecoin-project/lotus/", "https://github.com/filecoin-project/specs-actors/"},
+			Name:        []string{},
+			Origin:      []string{},
 			Mode:        "local",
 			Destination: "_local",
 		},

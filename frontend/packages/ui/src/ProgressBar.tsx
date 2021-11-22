@@ -6,12 +6,9 @@ import styled from 'styled-components'
 
 interface Props {
   data: { 
-    name?: string;
-    size?: number; 
-    color?: string;
-    percentage?: number;
-    kind?: string;
-    status?: string; }[]
+    name: string;
+    percentage: number;
+  }[]
   onClick: () => void
   legend?: boolean
 }
@@ -24,46 +21,27 @@ export const ProgressBar = ({
   }: Props) => {
 
   const [barData, setBarData] = useState(null)
-  const [barColors, setBarColors] = useState(null)
 
-  const preparePercentageChartValues = (name: 'kind' | 'status') => {
-    const data = {}
-    const colors = {}
-    props.data.map((value, i) => {
-      data[value[name]] = value.percentage
-      colors[value[name]] = Colors.progressBarColors[i%10]
-    })
-    setBarData(data)
-    setBarColors(colors)
+  const prepareBarChartValues = () => {
+    const barData = props.data.reduce((acc, value) => {
+      acc[value.name] = value.percentage
+      return acc
+    }
+    , {})
+    setBarData(barData)
   }
-
-  const prepareNonPercentageChartValues = () => {
-    const data = {}
-    const colors = {}
-    props.data.map(value => {
-      data[value.name] = value.size
-      colors[value.name] = value.color
-    })
-    setBarData(data)
-    setBarColors(colors)
-  }
-
-  const prepareBarChartValues = () => 
-    props.data[0].percentage
-    ? preparePercentageChartValues(props.data[0].kind ? 'kind' : 'status')
-    : prepareNonPercentageChartValues()
 
   useEffect(prepareBarChartValues, [props.data])
 
   
   const renderBars = () => {
-    const isLastBar = Object.keys(barColors).length -1
-    return Object.keys(barColors).map((bar, i) =>
+    const isLastBar = Object.keys(barData).length -1
+    return Object.keys(barData).map((bar, i) =>
       <Bar 
         isAnimationActive={false}
         onClick={props.onClick}
         key={bar}
-        fill={barColors[bar]}
+        fill={Colors.progressBarColors[i%10]}
         dataKey={bar}
         stackId={'a'}
         radius={i === 0 && [20, 0, 0, 20] || i === isLastBar && [0, 20, 20, 0] || 0}
@@ -72,10 +50,10 @@ export const ProgressBar = ({
   }
 
   const renderLegend = () => {
-    return Object.keys(barData).map(bar => {
+    return Object.keys(barData).map((bar, i) => {
       return (
-        <LegendPiece>
-          <LegendCircle color={barColors[bar]}/>
+        <LegendPiece key={i}>
+          <LegendCircle color={Colors.progressBarColors[i%10]}/>
           { bar }: <LegendValue>{parseFloat(barData[bar].toFixed(2))}%</LegendValue>
         </LegendPiece>
       )
@@ -93,14 +71,16 @@ export const ProgressBar = ({
             data={[barData]}>
             <XAxis hide type="number"/>
             <YAxis hide dataKey="name" type="category"/>
-            <Tooltip
-              allowEscapeViewBox={{ x: true, y: true }}
-              position={{ y: 30, x: 0 }}
-              cursor={false}
-              wrapperStyle={{ zIndex: 50, width: '100%' }}
-              contentStyle={{ backgroundColor: Colors.logoBackground }}
-              itemStyle={{ color: 'white', fontSize: 12 }}
-            />
+            {
+              !legend && <Tooltip
+                allowEscapeViewBox={{ x: true, y: true }}
+                position={{ y: 30, x: 0 }}
+                cursor={false}
+                wrapperStyle={{ zIndex: 50, width: '100%' }}
+                contentStyle={{ backgroundColor: Colors.logoBackground }}
+                itemStyle={{ color: 'white', fontSize: 12 }}
+              />
+            }
             {renderBars()}
           </BarChart>
         </ResponsiveContainer>

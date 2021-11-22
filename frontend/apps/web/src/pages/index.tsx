@@ -52,7 +52,10 @@ const Dashboard = () => {
                 return (
                   <ProgressBar
                     onClick={() => navigate('/repository-details')}
-                    data={data.testKindsData}
+                    data={data.testKindsData.map(({ kind, percentage}) => (
+                      { name: kind, percentage }
+                      )
+                    )}
                   />
                 )
               },
@@ -64,7 +67,9 @@ const Dashboard = () => {
                 return (
                   <ProgressBar
                     onClick={() => navigate('/repository-details')}
-                    data={data.testStatusData}
+                    data={data.testStatusData.map(({ status, percentage }) => (
+                      { name: status, percentage }
+                    ))}
                   />
                 )
               },

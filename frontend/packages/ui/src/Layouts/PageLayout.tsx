@@ -26,14 +26,6 @@ export interface PageLayoutState {
    */
   header?: React.ReactNode
   /**
-   * A React node to use to render the tabs.
-   */
-  tabs?: React.ReactNode
-  /**
-   * A React node to use to render the tab.
-   */
-  tab?: React.ReactNode
-  /**
    * A React node to use to render the footer.
    */
   footer?: React.ReactNode
@@ -72,8 +64,6 @@ export interface PageLayoutActions {
  */
 export function usePageLayout({
   header,
-  tabs,
-  tab,
   footer,
 }: PageLayoutState = {}): PageLayoutState & PageLayoutActions {
   const [state, setState] = useState<PageLayoutState>({

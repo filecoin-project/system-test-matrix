@@ -15,6 +15,10 @@ export interface TabProps extends ReactProps<'div'> {
 }
 const defaultElement = 'div'
 
+/**
+ * The Tab is used to define a "tab" container which should contain children i.e. Icon, Text component
+ */
+
 const Tab = React.forwardRef(
   (
     {

@@ -14,6 +14,10 @@ export interface TabsProps {
 }
 const defaultElement = 'div'
 
+/**
+ * The Tabs is used to define a "tabs" container which should contain children i.e. "tab" component
+ */
+
 const Tabs = React.forwardRef(
   (
     { as: Component = defaultElement, children, ...props }: TabsProps,

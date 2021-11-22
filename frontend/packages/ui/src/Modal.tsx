@@ -2,8 +2,10 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
 import { Button } from './Button'
-import { CenterLayout } from './Layouts'
+import { CenterLayout, PageLayout } from './Layouts'
 import { Colors } from './styles/colors'
+import { Text } from './Text'
+import { Icon } from './Icon'
 
 export interface ModalProps {
   /**
@@ -19,25 +21,39 @@ export interface ModalProps {
    */
   onClose?: () => void
   /**
-   * Boolean value that defines if close button should be displayed
+   * Title of the modal. Default is 'Details'
    */
-  showCloseButton?: boolean
+  title?: string
 }
 
 export const Modal: FunctionComponent<ModalProps> = ({
   isOpen = false,
   onClose,
-  showCloseButton = true,
+  title = 'Details',
   ...props
 }) => {
   return isOpen ? (
     <Container>
       <Backdrop />
       <Content gap={2}>
-        {showCloseButton && (
-          <CloseButton variant="outline" size="medium" onClick={onClose} />
-        )}
+        <Header>
+          <Text type="text xl" bold={true}>
+            {title}
+          </Text>
+          <Icon
+            name="close"
+            size="large"
+            color="black"
+            className="c-icon"
+            onClick={onClose}
+          />
+        </Header>
         {props.children}
+        <PageLayout.Footer height={4.5}>
+          <CloseButton variant="outline" size="medium" onClick={onClose}>
+            Cancel
+          </CloseButton>
+        </PageLayout.Footer>
       </Content>
     </Container>
   ) : null
@@ -49,10 +65,11 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100;
+  z-index: 300;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 0;
 `
 
 const Backdrop = styled.div`
@@ -71,7 +88,7 @@ const Content = styled(CenterLayout)`
   overflow: auto;
   display: flex;
   flex-direction: column;
-  padding: 45px;
+  padding: 0;
   background: ${Colors.white};
   box-shadow: 0 8px 15px ${Colors.shadowColor};
   border-radius: 9px;
@@ -87,6 +104,20 @@ const Content = styled(CenterLayout)`
     height: auto;
   }
 `
+
+const Header = styled.div`
+  display: flex;
+  width: 100%;
+  min-width: 12rem;
+  padding: 0.75rem 1.5rem 0.5rem;
+  border-bottom: 1px solid ${Colors.borderColor};
+  .c-icon {
+    align-self: center;
+    margin-left: auto;
+    cursor: pointer;
+  }
+`
+
 const CloseButton = styled(Button)`
-  margin-left: auto;
+  margin: auto;
 `

@@ -6,6 +6,8 @@ import {
   Table,
   Text,
   TreeMap,
+  Modal,
+  BoxLayout,
   usePageLayout,
 } from '@filecoin/ui'
 import React from 'react'
@@ -22,7 +24,13 @@ const Dashboard = () => {
         </StackLayout>
       </PageLayout.Header>
     ),
-    footer: <PageLayout.Footer />,
+    footer: (
+      <PageLayout.Footer>
+        <BoxLayout>
+          <Text type="text xs">&copy; 2021 FileCoin</Text>
+        </BoxLayout>
+      </PageLayout.Footer>
+    ),
   })
   const navigate = useNavigate()
 

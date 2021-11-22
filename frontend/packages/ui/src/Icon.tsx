@@ -134,7 +134,14 @@ export const IconSizes = [
 
 export type IconSizes = typeof IconSizes[number]
 
-export const IconColor = ['gray', 'green', 'red', 'white', 'blue'] as const
+export const IconColor = [
+  'gray',
+  'green',
+  'red',
+  'white',
+  'blue',
+  'black',
+] as const
 export type IconColorType = typeof IconColor[number]
 export const ColorHex = {
   gray: Colors.gray80,
@@ -142,6 +149,7 @@ export const ColorHex = {
   red: Colors.red70,
   white: Colors.white,
   blue: Colors.blueLink,
+  black: Colors.black,
 }
 
 /**

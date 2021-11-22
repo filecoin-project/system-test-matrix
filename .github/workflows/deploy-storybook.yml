@@ -1,0 +1,82 @@
+#
+# This workflow runs on push events of the main branch (i.e. PR merges) which
+# contain changes to the frontend/** files.
+#
+# Storybook is built and deployed to AWS S3 Bucket.
+#
+
+name: deploy-storybook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      #
+      # Checkout the repository.
+      #
+      - uses: actions/checkout@v2
+        id: checkout
+
+      #
+      # Cache files in ./frontend
+      #
+      - name: Cache
+        uses: actions/cache@v2
+        id: use-cache
+        with:
+          path: |
+            frontend/node_modules/
+            frontend/.eslintcache
+            frontend/.stylelintcache
+            frontend/**/.cache
+            frontend/apps/**/node_modules/
+            frontend/apps/**/tests.json
+            frontend/apps/**/behaviors.json
+            frontend/packages/**/node_modules/
+          key: develop-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            storybook-
+
+      #
+      # Install dependencies and build Storybook
+      #
+      - name: Build Storybook
+        id: build-storybook
+        run: yarn install --frozen-lockfile && yarn build-storybook
+        working-directory: ./frontend
+
+      #
+      # Configure AWS credentials
+      #
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        id: init-aws
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      #
+      # Upload storybook to S3 bucket
+      #
+      - name: Deploy storybook build to S3 bucket
+        id: deploy-storybook
+        run: aws s3 sync ./storybook-static/ s3://fc-storybook --cache-control "max-age=120000" --delete
+        working-directory: ./frontend
+
+      #
+      # Notify on slack status of deployment
+      #
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: ${{ secrets.SLACK_CHANNEL }}
+        if: always()

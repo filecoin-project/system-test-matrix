@@ -2,7 +2,6 @@ import { FunctionComponent } from 'react'
 import { RouteProps } from 'react-router-dom'
 
 interface BaseRoute extends RouteProps {
-  path: string
   exact?: boolean
   component?: FunctionComponent<any>
 }

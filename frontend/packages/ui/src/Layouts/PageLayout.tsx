@@ -78,8 +78,6 @@ export function usePageLayout({
 }: PageLayoutState = {}): PageLayoutState & PageLayoutActions {
   const [state, setState] = useState<PageLayoutState>({
     header,
-    tabs,
-    tab,
     footer,
   })
 
@@ -159,22 +157,12 @@ export interface PageLayout
  */
 export const Page: PageLayout = Object.assign(
   React.forwardRef(function PageLayout(
-    {
-      className,
-      children,
-      header,
-      tabs,
-      tab,
-      footer,
-      ...props
-    }: PageLayoutProps,
+    { className, children, header, footer, ...props }: PageLayoutProps,
     ref: React.Ref<HTMLDivElement>,
   ) {
     return (
       <div {...props} className={className} ref={ref}>
         {header != null && header}
-        {tabs != null && tabs}
-        {tab != null && tab}
         <PageContent gap={4}>{children}</PageContent>
         {footer != null && footer}
       </div>

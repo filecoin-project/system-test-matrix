@@ -28,6 +28,8 @@ export const ModalExample = args => {
         onClick={() => {
           handleOpen()
         }}
+        size={'medium'}
+        variant={'rounded'}
       >
         Open Modal
       </Button>
@@ -49,7 +51,9 @@ export const VerificationStatus = args => {
         </Text>
         <Text color="gray80">{t('iam.modal.description')}</Text>
       </Container>
-      <OkButton appearance="system">{t('iam.modal.okBtn')}</OkButton>
+      <OkButton variant="rounded" size={'medium'}>
+        {t('iam.modal.okBtn')}
+      </OkButton>
     </Modal>
   )
 }

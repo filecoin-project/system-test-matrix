@@ -120,6 +120,7 @@ export const IconNames = [
   'warning_line',
   'work',
   'workshop',
+  'detailed_view',
 ] as const
 export type IconNamesType = typeof IconNames[number]
 

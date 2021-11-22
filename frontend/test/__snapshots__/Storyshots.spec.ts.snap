@@ -5193,6 +5193,14 @@ exports[`Storyshots Icon All Icons 1`] = `
   <svg
     id="/assets/icons/workshop.svg"
   />
+  <span
+    className="c1 c-text--text-m"
+  >
+    detailed_view
+  </span>
+  <svg
+    id="/assets/icons/detailed_view.svg"
+  />
 </div>
 `;
 

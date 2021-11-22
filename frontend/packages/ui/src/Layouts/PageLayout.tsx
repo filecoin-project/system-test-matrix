@@ -8,6 +8,8 @@ import { GridLayout } from './GridLayout'
 import { PageLayoutFooter } from './PageLayoutFooter'
 import { PageLayoutHeader } from './PageLayoutHeader'
 import { PageLayoutSection } from './PageLayoutSection'
+import { PageLayoutTab } from './PageLayoutTab'
+import { PageLayoutTabs } from './PageLayoutTabs'
 import { StackLayout } from './StackLayout'
 
 /**
@@ -135,6 +137,8 @@ export interface PageLayout
    */
   Section: typeof PageLayoutSection
   Header: typeof PageLayoutHeader
+  Tabs: typeof PageLayoutTabs
+  Tab: typeof PageLayoutTab
   Footer: typeof PageLayoutFooter
 }
 
@@ -157,6 +161,8 @@ export const Page: PageLayout = Object.assign(
   {
     Section: PageLayoutSection,
     Header: PageLayoutHeader,
+    Tabs: PageLayoutTabs,
+    Tab: PageLayoutTab,
     Footer: PageLayoutFooter,
   },
 )

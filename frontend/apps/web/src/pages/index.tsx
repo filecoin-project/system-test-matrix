@@ -9,10 +9,62 @@ import {
   Text,
   usePageLayout,
 } from '@filecoin/ui'
+import { styled } from '@storybook/theming'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 
+const Header = props => {
+  // const [activeTab, setActiveTab] = useState(1)
+  const navigate = useNavigate()
+  return (
+    <PageLayout.Header>
+      <HeaderWrapper>
+        <Text type="heading 5">Systems</Text>
+        <Buttons>
+          <Button
+            onClick={() => navigate('/repository-details')}
+            variant="outline"
+            size="medium"
+          >
+            All Tests
+          </Button>
+          <Button
+            onClick={() => navigate('/repository-details')}
+            variant="outline"
+            size="medium"
+          >
+            All Behaviours
+          </Button>
+        </Buttons>
+      </HeaderWrapper>
+    </PageLayout.Header>
+    // <PageLayout.Header>
+    //   <StackLayout>
+    //     <Text type="heading 5">Systems</Text>
+    //   </StackLayout>
+    //   <PageLayout.Tabs>
+    //     <NavLink to={'/system/overview'}>
+    //       <PageLayout.Tab
+    //         onClick={() => setActiveTab(1)}
+    //         active={activeTab === 1}
+    //       >
+    //         <Icon name="book" size="small" />
+    //         <Text>Overview</Text>
+    //       </PageLayout.Tab>
+    //     </NavLink>
+    //     <NavLink to={'/system/detailed-view'}>
+    //       <PageLayout.Tab
+    //         onClick={() => setActiveTab(2)}
+    //         active={activeTab === 2}
+    //       >
+    //         <Icon name="detailed_view" size="small" />
+    //         <Text>Detailed view</Text>
+    //       </PageLayout.Tab>
+    //     </NavLink>
+    //   </PageLayout.Tabs>
+    // </PageLayout.Header>
+  )
+}
 const Dashboard = () => {
   const {
     state: { model },
@@ -21,29 +73,7 @@ const Dashboard = () => {
   const systems = model.getAllSystems()
   const navigate = useNavigate()
   const pageLayout = usePageLayout({
-    header: (
-      <PageLayout.Header>
-        <Header>
-          <Text type="heading 5">Systems</Text>
-          <Buttons>
-            <Button
-              onClick={() => navigate('/repository-details')}
-              variant="outline"
-              size="medium"
-            >
-              All Tests
-            </Button>
-            <Button
-              onClick={() => navigate('/repository-details')}
-              variant="outline"
-              size="medium"
-            >
-              All Behaviours
-            </Button>
-          </Buttons>
-        </Header>
-      </PageLayout.Header>
-    ),
+    header: <Header />,
     footer: <PageLayout.Footer />,
   })
 
@@ -153,7 +183,7 @@ export default Dashboard
 const Subsystems = styled.div`
   color: ${Colors.tableHeaderText};
 `
-const Header = styled.div`
+const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `

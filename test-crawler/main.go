@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 	"time"
 
 	c "testsuites/collector"
@@ -14,8 +16,25 @@ import (
 const OUTPUT_FOLDER = "outputs"
 
 func main() {
-	//
-	files, err := c.GetTestFiles("_modules/")
+
+	config := NewConfig()
+
+	// for origin mode, pull or clone remote origin, for local just ignore and continue
+	if config.Repo.Mode == "origin" {
+		for i, repo := range config.Repo.Name {
+			if _, err := os.Stat(fmt.Sprintf("%s/%s", config.Repo.Destination, repo)); os.IsNotExist(err) {
+				_ = os.Mkdir(config.Repo.Destination, 7660)
+				_, _, err := Shell(fmt.Sprintf("git clone %s %s", config.Repo.Origin[i], repo), config.Repo.Destination)
+				if err != nil {
+					fmt.Printf("error: %s", err.Error())
+				}
+			} else {
+				Shell("git pull", config.Repo.Destination)
+			}
+		}
+	}
+
+	files, err := c.GetTestFiles(config.Repo.Destination)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -36,7 +55,7 @@ func main() {
 		files[i].Scenarios = scenarios
 	}
 
-	SaveToFile(files)
+	//SaveToFile(files)
 }
 
 func SaveToFile(files []c.TestFile) {
@@ -57,4 +76,15 @@ func SaveToFile(files []c.TestFile) {
 	}
 
 	file.Write(content)
+}
+
+func Shell(command string, destination string) (string, string, error) {
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+	cmd := exec.Command("bash", "-c", command)
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	cmd.Dir = fmt.Sprintf("./%s", destination)
+	err := cmd.Run()
+	return stdout.String(), stderr.String(), err
 }

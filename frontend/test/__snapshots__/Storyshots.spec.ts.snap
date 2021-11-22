@@ -3267,6 +3267,29 @@ exports[`Storyshots Dropdown Size 1`] = `
   padding-right: 1rem;
 }
 
+.c6 {
+  font-weight: bold;
+  font-family: "OpenSans",sans-serif;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+  color: #979AB8;
+}
+
+.c12 {
+  font-weight: normal;
+  font-family: "OpenSans",sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  -webkit-letter-spacing: 0.1px;
+  -moz-letter-spacing: 0.1px;
+  -ms-letter-spacing: 0.1px;
+  letter-spacing: 0.1px;
+  color: #4E4B66;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3292,29 +3315,6 @@ exports[`Storyshots Dropdown Size 1`] = `
 
 .c2:only-child {
   height: 100%;
-}
-
-.c6 {
-  font-weight: bold;
-  font-family: "OpenSans",sans-serif;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  color: #979AB8;
-}
-
-.c12 {
-  font-weight: normal;
-  font-family: "OpenSans",sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.375rem;
-  -webkit-letter-spacing: 0.1px;
-  -moz-letter-spacing: 0.1px;
-  -ms-letter-spacing: 0.1px;
-  letter-spacing: 0.1px;
-  color: #4E4B66;
 }
 
 .c11 {
@@ -3715,6 +3715,29 @@ exports[`Storyshots Dropdown Status 1`] = `
   padding-right: 1rem;
 }
 
+.c6 {
+  font-weight: bold;
+  font-family: "OpenSans",sans-serif;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+  color: #979AB8;
+}
+
+.c12 {
+  font-weight: normal;
+  font-family: "OpenSans",sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  -webkit-letter-spacing: 0.1px;
+  -moz-letter-spacing: 0.1px;
+  -ms-letter-spacing: 0.1px;
+  letter-spacing: 0.1px;
+  color: #4E4B66;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3740,29 +3763,6 @@ exports[`Storyshots Dropdown Status 1`] = `
 
 .c2:only-child {
   height: 100%;
-}
-
-.c6 {
-  font-weight: bold;
-  font-family: "OpenSans",sans-serif;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  color: #979AB8;
-}
-
-.c12 {
-  font-weight: normal;
-  font-family: "OpenSans",sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.375rem;
-  -webkit-letter-spacing: 0.1px;
-  -moz-letter-spacing: 0.1px;
-  -ms-letter-spacing: 0.1px;
-  letter-spacing: 0.1px;
-  color: #4E4B66;
 }
 
 .c11 {
@@ -5308,7 +5308,7 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem;
+  padding: 3.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -5582,6 +5582,29 @@ exports[`Storyshots Layout/ColumnLayout Overview 1`] = `
 `;
 
 exports[`Storyshots Layout/CoverLayout Overview 1`] = `
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1 1 100%;
+  -ms-flex: 1 1 100%;
+  flex: 1 1 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-width: 100%;
+  min-height: 100%;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -5609,29 +5632,6 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   height: 100%;
 }
 
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1 1 100%;
-  -ms-flex: 1 1 100%;
-  flex: 1 1 100%;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  min-width: 100%;
-  min-height: 100%;
-}
-
 .c0 {
   position: relative;
   display: -webkit-box;
@@ -5656,7 +5656,7 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem;
+  padding: 3.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -6220,7 +6220,7 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem;
+  padding: 3.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -7090,6 +7090,24 @@ exports[`Storyshots Modal Verification Status 1`] = `
   padding-right: 2rem;
 }
 
+.c10 {
+  font-weight: bold;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: #14142B;
+}
+
+.c11 {
+  font-weight: normal;
+  font-family: "OpenSans",sans-serif;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: 0.2px;
+  -moz-letter-spacing: 0.2px;
+  -ms-letter-spacing: 0.2px;
+  letter-spacing: 0.2px;
+  color: #6E7191;
+}
+
 .c7 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -7119,24 +7137,6 @@ exports[`Storyshots Modal Verification Status 1`] = `
 
 .c7:only-child {
   height: 100%;
-}
-
-.c10 {
-  font-weight: bold;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  color: #14142B;
-}
-
-.c11 {
-  font-weight: normal;
-  font-family: "OpenSans",sans-serif;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  color: #6E7191;
 }
 
 .c4 {
@@ -8112,60 +8112,6 @@ exports[`Storyshots Text Headings 1`] = `
   padding-right: 2rem;
 }
 
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c1 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c1 > * + * {
-  margin-top: 4rem;
-}
-
-.c1:only-child {
-  height: 100%;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c3 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c3 > * + * {
-  margin-top: 0rem;
-}
-
-.c3:only-child {
-  height: 100%;
-}
-
 .c7 {
   font-weight: bold;
   font-size: 4.5rem;
@@ -8329,6 +8275,60 @@ exports[`Storyshots Text Headings 1`] = `
   color: #14142B;
 }
 
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c1 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c1 > * + * {
+  margin-top: 4rem;
+}
+
+.c1:only-child {
+  height: 100%;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c3 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c3 > * + * {
+  margin-top: 0rem;
+}
+
+.c3:only-child {
+  height: 100%;
+}
+
 .c0 {
   position: relative;
   display: -webkit-box;
@@ -8353,7 +8353,7 @@ exports[`Storyshots Text Headings 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem;
+  padding: 3.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -8911,60 +8911,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
   padding-right: 2rem;
 }
 
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c1 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c1 > * + * {
-  margin-top: 4rem;
-}
-
-.c1:only-child {
-  height: 100%;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c3 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c3 > * + * {
-  margin-top: 0rem;
-}
-
-.c3:only-child {
-  height: 100%;
-}
-
 .c7 {
   font-weight: normal;
   font-size: 1.25rem;
@@ -9087,6 +9033,60 @@ exports[`Storyshots Text Paragraphs 1`] = `
   color: #14142B;
 }
 
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c1 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c1 > * + * {
+  margin-top: 4rem;
+}
+
+.c1:only-child {
+  height: 100%;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c3 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c3 > * + * {
+  margin-top: 0rem;
+}
+
+.c3:only-child {
+  height: 100%;
+}
+
 .c0 {
   position: relative;
   display: -webkit-box;
@@ -9111,7 +9111,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem;
+  padding: 3.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -9520,60 +9520,6 @@ exports[`Storyshots Text Rest 1`] = `
   padding-right: 2rem;
 }
 
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c1 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c1 > * + * {
-  margin-top: 4rem;
-}
-
-.c1:only-child {
-  height: 100%;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c3 > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.c3 > * + * {
-  margin-top: 0rem;
-}
-
-.c3:only-child {
-  height: 100%;
-}
-
 .c7 {
   font-weight: normal;
   font-size: 1.25rem;
@@ -9663,6 +9609,60 @@ exports[`Storyshots Text Rest 1`] = `
   color: #14142B;
 }
 
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c1 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c1 > * + * {
+  margin-top: 4rem;
+}
+
+.c1:only-child {
+  height: 100%;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c3 > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.c3 > * + * {
+  margin-top: 0rem;
+}
+
+.c3:only-child {
+  height: 100%;
+}
+
 .c0 {
   position: relative;
   display: -webkit-box;
@@ -9687,7 +9687,7 @@ exports[`Storyshots Text Rest 1`] = `
   z-index: 200;
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
-  padding: 5.5rem 3.75rem 2rem;
+  padding: 3.5rem 3.75rem 2rem;
 }
 
 .c0 .c-page-layout__header--logo {

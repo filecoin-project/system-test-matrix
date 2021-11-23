@@ -4,7 +4,7 @@ import {
   Colors,
   Link,
   PageLayout,
-  StackLayout,
+  ProgressBar,
   Table,
   Text,
   usePageLayout,
@@ -14,7 +14,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Header = props => {
-  // const [activeTab, setActiveTab] = useState(1)
   const navigate = useNavigate()
   return (
     <PageLayout.Header>
@@ -38,31 +37,6 @@ const Header = props => {
         </Buttons>
       </HeaderWrapper>
     </PageLayout.Header>
-    // <PageLayout.Header>
-    //   <StackLayout>
-    //     <Text type="heading 5">Systems</Text>
-    //   </StackLayout>
-    //   <PageLayout.Tabs>
-    //     <NavLink to={'/system/overview'}>
-    //       <PageLayout.Tab
-    //         onClick={() => setActiveTab(1)}
-    //         active={activeTab === 1}
-    //       >
-    //         <Icon name="book" size="small" />
-    //         <Text>Overview</Text>
-    //       </PageLayout.Tab>
-    //     </NavLink>
-    //     <NavLink to={'/system/detailed-view'}>
-    //       <PageLayout.Tab
-    //         onClick={() => setActiveTab(2)}
-    //         active={activeTab === 2}
-    //       >
-    //         <Icon name="detailed_view" size="small" />
-    //         <Text>Detailed view</Text>
-    //       </PageLayout.Tab>
-    //     </NavLink>
-    //   </PageLayout.Tabs>
-    // </PageLayout.Header>
   )
 }
 const Dashboard = () => {
@@ -85,52 +59,56 @@ const Dashboard = () => {
           columns={{
             repository: {
               header: 'System',
+              width: 225,
+              padding: 4,
+
               Cell: ({ data }) => {
                 return (
-                  <StackLayout>
+                  <>
                     <Link to="/system/Blockchain" appearance="system">
                       {data.name}
                     </Link>
                     <Subsystems>{data.subsystems.length} subsystems</Subsystems>
-                  </StackLayout>
+                  </>
                 )
               },
             },
-            // testKinds: {
-            //   header: 'Test Kinds',
-            //   width: 222,
-            //   Cell: ({ data }) => {
-            //     return (
-            //       <TreeMap
-            //         onClick={() => navigate('/repository-details')}
-            //         data={data.testKindStats.map(
-            //           ({ value, description, color }) => {
-            //             return { name: description, size: value, color }
-            //           },
-            //         )}
-            //       />
-            //     )
-            //   },
-            // },
-            // testStatus: {
-            //   header: 'Test Status',
-            //   width: 222,
-            //   Cell: ({ data }) => {
-            //     return (
-            //       <TreeMap
-            //         onClick={() => navigate('/repository-details')}
-            //         data={data.testStatusStats.map(
-            //           ({ value, description, color }) => {
-            //             return { name: description, size: value, color }
-            //           },
-            //         )}
-            //       />
-            //     )
-            //   },
-            // },
+            testKinds: {
+              header: 'Test Kinds',
+              width: 350,
+              padding: 4,
+              Cell: ({ data }) => {
+                return (
+                  <ProgressBar
+                    onClick={() => navigate('/repository-details')}
+                    data={data.testKindStats.percentages.map(
+                      ({ kind, percentage }) => ({ name: kind, percentage }),
+                    )}
+                  />
+                )
+              },
+            },
+            testStatus: {
+              header: 'Test Status',
+              width: 350,
+              padding: 5,
+              Cell: ({ data }) => {
+                return (
+                  <ProgressBar
+                    onClick={() => navigate('/repository-details')}
+                    data={data.testStatusStats.percentages.map(
+                      ({ status, percentage }) => ({
+                        name: status,
+                        percentage,
+                      }),
+                    )}
+                  />
+                )
+              },
+            },
             score: {
               header: 'Score',
-              width: 155,
+              width: 200,
               Cell: ({ data }) => {
                 if (data.score === 'good') {
                   return (
@@ -196,4 +174,9 @@ const Buttons = styled.div`
       margin-right: 10px;
     }
   }
+`
+const Bar = styled.div`
+  width: 350px;
+  padding-left: 80px;
+  padding-right: 80px;
 `

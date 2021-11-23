@@ -203,6 +203,7 @@ export const PageLayout = styled(Page)`
   .c-page-layout__footer {
     display: flex;
     width: 100vw;
+    height: 6.25rem;
     max-width: calc(1100px - 4rem);
     margin: auto auto 0;
     border-top: 1px solid ${Colors.borderColor};

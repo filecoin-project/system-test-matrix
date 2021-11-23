@@ -24,11 +24,16 @@ export interface ModalProps {
    * Title of the modal. Default is 'Details'
    */
   title?: string
+  /**
+   * Allows inserting custom Footer insted of default cancel button
+   */
+  footer?: React.ReactNode
 }
 
 export const Modal: FunctionComponent<ModalProps> = ({
   isOpen = false,
   onClose,
+  footer,
   title = 'Details',
   ...props
 }) => {
@@ -48,12 +53,16 @@ export const Modal: FunctionComponent<ModalProps> = ({
             onClick={onClose}
           />
         </Header>
-        {props.children}
-        <PageLayout.Footer height={4.5}>
-          <CloseButton variant="outline" size="medium" onClick={onClose}>
-            Cancel
-          </CloseButton>
-        </PageLayout.Footer>
+        <ModalBody>{props.children}</ModalBody>
+        <Footer>
+          {footer ? (
+            footer
+          ) : (
+            <CloseButton variant="outline" size="medium" onClick={onClose}>
+              Cancel
+            </CloseButton>
+          )}
+        </Footer>
       </Content>
     </Container>
   ) : null
@@ -111,11 +120,26 @@ const Header = styled.div`
   min-width: 12rem;
   padding: 0.75rem 1.5rem 0.5rem;
   border-bottom: 1px solid ${Colors.borderColor};
+
   .c-icon {
     align-self: center;
     margin-left: auto;
     cursor: pointer;
   }
+`
+
+const ModalBody = styled.div`
+  width: 500px;
+  padding: 1rem 1.5rem;
+`
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  border-top: 1px solid ${Colors.borderColor};
 `
 
 const CloseButton = styled(Button)`

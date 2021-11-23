@@ -8,7 +8,6 @@ import {
   Table,
   Text,
   ProgressBar,
-  BoxLayout,
   usePageLayout,
 } from '@filecoin/ui'
 import React, { useState } from 'react'
@@ -48,13 +47,7 @@ const Header = props => {
 const Dashboard = () => {
   const pageLayout = usePageLayout({
     header: <Header />,
-    footer: (
-      <PageLayout.Footer>
-        <BoxLayout>
-          <Text type="text xs">&copy; 2021 FileCoin</Text>
-        </BoxLayout>
-      </PageLayout.Footer>
-    ),
+    footer: <PageLayout.Footer />,
   })
   const navigate = useNavigate()
 

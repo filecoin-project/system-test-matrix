@@ -1,10 +1,8 @@
 import React from 'react'
 import { ReactProps } from '@filecoin/types'
 import classNames from 'classnames'
-
-import { Text } from '../Text'
-
 import { BoxLayout } from './BoxLayout'
+import { Text } from '../Text'
 
 export interface FooterProps {
   /**

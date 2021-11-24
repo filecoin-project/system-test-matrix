@@ -9,7 +9,6 @@ interface ColumnData {
   header: string
   Cell: (data: any) => React.ReactNode
   width?: number
-  padding?: number
 }
 const TableVariant = ['default', 'light', 'subtle'] as const
 
@@ -45,7 +44,6 @@ const Row = (props: any) => {
       {Object.values(props.columns).map(({ Cell }: any, index) => {
         return Cell ? (
           <Column
-            padding={props.padding}
             variant={props.variant}
             isFirst={index === 0}
             isLast={--Object.keys(props.columns).length === index}
@@ -130,27 +128,24 @@ export const TableDefault = ({
         <THead>
           <TableHeaderRow>
             {columns &&
-              Object.values(columns).map(
-                ({ header, width, padding }, index) => {
-                  return header && !isLoading ? (
-                    <Column
-                      padding={padding}
-                      width={index === 0 && isLoading ? '100%' : width}
-                      isFirst={index === 0}
-                      isLast={Object.keys(columns).length - 1 === index}
-                      key={index}
-                    >
-                      <TableHeaderText>
-                        {typeof header === 'object' ? header : `${t(header)}`}
-                      </TableHeaderText>
-                    </Column>
-                  ) : index === 0 && isLoading ? (
-                    <Column width="100%" isFirst isLast key={index}>
-                      <TableHeaderText> </TableHeaderText>
-                    </Column>
-                  ) : null
-                },
-              )}
+              Object.values(columns).map(({ header, width }, index) => {
+                return header && !isLoading ? (
+                  <Column
+                    width={index === 0 && isLoading ? '100%' : width}
+                    isFirst={index === 0}
+                    isLast={Object.keys(columns).length - 1 === index}
+                    key={index}
+                  >
+                    <TableHeaderText>
+                      {typeof header === 'object' ? header : `${t(header)}`}
+                    </TableHeaderText>
+                  </Column>
+                ) : index === 0 && isLoading ? (
+                  <Column width="100%" isFirst isLast key={index}>
+                    <TableHeaderText> </TableHeaderText>
+                  </Column>
+                ) : null
+              })}
           </TableHeaderRow>
         </THead>
         <tbody>
@@ -254,18 +249,16 @@ const TableHeaderText = styled(TruncatedText)`
 `
 
 export const Column = styled.td<{
-  padding?: number
   width?: number | string
   isFirst?: boolean
   isLast?: boolean
   variant?: TableVariant
 }>`
-  ${({ padding, width, isFirst, isLast, variant }: any) => {
-    console.log(padding)
+  ${({ width, isFirst, isLast, variant }: any) => {
     return `
     border-bottom: 1px solid ${Colors.borderColor};
     ${variant && `height: ${Sizing[variant]}px;`}
-    ${padding && `padding: 1rem ${padding}rem;`}
+    padding: 1rem 0;
     
       ${
         typeof width === 'number'

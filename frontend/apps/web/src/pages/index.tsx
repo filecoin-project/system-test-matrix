@@ -59,50 +59,51 @@ const Dashboard = () => {
           columns={{
             repository: {
               header: 'System',
-              width: 225,
-              padding: 4,
+              width: 325,
 
               Cell: ({ data }) => {
                 return (
-                  <>
+                  <Bar>
                     <Link to="/system/Blockchain" appearance="system">
                       {data.name}
                     </Link>
                     <Subsystems>{data.subsystems.length} subsystems</Subsystems>
-                  </>
+                  </Bar>
                 )
               },
             },
             testKinds: {
               header: 'Test Kinds',
-              width: 350,
-              padding: 4,
+              width: 325,
               Cell: ({ data }) => {
                 return (
-                  <ProgressBar
-                    onClick={() => navigate('/repository-details')}
-                    data={data.testKindStats.percentages.map(
-                      ({ kind, percentage }) => ({ name: kind, percentage }),
-                    )}
-                  />
+                  <Bar>
+                    <ProgressBar
+                      onClick={() => navigate('/repository-details')}
+                      data={data.testKindStats.percentages.map(
+                        ({ kind, percentage }) => ({ name: kind, percentage }),
+                      )}
+                    />
+                  </Bar>
                 )
               },
             },
             testStatus: {
               header: 'Test Status',
-              width: 350,
-              padding: 5,
+              width: 325,
               Cell: ({ data }) => {
                 return (
-                  <ProgressBar
-                    onClick={() => navigate('/repository-details')}
-                    data={data.testStatusStats.percentages.map(
-                      ({ status, percentage }) => ({
-                        name: status,
-                        percentage,
-                      }),
-                    )}
-                  />
+                  <Bar>
+                    <ProgressBar
+                      onClick={() => navigate('/repository-details')}
+                      data={data.testStatusStats.percentages.map(
+                        ({ status, percentage }) => ({
+                          name: status,
+                          percentage,
+                        }),
+                      )}
+                    />
+                  </Bar>
                 )
               },
             },
@@ -112,38 +113,44 @@ const Dashboard = () => {
               Cell: ({ data }) => {
                 if (data.score === 'good') {
                   return (
-                    <Button
-                      onClick={() => navigate('/repository-details')}
-                      variant="rounded"
-                      size="small"
-                      color="success"
-                    >
-                      Good
-                    </Button>
+                    <Bar>
+                      <Button
+                        onClick={() => navigate('/repository-details')}
+                        variant="rounded"
+                        size="small"
+                        color="success"
+                      >
+                        Good
+                      </Button>
+                    </Bar>
                   )
                 }
                 if (data.score === 'bad') {
                   return (
-                    <Button
-                      onClick={() => navigate('/repository-details')}
-                      variant="rounded"
-                      size="small"
-                      color="error"
-                    >
-                      Bad
-                    </Button>
+                    <Bar>
+                      <Button
+                        onClick={() => navigate('/repository-details')}
+                        variant="rounded"
+                        size="small"
+                        color="error"
+                      >
+                        Bad
+                      </Button>
+                    </Bar>
                   )
                 }
                 if (data.score === 'mediocre') {
                   return (
-                    <Button
-                      onClick={() => navigate('/repository-details')}
-                      variant="rounded"
-                      size="small"
-                      color="warning"
-                    >
-                      Bad
-                    </Button>
+                    <Bar>
+                      <Button
+                        onClick={() => navigate('/repository-details')}
+                        variant="rounded"
+                        size="small"
+                        color="warning"
+                      >
+                        Bad
+                      </Button>
+                    </Bar>
                   )
                 }
               },
@@ -159,7 +166,7 @@ const Dashboard = () => {
 export default Dashboard
 
 const Subsystems = styled.div`
-  color: ${Colors.tableHeaderText};
+  color: ${Colors.textGray};
 `
 const HeaderWrapper = styled.div`
   display: flex;
@@ -176,7 +183,6 @@ const Buttons = styled.div`
   }
 `
 const Bar = styled.div`
-  width: 350px;
-  padding-left: 80px;
-  padding-right: 80px;
+  width: 325px;
+  padding-right: 135px;
 `

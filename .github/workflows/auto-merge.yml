@@ -9,7 +9,8 @@ on:
     branches:
       - main
     paths:
-      - '**/package.json'
+      - "**/package.json"
+      - frontend/yarn.lock
 
 jobs:
   auto-merge:

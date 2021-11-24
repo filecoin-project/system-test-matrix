@@ -21,11 +21,13 @@ It will also pull spec-actors
    
 ----
 Current annotation format examples:  
-header:     //stm: #integration
-behavior:   //stm: @TEST_BEHAVIOR_T1, @TEST_BEHAVIOR_T2
-ignore:     //stm: ignore
+header:     //stm: #integration  
+behavior:   //stm: @TEST_BEHAVIOR_T1, @TEST_BEHAVIOR_T2  
+ignore:     //stm: ignore  
 
-header goes as first line in source file  
+header goes as first line in source file before package clause  
+if source file needs to be ignored, ignore flag also goes  
+before package clause. The order of annotations doesn't mater  
 
 ----
 

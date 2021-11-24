@@ -5329,11 +5329,15 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -5677,11 +5681,15 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -6241,11 +6249,15 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -7098,14 +7110,14 @@ exports[`Storyshots Modal Verification Status 1`] = `
   padding-right: 2rem;
 }
 
-.c10 {
+.c5 {
   font-weight: bold;
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #14142B;
 }
 
-.c11 {
+.c10 {
   font-weight: normal;
   font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
@@ -7147,7 +7159,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   height: 100%;
 }
 
-.c4 {
+.c11 {
   position: relative;
   height: 38px;
   width: 131px;
@@ -7172,12 +7184,12 @@ exports[`Storyshots Modal Verification Status 1`] = `
   cursor: pointer;
 }
 
-.c4[disabled] {
+.c11[disabled] {
   pointer-events: none;
   border: 0;
 }
 
-.c4 > span {
+.c11 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -7185,11 +7197,11 @@ exports[`Storyshots Modal Verification Status 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c4:hover {
+.c11:hover {
   background-color: #b4c5d6;
 }
 
-.c4:focus {
+.c11:focus {
   background-color: #fff;
 }
 
@@ -7198,7 +7210,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   color: #fff;
 }
 
-.c5 {
+.c15 {
   border: 1px solid #D0D7DE;
   border-radius: 5px;
   color: #24292F;
@@ -7210,7 +7222,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100;
+  z-index: 300;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -7223,6 +7235,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-top: 0;
 }
 
 .c1 {
@@ -7247,7 +7260,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 45px;
+  padding: 0;
   background: #fff;
   box-shadow: 0 8px 15px rgba(0,0,0,0.16);
   border-radius: 9px;
@@ -7255,8 +7268,50 @@ exports[`Storyshots Modal Verification Status 1`] = `
   z-index: 101;
 }
 
-.c6 {
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  min-width: 12rem;
+  padding: 0.75rem 1.5rem 0.5rem;
+  border-bottom: 1px solid #D0D7DE;
+}
+
+.c4 .c-icon {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   margin-left: auto;
+  cursor: pointer;
+}
+
+.c6 {
+  width: 500px;
+  padding: 1rem 1.5rem;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  border-top: 1px solid #D0D7DE;
+}
+
+.c16 {
+  margin: auto;
 }
 
 .c9 {
@@ -7309,44 +7364,67 @@ exports[`Storyshots Modal Verification Status 1`] = `
     className="o-center-layout c2 c3"
     gap={2}
   >
-    <button
-      className="c4 c5 c6"
-      data-element="button"
-      size="medium"
-      variant="outline"
-    />
     <div
-      center={true}
-      className="c7 c8"
-      gap={1.5}
+      className="c4"
     >
-      <div
-        className="c9"
-      >
-        <svg
-          id="/assets/icons/warning_line.svg"
-        />
-      </div>
       <span
         bold={true}
-        className="c10 c-text--text-xl"
+        className="c5 c-text--text-xl"
       >
-        iam.modal.verificationStatus
+        Details
       </span>
-      <span
-        className="c11 c-text--text-m c-text--color-gray80"
-      >
-        iam.modal.description
-      </span>
+      <svg
+        id="/assets/icons/close.svg"
+      />
     </div>
-    <button
-      className="c4 c12 c13"
-      data-element="button"
-      size="medium"
-      variant="rounded"
+    <div
+      className="c6"
     >
-      iam.modal.okBtn
-    </button>
+      <div
+        center={true}
+        className="c7 c8"
+        gap={1.5}
+      >
+        <div
+          className="c9"
+        >
+          <svg
+            id="/assets/icons/warning_line.svg"
+          />
+        </div>
+        <span
+          bold={true}
+          className="c5 c-text--text-xl"
+        >
+          iam.modal.verificationStatus
+        </span>
+        <span
+          className="c10 c-text--text-m c-text--color-gray80"
+        >
+          iam.modal.description
+        </span>
+      </div>
+      <button
+        className="c11 c12 c13"
+        data-element="button"
+        size="medium"
+        variant="rounded"
+      >
+        iam.modal.okBtn
+      </button>
+    </div>
+    <div
+      className="c14"
+    >
+      <button
+        className="c11 c15 c16"
+        data-element="button"
+        size="medium"
+        variant="outline"
+      >
+        Cancel
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -8374,11 +8452,15 @@ exports[`Storyshots Text Headings 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -9132,11 +9214,15 @@ exports[`Storyshots Text Paragraphs 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -9708,11 +9794,15 @@ exports[`Storyshots Text Rest 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 

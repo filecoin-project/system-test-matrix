@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -20,8 +21,10 @@ func main() {
 		return
 	}
 
+	ctx := context.Background()
+
 	for i, file := range files {
-		scenarios, meta, err := ex.ExtractScenarios(file)
+		scenarios, meta, err := ex.ExtractInfo(file, ctx)
 		if err != nil {
 			fmt.Println(err)
 			continue

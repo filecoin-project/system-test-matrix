@@ -64,7 +64,7 @@ const Dashboard = () => {
               Cell: ({ data }) => {
                 return (
                   <Bar>
-                    <Link to="/system/Blockchain" appearance="system">
+                    <Link to={`system/${data.name}`} appearance="system">
                       {data.name}
                     </Link>
                     <Subsystems>{data.subsystems.length} subsystems</Subsystems>
@@ -79,7 +79,7 @@ const Dashboard = () => {
                 return (
                   <Bar>
                     <ProgressBar
-                      onClick={() => navigate('/repository-details')}
+                      onClick={() => navigate(`system/${data.name}`)}
                       data={data.testKindStats.percentages.map(
                         ({ kind, percentage }) => ({ name: kind, percentage }),
                       )}
@@ -95,7 +95,7 @@ const Dashboard = () => {
                 return (
                   <Bar>
                     <ProgressBar
-                      onClick={() => navigate('/repository-details')}
+                      onClick={() => navigate(`system/${data.name}`)}
                       data={data.testStatusStats.percentages.map(
                         ({ status, percentage }) => ({
                           name: status,
@@ -115,7 +115,7 @@ const Dashboard = () => {
                   return (
                     <Bar>
                       <Button
-                        onClick={() => navigate('/repository-details')}
+                        onClick={() => navigate(`system/${data.name}`)}
                         variant="rounded"
                         size="small"
                         color="success"
@@ -129,7 +129,7 @@ const Dashboard = () => {
                   return (
                     <Bar>
                       <Button
-                        onClick={() => navigate('/repository-details')}
+                        onClick={() => navigate(`system/${data.name}`)}
                         variant="rounded"
                         size="small"
                         color="error"
@@ -143,7 +143,7 @@ const Dashboard = () => {
                   return (
                     <Bar>
                       <Button
-                        onClick={() => navigate('/repository-details')}
+                        onClick={() => navigate(`system/${data.name}`)}
                         variant="rounded"
                         size="small"
                         color="warning"

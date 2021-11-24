@@ -19,7 +19,7 @@ interface Props {
   legend?: boolean
 }
 
-const HEIGHT = 20
+const HEIGHT = 24
 
 export const ProgressBar = ({ legend = false, ...props }: Props) => {
   const data = props.data.reduce((acc, value) => {

@@ -271,9 +271,10 @@ const Buttons = styled.div`
 const BarWrapper = styled.div`
   min-height: 166px;
   margin-bottom: 1.125rem;
-  padding: 1.75rem 3.625rem 0rem 3.625rem;
+  padding: 1.75rem 3.625rem 0;
   border: 1px solid ${Colors.borderColor};
   border-radius: 0.625rem;
+
   &:nth-child(2) {
     margin-bottom: 2.875rem;
   }

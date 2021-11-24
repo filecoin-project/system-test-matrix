@@ -6683,11 +6683,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
       >
         <div
           className="c9"
-        >
-          <svg
-            id="/assets/icons/warning_line.svg"
-          />
-        </div>
+        />
         <span
           bold={true}
           className="c5 c-text--text-xl"

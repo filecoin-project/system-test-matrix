@@ -4,10 +4,10 @@ import {
   Icon,
   NativeLink,
   PageLayout,
+  ProgressBar,
   StackLayout,
   Table,
   Text,
-  ProgressBar,
   usePageLayout,
 } from '@filecoin/ui'
 import React, { useState } from 'react'
@@ -77,10 +77,10 @@ const Dashboard = () => {
                 return (
                   <ProgressBar
                     onClick={() => navigate('/repository-details')}
-                    data={data.testKindsData.map(({ kind, percentage}) => (
-                      { name: kind, percentage }
-                      )
-                    )}
+                    data={data.testKindsData.map(({ kind, percentage }) => ({
+                      name: kind,
+                      percentage,
+                    }))}
                   />
                 )
               },
@@ -92,9 +92,10 @@ const Dashboard = () => {
                 return (
                   <ProgressBar
                     onClick={() => navigate('/repository-details')}
-                    data={data.testStatusData.map(({ status, percentage }) => (
-                      { name: status, percentage }
-                    ))}
+                    data={data.testStatusData.map(({ status, percentage }) => ({
+                      name: status,
+                      percentage,
+                    }))}
                   />
                 )
               },

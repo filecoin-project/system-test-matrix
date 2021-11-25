@@ -1823,7 +1823,7 @@ exports[`Storyshots Button Ghost 1`] = `
   padding: 1rem;
 }
 
-.c1 {
+.c4 {
   position: relative;
   height: 38px;
   width: 131px;
@@ -1848,12 +1848,12 @@ exports[`Storyshots Button Ghost 1`] = `
   cursor: pointer;
 }
 
-.c1[disabled] {
+.c4[disabled] {
   pointer-events: none;
   border: 0;
 }
 
-.c1 > span {
+.c4 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -1861,36 +1861,77 @@ exports[`Storyshots Button Ghost 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c1:hover {
+.c4:hover {
   background-color: #b4c5d6;
 }
 
-.c1:focus {
+.c4:focus {
   background-color: #fff;
 }
 
-.c2 {
+.c5 {
   border: 1px solid #D0D7DE;
   border-radius: 5px;
   color: #24292F;
 }
 
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0 1.9rem;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1.3rem 0;
+  width: 100%;
+}
+
 <div
-  className="c0 css-1svwtgt"
+  className="c0 c1"
 >
   <div
-    className="css-w7o6d5"
+    className="c2"
   >
     Ghost Buttons
   </div>
   <div
-    className="css-w7o6d5"
+    className="c2"
   >
     <div
-      className="css-1evrh9t"
+      className="c3"
     >
       <button
-        className="c1 c2"
+        className="c4 c5"
         data-element="button"
         size="medium"
         variant="outline"
@@ -1899,10 +1940,10 @@ exports[`Storyshots Button Ghost 1`] = `
       </button>
     </div>
     <div
-      className="css-1evrh9t"
+      className="c3"
     >
       <button
-        className="c1 c2"
+        className="c4 c5"
         data-element="button"
         size="medium"
         variant="outline"
@@ -1920,7 +1961,7 @@ exports[`Storyshots Button System 1`] = `
   padding: 1rem;
 }
 
-.c1 {
+.c4 {
   position: relative;
   height: 32px;
   width: 124px;
@@ -1945,12 +1986,12 @@ exports[`Storyshots Button System 1`] = `
   cursor: pointer;
 }
 
-.c1[disabled] {
+.c4[disabled] {
   pointer-events: none;
   border: 0;
 }
 
-.c1 > span {
+.c4 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -1958,15 +1999,15 @@ exports[`Storyshots Button System 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c1:hover {
+.c4:hover {
   background-color: #2ec231;
 }
 
-.c1:focus {
+.c4:focus {
   background-color: #a0e9a2;
 }
 
-.c3 {
+.c6 {
   position: relative;
   height: 32px;
   width: 124px;
@@ -1991,12 +2032,12 @@ exports[`Storyshots Button System 1`] = `
   cursor: pointer;
 }
 
-.c3[disabled] {
+.c6[disabled] {
   pointer-events: none;
   border: 0;
 }
 
-.c3 > span {
+.c6 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -2004,15 +2045,15 @@ exports[`Storyshots Button System 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c3:hover {
+.c6:hover {
   background-color: #ff2019;
 }
 
-.c3:focus {
+.c6:focus {
   background-color: #ffb4b2;
 }
 
-.c4 {
+.c7 {
   position: relative;
   height: 32px;
   width: 124px;
@@ -2037,12 +2078,12 @@ exports[`Storyshots Button System 1`] = `
   cursor: pointer;
 }
 
-.c4[disabled] {
+.c7[disabled] {
   pointer-events: none;
   border: 0;
 }
 
-.c4 > span {
+.c7 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -2050,15 +2091,15 @@ exports[`Storyshots Button System 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c4:hover {
+.c7:hover {
   background-color: #e08300;
 }
 
-.c4:focus {
+.c7:focus {
   background-color: #ffc87a;
 }
 
-.c5 {
+.c8 {
   position: relative;
   height: 32px;
   width: 124px;
@@ -2083,12 +2124,12 @@ exports[`Storyshots Button System 1`] = `
   cursor: pointer;
 }
 
-.c5[disabled] {
+.c8[disabled] {
   pointer-events: none;
   border: 0;
 }
 
-.c5 > span {
+.c8 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -2096,35 +2137,76 @@ exports[`Storyshots Button System 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c5:hover {
+.c8:hover {
   background-color: #77859c;
 }
 
-.c5:focus {
+.c8:focus {
   background-color: #d0d4dc;
 }
 
-.c2 {
+.c5 {
   border-radius: 20px;
   color: #fff;
 }
 
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0 1.9rem;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1.3rem 0;
+  width: 100%;
+}
+
 <div
-  className="c0 css-1svwtgt"
+  className="c0 c1"
 >
   <div
-    className="css-w7o6d5"
+    className="c2"
   >
     Rounded Buttons
   </div>
   <div
-    className="css-w7o6d5"
+    className="c2"
   >
     <div
-      className="css-1evrh9t"
+      className="c3"
     >
       <button
-        className="c1 c2"
+        className="c4 c5"
         color="success"
         data-element="button"
         size="small"
@@ -2134,10 +2216,10 @@ exports[`Storyshots Button System 1`] = `
       </button>
     </div>
     <div
-      className="css-1evrh9t"
+      className="c3"
     >
       <button
-        className="c3 c2"
+        className="c6 c5"
         color="error"
         data-element="button"
         size="small"
@@ -2147,10 +2229,10 @@ exports[`Storyshots Button System 1`] = `
       </button>
     </div>
     <div
-      className="css-1evrh9t"
+      className="c3"
     >
       <button
-        className="c4 c2"
+        className="c7 c5"
         color="warning"
         data-element="button"
         size="small"
@@ -2160,10 +2242,10 @@ exports[`Storyshots Button System 1`] = `
       </button>
     </div>
     <div
-      className="css-1evrh9t"
+      className="c3"
     >
       <button
-        className="c5 c2"
+        className="c8 c5"
         color="secondary"
         data-element="button"
         size="small"

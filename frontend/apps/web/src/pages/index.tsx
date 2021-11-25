@@ -1,38 +1,41 @@
 import { PageContainer } from '@/containers/PageContainer'
 import {
   Button,
-  Colors,
   Link,
   PageLayout,
   ProgressBar,
+  StackLayout,
   Table,
   Text,
   usePageLayout,
 } from '@filecoin/ui'
 import { styled } from '@storybook/theming'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { getButton } from './all-tests'
 
 const Header = props => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   return (
     <PageLayout.Header>
       <HeaderWrapper>
-        <Text type="heading 5">Systems</Text>
+        <Text type="heading 5">{t('filecoin.systems.systems')}</Text>
         <Buttons>
           <Button
-            onClick={() => navigate('/repository-details')}
+            onClick={() => navigate('/all-tests')}
             variant="outline"
             size="medium"
           >
-            All Tests
+            {t('filecoin.allTests.allTests')}
           </Button>
           <Button
-            onClick={() => navigate('/repository-details')}
+            onClick={() => navigate('/behaviors')}
             variant="outline"
             size="medium"
           >
-            All Behaviours
+            {t('filecoin.allTests.allBehaviours')}
           </Button>
         </Buttons>
       </HeaderWrapper>
@@ -44,6 +47,7 @@ const Home = () => {
     state: { model },
   } = PageContainer.useContainer()
 
+  const { t } = useTranslation()
   const systems = model.getAllSystems()
   const navigate = useNavigate()
   const pageLayout = usePageLayout({
@@ -57,23 +61,33 @@ const Home = () => {
         <Table
           variant="subtle"
           columns={{
-            repository: {
-              header: 'System',
+            system: {
+              header: t('filecoin.systems.system'),
               width: 325,
 
               Cell: ({ data }) => {
                 return (
                   <Bar>
-                    <Link to={`system/${data.name}`} appearance="system">
-                      {data.name}
-                    </Link>
-                    <Subsystems>{data.subsystems.length} subsystems</Subsystems>
+                    <StackLayout>
+                      <Link to={`system/${data.name}`} appearance="system">
+                        {data.name}
+                      </Link>
+                      <Text color="textGray">
+                        {data.subsystems.length === 1
+                          ? `${data.subsystems.length} ${t(
+                              'filecoin.systems.subsystem',
+                            )}`
+                          : `${data.subsystems.length} ${t(
+                              'filecoin.systems.subsystems',
+                            )}`}
+                      </Text>
+                    </StackLayout>
                   </Bar>
                 )
               },
             },
             testKinds: {
-              header: 'Test Kinds',
+              header: t('filecoin.systems.testKinds'),
               width: 325,
               Cell: ({ data }) => {
                 return (
@@ -89,7 +103,7 @@ const Home = () => {
               },
             },
             testStatus: {
-              header: 'Test Status',
+              header: t('filecoin.systems.testStatus'),
               width: 325,
               Cell: ({ data }) => {
                 return (
@@ -108,52 +122,9 @@ const Home = () => {
               },
             },
             score: {
-              header: 'Score',
+              header: t('filecoin.systems.score'),
               width: 200,
-              Cell: ({ data }) => {
-                if (data.score === 'good') {
-                  return (
-                    <Bar>
-                      <Button
-                        onClick={() => navigate(`system/${data.name}`)}
-                        variant="rounded"
-                        size="small"
-                        color="success"
-                      >
-                        Good
-                      </Button>
-                    </Bar>
-                  )
-                }
-                if (data.score === 'bad') {
-                  return (
-                    <Bar>
-                      <Button
-                        onClick={() => navigate(`system/${data.name}`)}
-                        variant="rounded"
-                        size="small"
-                        color="error"
-                      >
-                        Bad
-                      </Button>
-                    </Bar>
-                  )
-                }
-                if (data.score === 'mediocre') {
-                  return (
-                    <Bar>
-                      <Button
-                        onClick={() => navigate(`system/${data.name}`)}
-                        variant="rounded"
-                        size="small"
-                        color="warning"
-                      >
-                        Bad
-                      </Button>
-                    </Bar>
-                  )
-                }
-              },
+              Cell: ({ data }) => getButton(data.score),
             },
           }}
           data={systems}
@@ -165,9 +136,6 @@ const Home = () => {
 
 export default Home
 
-const Subsystems = styled.div`
-  color: ${Colors.textGray};
-`
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;

@@ -264,7 +264,7 @@ export const Column = styled.td<{
     return `
     border-bottom: 1px solid ${Colors.borderColor};
     ${variant && `height: ${Sizing[variant]}px;`}
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
     
       ${
         typeof width === 'number'

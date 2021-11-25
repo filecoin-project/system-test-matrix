@@ -263,9 +263,6 @@ export const Column = styled.td<{
 }>`
   ${({ width, isFirst, isLast, variant }: any) => {
     return `
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     border-bottom: 1px solid ${Colors.borderColor};
     ${variant && `height: ${Sizing[variant]}px;`}
     padding: 1rem 0;

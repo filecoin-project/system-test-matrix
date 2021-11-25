@@ -11,6 +11,25 @@
         "intendedBehavior": "Intended behavior",
         "isTested": "Tested"
       }
+    },
+    "allTests": {
+      "allTests": "All Tests",
+      "allBehaviours": "All Behaviours",
+      "pass": "Passing",
+      "fail": "Failing",
+      "missing": "Missing",
+      "bad": "Bad",
+      "good": "Good",
+      "mediocre": "Mediocre",
+      "allKinds": "All Tests Kinds",
+      "allStatus": "All Tests Status",
+      "listOfAllTests": "List of all tests",
+      "suite": "Suite",
+      "function": "Function",
+      "repository": "Repository",
+      "kinds": "Kinds (tags)",
+      "behaviors": "behaviors",
+      "status": "Status"
     }
   },
   "global": {

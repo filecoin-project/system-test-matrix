@@ -4,10 +4,10 @@ import {
   Icon,
   NativeLink,
   PageLayout,
+  ProgressBar,
   StackLayout,
   Table,
   Text,
-  ProgressBar,
   usePageLayout,
 } from '@filecoin/ui'
 import React, { useState } from 'react'
@@ -44,7 +44,7 @@ const Header = props => {
     </PageLayout.Header>
   )
 }
-const Dashboard = () => {
+const Home = () => {
   const pageLayout = usePageLayout({
     header: <Header />,
     footer: <PageLayout.Footer />,
@@ -149,4 +149,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Home

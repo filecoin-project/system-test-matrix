@@ -15,7 +15,22 @@ Config propperties:
 *mode* - origin or local.  
 *destination* - Destination specifies the output folder for origin  
 *output* - save TC output to json or print it on stdout  
-*lang_mode* - work in progress    
+*lang_mode* - which language to parse (or auto for automatic detection and parsing)  
+
+lang_mode options:  
+* auto  - applies parser based on file extension  
+* cpp  
+* csharp  
+* c  
+* elm  
+* golang  
+* java  
+* lua  
+* ocaml  
+* python  
+* ruby  
+* rust  
+* typescript  
 
 ## Usage
 

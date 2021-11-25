@@ -11,9 +11,9 @@ import (
 
 	a "testsuites/annotations"
 	c "testsuites/collector"
+	"testsuites/lang_parser"
 
 	sitter "github.com/smacker/go-tree-sitter"
-	"github.com/smacker/go-tree-sitter/golang"
 )
 
 type NodeType string
@@ -32,14 +32,21 @@ type Metadata struct {
 	a.HeaderType
 }
 
-func ExtractInfo(file c.TestFile, ctx context.Context) (scenarios []c.Scenario, meta *Metadata, err error) {
+func ExtractInfo(file c.TestFile, ctx context.Context, language string) (scenarios []c.Scenario, meta *Metadata, err error) {
 	content, err := getFileContent(file.Path)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	parser := sitter.NewParser()
-	parser.SetLanguage(golang.GetLanguage())
+	parser, err := lang_parser.GetParserForLang(file.Path, file.File, language)
+	if err != nil {
+		switch err.(type) {
+		case *lang_parser.ErrorLangDiffersFromConfigLang:
+			return nil, nil, nil
+		default:
+			return nil, nil, err
+		}
+	}
 
 	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
 	if err != nil {

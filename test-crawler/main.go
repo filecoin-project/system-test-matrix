@@ -43,9 +43,13 @@ func main() {
 	ctx := context.Background()
 
 	for i, file := range files {
-		scenarios, meta, err := ex.ExtractInfo(file, ctx)
+		scenarios, meta, err := ex.ExtractInfo(file, ctx, config.Language)
 		if err != nil {
 			fmt.Println(err)
+			continue
+		}
+
+		if scenarios == nil && meta == nil {
 			continue
 		}
 

@@ -9,11 +9,11 @@ import {
   Text,
   usePageLayout,
 } from '@filecoin/ui'
-import { styled } from '@storybook/theming'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { getButton } from './all-tests'
+import styled from 'styled-components'
+import { getButton } from './tests'
 
 const Header = props => {
   const { t } = useTranslation()
@@ -24,7 +24,7 @@ const Header = props => {
         <Text type="heading 5">{t('filecoin.systems.systems')}</Text>
         <Buttons>
           <Button
-            onClick={() => navigate('/all-tests')}
+            onClick={() => navigate('/tests')}
             variant="outline"
             size="medium"
           >
@@ -67,22 +67,20 @@ const Home = () => {
 
               Cell: ({ data }) => {
                 return (
-                  <Bar>
-                    <StackLayout>
-                      <Link to={`system/${data.name}`} appearance="system">
-                        {data.name}
-                      </Link>
-                      <Text color="textGray">
-                        {data.subsystems.length === 1
-                          ? `${data.subsystems.length} ${t(
-                              'filecoin.systems.subsystem',
-                            )}`
-                          : `${data.subsystems.length} ${t(
-                              'filecoin.systems.subsystems',
-                            )}`}
-                      </Text>
-                    </StackLayout>
-                  </Bar>
+                  <StackLayout>
+                    <Link to={`system/${data.name}`} appearance="system">
+                      {data.name}
+                    </Link>
+                    <Text color="textGray">
+                      {data.subsystems.length === 1
+                        ? `${data.subsystems.length} ${t(
+                            'filecoin.systems.subsystem',
+                          )}`
+                        : `${data.subsystems.length} ${t(
+                            'filecoin.systems.subsystems',
+                          )}`}
+                    </Text>
+                  </StackLayout>
                 )
               },
             },
@@ -151,6 +149,5 @@ const Buttons = styled.div`
   }
 `
 const Bar = styled.div`
-  width: 325px;
-  padding-right: 135px;
+  width: 190px;
 `

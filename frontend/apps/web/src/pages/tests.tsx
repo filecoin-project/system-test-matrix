@@ -13,10 +13,10 @@ import {
   TruncatedText,
   usePageLayout,
 } from '@filecoin/ui'
-import { styled } from '@storybook/theming'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 const Header = props => {
   const navigate = useNavigate()

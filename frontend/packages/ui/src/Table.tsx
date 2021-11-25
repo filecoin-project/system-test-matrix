@@ -114,7 +114,6 @@ export const TableDefault = ({
   const { t } = useTranslation()
   return (
     <Wrapper data-element="tableWrapper" {...props}>
-      {/* TODO: do this better */}
       {header && (
         <table data-element="tableFilter">
           <tbody>
@@ -143,7 +142,7 @@ export const TableDefault = ({
                     </TableHeaderText>
                   </Column>
                 ) : index === 0 && isLoading ? (
-                  <Column width={'100%'} isFirst isLast key={index}>
+                  <Column width="100%" isFirst isLast key={index}>
                     <TableHeaderText> </TableHeaderText>
                   </Column>
                 ) : null
@@ -265,15 +264,15 @@ export const Column = styled.td<{
     return `
     border-bottom: 1px solid ${Colors.borderColor};
     ${variant && `height: ${Sizing[variant]}px;`}
-    padding: 1rem 0;
-
+    padding: 1rem 0.5rem;
+    
       ${
         typeof width === 'number'
           ? `width: ${width}px;`
           : `width: ${width || ''};`
       }
-      ${isFirst ? 'padding-left: 1.4rem;' : 'padding-left: 0.7rem;'}
-      ${isLast ? 'padding-right: 1.4rem;' : 'padding-right: 0.7rem;'}
+      ${isFirst && 'padding-left: 1.4rem;'}
+      ${isLast && 'padding-right: 1.4rem;'}
     `
   }}
 `

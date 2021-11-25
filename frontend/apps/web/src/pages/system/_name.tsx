@@ -1,21 +1,21 @@
-import React from 'react'
+import { PageContainer } from '@/containers/PageContainer'
 import {
+  BoxLayout,
+  CardLayout,
+  Colors,
+  ColumnLayout,
+  Icon,
   MatrixMap,
   PageLayout,
   StackLayout,
   Text,
   usePageLayout,
-  CardLayout,
-  ColumnLayout,
-  BoxLayout,
-  Colors,
 } from '@filecoin/ui'
-import styled from 'styled-components'
-import ReactTooltip from 'react-tooltip'
-import { useParams } from 'react-router-dom'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
-import { PageContainer } from '@/containers/PageContainer'
+import { NavLink, useParams } from 'react-router-dom'
+import ReactTooltip from 'react-tooltip'
+import styled from 'styled-components'
 
 const RepositoryDetails = () => {
   const {
@@ -28,15 +28,38 @@ const RepositoryDetails = () => {
   const totalTests = system.subsystems.reduce((totalTests, subsystem) => {
     return totalTests + subsystem.tests.length
   }, 0)
+  const [activeTab, setActiveTab] = useState(1)
 
-  const pageLayout = usePageLayout({
-    header: (
+  const Header = props => {
+    return (
       <PageLayout.Header>
-        <StackLayout>
-          <Text type="heading 5">Systems</Text>
-        </StackLayout>
+        <Text type="heading 5">Systems</Text>
+
+        <PageLayout.Tabs>
+          <NavLink to={'/system/overview'}>
+            <PageLayout.Tab
+              onClick={() => setActiveTab(1)}
+              active={activeTab === 1}
+            >
+              <Icon name="book" size="small" />
+              <Text>Overview</Text>
+            </PageLayout.Tab>
+          </NavLink>
+          <NavLink to={'/system/detailed-view'}>
+            <PageLayout.Tab
+              onClick={() => setActiveTab(2)}
+              active={activeTab === 2}
+            >
+              <Icon name="detailed_view" size="small" />
+              <Text>Detailed view</Text>
+            </PageLayout.Tab>
+          </NavLink>
+        </PageLayout.Tabs>
       </PageLayout.Header>
-    ),
+    )
+  }
+  const pageLayout = usePageLayout({
+    header: <Header />,
     footer: <PageLayout.Footer />,
   })
 

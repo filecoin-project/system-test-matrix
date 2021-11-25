@@ -13,10 +13,10 @@ import {
   TruncatedText,
   usePageLayout,
 } from '@filecoin/ui'
-import { styled } from '@storybook/theming'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 const Header = props => {
   const navigate = useNavigate()
@@ -27,7 +27,7 @@ const Header = props => {
         <Text type="heading 5">{t('filecoin.allTests.allTests')}</Text>
 
         <Button
-          onClick={() => navigate('/repository-details')}
+          onClick={() => navigate('/behaviors')}
           variant="outline"
           size="medium"
         >
@@ -149,18 +149,17 @@ const AllTests = () => {
                 Cell: ({ data }) => {
                   return (
                     <TruncatedText>
-                      <Text type="text s">
-                        {data.path}
-                        <br />
-                      </Text>
-                      <Link
-                        to={data.functionName}
-                        appearance="system"
-                        icon="link"
-                        className="u-text--xsmall"
-                      >
-                        {data.functionName}
-                      </Link>
+                      <StackLayout>
+                        <Text type="text s">{data.path}</Text>
+                        <Link
+                          to={data.functionName}
+                          appearance="system"
+                          icon="link"
+                          className="u-text--xsmall"
+                        >
+                          {data.functionName}
+                        </Link>
+                      </StackLayout>
                     </TruncatedText>
                   )
                 },

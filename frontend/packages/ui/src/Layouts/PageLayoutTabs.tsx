@@ -1,6 +1,6 @@
 import { ReactProps } from '@filecoin/types'
-import { styled } from '@storybook/theming'
 import React from 'react'
+import styled from 'styled-components'
 
 export interface TabsProps {
   /**

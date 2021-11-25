@@ -1,8 +1,7 @@
-import { RepositoryData } from '@/mocks'
+import { PageContainer } from '@/containers/PageContainer'
 import {
   Button,
-  Icon,
-  NativeLink,
+  Link,
   PageLayout,
   ProgressBar,
   StackLayout,
@@ -10,139 +9,123 @@ import {
   Text,
   usePageLayout,
 } from '@filecoin/ui'
-import React, { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import { getButton } from './tests'
 
 const Header = props => {
-  const [activeTab, setActiveTab] = useState(1)
-
+  const { t } = useTranslation()
+  const navigate = useNavigate()
   return (
     <PageLayout.Header>
-      <StackLayout>
-        <Text type="heading 5">Systems</Text>
-      </StackLayout>
-      <PageLayout.Tabs>
-        <NavLink to={'/system/overview'}>
-          <PageLayout.Tab
-            onClick={() => setActiveTab(1)}
-            active={activeTab === 1}
+      <HeaderWrapper>
+        <Text type="heading 5">{t('filecoin.systems.systems')}</Text>
+        <Buttons>
+          <Button
+            onClick={() => navigate('/tests')}
+            variant="outline"
+            size="medium"
           >
-            <Icon name="book" size="small" />
-            <Text>Overview</Text>
-          </PageLayout.Tab>
-        </NavLink>
-        <NavLink to={'/system/detailed-view'}>
-          <PageLayout.Tab
-            onClick={() => setActiveTab(2)}
-            active={activeTab === 2}
+            {t('filecoin.allTests.allTests')}
+          </Button>
+          <Button
+            onClick={() => navigate('/behaviors')}
+            variant="outline"
+            size="medium"
           >
-            <Icon name="detailed_view" size="small" />
-            <Text>Detailed view</Text>
-          </PageLayout.Tab>
-        </NavLink>
-      </PageLayout.Tabs>
+            {t('filecoin.allTests.allBehaviours')}
+          </Button>
+        </Buttons>
+      </HeaderWrapper>
     </PageLayout.Header>
   )
 }
 const Home = () => {
+  const {
+    state: { model },
+  } = PageContainer.useContainer()
+
+  const { t } = useTranslation()
+  const systems = model.getAllSystems()
+  const navigate = useNavigate()
   const pageLayout = usePageLayout({
     header: <Header />,
     footer: <PageLayout.Footer />,
   })
-  const navigate = useNavigate()
 
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
         <Table
-          variant="default"
+          variant="subtle"
           columns={{
-            repository: {
-              header: 'Repository',
+            system: {
+              header: t('filecoin.systems.system'),
+              width: 325,
+
               Cell: ({ data }) => {
                 return (
                   <StackLayout>
-                    <Text>{data.projectName}</Text>
-                    <NativeLink href={data.projectURL} target={'_blank'}>
-                      {data.projectURL}
-                    </NativeLink>
+                    <Link to={`system/${data.name}`} appearance="system">
+                      {data.name}
+                    </Link>
+                    <Text color="textGray">
+                      {data.subsystems.length === 1
+                        ? `${data.subsystems.length} ${t(
+                            'filecoin.systems.subsystem',
+                          )}`
+                        : `${data.subsystems.length} ${t(
+                            'filecoin.systems.subsystems',
+                          )}`}
+                    </Text>
                   </StackLayout>
                 )
               },
             },
             testKinds: {
-              header: 'Test Kinds',
-              width: 222,
+              header: t('filecoin.systems.testKinds'),
+              width: 325,
               Cell: ({ data }) => {
                 return (
-                  <ProgressBar
-                    onClick={() => navigate('/repository-details')}
-                    data={data.testKindsData.map(({ kind, percentage }) => ({
-                      name: kind,
-                      percentage,
-                    }))}
-                  />
+                  <Bar>
+                    <ProgressBar
+                      onClick={() => navigate(`system/${data.name}`)}
+                      data={data.testKindStats.percentages.map(
+                        ({ kind, percentage }) => ({ name: kind, percentage }),
+                      )}
+                    />
+                  </Bar>
                 )
               },
             },
             testStatus: {
-              header: 'Test Status',
-              width: 222,
+              header: t('filecoin.systems.testStatus'),
+              width: 325,
               Cell: ({ data }) => {
                 return (
-                  <ProgressBar
-                    onClick={() => navigate('/repository-details')}
-                    data={data.testStatusData.map(({ status, percentage }) => ({
-                      name: status,
-                      percentage,
-                    }))}
-                  />
+                  <Bar>
+                    <ProgressBar
+                      onClick={() => navigate(`system/${data.name}`)}
+                      data={data.testStatusStats.percentages.map(
+                        ({ status, percentage }) => ({
+                          name: status,
+                          percentage,
+                        }),
+                      )}
+                    />
+                  </Bar>
                 )
               },
             },
             score: {
-              header: 'Score',
-              width: 155,
-              Cell: ({ index }) => {
-                //TODO@voja update this when we have some logic
-                if (index === 0) {
-                  return (
-                    <Button
-                      onClick={() => navigate('/repository-details')}
-                      variant="rounded"
-                      size="small"
-                      color="success"
-                    >
-                      Good
-                    </Button>
-                  )
-                }
-                if (index === 1) {
-                  return (
-                    <Button
-                      onClick={() => navigate('/repository-details')}
-                      variant="rounded"
-                      size="small"
-                      color="error"
-                    >
-                      Bad
-                    </Button>
-                  )
-                }
-                return (
-                  <Button
-                    onClick={() => navigate('/repository-details')}
-                    variant="rounded"
-                    size="small"
-                    color="warning"
-                  >
-                    Mediocre
-                  </Button>
-                )
-              },
+              header: t('filecoin.systems.score'),
+              width: 200,
+              Cell: ({ data }) => getButton(data.score),
             },
           }}
-          data={RepositoryData}
+          data={systems}
         />
       </PageLayout.Section>
     </PageLayout>
@@ -150,3 +133,21 @@ const Home = () => {
 }
 
 export default Home
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const Buttons = styled.div`
+  margin-top: auto;
+  margin-bottom: auto;
+
+  button {
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+`
+const Bar = styled.div`
+  width: 190px;
+`

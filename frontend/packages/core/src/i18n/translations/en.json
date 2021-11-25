@@ -30,6 +30,15 @@
       "kinds": "Kinds (tags)",
       "behaviors": "behaviors",
       "status": "Status"
+    },
+    "systems": {
+      "systems": "Systems",
+      "system": "System",
+      "testKinds": "Test Kinds",
+      "testStatus": "Test Status",
+      "score": "Score",
+      "subsystems": "subsystems",
+      "subsystem": "subsystem"
     }
   },
   "global": {

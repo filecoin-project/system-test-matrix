@@ -188,7 +188,7 @@ export const PageLayout = styled(Page)`
     z-index: ${zIndex.layer200};
     background: ${Colors.headerBackground};
     border-bottom: 1px solid ${Colors.borderColor};
-    padding: 5.5rem 3.75rem 2rem;
+    padding: 3.5rem 3.75rem 2rem;
 
     &--logo {
       background: ${Colors.logoBackground};

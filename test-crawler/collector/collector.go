@@ -43,7 +43,7 @@ func GetTestFiles(root string, language string) (files []TestFile, err error) {
 	return files, nil
 }
 
-func listTestFiles(root string, language string) (files []string, err error) {
+func listTestFiles(root string, langFromConfig string) (files []string, err error) {
 
 	suppLangs := lang_parser.GetSupportedLangs()
 
@@ -53,10 +53,15 @@ func listTestFiles(root string, language string) (files []string, err error) {
 				return err
 			}
 
+			ext := filepath.Ext(path)
+
+			_, langFromExt := lang_parser.GetLanguage(lang_parser.FileExt(ext))
+			langFromConfig := lang_parser.LangAlias(langFromConfig)
+
 			for _, pair := range suppLangs {
-				if pair.Language == lang_parser.LangAlias(language) {
+				if pair.Language == langFromConfig && langFromConfig == langFromExt {
 					files = append(files, path)
-				} else if language == "auto" && strings.Contains(path, string(pair.Extension)) {
+				} else if langFromConfig == "auto" && strings.HasSuffix(path, string(pair.Extension)) {
 					files = append(files, path)
 				}
 			}

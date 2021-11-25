@@ -12,4 +12,4 @@ repository:
 # stdout or file(json)
 output: stdout
 # auto or one of the supported languages for specific repo
-lang_mode: auto
+lang_mode: golang

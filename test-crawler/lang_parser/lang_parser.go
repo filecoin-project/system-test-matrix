@@ -35,7 +35,7 @@ func GetParserForLang(path string, file string, language string) (*sitter.Parser
 
 	parser := sitter.NewParser()
 
-	sitterLang, lang := getLanguage(FileExt(extension))
+	sitterLang, lang := GetLanguage(FileExt(extension))
 	if sitterLang == nil {
 		return nil, errors.New("unsupported language")
 	}
@@ -48,7 +48,7 @@ func GetParserForLang(path string, file string, language string) (*sitter.Parser
 	return parser, nil
 }
 
-func getLanguage(fext FileExt) (*sitter.Language, LangAlias) {
+func GetLanguage(fext FileExt) (*sitter.Language, LangAlias) {
 
 	switch fext {
 	case GOLANG_EXT:

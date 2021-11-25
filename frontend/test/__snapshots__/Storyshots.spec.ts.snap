@@ -4324,50 +4324,10 @@ exports[`Storyshots Icon All Icons 1`] = `
   <span
     className="c1 c-text--text-m"
   >
-    bell
-  </span>
-  <svg
-    id="/assets/icons/bell.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
     book
   </span>
   <svg
     id="/assets/icons/book.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    calendar
-  </span>
-  <svg
-    id="/assets/icons/calendar.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    camera
-  </span>
-  <svg
-    id="/assets/icons/camera.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    cart
-  </span>
-  <svg
-    id="/assets/icons/cart.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    chart_up
-  </span>
-  <svg
-    id="/assets/icons/chart_up.svg"
   />
   <span
     className="c1 c-text--text-m"
@@ -4380,74 +4340,10 @@ exports[`Storyshots Icon All Icons 1`] = `
   <span
     className="c1 c-text--text-m"
   >
-    clock
-  </span>
-  <svg
-    id="/assets/icons/clock.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
     close
   </span>
   <svg
     id="/assets/icons/close.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    comment
-  </span>
-  <svg
-    id="/assets/icons/comment.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    congress
-  </span>
-  <svg
-    id="/assets/icons/congress.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    copy
-  </span>
-  <svg
-    id="/assets/icons/copy.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    course
-  </span>
-  <svg
-    id="/assets/icons/course.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    create_new
-  </span>
-  <svg
-    id="/assets/icons/create_new.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    currency
-  </span>
-  <svg
-    id="/assets/icons/currency.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    dashboard
-  </span>
-  <svg
-    id="/assets/icons/dashboard.svg"
   />
   <span
     className="c1 c-text--text-m"
@@ -4460,66 +4356,10 @@ exports[`Storyshots Icon All Icons 1`] = `
   <span
     className="c1 c-text--text-m"
   >
-    dev_mode
+    detailed_view
   </span>
   <svg
-    id="/assets/icons/dev_mode.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    directions
-  </span>
-  <svg
-    id="/assets/icons/directions.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    documents
-  </span>
-  <svg
-    id="/assets/icons/documents.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    download
-  </span>
-  <svg
-    id="/assets/icons/download.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    earnings
-  </span>
-  <svg
-    id="/assets/icons/earnings.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    edit
-  </span>
-  <svg
-    id="/assets/icons/edit.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    explore
-  </span>
-  <svg
-    id="/assets/icons/explore.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    export
-  </span>
-  <svg
-    id="/assets/icons/export.svg"
+    id="/assets/icons/detailed_view.svg"
   />
   <span
     className="c1 c-text--text-m"
@@ -4540,114 +4380,10 @@ exports[`Storyshots Icon All Icons 1`] = `
   <span
     className="c1 c-text--text-m"
   >
-    facebook
-  </span>
-  <svg
-    id="/assets/icons/facebook.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    file
-  </span>
-  <svg
-    id="/assets/icons/file.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    filled_star
-  </span>
-  <svg
-    id="/assets/icons/filled_star.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    filter_three
-  </span>
-  <svg
-    id="/assets/icons/filter_three.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    free
-  </span>
-  <svg
-    id="/assets/icons/free.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    google
-  </span>
-  <svg
-    id="/assets/icons/google.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    grid_menu
-  </span>
-  <svg
-    id="/assets/icons/grid_menu.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    half_star
-  </span>
-  <svg
-    id="/assets/icons/half_star.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    heart
-  </span>
-  <svg
-    id="/assets/icons/heart.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
     help
   </span>
   <svg
     id="/assets/icons/help.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    hint
-  </span>
-  <svg
-    id="/assets/icons/hint.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    history
-  </span>
-  <svg
-    id="/assets/icons/history.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    hold
-  </span>
-  <svg
-    id="/assets/icons/hold.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    image
-  </span>
-  <svg
-    id="/assets/icons/image.svg"
   />
   <span
     className="c1 c-text--text-m"
@@ -4660,42 +4396,10 @@ exports[`Storyshots Icon All Icons 1`] = `
   <span
     className="c1 c-text--text-m"
   >
-    instagram
-  </span>
-  <svg
-    id="/assets/icons/instagram.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    invites
-  </span>
-  <svg
-    id="/assets/icons/invites.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    invites_two
-  </span>
-  <svg
-    id="/assets/icons/invites_two.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
     link
   </span>
   <svg
     id="/assets/icons/link.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    linkedin
-  </span>
-  <svg
-    id="/assets/icons/linkedin.svg"
   />
   <span
     className="c1 c-text--text-m"
@@ -4712,14 +4416,6 @@ exports[`Storyshots Icon All Icons 1`] = `
   </span>
   <svg
     id="/assets/icons/loader_two.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    location
-  </span>
-  <svg
-    id="/assets/icons/location.svg"
   />
   <span
     className="c1 c-text--text-m"
@@ -4744,38 +4440,6 @@ exports[`Storyshots Icon All Icons 1`] = `
   </span>
   <svg
     id="/assets/icons/lock_three.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    logout
-  </span>
-  <svg
-    id="/assets/icons/logout.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    logout_two
-  </span>
-  <svg
-    id="/assets/icons/logout_two.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    mail
-  </span>
-  <svg
-    id="/assets/icons/mail.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    mentions
-  </span>
-  <svg
-    id="/assets/icons/mentions.svg"
   />
   <span
     className="c1 c-text--text-m"
@@ -4820,198 +4484,6 @@ exports[`Storyshots Icon All Icons 1`] = `
   <span
     className="c1 c-text--text-m"
   >
-    mode
-  </span>
-  <svg
-    id="/assets/icons/mode.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    new_message
-  </span>
-  <svg
-    id="/assets/icons/new_message.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    number_one
-  </span>
-  <svg
-    id="/assets/icons/number_one.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    number_two
-  </span>
-  <svg
-    id="/assets/icons/number_two.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    online
-  </span>
-  <svg
-    id="/assets/icons/online.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    orders
-  </span>
-  <svg
-    id="/assets/icons/orders.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    outlined_star
-  </span>
-  <svg
-    id="/assets/icons/outlined_star.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    page_settings
-  </span>
-  <svg
-    id="/assets/icons/page_settings.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    placeholder
-  </span>
-  <svg
-    id="/assets/icons/placeholder.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    play_two
-  </span>
-  <svg
-    id="/assets/icons/play_two.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    plus
-  </span>
-  <svg
-    id="/assets/icons/plus.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    policy
-  </span>
-  <svg
-    id="/assets/icons/policy.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    posts
-  </span>
-  <svg
-    id="/assets/icons/posts.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    premium
-  </span>
-  <svg
-    id="/assets/icons/premium.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    profile
-  </span>
-  <svg
-    id="/assets/icons/profile.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    profile_settings
-  </span>
-  <svg
-    id="/assets/icons/profile_settings.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    qr
-  </span>
-  <svg
-    id="/assets/icons/qr.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    refer_afriend
-  </span>
-  <svg
-    id="/assets/icons/refer_afriend.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    refresh
-  </span>
-  <svg
-    id="/assets/icons/refresh.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    refresh_two
-  </span>
-  <svg
-    id="/assets/icons/refresh_two.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    refresh_three
-  </span>
-  <svg
-    id="/assets/icons/refresh_three.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    resync
-  </span>
-  <svg
-    id="/assets/icons/resync.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    save
-  </span>
-  <svg
-    id="/assets/icons/save.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    scan
-  </span>
-  <svg
-    id="/assets/icons/scan.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
     search
   </span>
   <svg
@@ -5020,186 +4492,10 @@ exports[`Storyshots Icon All Icons 1`] = `
   <span
     className="c1 c-text--text-m"
   >
-    section
-  </span>
-  <svg
-    id="/assets/icons/section.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    settings
-  </span>
-  <svg
-    id="/assets/icons/settings.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    share
-  </span>
-  <svg
-    id="/assets/icons/share.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    sticker
-  </span>
-  <svg
-    id="/assets/icons/sticker.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    store
-  </span>
-  <svg
-    id="/assets/icons/store.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    stream
-  </span>
-  <svg
-    id="/assets/icons/stream.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    t_o_s
-  </span>
-  <svg
-    id="/assets/icons/t_o_s.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    theme
-  </span>
-  <svg
-    id="/assets/icons/theme.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    ticket
-  </span>
-  <svg
-    id="/assets/icons/ticket.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    transfer
-  </span>
-  <svg
-    id="/assets/icons/transfer.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    transfer_five
-  </span>
-  <svg
-    id="/assets/icons/transfer_five.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    twitter
-  </span>
-  <svg
-    id="/assets/icons/twitter.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    up_and_down
-  </span>
-  <svg
-    id="/assets/icons/up_and_down.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    verify
-  </span>
-  <svg
-    id="/assets/icons/verify.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    video
-  </span>
-  <svg
-    id="/assets/icons/video.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    video_available
-  </span>
-  <svg
-    id="/assets/icons/video_available.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    wallet
-  </span>
-  <svg
-    id="/assets/icons/wallet.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    wallet_sync
-  </span>
-  <svg
-    id="/assets/icons/wallet_sync.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
     warning
   </span>
   <svg
     id="/assets/icons/warning.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    warning_line
-  </span>
-  <svg
-    id="/assets/icons/warning_line.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    work
-  </span>
-  <svg
-    id="/assets/icons/work.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    workshop
-  </span>
-  <svg
-    id="/assets/icons/workshop.svg"
-  />
-  <span
-    className="c1 c-text--text-m"
-  >
-    detailed_view
-  </span>
-  <svg
-    id="/assets/icons/detailed_view.svg"
   />
 </div>
 `;
@@ -5329,11 +4625,15 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -5677,11 +4977,15 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -6241,11 +5545,15 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -7098,14 +6406,14 @@ exports[`Storyshots Modal Verification Status 1`] = `
   padding-right: 2rem;
 }
 
-.c10 {
+.c5 {
   font-weight: bold;
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #14142B;
 }
 
-.c11 {
+.c10 {
   font-weight: normal;
   font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
@@ -7147,7 +6455,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   height: 100%;
 }
 
-.c4 {
+.c11 {
   position: relative;
   height: 38px;
   width: 131px;
@@ -7172,12 +6480,12 @@ exports[`Storyshots Modal Verification Status 1`] = `
   cursor: pointer;
 }
 
-.c4[disabled] {
+.c11[disabled] {
   pointer-events: none;
   border: 0;
 }
 
-.c4 > span {
+.c11 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -7185,11 +6493,11 @@ exports[`Storyshots Modal Verification Status 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c4:hover {
+.c11:hover {
   background-color: #b4c5d6;
 }
 
-.c4:focus {
+.c11:focus {
   background-color: #fff;
 }
 
@@ -7198,7 +6506,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   color: #fff;
 }
 
-.c5 {
+.c15 {
   border: 1px solid #D0D7DE;
   border-radius: 5px;
   color: #24292F;
@@ -7210,7 +6518,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100;
+  z-index: 300;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -7223,6 +6531,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-top: 0;
 }
 
 .c1 {
@@ -7247,7 +6556,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 45px;
+  padding: 0;
   background: #fff;
   box-shadow: 0 8px 15px rgba(0,0,0,0.16);
   border-radius: 9px;
@@ -7255,8 +6564,50 @@ exports[`Storyshots Modal Verification Status 1`] = `
   z-index: 101;
 }
 
-.c6 {
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  min-width: 12rem;
+  padding: 0.75rem 1.5rem 0.5rem;
+  border-bottom: 1px solid #D0D7DE;
+}
+
+.c4 .c-icon {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   margin-left: auto;
+  cursor: pointer;
+}
+
+.c6 {
+  width: 500px;
+  padding: 1rem 1.5rem;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  border-top: 1px solid #D0D7DE;
+}
+
+.c16 {
+  margin: auto;
 }
 
 .c9 {
@@ -7309,44 +6660,63 @@ exports[`Storyshots Modal Verification Status 1`] = `
     className="o-center-layout c2 c3"
     gap={2}
   >
-    <button
-      className="c4 c5 c6"
-      data-element="button"
-      size="medium"
-      variant="outline"
-    />
     <div
-      center={true}
-      className="c7 c8"
-      gap={1.5}
+      className="c4"
     >
-      <div
-        className="c9"
-      >
-        <svg
-          id="/assets/icons/warning_line.svg"
-        />
-      </div>
       <span
         bold={true}
-        className="c10 c-text--text-xl"
+        className="c5 c-text--text-xl"
       >
-        iam.modal.verificationStatus
+        Details
       </span>
-      <span
-        className="c11 c-text--text-m c-text--color-gray80"
-      >
-        iam.modal.description
-      </span>
+      <svg
+        id="/assets/icons/close.svg"
+      />
     </div>
-    <button
-      className="c4 c12 c13"
-      data-element="button"
-      size="medium"
-      variant="rounded"
+    <div
+      className="c6"
     >
-      iam.modal.okBtn
-    </button>
+      <div
+        center={true}
+        className="c7 c8"
+        gap={1.5}
+      >
+        <div
+          className="c9"
+        />
+        <span
+          bold={true}
+          className="c5 c-text--text-xl"
+        >
+          iam.modal.verificationStatus
+        </span>
+        <span
+          className="c10 c-text--text-m c-text--color-gray80"
+        >
+          iam.modal.description
+        </span>
+      </div>
+      <button
+        className="c11 c12 c13"
+        data-element="button"
+        size="medium"
+        variant="rounded"
+      >
+        iam.modal.okBtn
+      </button>
+    </div>
+    <div
+      className="c14"
+    >
+      <button
+        className="c11 c15 c16"
+        data-element="button"
+        size="medium"
+        variant="outline"
+      >
+        Cancel
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -7410,6 +6780,7 @@ exports[`Storyshots NativeLink Brand 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .c3 [data-element='icon'] {
@@ -7467,7 +6838,8 @@ exports[`Storyshots NativeLink Brand 1`] = `
     className="c2"
   >
     <a
-      className="c3 c4"
+      appearance="brand"
+      className="c-native-link c3 c4"
       href="https://www.google.com/"
     >
       Learn more
@@ -7476,7 +6848,7 @@ exports[`Storyshots NativeLink Brand 1`] = `
       />
     </a>
     <a
-      className="c3 c5"
+      className="c-native-link c3 c5"
       href="https://www.google.com/"
     >
       Learn more
@@ -7485,7 +6857,7 @@ exports[`Storyshots NativeLink Brand 1`] = `
       />
     </a>
     <a
-      className="c3 c5"
+      className="c-native-link c3 c5"
       href="https://www.google.com/"
     >
       Learn more
@@ -7556,6 +6928,7 @@ exports[`Storyshots NativeLink Default 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .c3 [data-element='icon'] {
@@ -7601,7 +6974,7 @@ exports[`Storyshots NativeLink Default 1`] = `
     className="c2"
   >
     <a
-      className="c3 c4"
+      className="c-native-link c3 c4"
       href="https://www.google.com/"
       rel="noopener noreferrer"
       target="_blank"
@@ -7612,7 +6985,7 @@ exports[`Storyshots NativeLink Default 1`] = `
       />
     </a>
     <a
-      className="c3 c4"
+      className="c-native-link c3 c4"
       href="https://www.google.com/"
       rel="noopener noreferrer"
       target="_blank"
@@ -7623,7 +6996,7 @@ exports[`Storyshots NativeLink Default 1`] = `
       />
     </a>
     <a
-      className="c3 c4"
+      className="c-native-link c3 c4"
       disabled={true}
       href="https://www.google.com/"
       rel="noopener noreferrer"
@@ -7697,6 +7070,7 @@ exports[`Storyshots NativeLink Details 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .c3 [data-element='icon'] {
@@ -7742,7 +7116,8 @@ exports[`Storyshots NativeLink Details 1`] = `
     className="c2"
   >
     <a
-      className="c3 c4"
+      appearance="default"
+      className="c-native-link c3 c4"
       disabled={false}
       href="https://www.google.com/"
       rel="noopener noreferrer"
@@ -7816,6 +7191,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .c3 [data-element='icon'] {
@@ -7851,6 +7227,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .c5 [data-element='icon'] {
@@ -7886,6 +7263,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .c6 [data-element='icon'] {
@@ -7927,7 +7305,8 @@ exports[`Storyshots NativeLink Sizing 1`] = `
     className="c2"
   >
     <a
-      className="c3 c4"
+      appearance="brand"
+      className="c-native-link c3 c4"
       href="https://www.google.com/"
       rel="noopener noreferrer"
       target="_blank"
@@ -7938,7 +7317,8 @@ exports[`Storyshots NativeLink Sizing 1`] = `
       />
     </a>
     <a
-      className="c5 c4 u-text--small"
+      appearance="brand"
+      className="c-native-link c5 c4 u-text--small"
       href="https://www.google.com/"
       rel="noopener noreferrer"
       target="_blank"
@@ -7949,7 +7329,8 @@ exports[`Storyshots NativeLink Sizing 1`] = `
       />
     </a>
     <a
-      className="c6 c4 u-text--xsmall"
+      appearance="brand"
+      className="c-native-link c6 c4 u-text--xsmall"
       href="https://www.google.com/"
       rel="noopener noreferrer"
       target="_blank"
@@ -8022,6 +7403,7 @@ exports[`Storyshots NativeLink System 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .c3 [data-element='icon'] {
@@ -8063,7 +7445,8 @@ exports[`Storyshots NativeLink System 1`] = `
     className="c2"
   >
     <a
-      className="c3 c4"
+      appearance="system"
+      className="c-native-link c3 c4"
       href="https://www.google.com/"
       rel="noopener noreferrer"
       target="_blank"
@@ -8074,7 +7457,8 @@ exports[`Storyshots NativeLink System 1`] = `
       />
     </a>
     <a
-      className="c3 c4"
+      appearance="system"
+      className="c-native-link c3 c4"
       href="https://www.google.com/"
       rel="noopener noreferrer"
       target="_blank"
@@ -8085,7 +7469,8 @@ exports[`Storyshots NativeLink System 1`] = `
       />
     </a>
     <a
-      className="c3 c4"
+      appearance="system"
+      className="c-native-link c3 c4"
       disabled={true}
       href="https://www.google.com/"
       rel="noopener noreferrer"
@@ -8374,11 +7759,15 @@ exports[`Storyshots Text Headings 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -9132,11 +8521,15 @@ exports[`Storyshots Text Paragraphs 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 
@@ -9708,11 +9101,15 @@ exports[`Storyshots Text Rest 1`] = `
 }
 
 .c0 .c-page-layout__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   width: 100vw;
+  height: 6.25rem;
   max-width: calc(1100px - 4rem);
-  height: 100px;
   margin: auto auto 0;
-  border-top: 1px solid #AFB8C1;
+  border-top: 1px solid #D0D7DE;
   color: #57606A;
 }
 

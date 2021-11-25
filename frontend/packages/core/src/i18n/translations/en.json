@@ -1,6 +1,17 @@
 {
   "filecoin": {
-    "system": { "totalTests": "tests in the system" }
+    "system": { "totalTests": "tests in the system" },
+    "behaviors": {
+      "title": "Behaviors",
+      "behaviorStatus": "Behavior status",
+      "listOfAllBehaviors": "List of all behaviors",
+      "tableHeaders": {
+        "behaviorId": "Behavior ID",
+        "featureName": "Feature name",
+        "intendedBehavior": "Intended behavior",
+        "isTested": "Tested"
+      }
+    }
   },
   "global": {
     "tableHeaders": {

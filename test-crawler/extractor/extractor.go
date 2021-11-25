@@ -1,18 +1,29 @@
 package extractor
 
 import (
+	"context"
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"strings"
 
 	a "testsuites/annotations"
 	c "testsuites/collector"
 
-	"github.com/dave/dst"
-	"github.com/dave/dst/decorator"
+	sitter "github.com/smacker/go-tree-sitter"
+	"github.com/smacker/go-tree-sitter/golang"
+)
+
+type NodeType string
+
+const (
+	COMMENT              NodeType = "comment"
+	PACKAGE_CLAUSE       NodeType = "package_clause"
+	FUNCTION_DECLARATION NodeType = "function_declaration"
+	PARAMETER_LIST       NodeType = "parameter_list"
+	BLOCK                NodeType = "block"
 )
 
 type Metadata struct {
@@ -21,13 +32,23 @@ type Metadata struct {
 	a.HeaderType
 }
 
-func ExtractScenarios(file c.TestFile) (scenarios []c.Scenario, meta *Metadata, err error) {
+func ExtractInfo(file c.TestFile, ctx context.Context) (scenarios []c.Scenario, meta *Metadata, err error) {
 	content, err := getFileContent(file.Path)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	scenData, meta, err := getScenarios(content, file.Path)
+	parser := sitter.NewParser()
+	parser.SetLanguage(golang.GetLanguage())
+
+	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
+	if err != nil {
+		return nil, nil, err
+	}
+
+	cursor := sitter.NewTreeCursor(tree.RootNode())
+
+	scenData, meta, err := parseContent(content, cursor, file.Path)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -49,7 +70,7 @@ func getFileContent(filePath string) (content string, err error) {
 	}
 	defer file.Close()
 
-	src, err := ioutil.ReadAll(file)
+	src, err := io.ReadAll(file)
 	if err != nil {
 		return "", err
 	}
@@ -57,125 +78,143 @@ func getFileContent(filePath string) (content string, err error) {
 	return string(src), nil
 }
 
-func getScenarios(content string, filePath string) ([]c.Scenario, *Metadata, error) {
+func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string) ([]c.Scenario, *Metadata, error) {
 	var scenarios []c.Scenario
-	var metadata Metadata
+	var metadata *Metadata
 
 	var annotationParser a.Parser
 
-	file, err := decorator.Parse(content)
-	if err != nil {
-		panic(err)
-	}
+	metadata = getMetadata(content, treeCursor, &annotationParser)
+	functions := getFunctionNodes(content, treeCursor, &annotationParser)
 
-	metadata.Package = file.Name.Name
+	for _, function := range functions {
 
-	for _, stmt := range file.Decs.NodeDecs.Start {
-		data, parsedType, err := annotationParser.Parse(stmt)
-		if err == nil {
-			if parsedType == a.Header {
-				metadata.TestType = data.(*a.HeaderType).TestType
-			} else if parsedType == a.Ignore {
-				metadata.Ignore = data.(bool)
-			}
-		}
-	}
+		behaviors := findBehaviorsFromNode(content, function.Node)
 
-	for _, function := range file.Scope.Objects {
-		testExists := false
-
-		params := findFunctionParamsFromDST(function)
-
-		for _, param := range params {
-			if strings.Contains(param, "testing.T") {
-				testExists = true
-			}
-		}
-
-		if testExists {
-
-			behaviors := findBehaviorsFromDST(function)
-
-			scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
-		}
+		scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
 
 	}
 
-	return scenarios, &metadata, nil
+	return scenarios, metadata, nil
 }
 
-func findFunctionParamsFromDST(object *dst.Object) []string {
+func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) *Metadata {
 
-	var params []string
+	meta := Metadata{}
 
-	switch object.Decl.(type) {
-	case *dst.FuncDecl:
-		{
-			if object.Decl.(*dst.FuncDecl) != nil {
-				paramList := object.Decl.(*dst.FuncDecl).Type.Params.List
-				for _, param := range paramList {
-					switch outer := param.Type.(type) {
-					case *dst.FuncType:
-						{
+	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
+	for childId := 0; numChildsRootNode > 0; childId++ {
+		child := treeCursor.CurrentNode().Child(childId)
 
-						}
-					case *dst.StarExpr:
-						{
-							switch inner := outer.X.(type) {
-							case *dst.SelectorExpr:
-								{
-									pkg := inner.X.(*dst.Ident).Name
-									pkgType := inner.Sel.Name
+		if !child.IsNull() {
 
-									params = append(params, fmt.Sprintf("%s.%s", pkg, pkgType))
-								}
-							}
+			if child.Type() == string(PACKAGE_CLAUSE) {
+				break
+			}
 
-						}
+			value, annotationType, _ := parser.Parse(content[child.StartByte():child.EndByte()])
+
+			if value != nil && (annotationType == a.Header || annotationType == a.Ignore) {
+				switch dynType := value.(type) {
+				case *a.HeaderType:
+					{
+						meta.HeaderType = *dynType
+					}
+				case bool:
+					{
+						meta.Ignore = dynType
 					}
 				}
 			}
 		}
 	}
 
-	return params
+	return &meta
 }
 
-// func findScenarioFromDST(object *dst.Object) a.ScenarioType {
-// 	var fType a.ScenarioType
-// 	var annotationParser a.Parser
+func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) (funcAnnoPair []struct {
+	Node *sitter.Node
+	Name string
+}) {
 
-// 	if len(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start) > 0 {
-// 		IfType, err := annotationParser.Parse(object.Decl.(*dst.FuncDecl).Decs.NodeDecs.Start[0], a.Scenario)
-// 		if err == nil {
-// 			fType.Ignore = IfType.(*a.ScenarioType).Ignore
-// 		}
-// 	}
-// 	return fType
-// }
+	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
+	node := &sitter.Node{}
+	prevNode := &sitter.Node{}
+	funcName := ""
+	isIgnored := false
+	for childId := 0; int(numChildsRootNode) > childId; childId++ {
+		child := treeCursor.CurrentNode().Child(childId)
 
-func findBehaviorsFromDST(object *dst.Object) []a.BehaviorType {
-	var behaviors []a.BehaviorType
-	var annotationParser a.Parser
+		if child != nil {
+			if child.Type() == string(FUNCTION_DECLARATION) {
+				if prevNode.Type() == string(COMMENT) {
 
-	bodyObjects := object.Decl.(*dst.FuncDecl).Body.List
-
-	for _, object := range bodyObjects {
-
-		comment := getCommentFromStmt(object)
-
-		behavior, parsedType, err := annotationParser.Parse(comment)
-		if err == nil {
-			if behavior != nil && parsedType == a.Behavior {
-				switch behaviorType := behavior.(type) {
-				case []a.BehaviorType:
-					behaviors = append(behaviors, behaviorType...)
+					value, annotationType, _ := parser.Parse(content[prevNode.StartByte():prevNode.EndByte()])
+					if value != nil && annotationType == a.Ignore {
+						isIgnored = value.(bool)
+					}
 				}
-			} else {
-				behaviors = append(behaviors, a.BehaviorType{})
+
+				funcName = content[child.Child(1).StartByte():child.Child(1).EndByte()]
+				if child.Child(2).Type() == string(PARAMETER_LIST) {
+					funcParamString := content[child.Child(2).StartByte():child.Child(2).EndByte()]
+					if !strings.Contains(funcParamString, "testing.T") {
+						isIgnored = true
+					} else {
+						node = child
+					}
+
+				}
+
+				if isIgnored {
+					prevNode = child
+					isIgnored = false
+					continue
+				}
+
+				funcAnnoPair = append(funcAnnoPair, struct {
+					Node *sitter.Node
+					Name string
+				}{
+					Node: node,
+					Name: funcName,
+				})
+
+				node = nil
+				funcName = ""
+				isIgnored = false
 			}
+			prevNode = child
 		}
 	}
+
+	return funcAnnoPair
+}
+
+func findBehaviorsFromNode(content string, node *sitter.Node) (behaviors []a.BehaviorType) {
+	if node == nil {
+		return nil
+	}
+
+	var annotationParser a.Parser
+
+	iter := sitter.NewIterator(node, sitter.DFSMode)
+	iter.ForEach(func(iterChild *sitter.Node) error {
+		if iterChild.Type() == string(COMMENT) {
+			behavior, parsedType, err := annotationParser.Parse(content[iterChild.StartByte():iterChild.EndByte()])
+			if err == nil {
+				if behavior != nil && parsedType == a.Behavior {
+					switch behaviorType := behavior.(type) {
+					case []a.BehaviorType:
+						behaviors = append(behaviors, behaviorType...)
+					}
+				} else {
+					behaviors = append(behaviors, a.BehaviorType{})
+				}
+			}
+		}
+		return nil
+	})
 
 	return behaviors
 }
@@ -197,93 +236,4 @@ func makeCollectorScenario(filePath string, funcName string, behaviors []a.Behav
 func makeID(filePath string, funcName string, behavior string) string {
 	hash := md5.Sum([]byte(fmt.Sprintf("%s_%s_%s", filePath, funcName, behavior)))
 	return string(hex.EncodeToString(hash[:]))
-}
-
-func getCommentFromStmt(statment dst.Stmt) string {
-	var result string
-
-	switch v := statment.(type) {
-	case *dst.BadStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.DeclStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.EmptyStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.LabeledStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.ExprStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.SendStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.IncDecStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.AssignStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.GoStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.DeferStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.ReturnStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.BranchStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.IfStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.CaseClause:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.SwitchStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.TypeSwitchStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.CommClause:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.SelectStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.ForStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	case *dst.RangeStmt:
-		if len(v.Decs.NodeDecs.Start) > 0 {
-			return v.Decs.NodeDecs.Start[0]
-		}
-	}
-
-	return result
 }

@@ -1,35 +1,35 @@
 export const chartDataWithPercentageAndKind = [
   {
     kind: 'api',
-    percentage: 20
+    percentage: 20,
   },
   {
     kind: 'unit',
-    percentage: 30
+    percentage: 30,
   },
   {
     kind: 'integration',
-    percentage: 15.55555
+    percentage: 15.55555,
   },
   {
     kind: 'benchmark',
-    percentage: 24.455555
+    percentage: 24.455555,
   },
   {
     kind: 'e2e',
-    percentage: 10
-  }
+    percentage: 10,
+  },
 ]
 
 export const chartDataWithPercentageAndStatus = [
   {
     status: 'api',
-    percentage: 51
+    percentage: 51,
   },
   {
     status: 'unit',
-    percentage: 49
-  }
+    percentage: 49,
+  },
 ]
 
 export const RepositoryData = [

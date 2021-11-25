@@ -15,7 +15,7 @@ const TableVariant = ['default', 'light', 'subtle'] as const
 type TableVariant = typeof TableVariant[number]
 
 interface TableProps {
-  variant: TableVariant
+  variant?: TableVariant
   data: any[]
   columns: Record<string, ColumnData>
   action?: Function
@@ -108,6 +108,7 @@ export const TableDefault = ({
   header,
   expandable,
   isLoading,
+  variant = 'default',
   ...props
 }: TableProps) => {
   const { t } = useTranslation()
@@ -154,7 +155,7 @@ export const TableDefault = ({
             !isLoading &&
             data.map((rowData, rowIndex) => (
               <Row
-                variant={props.variant}
+                variant={variant}
                 key={rowIndex}
                 expandable={expandable}
                 columns={columns}
@@ -215,6 +216,10 @@ const Wrapper = styled.div`
             border-top: 1px solid ${Colors.borderColor};
           }
         }
+      }
+
+      td {
+        font-size: 0.875rem;
       }
     }
   }
@@ -411,11 +416,7 @@ const getActiveComponent = variant => {
   }
 }
 
-export const Table = ({
-  variant,
-
-  ...props
-}: TableProps) => {
+export const Table = ({ variant, ...props }: TableProps) => {
   const ActiveComponent = getActiveComponent(variant)
-  return <ActiveComponent variant={variant} {...props}></ActiveComponent>
+  return <ActiveComponent variant={variant} {...props} />
 }

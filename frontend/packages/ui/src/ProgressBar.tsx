@@ -8,6 +8,7 @@ import {
   YAxis,
 } from 'recharts'
 import styled from 'styled-components'
+
 import { Colors } from './styles/colors'
 
 interface Props {
@@ -15,13 +16,17 @@ interface Props {
     name: string
     percentage: number
   }[]
-  onClick: () => void
+  onClick?: () => void
   legend?: boolean
 }
 
-const HEIGHT = 20
+const HEIGHT = 18
 
-export const ProgressBar = ({ legend = false, ...props }: Props) => {
+export const ProgressBar = ({
+  legend = false,
+  onClick = () => null,
+  ...props
+}: Props) => {
   const data = props.data.reduce((acc, value) => {
     acc[value.name] = value.percentage
     return acc
@@ -32,7 +37,7 @@ export const ProgressBar = ({ legend = false, ...props }: Props) => {
     return Object.keys(data).map((bar, i) => (
       <Bar
         isAnimationActive={false}
-        onClick={props.onClick}
+        onClick={onClick}
         key={bar}
         fill={Colors.progressBarColors[i % 10]}
         dataKey={bar}
@@ -63,7 +68,12 @@ export const ProgressBar = ({ legend = false, ...props }: Props) => {
   return (
     <>
       <ResponsiveContainer width="100%" height={HEIGHT}>
-        <BarChart layout="vertical" height={HEIGHT} data={[data]}>
+        <BarChart
+          margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+          layout="vertical"
+          height={HEIGHT}
+          data={[data]}
+        >
           <XAxis hide type="number" />
           <YAxis hide dataKey="name" type="category" />
           {!legend && (
@@ -88,7 +98,7 @@ const Legend = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin-top: 1rem;
-  padding: 0 1rem;
+  padding: 0;
 `
 
 const LegendPiece = styled.li`

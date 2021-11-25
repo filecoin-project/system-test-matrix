@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-
-import { ElementProps } from '../../types'
+import { ElementProps, ReactProps } from '@filecoin/types'
+import classNames from 'classnames'
 
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
@@ -20,6 +20,10 @@ export type NativeLinkAppearanceType = typeof NativeLinkAppearance[number]
  */
 export interface NativeLinkProps extends ElementProps<'a'> {
   /**
+   * The element to render the `<NativeLink>` as. Defaults to 'a'.
+   */
+  readonly as?: React.ElementType
+  /**
    * Optional icon to render alongside the label.
    */
   icon?: IconNamesType
@@ -33,9 +37,28 @@ export interface NativeLinkProps extends ElementProps<'a'> {
   disabled?: boolean
 }
 
-const NativeLinkComponent = styled.a<{
-  appearance: NativeLinkAppearanceType
-}>`
+const defaultElement = 'a'
+
+const Link = React.forwardRef(
+  (
+    { as: Component = defaultElement, children, ...props }: NativeLinkProps,
+    ref: React.Ref<Element>,
+  ) => {
+    const className = classNames(
+      'c-native-link',
+      (props as { className?: string }).className,
+    )
+    return (
+      <Component ref={ref} {...props} className={className}>
+        {children}
+      </Component>
+    )
+  },
+) as <T extends React.ElementType = typeof defaultElement>(
+  props: { as?: T } & Omit<ReactProps<T>, 'as'> & NativeLinkProps,
+) => JSX.Element
+
+const NativeLinkComponent = styled(Link)`
   font-family: ${Fonts.Manrope};
   font-weight: bold;
   ${props => Size({ className: props.className })};
@@ -43,6 +66,7 @@ const NativeLinkComponent = styled.a<{
   letter-spacing: 0.2px;
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
 
   & [data-element='icon'] {
     margin: 0.1rem 0.25rem 0;

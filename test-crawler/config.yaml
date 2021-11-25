@@ -5,11 +5,11 @@ repository:
   # origins for above repositories, need to be in order as in name list
   origin: [https://github.com/filecoin-project/lotus/, https://github.com/filecoin-project/specs-actors/]
   # origin or local
-  mode: origin
+  mode: local
   # destination folder, needed for origin mode to clone/pull
-  destination: _modules
+  destination: _local_modules
 
 # stdout or file(json)
-output: stdout
+output: file
 # auto or one of the supported languages for specific repo
-lang_mode: golang
+lang_mode: auto

@@ -12,7 +12,6 @@ import (
 	"github.com/smacker/go-tree-sitter/elm"
 	"github.com/smacker/go-tree-sitter/golang"
 	"github.com/smacker/go-tree-sitter/java"
-	"github.com/smacker/go-tree-sitter/javascript"
 	"github.com/smacker/go-tree-sitter/lua"
 	"github.com/smacker/go-tree-sitter/ocaml"
 	"github.com/smacker/go-tree-sitter/python"
@@ -65,8 +64,6 @@ func GetLanguage(fext FileExt) (*sitter.Language, LangAlias) {
 		return elm.GetLanguage(), ELM_LANG
 	case JAVA_EXT:
 		return java.GetLanguage(), JAVA_LANG
-	case JAVASCRIPT_EXT:
-		return javascript.GetLanguage(), JAVASCRIPT_LANG
 	case LUA_EXT:
 		return lua.GetLanguage(), LUA_LANG
 	case OCAML_EXT:
@@ -91,7 +88,6 @@ func GetSupportedLangs() []LangExtPair {
 		{C_HEADER_EXT, CPP_LANG},
 		{ELM_EXT, ELM_LANG},
 		{GOLANG_EXT, GO_LANG},
-		{JAVASCRIPT_EXT, JAVASCRIPT_LANG},
 		{JAVA_EXT, JAVA_LANG},
 		{LUA_EXT, LUA_LANG},
 		{OCAML_EXT, OCAML_LANG},

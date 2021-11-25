@@ -110,7 +110,7 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	meta := Metadata{}
 
 	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
-	for childId := 0; numChildsRootNode > 0; childId++ {
+	for childId := 0; int(numChildsRootNode) > childId; childId++ {
 		child := treeCursor.CurrentNode().Child(childId)
 
 		if child != nil {

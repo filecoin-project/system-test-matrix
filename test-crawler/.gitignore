@@ -3,5 +3,3 @@ _local_modules
 outputs
 .vscode
 config.yaml
-*.yaml
-*.yml

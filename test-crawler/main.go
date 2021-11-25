@@ -42,22 +42,28 @@ func main() {
 
 	ctx := context.Background()
 
-	for i, file := range files {
+	valid := 0
+	for _, file := range files {
 		scenarios, meta, err := ex.ExtractInfo(file, ctx, config.Language)
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
 
-		if scenarios == nil && meta == nil {
-			continue
-		}
+		if len(scenarios) != 0 && scenarios != nil {
+			files[valid] = file
 
-		files[i].Package = meta.Package
-		files[i].TestType = meta.TestType
-		files[i].Ignore = meta.Ignore
-		files[i].Scenarios = scenarios
+			files[valid].Package = meta.Package
+			files[valid].TestType = meta.TestType
+			files[valid].Ignore = meta.Ignore
+			files[valid].Scenarios = scenarios
+
+			valid++
+
+		}
 	}
+
+	files = files[:valid]
 
 	Save(files, config.OutputMode)
 }

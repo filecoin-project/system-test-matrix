@@ -81,3 +81,23 @@ func getLanguage(fext FileExt) (*sitter.Language, LangAlias) {
 		return nil, ""
 	}
 }
+
+func GetSupportedLangs() []LangExtPair {
+	return []LangExtPair{
+		{CPP_EXT, CPP_LANG},
+		{CPP_HEADER_EXT, CPP_LANG},
+		{CSHARP_EXT, CSHARP_LANG},
+		{C_EXT, C_LANG},
+		{C_HEADER_EXT, CPP_LANG},
+		{ELM_EXT, ELM_LANG},
+		{GOLANG_EXT, GO_LANG},
+		{JAVASCRIPT_EXT, JAVASCRIPT_LANG},
+		{JAVA_EXT, JAVA_LANG},
+		{LUA_EXT, LUA_LANG},
+		{OCAML_EXT, OCAML_LANG},
+		{PYTHON_EXT, PYTHON_LANG},
+		{RUBY_EXT, RUBY_LANG},
+		{RUST_EXT, RUST_LANG},
+		{TYPESCRIPT_EXT, TYPESCRIPT_LANG},
+	}
+}

@@ -34,7 +34,7 @@ func main() {
 		}
 	}
 
-	files, err := c.GetTestFiles(config.Repo.Destination)
+	files, err := c.GetTestFiles(config.Repo.Destination, config.Language)
 	if err != nil {
 		fmt.Println(err)
 		return

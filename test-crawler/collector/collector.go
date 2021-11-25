@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	a "testsuites/annotations"
+	"testsuites/lang_parser"
 )
 
 type TestFile struct {
@@ -24,8 +25,8 @@ type Scenario struct {
 	Behaviors []a.BehaviorType
 }
 
-func GetTestFiles(root string) (files []TestFile, err error) {
-	fileArray, err := listTestFiles(root)
+func GetTestFiles(root string, language string) (files []TestFile, err error) {
+	fileArray, err := listTestFiles(root, language)
 	if err != nil {
 		return nil, err
 	}
@@ -42,15 +43,22 @@ func GetTestFiles(root string) (files []TestFile, err error) {
 	return files, nil
 }
 
-func listTestFiles(root string) (files []string, err error) {
+func listTestFiles(root string, language string) (files []string, err error) {
+
+	suppLangs := lang_parser.GetSupportedLangs()
+
 	err = filepath.Walk(root,
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				return err
 			}
 
-			if strings.Contains(path, "_test.go") {
-				files = append(files, path)
+			for _, pair := range suppLangs {
+				if pair.Language == lang_parser.LangAlias(language) {
+					files = append(files, path)
+				} else if language == "auto" && strings.Contains(path, string(pair.Extension)) {
+					files = append(files, path)
+				}
 			}
 
 			return nil

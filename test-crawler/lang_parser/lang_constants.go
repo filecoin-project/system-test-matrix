@@ -10,6 +10,11 @@ package lang_parser
 type FileExt string
 type LangAlias string
 
+type LangExtPair struct {
+	Extension FileExt
+	Language  LangAlias
+}
+
 const (
 	CPP_EXT        FileExt = ".cpp"
 	CPP_HEADER_EXT FileExt = ".hpp"

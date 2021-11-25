@@ -43,9 +43,7 @@ export const VerificationStatus = args => {
   return (
     <Modal {...args} isOpen={true}>
       <Container center gap={1.5}>
-        <CircleIcon>
-          <Icon size="xlarge" name="warning_line" />
-        </CircleIcon>
+        <CircleIcon />
         <Text type="text xl" bold>
           {t('iam.modal.verificationStatus')}
         </Text>

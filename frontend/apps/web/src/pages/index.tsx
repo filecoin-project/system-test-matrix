@@ -39,7 +39,7 @@ const Header = props => {
     </PageLayout.Header>
   )
 }
-const Dashboard = () => {
+const Home = () => {
   const {
     state: { model },
   } = PageContainer.useContainer()
@@ -163,7 +163,7 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Home
 
 const Subsystems = styled.div`
   color: ${Colors.textGray};

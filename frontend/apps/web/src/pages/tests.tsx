@@ -98,7 +98,6 @@ const AllTests = () => {
     return Object.entries(
       allTests.reduce(
         (d, test) => {
-          console.log(test)
           if (test.status === 'pass') {
             d.Passing += 1
           } else if (test.status === 'fail') {

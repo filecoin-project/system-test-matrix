@@ -1,0 +1,142 @@
+system:
+  name: Client
+  description: Behaviors for interacting with the network as a storage client
+  subsystems:
+    - name: Data
+      features:
+        - name: Import
+          behaviors:
+            - id: CLIENT_DATA_IMPORT_001
+              description: Imports a regular file under the specified path into the file store
+            - id: CLIENT_DATA_IMPORT_002
+              description: Imports a CAR file under the specified path into the file store
+        - name: Remove
+          behaviors:
+            - id: CLIENT_IMPORT_REMOVE_001
+              description: Given an existing import ID, deletes the imported file from the file store
+        - name: List
+          behaviors:
+            - id: CLIENT_DATA_LIST_001
+              description: Lists all imported data
+        - name: Stat
+          behaviors:
+            - id: CLIENT_IMPORT_STAT_001
+              description: Given a CID of an imported file, return the piece and payload size for the specified file
+            - id: CLIENT_IMPORT_STAT_002
+              description: Given an invalid or unimported CID, throw an error
+        - name: Calculate CommP
+          behaviors:
+            - id: CLIENT_DATA_CALCULATE_COMMP_001
+              description: Given a file path, calculate the CommP for the specified file
+        - name: Generate CAR
+          behaviors:
+            - id: CLIENT_GEN_CAR_001
+              description: Given a file reference and an output path, generate a CAR file for
+                the specified file
+        - name: Has Local
+          behaviors:
+            - id: CLIENT_DATA_HAS_LOCAL_001
+              description: Given a CID, returns true if data referenced by the CID is stored
+                locally
+    - name: Common
+      features:
+        - name: Client Deal Size
+          behaviors:
+            - id: CLIENT_DEAL_SIZE_001
+              description: Given a root CID, calculate the real data size for the specified CID
+        - name: Balances
+          behaviors:
+            - id: CLIENT_COMMON_BALANCES_001
+              description: Return storage market client balances
+    - name: Storage Deals
+      features:
+        - name: Initialize
+          behaviors:
+            - id: CLIENT_STORAGE_DEALS_INITIALIZE_001
+              description: Given valid deal parameters, initialize a deal with the specified miner
+            - id: CLIENT_STORAGE_DEALS_INITIALIZE_002
+              description: Given a duration < MinDuration (180 * epochs in day), throw an error
+            - id: CLIENT_STORAGE_DEALS_INITIALIZE_003
+              description: Given a duration > MaxDuration (540 * epochs in day), throw an error
+            - id: CLIENT_STORAGE_DEALS_INITIALIZE_004
+              description: Given an invalid "from" address, throw an error
+            - id: CLIENT_STORAGE_DEALS_INITIALIZE_005
+              description: Given an invalid piece CID, throw an error
+            - id: CLIENT_STORAGE_DEALS_INITIALIZE_006
+              description: Given the "verified-deal" flag and the "from" address is not a verified client, 
+                throw an error
+        - name: Query ask
+          behaviors:
+            - id: CLIENT_STORAGE_DEALS_QUERY_ASK_001
+              description: Given an address and a peer ID, returns a signed storage ask from
+                the specified miner
+        - name: Get
+          behaviors:
+            - id: CLIENT_STORAGE_DEALS_GET_001
+              description: Given an existing deal CID, return detailed info about the specified deal
+        - name: List deals
+          behaviors:
+            - id: CLIENT_STORAGE_DEALS_LIST_DEALS_001
+              description: Returns a list of deals made by the local node
+        - name: Stream deals
+          behaviors:
+            - id: CLIENT_STORAGE_DEALS_STREAM_DEALS_001
+              description: Returns a channel that streams information about deal updates
+        - name: Inspect
+          behaviors:
+            - id: CLIENT_STORAGE_DEALS_INSPECT_001
+              description: Given a deal ID, inspect detailed information about the deal's lifecycle and various stages it goes through
+        - name: List asks
+          behaviors:
+            - id: CLIENT_STORAGE_DEALS_LIST_ASKS_001
+              description: Return a list of asks for top miners
+    - name: Retrieval
+      features:
+        - name: Find
+          behaviors:
+            - id: CLIENT_RETRIEVAL_FIND_001
+              description: Given root and piece CIDs, return query offers from peers that have
+                the file piece referenced by CIDs
+        - name: Retrieve
+          behaviors:
+            - id: CLIENT_RETRIEVAL_RETRIEVE_001
+              description: Given an existing retrieval order and a file reference, initiate
+                the retrieval of the file specified in the order
+            - id: CLIENT_RETRIEVAL_RETRIEVE_002
+              description: Given an invalid "from" address (used to pay for retrieval) throw an error
+            - id: CLIENT_RETRIEVAL_RETRIEVE_003
+              description: Given an invalid piece CID, throw an error. 
+                If an offer of a CID can't be found it's considered invalid.
+            - id: CLIENT_RETRIEVAL_RETRIEVE_004
+              description: Given an invalid "maxPrice", throw an error.
+                If an offer satisfying maxPrice is not found, it's considered invalid.
+        - name: Cancel
+          behaviors:
+            - id: CLIENT_RETRIEVAL_CANCEL_001
+              description: Cancels an ongoing retrieval deal based on Deal ID
+            - id: CLIENT_RETRIEVAL_CANCEL_002
+              description: Fails if underlying state store throws an error     
+        - name: List Retrievals
+          behaviors:
+            - id: CLIENT_RETRIEVAL_LIST_RETRIEVALS_001
+              description: Return information about all retrievals made by the local client
+        - name: List Data Transfers
+          behaviors:
+            - id: CLIENT_RETRIEVALS_LIST_DATA_TRANSFERS_001
+              description: Returns the status of all ongoing transfers of data
+        - name: Data Transfer Updates
+          behaviors:
+            - id: CLIENT_DATA_TRANSFER_UPDATES_001
+              description: Fetch data transfer channels that were updated
+        - name: Restart Transfer
+          behaviors:
+            - id: CLIENT_RESTART_TRANSFER_001
+              description: Given a transfer ID and other peer ID, restart a (stalled) data transfer as the initiator
+            - id: CLIENT_RESTART_TRANSFER_002
+              description: Given a transfer ID and other peer ID, restart a (stalled) data transfer where the other peer is the initiator
+        - name: Cancel Data Transfer
+          behaviors:
+            - id: CLIENT_RETRIEVAL_CANCEL_TRANSFER_001
+              description: Given an existing transfer with a peer and this node is the initiator, cancel the transfer on both parties
+            - id: CLIENT_RETRIEVAL_CANCEL_TRANSFER_002
+              description: Given an existing transfer with a peer and the peer is the initiator, cancel the transfer on both parties

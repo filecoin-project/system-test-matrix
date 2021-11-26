@@ -6148,7 +6148,7 @@ exports[`Storyshots Link Sizing 1`] = `
   >
     <span>
       <a
-        appearance="brand"
+        appearance="default"
         className="c3 c4 u-text--large"
         href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
@@ -6159,7 +6159,7 @@ exports[`Storyshots Link Sizing 1`] = `
     </span>
     <span>
       <a
-        appearance="brand"
+        appearance="default"
         className="c5 c4"
         href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
@@ -6170,7 +6170,7 @@ exports[`Storyshots Link Sizing 1`] = `
     </span>
     <span>
       <a
-        appearance="brand"
+        appearance="default"
         className="c6 c4 u-text--small"
         href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
@@ -6181,7 +6181,7 @@ exports[`Storyshots Link Sizing 1`] = `
     </span>
     <span>
       <a
-        appearance="brand"
+        appearance="default"
         className="c7 c4 u-text--xsmall"
         href="/http://filecoin-fe-dev.s3-website.us-east-2.amazonaws.com/"
         onClick={[Function]}
@@ -6803,154 +6803,6 @@ exports[`Storyshots Modal Verification Status 1`] = `
 </div>
 `;
 
-exports[`Storyshots NativeLink Brand 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.c2 > * {
-  margin-left: 0;
-  margin-right: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c2 > * + * {
-  margin-left: 1rem;
-}
-
-.c2:only-child {
-  height: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c3 {
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1.25rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c3[disabled] {
-  opacity: 0.5;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  pointer-events: none;
-}
-
-.c4 {
-  color: #5B1F7B;
-}
-
-.c4:hover {
-  color: #440864;
-}
-
-.c4[disabled] {
-  color: #440864;
-}
-
-.c5 {
-  font-family: "OpenSans",sans-serif;
-  color: #6E7191;
-  font-weight: 400;
-}
-
-.c5:hover {
-  color: #4E4B66;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-}
-
-.c5[disabled] {
-  color: #A6A9C3;
-}
-
-.c1 {
-  margin: 1.3rem 0;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    <a
-      appearance="brand"
-      className="c-native-link c3 c4"
-      href="https://www.google.com/"
-    >
-      Learn more
-      <svg
-        id="/assets/icons/undefined.svg"
-      />
-    </a>
-    <a
-      className="c-native-link c3 c5"
-      href="https://www.google.com/"
-    >
-      Learn more
-      <svg
-        id="/assets/icons/undefined.svg"
-      />
-    </a>
-    <a
-      className="c-native-link c3 c5"
-      href="https://www.google.com/"
-    >
-      Learn more
-      <svg
-        id="/assets/icons/undefined.svg"
-      />
-    </a>
-  </div>
-</div>
-`;
-
 exports[`Storyshots NativeLink Default 1`] = `
 .c0 {
   display: block;
@@ -6996,12 +6848,7 @@ exports[`Storyshots NativeLink Default 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1.25rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1.5rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -7010,16 +6857,12 @@ exports[`Storyshots NativeLink Default 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c3 svg {
+  margin-right: 6px;
 }
 
 .c3[disabled] {
@@ -7031,14 +6874,17 @@ exports[`Storyshots NativeLink Default 1`] = `
 
 .c4 {
   font-family: "OpenSans",sans-serif;
-  color: #6E7191;
-  font-weight: 400;
+  color: #000000;
+  font-weight: 600;
 }
 
 .c4:hover {
-  color: #4E4B66;
-  -webkit-text-decoration: none;
-  text-decoration: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c4:focus {
+  color: #7e7a9d;
 }
 
 .c4[disabled] {
@@ -7055,161 +6901,27 @@ exports[`Storyshots NativeLink Default 1`] = `
   <div
     className="c2"
   >
-    <a
-      className="c-native-link c3 c4"
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Forgot your password?
-      <svg
-        id="/assets/icons/arrow_right.svg"
-      />
-    </a>
-    <a
-      className="c-native-link c3 c4"
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Forgot your password?
-      <svg
-        id="/assets/icons/undefined.svg"
-      />
-    </a>
-    <a
-      className="c-native-link c3 c4"
-      disabled={true}
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Forgot your password?
-      <svg
-        id="/assets/icons/undefined.svg"
-      />
-    </a>
-  </div>
-</div>
-`;
-
-exports[`Storyshots NativeLink Details 1`] = `
-.c0 {
-  display: block;
-  padding: 1rem;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.c2 > * {
-  margin-left: 0;
-  margin-right: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c2 > * + * {
-  margin-left: 1rem;
-}
-
-.c2:only-child {
-  height: 100%;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c3 {
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-  font-size: 1.25rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c3[disabled] {
-  opacity: 0.5;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  pointer-events: none;
-}
-
-.c4 {
-  font-family: "OpenSans",sans-serif;
-  color: #6E7191;
-  font-weight: 400;
-}
-
-.c4:hover {
-  color: #4E4B66;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-}
-
-.c4[disabled] {
-  color: #A6A9C3;
-}
-
-.c1 {
-  margin: 1.3rem 0;
-}
-
-<div
-  className="c0 c1"
->
-  <div
-    className="c2"
-  >
-    <a
-      appearance="default"
-      className="c-native-link c3 c4"
-      disabled={false}
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Learn more
-      <svg
-        id="/assets/icons/arrow_right.svg"
-      />
-    </a>
+    <span>
+      <a
+        className="c-native-link c3 c4 u-text--large"
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Blockchain
+      </a>
+    </span>
+    <span>
+      <a
+        className="c-native-link c3 c4 u-text--large"
+        disabled={true}
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Blockchain
+      </a>
+    </span>
   </div>
 </div>
 `;
@@ -7259,12 +6971,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 .c3 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1.25rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1.5rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -7273,16 +6980,12 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c3 svg {
+  margin-right: 6px;
 }
 
 .c3[disabled] {
@@ -7295,12 +6998,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 .c5 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 1rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1.25rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -7309,16 +7007,12 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c5 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c5:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c5 svg {
+  margin-right: 6px;
 }
 
 .c5[disabled] {
@@ -7331,12 +7025,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 .c6 {
   font-family: "Manrope",sans-serif;
   font-weight: bold;
-  font-size: 0.875rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
+  font-size: 1rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -7345,16 +7034,12 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c6 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c6:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c6 svg {
+  margin-right: 6px;
 }
 
 .c6[disabled] {
@@ -7364,16 +7049,50 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   pointer-events: none;
 }
 
+.c7 {
+  font-family: "Manrope",sans-serif;
+  font-weight: bold;
+  font-size: 0.875rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.c7 svg {
+  margin-right: 6px;
+}
+
+.c7[disabled] {
+  opacity: 0.5;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  pointer-events: none;
+}
+
 .c4 {
-  color: #5B1F7B;
+  font-family: "OpenSans",sans-serif;
+  color: #000000;
+  font-weight: 600;
 }
 
 .c4:hover {
-  color: #440864;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c4:focus {
+  color: #7e7a9d;
 }
 
 .c4[disabled] {
-  color: #440864;
+  color: #A6A9C3;
 }
 
 .c1 {
@@ -7386,42 +7105,50 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   <div
     className="c2"
   >
-    <a
-      appearance="brand"
-      className="c-native-link c3 c4"
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Regular
-      <svg
-        id="/assets/icons/arrow_right.svg"
-      />
-    </a>
-    <a
-      appearance="brand"
-      className="c-native-link c5 c4 u-text--small"
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Small
-      <svg
-        id="/assets/icons/arrow_right.svg"
-      />
-    </a>
-    <a
-      appearance="brand"
-      className="c-native-link c6 c4 u-text--xsmall"
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      XS Small
-      <svg
-        id="/assets/icons/arrow_right.svg"
-      />
-    </a>
+    <span>
+      <a
+        appearance="default"
+        className="c-native-link c3 c4 u-text--large"
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Large
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="default"
+        className="c-native-link c5 c4"
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Regular
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="default"
+        className="c-native-link c6 c4 u-text--small"
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Small
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="default"
+        className="c-native-link c7 c4 u-text--xsmall"
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        XS Small
+      </a>
+    </span>
   </div>
 </div>
 `;
@@ -7472,11 +7199,6 @@ exports[`Storyshots NativeLink System 1`] = `
   font-family: "Manrope",sans-serif;
   font-weight: bold;
   font-size: 1.25rem;
-  line-height: 16px;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -7485,16 +7207,12 @@ exports[`Storyshots NativeLink System 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
-.c3 [data-element='icon'] {
-  margin: 0.1rem 0.25rem 0;
-}
-
-.c3:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+.c3 svg {
+  margin-right: 6px;
 }
 
 .c3[disabled] {
@@ -7504,12 +7222,51 @@ exports[`Storyshots NativeLink System 1`] = `
   pointer-events: none;
 }
 
+.c5 {
+  font-family: "Manrope",sans-serif;
+  font-weight: bold;
+  font-size: 0.875rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.c5 svg {
+  margin-right: 6px;
+}
+
+.c5[disabled] {
+  opacity: 0.5;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  pointer-events: none;
+}
+
 .c4 {
-  color: #4E4B66;
+  color: #218BFF;
 }
 
 .c4:hover {
-  color: #4E4B66;
+  color: #0059ba;
+}
+
+.c4:hover svg {
+  fill: #0059ba;
+}
+
+.c4:focus {
+  color: #87c0ff;
+}
+
+.c4:focus svg {
+  fill: #87c0ff;
 }
 
 .c4[disabled] {
@@ -7526,43 +7283,46 @@ exports[`Storyshots NativeLink System 1`] = `
   <div
     className="c2"
   >
-    <a
-      appearance="system"
-      className="c-native-link c3 c4"
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Learn more
-      <svg
-        id="/assets/icons/arrow_right.svg"
-      />
-    </a>
-    <a
-      appearance="system"
-      className="c-native-link c3 c4"
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Learn more
-      <svg
-        id="/assets/icons/undefined.svg"
-      />
-    </a>
-    <a
-      appearance="system"
-      className="c-native-link c3 c4"
-      disabled={true}
-      href="https://www.google.com/"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Learn more
-      <svg
-        id="/assets/icons/undefined.svg"
-      />
-    </a>
+    <span>
+      <a
+        appearance="system"
+        className="c-native-link c3 c4 u-text--medium"
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Blockchain
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="system"
+        className="c-native-link c5 c4 u-text--xsmall"
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <svg
+          id="/assets/icons/link.svg"
+        />
+        /lotus/miner
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="system"
+        className="c-native-link c5 c4 u-text--xsmall"
+        disabled={true}
+        href="https://www.google.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <svg
+          id="/assets/icons/link.svg"
+        />
+        /lotus/miner
+      </a>
+    </span>
   </div>
 </div>
 `;

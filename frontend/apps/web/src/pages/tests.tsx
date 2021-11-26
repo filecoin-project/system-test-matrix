@@ -122,7 +122,7 @@ const AllTests = () => {
     }))
   }
   const allTestsStatus = prepareAllTestsStatus()
-  console.log(allTestsStatus)
+
   const pageLayout = usePageLayout({
     header: <Header />,
     footer: <PageLayout.Footer />,

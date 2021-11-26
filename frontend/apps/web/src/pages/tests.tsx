@@ -4,7 +4,6 @@ import {
   BoxLayout,
   Button,
   CardLayout,
-  Link,
   PageLayout,
   ProgressBar,
   StackLayout,
@@ -97,10 +96,23 @@ const AllTests = () => {
 
   const prepareAllTestsStatus = () => {
     return Object.entries(
-      allTests.reduce((d, test) => {
-        d[test.status] = (d[test.status] || 0) + 1
-        return d
-      }, {}),
+      allTests.reduce(
+        (d, test) => {
+          if (test.status === 'pass') {
+            d.Passing += 1
+          } else if (test.status === 'fail') {
+            d.Failing += 1
+          } else {
+            d.Missing += 1
+          }
+          return d
+        },
+        {
+          Passing: 0,
+          Failing: 0,
+          Missing: 0,
+        },
+      ),
     ).map(([key, count]: any) => ({
       name: key,
       percentage: (count / allTests.length) * 100,
@@ -151,14 +163,6 @@ const AllTests = () => {
                     <TruncatedText>
                       <StackLayout>
                         <Text type="text s">{data.path}</Text>
-                        <Link
-                          to={data.functionName}
-                          appearance="system"
-                          icon="link"
-                          className="u-text--xsmall"
-                        >
-                          {data.functionName}
-                        </Link>
                       </StackLayout>
                     </TruncatedText>
                   )
@@ -166,6 +170,7 @@ const AllTests = () => {
               },
               function: {
                 header: t('filecoin.allTests.function'),
+                width: 220,
                 Cell: ({ data }) => {
                   return (
                     <TruncatedText>
@@ -176,37 +181,18 @@ const AllTests = () => {
               },
               repository: {
                 header: t('filecoin.allTests.repository'),
-
                 Cell: ({ data }) => {
-                  return (
-                    <Link
-                      to={data.repository}
-                      appearance="system"
-                      className="u-text--xsmall"
-                    >
-                      {data.repository}
-                    </Link>
-                  )
+                  return <Text type="text s">{data.repository}</Text>
                 },
               },
               kinds: {
                 header: t('filecoin.allTests.kinds'),
-
                 Cell: ({ data }) => {
-                  return (
-                    <Link
-                      to={data.kind}
-                      appearance="system"
-                      className="u-text--xsmall"
-                    >
-                      {data.kind}
-                    </Link>
-                  )
+                  return <Text type="text s">{data.kind}</Text>
                 },
               },
               behaviors: {
                 header: t('filecoin.behaviors.title'),
-
                 Cell: ({ data }) => {
                   return (
                     <Text type="text s">

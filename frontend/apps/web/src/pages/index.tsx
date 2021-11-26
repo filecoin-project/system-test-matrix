@@ -63,8 +63,6 @@ const Home = () => {
           columns={{
             system: {
               header: t('filecoin.systems.system'),
-              width: 325,
-
               Cell: ({ data }) => {
                 return (
                   <StackLayout>
@@ -72,13 +70,9 @@ const Home = () => {
                       {data.name}
                     </Link>
                     <Text color="textGray">
-                      {data.subsystems.length === 1
-                        ? `${data.subsystems.length} ${t(
-                            'filecoin.systems.subsystem',
-                          )}`
-                        : `${data.subsystems.length} ${t(
-                            'filecoin.systems.subsystems',
-                          )}`}
+                      {t('filecoin.systems.keyWithCount', {
+                        count: data.subsystems.length,
+                      })}
                     </Text>
                   </StackLayout>
                 )

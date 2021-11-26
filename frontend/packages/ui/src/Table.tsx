@@ -299,7 +299,7 @@ const TableLight = styled(TableDefault)`
     }
 
     thead {
-      height: 0;
+      ${props => props.variant === 'light' && 'height: 0;'}
     }
 
     ${TableHeaderText} {

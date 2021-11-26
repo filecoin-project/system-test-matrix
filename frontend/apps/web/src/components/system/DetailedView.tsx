@@ -14,11 +14,11 @@ import styled from 'styled-components'
 
 interface Props {
   model: Model
-  modelName: string
+  systemName: string
 }
 
-export const DetailedView: React.FC<Props> = ({ model, modelName }) => {
-  const system = model.findSystemByName(modelName)
+export const DetailedView: React.FC<Props> = ({ model, systemName }) => {
+  const system = model.findSystemByName(systemName)
   const testKinds = model.getAllTestKinds()
   return (
     <Wrapper>

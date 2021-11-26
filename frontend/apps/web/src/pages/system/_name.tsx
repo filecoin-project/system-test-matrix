@@ -12,6 +12,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { DetailedView } from '@/components/system/DetailedView'
 import { Overview } from '@/components/system/Overview'
 
+const TABS = ['overview', 'detailedView']
+
 const RepositoryDetails = () => {
   const {
     state: { model },
@@ -24,13 +26,15 @@ const RepositoryDetails = () => {
     return totalTests + subsystem.tests.length
   }, 0)
 
-  const [activeTab, setActiveTab] = useState(
-    new URLSearchParams(window.location.search).get('tab') || 'overview',
+  const [activeTab, setActiveTab] = useState<'overview' | 'detailedView'>(
+    'overview',
   )
 
   useEffect(() => {
+    if (!TABS.includes(activeTab)) {
+      setActiveTab('overview')
+    }
     navigate({
-      pathname: '/system/Blockchain/',
       search: `?tab=${activeTab}`,
     })
   }, [activeTab])
@@ -69,9 +73,9 @@ const RepositoryDetails = () => {
           {totalTests} {t('filecoin.system.totalTests')}
         </Text>
         {activeTab === 'overview' ? (
-          <Overview model={model} modelName={params.name} />
+          <Overview model={model} systemName={params.name} />
         ) : (
-          <DetailedView model={model} modelName={params.name} />
+          <DetailedView model={model} systemName={params.name} />
         )}
       </PageLayout.Section>
     </PageLayout>

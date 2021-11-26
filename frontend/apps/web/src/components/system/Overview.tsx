@@ -8,7 +8,6 @@ import {
   Table,
   Button,
 } from '@filecoin/ui'
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const DATASCORE = {
@@ -19,12 +18,11 @@ const DATASCORE = {
 
 interface Props {
   model: Model
-  modelName: string
+  systemName: string
 }
 
-export const Overview: React.FC<Props> = ({ model, modelName }) => {
-  const navigate = useNavigate()
-  const system = model.findSystemByName(modelName)
+export const Overview: React.FC<Props> = ({ model, systemName }) => {
+  const system = model.findSystemByName(systemName)
   const totalSubsystems = system.subsystems.length
 
   return (
@@ -37,7 +35,6 @@ export const Overview: React.FC<Props> = ({ model, modelName }) => {
               percentage,
             }),
           )}
-          onClick={() => null}
           legend
         ></ProgressBar>
       </ProgressBarWrapper>
@@ -49,7 +46,6 @@ export const Overview: React.FC<Props> = ({ model, modelName }) => {
               percentage: percentage,
             }),
           )}
-          onClick={() => null}
           legend
         ></ProgressBar>
       </ProgressBarWrapper>
@@ -65,10 +61,8 @@ export const Overview: React.FC<Props> = ({ model, modelName }) => {
             },
             testKinds: {
               header: 'Test Kinds',
-              width: 225,
               Cell: ({ data }) => (
                 <ProgressBar
-                  onClick={() => navigate('/repository-details')}
                   data={data.testKindStats.percentages.map(
                     ({ kind, percentage }) => ({ name: kind, percentage }),
                   )}
@@ -77,10 +71,8 @@ export const Overview: React.FC<Props> = ({ model, modelName }) => {
             },
             testStatus: {
               header: 'Test Status',
-              width: 225,
               Cell: ({ data }) => (
                 <ProgressBar
-                  onClick={() => navigate('/repository-details')}
                   data={data.testStatusStats.percentages.map(
                     ({ status, percentage }) => ({ name: status, percentage }),
                   )}
@@ -92,7 +84,6 @@ export const Overview: React.FC<Props> = ({ model, modelName }) => {
               width: 150,
               Cell: ({ data }) => (
                 <StyledButton
-                  onClick={() => navigate('/repository-details')}
                   variant="rounded"
                   size="small"
                   color={DATASCORE[data.score]}

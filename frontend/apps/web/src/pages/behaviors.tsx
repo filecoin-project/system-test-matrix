@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import { PageContainer } from '@/containers/PageContainer'
+import { Behavior } from '@filecoin/types'
 import {
+  BoxLayout,
+  Button,
+  CardLayout,
+  CenterLayout,
+  Icon,
   Modal,
   NativeLink,
   PageLayout,
+  ProgressBar,
   StackLayout,
   Table,
   Text,
-  CardLayout,
   usePageLayout,
-  BoxLayout,
-  CenterLayout,
-  ProgressBar,
-  Icon,
 } from '@filecoin/ui'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Behavior } from '@filecoin/types'
-
-import { PageContainer } from '@/containers/PageContainer'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 const Behaviors = () => {
   const {
@@ -55,13 +57,21 @@ const Behaviors = () => {
   const [behaviorChartData, setBehaviorChartData] = useState(
     prepareBehaviorChart(),
   )
+  const navigate = useNavigate()
 
   const pageLayout = usePageLayout({
     header: (
       <PageLayout.Header>
-        <StackLayout>
+        <HeaderWrapper>
           <Text type="heading 5">{t('filecoin.behaviors.title')}</Text>
-        </StackLayout>
+          <Button
+            onClick={() => navigate('/tests')}
+            variant="outline"
+            size="medium"
+          >
+            {t('filecoin.allTests.allTests')}
+          </Button>
+        </HeaderWrapper>
       </PageLayout.Header>
     ),
   })
@@ -151,3 +161,13 @@ const Behaviors = () => {
 }
 
 export default Behaviors
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+`

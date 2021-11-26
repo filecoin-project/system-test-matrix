@@ -1,7 +1,6 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import styled from 'styled-components'
-
 import { BoxLayout, ColumnLayout } from '../Layouts'
 import { Link, LinkAppearance } from '../Link'
 
@@ -120,7 +119,7 @@ export const Sizing = () => (
         to={{
           pathname,
         }}
-        appearance="brand"
+        appearance="default"
         target="blank"
         className="u-text--large"
       >
@@ -130,7 +129,7 @@ export const Sizing = () => (
         to={{
           pathname,
         }}
-        appearance="brand"
+        appearance="default"
         target="blank"
       >
         Regular
@@ -139,14 +138,14 @@ export const Sizing = () => (
         to={{
           pathname,
         }}
-        appearance="brand"
+        appearance="default"
         target="blank"
         className="u-text--small"
       >
         Small
       </Link>
       <Link
-        appearance="brand"
+        appearance="default"
         to={{
           pathname,
         }}

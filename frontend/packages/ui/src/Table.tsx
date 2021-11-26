@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import { Loader } from './Loader'
 import { Paginator } from './Paginator'
 import { Colors } from './styles/colors'
@@ -16,7 +15,7 @@ const TableVariant = ['default', 'light', 'subtle'] as const
 type TableVariant = typeof TableVariant[number]
 
 interface TableProps {
-  variant: TableVariant
+  variant?: TableVariant
   data: any[]
   columns: Record<string, ColumnData>
   action?: Function
@@ -109,12 +108,12 @@ export const TableDefault = ({
   header,
   expandable,
   isLoading,
+  variant = 'default',
   ...props
 }: TableProps) => {
   const { t } = useTranslation()
   return (
     <Wrapper data-element="tableWrapper" {...props}>
-      {/* TODO: do this better */}
       {header && (
         <table data-element="tableFilter">
           <tbody>
@@ -143,7 +142,7 @@ export const TableDefault = ({
                     </TableHeaderText>
                   </Column>
                 ) : index === 0 && isLoading ? (
-                  <Column width={'100%'} isFirst isLast key={index}>
+                  <Column width="100%" isFirst isLast key={index}>
                     <TableHeaderText> </TableHeaderText>
                   </Column>
                 ) : null
@@ -155,7 +154,7 @@ export const TableDefault = ({
             !isLoading &&
             data.map((rowData, rowIndex) => (
               <Row
-                variant={props.variant}
+                variant={variant}
                 key={rowIndex}
                 expandable={expandable}
                 columns={columns}
@@ -217,6 +216,10 @@ const Wrapper = styled.div`
           }
         }
       }
+
+      td {
+        font-size: 0.875rem;
+      }
     }
   }
 `
@@ -245,8 +248,9 @@ export const TruncatedText = styled.div`
 `
 
 const TableHeaderText = styled(TruncatedText)`
-  color: ${Colors.textColor};
-  font-weight: normal;
+  color: ${Colors.textGray};
+  font-weight: bold;
+  text-transform: capitalize;
   vertical-align: middle;
 `
 
@@ -260,15 +264,15 @@ export const Column = styled.td<{
     return `
     border-bottom: 1px solid ${Colors.borderColor};
     ${variant && `height: ${Sizing[variant]}px;`}
-    padding: 1rem 0;
-
+    padding: 1rem 0.5rem;
+    
       ${
         typeof width === 'number'
           ? `width: ${width}px;`
           : `width: ${width || ''};`
       }
-      ${isFirst ? 'padding-left: 1.4rem;' : 'padding-left: 0.7rem;'}
-      ${isLast ? 'padding-right: 1.4rem;' : 'padding-right: 0.7rem;'}
+      ${isFirst && 'padding-left: 1.4rem;'}
+      ${isLast && 'padding-right: 1.4rem;'}
     `
   }}
 `
@@ -408,11 +412,7 @@ const getActiveComponent = variant => {
   }
 }
 
-export const Table = ({
-  variant,
-
-  ...props
-}: TableProps) => {
+export const Table = ({ variant, ...props }: TableProps) => {
   const ActiveComponent = getActiveComponent(variant)
-  return <ActiveComponent variant={variant} {...props}></ActiveComponent>
+  return <ActiveComponent variant={variant} {...props} />
 }

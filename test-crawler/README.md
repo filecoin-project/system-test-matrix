@@ -1,23 +1,25 @@
 
 # Test Crawler
 
-**Description**:  Test Crawler is a tool made to build json file out of project source code  
-that describes test functions and corresponding scenarios  
-Currently its being built for Filecoin  
+**Description**:  Test Crawler is a tool made to build json file or output json to standard output out of project source code  
+that describes test functions and corresponding scenarios   
 
-## Installation
+## Configuration  
 
-Clone repository and run the following in your favorite terminal:  
-``` 
-make init
-make run
-```  
+clone repository that should be annotated  
+
+Create or update config.yaml to suite your needs.  
+Config propperties:  
+*name* - name or list of names of repositories that will be stored in destination folder for annotation parsing  
+*origin* - remote git origin used for cloning or pulling changes  
+*mode* - origin or local.  
+*destination* - Destination specifies the output folder for origin  
+*output* - save TC output to json or print it on stdout  
+*lang_mode* - work in progress    
 
 ## Usage
 
-`make init` will clone filecoin repository (or pull changes if it already exists) in _modules directory  
-It will also pull spec-actors  
-`make run` outputs *json* file in outputs directory  
+`make run`  - runs test crawler 
    
 ----
 Current annotation format examples:  

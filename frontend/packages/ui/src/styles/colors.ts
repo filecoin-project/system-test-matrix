@@ -94,6 +94,7 @@ export const Colors = {
   tabHover: '#218BFF',
   blueLink: '#218BFF',
   black: '#000000',
+  tableHeaderText: '#57606A',
 
   progressBarColors: [
     '#FFB347',
@@ -105,6 +106,6 @@ export const Colors = {
     '#99B2D0',
     '#C6D9AD',
     '#CFA0E6',
-    '#D0D7DE'
-  ]
+    '#D0D7DE',
+  ],
 }

@@ -60,7 +60,7 @@ const NativeLinkComponent = styled(Link)`
   font-weight: bold;
   ${props => Size({ className: props.className })};
   line-height: 16px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.5px;
   display: inline-flex;
   align-items: center;
   cursor: pointer;

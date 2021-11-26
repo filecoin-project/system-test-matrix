@@ -142,8 +142,9 @@ export const Text = styled(TextComponent)<TextProps>`
       `
       case 'heading 5':
         return `
-        font-size: 1.375rem;
-        line-height: 1.75rem;        
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+        letter-spacing: ${bold ? 0.5 : 0.3}px;        
       `
       case 'heading 6':
         return `
@@ -233,6 +234,8 @@ export const Text = styled(TextComponent)<TextProps>`
         return Colors.green80
       case 'white':
         return Colors.white
+      case 'textGray':
+        return Colors.textGray
       default:
         return Colors.textColor
     }

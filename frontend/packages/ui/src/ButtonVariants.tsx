@@ -80,6 +80,8 @@ export const ButtonBase = styled(ButtonComponent)`
 
 const ButtonRounded = styled(ButtonBase)`
   font-family: ${Fonts.NunitoSans};
+  font-size: 14px;
+  letter-spacing: 0.03rem;
   border-radius: 20px;
   color: ${Colors.white};
 `

@@ -30,7 +30,9 @@ const Header = props => {
           variant="outline"
           size="medium"
         >
-          {t('filecoin.allTests.allBehaviours')}
+          <Text type="text s" bold>
+            {t('filecoin.allTests.allBehaviours')}
+          </Text>
         </Button>
       </HeaderWrapper>
     </PageLayout.Header>

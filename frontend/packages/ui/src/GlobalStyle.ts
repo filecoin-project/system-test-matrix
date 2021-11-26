@@ -42,7 +42,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: any; customCss: string }>`
   }
   
   input, textarea {
-    font-family: 'Segoe UI Regular', Tahoma, Geneva, Verdana;
+    font-family: 'Segoe UI Regular', Tahoma, Geneva, Verdana, sans-serif;
   }
   
   table.table {

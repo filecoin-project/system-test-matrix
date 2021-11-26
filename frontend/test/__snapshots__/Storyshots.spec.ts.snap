@@ -31,7 +31,6 @@ exports[`Storyshots BaseInput Base 1`] = `
 .c2 {
   position: relative;
   width: 100%;
-  font-family: "OpenSans",sans-serif;
 }
 
 .c3 label {
@@ -64,7 +63,6 @@ exports[`Storyshots BaseInput Base 1`] = `
   -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
   -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
   transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
 }
 
@@ -237,7 +235,6 @@ exports[`Storyshots BaseInput Disabled 1`] = `
 .c2 {
   position: relative;
   width: 100%;
-  font-family: "OpenSans",sans-serif;
 }
 
 .c3 label {
@@ -270,7 +267,6 @@ exports[`Storyshots BaseInput Disabled 1`] = `
   -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
   -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
   transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
 }
 
@@ -443,7 +439,6 @@ exports[`Storyshots BaseInput Password 1`] = `
 .c2 {
   position: relative;
   width: 100%;
-  font-family: "OpenSans",sans-serif;
 }
 
 .c3 label {
@@ -476,7 +471,6 @@ exports[`Storyshots BaseInput Password 1`] = `
   -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
   -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
   transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
 }
 
@@ -706,7 +700,6 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
 .c2 {
   position: relative;
   width: 100%;
-  font-family: "OpenSans",sans-serif;
 }
 
 .c3 label {
@@ -739,7 +732,6 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
   -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
   -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
   transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
 }
 
@@ -914,7 +906,6 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
 .c2 {
   position: relative;
   width: 100%;
-  font-family: "OpenSans",sans-serif;
 }
 
 .c3 label {
@@ -947,7 +938,6 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
   -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
   -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
   transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
 }
 
@@ -1145,7 +1135,6 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
 .c2 {
   position: relative;
   width: 100%;
-  font-family: "OpenSans",sans-serif;
 }
 
 .c3 label {
@@ -1178,7 +1167,6 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
   -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
   -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
   transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
 }
 
@@ -1381,7 +1369,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
 .c2 {
   position: relative;
   width: 100%;
-  font-family: "OpenSans",sans-serif;
 }
 
 .c3 label {
@@ -1414,7 +1401,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   -webkit-transform: translate( 1.375rem, 0.5rem ) scale(0.6);
   -ms-transform: translate( 1.375rem, 0.5rem ) scale(0.6);
   transform: translate( 1.375rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
 }
 
@@ -1617,7 +1603,6 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
 .c2 {
   position: relative;
   width: 100%;
-  font-family: "OpenSans",sans-serif;
 }
 
 .c3 label {
@@ -1650,7 +1635,6 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
   -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
   -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
   transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
 }
 
@@ -2146,6 +2130,12 @@ exports[`Storyshots Button System 1`] = `
 }
 
 .c5 {
+  font-family: "Nunito Sans SemiBold",sans-serif;
+  font-size: 14px;
+  -webkit-letter-spacing: 0.03rem;
+  -moz-letter-spacing: 0.03rem;
+  -ms-letter-spacing: 0.03rem;
+  letter-spacing: 0.03rem;
   border-radius: 20px;
   color: #fff;
 }
@@ -2659,7 +2649,6 @@ exports[`Storyshots Dropdown Default 1`] = `
 
 .c5 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -2670,7 +2659,6 @@ exports[`Storyshots Dropdown Default 1`] = `
 
 .c11 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.875rem;
   line-height: 1.375rem;
   -webkit-letter-spacing: 0.1px;
@@ -2955,7 +2943,6 @@ exports[`Storyshots Dropdown Multiple 1`] = `
 
 .c5 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -2966,7 +2953,6 @@ exports[`Storyshots Dropdown Multiple 1`] = `
 
 .c12 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.875rem;
   line-height: 1.375rem;
   -webkit-letter-spacing: 0.1px;
@@ -3351,7 +3337,6 @@ exports[`Storyshots Dropdown Size 1`] = `
 
 .c6 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -3362,7 +3347,6 @@ exports[`Storyshots Dropdown Size 1`] = `
 
 .c12 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.875rem;
   line-height: 1.375rem;
   -webkit-letter-spacing: 0.1px;
@@ -3799,7 +3783,6 @@ exports[`Storyshots Dropdown Status 1`] = `
 
 .c6 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -3810,7 +3793,6 @@ exports[`Storyshots Dropdown Status 1`] = `
 
 .c12 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.875rem;
   line-height: 1.375rem;
   -webkit-letter-spacing: 0.1px;
@@ -4321,7 +4303,6 @@ exports[`Storyshots Icon All Icons 1`] = `
 
 .c1 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -5885,8 +5866,11 @@ exports[`Storyshots Link Default 1`] = `
 }
 
 .c3 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.5rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -5912,7 +5896,6 @@ exports[`Storyshots Link Default 1`] = `
 }
 
 .c4 {
-  font-family: "OpenSans",sans-serif;
   color: #000000;
   font-weight: 600;
 }
@@ -6010,8 +5993,11 @@ exports[`Storyshots Link Sizing 1`] = `
 }
 
 .c3 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.5rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -6037,8 +6023,11 @@ exports[`Storyshots Link Sizing 1`] = `
 }
 
 .c5 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.25rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -6064,8 +6053,11 @@ exports[`Storyshots Link Sizing 1`] = `
 }
 
 .c6 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -6091,8 +6083,11 @@ exports[`Storyshots Link Sizing 1`] = `
 }
 
 .c7 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 0.875rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -6118,7 +6113,6 @@ exports[`Storyshots Link Sizing 1`] = `
 }
 
 .c4 {
-  font-family: "OpenSans",sans-serif;
   color: #000000;
   font-weight: 600;
 }
@@ -6237,8 +6231,11 @@ exports[`Storyshots Link System 1`] = `
 }
 
 .c3 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.25rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -6264,8 +6261,11 @@ exports[`Storyshots Link System 1`] = `
 }
 
 .c5 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 0.875rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -6453,6 +6453,12 @@ exports[`Storyshots Modal Modal Example 1`] = `
 }
 
 .c1 {
+  font-family: "Nunito Sans SemiBold",sans-serif;
+  font-size: 14px;
+  -webkit-letter-spacing: 0.03rem;
+  -moz-letter-spacing: 0.03rem;
+  -ms-letter-spacing: 0.03rem;
+  letter-spacing: 0.03rem;
   border-radius: 20px;
   color: #fff;
 }
@@ -6497,7 +6503,6 @@ exports[`Storyshots Modal Verification Status 1`] = `
 
 .c10 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -6584,6 +6589,12 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 .c12 {
+  font-family: "Nunito Sans SemiBold",sans-serif;
+  font-size: 14px;
+  -webkit-letter-spacing: 0.03rem;
+  -moz-letter-spacing: 0.03rem;
+  -ms-letter-spacing: 0.03rem;
+  letter-spacing: 0.03rem;
   border-radius: 20px;
   color: #fff;
 }
@@ -6846,8 +6857,11 @@ exports[`Storyshots NativeLink Brand 1`] = `
 }
 
 .c3 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
@@ -6894,7 +6908,6 @@ exports[`Storyshots NativeLink Brand 1`] = `
 }
 
 .c5 {
-  font-family: "OpenSans",sans-serif;
   color: #6E7191;
   font-weight: 400;
 }
@@ -6994,8 +7007,11 @@ exports[`Storyshots NativeLink Default 1`] = `
 }
 
 .c3 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
@@ -7030,7 +7046,6 @@ exports[`Storyshots NativeLink Default 1`] = `
 }
 
 .c4 {
-  font-family: "OpenSans",sans-serif;
   color: #6E7191;
   font-weight: 400;
 }
@@ -7136,8 +7151,11 @@ exports[`Storyshots NativeLink Details 1`] = `
 }
 
 .c3 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
@@ -7172,7 +7190,6 @@ exports[`Storyshots NativeLink Details 1`] = `
 }
 
 .c4 {
-  font-family: "OpenSans",sans-serif;
   color: #6E7191;
   font-weight: 400;
 }
@@ -7257,8 +7274,11 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 }
 
 .c3 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
@@ -7293,8 +7313,11 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 }
 
 .c5 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
@@ -7329,8 +7352,11 @@ exports[`Storyshots NativeLink Sizing 1`] = `
 }
 
 .c6 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 0.875rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
@@ -7469,8 +7495,11 @@ exports[`Storyshots NativeLink System 1`] = `
 }
 
 .c3 {
-  font-family: "Manrope",sans-serif;
   font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-size: 1.25rem;
   line-height: 16px;
   -webkit-letter-spacing: 0.2px;
@@ -7600,7 +7629,6 @@ exports[`Storyshots Text Headings 1`] = `
 
 .c8 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -7696,15 +7724,23 @@ exports[`Storyshots Text Headings 1`] = `
 
 .c16 {
   font-weight: bold;
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   line-height: 1.75rem;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   color: #14142B;
 }
 
 .c17 {
   font-weight: normal;
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   line-height: 1.75rem;
+  -webkit-letter-spacing: 0.3px;
+  -moz-letter-spacing: 0.3px;
+  -ms-letter-spacing: 0.3px;
+  letter-spacing: 0.3px;
   color: #14142B;
 }
 
@@ -7968,7 +8004,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -7997,7 +8033,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8027,7 +8063,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8056,7 +8092,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8086,7 +8122,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8115,7 +8151,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8145,7 +8181,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8174,7 +8210,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8204,12 +8240,12 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
           >
-            22px
+            24px
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8233,12 +8269,12 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
           >
-            22px
+            24px
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8263,7 +8299,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8292,7 +8328,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8322,7 +8358,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8351,7 +8387,7 @@ exports[`Storyshots Text Headings 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8399,7 +8435,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 .c8 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -8431,7 +8466,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 .c12 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -8442,7 +8476,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 .c13 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.875rem;
   line-height: 1.375rem;
   -webkit-letter-spacing: 0.1px;
@@ -8454,7 +8487,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 .c14 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.875rem;
   line-height: 1.375rem;
   -webkit-letter-spacing: 0.1px;
@@ -8466,7 +8498,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 .c15 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.8125rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: 0.1px;
@@ -8478,7 +8509,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 .c16 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.8125rem;
   line-height: 1.25rem;
   -webkit-letter-spacing: 0.1px;
@@ -8490,7 +8520,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 .c17 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.6875rem;
   line-height: 1;
   -webkit-letter-spacing: 0.4px;
@@ -8502,7 +8531,6 @@ exports[`Storyshots Text Paragraphs 1`] = `
 
 .c18 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.6875rem;
   line-height: 1;
   -webkit-letter-spacing: 0.4px;
@@ -8724,7 +8752,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8744,7 +8772,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8768,7 +8796,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8788,7 +8816,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8812,7 +8840,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8832,7 +8860,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8856,7 +8884,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8876,7 +8904,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8900,7 +8928,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8920,7 +8948,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8944,7 +8972,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -8964,7 +8992,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -9012,7 +9040,6 @@ exports[`Storyshots Text Rest 1`] = `
 
 .c8 {
   font-weight: normal;
-  font-family: "OpenSans",sans-serif;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -9068,7 +9095,6 @@ exports[`Storyshots Text Rest 1`] = `
 
 .c14 {
   font-weight: bold;
-  font-family: "OpenSans",sans-serif;
   font-size: 0.6875rem;
   font-weight: bold;
   line-height: 1rem;
@@ -9081,7 +9107,6 @@ exports[`Storyshots Text Rest 1`] = `
 
 .c15 {
   font-weight: normal;
-  font-family: "Manrope",sans-serif;
   font-size: 0.6875rem;
   font-weight: normal;
   line-height: 0.875rem;
@@ -9304,7 +9329,7 @@ exports[`Storyshots Text Rest 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -9324,7 +9349,7 @@ exports[`Storyshots Text Rest 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -9348,7 +9373,7 @@ exports[`Storyshots Text Rest 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -9368,7 +9393,7 @@ exports[`Storyshots Text Rest 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -9393,7 +9418,7 @@ exports[`Storyshots Text Rest 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -9417,7 +9442,7 @@ exports[`Storyshots Text Rest 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -9442,7 +9467,7 @@ exports[`Storyshots Text Rest 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            OpenSans
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"
@@ -9466,7 +9491,7 @@ exports[`Storyshots Text Rest 1`] = `
           <span
             className="c8 c-text--text-m"
           >
-            Manrope
+            Segoe UI
           </span>
           <span
             className="c8 c-text--text-m"

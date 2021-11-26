@@ -32,7 +32,14 @@ export const PageLayoutHeader = React.forwardRef(
         <div className={'c-page-layout__header--logo'}>
           <BoxLayout>
             <NavLink to={'/'}>
-              <Text color="white">System Test Matrix</Text>
+              <Text
+                type="text l"
+                color="white"
+                bold
+                style={{ letterSpacing: '0.07em' }}
+              >
+                System Test Matrix
+              </Text>
             </NavLink>
           </BoxLayout>
         </div>

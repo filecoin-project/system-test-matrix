@@ -21,21 +21,27 @@ const Header = props => {
   return (
     <PageLayout.Header>
       <HeaderWrapper>
-        <Text type="heading 5">{t('filecoin.systems.systems')}</Text>
+        <Text type="heading 5" bold>
+          {t('filecoin.systems.systems')}
+        </Text>
         <Buttons>
           <Button
             onClick={() => navigate('/tests')}
             variant="outline"
             size="medium"
           >
-            {t('filecoin.allTests.allTests')}
+            <Text type="text s" bold>
+              {t('filecoin.allTests.allTests')}
+            </Text>
           </Button>
           <Button
             onClick={() => navigate('/behaviors')}
             variant="outline"
             size="medium"
           >
-            {t('filecoin.allTests.allBehaviours')}
+            <Text type="text s" bold>
+              {t('filecoin.allTests.allBehaviours')}
+            </Text>
           </Button>
         </Buttons>
       </HeaderWrapper>

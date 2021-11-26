@@ -38,6 +38,7 @@ const LinkComponent = styled(RouterLink)<{
   appearance: LinkAppearance
 }>`
   font-weight: bold;
+  letter-spacing: 0.5px;
   ${props => Size({ className: props.className })};
   display: inline-flex;
   align-items: center;

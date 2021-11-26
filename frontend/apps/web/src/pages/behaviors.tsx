@@ -69,7 +69,9 @@ const Behaviors = () => {
             variant="outline"
             size="medium"
           >
-            {t('filecoin.allTests.allTests')}
+            <Text type="text s" bold>
+              {t('filecoin.allTests.allTests')}
+            </Text>
           </Button>
         </HeaderWrapper>
       </PageLayout.Header>

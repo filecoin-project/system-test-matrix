@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
 import { Loader } from './Loader'
 import { Paginator } from './Paginator'
 import { Colors } from './styles/colors'
@@ -295,6 +296,10 @@ const TableLight = styled(TableDefault)`
 
     tr {
       border: none;
+    }
+
+    thead {
+      height: 0;
     }
 
     ${TableHeaderText} {

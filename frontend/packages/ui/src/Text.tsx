@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { Colors } from './styles/colors'
-import { Fonts } from './styles/fonts'
 import { FullWidth, Hidden } from './styles/mixins'
 
 const TextStyle = [
@@ -179,27 +178,24 @@ export const Text = styled(TextComponent)<TextProps>`
         `
       case 'text m':
         return `
-          font-family: ${Fonts.OpenSans};
           line-height: 1.5rem;
           letter-spacing: 0.2px;
         `
       case 'text s':
         return `
-          font-family: ${Fonts.OpenSans};
           font-size: 0.875rem;
           line-height: 1.375rem;
           letter-spacing: 0.1px;
         `
       case 'text xs':
         return `
-          font-family: ${Fonts.OpenSans};
           font-size: 0.8125rem;
           line-height: 1.25rem;
           letter-spacing: 0.1px;
         `
       case 'text xxs':
         return `
-          font-family: ${Fonts.OpenSans};
+
           font-size: 0.6875rem;
           line-height: 1;
           letter-spacing: 0.4px;
@@ -207,7 +203,6 @@ export const Text = styled(TextComponent)<TextProps>`
         `
       case 'overline':
         return `
-          font-family: ${bold ? Fonts.OpenSans : Fonts.Manrope};
           font-size: 0.6875rem;
           font-weight: ${bold ? 'bold' : 'normal'};
           line-height: ${bold ? 1 : 0.875}rem;

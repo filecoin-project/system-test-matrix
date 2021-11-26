@@ -5,10 +5,8 @@ import {
   LinkProps as RouterLinkProps,
 } from 'react-router-dom'
 import styled from 'styled-components'
-
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
-import { Fonts } from './styles/fonts'
 import { Size } from './styles/mixins'
 
 /**
@@ -39,7 +37,6 @@ export interface LinkProps extends RouterLinkProps {
 const LinkComponent = styled(RouterLink)<{
   appearance: LinkAppearance
 }>`
-  font-family: ${Fonts.Manrope};
   font-weight: bold;
   ${props => Size({ className: props.className })};
   display: inline-flex;
@@ -82,7 +79,6 @@ const System = styled(LinkComponent)`
 `
 
 const Default = styled(LinkComponent)`
-  font-family: ${Fonts.OpenSans};
   color: ${Colors.black};
   font-weight: 600;
 

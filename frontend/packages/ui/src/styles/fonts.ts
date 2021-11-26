@@ -1,4 +1,5 @@
 export const Fonts = {
-  OpenSans: '"OpenSans", sans-serif',
-  Manrope: '"Manrope", sans-serif',
+  SegoeUI: '"Segoe UI Regular", sans-serif',
+  NunitoSans: '"NunitoSans Regular", sans-serif',
+  Roboto: '"Roboto", sans-serif',
 }

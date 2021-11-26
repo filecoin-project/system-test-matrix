@@ -1,11 +1,9 @@
-import React, { FunctionComponent } from 'react'
-import styled from 'styled-components'
 import { ElementProps, ReactProps } from '@filecoin/types'
 import classNames from 'classnames'
-
+import React, { FunctionComponent } from 'react'
+import styled from 'styled-components'
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
-import { Fonts } from './styles/fonts'
 import { Size } from './styles/mixins'
 
 /**
@@ -59,7 +57,6 @@ const Link = React.forwardRef(
 ) => JSX.Element
 
 const NativeLinkComponent = styled(Link)`
-  font-family: ${Fonts.Manrope};
   font-weight: bold;
   ${props => Size({ className: props.className })};
   line-height: 16px;
@@ -107,7 +104,6 @@ const System = styled(NativeLinkComponent)`
 `
 
 const Default = styled(NativeLinkComponent)`
-  font-family: ${Fonts.OpenSans};
   color: ${Colors.gray80};
   font-weight: 400;
 

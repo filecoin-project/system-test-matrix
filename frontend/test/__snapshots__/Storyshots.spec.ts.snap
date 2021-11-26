@@ -6666,8 +6666,8 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 .c6 {
-  width: 500px;
-  padding: 1rem 1.5rem;
+  max-width: 900px;
+  padding: 2rem 3rem;
 }
 
 .c14 {
@@ -6684,7 +6684,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   -ms-flex-align: center;
   align-items: center;
   width: 100%;
-  height: 5rem;
+  min-height: 5rem;
   border-top: 1px solid #D0D7DE;
 }
 
@@ -6859,6 +6859,7 @@ exports[`Storyshots NativeLink Default 1`] = `
   align-items: center;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .c3 svg {
@@ -6982,6 +6983,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   align-items: center;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .c3 svg {
@@ -7009,6 +7011,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   align-items: center;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .c5 svg {
@@ -7036,6 +7039,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   align-items: center;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .c6 svg {
@@ -7063,6 +7067,7 @@ exports[`Storyshots NativeLink Sizing 1`] = `
   align-items: center;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .c7 svg {
@@ -7209,6 +7214,7 @@ exports[`Storyshots NativeLink System 1`] = `
   align-items: center;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .c3 svg {
@@ -7236,6 +7242,7 @@ exports[`Storyshots NativeLink System 1`] = `
   align-items: center;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .c5 svg {

@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { darken, lighten } from 'polished'
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
+
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
 import { Fonts } from './styles/fonts'
@@ -69,6 +70,7 @@ const NativeLinkComponent = styled(Link)`
   display: inline-flex;
   align-items: center;
   transition: color 0.3s;
+  cursor: pointer;
 
   svg {
     margin-right: 6px;

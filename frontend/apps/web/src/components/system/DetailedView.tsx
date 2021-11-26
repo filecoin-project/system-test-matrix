@@ -1,5 +1,4 @@
-import React from 'react'
-import { Model } from '@/model'
+import React, { useEffect } from 'react'
 import {
   BoxLayout,
   CardLayout,
@@ -9,8 +8,10 @@ import {
   StackLayout,
   Text,
 } from '@filecoin/ui'
-import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
+import ReactTooltip from 'react-tooltip'
+
+import { Model } from '@/model'
 
 interface Props {
   model: Model
@@ -20,6 +21,11 @@ interface Props {
 export const DetailedView: React.FC<Props> = ({ model, systemName }) => {
   const system = model.findSystemByName(systemName)
   const testKinds = model.getAllTestKinds()
+
+  useEffect(() => {
+    ReactTooltip.rebuild()
+  }, [testKinds])
+
   return (
     <Wrapper>
       <ReactTooltip

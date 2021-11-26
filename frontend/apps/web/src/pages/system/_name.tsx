@@ -1,18 +1,43 @@
-import { PageContainer } from '@/containers/PageContainer'
-import {
-  PageLayout,
-  StackLayout,
-  Text,
-  Icon,
-  usePageLayout,
-} from '@filecoin/ui'
+import { PageLayout, Text, Icon, usePageLayout } from '@filecoin/ui'
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
-import { DetailedView } from '@/components/system/DetailedView'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { DetailedView as ChartView } from '@/components/system/DetailedView'
 import { Overview } from '@/components/system/Overview'
 
-const TABS = ['overview', 'detailedView']
+const TABS = ['overview', 'detailedView'] as const
+type Tab = typeof TABS[number]
+
+interface HeaderProps {
+  activeTab: Tab
+  onTabChange: (Tab) => void
+}
+
+const Header = (props: HeaderProps) => (
+  <PageLayout.Header>
+    <Text type="heading 5">Systems</Text>
+    <PageLayout.Tabs>
+      <PageLayout.Tab
+        onClick={() => {
+          props.onTabChange('overview')
+        }}
+        active={props.activeTab === 'overview'}
+      >
+        <Icon name="book" size="small" />
+        <Text>Overview</Text>
+      </PageLayout.Tab>
+      <PageLayout.Tab
+        onClick={() => props.onTabChange('detailedView')}
+        active={props.activeTab === 'detailedView'}
+      >
+        <Icon name="detailed_view" size="small" />
+        <Text>Detailed view</Text>
+      </PageLayout.Tab>
+    </PageLayout.Tabs>
+  </PageLayout.Header>
+)
 
 const RepositoryDetails = () => {
   const {
@@ -26,45 +51,30 @@ const RepositoryDetails = () => {
     return totalTests + subsystem.tests.length
   }, 0)
 
-  const [activeTab, setActiveTab] = useState<'overview' | 'detailedView'>(
-    'overview',
+  const [activeTab, setActiveTab] = useState<Tab>(
+    new URLSearchParams(window.location.search).get('tab') as Tab,
   )
+
+  const pageLayout = usePageLayout({
+    header: (
+      <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} />
+    ),
+    footer: <PageLayout.Footer />,
+  })
 
   useEffect(() => {
     if (!TABS.includes(activeTab)) {
       setActiveTab('overview')
-    }
-    navigate({
-      search: `?tab=${activeTab}`,
-    })
-  }, [activeTab])
+    } else {
+      navigate({
+        search: `?tab=${activeTab}`,
+      })
 
-  const pageLayout = usePageLayout({
-    header: (
-      <PageLayout.Header>
-        <StackLayout>
-          <Text type="heading 5">Systems</Text>
-        </StackLayout>
-        <PageLayout.Tabs>
-          <PageLayout.Tab
-            onClick={() => setActiveTab('overview')}
-            active={activeTab === 'overview'}
-          >
-            <Icon name="book" size="small" />
-            <Text>Overview</Text>
-          </PageLayout.Tab>
-          <PageLayout.Tab
-            onClick={() => setActiveTab('detailedView')}
-            active={activeTab === 'detailedView'}
-          >
-            <Icon name="detailed_view" size="small" />
-            <Text>Detailed view</Text>
-          </PageLayout.Tab>
-        </PageLayout.Tabs>
-      </PageLayout.Header>
-    ),
-    footer: <PageLayout.Footer />,
-  })
+      pageLayout.setHeader(
+        <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} />,
+      )
+    }
+  }, [activeTab])
 
   return (
     <PageLayout {...pageLayout}>
@@ -74,9 +84,9 @@ const RepositoryDetails = () => {
         </Text>
         {activeTab === 'overview' ? (
           <Overview model={model} systemName={params.name} />
-        ) : (
-          <DetailedView model={model} systemName={params.name} />
-        )}
+        ) : activeTab === 'detailedView' ? (
+          <ChartView model={model} systemName={params.name} />
+        ) : null}
       </PageLayout.Section>
     </PageLayout>
   )

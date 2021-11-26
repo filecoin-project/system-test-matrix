@@ -1,5 +1,3 @@
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import { PageContainer } from '@/containers/PageContainer'
 import { Behavior } from '@filecoin/types'
 import {
   BoxLayout,
@@ -20,6 +18,9 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 const Behaviors = () => {
   const {
@@ -74,6 +75,7 @@ const Behaviors = () => {
         </HeaderWrapper>
       </PageLayout.Header>
     ),
+    footer: <PageLayout.Footer />,
   })
 
   const tableColumns = {
@@ -81,13 +83,19 @@ const Behaviors = () => {
       header: t('filecoin.behaviors.tableHeaders.behaviorId'),
       Cell: ({ data }) => {
         return (
-          <NativeLink
-            className={'u-text--xsmall'}
-            onClick={() => setModalId(data)}
-            as={'span'}
-          >
-            {data.id}
-          </NativeLink>
+          <>
+            {data.tested ? (
+              <NativeLink
+                className={'u-text--xsmall'}
+                appearance={'system'}
+                onClick={() => setModalId(data)}
+              >
+                {data.id}
+              </NativeLink>
+            ) : (
+              <Text>{data.id}</Text>
+            )}
+          </>
         )
       },
     },
@@ -134,11 +142,7 @@ const Behaviors = () => {
                 {t('filecoin.behaviors.behaviorStatus')}
               </Text>
 
-              <ProgressBar
-                data={behaviorChartData}
-                legend
-                onClick={() => null}
-              />
+              <ProgressBar data={behaviorChartData} legend />
             </StackLayout>
           </BoxLayout>
         </CardLayout>
@@ -146,7 +150,7 @@ const Behaviors = () => {
 
       <PageLayout.Section>
         <Modal isOpen={!!modalId} onClose={() => setModalId(undefined)}>
-          <BehaviorModal />
+          <BehaviorModal behavior={modalId} />
         </Modal>
 
         <StackLayout gap={1.25}>

@@ -1,9 +1,9 @@
-import { PageContainer } from '@/containers/PageContainer'
 import { SystemScore, TestStatus } from '@filecoin/types'
 import {
   BoxLayout,
   Button,
   CardLayout,
+  NativeLink,
   PageLayout,
   ProgressBar,
   StackLayout,
@@ -17,7 +17,9 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Header = props => {
+import { PageContainer } from '@/containers/PageContainer'
+
+const Header = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   return (
@@ -68,7 +70,12 @@ export const getButton = (status: TestStatus | SystemScore) => {
   }
 
   return (
-    <Button variant="rounded" size="small" color={getColor()}>
+    <Button
+      style={{ pointerEvents: 'none' }}
+      variant="rounded"
+      size="small"
+      color={getColor()}
+    >
       {t(`filecoin.allTests.${status}`)}
     </Button>
   )
@@ -124,6 +131,7 @@ const AllTests = () => {
     header: <Header />,
     footer: <PageLayout.Footer />,
   })
+
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
@@ -182,7 +190,16 @@ const AllTests = () => {
               repository: {
                 header: t('filecoin.allTests.repository'),
                 Cell: ({ data }) => {
-                  return <Text type="text s">{data.repository}</Text>
+                  return (
+                    <NativeLink
+                      href={`https://github.com/filecoin-project/${data.repository}`}
+                      appearance="system"
+                      target={'_blank'}
+                      className={'u-text--xsmall'}
+                    >
+                      {data.repository}
+                    </NativeLink>
+                  )
                 },
               },
               kinds: {

@@ -63,7 +63,9 @@ const Behaviors = () => {
     header: (
       <PageLayout.Header>
         <HeaderWrapper>
-          <Text type="heading 5">{t('filecoin.behaviors.title')}</Text>
+          <Text type="heading 5" bold>
+            {t('filecoin.behaviors.title')}
+          </Text>
           <Button
             onClick={() => navigate('/tests')}
             variant="outline"
@@ -88,7 +90,7 @@ const Behaviors = () => {
             onClick={() => setModalId(data)}
             as={'span'}
           >
-            {data.id}
+            <Text color="textGray"> {data.id} </Text>
           </NativeLink>
         )
       },
@@ -96,13 +98,13 @@ const Behaviors = () => {
     name: {
       header: t('filecoin.behaviors.tableHeaders.featureName'),
       Cell: ({ data: { parentFeatureName } }) => {
-        return <Text>{parentFeatureName}</Text>
+        return <Text color="textGray">{parentFeatureName}</Text>
       },
     },
     description: {
       header: t('filecoin.behaviors.tableHeaders.intendedBehavior'),
       Cell: ({ data: { description } }) => {
-        return <Text>{description}</Text>
+        return <Text color="textGray">{description}</Text>
       },
     },
     isTested: {
@@ -132,7 +134,7 @@ const Behaviors = () => {
         <CardLayout>
           <BoxLayout gap={2}>
             <StackLayout gap={0.5}>
-              <Text type={'subtitle l'}>
+              <Text type={'subtitle l'} color="textGray" bold>
                 {t('filecoin.behaviors.behaviorStatus')}
               </Text>
 
@@ -152,7 +154,7 @@ const Behaviors = () => {
         </Modal>
 
         <StackLayout gap={1.25}>
-          <Text type={'subtitle l'}>
+          <Text type={'subtitle l'} color="textGray" bold>
             {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
           </Text>
           <Table data={behaviors} columns={tableColumns} />

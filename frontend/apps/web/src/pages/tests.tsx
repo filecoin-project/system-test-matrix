@@ -23,7 +23,9 @@ const Header = props => {
   return (
     <PageLayout.Header>
       <HeaderWrapper>
-        <Text type="heading 5">{t('filecoin.allTests.allTests')}</Text>
+        <Text type="heading 5" bold>
+          {t('filecoin.allTests.allTests')}
+        </Text>
 
         <Button
           onClick={() => navigate('/behaviors')}
@@ -133,7 +135,9 @@ const AllTests = () => {
           <CardLayout>
             <BoxLayout gap={2}>
               <StackLayout gap={0.5}>
-                <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
+                <Text type="text xl" color="textGray" bold>
+                  {t('filecoin.allTests.allKinds')}
+                </Text>
                 <ProgressBar legend data={allTestsKinds} />
               </StackLayout>
             </BoxLayout>
@@ -141,7 +145,9 @@ const AllTests = () => {
           <CardLayout>
             <BoxLayout gap={2}>
               <StackLayout gap={0.5}>
-                <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
+                <Text type="text xl" color="textGray" bold>
+                  {t('filecoin.allTests.allStatus')}
+                </Text>
                 <ProgressBar legend data={allTestsStatus} />
               </StackLayout>
             </BoxLayout>
@@ -150,7 +156,7 @@ const AllTests = () => {
       </PageLayout.Section>
       <PageLayout.Section>
         <StackLayout gap={1.25}>
-          <Text type="text xl">
+          <Text type="text xl" color="textGray" bold>
             {t('filecoin.allTests.listOfAllTests')} ({allTests.length})
           </Text>
 
@@ -164,7 +170,9 @@ const AllTests = () => {
                   return (
                     <TruncatedText>
                       <StackLayout>
-                        <Text type="text s">{data.path}</Text>
+                        <Text type="text s" color="textGray">
+                          {data.path}
+                        </Text>
                       </StackLayout>
                     </TruncatedText>
                   )
@@ -176,7 +184,9 @@ const AllTests = () => {
                 Cell: ({ data }) => {
                   return (
                     <TruncatedText>
-                      <Text type="text s">{data.functionName}</Text>
+                      <Text type="text s" color="textGray">
+                        {data.functionName}
+                      </Text>
                     </TruncatedText>
                   )
                 },
@@ -184,20 +194,28 @@ const AllTests = () => {
               repository: {
                 header: t('filecoin.allTests.repository'),
                 Cell: ({ data }) => {
-                  return <Text type="text s">{data.repository}</Text>
+                  return (
+                    <Text type="text s" color="textGray">
+                      {data.repository}
+                    </Text>
+                  )
                 },
               },
               kinds: {
                 header: t('filecoin.allTests.kinds'),
                 Cell: ({ data }) => {
-                  return <Text type="text s">{data.kind}</Text>
+                  return (
+                    <Text type="text s" color="textGray">
+                      {data.kind}
+                    </Text>
+                  )
                 },
               },
               behaviors: {
                 header: t('filecoin.behaviors.title'),
                 Cell: ({ data }) => {
                   return (
-                    <Text type="text s">
+                    <Text type="text s" color="textGray">
                       {data.linkedBehaviors.length}{' '}
                       {t('filecoin.allTests.behaviors')}
                     </Text>

@@ -102,10 +102,8 @@ const AllTests = () => {
             d.Passing += 1
           } else if (test.status === 'fail') {
             d.Failing += 1
-          } else if (test.status === 'missing') {
-            d.Missing += 1
           } else {
-            d.Unknown += 1
+            d.Missing += 1
           }
           return d
         },
@@ -113,7 +111,6 @@ const AllTests = () => {
           Passing: 0,
           Failing: 0,
           Missing: 0,
-          Unknown: 0,
         },
       ),
     ).map(([key, count]: any) => ({

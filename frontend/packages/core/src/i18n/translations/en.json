@@ -37,8 +37,8 @@
       "testKinds": "Test Kinds",
       "testStatus": "Test Status",
       "score": "Score",
-      "subsystems": "subsystems",
-      "subsystem": "subsystem"
+      "keyWithCount_one": "{{count}} subsystem",
+      "keyWithCount_other": "{{count}} subsystems"
     }
   },
   "global": {

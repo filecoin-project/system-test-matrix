@@ -106,18 +106,18 @@ const AllTests = () => {
       allTests.reduce(
         (d, test) => {
           if (test.status === 'pass') {
-            d.Passing += 1
+            d.pass += 1
           } else if (test.status === 'fail') {
-            d.Failing += 1
+            d.fail += 1
           } else {
-            d.Missing += 1
+            d.missing += 1
           }
           return d
         },
         {
-          Passing: 0,
-          Failing: 0,
-          Missing: 0,
+          pass: 0,
+          fail: 0,
+          missing: 0,
         },
       ),
     ).map(([key, count]: any) => ({

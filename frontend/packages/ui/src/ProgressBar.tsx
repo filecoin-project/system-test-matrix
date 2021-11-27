@@ -11,6 +11,20 @@ import styled from 'styled-components'
 
 import { Colors } from './styles/colors'
 
+const ColorChart = {
+  api: '#FFB347',
+  unit: '#7D7BD3',
+  benchmark: '#80CEE1',
+  e2e: '#FDB9C8',
+  integration: '#3572A5',
+  pass: '#77DF79',
+  fail: '#FF837F',
+  untested: '#FFABA8',
+  missing: '#B2BAC7',
+  unknown: '#B2BAC7',
+  tested: '#00ADD8',
+}
+
 interface Props {
   data: {
     name: string
@@ -39,7 +53,7 @@ export const ProgressBar = ({
         isAnimationActive={false}
         onClick={onClick}
         key={bar}
-        fill={Colors.progressBarColors[i % 10]}
+        fill={ColorChart[bar]}
         dataKey={bar}
         stackId={'a'}
         radius={
@@ -55,7 +69,7 @@ export const ProgressBar = ({
     return Object.keys(data).map((bar, i) => {
       return (
         <LegendPiece key={i}>
-          <LegendCircle color={Colors.progressBarColors[i % 10]} />
+          <LegendCircle color={ColorChart[bar]} />
           {bar}: <LegendValue>{parseFloat(data[bar].toFixed(2))}%</LegendValue>
         </LegendPiece>
       )

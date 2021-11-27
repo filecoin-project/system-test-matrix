@@ -35,18 +35,18 @@ const Behaviors = () => {
       behaviors.reduce(
         (d, behavior) => {
           if (behavior.tested === true) {
-            d.Tested += 1
+            d.tested += 1
           } else if (behavior.tested === false) {
-            d.Untested += 1
+            d.untested += 1
           } else {
-            d.Unknown += 1
+            d.unknown += 1
           }
           return d
         },
         {
-          Untested: 0,
-          Tested: 0,
-          Unknown: 0,
+          untested: 0,
+          tested: 0,
+          unknown: 0,
         },
       ),
     ).map(([key, count]) => ({

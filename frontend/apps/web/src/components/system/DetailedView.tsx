@@ -10,18 +10,14 @@ import {
 } from '@filecoin/ui'
 import styled from 'styled-components'
 import ReactTooltip from 'react-tooltip'
-
-import { Model } from '@/model'
+import { System, TestKind } from '@filecoin/types'
 
 interface Props {
-  model: Model
-  systemName: string
+  testKinds: TestKind[]
+  system: System
 }
 
-export const DetailedView: React.FC<Props> = ({ model, systemName }) => {
-  const system = model.findSystemByName(systemName)
-  const testKinds = model.getAllTestKinds()
-
+export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
   useEffect(() => {
     ReactTooltip.rebuild()
   }, [testKinds])

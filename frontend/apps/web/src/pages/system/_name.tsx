@@ -47,6 +47,7 @@ const RepositoryDetails = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const system = model.findSystemByName(params.name)
+  const testKinds = model.getAllTestKinds()
   const totalTests = system.subsystems.reduce((totalTests, subsystem) => {
     return totalTests + subsystem.tests.length
   }, 0)
@@ -83,9 +84,9 @@ const RepositoryDetails = () => {
           {totalTests} {t('filecoin.system.totalTests')}
         </Text>
         {activeTab === 'overview' ? (
-          <Overview model={model} systemName={params.name} />
+          <Overview system={system} />
         ) : activeTab === 'detailedView' ? (
-          <ChartView model={model} systemName={params.name} />
+          <ChartView testKinds={testKinds} system={system} />
         ) : null}
       </PageLayout.Section>
     </PageLayout>

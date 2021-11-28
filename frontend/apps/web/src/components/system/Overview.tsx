@@ -1,28 +1,15 @@
 import React from 'react'
-import { Model } from '@/model'
-import {
-  CardLayout,
-  ProgressBar,
-  StackLayout,
-  Text,
-  Table,
-  Button,
-} from '@filecoin/ui'
+import { CardLayout, ProgressBar, StackLayout, Text, Table } from '@filecoin/ui'
 import styled from 'styled-components'
+import { System } from '@filecoin/types'
 
-const DATASCORE = {
-  good: 'success',
-  bad: 'error',
-  mediocre: 'warning',
-}
+import { getButton } from '@/pages/tests'
 
 interface Props {
-  model: Model
-  systemName: string
+  system: System
 }
 
-export const Overview: React.FC<Props> = ({ model, systemName }) => {
-  const system = model.findSystemByName(systemName)
+export const Overview: React.FC<Props> = ({ system }) => {
   const totalSubsystems = system.subsystems.length
 
   return (
@@ -36,7 +23,7 @@ export const Overview: React.FC<Props> = ({ model, systemName }) => {
             }),
           )}
           legend
-        ></ProgressBar>
+        />
       </ProgressBarWrapper>
       <ProgressBarWrapper>
         <ProgressBar
@@ -47,7 +34,7 @@ export const Overview: React.FC<Props> = ({ model, systemName }) => {
             }),
           )}
           legend
-        ></ProgressBar>
+        />
       </ProgressBarWrapper>
       <TableWrapper>
         <Text type={'subtitle l'}>Subsystems ({totalSubsystems})</Text>
@@ -56,41 +43,41 @@ export const Overview: React.FC<Props> = ({ model, systemName }) => {
           columns={{
             Subsystems: {
               header: 'Subsystem',
-              width: 150,
               Cell: ({ data }) => <Text type="text s">{data.name}</Text>,
             },
             testKinds: {
               header: 'Test Kinds',
+              width: 325,
               Cell: ({ data }) => (
-                <ProgressBar
-                  data={data.testKindStats.percentages.map(
-                    ({ kind, percentage }) => ({ name: kind, percentage }),
-                  )}
-                />
+                <Bar>
+                  <ProgressBar
+                    data={data.testKindStats.percentages.map(
+                      ({ kind, percentage }) => ({ name: kind, percentage }),
+                    )}
+                  />
+                </Bar>
               ),
             },
             testStatus: {
               header: 'Test Status',
+              width: 325,
               Cell: ({ data }) => (
-                <ProgressBar
-                  data={data.testStatusStats.percentages.map(
-                    ({ status, percentage }) => ({ name: status, percentage }),
-                  )}
-                />
+                <Bar>
+                  <ProgressBar
+                    data={data.testStatusStats.percentages.map(
+                      ({ status, percentage }) => ({
+                        name: status,
+                        percentage,
+                      }),
+                    )}
+                  />
+                </Bar>
               ),
             },
             score: {
               header: 'Score',
               width: 150,
-              Cell: ({ data }) => (
-                <StyledButton
-                  variant="rounded"
-                  size="small"
-                  color={DATASCORE[data.score]}
-                >
-                  {data.score}
-                </StyledButton>
-              ),
+              Cell: ({ data }) => getButton(data.score),
             },
           }}
           data={system.subsystems}
@@ -118,6 +105,6 @@ const TableStyled = styled(Table)`
   margin-top: 1rem;
 `
 
-const StyledButton = styled(Button)`
-  text-transform: capitalize;
+const Bar = styled.div`
+  padding-right: 2rem;
 `

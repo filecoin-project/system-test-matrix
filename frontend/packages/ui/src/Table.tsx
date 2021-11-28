@@ -205,10 +205,6 @@ const Wrapper = styled.div`
       }
     }
 
-    > tbody tr div {
-      color: ${Colors.grey};
-    }
-
     > tbody {
       tr {
         &:first-child {

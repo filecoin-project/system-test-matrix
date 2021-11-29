@@ -4,6 +4,7 @@ import {
   BoxLayout,
   Button,
   CardLayout,
+  NativeLink,
   PageLayout,
   ProgressBar,
   StackLayout,
@@ -17,7 +18,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Header = props => {
+const Header = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   return (
@@ -72,7 +73,12 @@ export const getButton = (status: TestStatus | SystemScore) => {
   }
 
   return (
-    <Button variant="rounded" size="small" color={getColor()}>
+    <Button
+      style={{ pointerEvents: 'none' }}
+      variant="rounded"
+      size="small"
+      color={getColor()}
+    >
       {t(`filecoin.allTests.${status}`)}
     </Button>
   )
@@ -103,18 +109,18 @@ const AllTests = () => {
       allTests.reduce(
         (d, test) => {
           if (test.status === 'pass') {
-            d.Passing += 1
+            d.pass += 1
           } else if (test.status === 'fail') {
-            d.Failing += 1
+            d.fail += 1
           } else {
-            d.Missing += 1
+            d.missing += 1
           }
           return d
         },
         {
-          Passing: 0,
-          Failing: 0,
-          Missing: 0,
+          pass: 0,
+          fail: 0,
+          missing: 0,
         },
       ),
     ).map(([key, count]: any) => ({
@@ -128,6 +134,7 @@ const AllTests = () => {
     header: <Header />,
     footer: <PageLayout.Footer />,
   })
+
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
@@ -195,9 +202,16 @@ const AllTests = () => {
                 header: t('filecoin.allTests.repository'),
                 Cell: ({ data }) => {
                   return (
-                    <Text type="text s" color="textGray">
-                      {data.repository}
-                    </Text>
+                    <NativeLink
+                      href={`https://github.com/filecoin-project/${data.repository}`}
+                      appearance="system"
+                      target={'_blank'}
+                      className={'u-text--xsmall'}
+                    >
+                      <Text type="text s" color="textGray">
+                        {data.repository}
+                      </Text>
+                    </NativeLink>
                   )
                 },
               },

@@ -1,5 +1,6 @@
 import { ElementProps, ReactProps } from '@filecoin/types'
 import classNames from 'classnames'
+import { darken, lighten } from 'polished'
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { Icon, IconNamesType } from './Icon'
@@ -10,7 +11,7 @@ import { Size } from './styles/mixins'
  * Possible values for `appearance` prop of `Link` component.
  * Refers to the color of the component
  */
-export const NativeLinkAppearance = ['default', 'brand', 'system'] as const
+export const NativeLinkAppearance = ['default', 'system'] as const
 export type NativeLinkAppearanceType = typeof NativeLinkAppearance[number]
 
 /**
@@ -37,6 +38,10 @@ export interface NativeLinkProps extends ElementProps<'a'> {
 
 const defaultElement = 'a'
 
+/**
+ * NativeLink is by default used as anchor link, so that you can visit external links
+ */
+
 const Link = React.forwardRef(
   (
     { as: Component = defaultElement, children, ...props }: NativeLinkProps,
@@ -59,18 +64,14 @@ const Link = React.forwardRef(
 const NativeLinkComponent = styled(Link)`
   font-weight: bold;
   ${props => Size({ className: props.className })};
-  line-height: 16px;
-  letter-spacing: 0.5px;
   display: inline-flex;
   align-items: center;
+  transition: color 0.3s;
   cursor: pointer;
+  letter-spacing: 0.5px;
 
-  & [data-element='icon'] {
-    margin: 0.1rem 0.25rem 0;
-  }
-
-  &:hover {
-    text-decoration: underline;
+  svg {
+    margin-right: 6px;
   }
 
   &[disabled] {
@@ -79,23 +80,24 @@ const NativeLinkComponent = styled(Link)`
     pointer-events: none;
   }
 `
-const Brand = styled(NativeLinkComponent)`
-  color: ${Colors.purple70};
-
-  &:hover {
-    color: ${Colors.purple80};
-  }
-
-  &[disabled] {
-    color: ${Colors.purple80};
-  }
-`
 
 const System = styled(NativeLinkComponent)`
-  color: ${Colors.gray90};
+  color: ${Colors.blueLink};
 
   &:hover {
-    color: ${Colors.gray90};
+    color: ${darken(0.2, `${Colors.blueLink}`)};
+
+    svg {
+      fill: ${darken(0.2, `${Colors.blueLink}`)};
+    }
+  }
+
+  &:focus {
+    color: ${lighten(0.2, `${Colors.blueLink}`)};
+
+    svg {
+      fill: ${lighten(0.2, `${Colors.blueLink}`)};
+    }
   }
 
   &[disabled] {
@@ -108,8 +110,11 @@ const Default = styled(NativeLinkComponent)`
   font-weight: 400;
 
   &:hover {
-    color: ${Colors.gray90};
-    text-decoration: none;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    color: ${lighten(0.2, `${Colors.gray90}`)};
   }
 
   &[disabled] {
@@ -125,8 +130,8 @@ export const NativeLink: FunctionComponent<NativeLinkProps> = ({
 }) => {
   const getActiveComponent = () => {
     switch (appearance) {
-      case 'brand':
-        return Brand
+      case 'default':
+        return Default
       case 'system':
         return System
 
@@ -136,11 +141,17 @@ export const NativeLink: FunctionComponent<NativeLinkProps> = ({
   }
   const ActiveComponent = getActiveComponent()
   return (
-    <>
+    <span>
       <ActiveComponent appearance={appearance} {...props}>
+        {icon && (
+          <Icon
+            size="medium"
+            name={icon}
+            color={props.disabled ? 'gray' : 'blue'}
+          />
+        )}
         {children}
-        <Icon size="xsmall" name={icon} color="gray" />
       </ActiveComponent>
-    </>
+    </span>
   )
 }

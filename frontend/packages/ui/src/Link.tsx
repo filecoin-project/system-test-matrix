@@ -13,7 +13,7 @@ import { Size } from './styles/mixins'
  * Possible values for `appearance` prop of `Link` component.
  * Refers to the color of the component
  */
-export const LinkAppearance = ['default', 'brand', 'system'] as const
+export const LinkAppearance = ['default', 'system'] as const
 export type LinkAppearance = typeof LinkAppearance[number]
 
 /**

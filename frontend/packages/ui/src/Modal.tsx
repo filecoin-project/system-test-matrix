@@ -129,8 +129,8 @@ const Header = styled.div`
 `
 
 const ModalBody = styled.div`
-  width: 500px;
-  padding: 1rem 1.5rem;
+  max-width: 900px;
+  padding: 2rem 3rem;
 `
 
 const Footer = styled.div`
@@ -138,7 +138,7 @@ const Footer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 5rem;
+  min-height: 5rem;
   border-top: 1px solid ${Colors.borderColor};
 `
 

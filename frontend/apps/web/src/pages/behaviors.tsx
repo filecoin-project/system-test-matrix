@@ -34,18 +34,18 @@ const Behaviors = () => {
       behaviors.reduce(
         (d, behavior) => {
           if (behavior.tested === true) {
-            d.Tested += 1
+            d.tested += 1
           } else if (behavior.tested === false) {
-            d.Untested += 1
+            d.untested += 1
           } else {
-            d.Unknown += 1
+            d.unknown += 1
           }
           return d
         },
         {
-          Untested: 0,
-          Tested: 0,
-          Unknown: 0,
+          untested: 0,
+          tested: 0,
+          unknown: 0,
         },
       ),
     ).map(([key, count]) => ({
@@ -78,6 +78,7 @@ const Behaviors = () => {
         </HeaderWrapper>
       </PageLayout.Header>
     ),
+    footer: <PageLayout.Footer />,
   })
 
   const tableColumns = {
@@ -85,13 +86,19 @@ const Behaviors = () => {
       header: t('filecoin.behaviors.tableHeaders.behaviorId'),
       Cell: ({ data }) => {
         return (
-          <NativeLink
-            className={'u-text--xsmall'}
-            onClick={() => setModalId(data)}
-            as={'span'}
-          >
-            <Text color="textGray"> {data.id} </Text>
-          </NativeLink>
+          <>
+            {data.tested ? (
+              <NativeLink
+                className={'u-text--xsmall'}
+                appearance={'system'}
+                onClick={() => setModalId(data)}
+              >
+                {data.id}
+              </NativeLink>
+            ) : (
+              <Text color="textGray">{data.id}</Text>
+            )}
+          </>
         )
       },
     },
@@ -138,11 +145,7 @@ const Behaviors = () => {
                 {t('filecoin.behaviors.behaviorStatus')}
               </Text>
 
-              <ProgressBar
-                data={behaviorChartData}
-                legend
-                onClick={() => null}
-              />
+              <ProgressBar data={behaviorChartData} legend />
             </StackLayout>
           </BoxLayout>
         </CardLayout>
@@ -150,7 +153,7 @@ const Behaviors = () => {
 
       <PageLayout.Section>
         <Modal isOpen={!!modalId} onClose={() => setModalId(undefined)}>
-          <BehaviorModal />
+          <BehaviorModal behavior={modalId} />
         </Modal>
 
         <StackLayout gap={1.25}>

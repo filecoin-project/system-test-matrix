@@ -1,4 +1,3 @@
-import { PageContainer } from '@/containers/PageContainer'
 import {
   Button,
   Link,
@@ -13,9 +12,12 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
 import { getButton } from './tests'
 
-const Header = props => {
+import { PageContainer } from '@/containers/PageContainer'
+
+const Header = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   return (
@@ -71,7 +73,7 @@ const Home = () => {
               header: t('filecoin.systems.system'),
               Cell: ({ data }) => {
                 return (
-                  <StackLayout>
+                  <StackLayout gap={0.5}>
                     <Link to={`system/${data.name}`} appearance="system">
                       {data.name}
                     </Link>

@@ -55,3 +55,84 @@ export const RepositoryData = [
     score: 'Mediocre',
   },
 ]
+
+export const AllTestKinds = [
+  {
+    name: 'Unit',
+    percentage: 20,
+  },
+  {
+    name: 'Integration',
+    percentage: 8,
+  },
+  {
+    name: 'API Tests',
+    percentage: 12,
+  },
+  {
+    name: 'Lorem Ipsum',
+    percentage: 4,
+  },
+  {
+    name: 'Lorem Oposum',
+    percentage: 7,
+  },
+  {
+    name: 'Lorem Tupson',
+    percentage: 3,
+  },
+  {
+    name: 'CLI Tests',
+    percentage: 10,
+  },
+  {
+    name: 'End-to-End Tests',
+    percentage: 25,
+  },
+  {
+    name: 'API',
+    percentage: 8,
+  },
+  {
+    name: 'Unknown',
+    percentage: 3,
+  },
+]
+
+export const AllTestStatus = [
+  {
+    name: 'Missing tests',
+    percentage: 35,
+  },
+  {
+    name: 'Passing tests',
+    percentage: 55,
+  },
+  {
+    name: 'Failing tests',
+    percentage: 15,
+  },
+]
+
+export const Subsystems = [
+  {
+    subsystem: 'Message Pool',
+    testKindsData: chartDataWithPercentageAndKind,
+    testStatusData: chartDataWithPercentageAndStatus,
+  },
+  {
+    subsystem: 'State Tree',
+    testKindsData: chartDataWithPercentageAndKind,
+    testStatusData: chartDataWithPercentageAndStatus,
+  },
+  {
+    subsystem: 'Chain Sync',
+    testKindsData: chartDataWithPercentageAndKind,
+    testStatusData: chartDataWithPercentageAndStatus,
+  },
+  {
+    subsystem: 'Consensus',
+    testKindsData: chartDataWithPercentageAndKind,
+    testStatusData: chartDataWithPercentageAndStatus,
+  },
+]

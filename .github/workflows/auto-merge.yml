@@ -20,6 +20,8 @@ jobs:
       # Checkout the repository.
       #
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       #
       # Merge minor versions

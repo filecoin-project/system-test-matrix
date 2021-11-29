@@ -1,15 +1,24 @@
 import React from 'react'
-import {
-  Bar,
-  BarChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts'
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
+import ReactTooltip from 'react-tooltip'
+import { sortBy } from 'lodash'
 
 import { Colors } from './styles/colors'
+
+const ColorChart = {
+  api: '#FFB347',
+  unit: '#7D7BD3',
+  benchmark: '#80CEE1',
+  e2e: '#FDB9C8',
+  integration: '#3572A5',
+  pass: '#77DF79',
+  fail: '#FF837F',
+  untested: '#FFABA8',
+  missing: '#B2BAC7',
+  unknown: '#B2BAC7',
+  tested: '#00ADD8',
+}
 
 interface Props {
   data: {
@@ -20,33 +29,55 @@ interface Props {
   legend?: boolean
 }
 
-const HEIGHT = 18
+const HEIGHT = 14
 
 export const ProgressBar = ({
   legend = false,
   onClick = () => null,
   ...props
 }: Props) => {
-  const data = props.data.reduce((acc, value) => {
+  const data = sortBy(props.data, 'name').reduce((acc, value) => {
     acc[value.name] = value.percentage
     return acc
   }, {})
 
+  const getBarShape = (x, y, width, radius) => {
+    const height = HEIGHT
+    const [tl, tr, bl, br] = radius
+    const d = `M${x},${-2}
+		a${tl},${tl} 0 0 1 ${tl},${-tl}
+		h${width - tl - tr}
+		a${tr},${tr} 0 0 0 ${tr},${tr}
+		v${height - tr - br + 2}
+		a${br},${br} 0 0 1 ${-br},${br}
+		h${bl + (br - width)}
+		a${bl},${bl} 0 0 1 ${-bl},${-bl}
+		z`
+    return ({ fill, fillOpacity, stroke = null }) => (
+      <path d={d} fill={fill} fillOpacity={fillOpacity} stroke={stroke} />
+    )
+  }
+
   const renderBars = () => {
-    const isLastBar = Object.keys(data).length - 1
     return Object.keys(data).map((bar, i) => (
       <Bar
         isAnimationActive={false}
         onClick={onClick}
         key={bar}
-        fill={Colors.progressBarColors[i % 10]}
-        dataKey={bar}
-        stackId={'a'}
-        radius={
-          (i === 0 && [20, 0, 0, 20]) ||
-          (i === isLastBar && [0, 20, 20, 0]) ||
-          0
+        fill={
+          ColorChart[bar] ||
+          Colors.progressBarColors[i % Colors.progressBarColors.length]
         }
+        dataKey={bar}
+        stackId={'stackId'}
+        shape={({ x, y, width, ...props }) => {
+          const Bar = getBarShape(x, y, width, [0, 0, 0, 0])
+          return (
+            <g>
+              <Bar fillOpacity={1} fill={props.fill} />
+            </g>
+          )
+        }}
       />
     ))
   }
@@ -55,7 +86,7 @@ export const ProgressBar = ({
     return Object.keys(data).map((bar, i) => {
       return (
         <LegendPiece key={i}>
-          <LegendCircle color={Colors.progressBarColors[i % 10]} />
+          <LegendCircle color={ColorChart[bar]} />
           {bar}: <LegendValue>{parseFloat(data[bar].toFixed(2))}%</LegendValue>
         </LegendPiece>
       )
@@ -65,34 +96,47 @@ export const ProgressBar = ({
   if (!data) {
     return null
   }
+
   return (
-    <>
+    <Wrapper data-tip={legend ? null : JSON.stringify(data)}>
+      <ReactTooltip
+        effect={'solid'}
+        getContent={data => {
+          const content = JSON.parse(data) || {}
+          return (
+            <>
+              {Object.entries(content).map(([key, value]) => {
+                return (
+                  <div key={key}>
+                    <b>{key}</b>: <span>{Number(value).toFixed(2)}%</span>
+                  </div>
+                )
+              })}
+            </>
+          )
+        }}
+      />
       <ResponsiveContainer width="100%" height={HEIGHT}>
         <BarChart
           margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
           layout="vertical"
-          height={HEIGHT}
           data={[data]}
         >
           <XAxis hide type="number" />
           <YAxis hide dataKey="name" type="category" />
-          {!legend && (
-            <Tooltip
-              allowEscapeViewBox={{ x: true, y: true }}
-              position={{ y: 30, x: 0 }}
-              cursor={false}
-              wrapperStyle={{ zIndex: 50, width: '100%' }}
-              contentStyle={{ backgroundColor: Colors.logoBackground }}
-              itemStyle={{ color: 'white', fontSize: 12 }}
-            />
-          )}
           {renderBars()}
         </BarChart>
       </ResponsiveContainer>
       {legend && <Legend>{renderLegend()}</Legend>}
-    </>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+  svg {
+    border-radius: ${HEIGHT / 2}px;
+  }
+`
 
 const Legend = styled.ul`
   display: flex;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
 import { Loader } from './Loader'
 import { Paginator } from './Paginator'
 import { Colors } from './styles/colors'
@@ -204,10 +205,6 @@ const Wrapper = styled.div`
       }
     }
 
-    > tbody tr div {
-      color: ${Colors.grey};
-    }
-
     > tbody {
       tr {
         &:first-child {
@@ -295,6 +292,10 @@ const TableLight = styled(TableDefault)`
 
     tr {
       border: none;
+    }
+
+    thead {
+      ${props => props.variant === 'light' && 'height: 0;'}
     }
 
     ${TableHeaderText} {

@@ -45,7 +45,7 @@
     "@storybook/addon-docs": "^6.3.2",
     "@storybook/addon-info": "^5.0.0",
     "@storybook/addon-links": "^6.0.0",
-    "@storybook/addon-measure": "^2.0.0",
+    "@storybook/addon-measure": "^6.4.0",
     "@storybook/addon-storyshots": "^6.1.11",
     "@storybook/addon-viewport": "^6.3.3",
     "@storybook/addons": "^6.0.0",

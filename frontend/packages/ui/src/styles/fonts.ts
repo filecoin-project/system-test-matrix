@@ -1,5 +1,5 @@
 export const Fonts = {
-  SegoeUI: '"Segoe UI Regular", sans-serif',
-  NunitoSans: '"Nunito Sans SemiBold", sans-serif',
+  SegoeUI: '"Segoe UI", sans-serif',
+  NunitoSans: '"Nunito Sans", sans-serif',
   Roboto: '"Roboto", sans-serif',
 }

@@ -1,7 +1,14 @@
 @font-face {
-  font-family: 'Nunito Sans SemiBold';
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: local('Nunito Sans'), url('NunitoSans-SemiBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Nunito Sans';
   font-style: normal;
   font-weight: bold;
-  src: local('Nunito Sans SemiBold'),
-    url('NunitoSans-SemiBold.woff') format('woff');
+  font-display: swap;
+  src: local('Nunito Sans'), url('NunitoSans-Bold.woff') format('woff');
 }

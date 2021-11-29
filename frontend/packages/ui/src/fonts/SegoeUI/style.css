@@ -1,13 +1,15 @@
 @font-face {
-  font-family: 'Segoe UI Regular';
+  font-family: 'Segoe UI';
   font-style: normal;
   font-weight: normal;
-  src: local('Segoe UI Regular'), url('Segoe UI.woff') format('woff');
+  font-display: swap;
+  src: local('Segoe UI'), url('Segoe UI.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Segoe UI Bold';
+  font-family: 'Segoe UI';
   font-style: normal;
-  font-weight: normal;
-  src: local('Segoe UI Bold'), url('Segoe UI Bold.woff') format('woff');
+  font-weight: bold;
+  font-display: swap;
+  src: local('Segoe UI'), url('Segoe UI Bold.woff') format('woff');
 }

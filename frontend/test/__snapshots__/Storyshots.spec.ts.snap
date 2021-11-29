@@ -2130,7 +2130,7 @@ exports[`Storyshots Button System 1`] = `
 }
 
 .c5 {
-  font-family: "Nunito Sans SemiBold",sans-serif;
+  font-family: "Nunito Sans",sans-serif;
   font-size: 14px;
   -webkit-letter-spacing: 0.03rem;
   -moz-letter-spacing: 0.03rem;
@@ -6453,7 +6453,7 @@ exports[`Storyshots Modal Modal Example 1`] = `
 }
 
 .c1 {
-  font-family: "Nunito Sans SemiBold",sans-serif;
+  font-family: "Nunito Sans",sans-serif;
   font-size: 14px;
   -webkit-letter-spacing: 0.03rem;
   -moz-letter-spacing: 0.03rem;
@@ -6589,7 +6589,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 .c12 {
-  font-family: "Nunito Sans SemiBold",sans-serif;
+  font-family: "Nunito Sans",sans-serif;
   font-size: 14px;
   -webkit-letter-spacing: 0.03rem;
   -moz-letter-spacing: 0.03rem;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { System, TestKind } from '@filecoin/types'
 import {
   BoxLayout,
   CardLayout,
@@ -8,9 +8,9 @@ import {
   StackLayout,
   Text,
 } from '@filecoin/ui'
-import styled from 'styled-components'
+import React, { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
-import { System, TestKind } from '@filecoin/types'
+import styled from 'styled-components'
 
 interface Props {
   testKinds: TestKind[]
@@ -50,7 +50,11 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
         <StackLayout gap={1}>
           <ColumnLayout className={'c-matrix__header'} gap={1}>
             {testKinds.map(testKind => {
-              return <Text key={testKind}>{testKind}</Text>
+              return (
+                <Text key={testKind} color="textGray">
+                  {testKind}
+                </Text>
+              )
             })}
           </ColumnLayout>
 
@@ -61,7 +65,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                 gap={1}
                 key={subsystem.name}
               >
-                <Text>{subsystem.name}</Text>
+                <Text color="textGray">{subsystem.name}</Text>
 
                 {testKinds.map(testKind => {
                   const tests = subsystem.tests.filter(
@@ -121,6 +125,7 @@ const Wrapper = styled(CardLayout)`
 const Legend = styled.div`
   display: flex;
   justify-content: end;
+  color: ${Colors.textGray};
 
   > div {
     margin-left: 2rem;

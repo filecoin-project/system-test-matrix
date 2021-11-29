@@ -1,9 +1,8 @@
-import React from 'react'
-import { CardLayout, ProgressBar, StackLayout, Text, Table } from '@filecoin/ui'
-import styled from 'styled-components'
-import { System } from '@filecoin/types'
-
 import { getButton } from '@/pages/tests'
+import { System } from '@filecoin/types'
+import { CardLayout, ProgressBar, StackLayout, Table, Text } from '@filecoin/ui'
+import React from 'react'
+import styled from 'styled-components'
 
 interface Props {
   system: System
@@ -37,13 +36,19 @@ export const Overview: React.FC<Props> = ({ system }) => {
         />
       </ProgressBarWrapper>
       <TableWrapper>
-        <Text type={'subtitle l'}>Subsystems ({totalSubsystems})</Text>
+        <Text type={'subtitle l'} color="textGray">
+          Subsystems ({totalSubsystems})
+        </Text>
         <TableStyled
           variant="default"
           columns={{
             Subsystems: {
               header: 'Subsystem',
-              Cell: ({ data }) => <Text type="text s">{data.name}</Text>,
+              Cell: ({ data }) => (
+                <Text type="text s" color="textGray">
+                  {data.name}
+                </Text>
+              ),
             },
             testKinds: {
               header: 'Test Kinds',

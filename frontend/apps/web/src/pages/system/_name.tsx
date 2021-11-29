@@ -1,11 +1,10 @@
-import { PageLayout, Text, Icon, usePageLayout } from '@filecoin/ui'
-import React, { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useParams, useNavigate } from 'react-router-dom'
-
-import { PageContainer } from '@/containers/PageContainer'
 import { DetailedView as ChartView } from '@/components/system/DetailedView'
 import { Overview } from '@/components/system/Overview'
+import { PageContainer } from '@/containers/PageContainer'
+import { Icon, PageLayout, Text, usePageLayout } from '@filecoin/ui'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]
@@ -15,29 +14,34 @@ interface HeaderProps {
   onTabChange: (Tab) => void
 }
 
-const Header = (props: HeaderProps) => (
-  <PageLayout.Header>
-    <Text type="heading 5">Systems</Text>
-    <PageLayout.Tabs>
-      <PageLayout.Tab
-        onClick={() => {
-          props.onTabChange('overview')
-        }}
-        active={props.activeTab === 'overview'}
-      >
-        <Icon name="book" size="small" />
-        <Text>Overview</Text>
-      </PageLayout.Tab>
-      <PageLayout.Tab
-        onClick={() => props.onTabChange('detailedView')}
-        active={props.activeTab === 'detailedView'}
-      >
-        <Icon name="detailed_view" size="small" />
-        <Text>Detailed view</Text>
-      </PageLayout.Tab>
-    </PageLayout.Tabs>
-  </PageLayout.Header>
-)
+const Header = (props: HeaderProps) => {
+  const { t } = useTranslation()
+  return (
+    <PageLayout.Header>
+      <Text type="heading 5" bold>
+        {t('filecoin.systems.systems')}
+      </Text>
+      <PageLayout.Tabs>
+        <PageLayout.Tab
+          onClick={() => {
+            props.onTabChange('overview')
+          }}
+          active={props.activeTab === 'overview'}
+        >
+          <Icon name="book" size="small" />
+          <Text color="textGray">Overview</Text>
+        </PageLayout.Tab>
+        <PageLayout.Tab
+          onClick={() => props.onTabChange('detailedView')}
+          active={props.activeTab === 'detailedView'}
+        >
+          <Icon name="detailed_view" size="small" />
+          <Text color="textGray">Detailed view</Text>
+        </PageLayout.Tab>
+      </PageLayout.Tabs>
+    </PageLayout.Header>
+  )
+}
 
 const RepositoryDetails = () => {
   const {

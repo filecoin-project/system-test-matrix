@@ -190,6 +190,10 @@ export const PageLayout = styled(Page)`
     border-bottom: 1px solid ${Colors.borderColor};
     padding: 3.5rem 3.75rem 2rem;
 
+    button {
+      margin-top: 2.25rem;
+    }
+
     &--logo {
       background: ${Colors.logoBackground};
       position: absolute;

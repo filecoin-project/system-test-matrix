@@ -6,18 +6,21 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { PageContainer } from '@/containers/PageContainer'
 import { DetailedView as ChartView } from '@/components/system/DetailedView'
 import { Overview } from '@/components/system/Overview'
+import { getButton } from '@/pages/tests'
+import { SystemScore, TestStatus } from '@filecoin/types'
 
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]
 
 interface HeaderProps {
   activeTab: Tab
+  score: SystemScore | TestStatus
   onTabChange: (Tab) => void
 }
 
 const Header = (props: HeaderProps) => (
   <PageLayout.Header>
-    <Text type="heading 5">Systems</Text>
+    {getButton(props.score)}
     <PageLayout.Tabs>
       <PageLayout.Tab
         onClick={() => {
@@ -58,7 +61,7 @@ const RepositoryDetails = () => {
 
   const pageLayout = usePageLayout({
     header: (
-      <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} />
+      <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} score={system.score} />
     ),
     footer: <PageLayout.Footer />,
   })
@@ -72,7 +75,7 @@ const RepositoryDetails = () => {
       })
 
       pageLayout.setHeader(
-        <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} />,
+        <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} score={system.score} />,
       )
     }
   }, [activeTab])

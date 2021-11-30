@@ -7,7 +7,6 @@ import React, {
 } from 'react'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
-
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
 import { Fonts } from './styles/fonts'
@@ -65,11 +64,13 @@ export const BaseInput: FunctionComponent<Props> = forwardRef(
     const [fieldType, setFieldType] = useState(type)
 
     const onBlurHandle = e => {
+      e.target.placeholder = placeholder
       e.currentTarget.value === '' && setFieldState(false)
       onBlur(e)
     }
 
     const onFocusHandle = e => {
+      e.target.placeholder = ''
       setFieldState(true)
       onFocus(e)
     }
@@ -86,18 +87,6 @@ export const BaseInput: FunctionComponent<Props> = forwardRef(
           )}
           hasIconBefore={!!iconBefore}
         >
-          {placeholder && (
-            <label
-              className={classNames(
-                stateClass && stateClass,
-                disabled && 'disabled',
-              )}
-              htmlFor={id}
-            >
-              {placeholder}
-            </label>
-          )}
-
           <input
             ref={ref}
             id={id}
@@ -108,6 +97,7 @@ export const BaseInput: FunctionComponent<Props> = forwardRef(
             disabled={disabled}
             autoComplete="new-password"
             value={props.value}
+            placeholder={placeholder}
           />
 
           <fieldset
@@ -162,33 +152,6 @@ const Wrapper = styled.div`
 `
 
 const InnerWrapper = styled.div<{ hasIconBefore: boolean }>`
-  label {
-    position: absolute;
-    top: 0;
-    left: ${({ hasIconBefore }) => (hasIconBefore ? 34 : 0)}px;
-    transform: translate(1rem, 1.125rem) scale(1);
-    transform-origin: top left;
-    transition: color 250ms cubic-bezier(0, 0, 0.2, 1) 0ms,
-      transform 250ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-    font-size: 1rem;
-    color: ${Colors.inputPlaceholder};
-    letter-spacing: 0.2px;
-    user-select: none;
-    pointer-events: none;
-
-    &.state--active {
-      transform: translate(
-          ${({ hasIconBefore }) => {
-            return hasIconBefore ? 1.375 : 1
-          }}rem,
-          0.5rem
-        )
-        scale(0.6);
-      font-family: ${Fonts.Manrope};
-      font-weight: bold;
-    }
-  }
-
   fieldset {
     position: absolute;
     top: 0;
@@ -198,7 +161,7 @@ const InnerWrapper = styled.div<{ hasIconBefore: boolean }>`
     margin: 0;
     padding: 0 0.5rem;
     border: 1px solid ${Colors.inputBorder};
-    border-radius: 0.5rem;
+    border-radius: 5px;
     overflow: hidden;
     transition: border-color 250ms;
     letter-spacing: 0.2px;
@@ -207,11 +170,10 @@ const InnerWrapper = styled.div<{ hasIconBefore: boolean }>`
 
   input {
     width: 100%;
-    height: 3.5rem;
-    padding: 0.875rem 1rem 0;
+    height: 2.75rem;
     background: ${Colors.inputBackground};
     border: 0;
-    border-radius: 0.5rem;
+    border-radius: 5px;
     outline: none;
     font-size: 1rem;
     letter-spacing: 0.2px;
@@ -257,16 +219,6 @@ const InnerWrapper = styled.div<{ hasIconBefore: boolean }>`
   &.disabled {
     opacity: 0.5;
   }
-
-  &:hover {
-    label {
-      color: ${Colors.inputHoverPlaceholder};
-
-      &.state--active {
-        color: ${Colors.inputActivePlaceholder};
-      }
-    }
-  }
 `
 
 const IconWrapper = styled.div`
@@ -281,9 +233,7 @@ const IconWrapper = styled.div`
   pointer-events: none;
 `
 
-const IconBeforeWrapper = styled(IconWrapper)`
-  left: 1rem;
-`
+const IconBeforeWrapper = styled(IconWrapper)``
 
 const IconAfterWrapper = styled(IconWrapper)`
   right: 1rem;

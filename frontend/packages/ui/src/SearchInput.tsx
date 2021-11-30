@@ -2,7 +2,6 @@ import { useDebounce } from '@filecoin/core'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import { BaseInput } from './BaseInput'
 import { Button } from './Button'
 import { Icon } from './Icon'
@@ -14,18 +13,20 @@ interface SearchInputProps {
   value?: string
   width?: string | number
   autoFocus?: boolean
+  placeholder?: string
 }
 
 export const SearchInput: FunctionComponent<SearchInputProps> = ({
   onSearch = () => null,
   value,
   autoFocus = true,
+  placeholder,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [query, setQuery] = useState(value || '')
-  const debouncedValue = useDebounce(query, 2000)
+  const debouncedValue = useDebounce(query, 500)
   const inputRef = useRef(null)
   const { t } = useTranslation()
 
@@ -45,29 +46,31 @@ export const SearchInput: FunctionComponent<SearchInputProps> = ({
   }, [])
 
   return (
-    <SearchIconWrapper>
+    <SearchIconWrapper width={props.width}>
       <BaseInput
+        iconBefore="search"
         value={query}
         onChange={event => {
           setIsLoading(true)
           setQuery(event.currentTarget.value)
         }}
         ref={inputRef}
-        placeholder={t('global.placeholders.search')}
+        placeholder={placeholder || t('global.placeholders.search')}
         {...props}
       />
 
       {(isLoading && <SearchLoader />) ||
         (query && (
           <Button
-            variant="outline"
-            size="medium"
+            variant="rounded"
+            size="small"
+            color="error"
             onClick={() => {
               setIsLoading(true)
               setQuery('')
             }}
           >
-            <Icon name={'close'} />
+            <Icon name="close" color="white" />
           </Button>
         ))}
     </SearchIconWrapper>
@@ -89,12 +92,13 @@ const SearchLoader = styled(Loader)`
 `
 
 // TODO@all I had to put the style of the icon in wrapper because styled(Icon) had some issue with passing props
-const SearchIconWrapper = styled.div`
+const SearchIconWrapper = styled.div<Pick<SearchInputProps, 'width'>>`
   display: flex;
   position: relative;
+  max-width: ${({ width }) => width || '100%'};
 
   input {
-    width: 270px;
+    background-color: ${Colors.ghostBtn};
   }
 
   > span {
@@ -120,7 +124,7 @@ const SearchIconWrapper = styled.div`
 
   ${SearchLoader} {
     position: absolute;
-    top: 10px;
-    right: 5px;
+    top: 14px;
+    right: 14px;
   }
 `

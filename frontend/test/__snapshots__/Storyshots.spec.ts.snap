@@ -34,40 +34,6 @@ exports[`Storyshots BaseInput Base 1`] = `
   font-family: "OpenSans",sans-serif;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -77,7 +43,7 @@ exports[`Storyshots BaseInput Base 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -90,11 +56,10 @@ exports[`Storyshots BaseInput Base 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -157,14 +122,6 @@ exports[`Storyshots BaseInput Base 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c1 {
   position: relative;
   width: 328px;
@@ -181,12 +138,6 @@ exports[`Storyshots BaseInput Base 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        Base
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -194,6 +145,7 @@ exports[`Storyshots BaseInput Base 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="Base"
         type="text"
         value=""
       />
@@ -240,40 +192,6 @@ exports[`Storyshots BaseInput Disabled 1`] = `
   font-family: "OpenSans",sans-serif;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -283,7 +201,7 @@ exports[`Storyshots BaseInput Disabled 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -296,11 +214,10 @@ exports[`Storyshots BaseInput Disabled 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -363,14 +280,6 @@ exports[`Storyshots BaseInput Disabled 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c1 {
   position: relative;
   width: 328px;
@@ -387,12 +296,6 @@ exports[`Storyshots BaseInput Disabled 1`] = `
     <div
       className="c3 disabled"
     >
-      <label
-        className="disabled"
-        htmlFor={1}
-      >
-        Disabled
-      </label>
       <input
         autoComplete="new-password"
         disabled={true}
@@ -400,6 +303,7 @@ exports[`Storyshots BaseInput Disabled 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="Disabled"
         type="text"
         value=""
       />
@@ -446,40 +350,6 @@ exports[`Storyshots BaseInput Password 1`] = `
   font-family: "OpenSans",sans-serif;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -489,7 +359,7 @@ exports[`Storyshots BaseInput Password 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -502,11 +372,10 @@ exports[`Storyshots BaseInput Password 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -567,14 +436,6 @@ exports[`Storyshots BaseInput Password 1`] = `
 
 .c3.disabled {
   opacity: 0.5;
-}
-
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
 }
 
 .c4 {
@@ -637,12 +498,6 @@ exports[`Storyshots BaseInput Password 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        Password
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -650,6 +505,7 @@ exports[`Storyshots BaseInput Password 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="Password"
         type="password"
         value=""
       />
@@ -709,40 +565,6 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
   font-family: "OpenSans",sans-serif;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -752,7 +574,7 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -765,11 +587,10 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -832,14 +653,6 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c1 {
   position: relative;
   width: 328px;
@@ -856,12 +669,6 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Clear Button
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -869,6 +676,7 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Clear Button"
         type="text"
         value=""
       />
@@ -917,40 +725,6 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
   font-family: "OpenSans",sans-serif;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -960,7 +734,7 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -973,11 +747,10 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -1040,14 +813,6 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c4 {
   position: absolute;
   bottom: -1.25rem;
@@ -1084,12 +849,6 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
     <div
       className="c3 error"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Error Message
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -1097,6 +856,7 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Error Message"
         status="error"
         type="text"
         value=""
@@ -1148,40 +908,6 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
   font-family: "OpenSans",sans-serif;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -1191,7 +917,7 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -1204,11 +930,10 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -1271,14 +996,6 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c4 {
   position: absolute;
   top: 0;
@@ -1317,12 +1034,6 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Icon After
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -1330,6 +1041,7 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Icon After"
         type="text"
         value=""
       />
@@ -1384,40 +1096,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   font-family: "OpenSans",sans-serif;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 34px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1.375rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1.375rem, 0.5rem ) scale(0.6);
-  transform: translate( 1.375rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -1427,7 +1105,7 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -1440,11 +1118,10 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -1507,14 +1184,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c4 {
   position: absolute;
   top: 0;
@@ -1533,10 +1202,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   pointer-events: none;
 }
 
-.c5 {
-  left: 1rem;
-}
-
 .c1 {
   position: relative;
   width: 328px;
@@ -1553,12 +1218,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Icon Before
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -1566,6 +1225,7 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Icon Before"
         type="text"
         value=""
       />
@@ -1573,7 +1233,7 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
         className=""
       >
         <div
-          className="c4 c5"
+          className="c4"
         >
           <svg
             id="/assets/icons/search.svg"
@@ -1620,40 +1280,6 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
   font-family: "OpenSans",sans-serif;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-family: "Manrope",sans-serif;
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -1663,7 +1289,7 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -1676,11 +1302,10 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -1743,14 +1368,6 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c4 {
   position: absolute;
   bottom: -1.25rem;
@@ -1787,12 +1404,6 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
     <div
       className="c3 success"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Success Message
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -1800,6 +1411,7 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Success Message"
         status="success"
         type="text"
         value=""

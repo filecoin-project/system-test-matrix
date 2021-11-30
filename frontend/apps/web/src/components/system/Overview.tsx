@@ -1,16 +1,26 @@
-import React from 'react'
-import { CardLayout, ProgressBar, StackLayout, Text, Table } from '@filecoin/ui'
-import styled from 'styled-components'
-import { System } from '@filecoin/types'
-
 import { getButton } from '@/pages/tests'
-
+import { filterItems } from '@filecoin/core'
+import { System } from '@filecoin/types'
+import {
+  CardLayout,
+  ProgressBar,
+  SearchInput,
+  StackLayout,
+  Table,
+  Text,
+} from '@filecoin/ui'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 interface Props {
   system: System
 }
 
 export const Overview: React.FC<Props> = ({ system }) => {
   const totalSubsystems = system.subsystems.length
+  const [searchTerm, setSearchTerm] = useState('')
+  const results = !searchTerm
+    ? system.subsystems
+    : filterItems(system.subsystems, searchTerm, 'name')
 
   return (
     <Wrapper>
@@ -36,8 +46,21 @@ export const Overview: React.FC<Props> = ({ system }) => {
           legend
         />
       </ProgressBarWrapper>
+
       <TableWrapper>
-        <Text type={'subtitle l'}>Subsystems ({totalSubsystems})</Text>
+        <StackLayout gap={1}>
+          <Text type="subtitle l">Subsystems ({totalSubsystems})</Text>
+
+          <SearchInput
+            onSearch={value => {
+              setSearchTerm(value)
+            }}
+            value={searchTerm}
+            placeholder="Search subsystem"
+            width="58.75rem"
+            autoFocus={false}
+          />
+        </StackLayout>
         <TableStyled
           variant="default"
           columns={{
@@ -80,7 +103,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
               Cell: ({ data }) => getButton(data.score),
             },
           }}
-          data={system.subsystems}
+          data={results}
         />
       </TableWrapper>
     </Wrapper>

@@ -1,0 +1,93 @@
+system: token
+subsystem: wallet
+features:
+  - name: balance
+    behaviors:
+      - id: TOKEN_WALLET_BALANCE_001
+        description: |
+          Given a known address, 
+          returns the balance of that address at the current head of the chain
+  
+  - name: default address
+    behaviors:
+      - id: TOKEN_WALLET_DEFAULT_ADDRESS_001
+        description: Return the address marked as default in the wallet
+  
+  - name: delete
+    behaviors:
+      - id: TOKEN_WALLET_DELETE_001
+        description: |
+          Given a (local) address, 
+          delete the specified address from the wallet
+  
+  - name: export
+    behaviors:
+      - id: TOKEN_WALLET_EXPORT_001
+        description: |
+          Given a (local) address,
+          return the private key of that address
+  
+  - name: has
+    behaviors:
+      - id: TOKEN_WALLET_HAS_001
+        description: |
+          Given an address,
+          return true if the that address is in the wallet
+  
+  - name: import
+    behaviors:
+      - id: TOKEN_WALLET_IMPORT_001
+        description: |
+          Given a private key,
+          import it to the wallet and return the associated address
+  
+  - name: list
+    behaviors:
+      - id: TOKEN_WALLET_LIST_001
+        description: Return a list of all addresses in the wallet
+  
+  - name: new
+    behaviors:
+      - id: TOKEN_WALLET_NEW_001
+        description: |
+          Given a sigType = <bls | secp256k1 | secp256k1-ledger>
+          Create and return a new address with the given sigType
+  
+  - name: set default
+    behaviors:
+      - id: TOKEN_WALLET_SET_DEFAULT_001
+        description: |
+          Given an address, 
+          mark it as the default in the wallet
+
+  - name: sign
+    behaviors:
+      - id: TOKEN_WALLET_SIGN_001
+        description: |
+          Given an (local) address and an array of bytes, 
+          sign and return the signature for the specified bytes
+  
+  - name: sign message
+    behaviors:
+      - id: TOKEN_WALLET_SIGN_MESSAGE_001
+        description: |
+          Given a  address and an unsigned message,
+          sign and return a signed message
+
+  - name: validate address
+    behaviors:
+      - id: TOKEN_WALLET_VALIDATE_ADDRESS_001
+        description: |
+          Given a string,
+          return the address if it can be decoded
+      - id: TOKEN_WALLET_VALIDATE_ADDRESS_002
+        description: |
+          Given an (syntactically) invalid FIL address,
+          throw an error
+
+  - name: verify
+    behaviors:
+      - id: TOKEN_WALLET_VERIFY_001
+        description: |
+          Given (any) address, a signature and some bytes, 
+          return true if the signature is valid for the specified address and input bytes. False otherwise.

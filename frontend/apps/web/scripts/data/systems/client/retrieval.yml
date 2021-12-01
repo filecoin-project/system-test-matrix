@@ -1,0 +1,72 @@
+system: client
+subsystem: Retrieval
+features:
+  - name: Find
+    behaviors:
+      - id: CLIENT_RETRIEVAL_FIND_001
+        description: |
+          Given root and piece CIDs,
+          return query offers from peers that have the file piece referenced by CIDs
+  
+  - name: Retrieve
+    behaviors:
+      - id: CLIENT_RETRIEVAL_RETRIEVE_001
+        description: |
+          Given an existing retrieval order and a file reference,
+          initiate the retrieval of the file specified in the order
+      - id: CLIENT_RETRIEVAL_RETRIEVE_002
+        description: |
+          Given an invalid "from" address (used to pay for retrieval),
+          throw an error
+      - id: CLIENT_RETRIEVAL_RETRIEVE_003
+        description: |
+          Given an invalid piece CID, throw an error. 
+          If an offer of a CID can't be found it's considered invalid.
+      - id: CLIENT_RETRIEVAL_RETRIEVE_004
+        description: |
+          Given an invalid "maxPrice", throw an error.
+          If an offer satisfying maxPrice is not found, it's considered invalid.
+  
+  - name: Cancel
+    behaviors:
+      - id: CLIENT_RETRIEVAL_CANCEL_001
+        description: Cancels an ongoing retrieval deal based on Deal ID
+      - id: CLIENT_RETRIEVAL_CANCEL_002
+        description: Fails if underlying state store throws an error     
+  
+  - name: List Retrievals
+    behaviors:
+      - id: CLIENT_RETRIEVAL_LIST_RETRIEVALS_001
+        description: Return information about all retrievals made by the local client
+  
+  - name: List Data Transfers
+    behaviors:
+      - id: CLIENT_RETRIEVALS_LIST_DATA_TRANSFERS_001
+        description: Returns the status of all ongoing transfers of data
+  
+  - name: Data Transfer Updates
+    behaviors:
+      - id: CLIENT_DATA_TRANSFER_UPDATES_001
+        description: Fetch data transfer channels that were updated
+  
+  - name: Restart Transfer
+    behaviors:
+      - id: CLIENT_RESTART_TRANSFER_001
+        description: |
+          Given a transfer ID and other peer ID,
+          restart a (stalled) data transfer as the initiator
+      - id: CLIENT_RESTART_TRANSFER_002
+        description: |
+          Given a transfer ID and other peer ID,
+          restart a (stalled) data transfer where the other peer is the initiator
+  
+  - name: Cancel Data Transfer
+    behaviors:
+      - id: CLIENT_RETRIEVAL_CANCEL_TRANSFER_001
+        description: |
+          Given an existing transfer with a peer and this node is the initiator,
+          cancel the transfer on both parties
+      - id: CLIENT_RETRIEVAL_CANCEL_TRANSFER_002
+        description: |
+          Given an existing transfer with a peer and the peer is the initiator,
+          cancel the transfer on both parties

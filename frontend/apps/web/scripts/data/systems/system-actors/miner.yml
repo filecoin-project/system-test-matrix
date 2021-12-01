@@ -1,0 +1,26 @@
+system: System Actors
+subsystem: Miner
+features:
+  - name: Deadlines
+    behaviors:
+      - id: ACTORS_MINER_DEADLINES_001
+        description: |
+          Given a sector is ProveCommitted,
+          assign a deadline to that sector
+      - id: ACTORS_MINER_DEADLINES_002
+        description: |
+          Given a miner fails to submit a PoSt for a sector on time and doesn't declare the sector as faulty, 
+          apply the "Undeclared fault penalty"
+      - id: ACTORS_MINER_DEADLINES_003
+        description: |
+          Given a miner fails to ProveCommit a PreCommited sector in time,
+          apply a "PreCommit expiry penalty"
+      - id: ACTORS_MINER_DEADLINES_004
+        description: |
+          Given a miner fails to submit a PoSt for a sector and declares the sector as faulty,
+          apply the "Declared fault penalty".
+          The fee should be lower than the undeclared fault penalty.
+      - id: ACTORS_MINER_DEADLINES_005
+        description: |
+          Given a miner terminates a sector before its expiration,
+          apply a "Termination penalty"

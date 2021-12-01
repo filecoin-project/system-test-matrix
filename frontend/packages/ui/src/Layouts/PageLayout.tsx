@@ -188,7 +188,7 @@ export const PageLayout = styled(Page)`
     z-index: ${zIndex.layer200};
     background: ${Colors.headerBackground};
     border-bottom: 1px solid ${Colors.borderColor};
-    padding: 5.5rem 3.75rem 2rem;
+    padding: 3.5rem 3.75rem 2rem;
 
     &--logo {
       background: ${Colors.logoBackground};
@@ -201,11 +201,12 @@ export const PageLayout = styled(Page)`
   }
 
   .c-page-layout__footer {
+    display: flex;
     width: 100vw;
+    height: 6.25rem;
     max-width: calc(1100px - 4rem);
-    height: 100px;
     margin: auto auto 0;
-    border-top: 1px solid ${Colors.borderColorAlternate};
+    border-top: 1px solid ${Colors.borderColor};
     color: ${Colors.logoBackground};
 
     > div {

@@ -16,6 +16,8 @@ export class PercentageSet {
 }
 
 export interface Percentage {
+  kind?: string
+  status?: string
   percentage: number
 }
 

@@ -9,7 +9,8 @@ on:
     branches:
       - main
     paths:
-      - '**/package.json'
+      - "**/package.json"
+      - frontend/yarn.lock
 
 jobs:
   auto-merge:
@@ -19,6 +20,8 @@ jobs:
       # Checkout the repository.
       #
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       #
       # Merge minor versions

@@ -1,11 +1,9 @@
-import React from 'react'
 import { ReactProps } from '@filecoin/types'
 import classNames from 'classnames'
-
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Text } from '../Text'
-
 import { BoxLayout } from './BoxLayout'
-
 export interface HeaderProps {
   /**
    * The element to render the `<Header>` as. Defaults to 'header'.
@@ -28,11 +26,14 @@ export const PageLayoutHeader = React.forwardRef(
       'c-page-layout__header',
       (props as { className?: string }).className,
     )
+
     return (
       <Component ref={ref} {...props} className={className}>
         <div className={'c-page-layout__header--logo'}>
           <BoxLayout>
-            <Text color="white">System Test Matrix</Text>
+            <NavLink to={'/'}>
+              <Text color="white">System Test Matrix</Text>
+            </NavLink>
           </BoxLayout>
         </div>
         {children}

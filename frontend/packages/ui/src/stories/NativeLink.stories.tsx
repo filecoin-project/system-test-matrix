@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import { BoxLayout } from '../Layouts/BoxLayout'
 import { ColumnLayout } from '../Layouts/ColumnLayout'
 import { NativeLink, NativeLinkAppearance } from '../NativeLink'
@@ -45,41 +44,19 @@ export const Default = () => (
         href="https://www.google.com/"
         target="_blank"
         rel="noopener noreferrer"
-        icon="arrow_right"
+        className="u-text--large"
       >
-        Forgot your password?
+        Blockchain
       </NativeLink>
-
       <NativeLink
         href="https://www.google.com/"
         target="_blank"
         rel="noopener noreferrer"
-      >
-        Forgot your password?
-      </NativeLink>
-
-      <NativeLink
-        href="https://www.google.com/"
-        target="_blank"
-        rel="noopener noreferrer"
+        className="u-text--large"
         disabled
       >
-        Forgot your password?
+        Blockchain
       </NativeLink>
-    </ColumnLayout>
-  </Wrapper>
-)
-
-export const Brand = () => (
-  <Wrapper>
-    <ColumnLayout>
-      <NativeLink href="https://www.google.com/" appearance="brand">
-        Learn more
-      </NativeLink>
-
-      <NativeLink href="https://www.google.com/">Learn more</NativeLink>
-
-      <NativeLink href="https://www.google.com/">Learn more</NativeLink>
     </ColumnLayout>
   </Wrapper>
 )
@@ -91,27 +68,31 @@ export const System = () => (
         href="https://www.google.com/"
         target="_blank"
         rel="noopener noreferrer"
-        icon="arrow_right"
         appearance="system"
+        className="u-text--medium"
       >
-        Learn more
+        Blockchain
       </NativeLink>
       <NativeLink
         href="https://www.google.com/"
         target="_blank"
         rel="noopener noreferrer"
         appearance="system"
+        icon="link"
+        className="u-text--xsmall"
       >
-        Learn more
+        /lotus/miner
       </NativeLink>
       <NativeLink
         href="https://www.google.com/"
         target="_blank"
         rel="noopener noreferrer"
         appearance="system"
+        icon="link"
+        className="u-text--xsmall"
         disabled
       >
-        Learn more
+        /lotus/miner
       </NativeLink>
     </ColumnLayout>
   </Wrapper>
@@ -122,47 +103,38 @@ export const Sizing = () => (
     <ColumnLayout>
       <NativeLink
         href="https://www.google.com/"
-        appearance="brand"
+        appearance="default"
         target="_blank"
         rel="noopener noreferrer"
-        icon="arrow_right"
+        className="u-text--large"
+      >
+        Large
+      </NativeLink>
+      <NativeLink
+        href="https://www.google.com/"
+        appearance="default"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         Regular
       </NativeLink>
       <NativeLink
         href="https://www.google.com/"
-        appearance="brand"
+        appearance="default"
         target="_blank"
         rel="noopener noreferrer"
-        icon="arrow_right"
         className="u-text--small"
       >
         Small
       </NativeLink>
       <NativeLink
-        appearance="brand"
+        appearance="default"
         href="https://www.google.com/"
         target="_blank"
         rel="noopener noreferrer"
-        icon="arrow_right"
         className="u-text--xsmall"
       >
         XS Small
-      </NativeLink>
-    </ColumnLayout>
-  </Wrapper>
-)
-export const Details = args => (
-  <Wrapper>
-    <ColumnLayout>
-      <NativeLink
-        href="https://www.google.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        icon="arrow_right"
-        {...args}
-      >
-        Learn more
       </NativeLink>
     </ColumnLayout>
   </Wrapper>

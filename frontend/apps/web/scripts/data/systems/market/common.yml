@@ -1,0 +1,24 @@
+system: Market
+subsystem: Common
+features:
+  - name: Market Add Balance
+    behaviors:
+      - id: MARKET_ADD_BALANCE_001
+        description: Adds funds to the market actor
+  - name: Market Get Reserved
+    behaviors:
+      - id: MARKET_GET_RESERVED_001
+        description: Gets the amount of funds that are currently reserved for the
+          address
+  - name: Market Reserve Funds
+    behaviors:
+      - id: MARKET_RESERVE_FUNDS_001
+        description: Reserves funds for a deal
+  - name: Market Release Funds
+    behaviors:
+      - id: MARKET_RELEASE_FUNDS_001
+        description: Releases reserved funds
+  - name: Market Withdraw
+    behaviors:
+      - id: IdNotSnakeCase
+        description: Withdraws unlocked funds from the market actor

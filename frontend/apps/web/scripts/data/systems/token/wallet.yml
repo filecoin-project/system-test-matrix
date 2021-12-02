@@ -19,6 +19,51 @@ features:
         description: |
           Given a (local) address, 
           delete the specified address from the wallet
+
+  - name: Ledger delete
+    behaviors:
+      - id: TOKEN_WALLET_LEDGER_DELETE_001
+        description: |
+          Given a ledger address,
+          delete that address from the ledger device
+
+  - name: Ledger Export
+    behaviors:
+      - id: TOKEN_WALLET_LEDGER_EXPORT_001
+        description: |
+          Given export is called on a ledger wallet,
+          throw an error (cannot export keys from ledger wallets)
+
+  - name: Ledger Has
+    behaviors:
+      - id: TOKEN_WALLET_LEDGER_HAS_001
+        description: |
+          Given an address,
+          return true if that address exists on the device
+      - id: TOKEN_WALLET_LEDGER_HAS_002
+        description: |
+          Given that the device can't be reached,
+          throw an error
+
+  - name: Ledger Import
+    behaviors:
+      - id: TOKEN_WALLET_LEDGER_IMPORT_001
+        description: |
+          Given key info in the JSON format,
+          parse it and import it to the device
+      - id: TOKEN_WALLET_LEDGER_IMPORT_002
+        description: |
+          Given that the key info can't be parsed to the ledger format,
+          throw an error
+
+  - name: Ledger List
+    behaviors:
+      - id: TOKEN_WALLET_LEDGER_LIST_001
+        description: |
+          Return a list of all addresses on the device
+      - id: TOKEN_WALLET_LEDGER_LIST_002
+        description: |
+          Given that the device can't be reached, throw an error
   
   - name: export
     behaviors:
@@ -64,8 +109,27 @@ features:
     behaviors:
       - id: TOKEN_WALLET_SIGN_001
         description: |
-          Given an (local) address and an array of bytes, 
+          Given an local wallet address and an array of bytes, 
           sign and return the signature for the specified bytes
+  
+  - name: Ledger Sign
+    behaviors:
+      - id: TOKEN_WALLET_LEDGER_SIGN_001
+        description: |
+          Given a ledger wallet address and an array of bytes,
+          sign and return the signature for the specified bytes
+      - id: TOKEN_WALLET_LEDGER_SIGN_002
+        description: |
+          Given the address can't be fetched from ledger,
+          throw an error
+      - id: TOKEN_WALLET_LEDGER_SIGN_003
+        description: |
+          Given that the Filecoin app is not installed on the Ledger device,
+          throw an error
+      - id: TOKEN_WALLET_LEDGER_SIGN_004
+        description: |
+          Given anything except a chain message,
+          throw an error (ledger can only sign chain messages)
   
   - name: sign message
     behaviors:
@@ -91,3 +155,96 @@ features:
         description: |
           Given (any) address, a signature and some bytes, 
           return true if the signature is valid for the specified address and input bytes. False otherwise.
+
+  - name: Setup remote
+    behaviors:
+      - id: TOKEN_WALLET_SETUP_REMOTE_001
+        description: |
+          Given an API info string,
+          parse it, connect and return the remote wallet connection
+      - id: TOKEN_WALLET_SETUP_REMOTE_002
+        description: |
+          Given a connection to a remote wallet can't be established,
+          throw an error
+
+  - name: Multi New Address
+    behaviors:
+      - id: TOKEN_WALLET_MULTI_NEW_ADDRESS_001
+        description: |
+          Given a sigType = secp256k1-ledger
+          Create and return a new address on the Ledger device
+      - id: TOKEN_WALLET_MULTI_NEW_ADDRESS_002
+        description: |
+          Given a sigType != secp256k1-ledger and a remote wallet connection exists,
+          Create and return a new address on the remote wallet
+      - id: TOKEN_WALLET_MULTI_NEW_ADDRESS_003
+        description: |
+          Given a sigType != secp256k1-ledger and a remote wallet connection doesn't exist,
+          Create and return a new address in the local wallet
+
+  - name: Multi Has
+    behaviors:
+      - id: TOKEN_WALLET_MULTI_HAS_001
+        description: |
+          Given an address,
+          return true if it exists in any of: local, remote, ledger wallets
+
+  - name: Multi List
+    behaviors:
+      - id: TOKEN_WALLET_MULTI_LIST_001
+        description: |
+          Return a list of all addresses in any of: local, remote, ledger wallets.
+          Addresses should be de-duplicated if they exist in multiple wallets.
+
+  - name: Multi Sign
+    behaviors:
+      - id: TOKEN_WALLET_MULTI_SIGN_001
+        description: |
+          Given an address and an array of bytes,
+          find that address in any of (local, remote, ledger) wallets,
+          sign and return the signature for the specified bytes
+      - id: TOKEN_WALLET_MULTI_SIGN_002
+        description: |
+          Given that the address doesn't exist in any of the wallets,
+          throw an error
+
+  - name: Multi Export
+    behaviors:
+      - id: TOKEN_WALLET_MULTI_EXPORT_001
+        description: |
+          Given an address that exists either in the local or the remote wallet,
+          return the private key of that address
+      - id: TOKEN_WALLET_MULTI_EXPORT_002
+        description: |
+          Given an address that doesn't exist in the local and remote wallets,
+          throw an error
+      - id: TOKEN_WALLET_MULTI_EXPORT_003
+        description: |
+          Given an address that exists on the ledger wallet,
+          throw an error (cannot export keys from ledger wallets)
+
+  - name: Multi Import
+    behaviors: 
+      - id: TOKEN_WALLET_MULTI_IMPORT_001
+        description: |
+          Given a secp256k1-ledger address,
+          import it to the Ledger wallet
+      - id: TOKEN_WALLET_MULTI_IMPORT_002
+        description: |
+          Given a sigType != secp256k1-ledger address and a remote wallet connection exists,
+          import that address to the remote wallet
+      - id: TOKEN_WALLET_MULTI_IMPORT_003
+        description: |
+          Given a sigType != secp256k1-ledger and a remote wallet connection doesn't exist,
+          import that address to the local wallet
+
+  - name: New Key
+    behaviors:
+      - id: TOKEN_WALLET_NEW_KEY_001
+        description: |
+          Given a sigType = <bls | secp256k1 | secp256k1-ledger>,
+          generate and return a new key pair and address
+      - id: TOKEN_WALLET_NEW_KEY_002
+        description: |
+          Given an unsupported sigType,
+          throw an error

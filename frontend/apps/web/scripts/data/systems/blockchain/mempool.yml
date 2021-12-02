@@ -1,0 +1,69 @@
+system: Blockchain
+subsystem: Mempool
+features:
+  - name: Batch Push
+    behaviors:
+      - id: BLOCKCHAIN_MEMPOOL_BATCH_PUSH_001
+        description: |
+          Given a list of signed messages from a trusted source,
+          perform a batch of message pool pushes (see "Push" feature)
+      - id: BLOCKCHAIN_MEMPOOL_BATCH_PUSH_001
+        description: |
+          Given a list of signed messages from an untrusted source,
+          perform a batch of message pool pushes (see "Push" feature)
+  
+  - name: Check messages
+    behaviors:
+      - id: BLOCKCHAIN_MEMPOOL_CHECK_MESSAGES_001
+        description: |
+          Given a list of messages, perform logical checks.
+          Check the actor balance, serialization, message size, syntax validity,
+          gas limit, min base fee, base fee, nonce, required funds and
+          balance and return the status of each check "
+  
+  - name: Check Pending Messages
+    behaviors:
+      - id: BLOCKCHAIN_MEMPOOL_CHECK_PENDING_MESSAGES_001
+        description: |
+          Given an address, 
+          perform logical checks (see "Check Messages" feature) 
+          for all pending messages from the specified address
+  
+  - name: Clear
+    behaviors:
+      - id: BLOCKCHAIN_MEMPOOL_CLEAR_001
+        description: Clear all pending messages from the mempool
+  
+  - name: Get Nonce
+    behaviors:
+      - id: BLOCKCHAIN_MEMPOOL_GET_NONCE_001
+        description: Given an sender address, returns the next nonce for the specified sender
+  
+  - name: Pending
+    behaviors:
+      - id: BLOCKCHAIN_MEMPOOL_PENDING_001
+        description: Given a known tipset key, return all pending mempool messages
+  
+  - name: Push
+    behaviors:
+      - id: BLOCKCHAIN_MEMPOOL_PUSH_001
+        description: |
+          Given a signed Message from a trusted source, 
+          add it to the mempool and return its CID.
+          Don't perform extra strict checks
+      - id: BLOCKCHAIN_MEMPOOL_PUSH_002
+        description: |
+          Given an unsigned Message from a trusted source, 
+          atomically assign a nonce, sign it and push it to the mempool
+      - id: BLOCKCHAIN_MEMPOOL_PUSH_003
+        description: |
+          Given a signed Message from an untrusted source, 
+          push it to the mempool and return its CID.
+          Perform extra strict checks such as: no nonce gaps, at most 10 pending messages for the actor"
+
+  - name: Select
+    behaviors:
+      - id: BLOCKCHAIN_MEMPOOL_SELECT_001
+        description: |
+          Given a known Tipset key and a ticket quality,
+          return the "optimal" list of messages for inclusion in the next block

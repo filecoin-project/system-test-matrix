@@ -1,0 +1,59 @@
+system: Blockchain
+subsystem: Syncer
+features:
+  - name: Check Bad
+    behaviors:
+      - id: BLOCKCHAIN_SYNCER_CHECK_BAD_001
+        description: |
+          Given a known block CID,
+          return 'true' if it was marked as bad and the reason why
+  
+  - name: Checkpoint
+    behaviors:
+      - id: BLOCKCHAIN_SYNCER_CHECKPOINT_001
+        description: |
+          Given a known Tipset key, 
+          mark those blocks as "checkpointed", meaning that it won't ever fork away from it
+  
+  - name: Incoming Blocks
+    behaviors:
+      - id: BLOCKCHAIN_SYNCER_INCOMING_BLOCKS_001
+        description: |
+          Returns a channel streaming incoming, potentially not yet synced block headers
+  
+  - name: Mark Bad
+    behaviors:
+      - id: BLOCKCHAIN_SYNCER_MARK_BAD_001
+        description: |
+          Given a known block CID, 
+          mark it as bad, meaning that it won't ever be synced
+  
+  - name: State
+    behaviors:
+      - id: BLOCKCHAIN_SYNCER_STATE_001
+        description: Returns a list of sync states for each sync worker of the local node
+  
+  - name: Sync Submit Block
+    behaviors:
+      - id: SYNC_SUBMIT_BLOCK_001
+        description: Given a newly created block, submit it to the network through the
+          local node
+  
+  - name: Unmark All Bad
+    behaviors:
+      - id: BLOCKCHAIN_SYNCER_UNMARK_ALL_BAD_001
+        description: Unmarks all blocks marked as bad, making them possible to sync
+  
+  - name: Unmark Bad
+    behaviors:
+      - id: BLOCKCHAIN_SYNCER_UNMARK_BAD_001
+        description: |
+          Given a CID of a block that's marked as bad, 
+          unmark it, making it possible to be validated and synced again
+  
+  - name: Validate Tipset
+    behaviors:
+      - id: BLOCKCHAIN_SYNCER_VALIDATE_TIPSET_001
+        description: |
+          Given a known Tipset key,
+          return if the specified tipset is valid or not

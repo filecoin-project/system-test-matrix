@@ -3,24 +3,146 @@ subsystem: Miner
 features:
   - name: Deadlines
     behaviors:
-      - id: ACTORS_MINER_DEADLINES_001
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_001
         description: |
           Given a sector is ProveCommitted,
           assign a deadline to that sector
-      - id: ACTORS_MINER_DEADLINES_002
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_002
         description: |
           Given a miner fails to submit a PoSt for a sector on time and doesn't declare the sector as faulty, 
           apply the "Undeclared fault penalty"
-      - id: ACTORS_MINER_DEADLINES_003
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_003
         description: |
           Given a miner fails to ProveCommit a PreCommited sector in time,
           apply a "PreCommit expiry penalty"
-      - id: ACTORS_MINER_DEADLINES_004
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_004
         description: |
           Given a miner fails to submit a PoSt for a sector and declares the sector as faulty,
           apply the "Declared fault penalty".
           The fee should be lower than the undeclared fault penalty.
-      - id: ACTORS_MINER_DEADLINES_005
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_005
         description: |
           Given a miner terminates a sector before its expiration,
           apply a "Termination penalty"
+  
+  - name: Sectors
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_SECTORS_001
+        description: |
+          Given the address, tipset and (filter) bitfield,
+          returns info about the given miner's sectors
+      - id: SYSTEM_ACTORS_MINER_SECTORS_002
+        description: 
+          Given the filter bitfield is nil, 
+          all sectors are included when returning info for sectors
+
+  - name: Active Sectors
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_ACTIVE_SECTORS_001
+        description: |
+          Given the actor address and tipset,
+          return info about sectors that a given miner is actively proving
+  
+  - name: Calculate Deadline
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_CALCULATE_DEADLINE_001
+        description: |
+          Given the actor and the tipset
+          calculate the deadline at some epoch for a proving period and return the deadline-related calculations 
+  
+  - name: Power
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_POWER_001
+        description: |
+          Given the actor and tipset,
+          returns the power of the indicated miner
+  
+  - name: Info
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_INFO_001
+        description: |
+          Given the actor and tipset,
+          return info about the indicated miner.
+
+  - name: Get Deadlines
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_GET_DEADLINES_001
+        description: |
+          Given the actor and tipset,
+          return all the proving deadlines for the given miner
+
+  - name: Get Partitions
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_GET_PARTITIONS_001
+        description: |
+          Given the actor, tipset and deadline index
+          returns all partitions in the specified deadline
+
+  - name: Get Faults
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_GET_FAULTS_001
+        description: |
+          Given the actor and tipset,
+          returns a bitfield indicating the faulty sectors of the miner
+          
+      - id: SYSTEM_ACTORS_MINER_GET_FAULTS_002
+        description: |
+          Given a number of epochs and a tipset,
+          returns all non-expired Faults that occur within lookback epochs of the given tipset
+  
+  - name: Get Recoveries
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_GET_RECOVERIES_001
+        description: |
+          Given the actor address and tipset,
+          return a bitfield indicating the recovering sectors of the given miner
+
+  - name: Get Deposit
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_GET_DEPOSIT_001
+        description: |
+          Returns the pre-commit deposit for the specified miner's sector,
+          given the address, pre-commit sector info and tipset key
+  
+  - name: Get Collateral
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_GET_COLLATERAL_001
+        description: |
+          Returns the initial pledge collateral for the specified miner's
+          sector, given the address, pre-commit sector info and tipset key
+
+  - name: Available balance
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_AVAILABLE_BALANCE_001
+        description: |
+          Returns the portion of a miner's balance that can be withdrawn or spent, given the address and tipset key
+
+  - name: Sector allocated
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_SECTOR_ALLOCATED_001
+        description: |
+          Checks if a sector is allocated, given the sector number and address
+
+  - name: Get PreCommit info
+    behaviors:
+      - id: STATE_SECTOR_PRE_COM_INFO_001
+        description: Returns the PreCommit info for the specified miner's sector, given
+          the address, sector and tipset key
+
+  - name: Get Sector Info
+    behaviors:
+      - id: STATE_SECTOR_GET_INFO_001
+        description: Returns the on-chain info for the specified miner's sector, given
+          the actor, sector info and tipset key
+      - id: STATE_SECTOR_GET_INFO_002
+        description: When sector is not found, return nil
+  
+  - name: Get Sector Expiration
+    behaviors:
+      - id: STATE_SECTOR_EXPIRATION_001
+        description: Returns epoch at which given sector will expire
+
+  - name: Get Sector Partition
+    behaviors:
+      - id: STATE_SECTOR_PARTITION_001
+        description: Finds deadline/partition with the specified sector

@@ -1,0 +1,27 @@
+system: Repo
+subsystem: Filestore
+features:
+  - name: Create UnixFS
+    behaviors:
+      - id: REPO_FILESTORE_CREATE_UNIXFS_001
+        description: |
+          Takes a standard file whose path is src, forms a UnixFS DAG, and
+          writes a CARv2 file with positional mapping
+  
+  - name: Read CARv2
+    behaviors:
+      - id: REPO_FILESTORE_READ_CARV2_001
+        description: |
+          Opens the CAR in the specified path as as a read-only blockstore,
+          and fronts it with a Filestore whose positional mappings are
+          stored inside the CAR itself.
+  
+  - name: Create File
+    behaviors:
+      - id: REPO_FILESTORE_CREATE_FILE_001
+        description: Create file and return file name
+  
+  - name: Generate input file
+    behaviors:
+      - id: REPO_FILESTORE_GENERATE_INPUT_FILE_001
+        description: Generate input file

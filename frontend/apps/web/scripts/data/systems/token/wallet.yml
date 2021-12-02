@@ -1,19 +1,19 @@
-system: token
-subsystem: wallet
+system: Token
+subsystem: Wallet
 features:
-  - name: balance
+  - name: Balance
     behaviors:
       - id: TOKEN_WALLET_BALANCE_001
         description: |
-          Given a known address, 
+          Given a local wallet address, 
           returns the balance of that address at the current head of the chain
   
-  - name: default address
+  - name: Default address
     behaviors:
       - id: TOKEN_WALLET_DEFAULT_ADDRESS_001
         description: Return the address marked as default in the wallet
   
-  - name: delete
+  - name: Delete
     behaviors:
       - id: TOKEN_WALLET_DELETE_001
         description: |
@@ -65,47 +65,47 @@ features:
         description: |
           Given that the device can't be reached, throw an error
   
-  - name: export
+  - name: Export
     behaviors:
       - id: TOKEN_WALLET_EXPORT_001
         description: |
           Given a (local) address,
           return the private key of that address
   
-  - name: has
+  - name: Has
     behaviors:
       - id: TOKEN_WALLET_HAS_001
         description: |
           Given an address,
           return true if the that address is in the wallet
   
-  - name: import
+  - name: Import
     behaviors:
       - id: TOKEN_WALLET_IMPORT_001
         description: |
           Given a private key,
           import it to the wallet and return the associated address
   
-  - name: list
+  - name: List
     behaviors:
       - id: TOKEN_WALLET_LIST_001
         description: Return a list of all addresses in the wallet
   
-  - name: new
+  - name: New
     behaviors:
       - id: TOKEN_WALLET_NEW_001
         description: |
           Given a sigType = <bls | secp256k1 | secp256k1-ledger>
           Create and return a new address with the given sigType
   
-  - name: set default
+  - name: Set default
     behaviors:
       - id: TOKEN_WALLET_SET_DEFAULT_001
         description: |
           Given an address, 
           mark it as the default in the wallet
 
-  - name: sign
+  - name: Sign
     behaviors:
       - id: TOKEN_WALLET_SIGN_001
         description: |
@@ -131,14 +131,14 @@ features:
           Given anything except a chain message,
           throw an error (ledger can only sign chain messages)
   
-  - name: sign message
+  - name: Sign message
     behaviors:
       - id: TOKEN_WALLET_SIGN_MESSAGE_001
         description: |
           Given a  address and an unsigned message,
           sign and return a signed message
 
-  - name: validate address
+  - name: Validate address
     behaviors:
       - id: TOKEN_WALLET_VALIDATE_ADDRESS_001
         description: |
@@ -149,7 +149,7 @@ features:
           Given an (syntactically) invalid FIL address,
           throw an error
 
-  - name: verify
+  - name: Verify
     behaviors:
       - id: TOKEN_WALLET_VERIFY_001
         description: |

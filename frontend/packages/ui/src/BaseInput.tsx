@@ -170,7 +170,7 @@ const InnerWrapper = styled.div<{ hasIconBefore: boolean }>`
 
   input {
     width: 100%;
-    height: 2.75rem;
+    height: 2.875rem;
     background: ${Colors.inputBackground};
     border: 0;
     border-radius: 5px;

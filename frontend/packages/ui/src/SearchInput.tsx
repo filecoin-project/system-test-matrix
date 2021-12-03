@@ -95,7 +95,7 @@ const SearchLoader = styled(Loader)`
 const SearchIconWrapper = styled.div<Pick<SearchInputProps, 'width'>>`
   display: flex;
   position: relative;
-  max-width: ${({ width }) => width || '100%'};
+  width: ${({ width }) => width || '100%'};
 
   input {
     background-color: ${Colors.ghostBtn};

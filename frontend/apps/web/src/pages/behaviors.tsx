@@ -140,7 +140,7 @@ const Behaviors = () => {
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
-        <CardLayout>
+        <CardLayout shadow={false}>
           <BoxLayout gap={2}>
             <StackLayout gap={0.5}>
               <Text type={'subtitle l'}>

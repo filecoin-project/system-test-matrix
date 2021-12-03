@@ -142,7 +142,7 @@ const AllTests = () => {
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
         <StackLayout gap={1}>
-          <CardLayout>
+          <CardLayout shadow={false}>
             <BoxLayout gap={2}>
               <StackLayout gap={0.5}>
                 <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
@@ -150,7 +150,7 @@ const AllTests = () => {
               </StackLayout>
             </BoxLayout>
           </CardLayout>
-          <CardLayout>
+          <CardLayout shadow={false}>
             <BoxLayout gap={2}>
               <StackLayout gap={0.5}>
                 <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>

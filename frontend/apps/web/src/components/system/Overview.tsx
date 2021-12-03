@@ -3,6 +3,7 @@ import { filterItems } from '@filecoin/core'
 import { System } from '@filecoin/types'
 import {
   CardLayout,
+  Dropdown,
   ProgressBar,
   SearchInput,
   StackLayout,
@@ -18,13 +19,48 @@ interface Props {
 export const Overview: React.FC<Props> = ({ system }) => {
   const totalSubsystems = system.subsystems.length
   const [searchTerm, setSearchTerm] = useState('')
-  const results = !searchTerm
-    ? system.subsystems
-    : filterItems(system.subsystems, searchTerm, 'name')
+  const [selectedFilter, setSelectedFilter] = useState('')
+
+  const calculateResults = () => {
+    if (searchTerm) {
+      const searchTermResult = filterItems(
+        system.subsystems,
+        searchTerm,
+        'name',
+      )
+      if (selectedFilter) {
+        return filterItems(searchTermResult, selectedFilter, 'score')
+      } else {
+        return searchTermResult
+      }
+    }
+    if (selectedFilter) {
+      return filterItems(system.subsystems, selectedFilter, 'score')
+    } else {
+      return system.subsystems
+    }
+  }
+
+  const results = calculateResults()
+
+  const filterOptions = [
+    {
+      label: 'Good',
+      value: 'good',
+    },
+    {
+      label: 'Bad',
+      value: 'bad',
+    },
+    {
+      label: 'Mediocre',
+      value: 'mediocre',
+    },
+  ]
 
   return (
     <Wrapper>
-      <ProgressBarWrapper>
+      <ProgressBarWrapper shadow={false}>
         <ProgressBar
           data={system.testKindStats.percentages.map(
             ({ kind, percentage }) => ({
@@ -35,7 +71,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
           legend
         />
       </ProgressBarWrapper>
-      <ProgressBarWrapper>
+      <ProgressBarWrapper shadow={false}>
         <ProgressBar
           data={system.testStatusStats.percentages.map(
             ({ status, percentage }) => ({
@@ -50,16 +86,26 @@ export const Overview: React.FC<Props> = ({ system }) => {
       <TableWrapper>
         <StackLayout gap={1}>
           <Text type="subtitle l">Subsystems ({totalSubsystems})</Text>
-
-          <SearchInput
-            onSearch={value => {
-              setSearchTerm(value)
-            }}
-            value={searchTerm}
-            placeholder="Search subsystem"
-            width="58.75rem"
-            autoFocus={false}
-          />
+          <SearchAndFilterWrapper>
+            <SearchInput
+              onSearch={value => {
+                setSearchTerm(value)
+              }}
+              value={searchTerm}
+              placeholder="Search subsystem"
+              width="58.75rem"
+              autoFocus={false}
+            />
+            <Dropdown
+              placeholder="Filter score"
+              name="score"
+              options={filterOptions}
+              value={selectedFilter}
+              onChange={e => {
+                setSelectedFilter(e.value)
+              }}
+            />
+          </SearchAndFilterWrapper>
         </StackLayout>
         <TableStyled
           variant="default"
@@ -130,4 +176,12 @@ const TableStyled = styled(Table)`
 
 const Bar = styled.div`
   padding-right: 2rem;
+`
+const SearchAndFilterWrapper = styled.div`
+  display: flex;
+
+  [data-element='dropdown'] {
+    max-width: 181px;
+    margin-left: auto;
+  }
 `

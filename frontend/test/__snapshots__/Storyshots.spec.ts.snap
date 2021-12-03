@@ -56,7 +56,7 @@ exports[`Storyshots BaseInput Base 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 2.75rem;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
   border-radius: 5px;
@@ -214,7 +214,7 @@ exports[`Storyshots BaseInput Disabled 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 2.75rem;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
   border-radius: 5px;
@@ -372,7 +372,7 @@ exports[`Storyshots BaseInput Password 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 2.75rem;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
   border-radius: 5px;
@@ -587,7 +587,7 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 2.75rem;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
   border-radius: 5px;
@@ -747,7 +747,7 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 2.75rem;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
   border-radius: 5px;
@@ -930,7 +930,7 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 2.75rem;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
   border-radius: 5px;
@@ -1118,7 +1118,7 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 2.75rem;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
   border-radius: 5px;
@@ -1302,7 +1302,7 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 2.75rem;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
   border-radius: 5px;
@@ -2359,7 +2359,7 @@ exports[`Storyshots Dropdown Default 1`] = `
   outline: 0;
   border: 1px solid #D9DBE9;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -2375,7 +2375,7 @@ exports[`Storyshots Dropdown Default 1`] = `
 
 .c2:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c2.dropdown--full {
@@ -2390,11 +2390,11 @@ exports[`Storyshots Dropdown Default 1`] = `
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: #979AB8;
+  color: #57606A;
 }
 
 .c3 {
-  height: 3rem;
+  height: 2.875rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -2439,7 +2439,7 @@ exports[`Storyshots Dropdown Default 1`] = `
   z-index: 3;
   border: 1px solid #A6A9C3;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -2501,7 +2501,7 @@ exports[`Storyshots Dropdown Default 1`] = `
           Select option
         </span>
         <svg
-          id="/assets/icons/arrow_down.svg"
+          id="/assets/icons/arrow_up_and_down.svg"
         />
       </div>
     </div>
@@ -2729,7 +2729,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   outline: 0;
   border: 1px solid #D9DBE9;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -2745,7 +2745,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
 
 .c2:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c2.dropdown--full {
@@ -2760,11 +2760,11 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: #979AB8;
+  color: #57606A;
 }
 
 .c3 {
-  height: 3rem;
+  height: 2.875rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -2809,7 +2809,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   z-index: 3;
   border: 1px solid #A6A9C3;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -2871,7 +2871,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
           Select options
         </span>
         <svg
-          id="/assets/icons/arrow_down.svg"
+          id="/assets/icons/arrow_up_and_down.svg"
         />
       </div>
     </div>
@@ -3078,7 +3078,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   outline: 0;
   border: 1px solid #D9DBE9;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -3094,7 +3094,7 @@ exports[`Storyshots Dropdown Size 1`] = `
 
 .c3:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c3.dropdown--full {
@@ -3109,7 +3109,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: #979AB8;
+  color: #57606A;
 }
 
 .c4 {
@@ -3137,7 +3137,7 @@ exports[`Storyshots Dropdown Size 1`] = `
 }
 
 .c13 {
-  height: 3rem;
+  height: 2.875rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -3182,7 +3182,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   z-index: 3;
   border: 1px solid #A6A9C3;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -3255,7 +3255,7 @@ exports[`Storyshots Dropdown Size 1`] = `
               Select  large
             </span>
             <svg
-              id="/assets/icons/arrow_down.svg"
+              id="/assets/icons/arrow_up_and_down.svg"
             />
           </div>
         </div>
@@ -3343,7 +3343,7 @@ exports[`Storyshots Dropdown Size 1`] = `
               Select  medium
             </span>
             <svg
-              id="/assets/icons/arrow_down.svg"
+              id="/assets/icons/arrow_up_and_down.svg"
             />
           </div>
         </div>
@@ -3566,7 +3566,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   outline: 0;
   border: 1px solid #098469;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -3582,7 +3582,7 @@ exports[`Storyshots Dropdown Status 1`] = `
 
 .c3:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c3.dropdown--full {
@@ -3601,7 +3601,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   outline: 0;
   border: 1px solid #CF295C;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -3617,7 +3617,7 @@ exports[`Storyshots Dropdown Status 1`] = `
 
 .c14:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c14.dropdown--full {
@@ -3638,11 +3638,11 @@ exports[`Storyshots Dropdown Status 1`] = `
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: #979AB8;
+  color: #57606A;
 }
 
 .c4 {
-  height: 3rem;
+  height: 2.875rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -3687,7 +3687,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   z-index: 3;
   border: 1px solid #098469;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -3702,7 +3702,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   z-index: 3;
   border: 1px solid #CF295C;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -3775,7 +3775,7 @@ exports[`Storyshots Dropdown Status 1`] = `
               Select success
             </span>
             <svg
-              id="/assets/icons/arrow_down.svg"
+              id="/assets/icons/arrow_up_and_down.svg"
             />
           </div>
         </div>
@@ -3868,7 +3868,7 @@ exports[`Storyshots Dropdown Status 1`] = `
               Select error
             </span>
             <svg
-              id="/assets/icons/arrow_down.svg"
+              id="/assets/icons/arrow_up_and_down.svg"
             />
           </div>
         </div>
@@ -4191,6 +4191,14 @@ exports[`Storyshots Icon All Icons 1`] = `
   <svg
     id="/assets/icons/warning.svg"
   />
+  <span
+    className="c1 c-text--text-m"
+  >
+    arrow_up_and_down
+  </span>
+  <svg
+    id="/assets/icons/arrow_up_and_down.svg"
+  />
 </div>
 `;
 
@@ -4325,7 +4333,7 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -4349,7 +4357,7 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -4677,7 +4685,7 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -4701,7 +4709,7 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -5245,7 +5253,7 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -5269,7 +5277,7 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -7226,7 +7234,7 @@ exports[`Storyshots Text Headings 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -7250,7 +7258,7 @@ exports[`Storyshots Text Headings 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -7988,7 +7996,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -8012,7 +8020,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -8568,7 +8576,7 @@ exports[`Storyshots Text Rest 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -8592,7 +8600,7 @@ exports[`Storyshots Text Rest 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {

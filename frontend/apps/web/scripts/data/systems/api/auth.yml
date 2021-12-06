@@ -1,0 +1,14 @@
+system: API
+subsystem: Auth
+features:
+  - name: API Auth Verify
+    behaviors:
+      - id: API_AUTH_VERIFY_001
+        description: Given a JWT token, verify the token and return a list of
+          permissions associated with the specified token
+  
+  - name: API Auth New
+    behaviors:
+      - id: API_AUTH_NEW_001
+        description: Given a list of permissions, return a new JWT token with specified
+          permissions

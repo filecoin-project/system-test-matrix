@@ -12,3 +12,10 @@ features:
       - id: API_AUTH_NEW_001
         description: Given a list of permissions, return a new JWT token with specified
           permissions
+
+  - name: Authorize
+    behaviors:
+      - id: API_AUTH_AUTHORIZE_001
+        description: |
+          Given an non admin JWT token and API method annotated as perm:admin,
+          return a 403 Forbidden response

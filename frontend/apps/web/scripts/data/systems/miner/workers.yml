@@ -1,0 +1,15 @@
+system: Miner
+subsystem: Workers
+features:
+  - name: Worker Connect
+    behaviors:
+      - id: WORKER_CONNECT_001
+        description: Connects to all workers RPC
+  - name: Worker Stats
+    behaviors:
+      - id: WORKER_STATS_001
+        description: Returns information for worker nodes, grouped by worker ID
+  - name: Worker Jobs
+    behaviors:
+      - id: WORKER_JOBS_001
+        description: Return information about active worker jobs, grouped by worker ID

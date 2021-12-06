@@ -4697,6 +4697,10 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   padding: 3.5rem 3.75rem 2rem;
 }
 
+.c0 .c-page-layout__header button {
+  margin-top: 2.25rem;
+}
+
 .c0 .c-page-layout__header--logo {
   background: #57606A;
   position: absolute;
@@ -5047,6 +5051,10 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
   padding: 3.5rem 3.75rem 2rem;
+}
+
+.c0 .c-page-layout__header button {
+  margin-top: 2.25rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -5615,6 +5623,10 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
   padding: 3.5rem 3.75rem 2rem;
+}
+
+.c0 .c-page-layout__header button {
+  margin-top: 2.25rem;
 }
 
 .c0 .c-page-layout__header--logo {
@@ -7598,6 +7610,10 @@ exports[`Storyshots Text Headings 1`] = `
   padding: 3.5rem 3.75rem 2rem;
 }
 
+.c0 .c-page-layout__header button {
+  margin-top: 2.25rem;
+}
+
 .c0 .c-page-layout__header--logo {
   background: #57606A;
   position: absolute;
@@ -8360,6 +8376,10 @@ exports[`Storyshots Text Paragraphs 1`] = `
   padding: 3.5rem 3.75rem 2rem;
 }
 
+.c0 .c-page-layout__header button {
+  margin-top: 2.25rem;
+}
+
 .c0 .c-page-layout__header--logo {
   background: #57606A;
   position: absolute;
@@ -8938,6 +8958,10 @@ exports[`Storyshots Text Rest 1`] = `
   background: #F6F8FA;
   border-bottom: 1px solid #D0D7DE;
   padding: 3.5rem 3.75rem 2rem;
+}
+
+.c0 .c-page-layout__header button {
+  margin-top: 2.25rem;
 }
 
 .c0 .c-page-layout__header--logo {

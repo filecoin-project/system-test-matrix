@@ -11,5 +11,7 @@ repository:
 
 # stdout or file(json)
 output: stdout
+# if output is file, choose directory
+output_dir: outputs
 # auto or one of the supported languages for specific repo
 lang_mode: auto

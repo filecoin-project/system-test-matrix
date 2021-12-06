@@ -1,0 +1,13 @@
+system: API
+subsystem: Common
+features:
+  - name: Version
+    behaviors:
+      - id: API_COMMON_VERSION_001
+        description: Returns the actual build version of the node
+  
+  - name: API Shutdown
+    behaviors:
+      - id: API_COMMON_SHUTDOWN_001
+        description: Trigger a graceful shutdown of the node
+      

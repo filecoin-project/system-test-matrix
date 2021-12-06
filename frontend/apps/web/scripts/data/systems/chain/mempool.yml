@@ -44,6 +44,13 @@ features:
       - id: CHAIN_MEMPOOL_PENDING_001
         description: Given a known tipset key, return all pending mempool messages
   
+  - name: Pending For
+    behaviors:
+      - id: CHAIN_MEMPOOL_PENDING_FOR_001
+        description: |
+          Given an address,
+          return all pending mempool messages from the specified address
+
   - name: Push
     behaviors:
       - id: CHAIN_MEMPOOL_PUSH_001
@@ -67,3 +74,19 @@ features:
         description: |
           Given a known Tipset key and a ticket quality,
           return the "optimal" list of messages for inclusion in the next block
+
+  - name: Remove
+    behaviors:
+      - id: CHAIN_MEMPOOL_REMOVE_001
+        description: |
+          Given a "from" address and nonce,
+          remove the message from the given address with the given nonce from the mempool
+
+  - name: Cap Gas Fee
+    behaviors:
+      - id: CHAIN_MEMPOOL_CAP_GAS_FEE_001
+        description: |
+          Given a mex fee and a message with a set gas limit and premium,
+          perform capping of gas limit and fee using the formula:
+          `msg.gasFeeCap = maxFee/msg.GasLimit`
+          `msg.gasPremium = min(msg.GasFeeCap, msg.GasPremium)`

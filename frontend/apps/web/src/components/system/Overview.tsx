@@ -10,7 +10,7 @@ import {
   Table,
   Text,
 } from '@filecoin/ui'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 interface Props {
   system: System
@@ -19,7 +19,8 @@ interface Props {
 export const Overview: React.FC<Props> = ({ system }) => {
   const totalSubsystems = system.subsystems.length
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedFilter, setSelectedFilter] = useState('')
+  const [selectedFilter, setSelectedFilter] = useState(undefined)
+  const [searchResults, setSearchResults] = useState(null)
 
   const calculateResults = () => {
     if (searchTerm) {
@@ -43,7 +44,15 @@ export const Overview: React.FC<Props> = ({ system }) => {
 
   const results = calculateResults()
 
+  useEffect(() => {
+    setSearchResults(results)
+  }, [])
+
   const filterOptions = [
+    {
+      label: 'All scores',
+      value: undefined,
+    },
     {
       label: 'Good',
       value: 'good',
@@ -97,13 +106,14 @@ export const Overview: React.FC<Props> = ({ system }) => {
               autoFocus={false}
             />
             <Dropdown
-              placeholder="Filter score"
+              placeholder="All scores"
               name="score"
               options={filterOptions}
               value={selectedFilter}
               onChange={e => {
                 setSelectedFilter(e.value)
               }}
+              onClearFilter={() => setSelectedFilter(undefined)}
             />
           </SearchAndFilterWrapper>
         </StackLayout>

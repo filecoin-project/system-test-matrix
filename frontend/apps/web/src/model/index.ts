@@ -77,7 +77,12 @@ export class Model implements Model {
     private behaviorCache = new Map<string, Behavior>(),
     private testCache = new Map<string, Test>(),
     private featureCache = new Map<string, Feature>(),
-    private testKinds = new Set<string>(),
+    private testKinds = new Set<string>([
+      'unit',
+      'integration',
+      'e2e',
+      'benchmark',
+    ]),
   ) {}
 
   private static calculateSummaryStatistics(
@@ -162,6 +167,7 @@ export class Model implements Model {
       const testsByStatus = _.groupBy(allSystemTests, 'status') as {
         [key: string]: Test[]
       }
+
       const statusStatistics = Object.entries(testsByStatus).map(
         ([status, tests]) =>
           new TestStatusStatistic(
@@ -221,7 +227,9 @@ export class Model implements Model {
           }
 
           const parentSubsystem = subsystemCache.get(
-            parentFeature.parentSubsystemName,
+            Model.subsystemKey(
+              subsystemCache.get(parentFeature.parentSubsystemName),
+            ),
           )
           if (!parentSubsystem) {
             throw new Error(
@@ -276,7 +284,7 @@ export class Model implements Model {
           SystemScore.bad,
           [],
         )
-        subsystemCache.set(subsystem.name, subsystem)
+        subsystemCache.set(Model.subsystemKey(subsystem), subsystem)
         subsystems.push(subsystem)
       }
       const system = new System(
@@ -290,8 +298,13 @@ export class Model implements Model {
     }
   }
 
+  private static subsystemKey(subsystem: SubSystem): string {
+    return `${subsystem.parentSystemName}/${subsystem.name}`
+  }
+
   getAllSystems(): System[] {
-    return Array.from(this.systemCache.values())
+    const systems = Array.from(this.systemCache.values())
+    return systems
   }
   findSystemByName(name: string): System | undefined {
     return this.systemCache.get(name)

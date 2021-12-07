@@ -1,6 +1,5 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { parse } from 'path/posix'
 import yaml from 'yaml'
 
 const SYSTEMS_PATH = path.resolve(__dirname, 'systems')
@@ -20,7 +19,6 @@ function combineBehaviors() {
     const subsystems = fs.readdirSync(systemPath)
 
     const subsystemPaths = subsystems.map(s => path.resolve(systemPath, s))
-    // console.log(subsystemPaths)
 
     for (const subsystemPath of subsystemPaths) {
       const yamlContents = fs.readFileSync(subsystemPath)
@@ -45,10 +43,6 @@ function combineBehaviors() {
             subsystems,
           })
         }
-        // if (output.systems.find(s => s.name === system.toString())) {
-        // } else {
-        //   output.systems.push()
-        // }
       } catch (err) {
         console.error(`YAML SYNTAX ERROR: ${subsystemPath}`)
         throw err

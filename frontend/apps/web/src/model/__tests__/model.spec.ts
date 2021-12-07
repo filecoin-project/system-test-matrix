@@ -43,8 +43,7 @@ describe('Model', () => {
   })
 
   describe('getAllTests', () => {
-    // I dunno the exact number of tests, but this ballpark estimate is ok
-    const expectedNumTests = 500
+    const expectedNumTests = 1
 
     it('returns the expected number of tests', () => {
       const allTests = model.getAllTests()

@@ -1,0 +1,103 @@
+system: Blockchain
+subsystem: Rand
+features:
+  - name: Draw randomness
+    behaviors:
+      - id: BLOCKCHAIN_RAND_DRAW_RANDOMNESS_01
+        description: |
+          Given a base random value, a domain tag, chain epoch, and entropy,
+          return a random array of bytes.
+          The array is generated using a hashing function, which will use
+          all provided parameters to introduce randomness.
+  
+  - name: Get beacon randomness tipset
+    behaviors:
+      - id: BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_01
+        description: |
+          Given a context, chain epoch, and lookback flag = 'true', return
+          the beacon tipset used in the epoch
+      - id: BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_02
+        description: |
+          Given that the lookback flag = 'true', and the given height is a
+          null round, return the tipset before the null round
+      - id: BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_03
+        description: |
+          Given that the lookback flag = 'false', and the given height is a
+          null round, return the tipset after the null round
+  
+  - name: Get chain randomness
+    behaviors:
+      - id: BLOCKCHAIN_RAND_GET_CHAIN_RANDOMNESS_01
+        description: |
+          Given a base random value, a domain tag, chain epoch, entropy, and
+          a lookback flag, return a randomly generated array of bytes.
+          Uses `Draw randomness` with the base randomvalue being the `VRFProof`
+          of the minTicketBlock of the tipset in the epoch.
+          See `Draw randomness` on how the random bytes are generated.
+  
+  - name: Get chain randomness V1
+    behaviors:
+      - id: BLOCKCHAIN_RAND_GET_CHAIN_RANDOMNESS_V1_01
+        description: |
+          Given a base random value, a domain tag, chain epoch, entropy, and
+          a lookback flag, and the network version is 0-12,
+          return a randomly generated array of bytes.
+          Uses `Get chain randomness` with `lookback` = true. 
+  
+  - name: Get chain randomness V2
+    behaviors:
+      - id: BLOCKCHAIN_RAND_GET_CHAIN_RANDOMNESS_V2_01
+        description: |
+          Given a base random value, a domain tag, chain epoch, entropy, and
+          a lookback flag, and the network version is 13 or higher,
+          return a randomly generated array of bytes.
+          Uses `Get chain randomness` with `lookback` = false. 
+  
+  - name: Get beacon randomness V1
+    behaviors:
+      - id: BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_V1_01
+        description: |
+          Given a base random value, a domain tag, chain epoch, entropy, and
+          a lookback flag, and the network version is 0-12,
+          return a randomly generated array of bytes.
+          Uses `BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_02` to get the 
+          beacon used in the epoch.
+          Uses `Draw randomness` with base random value being the beacon's data.
+  
+  - name: Get beacon randomness V1
+    behaviors:
+      - id: BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_V1_01
+        description: |
+          Given a base random value, a domain tag, chain epoch, entropy, and
+          a lookback flag, and the network version is 13,
+          return a randomly generated array of bytes.
+          Uses `BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_03` to get the 
+          beacon used in the epoch.
+          Uses `Draw randomness` with base random value being the beacon's data.
+  
+  - name: Get beacon randomness V3
+    behaviors:
+      - id: BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_V3_01
+        description: |
+          Given a base random value, a domain tag, chain epoch, entropy, and
+          a lookback flag, and the network version is 14 or higher,
+          return a randomly generated array of bytes.
+          Uses `Extract beacon entry for epoch`
+          Uses `Draw randomness` with base random value being the beacon's data.
+  
+  - name: Extract beacon entry for epoch
+    behaviors:
+      - id: BLOCKCHAIN_RAND_EXTRACT_BEACON_ENTRY_FOR_EPOCH_01
+        description: |
+          Given a context, and chain epoch,
+          return the beacon entry used to generate randomness for that epoch
+  
+  - name: New state rand
+    behaviors:
+      - id: BLOCKCHAIN_RAND_NEW_STATE_RAND_01
+        description: |
+          Given a chain store, a list of blocks identified by their chain IDs,
+          and a beacon,
+          return a new state rand structure with the chain store, list of blocks,
+          and beacon set to the given parameters
+  

@@ -119,7 +119,7 @@ export const Paginator = ({
   useEffect(() => {
     setTotalPages(Math.ceil(totalRecords / pageLimit))
     setPages(fetchPageNumbers())
-  }, [totalRecords, totalPages, currentPage])
+  }, [totalRecords, totalPages, currentPage, pageLimit])
 
   return (
     <>

@@ -22,24 +22,30 @@ Here's the (simplified) lifecycle flow for the System Test Matrix:
 ![ER Diagram](diagrams/ER.png)
 
 ## Test Annotations
+
+Symboles used that preceed tags indicate what type of tag it is.
+- `//stm: @` is used for function-level annotations
+- `//stm: #` is used for file-level annotations
+- `//stm: ignore` is special case for ignoring certain files/functions
+
+The expected format is: `//stm: tag`
+
 ### File-Level annotations
 File-Level annotations are comments at the top of your `_test.go` files.
 
-The expected format is: `//stm:tags=...;ignore=...`
-
-- Examples of tags are: `unit`, `integration`, `cli`, `api` ...
-- Ignore can be `true` or `false`. If true, the crawler will skip this file.
+- Examples of tags are: `#unit`, `#integration`, `#cli`, `#api` ...
+- Files or functions can be ignored with `ignore` tag
 - Mind that there is **no whitespace** between `//` and `stm`. This is a go convention for comments that are not meant to be read by humans.
-- **Example:** `//stm:tags=integration,api;ignore=false`
+- **Example:** `//stm: #integration`
 
 ### Function-Level annotations
 Function-Level annotations are comments above your `TestSomething(t *testing.T)` functions.
 
-The expected format is: `//stm:scenarios=...;ignore=...`
+The expected format is: `//stm @scenario`
 
 - Scenarios are a list of scenario IDs.
-- Ignore can be `true` or `false`. If true, the crawler will skip this test case.
-- **Example:** `//stm:scenarios=VOUCH_CREATE_001,PAYCH_ALLOC_001;ignore=false`
+- Ignore can be placed as comment on top of function. The crawler will skip this test case.
+- **Example:** `//stm: @VOUCH_CREATE_001, @PAYCH_ALLOC_001`
 
 ## Contributing
 

@@ -1,0 +1,8 @@
+system: Miner
+subsystem: Storage Deals
+features:
+  - name: Import Deal Data
+    behaviors:
+      - id: MINER_IMPORT_DEAL_DATA_001
+        description: Given a file path, import data about the deal stored in the
+          specified file

@@ -1,0 +1,73 @@
+system: client
+subsystem: Storage Deals
+features:
+  - name: initialize
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_INITIALIZE_001
+        description: |
+          Given valid deal parameters,
+          initialize a deal with the specified miner
+      - id: CLIENT_STORAGE_DEALS_INITIALIZE_002
+        description: |
+          Given a duration < MinDuration (180 * epochs in day),
+          throw an error
+      - id: CLIENT_STORAGE_DEALS_INITIALIZE_003
+        description: |
+          Given a duration > MaxDuration (540 * epochs in day),
+          throw an error
+      - id: CLIENT_STORAGE_DEALS_INITIALIZE_004
+        description: |
+          Given an invalid "from" address,
+          throw an error
+      - id: CLIENT_STORAGE_DEALS_INITIALIZE_005
+        description: |
+          Given an invalid piece CID,
+          throw an error
+      - id: CLIENT_STORAGE_DEALS_INITIALIZE_006
+        description: |
+          Given the "verified-deal" flag and the "from" address is not a verified client,
+          throw an error
+  
+  - name: Query ask
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_QUERY_ASK_001
+        description: |
+          Given an address and a peer ID,
+          returns a signed storage ask from the specified miner
+  
+  - name: Get
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_GET_001
+        description: |
+          Given an existing deal CID,
+          return detailed info about the specified deal
+  
+  - name: List deals
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_LIST_DEALS_001
+        description: Returns a list of deals made by the local node
+  
+  - name: Stream deals
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_STREAM_DEALS_001
+        description: Returns a channel that streams information about deal updates
+  
+  - name: Inspect
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_INSPECT_001
+        description: Given a deal ID, inspect detailed information about the deal's lifecycle and various stages it goes through
+  
+  - name: List asks
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_LIST_ASKS_001
+        description: Return a list of asks for top miners
+  
+  - name: Client Deal Size
+    behaviors:
+      - id: CLIENT_DEAL_SIZE_001
+        description: Given a root CID, calculate the real data size for the specified CID
+  
+  - name: Balances
+    behaviors:
+      - id: CLIENT_COMMON_BALANCES_001
+        description: Return storage market client balances

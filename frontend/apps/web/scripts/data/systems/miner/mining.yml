@@ -1,0 +1,18 @@
+system: Miner
+subsystem: Mining
+features:
+  - name: Miner Create Block
+    behaviors:
+      - id: MINER_CREATE_BLOCK_001
+        description: Given a block template, create a new block and return a full block
+          message signed by the local (miner) node
+  - name: Miner Run
+    behaviors:
+      - id: MINER_RUN_001
+        description: Start mining using GPU
+      - id: MINER_RUN_002
+        description: Given that GPU proving is disabled, start mining without the GPU
+  - name: Miner Stop
+    behaviors:
+      - id: MINER_STOP_001
+        description: Stop a running miner

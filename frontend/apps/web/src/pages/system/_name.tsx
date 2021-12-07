@@ -1,4 +1,4 @@
-import { PageLayout, Text, Icon, usePageLayout } from '@filecoin/ui'
+import { PageLayout, Text, usePageLayout } from '@filecoin/ui'
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -6,38 +6,10 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { PageContainer } from '@/containers/PageContainer'
 import { DetailedView as ChartView } from '@/components/system/DetailedView'
 import { Overview } from '@/components/system/Overview'
+import { SystemHeader } from '@/components/system/SystemHeader'
 
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]
-
-interface HeaderProps {
-  activeTab: Tab
-  onTabChange: (Tab) => void
-}
-
-const Header = (props: HeaderProps) => (
-  <PageLayout.Header>
-    <Text type="heading 5">Systems</Text>
-    <PageLayout.Tabs>
-      <PageLayout.Tab
-        onClick={() => {
-          props.onTabChange('overview')
-        }}
-        active={props.activeTab === 'overview'}
-      >
-        <Icon name="book" size="small" />
-        <Text>Overview</Text>
-      </PageLayout.Tab>
-      <PageLayout.Tab
-        onClick={() => props.onTabChange('detailedView')}
-        active={props.activeTab === 'detailedView'}
-      >
-        <Icon name="detailed_view" size="small" />
-        <Text>Detailed view</Text>
-      </PageLayout.Tab>
-    </PageLayout.Tabs>
-  </PageLayout.Header>
-)
 
 const RepositoryDetails = () => {
   const {
@@ -58,7 +30,12 @@ const RepositoryDetails = () => {
 
   const pageLayout = usePageLayout({
     header: (
-      <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} />
+      <SystemHeader
+        activeTab={activeTab}
+        onTabChange={tab => setActiveTab(tab)}
+        score={system.score}
+        pageName={params.name}
+      />
     ),
     footer: <PageLayout.Footer />,
   })
@@ -72,7 +49,12 @@ const RepositoryDetails = () => {
       })
 
       pageLayout.setHeader(
-        <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} />,
+        <SystemHeader
+          activeTab={activeTab}
+          onTabChange={tab => setActiveTab(tab)}
+          score={system.score}
+          pageName={params.name}
+        />,
       )
     }
   }, [activeTab])

@@ -481,7 +481,12 @@ export const Dropdown: FunctionComponent<Props> = ({
         <HiddenWrapper>{hiddenSelect}</HiddenWrapper>
         {labelElement}
         {props.value ? (
-          <Icon name="close" size="medium" overflow="visible" />
+          <Icon
+            name="close"
+            size="medium"
+            overflow="visible"
+            onClick={() => props.onClearFilter()}
+          />
         ) : (
           <Icon name="arrow_up_and_down" size="xsmall" overflow="visible" />
         )}

@@ -183,15 +183,18 @@ export class Model implements Model {
     for (const rawTestFile of tests.filter(t => t.scenarios)) {
       for (const rawScenario of rawTestFile.scenarios) {
         const testBehaviors: Behavior[] = []
-        for (const rawBehavior of rawScenario.Behaviors) {
-          const behavior = behaviorCache.get(rawBehavior.behavior)
-          if (behavior) {
-            behavior.tested = true
-            testBehaviors.push(behavior)
-          } else {
-            throw new Error(
-              `Unknown behavior ${rawBehavior.behavior} for test ${rawTestFile.file}/${rawScenario.function}`,
-            )
+
+        if (rawScenario.Behaviors) {
+          for (const rawBehavior of rawScenario.Behaviors) {
+            const behavior = behaviorCache.get(rawBehavior.behavior)
+            if (behavior) {
+              behavior.tested = true
+              testBehaviors.push(behavior)
+            } else {
+              throw new Error(
+                `Unknown behavior ${rawBehavior.behavior} for test ${rawTestFile.file}/${rawScenario.function}`,
+              )
+            }
           }
         }
         const test = new Test(
@@ -240,11 +243,9 @@ export class Model implements Model {
   ) {
     for (const systemName in behaviors.systems) {
       const systemDetails = (behaviors.systems as any)[systemName]
-
       const subsystems: SubSystem[] = []
       for (const subsystemName in systemDetails.subsystems) {
         const subsystemDetails = systemDetails.subsystems[subsystemName]
-
         const subsystemFeatures: Feature[] = []
         for (const rawFeature of subsystemDetails.features) {
           const featureBehaviors: Behavior[] = []
@@ -265,7 +266,6 @@ export class Model implements Model {
           featureCache.set(feature.name, feature)
           subsystemFeatures.push(feature)
         }
-
         const subsystem = new SubSystem(
           systemName,
           subsystemFeatures,
@@ -279,7 +279,6 @@ export class Model implements Model {
         subsystemCache.set(subsystem.name, subsystem)
         subsystems.push(subsystem)
       }
-
       const system = new System(
         systemName,
         new PercentageSet([]),

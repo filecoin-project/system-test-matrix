@@ -4,16 +4,15 @@ describe('Model', () => {
   const model = Model.New()
 
   const expectedSystemNames = [
-    '', //TODO@Divic I had to add this so that test can pass (not sure why this empty string is generated)
-    'Blockchain',
-    'API',
-    'Client',
-    'Repository',
-    'Virtual Machine',
-    'Miner',
-    'Token',
-    'Network',
-    'Market',
+    'api',
+    'chain',
+    'client',
+    'market',
+    'miner',
+    'network',
+    'token',
+    'vm',
+    'repo',
   ]
 
   describe('getAllSystems', () => {

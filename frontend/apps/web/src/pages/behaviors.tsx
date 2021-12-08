@@ -28,7 +28,12 @@ const Behaviors = () => {
   } = PageContainer.useContainer()
   const { t } = useTranslation()
   const behaviors = model.getAllBehaviors()
-  const [modalId, setModalId] = useState<Behavior | undefined>(undefined)
+  const [modalId, setModalId] = useState<Behavior | undefined>(
+    behaviors.find(
+      behavior =>
+        behavior.id === new URLSearchParams(window.location.search).get('id'),
+    ),
+  )
 
   const prepareBehaviorChart = () => {
     return Object.entries(
@@ -88,7 +93,12 @@ const Behaviors = () => {
               <NativeLink
                 className={'u-text--xsmall'}
                 appearance={'system'}
-                onClick={() => setModalId(data)}
+                onClick={() => {
+                  setModalId(data)
+                  navigate({
+                    search: `?id=${data.id}`,
+                  })
+                }}
               >
                 {data.id}
               </NativeLink>
@@ -149,7 +159,15 @@ const Behaviors = () => {
       </PageLayout.Section>
 
       <PageLayout.Section>
-        <Modal isOpen={!!modalId} onClose={() => setModalId(undefined)}>
+        <Modal
+          isOpen={!!modalId}
+          onClose={() => {
+            setModalId(undefined)
+            navigate({
+              search: '',
+            })
+          }}
+        >
           <BehaviorModal behavior={modalId} />
         </Modal>
 

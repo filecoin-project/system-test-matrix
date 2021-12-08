@@ -64,9 +64,9 @@ features:
           beacon used in the epoch.
           Uses `Draw randomness` with base random value being the beacon's data.
   
-  - name: Get beacon randomness V1
+  - name: Get beacon randomness V2
     behaviors:
-      - id: BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_V1_01
+      - id: BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_V2_01
         description: |
           Given a base random value, a domain tag, chain epoch, entropy, and
           a lookback flag, and the network version is 13,

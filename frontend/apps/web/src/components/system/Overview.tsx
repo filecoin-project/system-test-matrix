@@ -1,5 +1,4 @@
 import { getButton } from '@/pages/tests'
-import { filterItems } from '@filecoin/core'
 import { System } from '@filecoin/types'
 import {
   CardLayout,
@@ -12,6 +11,7 @@ import {
   Table,
   Text,
 } from '@filecoin/ui'
+import Fuse from 'fuse.js'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 interface Props {
@@ -20,25 +20,40 @@ interface Props {
 
 export const Overview: React.FC<Props> = ({ system }) => {
   const totalSubsystems = system.subsystems.length
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState(undefined)
   const [selectedFilter, setSelectedFilter] = useState(undefined)
   const [searchResults, setSearchResults] = useState(null)
 
+  const options = {
+    keys: ['name'],
+  }
+  const scoreOptions = {
+    keys: ['score'],
+  }
+  const searchWithFuse = (
+    array = system.subsystems,
+    option = options,
+    query = searchTerm,
+  ) => {
+    const fuse = new Fuse(array, option)
+    return fuse.search(query)
+  }
+
   const calculateResults = () => {
-    if (searchTerm) {
-      const searchTermResult = filterItems(
+    if (selectedFilter) {
+      const filterResult = searchWithFuse(
         system.subsystems,
-        searchTerm,
-        'name',
+        scoreOptions,
+        selectedFilter,
       )
-      if (selectedFilter) {
-        return filterItems(searchTermResult, selectedFilter, 'score')
+      if (searchTerm) {
+        return searchWithFuse(filterResult)
       } else {
-        return searchTermResult
+        return filterResult
       }
     }
-    if (selectedFilter) {
-      return filterItems(system.subsystems, selectedFilter, 'score')
+    if (searchTerm) {
+      return searchWithFuse()
     } else {
       return system.subsystems
     }
@@ -48,7 +63,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
 
   useEffect(() => {
     setSearchResults(results)
-  }, [])
+  }, [selectedFilter, searchTerm])
 
   const filterOptions = [
     {
@@ -69,9 +84,9 @@ export const Overview: React.FC<Props> = ({ system }) => {
     },
   ]
 
-  const [filteredData, setFilteredData] = useState(system.subsystems)
   const getPaginationData = (pageNum: number, pageLimit: number) =>
-    filteredData.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
+    searchResults &&
+    searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
 
   const [paginatedData, setPaginatedData] = useState({
     data: getPaginationData(1, 5),
@@ -94,6 +109,13 @@ export const Overview: React.FC<Props> = ({ system }) => {
     })
   }
 
+  useEffect(() => {
+    setPaginatedData({
+      data: getPaginationData(1, 5),
+      pageNum: 1,
+      pageLimit: 5,
+    })
+  }, [searchResults])
   return (
     <Wrapper>
       <ProgressBarWrapper shadow={false}>
@@ -144,7 +166,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
             />
           </SearchAndFilterWrapper>
         </StackLayout>
-        <Text type="subtitle l">Subsystems ({totalSubsystems})</Text>
         <TableStyled
           variant="default"
           columns={{
@@ -187,7 +208,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
               Cell: ({ data }) => getButton(data.score),
             },
           }}
-          data={results}
+          data={paginatedData.data}
         />
       </TableWrapper>
       <Pager
@@ -206,7 +227,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
     </Wrapper>
   )
 }
-
 const Wrapper = styled(StackLayout)`
   margin-top: 1.25rem;
 `

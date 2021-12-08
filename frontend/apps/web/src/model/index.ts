@@ -39,7 +39,12 @@ export class Model implements Model {
     const behaviorCache = new Map<string, Behavior>()
     const testCache = new Map<string, Test>()
     const featureCache = new Map<string, Feature>()
-    const testKinds = new Set<string>()
+    const testKinds = new Set<string>([
+      'unit',
+      'integration',
+      'e2e',
+      'benchmark',
+    ])
 
     Model.loadBehaviors(
       behaviorCache,
@@ -77,12 +82,7 @@ export class Model implements Model {
     private behaviorCache = new Map<string, Behavior>(),
     private testCache = new Map<string, Test>(),
     private featureCache = new Map<string, Feature>(),
-    private testKinds = new Set<string>([
-      'unit',
-      'integration',
-      'e2e',
-      'benchmark',
-    ]),
+    private testKinds = new Set<string>(),
   ) {}
 
   private static calculateSummaryStatistics(
@@ -213,7 +213,9 @@ export class Model implements Model {
           testBehaviors,
         )
 
-        testKinds.add(rawTestFile.test_type)
+        if (rawTestFile.test_type) {
+          testKinds.add(rawTestFile.test_type)
+        }
         testCache.set(test.id, test)
 
         // update the subsystems in the cache

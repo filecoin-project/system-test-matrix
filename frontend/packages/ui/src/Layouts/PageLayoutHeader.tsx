@@ -2,6 +2,7 @@ import { ReactProps } from '@filecoin/types'
 import classNames from 'classnames'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
 import { Text } from '../Text'
 import { BoxLayout } from './BoxLayout'
 export interface HeaderProps {
@@ -31,16 +32,10 @@ export const PageLayoutHeader = React.forwardRef(
       <Component ref={ref} {...props} className={className}>
         <div className={'c-page-layout__header--logo'}>
           <BoxLayout>
-            <NavLink to={'/'}>
-              <Text
-                type="text l"
-                color="white"
-                bold
-                style={{ letterSpacing: '0.07em' }}
-              >
-                System Test Matrix
-              </Text>
-            </NavLink>
+            <NavWrapper to={'/'}>
+              <img width="26" height="26" src={'/img/logo.png'} />
+              <Text color="white">System Test Matrix</Text>
+            </NavWrapper>
           </BoxLayout>
         </div>
         {children}
@@ -50,3 +45,10 @@ export const PageLayoutHeader = React.forwardRef(
 ) as <T extends React.ElementType = typeof defaultElement>(
   props: { as?: T } & Omit<ReactProps<T>, 'as'> & HeaderProps,
 ) => JSX.Element
+
+const NavWrapper = styled(NavLink)`
+  img {
+    vertical-align: bottom;
+    margin-right: 9px;
+  }
+`

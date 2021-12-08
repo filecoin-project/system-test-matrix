@@ -77,7 +77,12 @@ export class Model implements Model {
     private behaviorCache = new Map<string, Behavior>(),
     private testCache = new Map<string, Test>(),
     private featureCache = new Map<string, Feature>(),
-    private testKinds = new Set<string>(),
+    private testKinds = new Set<string>([
+      'unit',
+      'integration',
+      'e2e',
+      'benchmark',
+    ]),
   ) {}
 
   private static calculateSummaryStatistics(
@@ -162,6 +167,7 @@ export class Model implements Model {
       const testsByStatus = _.groupBy(allSystemTests, 'status') as {
         [key: string]: Test[]
       }
+
       const statusStatistics = Object.entries(testsByStatus).map(
         ([status, tests]) =>
           new TestStatusStatistic(
@@ -183,15 +189,18 @@ export class Model implements Model {
     for (const rawTestFile of tests.filter(t => t.scenarios)) {
       for (const rawScenario of rawTestFile.scenarios) {
         const testBehaviors: Behavior[] = []
-        for (const rawBehavior of rawScenario.Behaviors) {
-          const behavior = behaviorCache.get(rawBehavior.behavior)
-          if (behavior) {
-            behavior.tested = true
-            testBehaviors.push(behavior)
-          } else {
-            throw new Error(
-              `Unknown behavior ${rawBehavior.behavior} for test ${rawTestFile.file}/${rawScenario.function}`,
-            )
+
+        if (rawScenario.Behaviors) {
+          for (const rawBehavior of rawScenario.Behaviors) {
+            const behavior = behaviorCache.get(rawBehavior.behavior)
+            if (behavior) {
+              behavior.tested = true
+              testBehaviors.push(behavior)
+            } else {
+              throw new Error(
+                `Unknown behavior ${rawBehavior.behavior} for test ${rawTestFile.file}/${rawScenario.function}`,
+              )
+            }
           }
         }
         const test = new Test(
@@ -218,7 +227,9 @@ export class Model implements Model {
           }
 
           const parentSubsystem = subsystemCache.get(
-            parentFeature.parentSubsystemName,
+            Model.subsystemKey(
+              subsystemCache.get(parentFeature.parentSubsystemName),
+            ),
           )
           if (!parentSubsystem) {
             throw new Error(
@@ -240,11 +251,9 @@ export class Model implements Model {
   ) {
     for (const systemName in behaviors.systems) {
       const systemDetails = (behaviors.systems as any)[systemName]
-
       const subsystems: SubSystem[] = []
       for (const subsystemName in systemDetails.subsystems) {
         const subsystemDetails = systemDetails.subsystems[subsystemName]
-
         const subsystemFeatures: Feature[] = []
         for (const rawFeature of subsystemDetails.features) {
           const featureBehaviors: Behavior[] = []
@@ -265,7 +274,6 @@ export class Model implements Model {
           featureCache.set(feature.name, feature)
           subsystemFeatures.push(feature)
         }
-
         const subsystem = new SubSystem(
           systemName,
           subsystemFeatures,
@@ -276,10 +284,9 @@ export class Model implements Model {
           SystemScore.bad,
           [],
         )
-        subsystemCache.set(subsystem.name, subsystem)
+        subsystemCache.set(Model.subsystemKey(subsystem), subsystem)
         subsystems.push(subsystem)
       }
-
       const system = new System(
         systemName,
         new PercentageSet([]),
@@ -291,8 +298,13 @@ export class Model implements Model {
     }
   }
 
+  private static subsystemKey(subsystem: SubSystem): string {
+    return `${subsystem.parentSystemName}/${subsystem.name}`
+  }
+
   getAllSystems(): System[] {
-    return Array.from(this.systemCache.values())
+    const systems = Array.from(this.systemCache.values())
+    return systems
   }
   findSystemByName(name: string): System | undefined {
     return this.systemCache.get(name)

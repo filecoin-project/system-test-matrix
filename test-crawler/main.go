@@ -13,8 +13,6 @@ import (
 	ex "testsuites/extractor"
 )
 
-const OUTPUT_FOLDER = "outputs"
-
 func main() {
 
 	config := NewConfig()
@@ -55,10 +53,10 @@ func main() {
 		files[i].Scenarios = scenarios
 	}
 
-	Save(files, config.OutputMode)
+	Save(files, config.OutputMode, config.OutputDir)
 }
 
-func Save(files []c.TestFile, mode OutputMode) {
+func Save(files []c.TestFile, mode OutputMode, outputDir string) {
 
 	content, err := json.Marshal(files)
 	if err != nil {
@@ -70,7 +68,14 @@ func Save(files []c.TestFile, mode OutputMode) {
 		now := time.Now()
 		timestamp := now.Unix()
 
-		filename := fmt.Sprintf("%s/output_%d.json", OUTPUT_FOLDER, timestamp)
+		if _, err := os.Stat(outputDir); os.IsNotExist(err) {
+			er := os.Mkdir(outputDir, 0755)
+			if er != nil {
+				return
+			}
+		}
+
+		filename := fmt.Sprintf("%s/output_%d.json", outputDir, timestamp)
 
 		file, err := os.Create(filename)
 		if err != nil {

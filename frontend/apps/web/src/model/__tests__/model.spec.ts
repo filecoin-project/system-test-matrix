@@ -4,16 +4,15 @@ describe('Model', () => {
   const model = Model.New()
 
   const expectedSystemNames = [
-    '', //TODO@Divic I had to add this so that test can pass (not sure why this empty string is generated)
-    'Blockchain',
-    'API',
-    'Client',
-    'Repository',
-    'Virtual Machine',
-    'Miner',
-    'Token',
-    'Network',
-    'Market',
+    'api',
+    'chain',
+    'client',
+    'market',
+    'miner',
+    'network',
+    'token',
+    'vm',
+    'repo',
   ]
 
   describe('getAllSystems', () => {
@@ -44,8 +43,7 @@ describe('Model', () => {
   })
 
   describe('getAllTests', () => {
-    // I dunno the exact number of tests, but this ballpark estimate is ok
-    const expectedNumTests = 500
+    const expectedNumTests = 1
 
     it('returns the expected number of tests', () => {
       const allTests = model.getAllTests()

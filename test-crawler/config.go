@@ -24,6 +24,7 @@ type Repository struct {
 type Config struct {
 	Repo       Repository `yaml:"repository"`
 	OutputMode OutputMode `yaml:"output"`
+	OutputDir  string     `yaml:"output_dir"`
 	Language   string     `yaml:"lang_mode"`
 }
 

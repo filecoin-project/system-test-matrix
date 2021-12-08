@@ -1,7 +1,15 @@
 import { getButton } from '@/pages/tests'
 import { System } from '@filecoin/types'
-import { CardLayout, ProgressBar, StackLayout, Table, Text } from '@filecoin/ui'
-import React from 'react'
+import {
+  CardLayout,
+  Pager,
+  Paginator,
+  ProgressBar,
+  StackLayout,
+  Table,
+  Text,
+} from '@filecoin/ui'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 interface Props {
@@ -10,6 +18,31 @@ interface Props {
 
 export const Overview: React.FC<Props> = ({ system }) => {
   const totalSubsystems = system.subsystems.length
+  const [filteredData, setFilteredData] = useState(system.subsystems)
+
+  const getPaginationData = (pageNum: number, pageLimit: number) =>
+    filteredData.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
+
+  const [paginatedData, setPaginatedData] = useState({
+    data: getPaginationData(1, 5),
+    pageNum: 1,
+    pageLimit: 5,
+  })
+
+  const onPagination = (pageNum: number) =>
+    setPaginatedData({
+      data: getPaginationData(pageNum, paginatedData.pageLimit),
+      pageNum,
+      pageLimit: paginatedData.pageLimit,
+    })
+
+  const onPageLimitChange = (dataPerPage: number) => {
+    setPaginatedData({
+      data: getPaginationData(1, dataPerPage),
+      pageNum: 1,
+      pageLimit: dataPerPage,
+    })
+  }
 
   return (
     <Wrapper>
@@ -36,9 +69,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
         />
       </ProgressBarWrapper>
       <TableWrapper>
-        <Text type={'subtitle l'} color="textGray">
-          Subsystems ({totalSubsystems})
-        </Text>
+        <Text type="subtitle l">Subsystems ({totalSubsystems})</Text>
         <TableStyled
           variant="default"
           columns={{
@@ -85,9 +116,22 @@ export const Overview: React.FC<Props> = ({ system }) => {
               Cell: ({ data }) => getButton(data.score),
             },
           }}
-          data={system.subsystems}
+          data={paginatedData.data}
         />
       </TableWrapper>
+      <Pager
+        currentPage={paginatedData.pageNum}
+        totalRecords={totalSubsystems}
+        pageLimit={paginatedData.pageLimit}
+        onChange={onPageLimitChange}
+      />
+      <Paginator
+        onPagination={onPagination}
+        currentPage={paginatedData.pageNum}
+        totalRecords={totalSubsystems}
+        pageLimit={paginatedData.pageLimit}
+        isFetching={false}
+      />
     </Wrapper>
   )
 }

@@ -1,5 +1,6 @@
 import { DetailedView as ChartView } from '@/components/system/DetailedView'
 import { Overview } from '@/components/system/Overview'
+import { SystemHeader } from '@/components/system/SystemHeader'
 import { PageContainer } from '@/containers/PageContainer'
 import { Icon, PageLayout, Text, usePageLayout } from '@filecoin/ui'
 import React, { useEffect, useState } from 'react'
@@ -62,7 +63,12 @@ const RepositoryDetails = () => {
 
   const pageLayout = usePageLayout({
     header: (
-      <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} />
+      <SystemHeader
+        activeTab={activeTab}
+        onTabChange={tab => setActiveTab(tab)}
+        score={system.score}
+        pageName={params.name}
+      />
     ),
     footer: <PageLayout.Footer />,
   })
@@ -76,7 +82,12 @@ const RepositoryDetails = () => {
       })
 
       pageLayout.setHeader(
-        <Header activeTab={activeTab} onTabChange={tab => setActiveTab(tab)} />,
+        <SystemHeader
+          activeTab={activeTab}
+          onTabChange={tab => setActiveTab(tab)}
+          score={system.score}
+          pageName={params.name}
+        />,
       )
     }
   }, [activeTab])

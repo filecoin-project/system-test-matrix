@@ -12,8 +12,8 @@ features:
     behaviors:
       - id: TOKEN_MULTISIG_VESTING_SCHEDULE_001
         description: |
-        Given a multisig address,
-        return the vesting details of a given multisig
+          Given a multisig address,
+          return the vesting details of a given multisig
 
   - name: Get Vested
     behaviors:

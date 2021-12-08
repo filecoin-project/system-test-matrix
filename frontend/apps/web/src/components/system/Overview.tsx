@@ -48,7 +48,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
         selectedFilter,
       )
       if (searchTerm) {
-        console.log(filterResult, 'ajsdaksdaj')
         return searchWithFuse(filterResult)
       } else {
         return filterResult

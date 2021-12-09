@@ -1,3 +1,5 @@
+import { PageContainer } from '@/containers/PageContainer'
+import { filterItems } from '@filecoin/core'
 import { SystemScore, TestStatus } from '@filecoin/types'
 import {
   BoxLayout,
@@ -6,22 +8,22 @@ import {
   NativeLink,
   PageLayout,
   ProgressBar,
+  SearchInput,
   StackLayout,
   Table,
   Text,
   TruncatedText,
   usePageLayout,
 } from '@filecoin/ui'
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { PageContainer } from '@/containers/PageContainer'
-
 const Header = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
+
   return (
     <PageLayout.Header>
       <HeaderWrapper>
@@ -100,6 +102,10 @@ const AllTests = () => {
   }
 
   const allTestsKinds = prepareAllTestsChart()
+  const [searchTerm, setSearchTerm] = useState('')
+  const results = !searchTerm
+    ? allTests
+    : filterItems(allTests, searchTerm, 'functionName')
 
   const prepareAllTestsStatus = () => {
     return Object.entries(
@@ -136,7 +142,7 @@ const AllTests = () => {
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
         <StackLayout gap={1}>
-          <CardLayout>
+          <CardLayout shadow={false}>
             <BoxLayout gap={2}>
               <StackLayout gap={0.5}>
                 <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
@@ -144,7 +150,7 @@ const AllTests = () => {
               </StackLayout>
             </BoxLayout>
           </CardLayout>
-          <CardLayout>
+          <CardLayout shadow={false}>
             <BoxLayout gap={2}>
               <StackLayout gap={0.5}>
                 <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
@@ -156,9 +162,19 @@ const AllTests = () => {
       </PageLayout.Section>
       <PageLayout.Section>
         <StackLayout gap={1.25}>
-          <Text type="text xl">
-            {t('filecoin.allTests.listOfAllTests')} ({allTests.length})
-          </Text>
+          <StackLayout gap={1}>
+            <Text type="text xl">
+              {t('filecoin.allTests.listOfAllTests')} ({allTests.length})
+            </Text>
+            <SearchInput
+              onSearch={value => {
+                setSearchTerm(value)
+              }}
+              value={searchTerm}
+              placeholder="Search tests"
+              autoFocus={false}
+            />
+          </StackLayout>
 
           <Table
             variant="default"
@@ -224,7 +240,7 @@ const AllTests = () => {
                 Cell: ({ data }) => getButton(data.status),
               },
             }}
-            data={allTests}
+            data={results}
           />
         </StackLayout>
       </PageLayout.Section>

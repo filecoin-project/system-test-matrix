@@ -39,6 +39,7 @@
     "@filecoin/ui": "^1.0.0",
     "react-router-dom": "^6.0.2",
     "unstated-next": "^1.1.0",
-    "yaml": "^1.10.2"
+    "yaml": "^1.10.2",
+    "fuse.js": "^6.4.6"
   }
 }

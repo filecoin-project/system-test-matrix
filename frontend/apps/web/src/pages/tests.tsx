@@ -1,12 +1,15 @@
 import { PageContainer } from '@/containers/PageContainer'
-import { filterItems } from '@filecoin/core'
+import { getResultsWithFuseSearch } from '@filecoin/core'
 import { SystemScore, TestStatus } from '@filecoin/types'
 import {
   BoxLayout,
   Button,
   CardLayout,
+  Dropdown,
   NativeLink,
   PageLayout,
+  Pager,
+  Paginator,
   ProgressBar,
   SearchInput,
   StackLayout,
@@ -15,7 +18,7 @@ import {
   TruncatedText,
   usePageLayout,
 } from '@filecoin/ui'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -101,12 +104,6 @@ const AllTests = () => {
     }))
   }
 
-  const allTestsKinds = prepareAllTestsChart()
-  const [searchTerm, setSearchTerm] = useState('')
-  const results = !searchTerm
-    ? allTests
-    : filterItems(allTests, searchTerm, 'functionName')
-
   const prepareAllTestsStatus = () => {
     return Object.entries(
       allTests.reduce(
@@ -133,6 +130,81 @@ const AllTests = () => {
   }
   const allTestsStatus = prepareAllTestsStatus()
 
+  const allTestsKinds = prepareAllTestsChart()
+  const [searchTerm, setSearchTerm] = useState(undefined)
+  const [selectedFilter, setSelectedFilter] = useState(undefined)
+  const [searchResults, setSearchResults] = useState(null)
+
+  const options = {
+    keys: ['functionName', 'id', 'kind', 'path', 'repository'],
+  }
+  const StatusOptions = {
+    keys: ['status'],
+  }
+
+  const filterOptions = [
+    {
+      label: 'All statuses',
+      value: undefined,
+    },
+    {
+      label: 'Passing',
+      value: 'pass',
+    },
+    {
+      label: 'Failing',
+      value: 'fail',
+    },
+    {
+      label: 'Missing',
+      value: 'missing',
+    },
+  ]
+
+  const results = getResultsWithFuseSearch(
+    allTests,
+    options,
+    StatusOptions,
+    searchTerm,
+    selectedFilter,
+  )
+
+  useEffect(() => {
+    setSearchResults(results)
+  }, [selectedFilter, searchTerm])
+
+  const getPaginationData = (pageNum: number, pageLimit: number) =>
+    searchResults &&
+    searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
+
+  const [paginatedData, setPaginatedData] = useState({
+    data: getPaginationData(1, 5),
+    pageNum: 1,
+    pageLimit: 5,
+  })
+
+  const onPagination = (pageNum: number) =>
+    setPaginatedData({
+      data: getPaginationData(pageNum, paginatedData.pageLimit),
+      pageNum,
+      pageLimit: paginatedData.pageLimit,
+    })
+
+  const onPageLimitChange = (dataPerPage: number) => {
+    setPaginatedData({
+      data: getPaginationData(1, dataPerPage),
+      pageNum: 1,
+      pageLimit: dataPerPage,
+    })
+  }
+
+  useEffect(() => {
+    setPaginatedData({
+      data: getPaginationData(1, 5),
+      pageNum: 1,
+      pageLimit: 5,
+    })
+  }, [searchResults])
   const pageLayout = usePageLayout({
     header: <Header />,
     footer: <PageLayout.Footer />,
@@ -166,14 +238,27 @@ const AllTests = () => {
             <Text type="text xl">
               {t('filecoin.allTests.listOfAllTests')} ({allTests.length})
             </Text>
-            <SearchInput
-              onSearch={value => {
-                setSearchTerm(value)
-              }}
-              value={searchTerm}
-              placeholder="Search tests"
-              autoFocus={false}
-            />
+            <SearchAndFilterWrapper>
+              <SearchInput
+                onSearch={value => {
+                  setSearchTerm(value)
+                }}
+                value={searchTerm}
+                placeholder="Search tests"
+                width="58.75rem"
+                autoFocus={false}
+              />
+              <Dropdown
+                placeholder="All scores"
+                name="score"
+                options={filterOptions}
+                value={selectedFilter}
+                onChange={e => {
+                  setSelectedFilter(e.value)
+                }}
+                onClearFilter={() => setSelectedFilter(undefined)}
+              />
+            </SearchAndFilterWrapper>
           </StackLayout>
 
           <Table
@@ -243,6 +328,19 @@ const AllTests = () => {
             data={results}
           />
         </StackLayout>
+        <Pager
+          currentPage={paginatedData.pageNum}
+          totalRecords={allTests.length}
+          pageLimit={paginatedData.pageLimit}
+          onChange={onPageLimitChange}
+        />
+        <Paginator
+          onPagination={onPagination}
+          currentPage={paginatedData.pageNum}
+          totalRecords={allTests.length}
+          pageLimit={paginatedData.pageLimit}
+          isFetching={false}
+        />
       </PageLayout.Section>
     </PageLayout>
   )
@@ -257,5 +355,13 @@ const HeaderWrapper = styled.div`
   button {
     margin-top: auto;
     margin-bottom: auto;
+  }
+`
+const SearchAndFilterWrapper = styled.div`
+  display: flex;
+
+  [data-element='dropdown'] {
+    max-width: 181px;
+    margin-left: auto;
   }
 `

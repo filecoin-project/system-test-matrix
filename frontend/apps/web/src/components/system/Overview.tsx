@@ -1,4 +1,5 @@
 import { getButton } from '@/pages/tests'
+import { getResultsWithFuseSearch } from '@filecoin/core'
 import { System } from '@filecoin/types'
 import {
   CardLayout,
@@ -11,7 +12,6 @@ import {
   Table,
   Text,
 } from '@filecoin/ui'
-import Fuse from 'fuse.js'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
@@ -31,36 +31,18 @@ export const Overview: React.FC<Props> = ({ system }) => {
   const scoreOptions = {
     keys: ['score'],
   }
-  const searchWithFuse = (
-    array = system.subsystems,
-    option = options,
-    query = searchTerm,
-  ) => {
-    const fuse = new Fuse(array, option)
-    return fuse.search(query)
-  }
 
-  const calculateResults = () => {
-    if (selectedFilter) {
-      const filterResult = searchWithFuse(
-        system.subsystems,
-        scoreOptions,
-        selectedFilter,
-      )
-      if (searchTerm) {
-        return searchWithFuse(filterResult)
-      } else {
-        return filterResult
-      }
-    }
-    if (searchTerm) {
-      return searchWithFuse()
-    } else {
-      return system.subsystems
-    }
-  }
+  const results = getResultsWithFuseSearch(
+    system.subsystems,
+    options,
+    scoreOptions,
+    searchTerm,
+    selectedFilter,
+  )
 
-  const results = calculateResults()
+  useEffect(() => {
+    setSearchResults(results)
+  }, [selectedFilter, searchTerm])
 
   useEffect(() => {
     setSearchResults(results)

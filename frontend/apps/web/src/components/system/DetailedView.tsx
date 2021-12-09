@@ -23,7 +23,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
   }, [testKinds])
 
   return (
-    <Wrapper>
+    <Wrapper shadow={false}>
       <ReactTooltip
         effect="solid"
         getContent={data => {

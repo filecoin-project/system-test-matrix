@@ -33,39 +33,6 @@ exports[`Storyshots BaseInput Base 1`] = `
   width: 100%;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -75,7 +42,7 @@ exports[`Storyshots BaseInput Base 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -88,11 +55,10 @@ exports[`Storyshots BaseInput Base 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -155,14 +121,6 @@ exports[`Storyshots BaseInput Base 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c1 {
   position: relative;
   width: 328px;
@@ -179,12 +137,6 @@ exports[`Storyshots BaseInput Base 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        Base
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -192,6 +144,7 @@ exports[`Storyshots BaseInput Base 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="Base"
         type="text"
         value=""
       />
@@ -237,39 +190,6 @@ exports[`Storyshots BaseInput Disabled 1`] = `
   width: 100%;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -279,7 +199,7 @@ exports[`Storyshots BaseInput Disabled 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -292,11 +212,10 @@ exports[`Storyshots BaseInput Disabled 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -359,14 +278,6 @@ exports[`Storyshots BaseInput Disabled 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c1 {
   position: relative;
   width: 328px;
@@ -383,12 +294,6 @@ exports[`Storyshots BaseInput Disabled 1`] = `
     <div
       className="c3 disabled"
     >
-      <label
-        className="disabled"
-        htmlFor={1}
-      >
-        Disabled
-      </label>
       <input
         autoComplete="new-password"
         disabled={true}
@@ -396,6 +301,7 @@ exports[`Storyshots BaseInput Disabled 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="Disabled"
         type="text"
         value=""
       />
@@ -441,39 +347,6 @@ exports[`Storyshots BaseInput Password 1`] = `
   width: 100%;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -483,7 +356,7 @@ exports[`Storyshots BaseInput Password 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -496,11 +369,10 @@ exports[`Storyshots BaseInput Password 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -561,14 +433,6 @@ exports[`Storyshots BaseInput Password 1`] = `
 
 .c3.disabled {
   opacity: 0.5;
-}
-
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
 }
 
 .c4 {
@@ -631,12 +495,6 @@ exports[`Storyshots BaseInput Password 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        Password
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -644,6 +502,7 @@ exports[`Storyshots BaseInput Password 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="Password"
         type="password"
         value=""
       />
@@ -702,39 +561,6 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
   width: 100%;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -744,7 +570,7 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -757,11 +583,10 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -824,14 +649,6 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c1 {
   position: relative;
   width: 328px;
@@ -848,12 +665,6 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Clear Button
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -861,6 +672,7 @@ exports[`Storyshots BaseInput With Clear Button 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Clear Button"
         type="text"
         value=""
       />
@@ -908,39 +720,6 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
   width: 100%;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -950,7 +729,7 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -963,11 +742,10 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -1030,14 +808,6 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c4 {
   position: absolute;
   bottom: -1.25rem;
@@ -1074,12 +844,6 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
     <div
       className="c3 error"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Error Message
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -1087,6 +851,7 @@ exports[`Storyshots BaseInput With Error Message 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Error Message"
         status="error"
         type="text"
         value=""
@@ -1137,39 +902,6 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
   width: 100%;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -1179,7 +911,7 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -1192,11 +924,10 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -1259,14 +990,6 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c4 {
   position: absolute;
   top: 0;
@@ -1305,12 +1028,6 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Icon After
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -1318,6 +1035,7 @@ exports[`Storyshots BaseInput With Icon After 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Icon After"
         type="text"
         value=""
       />
@@ -1371,39 +1089,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   width: 100%;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 34px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1.375rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1.375rem, 0.5rem ) scale(0.6);
-  transform: translate( 1.375rem, 0.5rem ) scale(0.6);
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -1413,7 +1098,7 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -1426,11 +1111,10 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -1493,14 +1177,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c4 {
   position: absolute;
   top: 0;
@@ -1519,10 +1195,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
   pointer-events: none;
 }
 
-.c5 {
-  left: 1rem;
-}
-
 .c1 {
   position: relative;
   width: 328px;
@@ -1539,12 +1211,6 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
     <div
       className="c3"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Icon Before
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -1552,6 +1218,7 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Icon Before"
         type="text"
         value=""
       />
@@ -1559,7 +1226,7 @@ exports[`Storyshots BaseInput With Icon Before 1`] = `
         className=""
       >
         <div
-          className="c4 c5"
+          className="c4"
         >
           <svg
             id="/assets/icons/search.svg"
@@ -1605,39 +1272,6 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
   width: 100%;
 }
 
-.c3 label {
-  position: absolute;
-  top: 0;
-  left: 0px;
-  -webkit-transform: translate(1rem,1.125rem) scale(1);
-  -ms-transform: translate(1rem,1.125rem) scale(1);
-  transform: translate(1rem,1.125rem) scale(1);
-  -webkit-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, -webkit-transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  -webkit-transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  transition: color 250ms cubic-bezier(0,0,0.2,1) 0ms, transform 250ms cubic-bezier(0,0,0.2,1) 0ms;
-  font-size: 1rem;
-  color: #979AB8;
-  -webkit-letter-spacing: 0.2px;
-  -moz-letter-spacing: 0.2px;
-  -ms-letter-spacing: 0.2px;
-  letter-spacing: 0.2px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.c3 label.state--active {
-  -webkit-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  -ms-transform: translate( 1rem, 0.5rem ) scale(0.6);
-  transform: translate( 1rem, 0.5rem ) scale(0.6);
-  font-weight: bold;
-}
-
 .c3 fieldset {
   position: absolute;
   top: 0;
@@ -1647,7 +1281,7 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
   margin: 0;
   padding: 0 0.5rem;
   border: 1px solid #D9DBE9;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
   -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
@@ -1660,11 +1294,10 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
 
 .c3 input {
   width: 100%;
-  height: 3.5rem;
-  padding: 0.875rem 1rem 0;
+  height: 2.875rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   outline: none;
   font-size: 1rem;
   -webkit-letter-spacing: 0.2px;
@@ -1727,14 +1360,6 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
   opacity: 0.5;
 }
 
-.c3:hover label {
-  color: #6E7191;
-}
-
-.c3:hover label.state--active {
-  color: #440864;
-}
-
 .c4 {
   position: absolute;
   bottom: -1.25rem;
@@ -1771,12 +1396,6 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
     <div
       className="c3 success"
     >
-      <label
-        className=""
-        htmlFor={1}
-      >
-        With Success Message
-      </label>
       <input
         autoComplete="new-password"
         disabled={false}
@@ -1784,6 +1403,7 @@ exports[`Storyshots BaseInput With Success Message 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        placeholder="With Success Message"
         status="success"
         type="text"
         value=""
@@ -2735,7 +2355,7 @@ exports[`Storyshots Dropdown Default 1`] = `
   outline: 0;
   border: 1px solid #D9DBE9;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -2751,7 +2371,7 @@ exports[`Storyshots Dropdown Default 1`] = `
 
 .c2:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c2.dropdown--full {
@@ -2766,11 +2386,11 @@ exports[`Storyshots Dropdown Default 1`] = `
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: #979AB8;
+  color: #57606A;
 }
 
 .c3 {
-  height: 3rem;
+  height: 2.875rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -2815,7 +2435,7 @@ exports[`Storyshots Dropdown Default 1`] = `
   z-index: 3;
   border: 1px solid #A6A9C3;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -2877,7 +2497,7 @@ exports[`Storyshots Dropdown Default 1`] = `
           Select option
         </span>
         <svg
-          id="/assets/icons/arrow_down.svg"
+          id="/assets/icons/arrow_up_and_down.svg"
         />
       </div>
     </div>
@@ -3103,7 +2723,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   outline: 0;
   border: 1px solid #D9DBE9;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -3119,7 +2739,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
 
 .c2:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c2.dropdown--full {
@@ -3134,11 +2754,11 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: #979AB8;
+  color: #57606A;
 }
 
 .c3 {
-  height: 3rem;
+  height: 2.875rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -3183,7 +2803,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   z-index: 3;
   border: 1px solid #A6A9C3;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -3245,7 +2865,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
           Select options
         </span>
         <svg
-          id="/assets/icons/arrow_down.svg"
+          id="/assets/icons/arrow_up_and_down.svg"
         />
       </div>
     </div>
@@ -3450,7 +3070,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   outline: 0;
   border: 1px solid #D9DBE9;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -3466,7 +3086,7 @@ exports[`Storyshots Dropdown Size 1`] = `
 
 .c3:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c3.dropdown--full {
@@ -3481,7 +3101,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: #979AB8;
+  color: #57606A;
 }
 
 .c4 {
@@ -3509,7 +3129,7 @@ exports[`Storyshots Dropdown Size 1`] = `
 }
 
 .c13 {
-  height: 3rem;
+  height: 2.875rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -3554,7 +3174,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   z-index: 3;
   border: 1px solid #A6A9C3;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -3627,7 +3247,7 @@ exports[`Storyshots Dropdown Size 1`] = `
               Select  large
             </span>
             <svg
-              id="/assets/icons/arrow_down.svg"
+              id="/assets/icons/arrow_up_and_down.svg"
             />
           </div>
         </div>
@@ -3715,7 +3335,7 @@ exports[`Storyshots Dropdown Size 1`] = `
               Select  medium
             </span>
             <svg
-              id="/assets/icons/arrow_down.svg"
+              id="/assets/icons/arrow_up_and_down.svg"
             />
           </div>
         </div>
@@ -3936,7 +3556,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   outline: 0;
   border: 1px solid #098469;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -3952,7 +3572,7 @@ exports[`Storyshots Dropdown Status 1`] = `
 
 .c3:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c3.dropdown--full {
@@ -3971,7 +3591,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   outline: 0;
   border: 1px solid #CF295C;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -3987,7 +3607,7 @@ exports[`Storyshots Dropdown Status 1`] = `
 
 .c14:focus {
   border: 1px solid #A6A9C3;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .c14.dropdown--full {
@@ -4008,11 +3628,11 @@ exports[`Storyshots Dropdown Status 1`] = `
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: #979AB8;
+  color: #57606A;
 }
 
 .c4 {
-  height: 3rem;
+  height: 2.875rem;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -4057,7 +3677,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   z-index: 3;
   border: 1px solid #098469;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -4072,7 +3692,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   z-index: 3;
   border: 1px solid #CF295C;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 }
@@ -4145,7 +3765,7 @@ exports[`Storyshots Dropdown Status 1`] = `
               Select success
             </span>
             <svg
-              id="/assets/icons/arrow_down.svg"
+              id="/assets/icons/arrow_up_and_down.svg"
             />
           </div>
         </div>
@@ -4238,7 +3858,7 @@ exports[`Storyshots Dropdown Status 1`] = `
               Select error
             </span>
             <svg
-              id="/assets/icons/arrow_down.svg"
+              id="/assets/icons/arrow_up_and_down.svg"
             />
           </div>
         </div>
@@ -4560,6 +4180,14 @@ exports[`Storyshots Icon All Icons 1`] = `
   <svg
     id="/assets/icons/warning.svg"
   />
+  <span
+    className="c1 c-text--text-m"
+  >
+    arrow_up_and_down
+  </span>
+  <svg
+    id="/assets/icons/arrow_up_and_down.svg"
+  />
 </div>
 `;
 
@@ -4698,7 +4326,7 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -4722,7 +4350,7 @@ exports[`Storyshots Layout/CardLayout Overview 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -5054,7 +4682,7 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -5078,7 +4706,7 @@ exports[`Storyshots Layout/CoverLayout Overview 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -5626,7 +5254,7 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -5650,7 +5278,7 @@ exports[`Storyshots Layout/PageLayout Overview 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -7667,7 +7295,7 @@ exports[`Storyshots Text Headings 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -7691,7 +7319,7 @@ exports[`Storyshots Text Headings 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -8425,7 +8053,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -8449,7 +8077,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {
@@ -9006,7 +8634,7 @@ exports[`Storyshots Text Rest 1`] = `
   display: flex;
   width: 100vw;
   height: 6.25rem;
-  max-width: calc(1100px - 4rem);
+  max-width: calc(1203px - 4rem);
   margin: auto auto 0;
   border-top: 1px solid #D0D7DE;
   color: #57606A;
@@ -9030,7 +8658,7 @@ exports[`Storyshots Text Rest 1`] = `
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1203px;
 }
 
 .c2 .c-page-layout__section:first-child {

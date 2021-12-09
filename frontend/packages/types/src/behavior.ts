@@ -12,6 +12,7 @@ export class Feature {
     public name: string,
     public parentSubsystemName: string,
     public behaviors: Behavior[],
+    public systemName: string,
   ) {}
 }
 

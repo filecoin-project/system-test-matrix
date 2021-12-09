@@ -5,6 +5,7 @@ describe('Model', () => {
 
   const expectedSystemNames = [
     'api',
+    'blockchain',
     'chain',
     'client',
     'market',
@@ -14,6 +15,8 @@ describe('Model', () => {
     'vm',
     'repo',
   ]
+
+  const expectedTestKinds = ['unit', 'integration', 'e2e', 'benchmark']
 
   describe('getAllSystems', () => {
     it('returns all expected systems', () => {
@@ -55,6 +58,9 @@ describe('Model', () => {
     it('returns all expected test kinds', () => {
       const testKinds = model.getAllTestKinds()
       expect(testKinds.length).toBeGreaterThan(0)
+      for (const testKind of expectedTestKinds) {
+        expect(testKinds.includes(testKind)).toBeTruthy()
+      }
     })
   })
 

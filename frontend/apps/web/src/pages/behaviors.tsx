@@ -1,5 +1,6 @@
 import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 import { PageContainer } from '@/containers/PageContainer'
+import { filterItems } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
   BoxLayout,
@@ -11,6 +12,7 @@ import {
   NativeLink,
   PageLayout,
   ProgressBar,
+  SearchInput,
   StackLayout,
   Table,
   Text,
@@ -28,6 +30,10 @@ const Behaviors = () => {
   const { t } = useTranslation()
   const behaviors = model.getAllBehaviors()
   const [modalId, setModalId] = useState<Behavior | undefined>(undefined)
+  const [searchTerm, setSearchTerm] = useState('')
+  const results = !searchTerm
+    ? behaviors
+    : filterItems(behaviors, searchTerm, 'parentFeatureName')
 
   const prepareBehaviorChart = () => {
     return Object.entries(
@@ -138,7 +144,7 @@ const Behaviors = () => {
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
-        <CardLayout>
+        <CardLayout shadow={false}>
           <BoxLayout gap={2}>
             <StackLayout gap={0.5}>
               <Text type={'subtitle l'} color="textGray" bold>
@@ -157,10 +163,21 @@ const Behaviors = () => {
         </Modal>
 
         <StackLayout gap={1.25}>
-          <Text type={'subtitle l'} color="textGray" bold>
-            {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
-          </Text>
-          <Table data={behaviors} columns={tableColumns} />
+          <StackLayout gap={1}>
+            <Text type={'subtitle l'} color="textGray" bold>
+              {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
+            </Text>
+
+            <SearchInput
+              onSearch={value => {
+                setSearchTerm(value)
+              }}
+              value={searchTerm}
+              placeholder="Search behaviors"
+              autoFocus={false}
+            />
+          </StackLayout>
+          <Table data={results} columns={tableColumns} />
         </StackLayout>
       </PageLayout.Section>
     </PageLayout>

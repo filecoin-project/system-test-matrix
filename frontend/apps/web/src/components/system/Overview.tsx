@@ -2,14 +2,17 @@ import { getButton } from '@/pages/tests'
 import { System } from '@filecoin/types'
 import {
   CardLayout,
+  Dropdown,
   Pager,
   Paginator,
   ProgressBar,
+  SearchInput,
   StackLayout,
   Table,
   Text,
 } from '@filecoin/ui'
-import React, { useState } from 'react'
+import Fuse from 'fuse.js'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 interface Props {
@@ -18,10 +21,73 @@ interface Props {
 
 export const Overview: React.FC<Props> = ({ system }) => {
   const totalSubsystems = system.subsystems.length
-  const [filteredData, setFilteredData] = useState(system.subsystems)
+  const [searchTerm, setSearchTerm] = useState(undefined)
+  const [selectedFilter, setSelectedFilter] = useState(undefined)
+  const [searchResults, setSearchResults] = useState(null)
+
+  const options = {
+    keys: ['name'],
+  }
+  const scoreOptions = {
+    keys: ['score'],
+  }
+  const searchWithFuse = (
+    array = system.subsystems,
+    option = options,
+    query = searchTerm,
+  ) => {
+    const fuse = new Fuse(array, option)
+    return fuse.search(query)
+  }
+
+  const calculateResults = () => {
+    if (selectedFilter) {
+      const filterResult: any = searchWithFuse(
+        system.subsystems,
+        scoreOptions,
+        selectedFilter,
+      )
+      if (searchTerm) {
+        return searchWithFuse(filterResult)
+      } else {
+        return filterResult
+      }
+    }
+    if (searchTerm) {
+      return searchWithFuse()
+    } else {
+      return system.subsystems
+    }
+  }
+
+  const results = calculateResults()
+
+  useEffect(() => {
+    setSearchResults(results)
+  }, [selectedFilter, searchTerm])
+
+  const filterOptions = [
+    {
+      label: 'All scores',
+      value: undefined,
+    },
+    {
+      label: 'Good',
+      value: 'good',
+    },
+    {
+      label: 'Bad',
+      value: 'bad',
+    },
+    {
+      label: 'Mediocre',
+      value: 'mediocre',
+    },
+  ]
 
   const getPaginationData = (pageNum: number, pageLimit: number) =>
-    filteredData.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
+    searchResults &&
+    searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
 
   const [paginatedData, setPaginatedData] = useState({
     data: getPaginationData(1, 5),
@@ -44,9 +110,16 @@ export const Overview: React.FC<Props> = ({ system }) => {
     })
   }
 
+  useEffect(() => {
+    setPaginatedData({
+      data: getPaginationData(1, 5),
+      pageNum: 1,
+      pageLimit: 5,
+    })
+  }, [searchResults])
   return (
     <Wrapper>
-      <ProgressBarWrapper>
+      <ProgressBarWrapper shadow={false}>
         <ProgressBar
           data={system.testKindStats.percentages.map(
             ({ kind, percentage }) => ({
@@ -57,7 +130,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
           legend
         />
       </ProgressBarWrapper>
-      <ProgressBarWrapper>
+      <ProgressBarWrapper shadow={false}>
         <ProgressBar
           data={system.testStatusStats.percentages.map(
             ({ status, percentage }) => ({
@@ -68,8 +141,32 @@ export const Overview: React.FC<Props> = ({ system }) => {
           legend
         />
       </ProgressBarWrapper>
+
       <TableWrapper>
-        <Text type="subtitle l">Subsystems ({totalSubsystems})</Text>
+        <StackLayout gap={1}>
+          <Text type="subtitle l">Subsystems ({totalSubsystems})</Text>
+          <SearchAndFilterWrapper>
+            <SearchInput
+              onSearch={value => {
+                setSearchTerm(value)
+              }}
+              value={searchTerm}
+              placeholder="Search subsystem"
+              width="58.75rem"
+              autoFocus={false}
+            />
+            <Dropdown
+              placeholder="All scores"
+              name="score"
+              options={filterOptions}
+              value={selectedFilter}
+              onChange={e => {
+                setSelectedFilter(e.value)
+              }}
+              onClearFilter={() => setSelectedFilter(undefined)}
+            />
+          </SearchAndFilterWrapper>
+        </StackLayout>
         <TableStyled
           variant="default"
           columns={{
@@ -135,7 +232,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
     </Wrapper>
   )
 }
-
 const Wrapper = styled(StackLayout)`
   margin-top: 1.25rem;
 `
@@ -156,4 +252,12 @@ const TableStyled = styled(Table)`
 
 const Bar = styled.div`
   padding-right: 2rem;
+`
+const SearchAndFilterWrapper = styled.div`
+  display: flex;
+
+  [data-element='dropdown'] {
+    max-width: 181px;
+    margin-left: auto;
+  }
 `

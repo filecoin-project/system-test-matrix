@@ -34,7 +34,7 @@ const Tabs = React.forwardRef(
 ) => JSX.Element
 
 export const PageLayoutTabs = styled(Tabs)`
-  max-width: 1100px;
+  max-width: 1139px;
   display: flex;
   gap: 12px;
   position: absolute;

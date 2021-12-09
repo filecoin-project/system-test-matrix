@@ -229,10 +229,9 @@ export class Model implements Model {
           }
 
           const parentSubsystem = subsystemCache.get(
-            Model.subsystemKey(
-              subsystemCache.get(parentFeature.parentSubsystemName),
-            ),
+            `${parentFeature.systemName}/${parentFeature.parentSubsystemName}`,
           )
+
           if (!parentSubsystem) {
             throw new Error(
               `Can't find subsystem: ${parentFeature.parentSubsystemName} in the cache`,
@@ -243,6 +242,10 @@ export class Model implements Model {
         }
       }
     }
+  }
+
+  private static subsystemKey(subsystem: SubSystem): string {
+    return `${subsystem?.parentSystemName}/${subsystem?.name}`
   }
 
   private static loadBehaviors(
@@ -272,6 +275,7 @@ export class Model implements Model {
             rawFeature.name,
             subsystemName,
             featureBehaviors,
+            systemName,
           )
           featureCache.set(feature.name, feature)
           subsystemFeatures.push(feature)
@@ -298,10 +302,6 @@ export class Model implements Model {
       )
       systemCache.set(system.name, system)
     }
-  }
-
-  private static subsystemKey(subsystem: SubSystem): string {
-    return `${subsystem.parentSystemName}/${subsystem.name}`
   }
 
   getAllSystems(): System[] {

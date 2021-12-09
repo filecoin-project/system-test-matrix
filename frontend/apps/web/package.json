@@ -12,10 +12,8 @@
     "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "prebuild": "concurrently \"yarn generate:routes\" ",
     "generate:routes": "node scripts/routes.js",
-    "generate:behaviors": "yarn combine-behaviors",
+    "generate:behaviors": "yarn combine-behaviors && yarn generate-test-data",
     "build": "webpack --config ./config/webpack.prod.js",
-    "convert-airtable": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/convertAirtable.ts",
-    "convert-yaml": "yq -j eval scripts/data/behaviors.yml > src/behaviors.json",
     "generate-test-data": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/generateTestData.ts",
     "combine-behaviors": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/combineBehaviors.ts"
   },

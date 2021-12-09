@@ -2,7 +2,6 @@ import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { SystemScore, TestStatus } from '@filecoin/types'
 import {
-  BoxLayout,
   Button,
   CardLayout,
   Dropdown,
@@ -169,10 +168,6 @@ const AllTests = () => {
     selectedFilter,
   )
 
-  useEffect(() => {
-    setSearchResults(results)
-  }, [selectedFilter, searchTerm])
-
   const getPaginationData = (pageNum: number, pageLimit: number) =>
     searchResults &&
     searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
@@ -197,6 +192,9 @@ const AllTests = () => {
       pageLimit: dataPerPage,
     })
   }
+  useEffect(() => {
+    setSearchResults(results)
+  }, [selectedFilter, searchTerm])
 
   useEffect(() => {
     setPaginatedData({
@@ -205,6 +203,7 @@ const AllTests = () => {
       pageLimit: 5,
     })
   }, [searchResults])
+
   const pageLayout = usePageLayout({
     header: <Header />,
     footer: <PageLayout.Footer />,
@@ -214,22 +213,18 @@ const AllTests = () => {
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
         <StackLayout gap={1}>
-          <CardLayout shadow={false}>
-            <BoxLayout gap={2}>
-              <StackLayout gap={0.5}>
-                <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
-                <ProgressBar legend data={allTestsKinds} />
-              </StackLayout>
-            </BoxLayout>
-          </CardLayout>
-          <CardLayout shadow={false}>
-            <BoxLayout gap={2}>
-              <StackLayout gap={0.5}>
-                <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
-                <ProgressBar legend data={allTestsStatus} />
-              </StackLayout>
-            </BoxLayout>
-          </CardLayout>
+          <ProgressBarWrapper shadow={false}>
+            <StackLayout gap={0.5}>
+              <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
+              <ProgressBar legend data={allTestsKinds} />
+            </StackLayout>
+          </ProgressBarWrapper>
+          <ProgressBarWrapper shadow={false}>
+            <StackLayout gap={0.5}>
+              <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
+              <ProgressBar legend data={allTestsStatus} />
+            </StackLayout>
+          </ProgressBarWrapper>
         </StackLayout>
       </PageLayout.Section>
       <PageLayout.Section>
@@ -249,7 +244,7 @@ const AllTests = () => {
                 autoFocus={false}
               />
               <Dropdown
-                placeholder="All scores"
+                placeholder="All statuses"
                 name="score"
                 options={filterOptions}
                 value={selectedFilter}
@@ -325,19 +320,19 @@ const AllTests = () => {
                 Cell: ({ data }) => getButton(data.status),
               },
             }}
-            data={results}
+            data={paginatedData.data}
           />
         </StackLayout>
         <Pager
           currentPage={paginatedData.pageNum}
-          totalRecords={allTests.length}
+          totalRecords={searchResults && searchResults.length}
           pageLimit={paginatedData.pageLimit}
           onChange={onPageLimitChange}
         />
         <Paginator
           onPagination={onPagination}
           currentPage={paginatedData.pageNum}
-          totalRecords={allTests.length}
+          totalRecords={searchResults && searchResults.length}
           pageLimit={paginatedData.pageLimit}
           isFetching={false}
         />
@@ -356,6 +351,11 @@ const HeaderWrapper = styled.div`
     margin-top: auto;
     margin-bottom: auto;
   }
+`
+const ProgressBarWrapper = styled(CardLayout)`
+  max-width: 58.75rem;
+  margin-bottom: 1rem;
+  padding: 2.65rem 3.625rem;
 `
 const SearchAndFilterWrapper = styled.div`
   display: flex;

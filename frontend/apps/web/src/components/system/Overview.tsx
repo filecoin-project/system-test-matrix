@@ -13,6 +13,7 @@ import {
   Text,
 } from '@filecoin/ui'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 interface Props {
@@ -24,6 +25,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
   const [searchTerm, setSearchTerm] = useState(undefined)
   const [selectedFilter, setSelectedFilter] = useState(undefined)
   const [searchResults, setSearchResults] = useState(null)
+  const { t } = useTranslation()
 
   const options = {
     keys: ['name'],
@@ -39,10 +41,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
     searchTerm,
     selectedFilter,
   )
-
-  useEffect(() => {
-    setSearchResults(results)
-  }, [selectedFilter, searchTerm])
 
   useEffect(() => {
     setSearchResults(results)
@@ -102,6 +100,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
   return (
     <Wrapper>
       <ProgressBarWrapper shadow={false}>
+        <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
         <ProgressBar
           data={system.testKindStats.percentages.map(
             ({ kind, percentage }) => ({
@@ -113,6 +112,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
         />
       </ProgressBarWrapper>
       <ProgressBarWrapper shadow={false}>
+        <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
         <ProgressBar
           data={system.testStatusStats.percentages.map(
             ({ status, percentage }) => ({
@@ -196,14 +196,14 @@ export const Overview: React.FC<Props> = ({ system }) => {
       </TableWrapper>
       <Pager
         currentPage={paginatedData.pageNum}
-        totalRecords={totalSubsystems}
+        totalRecords={searchResults && searchResults.length}
         pageLimit={paginatedData.pageLimit}
         onChange={onPageLimitChange}
       />
       <Paginator
         onPagination={onPagination}
         currentPage={paginatedData.pageNum}
-        totalRecords={totalSubsystems}
+        totalRecords={searchResults && searchResults.length}
         pageLimit={paginatedData.pageLimit}
         isFetching={false}
       />

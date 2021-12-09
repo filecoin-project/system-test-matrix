@@ -1,9 +1,10 @@
 import fs from 'node:fs'
 import path from 'node:path'
+
 import yaml from 'yaml'
 
 const SYSTEMS_PATH = path.resolve(__dirname, 'systems')
-const OUTPUT_PATH = path.resolve(__dirname, 'behaviors.json')
+const OUTPUT_PATH = path.resolve(__dirname, '../../src/behaviors.json')
 
 function combineBehaviors() {
   const systemsDirectoryContents = fs.readdirSync(SYSTEMS_PATH)

@@ -233,16 +233,22 @@ export class Model implements Model {
               subsystemCache.get(parentFeature.parentSubsystemName),
             ),
           )
-          if (!parentSubsystem) {
-            throw new Error(
-              `Can't find subsystem: ${parentFeature.parentSubsystemName} in the cache`,
-            )
+          // if (!parentSubsystem) {
+          //   throw new Error(
+          //     `Can't find subsystem: ${parentFeature.parentSubsystemName} in the cache`,
+          //   )
+          // }
+          if (parentSubsystem) {
+            parentSubsystem.tests.push(test)
           }
-
-          parentSubsystem.tests.push(test)
         }
       }
     }
+  }
+
+  private static subsystemKey(subsystem: SubSystem): string {
+    console.log('ERROR', subsystem)
+    return `${subsystem?.parentSystemName}/${subsystem?.name}`
   }
 
   private static loadBehaviors(
@@ -298,10 +304,6 @@ export class Model implements Model {
       )
       systemCache.set(system.name, system)
     }
-  }
-
-  private static subsystemKey(subsystem: SubSystem): string {
-    return `${subsystem.parentSystemName}/${subsystem.name}`
   }
 
   getAllSystems(): System[] {

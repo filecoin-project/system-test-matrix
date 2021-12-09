@@ -5,6 +5,7 @@ describe('Model', () => {
 
   const expectedSystemNames = [
     'api',
+    'blockchain',
     'chain',
     'client',
     'market',

@@ -7,7 +7,6 @@ import {
 import styled from 'styled-components'
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
-import { Fonts } from './styles/fonts'
 import { Size } from './styles/mixins'
 
 /**
@@ -38,8 +37,8 @@ export interface LinkProps extends RouterLinkProps {
 const LinkComponent = styled(RouterLink)<{
   appearance: LinkAppearance
 }>`
-  font-family: ${Fonts.Manrope};
   font-weight: bold;
+  letter-spacing: 0.5px;
   ${props => Size({ className: props.className })};
   display: inline-flex;
   align-items: center;
@@ -58,6 +57,7 @@ const LinkComponent = styled(RouterLink)<{
 
 const System = styled(LinkComponent)`
   color: ${Colors.blueLink};
+  font-weight: 600;
 
   &:hover {
     color: ${darken(0.2, `${Colors.blueLink}`)};
@@ -81,9 +81,7 @@ const System = styled(LinkComponent)`
 `
 
 const Default = styled(LinkComponent)`
-  font-family: ${Fonts.OpenSans};
   color: ${Colors.black};
-  font-weight: 600;
 
   &:hover {
     text-decoration: underline;
@@ -110,7 +108,6 @@ export const Link: FunctionComponent<LinkProps> = ({
         return Default
       case 'system':
         return System
-
       default:
         return Default
     }

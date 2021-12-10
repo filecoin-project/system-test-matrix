@@ -1,9 +1,9 @@
 import { darken, lighten } from 'polished'
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
-
 import { ButtonProps, ButtonVariant } from './Button'
 import { Colors } from './styles/colors'
+import { Fonts } from './styles/fonts'
 import { FullWidth } from './styles/mixins'
 
 export const Sizing = {
@@ -79,6 +79,9 @@ export const ButtonBase = styled(ButtonComponent)`
 `
 
 const ButtonRounded = styled(ButtonBase)`
+  font-family: ${Fonts.NunitoSans};
+  font-size: 14px;
+  letter-spacing: 0.03rem;
   border-radius: 20px;
   color: ${Colors.white};
 `

@@ -1,38 +1,56 @@
 <!-- Or you can load custom head-tag JavaScript: -->
 <script src="https://use.typekit.net/xxxyyy.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"
+/>
 
 <style>
   @font-face {
-    font-family: 'OpenSans';
+    font-family: 'Nunito Sans';
     font-style: normal;
     font-weight: normal;
     font-display: swap;
-    src: local('Open Sans'), url('/OpenSans/OpenSans-Regular.woff') format('woff');
+    src: url('NunitoSans-SemiBold.woff') format('woff');
   }
-
   @font-face {
-    font-family: 'OpenSans';
+    font-family: 'Nunito Sans';
     font-style: normal;
     font-weight: bold;
     font-display: swap;
-    src: local('Open Sans'), url('/OpenSans/OpenSans-SemiBold.woff') format('woff');
+    src: url('NunitoSans-Bold.woff') format('woff');
   }
 
   @font-face {
-    font-family: 'Manrope';
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: normal;
     font-display: swap;
-    src: local('Manrope'), url('/Manrope/Manrope-Regular.woff') format('woff');
+    src: url('Roboto-Regular.woff') format('woff');
   }
 
   @font-face {
-    font-family: 'Manrope';
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: bold;
     font-display: swap;
-    src: local('Manrope'), url('/Manrope/Manrope-SemiBold.woff') format('woff');
+    src: url('Roboto-Bold.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url('Segoe UI.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+    src: url('Segoe UI Bold.woff') format('woff');
   }
 
   * {
@@ -52,7 +70,7 @@
     padding: 0;
     color: #343a40;
     font-size: 16px;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     background-color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -81,7 +99,7 @@
 
   input,
   textarea {
-    font-family: 'OpenSans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   table.table {
@@ -164,5 +182,5 @@
 <script>
   try {
     Typekit.load()
-  } catch (e) { }
+  } catch (e) {}
 </script>

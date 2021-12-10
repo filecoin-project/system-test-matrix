@@ -134,13 +134,17 @@ const Behaviors = () => {
     header: (
       <PageLayout.Header>
         <HeaderWrapper>
-          <Text type="heading 5">{t('filecoin.behaviors.title')}</Text>
+          <Text type="heading 5" semiBold>
+            {t('filecoin.behaviors.title')}
+          </Text>
           <Button
             onClick={() => navigate('/tests')}
             variant="outline"
             size="medium"
           >
-            {t('filecoin.allTests.allTests')}
+            <Text type="text s" semiBold>
+              {t('filecoin.allTests.allTests')}
+            </Text>
           </Button>
         </HeaderWrapper>
       </PageLayout.Header>
@@ -163,7 +167,7 @@ const Behaviors = () => {
                 {data.id}
               </NativeLink>
             ) : (
-              <Text>{data.id}</Text>
+              <Text color="textGray">{data.id}</Text>
             )}
           </>
         )
@@ -172,13 +176,13 @@ const Behaviors = () => {
     name: {
       header: t('filecoin.behaviors.tableHeaders.featureName'),
       Cell: ({ data: { parentFeatureName } }) => {
-        return <Text>{parentFeatureName}</Text>
+        return <Text color="textGray">{parentFeatureName}</Text>
       },
     },
     description: {
       header: t('filecoin.behaviors.tableHeaders.intendedBehavior'),
       Cell: ({ data: { description } }) => {
-        return <Text>{description}</Text>
+        return <Text color="textGray">{description}</Text>
       },
     },
     isTested: {
@@ -207,7 +211,7 @@ const Behaviors = () => {
       <PageLayout.Section>
         <ProgressBarWrapper shadow={false}>
           <StackLayout gap={0.5}>
-            <Text type={'subtitle l'}>
+            <Text type={'subtitle l'} color="textGray" semiBold>
               {t('filecoin.behaviors.behaviorStatus')}
             </Text>
             <ProgressBar data={behaviorChartData} legend />
@@ -222,7 +226,7 @@ const Behaviors = () => {
 
         <StackLayout gap={1.25}>
           <StackLayout gap={1}>
-            <Text type={'subtitle l'}>
+            <Text type={'subtitle l'} color="textGray" semiBold>
               {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
             </Text>
             <SearchAndFilterWrapper>

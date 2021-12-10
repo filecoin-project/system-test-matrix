@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-
 import { Colors } from './styles/colors'
 import { Fonts } from './styles/fonts'
 
@@ -18,7 +17,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: any; customCss: string }>`
     padding: 0;
     background-color: ${Colors.background};
     overflow-x: hidden;
-    font-family: ${Fonts.Manrope};
+    font-family: ${Fonts.SegoeUI};
     font-size: 16px;
     color: ${Colors.textColor};
     line-height: 1.5;
@@ -34,14 +33,16 @@ export const GlobalStyle = createGlobalStyle<{ theme: any; customCss: string }>`
   h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
   }
-
+  footer {
+    font-family: ${Fonts.Roboto};
+  }
   a {
     text-decoration: none;
     color: ${Colors.primary};
   }
   
   input, textarea {
-    font-family: 'OpenSans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
   table.table {

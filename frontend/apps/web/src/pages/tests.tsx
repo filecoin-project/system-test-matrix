@@ -29,14 +29,18 @@ const Header = () => {
   return (
     <PageLayout.Header>
       <HeaderWrapper>
-        <Text type="heading 5">{t('filecoin.allTests.allTests')}</Text>
+        <Text type="heading 5" semiBold>
+          {t('filecoin.allTests.allTests')}
+        </Text>
 
         <Button
           onClick={() => navigate('/behaviors')}
           variant="outline"
           size="medium"
         >
-          {t('filecoin.allTests.allBehaviours')}
+          <Text type="text s" semiBold>
+            {t('filecoin.allTests.allBehaviours')}
+          </Text>
         </Button>
       </HeaderWrapper>
     </PageLayout.Header>
@@ -80,7 +84,9 @@ export const getButton = (status: TestStatus | SystemScore) => {
       size="small"
       color={getColor()}
     >
-      {t(`filecoin.allTests.${status}`)}
+      <Text color="white" type="text s" bold>
+        {t(`filecoin.allTests.${status}`)}
+      </Text>
     </Button>
   )
 }
@@ -215,13 +221,17 @@ const AllTests = () => {
         <StackLayout gap={1}>
           <ProgressBarWrapper shadow={false}>
             <StackLayout gap={0.5}>
-              <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
+              <Text type="text xl" color="textGray" semiBold>
+                {t('filecoin.allTests.allKinds')}
+              </Text>
               <ProgressBar legend data={allTestsKinds} />
             </StackLayout>
           </ProgressBarWrapper>
           <ProgressBarWrapper shadow={false}>
             <StackLayout gap={0.5}>
-              <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
+              <Text type="text xl" color="textGray" semiBold>
+                {t('filecoin.allTests.allStatus')}
+              </Text>
               <ProgressBar legend data={allTestsStatus} />
             </StackLayout>
           </ProgressBarWrapper>
@@ -230,7 +240,7 @@ const AllTests = () => {
       <PageLayout.Section>
         <StackLayout gap={1.25}>
           <StackLayout gap={1}>
-            <Text type="text xl">
+            <Text type="text xl" color="textGray" semiBold>
               {t('filecoin.allTests.listOfAllTests')} ({allTests.length})
             </Text>
             <SearchAndFilterWrapper>
@@ -266,7 +276,9 @@ const AllTests = () => {
                   return (
                     <TruncatedText>
                       <StackLayout>
-                        <Text type="text s">{data.path}</Text>
+                        <Text type="text s" color="textGray">
+                          {data.path}
+                        </Text>
                       </StackLayout>
                     </TruncatedText>
                   )
@@ -278,7 +290,9 @@ const AllTests = () => {
                 Cell: ({ data }) => {
                   return (
                     <TruncatedText>
-                      <Text type="text s">{data.functionName}</Text>
+                      <Text type="text s" color="textGray">
+                        {data.functionName}
+                      </Text>
                     </TruncatedText>
                   )
                 },
@@ -293,7 +307,9 @@ const AllTests = () => {
                       target={'_blank'}
                       className={'u-text--xsmall'}
                     >
-                      {data.repository}
+                      <Text type="text s" color="textGray">
+                        {data.repository}
+                      </Text>
                     </NativeLink>
                   )
                 },
@@ -301,14 +317,18 @@ const AllTests = () => {
               kinds: {
                 header: t('filecoin.allTests.kinds'),
                 Cell: ({ data }) => {
-                  return <Text type="text s">{data.kind}</Text>
+                  return (
+                    <Text type="text s" color="textGray">
+                      {data.kind}
+                    </Text>
+                  )
                 },
               },
               behaviors: {
                 header: t('filecoin.behaviors.title'),
                 Cell: ({ data }) => {
                   return (
-                    <Text type="text s">
+                    <Text type="text s" color="textGray">
                       {data.linkedBehaviors.length}{' '}
                       {t('filecoin.allTests.behaviors')}
                     </Text>

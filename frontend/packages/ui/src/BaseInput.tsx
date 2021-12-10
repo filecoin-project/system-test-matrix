@@ -9,7 +9,6 @@ import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
-import { Fonts } from './styles/fonts'
 
 /**
  * BaseInput props.
@@ -148,7 +147,6 @@ export const BaseInput: FunctionComponent<Props> = forwardRef(
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  font-family: ${Fonts.OpenSans};
 `
 
 const InnerWrapper = styled.div<{ hasIconBefore: boolean }>`

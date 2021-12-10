@@ -1,11 +1,10 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-
 import { Button } from './Button'
-import { CenterLayout, PageLayout } from './Layouts'
+import { Icon } from './Icon'
+import { CenterLayout } from './Layouts'
 import { Colors } from './styles/colors'
 import { Text } from './Text'
-import { Icon } from './Icon'
 
 export interface ModalProps {
   /**
@@ -42,7 +41,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
       <Backdrop />
       <Content gap={2}>
         <Header>
-          <Text type="text xl" bold={true}>
+          <Text type="text xl" semiBold>
             {title}
           </Text>
           <Icon

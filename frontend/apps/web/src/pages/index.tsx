@@ -1,3 +1,4 @@
+import { PageContainer } from '@/containers/PageContainer'
 import {
   Button,
   Link,
@@ -12,10 +13,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-
 import { getButton } from './tests'
-
-import { PageContainer } from '@/containers/PageContainer'
 
 const Header = () => {
   const { t } = useTranslation()
@@ -23,21 +21,27 @@ const Header = () => {
   return (
     <PageLayout.Header>
       <HeaderWrapper>
-        <Text type="heading 5">{t('filecoin.systems.systems')}</Text>
+        <Text type="heading 5" semiBold>
+          {t('filecoin.systems.systems')}
+        </Text>
         <Buttons>
           <Button
             onClick={() => navigate('/tests')}
             variant="outline"
             size="medium"
           >
-            {t('filecoin.allTests.allTests')}
+            <Text type="text s" semiBold>
+              {t('filecoin.allTests.allTests')}
+            </Text>
           </Button>
           <Button
             onClick={() => navigate('/behaviors')}
             variant="outline"
             size="medium"
           >
-            {t('filecoin.allTests.allBehaviours')}
+            <Text type="text s" semiBold>
+              {t('filecoin.allTests.allBehaviours')}
+            </Text>
           </Button>
         </Buttons>
       </HeaderWrapper>

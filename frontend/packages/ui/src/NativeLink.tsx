@@ -3,10 +3,8 @@ import classNames from 'classnames'
 import { darken, lighten } from 'polished'
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
-import { Fonts } from './styles/fonts'
 import { Size } from './styles/mixins'
 
 /**
@@ -64,13 +62,13 @@ const Link = React.forwardRef(
 ) => JSX.Element
 
 const NativeLinkComponent = styled(Link)`
-  font-family: ${Fonts.Manrope};
   font-weight: bold;
   ${props => Size({ className: props.className })};
   display: inline-flex;
   align-items: center;
   transition: color 0.3s;
   cursor: pointer;
+  letter-spacing: 0.5px;
 
   svg {
     margin-right: 6px;
@@ -108,9 +106,8 @@ const System = styled(NativeLinkComponent)`
 `
 
 const Default = styled(NativeLinkComponent)`
-  font-family: ${Fonts.OpenSans};
-  color: ${Colors.black};
-  font-weight: 600;
+  color: ${Colors.gray80};
+  font-weight: 400;
 
   &:hover {
     text-decoration: underline;

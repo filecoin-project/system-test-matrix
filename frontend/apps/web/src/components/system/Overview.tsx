@@ -154,7 +154,11 @@ export const Overview: React.FC<Props> = ({ system }) => {
           columns={{
             Subsystems: {
               header: 'Subsystem',
-              Cell: ({ data }) => <Text type="text s">{data.name}</Text>,
+              Cell: ({ data }) => (
+                <Text type="text s" color="textGray">
+                  {data.name}
+                </Text>
+              ),
             },
             testKinds: {
               header: 'Test Kinds',

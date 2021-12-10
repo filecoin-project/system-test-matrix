@@ -78,6 +78,10 @@ type TextProps = {
    */
   bold?: boolean
   /**
+   * Use semi-bold variant of font
+   */
+  semiBold?: boolean
+  /**
    * Text align style property
    */
   align?: 'left' | 'right' | 'center'
@@ -110,8 +114,8 @@ const TextComponent: FunctionComponent<TextProps> = ({
 export const Text = styled(TextComponent)<TextProps>`
   ${({ className }) => FullWidth({ className })};
   ${({ className }) => Hidden({ className })};
-  ${({ bold }) => {
-    return `font-weight: ${bold ? 'bold' : 'normal'}`
+  ${({ bold, semiBold }) => {
+    return `font-weight: ${bold ? 'bold' : semiBold ? 600 : 'normal'};`
   }};
   ${({ type = 'text m', bold }) => {
     switch (type) {
@@ -144,7 +148,7 @@ export const Text = styled(TextComponent)<TextProps>`
         return `
         font-size: 1.5rem;
         line-height: 1.75rem;
-        letter-spacing: ${bold ? 0.5 : 0.3}px;        
+        letter-spacing: ${bold ? 0.5 : 0.3}px;       
       `
       case 'heading 6':
         return `

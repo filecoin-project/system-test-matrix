@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <PageLayout.Header>
       <HeaderWrapper>
-        <Text type="heading 5" bold>
+        <Text type="heading 5" semiBold>
           {t('filecoin.allTests.allTests')}
         </Text>
 
@@ -36,7 +36,7 @@ const Header = () => {
           variant="outline"
           size="medium"
         >
-          <Text type="text s" bold>
+          <Text type="text s" semiBold>
             {t('filecoin.allTests.allBehaviours')}
           </Text>
         </Button>
@@ -82,7 +82,9 @@ export const getButton = (status: TestStatus | SystemScore) => {
       size="small"
       color={getColor()}
     >
-      {t(`filecoin.allTests.${status}`)}
+      <Text color="white" type="text s" bold>
+        {t(`filecoin.allTests.${status}`)}
+      </Text>
     </Button>
   )
 }
@@ -149,7 +151,7 @@ const AllTests = () => {
           <CardLayout shadow={false}>
             <BoxLayout gap={2}>
               <StackLayout gap={0.5}>
-                <Text type="text xl" color="textGray" bold>
+                <Text type="text xl" color="textGray" semiBold>
                   {t('filecoin.allTests.allKinds')}
                 </Text>
                 <ProgressBar legend data={allTestsKinds} />
@@ -159,7 +161,7 @@ const AllTests = () => {
           <CardLayout shadow={false}>
             <BoxLayout gap={2}>
               <StackLayout gap={0.5}>
-                <Text type="text xl" color="textGray" bold>
+                <Text type="text xl" color="textGray" semiBold>
                   {t('filecoin.allTests.allStatus')}
                 </Text>
                 <ProgressBar legend data={allTestsStatus} />
@@ -171,7 +173,7 @@ const AllTests = () => {
       <PageLayout.Section>
         <StackLayout gap={1.25}>
           <StackLayout gap={1}>
-            <Text type="text xl" color="textGray" bold>
+            <Text type="text xl" color="textGray" semiBold>
               {t('filecoin.allTests.listOfAllTests')} ({allTests.length})
             </Text>
             <SearchInput

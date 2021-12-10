@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: normal;
   font-display: swap;
-  src: local('Segoe UI'), url('Segoe UI.woff') format('woff');
+  src: url('Segoe UI.woff') format('woff');
 }
 
 @font-face {
@@ -11,5 +11,5 @@
   font-style: normal;
   font-weight: bold;
   font-display: swap;
-  src: local('Segoe UI'), url('Segoe UI Bold.woff') format('woff');
+  src: url('Segoe UI Bold.woff') format('woff');
 }

@@ -65,7 +65,9 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                 gap={1}
                 key={subsystem.name}
               >
-                <Text color="textGray">{subsystem.name}</Text>
+                <Text color="textGray" semiBold>
+                  {subsystem.name}
+                </Text>
 
                 {testKinds.map(testKind => {
                   const tests = subsystem.tests.filter(

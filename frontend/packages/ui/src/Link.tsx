@@ -57,6 +57,7 @@ const LinkComponent = styled(RouterLink)<{
 
 const System = styled(LinkComponent)`
   color: ${Colors.blueLink};
+  font-weight: 600;
 
   &:hover {
     color: ${darken(0.2, `${Colors.blueLink}`)};
@@ -81,7 +82,6 @@ const System = styled(LinkComponent)`
 
 const Default = styled(LinkComponent)`
   color: ${Colors.black};
-  font-weight: 600;
 
   &:hover {
     text-decoration: underline;
@@ -108,7 +108,6 @@ export const Link: FunctionComponent<LinkProps> = ({
         return Default
       case 'system':
         return System
-
       default:
         return Default
     }

@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: normal;
   font-display: swap;
-  src: local('Roboto'), url('Roboto-Regular.woff') format('woff');
+  src: url('Roboto-Regular.woff') format('woff');
 }
 
 @font-face {
@@ -11,5 +11,5 @@
   font-style: normal;
   font-weight: bold;
   font-display: swap;
-  src: local('Roboto'), url('Roboto-Bold.woff') format('woff');
+  src: url('Roboto-Bold.woff') format('woff');
 }

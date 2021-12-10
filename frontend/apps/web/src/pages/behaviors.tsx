@@ -69,7 +69,7 @@ const Behaviors = () => {
     header: (
       <PageLayout.Header>
         <HeaderWrapper>
-          <Text type="heading 5" bold>
+          <Text type="heading 5" semiBold>
             {t('filecoin.behaviors.title')}
           </Text>
           <Button
@@ -77,7 +77,7 @@ const Behaviors = () => {
             variant="outline"
             size="medium"
           >
-            <Text type="text s" bold>
+            <Text type="text s" semiBold>
               {t('filecoin.allTests.allTests')}
             </Text>
           </Button>
@@ -147,7 +147,7 @@ const Behaviors = () => {
         <CardLayout shadow={false}>
           <BoxLayout gap={2}>
             <StackLayout gap={0.5}>
-              <Text type={'subtitle l'} color="textGray" bold>
+              <Text type={'subtitle l'} color="textGray" semiBold>
                 {t('filecoin.behaviors.behaviorStatus')}
               </Text>
 
@@ -164,7 +164,7 @@ const Behaviors = () => {
 
         <StackLayout gap={1.25}>
           <StackLayout gap={1}>
-            <Text type={'subtitle l'} color="textGray" bold>
+            <Text type={'subtitle l'} color="textGray" semiBold>
               {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
             </Text>
 

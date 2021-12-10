@@ -19,7 +19,7 @@ const Header = (props: HeaderProps) => {
   const { t } = useTranslation()
   return (
     <PageLayout.Header>
-      <Text type="heading 5" bold>
+      <Text type="heading 5" semiBold>
         {t('filecoin.systems.systems')}
       </Text>
       <PageLayout.Tabs>

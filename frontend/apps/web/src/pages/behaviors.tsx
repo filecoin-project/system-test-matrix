@@ -66,6 +66,7 @@ const Behaviors = () => {
   )
   const navigate = useNavigate()
   const options = {
+    threshold: 0.1,
     keys: ['description', 'id', 'parentFeatureName'],
   }
   const testedOptions = {
@@ -91,6 +92,7 @@ const Behaviors = () => {
     testedOptions,
     searchTerm,
     selectedFilter,
+    filterOptions,
   )
 
   useEffect(() => {

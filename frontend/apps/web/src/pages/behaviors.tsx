@@ -84,10 +84,6 @@ const Behaviors = () => {
       label: 'Untested',
       value: 'false',
     },
-    {
-      label: 'Unknown',
-      value: 'unknown',
-    },
   ]
   const results = getResultsWithFuseSearch(
     behaviors,

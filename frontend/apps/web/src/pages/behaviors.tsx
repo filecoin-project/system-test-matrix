@@ -24,9 +24,6 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import qs from 'query-string'
 
-import { PageContainer } from '@/containers/PageContainer'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-
 interface BehaviorQueryParams {
   id?: string
 }
@@ -198,7 +195,7 @@ const Behaviors = () => {
               autoFocus={false}
             />
           </StackLayout>
-          <Table data={behaviors} columns={tableColumns} />
+          <Table data={results} columns={tableColumns} />
         </StackLayout>
       </PageLayout.Section>
     </PageLayout>

@@ -28,24 +28,12 @@ export const Overview: React.FC<Props> = ({ system }) => {
   const { t } = useTranslation()
 
   const options = {
+    threshold: 0.1,
     keys: ['name'],
   }
   const scoreOptions = {
     keys: ['score'],
   }
-
-  const results = getResultsWithFuseSearch(
-    system.subsystems,
-    options,
-    scoreOptions,
-    searchTerm,
-    selectedFilter,
-  )
-
-  useEffect(() => {
-    setSearchResults(results)
-  }, [selectedFilter, searchTerm])
-
   const filterOptions = [
     {
       label: 'All scores',
@@ -64,6 +52,18 @@ export const Overview: React.FC<Props> = ({ system }) => {
       value: 'mediocre',
     },
   ]
+  const results = getResultsWithFuseSearch(
+    system.subsystems,
+    options,
+    scoreOptions,
+    searchTerm,
+    selectedFilter,
+    filterOptions,
+  )
+
+  useEffect(() => {
+    setSearchResults(results)
+  }, [selectedFilter, searchTerm])
 
   const [filteredData, setFilteredData] = useState(system.subsystems)
 

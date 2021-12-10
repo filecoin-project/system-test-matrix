@@ -141,7 +141,8 @@ const AllTests = () => {
   const [searchResults, setSearchResults] = useState(null)
 
   const options = {
-    keys: ['functionName', 'id', 'kind', 'path', 'repository'],
+    threshold: 0.1,
+    keys: ['functionName', 'id', 'kind', 'path', 'repository', 'status'],
   }
   const StatusOptions = {
     keys: ['status'],
@@ -172,6 +173,7 @@ const AllTests = () => {
     StatusOptions,
     searchTerm,
     selectedFilter,
+    filterOptions,
   )
 
   const getPaginationData = (pageNum: number, pageLimit: number) =>

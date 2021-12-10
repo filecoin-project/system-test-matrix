@@ -36,6 +36,7 @@ export const getResultsWithFuseSearch = (
   options2,
   searchTerm,
   selectedFilter,
+  filterOptions,
 ) => {
   if (selectedFilter) {
     const filterResult: any = searchWithFuse(array, options2, selectedFilter)
@@ -46,7 +47,15 @@ export const getResultsWithFuseSearch = (
     }
   }
   if (searchTerm) {
-    return searchWithFuse(array, options1, searchTerm)
+    const manualFilter = filterOptions.find(
+      key => key.label.toLowerCase() === searchTerm.toLowerCase(),
+    )
+
+    if (manualFilter) {
+      return searchWithFuse(array, options2, manualFilter.value)
+    } else {
+      return searchWithFuse(array, options1, searchTerm)
+    }
   } else {
     return array
   }

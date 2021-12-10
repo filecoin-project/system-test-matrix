@@ -1,20 +1,19 @@
-import _ from 'lodash'
+import behaviors from '@/behaviors.json'
+import tests from '@/tests.json'
 import {
   Behavior,
   Feature,
   PercentageSet,
-  TestKind,
-  TestStatus,
-  Test,
   SubSystem,
   System,
   SystemScore,
+  Test,
+  TestKind,
   TestKindStatistic,
+  TestStatus,
   TestStatusStatistic,
 } from '@filecoin/types'
-
-import behaviors from '@/behaviors.json'
-import tests from '@/tests.json'
+import _ from 'lodash'
 
 // Abstract Model interface.
 // I recommend importing this instead of the implementation, because the implementation may change
@@ -267,6 +266,8 @@ export class Model implements Model {
               rawBehavior.id,
               rawFeature.name,
               rawBehavior.description,
+              subsystemName,
+              systemName,
             )
             behaviorCache.set(behavior.id, behavior)
             featureBehaviors.push(behavior)

@@ -9,7 +9,8 @@
         "behaviorId": "Behavior ID",
         "featureName": "Feature name",
         "intendedBehavior": "Intended behavior",
-        "isTested": "Tested"
+        "isTested": "Tested",
+        "path": "System / subsystem"
       }
     },
     "allTests": {

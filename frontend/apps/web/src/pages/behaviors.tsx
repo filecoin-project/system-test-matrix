@@ -20,11 +20,11 @@ import {
   Text,
   usePageLayout,
 } from '@filecoin/ui'
+import qs from 'query-string'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import qs from 'query-string'
 
 interface BehaviorQueryParams {
   id?: string
@@ -75,7 +75,13 @@ const Behaviors = () => {
   const navigate = useNavigate()
   const options = {
     threshold: 0.1,
-    keys: ['description', 'id', 'parentFeatureName'],
+    keys: [
+      'description',
+      'id',
+      'parentFeatureName',
+      'systemName',
+      'subsystemName',
+    ],
   }
   const testedOptions = {
     keys: ['tested'],
@@ -192,6 +198,16 @@ const Behaviors = () => {
       header: t('filecoin.behaviors.tableHeaders.featureName'),
       Cell: ({ data: { parentFeatureName } }) => {
         return <Text color="textGray">{parentFeatureName}</Text>
+      },
+    },
+    path: {
+      header: t('filecoin.behaviors.tableHeaders.path'),
+      Cell: ({ data: { systemName, subsystemName } }) => {
+        return (
+          <Text color="textGray">
+            {systemName}/{subsystemName}
+          </Text>
+        )
       },
     },
     description: {

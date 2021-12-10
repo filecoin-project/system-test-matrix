@@ -5,6 +5,7 @@ import { Test, TestStatus } from '@filecoin/types'
 interface Props {
   data: { functionName: string; status: string }[]
   onClick: () => void
+  openModal: Function
 }
 
 const getStatusColor = (status?: Test['status']) => {
@@ -20,9 +21,9 @@ const getStatusColor = (status?: Test['status']) => {
   }
 }
 
-export const MatrixMap = (props: Props) => {
-  const data = props.data.length
-    ? props.data.map(node => ({
+export const MatrixMap: React.FC<Props> = ({ data, onClick, openModal }) => {
+  data = data.length
+    ? data.map(node => ({
         ...node,
         value: 1,
         color: getStatusColor(node.status as TestStatus),
@@ -73,6 +74,7 @@ export const MatrixMap = (props: Props) => {
             strokeWidth: NODE_SIZE * 0.0625,
             strokeOpacity: 1,
           }}
+          onClick={() => openModal()}
         />
       </g>
     )
@@ -90,7 +92,6 @@ export const MatrixMap = (props: Props) => {
       <Chart
         width={NODE_SIZE * NUMBER_OF_COLUMNS}
         height={NODE_SIZE * NUMBER_OF_ROWS}
-        {...props}
         data={[...data, ...missingData]}
         nameKey="functionName"
         isAnimationActive={false}

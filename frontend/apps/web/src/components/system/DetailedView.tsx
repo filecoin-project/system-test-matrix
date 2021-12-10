@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BoxLayout,
   CardLayout,
@@ -7,6 +7,7 @@ import {
   MatrixMap,
   StackLayout,
   Text,
+  Modal,
 } from '@filecoin/ui'
 import styled from 'styled-components'
 import ReactTooltip from 'react-tooltip'
@@ -18,12 +19,17 @@ interface Props {
 }
 
 export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
+  const [modalIsOpened, setModalOpened] = useState(false)
+
   useEffect(() => {
     ReactTooltip.rebuild()
   }, [testKinds])
 
   return (
     <Wrapper>
+      <Modal isOpen={modalIsOpened} onClose={() => setModalOpened(false)}>
+        <div>Helooooo</div>
+      </Modal>
       <ReactTooltip
         effect="solid"
         getContent={data => {
@@ -72,6 +78,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                     <MatrixMap
                       key={testKind}
                       data={tests}
+                      openModal={() => setModalOpened(true)}
                       onClick={() => null}
                     />
                   )

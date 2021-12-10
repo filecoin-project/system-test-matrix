@@ -1,16 +1,18 @@
 import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 import { PageContainer } from '@/containers/PageContainer'
-import { filterItems } from '@filecoin/core'
+import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
-  BoxLayout,
   Button,
   CardLayout,
   CenterLayout,
+  Dropdown,
   Icon,
   Modal,
   NativeLink,
   PageLayout,
+  Pager,
+  Paginator,
   ProgressBar,
   SearchInput,
   StackLayout,
@@ -30,10 +32,9 @@ const Behaviors = () => {
   const { t } = useTranslation()
   const behaviors = model.getAllBehaviors()
   const [modalId, setModalId] = useState<Behavior | undefined>(undefined)
-  const [searchTerm, setSearchTerm] = useState('')
-  const results = !searchTerm
-    ? behaviors
-    : filterItems(behaviors, searchTerm, 'parentFeatureName')
+  const [searchTerm, setSearchTerm] = useState(undefined)
+  const [selectedFilter, setSelectedFilter] = useState(undefined)
+  const [searchResults, setSearchResults] = useState(null)
 
   const prepareBehaviorChart = () => {
     return Object.entries(
@@ -64,6 +65,70 @@ const Behaviors = () => {
     prepareBehaviorChart(),
   )
   const navigate = useNavigate()
+  const options = {
+    keys: ['description', 'id', 'parentFeatureName'],
+  }
+  const testedOptions = {
+    keys: ['tested'],
+  }
+  const filterOptions = [
+    {
+      label: 'All statuses',
+      value: undefined,
+    },
+    {
+      label: 'Tested',
+      value: 'true',
+    },
+    {
+      label: 'Untested',
+      value: 'false',
+    },
+  ]
+  const results = getResultsWithFuseSearch(
+    behaviors,
+    options,
+    testedOptions,
+    searchTerm,
+    selectedFilter,
+  )
+
+  useEffect(() => {
+    setSearchResults(results)
+  }, [selectedFilter, searchTerm])
+
+  const getPaginationData = (pageNum: number, pageLimit: number) =>
+    searchResults &&
+    searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
+
+  const [paginatedData, setPaginatedData] = useState({
+    data: getPaginationData(1, 5),
+    pageNum: 1,
+    pageLimit: 5,
+  })
+
+  const onPagination = (pageNum: number) =>
+    setPaginatedData({
+      data: getPaginationData(pageNum, paginatedData.pageLimit),
+      pageNum,
+      pageLimit: paginatedData.pageLimit,
+    })
+
+  const onPageLimitChange = (dataPerPage: number) => {
+    setPaginatedData({
+      data: getPaginationData(1, dataPerPage),
+      pageNum: 1,
+      pageLimit: dataPerPage,
+    })
+  }
+
+  useEffect(() => {
+    setPaginatedData({
+      data: getPaginationData(1, 5),
+      pageNum: 1,
+      pageLimit: 5,
+    })
+  }, [searchResults])
 
   const pageLayout = usePageLayout({
     header: (
@@ -140,17 +205,14 @@ const Behaviors = () => {
   return (
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
-        <CardLayout shadow={false}>
-          <BoxLayout gap={2}>
-            <StackLayout gap={0.5}>
-              <Text type={'subtitle l'}>
-                {t('filecoin.behaviors.behaviorStatus')}
-              </Text>
-
-              <ProgressBar data={behaviorChartData} legend />
-            </StackLayout>
-          </BoxLayout>
-        </CardLayout>
+        <ProgressBarWrapper shadow={false}>
+          <StackLayout gap={0.5}>
+            <Text type={'subtitle l'}>
+              {t('filecoin.behaviors.behaviorStatus')}
+            </Text>
+            <ProgressBar data={behaviorChartData} legend />
+          </StackLayout>
+        </ProgressBarWrapper>
       </PageLayout.Section>
 
       <PageLayout.Section>
@@ -163,18 +225,43 @@ const Behaviors = () => {
             <Text type={'subtitle l'}>
               {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
             </Text>
-
-            <SearchInput
-              onSearch={value => {
-                setSearchTerm(value)
-              }}
-              value={searchTerm}
-              placeholder="Search behaviors"
-              autoFocus={false}
-            />
+            <SearchAndFilterWrapper>
+              <SearchInput
+                onSearch={value => {
+                  setSearchTerm(value)
+                }}
+                value={searchTerm}
+                placeholder="Search behaviors"
+                width="58.75rem"
+                autoFocus={false}
+              />
+              <Dropdown
+                placeholder="All statuses"
+                name="score"
+                options={filterOptions}
+                value={selectedFilter}
+                onChange={e => {
+                  setSelectedFilter(e.value)
+                }}
+                onClearFilter={() => setSelectedFilter(undefined)}
+              />
+            </SearchAndFilterWrapper>
           </StackLayout>
-          <Table data={results} columns={tableColumns} />
+          <Table data={paginatedData.data} columns={tableColumns} />
         </StackLayout>
+        <Pager
+          currentPage={paginatedData.pageNum}
+          totalRecords={searchResults && searchResults.length}
+          pageLimit={paginatedData.pageLimit}
+          onChange={onPageLimitChange}
+        />
+        <Paginator
+          onPagination={onPagination}
+          currentPage={paginatedData.pageNum}
+          totalRecords={searchResults && searchResults.length}
+          pageLimit={paginatedData.pageLimit}
+          isFetching={false}
+        />
       </PageLayout.Section>
     </PageLayout>
   )
@@ -190,4 +277,17 @@ const HeaderWrapper = styled.div`
     margin-top: auto;
     margin-bottom: auto;
   }
+`
+const SearchAndFilterWrapper = styled.div`
+  display: flex;
+
+  [data-element='dropdown'] {
+    max-width: 181px;
+    margin-left: auto;
+  }
+`
+const ProgressBarWrapper = styled(CardLayout)`
+  max-width: 58.75rem;
+  margin-bottom: 1rem;
+  padding: 2.65rem 3.625rem;
 `

@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { Colors } from './styles/colors'
-import { Fonts } from './styles/fonts'
 import { FullWidth, Hidden } from './styles/mixins'
 
 const TextStyle = [
@@ -79,6 +78,10 @@ type TextProps = {
    */
   bold?: boolean
   /**
+   * Use semi-bold variant of font
+   */
+  semiBold?: boolean
+  /**
    * Text align style property
    */
   align?: 'left' | 'right' | 'center'
@@ -111,8 +114,8 @@ const TextComponent: FunctionComponent<TextProps> = ({
 export const Text = styled(TextComponent)<TextProps>`
   ${({ className }) => FullWidth({ className })};
   ${({ className }) => Hidden({ className })};
-  ${({ bold }) => {
-    return `font-weight: ${bold ? 'bold' : 'normal'}`
+  ${({ bold, semiBold }) => {
+    return `font-weight: ${bold ? 'bold' : semiBold ? 600 : 'normal'};`
   }};
   ${({ type = 'text m', bold }) => {
     switch (type) {
@@ -143,8 +146,9 @@ export const Text = styled(TextComponent)<TextProps>`
       `
       case 'heading 5':
         return `
-        font-size: 1.375rem;
-        line-height: 1.75rem;        
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+        letter-spacing: ${bold ? 0.5 : 0.3}px;       
       `
       case 'heading 6':
         return `
@@ -179,27 +183,24 @@ export const Text = styled(TextComponent)<TextProps>`
         `
       case 'text m':
         return `
-          font-family: ${Fonts.OpenSans};
           line-height: 1.5rem;
           letter-spacing: 0.2px;
         `
       case 'text s':
         return `
-          font-family: ${Fonts.OpenSans};
           font-size: 0.875rem;
           line-height: 1.375rem;
           letter-spacing: 0.1px;
         `
       case 'text xs':
         return `
-          font-family: ${Fonts.OpenSans};
           font-size: 0.8125rem;
           line-height: 1.25rem;
           letter-spacing: 0.1px;
         `
       case 'text xxs':
         return `
-          font-family: ${Fonts.OpenSans};
+
           font-size: 0.6875rem;
           line-height: 1;
           letter-spacing: 0.4px;
@@ -207,7 +208,6 @@ export const Text = styled(TextComponent)<TextProps>`
         `
       case 'overline':
         return `
-          font-family: ${bold ? Fonts.OpenSans : Fonts.Manrope};
           font-size: 0.6875rem;
           font-weight: ${bold ? 'bold' : 'normal'};
           line-height: ${bold ? 1 : 0.875}rem;
@@ -238,6 +238,8 @@ export const Text = styled(TextComponent)<TextProps>`
         return Colors.green80
       case 'white':
         return Colors.white
+      case 'textGray':
+        return Colors.textGray
       default:
         return Colors.textColor
     }

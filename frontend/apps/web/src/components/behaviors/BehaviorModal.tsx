@@ -1,16 +1,15 @@
-import React from 'react'
+import { PageContainer } from '@/containers/PageContainer'
+import { getButton } from '@/pages/tests'
+import { Behavior } from '@filecoin/types'
 import {
+  BoxLayout,
+  CenterLayout,
   StackLayout,
   Table,
   Text,
   TruncatedText,
-  CenterLayout,
-  BoxLayout,
 } from '@filecoin/ui'
-import { Behavior } from '@filecoin/types'
-
-import { PageContainer } from '@/containers/PageContainer'
-import { getButton } from '@/pages/tests'
+import React from 'react'
 
 interface Props {
   behavior: Behavior
@@ -72,12 +71,16 @@ export const BehaviorModal = (props: Props) => {
     <StackLayout gap={2}>
       {props.behavior && (
         <StackLayout gap={0.5}>
-          <Text type={'heading 5'}>{props.behavior.id}</Text>
+          <Text type={'heading 5'} semiBold>
+            {props.behavior.id}
+          </Text>
           <Text>{props.behavior.description}</Text>
         </StackLayout>
       )}
       <StackLayout gap={1}>
-        <Text type={'subtitle l'}>Linked tests</Text>
+        <Text type={'subtitle l'} semiBold>
+          Linked tests
+        </Text>
         <Table
           variant={'light'}
           data={getLinkedBehaviors}

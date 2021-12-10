@@ -12,11 +12,10 @@
     "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "prebuild": "concurrently \"yarn generate:routes\" \"yarn generate:behaviors\"",
     "generate:routes": "node scripts/routes.js",
-    "generate:behaviors": "yarn convert-airtable && yarn convert-yaml && yarn generate-test-data",
+    "generate:behaviors": "yarn combine-behaviors && yarn generate-test-data",
     "build": "webpack --config ./config/webpack.prod.js",
-    "convert-airtable": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/convertAirtable.ts",
-    "convert-yaml": "yq -j eval scripts/data/behaviors.yml > src/behaviors.json",
-    "generate-test-data": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/generateTestData.ts"
+    "generate-test-data": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/generateTestData.ts",
+    "combine-behaviors": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/combineBehaviors.ts"
   },
   "browserslist": [
     "defaults",
@@ -26,10 +25,10 @@
     "@babel/runtime": "^7.14.6",
     "@types/react-router-dom": "^5.1.6",
     "concurrently": "^6.0.0",
+    "csv-parse": "^5.0.3",
     "http-server": "^14.0.0",
     "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^4.0.0",
-    "csv-parse": "^5.0.3",
     "yaml": "^1.10.2"
   },
   "dependencies": {
@@ -37,6 +36,8 @@
     "@filecoin/core": "^1.0.0",
     "@filecoin/ui": "^1.0.0",
     "react-router-dom": "^6.0.2",
-    "unstated-next": "^1.1.0"
+    "unstated-next": "^1.1.0",
+    "yaml": "^1.10.2",
+    "fuse.js": "^6.4.6"
   }
 }

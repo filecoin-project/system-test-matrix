@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { System, TestKind } from '@filecoin/types'
 import {
   BoxLayout,
   CardLayout,
@@ -8,9 +8,9 @@ import {
   StackLayout,
   Text,
 } from '@filecoin/ui'
-import styled from 'styled-components'
+import React, { useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
-import { System, TestKind } from '@filecoin/types'
+import styled from 'styled-components'
 
 interface Props {
   testKinds: TestKind[]
@@ -23,7 +23,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
   }, [testKinds])
 
   return (
-    <Wrapper>
+    <Wrapper shadow={false}>
       <ReactTooltip
         effect="solid"
         getContent={data => {

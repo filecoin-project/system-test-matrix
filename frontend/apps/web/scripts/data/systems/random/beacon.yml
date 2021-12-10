@@ -1,0 +1,68 @@
+system: Blockchain
+subsystem: Beacon
+features:
+  - name: Get beacon for epoch
+    behaviors:
+      - id: BLOCKCHAIN_BEACON_GET_BEACON_FOR_EPOCH_01
+        description: |
+          Given a beacon schedule, chain epoch, 
+          returns the beacon used to generate randomness in the epoch.
+          The beacon is found by searching through the list of
+          used beacons, starting from the most recent one
+  
+  - name: Validate block values
+    behaviors: 
+      - id: BLOCKCHAIN_BEACON_VALIDATE_BLOCK_VALUES_01
+        description: |
+          Given a beacon schedule, a block header 'h', a parent epoch, and
+          a previous beacon entry 'prev',
+          validates the beacon for the parent epoch, returning an error
+          if validation fails.
+      - id: BLOCKCHAIN_BEACON_VALIDATE_BLOCK_VALUES_02
+        description: |
+          Given that parent and beacon for header's epoch are different,
+          return error if number of beacons at header's epoch is not equal to 2
+      - id: BLOCKCHAIN_BEACON_VALIDATE_BLOCK_VALUES_03
+        description: |
+          Given that parent and beacon for header's epoch are different,
+          return error if the two beacon entries cannot be validated
+      - id: BLOCKCHAIN_BEACON_VALIDATE_BLOCK_VALUES_04
+        description: |
+          Given that 'prev' round and the max beacon round for 'h'
+          epoch are the same, return error if the header has beacon entries present
+      - id: BLOCKCHAIN_BEACON_VALIDATE_BLOCK_VALUES_05
+        description: |
+          Given that 'prev' round and the max beacon round for 'h' are different,
+          return error if header does not have any beacon entries
+      - id: BLOCKCHAIN_BEACON_VALIDATE_BLOCK_VALUES_06
+        description: |
+          Given that 'prev' round and the max beacon round for 'h' are different,
+          return error if the *last* beacon round for 'h' is not equal to 'prev' round
+      - id: BLOCKCHAIN_BEACON_VALIDATE_BLOCK_VALUES_07
+        description: |
+          Given that any beacon entry in 'h' is invalid (comparing it the preceeding entry),
+          return error
+
+  - name: Get beacon entries for block
+    behaviors:
+      - id: BLOCKCHAIN_BEACON_GET_BEACON_ENTRIES_FOR_BLOCK_01
+        description: | 
+          Given a context, block schedule, current chain epoch 'current',
+          parent epoch 'parent', and previous beacon entry 'prev',
+          and that the beacons for 'parent' and 'current' epoch are different,
+          return beacon entries for the current and previous max beacon
+          round in 'current'.
+          See `Get beacon for epoch` on beacon retrieval
+      - id: BLOCKCHAIN_BEACON_GET_BEACON_ENTRIES_FOR_BLOCK_02
+        description: | 
+          Given a context, block schedule, current chain epoch 'current',
+          parent epoch 'parent', and previous beacon entry 'prev',
+          and that the beacons for 'parent' and 'current' are equal,
+          return nothing if max beacon round for 'current' is equal to 'prev'
+      - id: BLOCKCHAIN_BEACON_GET_BEACON_ENTRIES_FOR_BLOCK_03
+        description: | 
+          Given a context, block schedule, current chain epoch 'current',
+          parent epoch 'parent', and previous beacon entry 'prev',
+          and that the beacons for 'parent' and 'current' are equal,
+          return nothing if max beacon round for 'current' is greater than 'prev',
+          return all beacon entries between 'prev' and max beacon round for 'current'

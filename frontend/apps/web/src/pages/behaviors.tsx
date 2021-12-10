@@ -24,6 +24,11 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import qs from 'query-string'
+
+interface BehaviorQueryParams {
+  id?: string
+}
 
 const Behaviors = () => {
   const {
@@ -31,7 +36,10 @@ const Behaviors = () => {
   } = PageContainer.useContainer()
   const { t } = useTranslation()
   const behaviors = model.getAllBehaviors()
-  const [modalId, setModalId] = useState<Behavior | undefined>(undefined)
+  const { id: behaviorId }: BehaviorQueryParams = qs.parse(location.search)
+  const openedSystemId = behaviors.find(behavior => behavior.id === behaviorId)
+
+  const [modalId, setModalId] = useState<Behavior | undefined>(openedSystemId)
   const [searchTerm, setSearchTerm] = useState(undefined)
   const [selectedFilter, setSelectedFilter] = useState(undefined)
   const [searchResults, setSearchResults] = useState(null)
@@ -162,7 +170,12 @@ const Behaviors = () => {
               <NativeLink
                 className={'u-text--xsmall'}
                 appearance={'system'}
-                onClick={() => setModalId(data)}
+                onClick={() => {
+                  setModalId(data)
+                  navigate({
+                    search: `?id=${data.id}`,
+                  })
+                }}
               >
                 {data.id}
               </NativeLink>
@@ -220,13 +233,21 @@ const Behaviors = () => {
       </PageLayout.Section>
 
       <PageLayout.Section>
-        <Modal isOpen={!!modalId} onClose={() => setModalId(undefined)}>
+        <Modal
+          isOpen={!!modalId}
+          onClose={() => {
+            setModalId(undefined)
+            navigate({
+              search: '',
+            })
+          }}
+        >
           <BehaviorModal behavior={modalId} />
         </Modal>
 
         <StackLayout gap={1.25}>
           <StackLayout gap={1}>
-            <Text type={'subtitle l'} color="textGray" semiBold>
+            <Text type="subtitle l" color="textGray" semiBold>
               {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
             </Text>
             <SearchAndFilterWrapper>

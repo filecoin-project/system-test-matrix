@@ -65,6 +65,8 @@ export const Overview: React.FC<Props> = ({ system }) => {
     },
   ]
 
+  const [filteredData, setFilteredData] = useState(system.subsystems)
+
   const getPaginationData = (pageNum: number, pageLimit: number) =>
     searchResults &&
     searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)

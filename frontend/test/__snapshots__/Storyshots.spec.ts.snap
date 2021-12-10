@@ -5537,7 +5537,6 @@ exports[`Storyshots Link Default 1`] = `
 
 .c4 {
   color: #000000;
-  font-weight: 600;
 }
 
 .c4:hover {
@@ -5754,7 +5753,6 @@ exports[`Storyshots Link Sizing 1`] = `
 
 .c4 {
   color: #000000;
-  font-weight: 600;
 }
 
 .c4:hover {
@@ -5932,6 +5930,7 @@ exports[`Storyshots Link System 1`] = `
 
 .c4 {
   color: #218BFF;
+  font-weight: 600;
 }
 
 .c4:hover {
@@ -6135,13 +6134,20 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 .c5 {
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #14142B;
 }
 
 .c10 {
+  font-weight: bold;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: #14142B;
+}
+
+.c11 {
   font-weight: normal;
   line-height: 1.5rem;
   -webkit-letter-spacing: 0.2px;
@@ -6182,7 +6188,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   height: 100%;
 }
 
-.c11 {
+.c12 {
   position: relative;
   height: 38px;
   width: 131px;
@@ -6207,12 +6213,12 @@ exports[`Storyshots Modal Verification Status 1`] = `
   cursor: pointer;
 }
 
-.c11[disabled] {
+.c12[disabled] {
   pointer-events: none;
   border: 0;
 }
 
-.c11 > span {
+.c12 > span {
   line-height: 1rem;
   -webkit-letter-spacing: 0.2px;
   -moz-letter-spacing: 0.2px;
@@ -6220,15 +6226,15 @@ exports[`Storyshots Modal Verification Status 1`] = `
   letter-spacing: 0.2px;
 }
 
-.c11:hover {
+.c12:hover {
   background-color: #b4c5d6;
 }
 
-.c11:focus {
+.c12:focus {
   background-color: #fff;
 }
 
-.c12 {
+.c13 {
   font-family: "Nunito Sans",sans-serif;
   font-size: 14px;
   -webkit-letter-spacing: 0.03rem;
@@ -6239,7 +6245,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   color: #fff;
 }
 
-.c15 {
+.c16 {
   border: 1px solid #D0D7DE;
   border-radius: 5px;
   color: #24292F;
@@ -6321,7 +6327,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   padding: 2rem 3rem;
 }
 
-.c14 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -6339,7 +6345,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   border-top: 1px solid #D0D7DE;
 }
 
-.c16 {
+.c17 {
   margin: auto;
 }
 
@@ -6354,7 +6360,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   text-align: center;
 }
 
-.c13 {
+.c14 {
   margin-top: 36px;
 }
 
@@ -6378,7 +6384,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
 }
 
 @media (max-width:420px) {
-  .c13 {
+  .c14 {
     width: 100%;
   }
 }
@@ -6397,8 +6403,8 @@ exports[`Storyshots Modal Verification Status 1`] = `
       className="c4"
     >
       <span
-        bold={true}
         className="c5 c-text--text-xl"
+        semiBold={true}
       >
         Details
       </span>
@@ -6419,18 +6425,18 @@ exports[`Storyshots Modal Verification Status 1`] = `
         />
         <span
           bold={true}
-          className="c5 c-text--text-xl"
+          className="c10 c-text--text-xl"
         >
           iam.modal.verificationStatus
         </span>
         <span
-          className="c10 c-text--text-m c-text--color-gray80"
+          className="c11 c-text--text-m c-text--color-gray80"
         >
           iam.modal.description
         </span>
       </div>
       <button
-        className="c11 c12 c13"
+        className="c12 c13 c14"
         data-element="button"
         size="medium"
         variant="rounded"
@@ -6439,10 +6445,10 @@ exports[`Storyshots Modal Verification Status 1`] = `
       </button>
     </div>
     <div
-      className="c14"
+      className="c15"
     >
       <button
-        className="c11 c15 c16"
+        className="c12 c16 c17"
         data-element="button"
         size="medium"
         variant="outline"

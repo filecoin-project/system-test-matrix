@@ -23,7 +23,8 @@
     "browserslist": ">= 4.0.0",
     "trim": ">= 0.0.1",
     "highlight.js": ">= 9.13.1",
-    "prismjs": ">= 1.17.1"
+    "prismjs": ">= 1.17.1",
+    "node-fetch": "2.6.1"
   },
   "dependencies": {
     "axios": "^0.24.0",

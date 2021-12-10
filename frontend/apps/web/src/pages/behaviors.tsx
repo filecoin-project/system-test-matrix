@@ -18,9 +18,14 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import qs from 'query-string'
 
 import { PageContainer } from '@/containers/PageContainer'
 import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+
+interface BehaviorQueryParams {
+  id?: string
+}
 
 const Behaviors = () => {
   const {
@@ -28,12 +33,10 @@ const Behaviors = () => {
   } = PageContainer.useContainer()
   const { t } = useTranslation()
   const behaviors = model.getAllBehaviors()
-  const [modalId, setModalId] = useState<Behavior | undefined>(
-    behaviors.find(
-      behavior =>
-        behavior.id === new URLSearchParams(window.location.search).get('id'),
-    ),
-  )
+  const { id: behaviorId }: BehaviorQueryParams = qs.parse(location.search)
+  const openedSystemId = behaviors.find(behavior => behavior.id === behaviorId)
+
+  const [modalId, setModalId] = useState<Behavior | undefined>(openedSystemId)
 
   const prepareBehaviorChart = () => {
     return Object.entries(

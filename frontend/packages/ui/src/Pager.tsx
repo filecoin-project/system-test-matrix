@@ -63,24 +63,29 @@ const DropdownStyled = styled(Dropdown)`
   width: 5.5rem;
   color: ${Colors.gray80};
   border: 0;
+
   &:hover,
   &:focus {
     border: 0 !important;
   }
+
   & > div:first-of-type > div {
     height: 1.5rem;
     margin-top: 0.1rem;
     padding-right: 3.45rem;
+
     span {
       font-size: 0.9rem;
       color: ${Colors.gray80};
     }
+
     svg {
       width: 1rem !important;
       height: 1rem !important;
       fill: ${Colors.gray80};
     }
   }
+
   & > div:last-of-type {
     top: 2rem !important;
     border-top: 1px solid;

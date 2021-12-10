@@ -17,6 +17,14 @@
     "storybook": "start-storybook -p 6006 -s ./apps/web/src/public,./packages/ui/src/fonts",
     "build-storybook": "build-storybook --quiet -s ./apps/web/src/public,./packages/ui/src/fonts"
   },
+  "resolutions": {
+    "immer": ">= 8.0.1",
+    "glob-parent": ">= 3.1.0",
+    "browserslist": ">= 4.0.0",
+    "trim": ">= 0.0.1",
+    "highlight.js": ">= 9.13.1",
+    "prismjs": ">= 1.17.1"
+  },
   "dependencies": {
     "axios": "^0.24.0",
     "babel-plugin-transform-require-context": "^0.1.1",

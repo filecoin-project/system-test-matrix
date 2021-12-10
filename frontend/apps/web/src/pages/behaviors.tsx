@@ -1,9 +1,8 @@
 import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 import { PageContainer } from '@/containers/PageContainer'
-import { filterItems } from '@filecoin/core'
+import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
-  BoxLayout,
   Button,
   CardLayout,
   CenterLayout,
@@ -248,7 +247,7 @@ const Behaviors = () => {
 
         <StackLayout gap={1.25}>
           <StackLayout gap={1}>
-            <Text type='subtitle l' color="textGray" semiBold>
+            <Text type="subtitle l" color="textGray" semiBold>
               {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
             </Text>
             <SearchAndFilterWrapper>

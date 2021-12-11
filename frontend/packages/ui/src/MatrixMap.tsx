@@ -36,6 +36,7 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick, openModal }) => {
           color: getStatusColor('null' as TestStatus),
         },
       ]
+
   const NUMBER_OF_ROWS = Math.ceil(160 / Math.sqrt((160 * 160) / data.length))
   const NUMBER_OF_COLUMNS = NUMBER_OF_ROWS
   const NODES_LIMIT = NUMBER_OF_COLUMNS * NUMBER_OF_ROWS
@@ -54,6 +55,8 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick, openModal }) => {
     const rowNumber = Math.floor(Math.max(index / NUMBER_OF_ROWS, 0))
     const columnIndex = index % NUMBER_OF_COLUMNS
 
+    const dataIndex = rowNumber * NUMBER_OF_COLUMNS + columnIndex
+
     if (!functionName) {
       return null
     }
@@ -68,13 +71,12 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick, openModal }) => {
           height={NODE_SIZE}
           style={{
             cursor: 'pointer',
-            pointerEvents: functionName === 'missing' ? 'none' : null,
             fill: color,
             stroke: '#fff',
             strokeWidth: NODE_SIZE * 0.0625,
             strokeOpacity: 1,
           }}
-          onClick={() => openModal()}
+          onClick={() => openModal(data[dataIndex])}
         />
       </g>
     )

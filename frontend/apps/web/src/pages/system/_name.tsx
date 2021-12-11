@@ -7,9 +7,15 @@ import { PageContainer } from '@/containers/PageContainer'
 import { DetailedView as ChartView } from '@/components/system/DetailedView'
 import { Overview } from '@/components/system/Overview'
 import { SystemHeader } from '@/components/system/SystemHeader'
+import qs from 'query-string'
 
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]
+
+interface SystemQueryParams {
+  tab?: 'overview' | 'detailedView'
+  id?: string
+}
 
 const RepositoryDetails = () => {
   const {
@@ -24,9 +30,9 @@ const RepositoryDetails = () => {
     return totalTests + subsystem.tests.length
   }, 0)
 
-  const [activeTab, setActiveTab] = useState<Tab>(
-    new URLSearchParams(window.location.search).get('tab') as Tab,
-  )
+  const { id: testIdQueryParam, tab: tabQueryParam }: SystemQueryParams =
+    qs.parse(location.search)
+  const [activeTab, setActiveTab] = useState<Tab>(tabQueryParam)
 
   const pageLayout = usePageLayout({
     header: (
@@ -45,7 +51,9 @@ const RepositoryDetails = () => {
       setActiveTab('overview')
     } else {
       navigate({
-        search: `?tab=${activeTab}`,
+        search: `?tab=${activeTab}${
+          testIdQueryParam ? `&id=${testIdQueryParam}` : ''
+        }`,
       })
 
       pageLayout.setHeader(

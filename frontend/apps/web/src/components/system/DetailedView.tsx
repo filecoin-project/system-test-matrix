@@ -12,14 +12,30 @@ import {
 import styled from 'styled-components'
 import ReactTooltip from 'react-tooltip'
 import { System, TestKind } from '@filecoin/types'
+import { TestModal } from '@/components/tests/TestModal'
+import { Test } from '@filecoin/types'
+import { PageContainer } from '@/containers/PageContainer'
+import { useNavigate } from 'react-router-dom'
+import qs from 'query-string'
 
 interface Props {
   testKinds: TestKind[]
   system: System
 }
 
+interface TestQueryParams {
+  id?: string
+}
+
 export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
-  const [modalIsOpened, setModalOpened] = useState(false)
+  const navigate = useNavigate()
+  const {
+    state: { model },
+  } = PageContainer.useContainer()
+  const allTests = model.getAllTests()
+  const { id: testId }: TestQueryParams = qs.parse(location.search)
+  const openedTest = allTests.find(test => test.id === testId)
+  const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -27,8 +43,16 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
 
   return (
     <Wrapper>
-      <Modal isOpen={modalIsOpened} onClose={() => setModalOpened(false)}>
-        <div>Helooooo</div>
+      <Modal
+        isOpen={!!testModal}
+        onClose={() => {
+          setTestModal(undefined)
+          navigate({
+            search: '?tab=detailedView',
+          })
+        }}
+      >
+        <TestModal test={testModal} />
       </Modal>
       <ReactTooltip
         effect="solid"
@@ -78,7 +102,12 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                     <MatrixMap
                       key={testKind}
                       data={tests}
-                      openModal={() => setModalOpened(true)}
+                      openModal={(test: Test) => {
+                        setTestModal(test)
+                        navigate({
+                          search: `?tab=detailedView&id=${test.id}`,
+                        })
+                      }}
                       onClick={() => null}
                     />
                   )

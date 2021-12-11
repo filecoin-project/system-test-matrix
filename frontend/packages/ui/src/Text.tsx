@@ -255,4 +255,5 @@ export const Text = styled(TextComponent)<TextProps>`
         return 'center'
     }
   }};
+  word-break: break-word;
 `

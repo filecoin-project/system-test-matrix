@@ -1,6 +1,5 @@
 import { SystemScore, TestStatus, TestQueryParams, Test } from '@filecoin/types'
 import {
-  BoxLayout,
   Button,
   CardLayout,
   NativeLink,
@@ -12,30 +11,39 @@ import {
   TruncatedText,
   usePageLayout,
   Modal,
+  Pager,
+  Paginator,
+  Dropdown,
+  SearchInput,
 } from '@filecoin/ui'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import qs from 'query-string'
 import { TestModal } from '@/components/tests/TestModal'
-
 import { PageContainer } from '@/containers/PageContainer'
+import { getResultsWithFuseSearch } from '@filecoin/core'
 
 const Header = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
+
   return (
     <PageLayout.Header>
       <HeaderWrapper>
-        <Text type="heading 5">{t('filecoin.allTests.allTests')}</Text>
+        <Text type="heading 5" semiBold>
+          {t('filecoin.allTests.allTests')}
+        </Text>
 
         <Button
           onClick={() => navigate('/behaviors')}
           variant="outline"
           size="medium"
         >
-          {t('filecoin.allTests.allBehaviours')}
+          <Text type="text s" semiBold>
+            {t('filecoin.allTests.allBehaviours')}
+          </Text>
         </Button>
       </HeaderWrapper>
     </PageLayout.Header>
@@ -80,7 +88,9 @@ export const getButton = (status: TestStatus | SystemScore) => {
       size="small"
       color={getColor()}
     >
-      {t(`filecoin.allTests.${status}`)}
+      <Text color="white" type="text s" bold>
+        {t(`filecoin.allTests.${status}`)}
+      </Text>
     </Button>
   )
 }
@@ -108,8 +118,6 @@ const AllTests: React.FC = () => {
     }))
   }
 
-  const allTestsKinds = prepareAllTestsChart()
-
   const prepareAllTestsStatus = () => {
     return Object.entries(
       allTests.reduce(
@@ -134,7 +142,85 @@ const AllTests: React.FC = () => {
       percentage: (count / allTests.length) * 100,
     }))
   }
+
   const allTestsStatus = prepareAllTestsStatus()
+  const allTestsKinds = prepareAllTestsChart()
+
+  const [searchTerm, setSearchTerm] = useState(undefined)
+  const [selectedFilter, setSelectedFilter] = useState(undefined)
+  const [searchResults, setSearchResults] = useState(null)
+
+  const options = {
+    threshold: 0.1,
+    keys: ['functionName', 'id', 'kind', 'path', 'repository', 'status'],
+  }
+  const StatusOptions = {
+    keys: ['status'],
+  }
+
+  const filterOptions = [
+    {
+      label: 'All statuses',
+      value: undefined,
+    },
+    {
+      label: 'Passing',
+      value: 'pass',
+    },
+    {
+      label: 'Failing',
+      value: 'fail',
+    },
+    {
+      label: 'Missing',
+      value: 'missing',
+    },
+  ]
+
+  const results = getResultsWithFuseSearch(
+    allTests,
+    options,
+    StatusOptions,
+    searchTerm,
+    selectedFilter,
+    filterOptions,
+  )
+
+  const getPaginationData = (pageNum: number, pageLimit: number) =>
+    searchResults &&
+    searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
+
+  const [paginatedData, setPaginatedData] = useState({
+    data: getPaginationData(1, 5),
+    pageNum: 1,
+    pageLimit: 5,
+  })
+
+  const onPagination = (pageNum: number) =>
+    setPaginatedData({
+      data: getPaginationData(pageNum, paginatedData.pageLimit),
+      pageNum,
+      pageLimit: paginatedData.pageLimit,
+    })
+
+  const onPageLimitChange = (dataPerPage: number) => {
+    setPaginatedData({
+      data: getPaginationData(1, dataPerPage),
+      pageNum: 1,
+      pageLimit: dataPerPage,
+    })
+  }
+  useEffect(() => {
+    setSearchResults(results)
+  }, [selectedFilter, searchTerm])
+
+  useEffect(() => {
+    setPaginatedData({
+      data: getPaginationData(1, 5),
+      pageNum: 1,
+      pageLimit: 5,
+    })
+  }, [searchResults])
 
   const pageLayout = usePageLayout({
     header: <Header />,
@@ -156,29 +242,52 @@ const AllTests: React.FC = () => {
       </Modal>
       <PageLayout.Section>
         <StackLayout gap={1}>
-          <CardLayout>
-            <BoxLayout gap={2}>
-              <StackLayout gap={0.5}>
-                <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
-                <ProgressBar legend data={allTestsKinds} />
-              </StackLayout>
-            </BoxLayout>
-          </CardLayout>
-          <CardLayout>
-            <BoxLayout gap={2}>
-              <StackLayout gap={0.5}>
-                <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
-                <ProgressBar legend data={allTestsStatus} />
-              </StackLayout>
-            </BoxLayout>
-          </CardLayout>
+          <ProgressBarWrapper shadow={false}>
+            <StackLayout gap={0.5}>
+              <Text type="text xl" color="textGray" semiBold>
+                {t('filecoin.allTests.allKinds')}
+              </Text>
+              <ProgressBar legend data={allTestsKinds} />
+            </StackLayout>
+          </ProgressBarWrapper>
+          <ProgressBarWrapper shadow={false}>
+            <StackLayout gap={0.5}>
+              <Text type="text xl" color="textGray" semiBold>
+                {t('filecoin.allTests.allStatus')}
+              </Text>
+              <ProgressBar legend data={allTestsStatus} />
+            </StackLayout>
+          </ProgressBarWrapper>
         </StackLayout>
       </PageLayout.Section>
       <PageLayout.Section>
         <StackLayout gap={1.25}>
-          <Text type="text xl">
-            {t('filecoin.allTests.listOfAllTests')} ({allTests.length})
-          </Text>
+          <StackLayout gap={1}>
+            <Text type="text xl" color="textGray" semiBold>
+              {t('filecoin.allTests.listOfAllTests')} ({allTests.length})
+            </Text>
+            <SearchAndFilterWrapper>
+              <SearchInput
+                onSearch={value => {
+                  setSearchTerm(value)
+                }}
+                value={searchTerm}
+                placeholder="Search tests"
+                width="58.75rem"
+                autoFocus={false}
+              />
+              <Dropdown
+                placeholder="All statuses"
+                name="score"
+                options={filterOptions}
+                value={selectedFilter}
+                onChange={e => {
+                  setSelectedFilter(e.value)
+                }}
+                onClearFilter={() => setSelectedFilter(undefined)}
+              />
+            </SearchAndFilterWrapper>
+          </StackLayout>
 
           <Table
             variant="default"
@@ -213,7 +322,9 @@ const AllTests: React.FC = () => {
                 Cell: ({ data }) => {
                   return (
                     <TruncatedText>
-                      <Text type="text s">{data.functionName}</Text>
+                      <Text type="text s" color="textGray">
+                        {data.functionName}
+                      </Text>
                     </TruncatedText>
                   )
                 },
@@ -228,7 +339,9 @@ const AllTests: React.FC = () => {
                       target={'_blank'}
                       className={'u-text--xsmall'}
                     >
-                      {data.repository}
+                      <Text type="text s" color="textGray">
+                        {data.repository}
+                      </Text>
                     </NativeLink>
                   )
                 },
@@ -236,14 +349,18 @@ const AllTests: React.FC = () => {
               kinds: {
                 header: t('filecoin.allTests.kinds'),
                 Cell: ({ data }) => {
-                  return <Text type="text s">{data.kind}</Text>
+                  return (
+                    <Text type="text s" color="textGray">
+                      {data.kind}
+                    </Text>
+                  )
                 },
               },
               behaviors: {
                 header: t('filecoin.behaviors.title'),
                 Cell: ({ data }) => {
                   return (
-                    <Text type="text s">
+                    <Text type="text s" color="textGray">
                       {data.linkedBehaviors.length}{' '}
                       {t('filecoin.allTests.behaviors')}
                     </Text>
@@ -255,9 +372,22 @@ const AllTests: React.FC = () => {
                 Cell: ({ data }) => getButton(data.status),
               },
             }}
-            data={allTests}
+            data={paginatedData.data}
           />
         </StackLayout>
+        <Pager
+          currentPage={paginatedData.pageNum}
+          totalRecords={searchResults && searchResults.length}
+          pageLimit={paginatedData.pageLimit}
+          onChange={onPageLimitChange}
+        />
+        <Paginator
+          onPagination={onPagination}
+          currentPage={paginatedData.pageNum}
+          totalRecords={searchResults && searchResults.length}
+          pageLimit={paginatedData.pageLimit}
+          isFetching={false}
+        />
       </PageLayout.Section>
     </PageLayout>
   )
@@ -272,5 +402,18 @@ const HeaderWrapper = styled.div`
   button {
     margin-top: auto;
     margin-bottom: auto;
+  }
+`
+const ProgressBarWrapper = styled(CardLayout)`
+  max-width: 58.75rem;
+  margin-bottom: 1rem;
+  padding: 2.65rem 3.625rem;
+`
+const SearchAndFilterWrapper = styled.div`
+  display: flex;
+
+  [data-element='dropdown'] {
+    max-width: 181px;
+    margin-left: auto;
   }
 `

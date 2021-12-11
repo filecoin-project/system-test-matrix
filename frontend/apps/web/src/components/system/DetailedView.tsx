@@ -37,7 +37,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
   }, [testKinds])
 
   return (
-    <Wrapper>
+    <Wrapper shadow={false}>
       <Modal
         isOpen={!!testModal}
         onClose={() => {
@@ -75,7 +75,11 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
         <StackLayout gap={1}>
           <ColumnLayout className={'c-matrix__header'} gap={1}>
             {testKinds.map(testKind => {
-              return <Text key={testKind}>{testKind}</Text>
+              return (
+                <Text key={testKind} color="textGray">
+                  {testKind}
+                </Text>
+              )
             })}
           </ColumnLayout>
 
@@ -86,7 +90,9 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                 gap={1}
                 key={subsystem.name}
               >
-                <Text>{subsystem.name}</Text>
+                <Text color="textGray" semiBold>
+                  {subsystem.name}
+                </Text>
 
                 {testKinds.map(testKind => {
                   const tests = subsystem.tests.filter(
@@ -152,6 +158,7 @@ const Wrapper = styled(CardLayout)`
 const Legend = styled.div`
   display: flex;
   justify-content: end;
+  color: ${Colors.textGray};
 
   > div {
     margin-left: 2rem;

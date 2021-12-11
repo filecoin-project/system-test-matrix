@@ -1,3 +1,4 @@
+import Fuse from 'fuse.js'
 import moment from 'moment'
 
 export const filterItems = (items, filter, filterBy) => {
@@ -18,4 +19,44 @@ export const formatDate = (date: number | string, format = 'LLL'): string => {
     return moment(date).format(format)
   }
   return moment(date * 1000).format(format)
+}
+
+//TODO @Vojo i should make types for arguments here
+export const searchWithFuse = (array, option, query) => {
+  const fuse = new Fuse(array, option)
+  const searchResult = fuse.search(query)
+
+  return searchResult.map(result => {
+    return result.item
+  })
+}
+export const getResultsWithFuseSearch = (
+  array,
+  options1,
+  options2,
+  searchTerm,
+  selectedFilter,
+  filterOptions,
+) => {
+  if (selectedFilter) {
+    const filterResult: any = searchWithFuse(array, options2, selectedFilter)
+    if (searchTerm) {
+      return searchWithFuse(filterResult, options1, searchTerm)
+    } else {
+      return filterResult
+    }
+  }
+  if (searchTerm) {
+    const manualFilter = filterOptions.find(
+      key => key.label.toLowerCase() === searchTerm.toLowerCase(),
+    )
+
+    if (manualFilter) {
+      return searchWithFuse(array, options2, manualFilter.value)
+    } else {
+      return searchWithFuse(array, options1, searchTerm)
+    }
+  } else {
+    return array
+  }
 }

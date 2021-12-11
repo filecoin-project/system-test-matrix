@@ -1,7 +1,6 @@
 import { Meta } from '@storybook/react'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-
 import {
   CenterLayout,
   ColumnLayout,
@@ -31,7 +30,7 @@ export const Headings = () => {
               Display
             </Text>
             <Text>H1</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>72px</Text>
             <Text>-0.7px</Text>
           </Column>
@@ -39,7 +38,7 @@ export const Headings = () => {
           <Column as={ColumnLayout} gap={2}>
             <Text type="heading 1">Display</Text>
             <Text>H1 Light</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>72px</Text>
             <Text>-0.7px</Text>
           </Column>
@@ -49,7 +48,7 @@ export const Headings = () => {
               Display
             </Text>
             <Text>H2</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>54px</Text>
             <Text>0.3px</Text>
           </Column>
@@ -57,7 +56,7 @@ export const Headings = () => {
           <Column as={ColumnLayout} gap={2}>
             <Text type="heading 2">Display</Text>
             <Text>H2 Light</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>54px</Text>
             <Text>0.3px</Text>
           </Column>
@@ -67,7 +66,7 @@ export const Headings = () => {
               Display
             </Text>
             <Text>H3</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>40px</Text>
             <Text>0.3px</Text>
           </Column>
@@ -75,7 +74,7 @@ export const Headings = () => {
           <Column as={ColumnLayout} gap={2}>
             <Text type="heading 3">Display</Text>
             <Text>H3 Light</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>40px</Text>
             <Text>0.3px</Text>
           </Column>
@@ -85,7 +84,7 @@ export const Headings = () => {
               Display
             </Text>
             <Text>H4</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>28px</Text>
             <Text>0.3px</Text>
           </Column>
@@ -93,7 +92,7 @@ export const Headings = () => {
           <Column as={ColumnLayout} gap={2}>
             <Text type="heading 4">Display</Text>
             <Text>H4 Light</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>28px</Text>
             <Text>0.3px</Text>
           </Column>
@@ -103,16 +102,16 @@ export const Headings = () => {
               Display
             </Text>
             <Text>H5</Text>
-            <Text>Manrope</Text>
-            <Text>22px</Text>
+            <Text>Segoe UI</Text>
+            <Text>24px</Text>
             <Text>0.3px</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2}>
             <Text type="heading 5">Display</Text>
             <Text>H5 Light</Text>
-            <Text>Manrope</Text>
-            <Text>22px</Text>
+            <Text>Segoe UI</Text>
+            <Text>24px</Text>
             <Text>0.3px</Text>
           </Column>
 
@@ -121,7 +120,7 @@ export const Headings = () => {
               Display
             </Text>
             <Text>H6</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>18px</Text>
             <Text>0px</Text>
           </Column>
@@ -129,7 +128,7 @@ export const Headings = () => {
           <Column as={ColumnLayout} gap={2}>
             <Text type="heading 6">Display</Text>
             <Text>H6 Lignt</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>18px</Text>
             <Text>0px</Text>
           </Column>
@@ -139,7 +138,7 @@ export const Headings = () => {
               Display
             </Text>
             <Text>H7</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>16px</Text>
             <Text>0px</Text>
           </Column>
@@ -147,7 +146,7 @@ export const Headings = () => {
           <Column as={ColumnLayout} gap={2}>
             <Text type="heading 7">Display</Text>
             <Text>H7 Light</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>16px</Text>
             <Text>0px</Text>
           </Column>
@@ -169,7 +168,7 @@ export const Paragraphs = () => {
         <StackLayout gap={0}>
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="text xl">Text XL</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>20px</Text>
           </Column>
 
@@ -177,14 +176,14 @@ export const Paragraphs = () => {
             <Text type="text xl" bold>
               Text XL Bold
             </Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>20px</Text>
             <Text>Bold</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="text l">Text L</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>18px</Text>
           </Column>
 
@@ -192,14 +191,14 @@ export const Paragraphs = () => {
             <Text type="text l" bold>
               Text L Bold
             </Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>18px</Text>
             <Text>Bold</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="text m">Text M</Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>16px</Text>
           </Column>
 
@@ -207,14 +206,14 @@ export const Paragraphs = () => {
             <Text type="text m" bold>
               Text M Bold
             </Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>16px</Text>
             <Text>Bold</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="text s">Text S</Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>14px</Text>
           </Column>
 
@@ -222,14 +221,14 @@ export const Paragraphs = () => {
             <Text type="text s" bold>
               Text S Bold
             </Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>14px</Text>
             <Text>Bold</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="text xs">Text XS</Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>13px</Text>
           </Column>
 
@@ -237,14 +236,14 @@ export const Paragraphs = () => {
             <Text type="text xs" bold>
               Text XS Bold
             </Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>13px</Text>
             <Text>Bold</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="text xxs">Text XXS</Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>11px</Text>
           </Column>
 
@@ -252,7 +251,7 @@ export const Paragraphs = () => {
             <Text type="text xxs" bold>
               Text XXS Bold
             </Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>11px</Text>
             <Text>Bold</Text>
           </Column>
@@ -274,7 +273,7 @@ export const Rest = () => {
         <StackLayout gap={0}>
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="subtitle l">Subtitle Large</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>20px</Text>
           </Column>
 
@@ -282,14 +281,14 @@ export const Rest = () => {
             <Text type="subtitle l" bold>
               Subtitle Large Bold
             </Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>20px</Text>
             <Text>Bold</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="subtitle m">Subtitle Base</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>18px</Text>
           </Column>
 
@@ -297,7 +296,7 @@ export const Rest = () => {
             <Text type="subtitle m" bold>
               Subtitle Base Bold
             </Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>18px</Text>
             <Text>Bold</Text>
           </Column>
@@ -306,14 +305,14 @@ export const Rest = () => {
             <Text type="button" bold>
               Button Large
             </Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>16px</Text>
             <Text>Bold</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="button">Button Small</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>13px</Text>
             <Text>Bold</Text>
           </Column>
@@ -322,14 +321,14 @@ export const Rest = () => {
             <Text type="overline" bold>
               Label / Input Overline Bold
             </Text>
-            <Text>OpenSans</Text>
+            <Text>Segoe UI</Text>
             <Text>16px</Text>
             <Text>Bold</Text>
           </Column>
 
           <Column as={ColumnLayout} gap={2} className="textColumn">
             <Text type="overline">Label / Input Overline</Text>
-            <Text>Manrope</Text>
+            <Text>Segoe UI</Text>
             <Text>13px</Text>
           </Column>
         </StackLayout>

@@ -34,7 +34,9 @@ export const PageLayoutHeader = React.forwardRef(
           <BoxLayout>
             <NavWrapper to={'/'}>
               <img width="26" height="26" src={'/img/logo.png'} />
-              <Text color="white">System Test Matrix</Text>
+              <Text color="white" bold>
+                System Test Matrix
+              </Text>
             </NavWrapper>
           </BoxLayout>
         </div>

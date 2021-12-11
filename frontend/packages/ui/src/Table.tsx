@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import { Loader } from './Loader'
 import { Paginator } from './Paginator'
 import { Colors } from './styles/colors'
@@ -246,7 +245,7 @@ export const TruncatedText = styled.div`
 
 const TableHeaderText = styled(TruncatedText)`
   color: ${Colors.textGray};
-  font-weight: bold;
+  font-weight: 600;
   text-transform: capitalize;
   vertical-align: middle;
 `

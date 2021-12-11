@@ -1,8 +1,8 @@
-import React from 'react'
 import { ReactProps } from '@filecoin/types'
 import classNames from 'classnames'
-import { BoxLayout } from './BoxLayout'
+import React from 'react'
 import { Text } from '../Text'
+import { BoxLayout } from './BoxLayout'
 
 export interface FooterProps {
   /**
@@ -25,7 +25,9 @@ export const PageLayoutFooter = React.forwardRef(
     return (
       <Component ref={ref} {...props} className={className}>
         <BoxLayout>
-          <Text type="text xs">&copy; 2021 FileCoin</Text>
+          <Text type="text xs" color="textGray">
+            &copy; 2021 FileCoin
+          </Text>
         </BoxLayout>
       </Component>
     )

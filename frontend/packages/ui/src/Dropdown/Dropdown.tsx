@@ -9,14 +9,12 @@ import { find } from 'lodash'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { Loader } from '../Loader'
 import { SearchInput } from '../SearchInput'
 import { Colors } from '../styles/colors'
 import { Text } from '../Text'
-
 import { DropdownItem } from './DropdownItem'
 
 interface Option {
@@ -482,7 +480,16 @@ export const Dropdown: FunctionComponent<Props> = ({
       >
         <HiddenWrapper>{hiddenSelect}</HiddenWrapper>
         {labelElement}
-        <Icon name="arrow_down" overflow="visible" />
+        {props.value ? (
+          <Icon
+            name="close"
+            size="medium"
+            overflow="visible"
+            onClick={() => props.onClearFilter()}
+          />
+        ) : (
+          <Icon name="arrow_up_and_down" size="xsmall" overflow="visible" />
+        )}
       </SelectWrapper>
     )
   }
@@ -650,7 +657,7 @@ const Wrapper = styled.div<{
       ? ''
       : `
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
@@ -667,7 +674,7 @@ const Wrapper = styled.div<{
 
   &:focus {
     border: 1px solid ${Colors.gray60};
-    border-radius: 8px;
+    border-radius: 5px;
   }
 
   ${({ disabled }): any => {
@@ -703,7 +710,7 @@ const LabelSelect = styled.span`
   flex: 1 1 100%;
   white-space: nowrap;
   overflow: hidden;
-  color: ${Colors.inputPlaceholder};
+  color: ${Colors.textGray};
 `
 
 const SelectWrapper = styled.div<{
@@ -712,7 +719,7 @@ const SelectWrapper = styled.div<{
   size?: DropdownSizes
 }>`
   height: ${({ size }) => {
-    return size === 'large' ? '3.5rem' : '3rem'
+    return size === 'large' ? '3.5rem' : '2.875rem'
   }};
   ${props => {
     return props.isFilter
@@ -769,7 +776,7 @@ const Element = styled.div<{
   }};
   border: ${({ isFilled }) => isFilled && `1px solid ${Colors.gray60}`};
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
 `

@@ -169,7 +169,7 @@ export const Page: PageLayout = Object.assign(
 
 const HEADER_HEIGHT = 185
 const NAV_WIDTH = 300
-const CONTENT_MAX_WIDTH = 1100
+const CONTENT_MAX_WIDTH = 1203
 
 export const PageLayout = styled(Page)`
   position: relative;
@@ -208,7 +208,7 @@ export const PageLayout = styled(Page)`
     display: flex;
     width: 100vw;
     height: 6.25rem;
-    max-width: calc(1100px - 4rem);
+    max-width: calc(1203px - 4rem);
     margin: auto auto 0;
     border-top: 1px solid ${Colors.borderColor};
     color: ${Colors.logoBackground};

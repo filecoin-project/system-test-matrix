@@ -1,8 +1,8 @@
-import React from 'react'
-import { PageLayout, Text, Icon, Link } from '@filecoin/ui'
-import { getButton } from '@/pages/tests'
 import { SystemScore, TestStatus } from '@filecoin/types'
+import { Icon, Link, PageLayout, Text } from '@filecoin/ui'
+import React from 'react'
 import styled from 'styled-components'
+import { getButton } from '@/pages/tests'
 
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]
@@ -23,8 +23,12 @@ export const SystemHeader: React.FC<HeaderProps> = ({
   return (
     <PageLayout.Header>
       <BreadCrumbs>
-        <Link to="/">System</Link>
-        <StyledText type={'text xl'} bold>
+        <Link to="/">
+          <Text type="text xl" semiBold>
+            System
+          </Text>
+        </Link>
+        <StyledText type="text xl" semiBold>
           / {pageName}
         </StyledText>
         {getButton(score)}

@@ -1,4 +1,4 @@
-import { SystemScore, TestStatus } from '@filecoin/types'
+import { SystemScore, TestStatus, TestQueryParams, Test } from '@filecoin/types'
 import {
   BoxLayout,
   Button,
@@ -11,11 +11,14 @@ import {
   Text,
   TruncatedText,
   usePageLayout,
+  Modal,
 } from '@filecoin/ui'
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import qs from 'query-string'
+import { TestModal } from '@/components/tests/TestModal'
 
 import { PageContainer } from '@/containers/PageContainer'
 
@@ -38,6 +41,7 @@ const Header = () => {
     </PageLayout.Header>
   )
 }
+
 export const getButton = (status: TestStatus | SystemScore) => {
   const { t } = useTranslation()
 
@@ -80,12 +84,17 @@ export const getButton = (status: TestStatus | SystemScore) => {
     </Button>
   )
 }
-const AllTests = () => {
+
+const AllTests: React.FC = () => {
+  const navigate = useNavigate()
   const {
     state: { model },
   } = PageContainer.useContainer()
   const allTests = model.getAllTests()
   const { t } = useTranslation()
+  const { id: testId }: TestQueryParams = qs.parse(location.search)
+  const openedTest = allTests.find(test => test.id === testId)
+  const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
 
   const prepareAllTestsChart = () => {
     return Object.entries(
@@ -134,6 +143,17 @@ const AllTests = () => {
 
   return (
     <PageLayout {...pageLayout}>
+      <Modal
+        isOpen={!!testModal}
+        onClose={() => {
+          setTestModal(undefined)
+          navigate({
+            search: '',
+          })
+        }}
+      >
+        <TestModal test={testModal} />
+      </Modal>
       <PageLayout.Section>
         <StackLayout gap={1}>
           <CardLayout>
@@ -169,9 +189,20 @@ const AllTests = () => {
                 Cell: ({ data }) => {
                   return (
                     <TruncatedText>
-                      <StackLayout>
-                        <Text type="text s">{data.path}</Text>
-                      </StackLayout>
+                      <NativeLink
+                        className={'u-text--xsmall'}
+                        appearance={'system'}
+                        onClick={() => {
+                          setTestModal(data as Test)
+                          navigate({
+                            search: `?id=${data.id}`,
+                          })
+                        }}
+                      >
+                        <Text type="text s" color="blue">
+                          {data.path}
+                        </Text>
+                      </NativeLink>
                     </TruncatedText>
                   )
                 },

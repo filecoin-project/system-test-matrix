@@ -11,9 +11,8 @@ import {
 } from '@filecoin/ui'
 import styled from 'styled-components'
 import ReactTooltip from 'react-tooltip'
-import { System, TestKind } from '@filecoin/types'
+import { System, TestKind, TestQueryParams, Test } from '@filecoin/types'
 import { TestModal } from '@/components/tests/TestModal'
-import { Test } from '@filecoin/types'
 import { PageContainer } from '@/containers/PageContainer'
 import { useNavigate } from 'react-router-dom'
 import qs from 'query-string'
@@ -21,10 +20,6 @@ import qs from 'query-string'
 interface Props {
   testKinds: TestKind[]
   system: System
-}
-
-interface TestQueryParams {
-  id?: string
 }
 
 export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {

@@ -8,14 +8,10 @@ import { DetailedView as ChartView } from '@/components/system/DetailedView'
 import { Overview } from '@/components/system/Overview'
 import { SystemHeader } from '@/components/system/SystemHeader'
 import qs from 'query-string'
+import { SystemPageQueryParams } from '@filecoin/types'
 
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]
-
-interface SystemQueryParams {
-  tab?: 'overview' | 'detailedView'
-  id?: string
-}
 
 const RepositoryDetails = () => {
   const {
@@ -30,7 +26,7 @@ const RepositoryDetails = () => {
     return totalTests + subsystem.tests.length
   }, 0)
 
-  const { id: testIdQueryParam, tab: tabQueryParam }: SystemQueryParams =
+  const { id: testIdQueryParam, tab: tabQueryParam }: SystemPageQueryParams =
     qs.parse(location.search)
   const [activeTab, setActiveTab] = useState<Tab>(tabQueryParam)
 

@@ -30,6 +30,7 @@ const TextColors = [
   'red',
   'green',
   'white',
+  'blue',
   'gray60',
   'gray70',
   'gray80',
@@ -238,6 +239,8 @@ export const Text = styled(TextComponent)<TextProps>`
         return Colors.green80
       case 'white':
         return Colors.white
+      case 'blue':
+        return Colors.blueLink
       default:
         return Colors.textColor
     }

@@ -13,8 +13,9 @@ import {
 import styled from 'styled-components'
 import { System } from '@filecoin/types'
 import { getResultsWithFuseSearch } from '@filecoin/core'
-import { getButton } from '@/pages/tests'
 import { useTranslation } from 'react-i18next'
+
+import { getButton } from '@/pages/tests'
 
 interface Props {
   system: System
@@ -65,8 +66,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
     setSearchResults(results)
   }, [selectedFilter, searchTerm])
 
-  const [filteredData, setFilteredData] = useState(system.subsystems)
-
   const getPaginationData = (pageNum: number, pageLimit: number) =>
     searchResults &&
     searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
@@ -99,17 +98,16 @@ export const Overview: React.FC<Props> = ({ system }) => {
       pageLimit: 5,
     })
   }, [searchResults])
+
   return (
     <Wrapper>
       <ProgressBarWrapper shadow={false}>
         <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
         <ProgressBar
-          data={system.testKindStats.percentages.map(
-            ({ kind, percentage }) => ({
-              name: kind,
-              percentage,
-            }),
-          )}
+          data={system.testKindStats.percentages.map(({ kind, ...rest }) => ({
+            name: kind,
+            ...rest,
+          }))}
           legend
         />
       </ProgressBarWrapper>
@@ -117,9 +115,9 @@ export const Overview: React.FC<Props> = ({ system }) => {
         <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
         <ProgressBar
           data={system.testStatusStats.percentages.map(
-            ({ status, percentage }) => ({
+            ({ status, ...rest }) => ({
               name: status,
-              percentage: percentage,
+              ...rest,
             }),
           )}
           legend
@@ -169,7 +167,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
                 <Bar>
                   <ProgressBar
                     data={data.testKindStats.percentages.map(
-                      ({ kind, percentage }) => ({ name: kind, percentage }),
+                      ({ kind, ...rest }) => ({ name: kind, ...rest }),
                     )}
                   />
                 </Bar>
@@ -182,9 +180,9 @@ export const Overview: React.FC<Props> = ({ system }) => {
                 <Bar>
                   <ProgressBar
                     data={data.testStatusStats.percentages.map(
-                      ({ status, percentage }) => ({
+                      ({ status, ...rest }) => ({
                         name: status,
-                        percentage,
+                        ...rest,
                       }),
                     )}
                   />

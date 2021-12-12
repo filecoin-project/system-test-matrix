@@ -21,9 +21,10 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import qs from 'query-string'
+import { getResultsWithFuseSearch } from '@filecoin/core'
+
 import { TestModal } from '@/components/tests/TestModal'
 import { PageContainer } from '@/containers/PageContainer'
-import { getResultsWithFuseSearch } from '@filecoin/core'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -115,6 +116,7 @@ const AllTests: React.FC = () => {
     ).map(([key, count]: any) => ({
       name: key,
       percentage: (count / allTests.length) * 100,
+      numberOfTests: count,
     }))
   }
 
@@ -140,6 +142,7 @@ const AllTests: React.FC = () => {
     ).map(([key, count]: any) => ({
       name: key,
       percentage: (count / allTests.length) * 100,
+      numberOfTests: count,
     }))
   }
 
@@ -233,9 +236,12 @@ const AllTests: React.FC = () => {
         isOpen={!!testModal}
         onClose={() => {
           setTestModal(undefined)
-          navigate({
-            search: '',
-          })
+          navigate(
+            {
+              search: '',
+            },
+            { replace: true },
+          )
         }}
       >
         <TestModal test={testModal} />
@@ -303,9 +309,12 @@ const AllTests: React.FC = () => {
                         appearance={'system'}
                         onClick={() => {
                           setTestModal(data as Test)
-                          navigate({
-                            search: `?id=${data.id}`,
-                          })
+                          navigate(
+                            {
+                              search: `?id=${data.id}`,
+                            },
+                            { replace: true },
+                          )
                         }}
                       >
                         <Text type="text s" color="blue">

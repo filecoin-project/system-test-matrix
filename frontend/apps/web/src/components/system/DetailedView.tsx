@@ -12,10 +12,12 @@ import {
 import styled from 'styled-components'
 import ReactTooltip from 'react-tooltip'
 import { System, TestKind, TestQueryParams, Test } from '@filecoin/types'
-import { TestModal } from '@/components/tests/TestModal'
-import { PageContainer } from '@/containers/PageContainer'
 import { useNavigate } from 'react-router-dom'
 import qs from 'query-string'
+
+import { TestModal } from '@/components/tests/TestModal'
+import { PageContainer } from '@/containers/PageContainer'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface Props {
   testKinds: TestKind[]
@@ -27,9 +29,25 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
   const {
     state: { model },
   } = PageContainer.useContainer()
-  const allTests = model.getAllTests()
-  const { id: testId }: TestQueryParams = qs.parse(location.search)
-  const openedTest = allTests.find(test => test.id === testId)
+
+  const allTests = system?.subsystems.reduce((allTests, subsystem) => {
+    return [...allTests, ...subsystem.tests]
+  }, [])
+
+  const allBehaviors = model.getAllBehaviors()
+
+  const {
+    id: testId,
+    behaviorId,
+    ...queryParams
+  }: TestQueryParams = qs.parse(location.search)
+  const openedTest = allTests.find(
+    test =>
+      (behaviorId &&
+        test.id === 'missing' &&
+        test.linkedBehaviors[0].id === behaviorId) ||
+      (testId && test.id === testId),
+  )
   const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
 
   useEffect(() => {
@@ -42,32 +60,60 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
         isOpen={!!testModal}
         onClose={() => {
           setTestModal(undefined)
-          navigate({
-            search: '?tab=detailedView',
-          })
+          navigate(
+            {
+              search: `?${qs.stringify(queryParams)}`,
+            },
+            { replace: true },
+          )
         }}
       >
-        <TestModal test={testModal} />
+        {testModal?.id !== 'missing' ? (
+          <TestModal test={testModal} />
+        ) : (
+          <BehaviorModal
+            behavior={allBehaviors.find(
+              behavior => behavior?.id && testModal?.linkedBehaviors[0]?.id,
+            )}
+          />
+        )}
       </Modal>
       <ReactTooltip
         effect="solid"
         getContent={data => {
-          const { functionName, path, repository } = JSON.parse(data) || {}
-          return (
-            <>
-              <div>
-                <b>Name</b>: <span>{functionName}</span>
-              </div>
+          const { functionName, path, repository, linkedBehaviors } =
+            JSON.parse(data) || {}
 
-              <div>
-                <b>Path</b>: <span>{path}</span>
-              </div>
+          if (functionName !== 'missing') {
+            return (
+              <>
+                <div>
+                  <b>Name</b>: <span>{functionName}</span>
+                </div>
 
-              <div>
-                <b>Repository</b>: <span>{repository}</span>
-              </div>
-            </>
-          )
+                <div>
+                  <b>Path</b>: <span>{path}</span>
+                </div>
+
+                <div>
+                  <b>Repository</b>: <span>{repository}</span>
+                </div>
+              </>
+            )
+          } else {
+            return (
+              <>
+                <div>
+                  <b>Untested behavior ID</b>:{' '}
+                  <span>{linkedBehaviors[0].id}</span>
+                </div>
+                <div>
+                  <b>Description</b>:{' '}
+                  <span>{linkedBehaviors[0].description}</span>
+                </div>
+              </>
+            )
+          }
         }}
       />
 
@@ -103,13 +149,22 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                     <MatrixMap
                       key={testKind}
                       data={tests}
-                      openModal={(test: Test) => {
+                      onClick={(test: Test) => {
                         setTestModal(test)
-                        navigate({
-                          search: `?tab=detailedView&id=${test.id}`,
-                        })
+                        navigate(
+                          {
+                            search: `?${qs.stringify({
+                              ...queryParams,
+                              behaviorId:
+                                test.id === 'missing'
+                                  ? test.linkedBehaviors[0].id
+                                  : null,
+                              id: test.id === 'missing' ? null : test.id,
+                            })}`,
+                          },
+                          { replace: true },
+                        )
                       }}
-                      onClick={() => null}
                     />
                   )
                 })}

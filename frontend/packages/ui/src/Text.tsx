@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
+
 import { Colors } from './styles/colors'
-import { Fonts } from './styles/fonts'
 import { FullWidth, Hidden } from './styles/mixins'
 
 const TextStyle = [

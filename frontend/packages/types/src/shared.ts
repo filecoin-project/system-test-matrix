@@ -19,6 +19,7 @@ export interface Percentage {
   kind?: string
   status?: string
   percentage: number
+  numberOfTests: number
 }
 
 export enum TestStatus {

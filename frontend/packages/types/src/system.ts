@@ -29,13 +29,21 @@ export class SubSystem extends System {
 // TestKindStatistic says what <percentage> (0-100) of the tests fall under the category <kind>
 // Example: kind=unit, percentage=36
 export class TestKindStatistic {
-  constructor(public kind: TestKind, public percentage: number) {}
+  constructor(
+    public kind: TestKind,
+    public percentage: number,
+    public numberOfTests: number,
+  ) {}
 }
 
 // TestStatusStatistic says what <percentage> (0-100) of the tests are in a specific <status>
 // Example: status=fail, percentage=5
 export class TestStatusStatistic {
-  constructor(public status: TestStatus, public percentage: number) {}
+  constructor(
+    public status: TestStatus,
+    public percentage: number,
+    public numberOfTests: number,
+  ) {}
 }
 
 export enum SystemScore {

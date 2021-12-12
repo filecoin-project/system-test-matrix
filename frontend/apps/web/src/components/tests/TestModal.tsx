@@ -16,7 +16,6 @@ export const TestModal: React.FC<Props> = ({ test }) => {
     },
     testKind: {
       header: ' ',
-      width: 325,
       Cell: ({ data: { description } }) => {
         return <Text>{description}</Text>
       },
@@ -28,7 +27,7 @@ export const TestModal: React.FC<Props> = ({ test }) => {
       <StackLayout gap={0.5}>
         <div>
           <Text bold>Name: </Text>
-          <Text>{test.id.split('/')[1]}</Text>
+          <Text>{test.functionName}</Text>
         </div>
         <div>
           <Text bold>Repository: </Text>

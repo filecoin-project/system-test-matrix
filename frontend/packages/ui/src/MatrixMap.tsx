@@ -2,10 +2,14 @@ import React from 'react'
 import { Treemap as Chart } from 'recharts'
 import { Test, TestStatus } from '@filecoin/types'
 
+interface TestData extends Partial<Test> {
+  value?: number
+  color?: string
+}
+
 interface Props {
-  data: { functionName: string; status: string }[]
-  onClick: () => void
-  openModal: Function
+  data: TestData[]
+  onClick: (test: Partial<Test>) => void
 }
 
 const getStatusColor = (status?: Test['status']) => {
@@ -21,18 +25,18 @@ const getStatusColor = (status?: Test['status']) => {
   }
 }
 
-export const MatrixMap: React.FC<Props> = ({ data, onClick, openModal }) => {
+export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
   data = data.length
     ? data.map(node => ({
         ...node,
         value: 1,
-        color: getStatusColor(node.status as TestStatus),
+        color: getStatusColor(node.status),
       }))
     : [
         {
           value: 1,
           functionName: 'missing',
-          status: 'null',
+          status: 'null' as TestStatus,
           color: getStatusColor('null' as TestStatus),
         },
       ]
@@ -51,11 +55,18 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick, openModal }) => {
   })
 
   const CustomizedContent = (props: any) => {
-    const { color, index, functionName, path, repository } = props
+    const {
+      color,
+      index,
+      id,
+      functionName,
+      path,
+      repository,
+      linkedBehaviors,
+      status,
+    } = props
     const rowNumber = Math.floor(Math.max(index / NUMBER_OF_ROWS, 0))
     const columnIndex = index % NUMBER_OF_COLUMNS
-
-    const dataIndex = rowNumber * NUMBER_OF_COLUMNS + columnIndex
 
     if (!functionName) {
       return null
@@ -64,7 +75,12 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick, openModal }) => {
     return (
       <g>
         <rect
-          data-tip={JSON.stringify({ functionName, path, repository })}
+          data-tip={JSON.stringify({
+            functionName,
+            path,
+            repository,
+            linkedBehaviors,
+          })}
           x={NODE_SIZE * columnIndex}
           y={NODE_SIZE * rowNumber}
           width={NODE_SIZE}
@@ -75,19 +91,21 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick, openModal }) => {
             stroke: '#fff',
             strokeWidth: NODE_SIZE * 0.0625,
             strokeOpacity: 1,
+            pointerEvents: status === 'null' ? 'none' : null,
           }}
-          onClick={() => openModal(data[dataIndex])}
+          onClick={() =>
+            onClick({
+              id,
+              functionName,
+              path,
+              repository,
+              linkedBehaviors,
+            })
+          }
         />
       </g>
     )
   }
-
-  // const numberOfRows = Math.floor(props.data.length / 10)
-  // const isWrapped = props.data.length > 100
-  // const exceededNodes = props.data.length - 100
-  // const numberOfWrappedNodes = Math.floor(exceededNodes / 10)
-  // const rowHeight = 15
-  // console.log({ numberOfRows, isWrapped, exceededNodes, rowHeight })
 
   return (
     <>

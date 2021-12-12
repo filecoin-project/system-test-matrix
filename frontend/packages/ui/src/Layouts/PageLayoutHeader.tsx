@@ -3,8 +3,11 @@ import classNames from 'classnames'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+
 import { Text } from '../Text'
+
 import { BoxLayout } from './BoxLayout'
+
 export interface HeaderProps {
   /**
    * The element to render the `<Header>` as. Defaults to 'header'.

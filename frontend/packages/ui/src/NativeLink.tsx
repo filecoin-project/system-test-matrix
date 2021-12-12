@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { darken, lighten } from 'polished'
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
+
 import { Icon, IconNamesType } from './Icon'
 import { Colors } from './styles/colors'
 import { Size } from './styles/mixins'

@@ -1,5 +1,5 @@
-export interface TestQueryParams {
-  id?: string
+export interface TestQueryParams extends SystemPageQueryParams {
+  behaviorId?: string
 }
 
 export interface SystemPageQueryParams {

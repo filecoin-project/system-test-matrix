@@ -1,8 +1,10 @@
 import { ReactProps, RefForwardingComponent } from '@filecoin/types'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
+
 import { Colors } from '../styles/colors'
 import { zIndex } from '../styles/constants'
+
 import { CoverLayout } from './CoverLayout'
 import { GridLayout } from './GridLayout'
 import { PageLayoutFooter } from './PageLayoutFooter'
@@ -168,7 +170,6 @@ export const Page: PageLayout = Object.assign(
 )
 
 const HEADER_HEIGHT = 185
-const NAV_WIDTH = 300
 const CONTENT_MAX_WIDTH = 1203
 
 export const PageLayout = styled(Page)`

@@ -1,8 +1,9 @@
-import { getButton } from '@/pages/tests'
 import { SystemScore, TestStatus } from '@filecoin/types'
 import { Icon, Link, PageLayout, Text } from '@filecoin/ui'
 import React from 'react'
 import styled from 'styled-components'
+
+import { getButton } from '@/pages/tests'
 
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]

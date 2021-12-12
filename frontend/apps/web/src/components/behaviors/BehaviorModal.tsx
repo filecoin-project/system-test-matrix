@@ -1,15 +1,9 @@
+import React from 'react'
+import { Behavior } from '@filecoin/types'
+import { StackLayout, Table, Text, TruncatedText } from '@filecoin/ui'
+
 import { PageContainer } from '@/containers/PageContainer'
 import { getButton } from '@/pages/tests'
-import { Behavior } from '@filecoin/types'
-import {
-  BoxLayout,
-  CenterLayout,
-  StackLayout,
-  Table,
-  Text,
-  TruncatedText,
-} from '@filecoin/ui'
-import React from 'react'
 
 interface Props {
   behavior: Behavior
@@ -57,15 +51,15 @@ export const BehaviorModal = (props: Props) => {
     },
   }
 
-  if (!getLinkedBehaviors?.length) {
-    return (
-      <BoxLayout gap={1}>
-        <CenterLayout centerText>
-          <Text>There is no linked tests for this behavior.</Text>
-        </CenterLayout>
-      </BoxLayout>
-    )
-  }
+  // if (!getLinkedBehaviors?.length) {
+  //   return (
+  //     <BoxLayout gap={1}>
+  //       <CenterLayout centerText>
+  //         <Text>There is no linked tests for this behavior.</Text>
+  //       </CenterLayout>
+  //     </BoxLayout>
+  //   )
+  // }
 
   return (
     <StackLayout gap={2}>
@@ -75,18 +69,32 @@ export const BehaviorModal = (props: Props) => {
             {props.behavior.id}
           </Text>
           <Text>{props.behavior.description}</Text>
+          <div>
+            <Text bold>System/Subsystem: </Text>
+            <Text>
+              {props.behavior.systemName}/{props.behavior.subsystemName}
+            </Text>
+          </div>
+          <div>
+            <Text bold>Feature name: </Text>
+            <Text>{props.behavior.parentFeatureName}</Text>
+          </div>
         </StackLayout>
       )}
-      <StackLayout gap={1}>
-        <Text type={'subtitle l'} semiBold>
-          Linked tests
-        </Text>
-        <Table
-          variant={'light'}
-          data={getLinkedBehaviors}
-          columns={tableColumns}
-        />
-      </StackLayout>
+      {getLinkedBehaviors.length ? (
+        <StackLayout gap={1}>
+          <Text type={'subtitle l'} semiBold>
+            Linked tests
+          </Text>
+          <Table
+            variant={'light'}
+            data={getLinkedBehaviors}
+            columns={tableColumns}
+          />
+        </StackLayout>
+      ) : (
+        <Text>This behavior is untested.</Text>
+      )}
     </StackLayout>
   )
 }

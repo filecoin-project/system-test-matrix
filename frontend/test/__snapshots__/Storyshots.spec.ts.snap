@@ -2275,6 +2275,7 @@ exports[`Storyshots Dropdown Default 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #979AB8;
+  word-break: break-word;
 }
 
 .c11 {
@@ -2286,6 +2287,7 @@ exports[`Storyshots Dropdown Default 1`] = `
   -ms-letter-spacing: 0.1px;
   letter-spacing: 0.1px;
   color: #4E4B66;
+  word-break: break-word;
 }
 
 .c10 {
@@ -2569,6 +2571,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #979AB8;
+  word-break: break-word;
 }
 
 .c12 {
@@ -2580,6 +2583,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   -ms-letter-spacing: 0.1px;
   letter-spacing: 0.1px;
   color: #4E4B66;
+  word-break: break-word;
 }
 
 .c11 {
@@ -2963,6 +2967,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #979AB8;
+  word-break: break-word;
 }
 
 .c12 {
@@ -2974,6 +2979,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   -ms-letter-spacing: 0.1px;
   letter-spacing: 0.1px;
   color: #4E4B66;
+  word-break: break-word;
 }
 
 .c2 {
@@ -3409,6 +3415,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #979AB8;
+  word-break: break-word;
 }
 
 .c12 {
@@ -3420,6 +3427,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   -ms-letter-spacing: 0.1px;
   letter-spacing: 0.1px;
   color: #4E4B66;
+  word-break: break-word;
 }
 
 .c2 {
@@ -3929,6 +3937,7 @@ exports[`Storyshots Icon All Icons 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+  word-break: break-word;
 }
 
 @media (min-width:624px) {
@@ -6138,6 +6147,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c10 {
@@ -6145,6 +6155,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c11 {
@@ -6155,6 +6166,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #6E7191;
+  word-break: break-word;
 }
 
 .c7 {
@@ -7039,6 +7051,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: -0.7px;
   letter-spacing: -0.7px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c8 {
@@ -7049,6 +7062,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c9 {
@@ -7060,6 +7074,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: -0.7px;
   letter-spacing: -0.7px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c10 {
@@ -7071,6 +7086,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: -0.7px;
   letter-spacing: -0.7px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c11 {
@@ -7082,6 +7098,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: -0.3px;
   letter-spacing: -0.3px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c12 {
@@ -7097,6 +7114,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.3px;
   letter-spacing: 0.3px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c13 {
@@ -7112,6 +7130,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0px;
   letter-spacing: 0px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c14 {
@@ -7123,6 +7142,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0px;
   letter-spacing: 0px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c15 {
@@ -7134,6 +7154,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.3px;
   letter-spacing: 0.3px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c16 {
@@ -7145,6 +7166,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.5px;
   letter-spacing: 0.5px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c17 {
@@ -7156,6 +7178,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.3px;
   letter-spacing: 0.3px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c18 {
@@ -7167,6 +7190,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.3px;
   letter-spacing: 0.3px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c19 {
@@ -7178,6 +7202,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.3px;
   letter-spacing: 0.3px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c20 {
@@ -7188,6 +7213,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0px;
   letter-spacing: 0px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c21 {
@@ -7198,6 +7224,7 @@ exports[`Storyshots Text Headings 1`] = `
   -ms-letter-spacing: 0.3px;
   letter-spacing: 0.3px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c1 {
@@ -7849,6 +7876,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c8 {
@@ -7859,6 +7887,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c9 {
@@ -7866,6 +7895,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c10 {
@@ -7873,6 +7903,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   font-size: 1.125rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c11 {
@@ -7880,6 +7911,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   font-size: 1.125rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c12 {
@@ -7890,6 +7922,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c13 {
@@ -7901,6 +7934,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.1px;
   letter-spacing: 0.1px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c14 {
@@ -7912,6 +7946,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.1px;
   letter-spacing: 0.1px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c15 {
@@ -7923,6 +7958,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.1px;
   letter-spacing: 0.1px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c16 {
@@ -7934,6 +7970,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.1px;
   letter-spacing: 0.1px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c17 {
@@ -7945,6 +7982,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.4px;
   letter-spacing: 0.4px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c18 {
@@ -7956,6 +7994,7 @@ exports[`Storyshots Text Paragraphs 1`] = `
   -ms-letter-spacing: 0.4px;
   letter-spacing: 0.4px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c1 {
@@ -8458,6 +8497,7 @@ exports[`Storyshots Text Rest 1`] = `
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c8 {
@@ -8468,6 +8508,7 @@ exports[`Storyshots Text Rest 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c9 {
@@ -8475,6 +8516,7 @@ exports[`Storyshots Text Rest 1`] = `
   font-size: 1.25rem;
   line-height: 1.375rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c10 {
@@ -8482,6 +8524,7 @@ exports[`Storyshots Text Rest 1`] = `
   font-size: 1.125rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c11 {
@@ -8489,6 +8532,7 @@ exports[`Storyshots Text Rest 1`] = `
   font-size: 1.125rem;
   line-height: 1.75rem;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c12 {
@@ -8501,6 +8545,7 @@ exports[`Storyshots Text Rest 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c13 {
@@ -8513,6 +8558,7 @@ exports[`Storyshots Text Rest 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c14 {
@@ -8525,6 +8571,7 @@ exports[`Storyshots Text Rest 1`] = `
   -ms-letter-spacing: 0.8px;
   letter-spacing: 0.8px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c15 {
@@ -8537,6 +8584,7 @@ exports[`Storyshots Text Rest 1`] = `
   -ms-letter-spacing: 0.2px;
   letter-spacing: 0.2px;
   color: #14142B;
+  word-break: break-word;
 }
 
 .c1 {

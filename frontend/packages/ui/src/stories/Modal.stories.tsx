@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { Button } from '..'
-import { Icon } from '../Icon'
 import { StackLayout } from '../Layouts'
 import { Modal } from '../Modal'
 import { Text } from '../Text'

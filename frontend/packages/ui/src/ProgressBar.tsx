@@ -24,6 +24,7 @@ interface Props {
   data: {
     name: string
     percentage: number
+    numberOfTests: number
   }[]
   onClick?: () => void
   legend?: boolean
@@ -83,11 +84,14 @@ export const ProgressBar = ({
   }
 
   const renderLegend = () => {
-    return Object.keys(data).map((bar, i) => {
+    return props.data.map(stats => {
       return (
-        <LegendPiece key={i}>
-          <LegendCircle color={ColorChart[bar]} />
-          {bar}: <LegendValue>{parseFloat(data[bar].toFixed(2))}%</LegendValue>
+        <LegendPiece key={stats.name}>
+          <LegendCircle color={ColorChart[stats.name]} />
+          {stats.name}:{' '}
+          <LegendValue>
+            {parseFloat(stats.percentage.toFixed(2))}% ({stats.numberOfTests})
+          </LegendValue>
         </LegendPiece>
       )
     })
@@ -98,17 +102,21 @@ export const ProgressBar = ({
   }
 
   return (
-    <Wrapper data-tip={legend ? null : JSON.stringify(data)}>
+    <Wrapper data-tip={legend ? null : JSON.stringify(props)}>
       <ReactTooltip
         effect={'solid'}
-        getContent={data => {
-          const content = JSON.parse(data) || {}
+        getContent={tooltip => {
+          const content = JSON.parse(tooltip) || {}
           return (
             <>
-              {Object.entries(content).map(([key, value]) => {
+              {content.data?.map(value => {
                 return (
-                  <div key={key}>
-                    <b>{key}</b>: <span>{Number(value).toFixed(2)}%</span>
+                  <div key={value?.name}>
+                    <b>{value?.name}</b>:{' '}
+                    <span>
+                      {Number(value?.percentage).toFixed(2)}% (
+                      {value?.numberOfTests})
+                    </span>
                   </div>
                 )
               })}

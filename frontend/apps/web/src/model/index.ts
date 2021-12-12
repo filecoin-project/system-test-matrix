@@ -1,5 +1,3 @@
-import behaviors from '@/behaviors.json'
-import tests from '@/tests.json'
 import {
   Behavior,
   Feature,
@@ -14,6 +12,9 @@ import {
   TestStatusStatistic,
 } from '@filecoin/types'
 import _ from 'lodash'
+
+import behaviors from '@/behaviors.json'
+import tests from '@/tests.json'
 
 // Abstract Model interface.
 // I recommend importing this instead of the implementation, because the implementation may change
@@ -98,6 +99,7 @@ export class Model implements Model {
           new TestKindStatistic(
             kind,
             (tests.length / subsystem.tests.length) * 100,
+            tests.length,
           ),
       )
       subsystem.testKindStats = new PercentageSet(kindStatistics)
@@ -132,6 +134,7 @@ export class Model implements Model {
           new TestStatusStatistic(
             status as TestStatus,
             (tests.length / subsystem.tests.length) * 100,
+            tests.length,
           ),
       )
       subsystem.testStatusStats = new PercentageSet(statusStatistics)
@@ -159,6 +162,7 @@ export class Model implements Model {
           new TestKindStatistic(
             kind,
             (tests.length / allSystemTests.length) * 100,
+            tests.length,
           ),
       )
       system.testKindStats = new PercentageSet(kindStatistics)
@@ -172,6 +176,7 @@ export class Model implements Model {
           new TestStatusStatistic(
             status as TestStatus,
             (tests.length / allSystemTests.length) * 100,
+            tests.length,
           ),
       )
       system.testStatusStats = new PercentageSet(statusStatistics)

@@ -1,26 +1,30 @@
-import { PageContainer } from '@/containers/PageContainer'
-import { getResultsWithFuseSearch } from '@filecoin/core'
-import { SystemScore, TestStatus } from '@filecoin/types'
+import { SystemScore, TestStatus, TestQueryParams, Test } from '@filecoin/types'
 import {
   Button,
   CardLayout,
-  Dropdown,
   NativeLink,
   PageLayout,
-  Pager,
-  Paginator,
   ProgressBar,
-  SearchInput,
   StackLayout,
   Table,
   Text,
   TruncatedText,
   usePageLayout,
+  Modal,
+  Pager,
+  Paginator,
+  Dropdown,
+  SearchInput,
 } from '@filecoin/ui'
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import qs from 'query-string'
+import { getResultsWithFuseSearch } from '@filecoin/core'
+
+import { TestModal } from '@/components/tests/TestModal'
+import { PageContainer } from '@/containers/PageContainer'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -46,6 +50,7 @@ const Header = () => {
     </PageLayout.Header>
   )
 }
+
 export const getButton = (status: TestStatus | SystemScore) => {
   const { t } = useTranslation()
 
@@ -90,12 +95,17 @@ export const getButton = (status: TestStatus | SystemScore) => {
     </Button>
   )
 }
-const AllTests = () => {
+
+const AllTests: React.FC = () => {
+  const navigate = useNavigate()
   const {
     state: { model },
   } = PageContainer.useContainer()
   const allTests = model.getAllTests()
   const { t } = useTranslation()
+  const { id: testId }: TestQueryParams = qs.parse(location.search)
+  const openedTest = allTests.find(test => test.id === testId)
+  const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
 
   const prepareAllTestsChart = () => {
     return Object.entries(
@@ -106,6 +116,7 @@ const AllTests = () => {
     ).map(([key, count]: any) => ({
       name: key,
       percentage: (count / allTests.length) * 100,
+      numberOfTests: count,
     }))
   }
 
@@ -131,11 +142,13 @@ const AllTests = () => {
     ).map(([key, count]: any) => ({
       name: key,
       percentage: (count / allTests.length) * 100,
+      numberOfTests: count,
     }))
   }
-  const allTestsStatus = prepareAllTestsStatus()
 
+  const allTestsStatus = prepareAllTestsStatus()
   const allTestsKinds = prepareAllTestsChart()
+
   const [searchTerm, setSearchTerm] = useState(undefined)
   const [selectedFilter, setSelectedFilter] = useState(undefined)
   const [searchResults, setSearchResults] = useState(null)
@@ -219,6 +232,20 @@ const AllTests = () => {
 
   return (
     <PageLayout {...pageLayout}>
+      <Modal
+        isOpen={!!testModal}
+        onClose={() => {
+          setTestModal(undefined)
+          navigate(
+            {
+              search: '',
+            },
+            { replace: true },
+          )
+        }}
+      >
+        <TestModal test={testModal} />
+      </Modal>
       <PageLayout.Section>
         <StackLayout gap={1}>
           <ProgressBarWrapper shadow={false}>
@@ -277,11 +304,23 @@ const AllTests = () => {
                 Cell: ({ data }) => {
                   return (
                     <TruncatedText>
-                      <StackLayout>
-                        <Text type="text s" color="textGray">
+                      <NativeLink
+                        className={'u-text--xsmall'}
+                        appearance={'system'}
+                        onClick={() => {
+                          setTestModal(data as Test)
+                          navigate(
+                            {
+                              search: `?id=${data.id}`,
+                            },
+                            { replace: true },
+                          )
+                        }}
+                      >
+                        <Text type="text s" color="blue">
                           {data.path}
                         </Text>
-                      </StackLayout>
+                      </NativeLink>
                     </TruncatedText>
                   )
                 },

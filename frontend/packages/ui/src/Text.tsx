@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
+
 import { Colors } from './styles/colors'
 import { FullWidth, Hidden } from './styles/mixins'
 
@@ -29,6 +30,7 @@ const TextColors = [
   'red',
   'green',
   'white',
+  'blue',
   'gray60',
   'gray70',
   'gray80',
@@ -240,6 +242,8 @@ export const Text = styled(TextComponent)<TextProps>`
         return Colors.white
       case 'textGray':
         return Colors.textGray
+      case 'blue':
+        return Colors.blueLink
       default:
         return Colors.textColor
     }
@@ -257,4 +261,5 @@ export const Text = styled(TextComponent)<TextProps>`
         return 'center'
     }
   }};
+  word-break: break-word;
 `

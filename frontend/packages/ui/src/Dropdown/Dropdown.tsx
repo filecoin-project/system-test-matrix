@@ -9,12 +9,14 @@ import { find } from 'lodash'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
 import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { Loader } from '../Loader'
 import { SearchInput } from '../SearchInput'
 import { Colors } from '../styles/colors'
 import { Text } from '../Text'
+
 import { DropdownItem } from './DropdownItem'
 
 interface Option {

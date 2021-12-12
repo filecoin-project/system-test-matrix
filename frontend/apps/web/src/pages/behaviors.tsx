@@ -1,5 +1,3 @@
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
@@ -25,6 +23,9 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface BehaviorQueryParams {
   id?: string
@@ -66,6 +67,7 @@ const Behaviors = () => {
     ).map(([key, count]) => ({
       name: key,
       percentage: (count / behaviors.length) * 100,
+      numberOfTests: count,
     }))
   }
 
@@ -174,22 +176,21 @@ const Behaviors = () => {
       Cell: ({ data }) => {
         return (
           <>
-            {data.tested ? (
-              <NativeLink
-                className={'u-text--xsmall'}
-                appearance={'system'}
-                onClick={() => {
-                  setModalId(data)
-                  navigate({
+            <NativeLink
+              className={'u-text--xsmall'}
+              appearance={'system'}
+              onClick={() => {
+                setModalId(data)
+                navigate(
+                  {
                     search: `?id=${data.id}`,
-                  })
-                }}
-              >
-                {data.id}
-              </NativeLink>
-            ) : (
-              <Text color="textGray">{data.id}</Text>
-            )}
+                  },
+                  { replace: true },
+                )
+              }}
+            >
+              {data.id}
+            </NativeLink>
           </>
         )
       },
@@ -255,9 +256,12 @@ const Behaviors = () => {
           isOpen={!!modalId}
           onClose={() => {
             setModalId(undefined)
-            navigate({
-              search: '',
-            })
+            navigate(
+              {
+                search: '',
+              },
+              { replace: true },
+            )
           }}
         >
           <BehaviorModal behavior={modalId} />

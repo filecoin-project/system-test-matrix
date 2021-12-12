@@ -1,4 +1,4 @@
-import { System, TestKind } from '@filecoin/types'
+import React, { useEffect, useState } from 'react'
 import {
   BoxLayout,
   CardLayout,
@@ -7,10 +7,17 @@ import {
   MatrixMap,
   StackLayout,
   Text,
+  Modal,
 } from '@filecoin/ui'
-import React, { useEffect } from 'react'
-import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
+import ReactTooltip from 'react-tooltip'
+import { System, TestKind, TestQueryParams, Test } from '@filecoin/types'
+import { useNavigate } from 'react-router-dom'
+import qs from 'query-string'
+
+import { TestModal } from '@/components/tests/TestModal'
+import { PageContainer } from '@/containers/PageContainer'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface Props {
   testKinds: TestKind[]
@@ -18,31 +25,95 @@ interface Props {
 }
 
 export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
+  const navigate = useNavigate()
+  const {
+    state: { model },
+  } = PageContainer.useContainer()
+
+  const allTests = system?.subsystems.reduce((allTests, subsystem) => {
+    return [...allTests, ...subsystem.tests]
+  }, [])
+
+  const allBehaviors = model.getAllBehaviors()
+
+  const {
+    id: testId,
+    behaviorId,
+    ...queryParams
+  }: TestQueryParams = qs.parse(location.search)
+  const openedTest = allTests.find(
+    test =>
+      (behaviorId &&
+        test.id === 'missing' &&
+        test.linkedBehaviors[0].id === behaviorId) ||
+      (testId && test.id === testId),
+  )
+  const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
+
   useEffect(() => {
     ReactTooltip.rebuild()
   }, [testKinds])
 
   return (
     <Wrapper shadow={false}>
+      <Modal
+        isOpen={!!testModal}
+        onClose={() => {
+          setTestModal(undefined)
+          navigate(
+            {
+              search: `?${qs.stringify(queryParams)}`,
+            },
+            { replace: true },
+          )
+        }}
+      >
+        {testModal?.id !== 'missing' ? (
+          <TestModal test={testModal} />
+        ) : (
+          <BehaviorModal
+            behavior={allBehaviors.find(
+              behavior => behavior?.id && testModal?.linkedBehaviors[0]?.id,
+            )}
+          />
+        )}
+      </Modal>
       <ReactTooltip
         effect="solid"
         getContent={data => {
-          const { functionName, path, repository } = JSON.parse(data) || {}
-          return (
-            <>
-              <div>
-                <b>Name</b>: <span>{functionName}</span>
-              </div>
+          const { functionName, path, repository, linkedBehaviors } =
+            JSON.parse(data) || {}
 
-              <div>
-                <b>Path</b>: <span>{path}</span>
-              </div>
+          if (functionName !== 'missing') {
+            return (
+              <>
+                <div>
+                  <b>Name</b>: <span>{functionName}</span>
+                </div>
 
-              <div>
-                <b>Repository</b>: <span>{repository}</span>
-              </div>
-            </>
-          )
+                <div>
+                  <b>Path</b>: <span>{path}</span>
+                </div>
+
+                <div>
+                  <b>Repository</b>: <span>{repository}</span>
+                </div>
+              </>
+            )
+          } else {
+            return (
+              <>
+                <div>
+                  <b>Untested behavior ID</b>:{' '}
+                  <span>{linkedBehaviors[0].id}</span>
+                </div>
+                <div>
+                  <b>Description</b>:{' '}
+                  <span>{linkedBehaviors[0].description}</span>
+                </div>
+              </>
+            )
+          }
         }}
       />
 
@@ -78,7 +149,22 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                     <MatrixMap
                       key={testKind}
                       data={tests}
-                      onClick={() => null}
+                      onClick={(test: Test) => {
+                        setTestModal(test)
+                        navigate(
+                          {
+                            search: `?${qs.stringify({
+                              ...queryParams,
+                              behaviorId:
+                                test.id === 'missing'
+                                  ? test.linkedBehaviors[0].id
+                                  : null,
+                              id: test.id === 'missing' ? null : test.id,
+                            })}`,
+                          },
+                          { replace: true },
+                        )
+                      }}
                     />
                   )
                 })}

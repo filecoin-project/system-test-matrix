@@ -2,9 +2,14 @@ import React from 'react'
 import { Treemap as Chart } from 'recharts'
 import { Test, TestStatus } from '@filecoin/types'
 
+interface TestData extends Partial<Test> {
+  value?: number
+  color?: string
+}
+
 interface Props {
-  data: { functionName: string; status: string }[]
-  onClick: () => void
+  data: TestData[]
+  onClick: (test: Partial<Test>) => void
 }
 
 const getStatusColor = (status?: Test['status']) => {
@@ -20,21 +25,22 @@ const getStatusColor = (status?: Test['status']) => {
   }
 }
 
-export const MatrixMap = (props: Props) => {
-  const data = props.data.length
-    ? props.data.map(node => ({
+export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
+  data = data.length
+    ? data.map(node => ({
         ...node,
         value: 1,
-        color: getStatusColor(node.status as TestStatus),
+        color: getStatusColor(node.status),
       }))
     : [
         {
           value: 1,
           functionName: 'missing',
-          status: 'null',
+          status: 'null' as TestStatus,
           color: getStatusColor('null' as TestStatus),
         },
       ]
+
   const NUMBER_OF_ROWS = Math.ceil(160 / Math.sqrt((160 * 160) / data.length))
   const NUMBER_OF_COLUMNS = NUMBER_OF_ROWS
   const NODES_LIMIT = NUMBER_OF_COLUMNS * NUMBER_OF_ROWS
@@ -49,7 +55,16 @@ export const MatrixMap = (props: Props) => {
   })
 
   const CustomizedContent = (props: any) => {
-    const { color, index, functionName, path, repository } = props
+    const {
+      color,
+      index,
+      id,
+      functionName,
+      path,
+      repository,
+      linkedBehaviors,
+      status,
+    } = props
     const rowNumber = Math.floor(Math.max(index / NUMBER_OF_ROWS, 0))
     const columnIndex = index % NUMBER_OF_COLUMNS
 
@@ -60,37 +75,43 @@ export const MatrixMap = (props: Props) => {
     return (
       <g>
         <rect
-          data-tip={JSON.stringify({ functionName, path, repository })}
+          data-tip={JSON.stringify({
+            functionName,
+            path,
+            repository,
+            linkedBehaviors,
+          })}
           x={NODE_SIZE * columnIndex}
           y={NODE_SIZE * rowNumber}
           width={NODE_SIZE}
           height={NODE_SIZE}
           style={{
             cursor: 'pointer',
-            pointerEvents: functionName === 'missing' ? 'none' : null,
             fill: color,
             stroke: '#fff',
             strokeWidth: NODE_SIZE * 0.0625,
             strokeOpacity: 1,
+            pointerEvents: status === 'null' ? 'none' : null,
           }}
+          onClick={() =>
+            onClick({
+              id,
+              functionName,
+              path,
+              repository,
+              linkedBehaviors,
+            })
+          }
         />
       </g>
     )
   }
-
-  // const numberOfRows = Math.floor(props.data.length / 10)
-  // const isWrapped = props.data.length > 100
-  // const exceededNodes = props.data.length - 100
-  // const numberOfWrappedNodes = Math.floor(exceededNodes / 10)
-  // const rowHeight = 15
-  // console.log({ numberOfRows, isWrapped, exceededNodes, rowHeight })
 
   return (
     <>
       <Chart
         width={NODE_SIZE * NUMBER_OF_COLUMNS}
         height={NODE_SIZE * NUMBER_OF_ROWS}
-        {...props}
         data={[...data, ...missingData]}
         nameKey="functionName"
         isAnimationActive={false}

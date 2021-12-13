@@ -48,7 +48,7 @@ jobs:
             frontend/packages/**/node_modules/
           key: develop-fe-2
           restore-keys: |
-            develop-fe-
+            develop-fe-2
 
       #
       # Install yq library for conversion yaml-to-json
@@ -117,7 +117,7 @@ jobs:
             frontend/packages/**/node_modules/
           key: develop-fe-2
           restore-keys: |
-            develop-fe-
+            develop-fe-2
       #
       # Run lint
       #

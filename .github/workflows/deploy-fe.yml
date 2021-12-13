@@ -46,7 +46,7 @@ jobs:
             frontend/apps/**/tests.json
             frontend/apps/**/behaviors.json
             frontend/packages/**/node_modules/
-          key: develop-fe-1
+          key: develop-fe-2
           restore-keys: |
             develop-fe-
 
@@ -115,7 +115,7 @@ jobs:
             frontend/apps/**/tests.json
             frontend/apps/**/behaviors.json
             frontend/packages/**/node_modules/
-          key: develop-fe-1
+          key: develop-fe-2
           restore-keys: |
             develop-fe-
       #

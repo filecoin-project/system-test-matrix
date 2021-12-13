@@ -112,5 +112,4 @@ storybook-static/
 **/feeder.json
 **/countries.json
 **/behaviors.json
-**/tests.json
 .npmrc

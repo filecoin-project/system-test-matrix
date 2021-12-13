@@ -1,4 +1,4 @@
-system: Blockchain
+system: Chain
 subsystem: Beacon
 features:
   - name: Get beacon for epoch

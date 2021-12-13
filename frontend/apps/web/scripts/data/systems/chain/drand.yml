@@ -1,4 +1,4 @@
-system: Blockchain
+system: Chain
 subsystem: Drand Beacon
 features:
   - name: New Drand beacon

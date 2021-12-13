@@ -43,8 +43,6 @@ jobs:
             frontend/.stylelintcache
             frontend/**/.cache
             frontend/apps/**/node_modules/
-            frontend/apps/**/tests.json
-            frontend/apps/**/behaviors.json
             frontend/packages/**/node_modules/
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
@@ -112,12 +110,19 @@ jobs:
             frontend/.stylelintcache
             frontend/**/.cache
             frontend/apps/**/node_modules/
-            frontend/apps/**/tests.json
-            frontend/apps/**/behaviors.json
             frontend/packages/**/node_modules/
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             develop-fe-
+
+      #
+      # Run lint
+      #
+      - name: Generate routes and behaviors
+        id: generate-data
+        run: yarn prebuild
+        working-directory: ./frontend/apps/web
+
       #
       # Run lint
       #

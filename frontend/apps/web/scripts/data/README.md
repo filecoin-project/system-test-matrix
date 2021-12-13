@@ -39,4 +39,3 @@ Feedback on existing data is very welcome - we are *noobs* in the Filecoin ecosy
 - Behavior IDs (usually) follow the convention `SYSTEM_SUBSYSTEM_FEATURE_COUNTER`, for example `chain/mempool.yml/Push/CHAIN_MEMPOOL_PUSH_001`. This is not strictly enforced, but uniqueness of IDs is, and a good way to avoid ID collision is to respect this convention.
 - Behavior descriptions (usually) follow the BDD format: `Given <something>, return <something else>`, written in *imperative*. This is not strictly enforced since this format is best for standard user-facing applications, and some network/blockchain specific features are hard to describe using this format.
 - If you sense that a specific feature you are describing doesn't fit into any of the existing systems/subsystems, feel free to create a new one.
-- 

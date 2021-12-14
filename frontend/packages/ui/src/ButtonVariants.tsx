@@ -1,7 +1,6 @@
 import { darken, lighten } from 'polished'
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
-
 import { ButtonProps, ButtonVariant } from './Button'
 import { Colors } from './styles/colors'
 import { Fonts } from './styles/fonts'
@@ -90,6 +89,11 @@ const ButtonOutline = styled(ButtonBase)`
   border: 1px solid ${Colors.borderColor};
   border-radius: 5px;
   color: ${Colors.ghostBtnText};
+
+  &:hover {
+    border: 1px solid ${Colors.secondaryBorder};
+    background-color: ${Colors.secondaryHover};
+  }
 `
 
 export const getActiveComponent = (variant: ButtonVariant) => {

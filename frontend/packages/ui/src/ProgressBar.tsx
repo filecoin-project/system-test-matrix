@@ -1,9 +1,9 @@
+import { TestNamings } from '@filecoin/core'
+import { sortBy } from 'lodash'
 import React from 'react'
+import ReactTooltip from 'react-tooltip'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
-import ReactTooltip from 'react-tooltip'
-import { sortBy } from 'lodash'
-
 import { Colors } from './styles/colors'
 
 const ColorChart = {
@@ -88,7 +88,7 @@ export const ProgressBar = ({
       return (
         <LegendPiece key={stats.name}>
           <LegendCircle color={ColorChart[stats.name]} />
-          {stats.name}:{' '}
+          {TestNamings(stats.name)}:{' '}
           <LegendValue>
             {parseFloat(stats.percentage.toFixed(2))}% ({stats.numberOfTests})
           </LegendValue>

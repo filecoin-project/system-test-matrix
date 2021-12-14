@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-
 import { Icon } from './Icon'
 import { Colors } from './styles/colors'
 
@@ -197,12 +196,15 @@ const PaginatorAction = styled.a<{
   cursor: pointer;
   display: flex;
   padding: 0 5px;
+  border: 1px solid transparent;
   ${props =>
     props.active &&
     `
-      color: ${Colors.primary};
+      color: ${Colors.redBtn};
       cursor: default;
-    `}
+      border: 1px solid ${Colors.redBtn};
+      border-radius: 5px;
+    `};
 `
 const ArrowIcon = styled(Icon)`
   background-color: ${Colors.secondary};

@@ -1,4 +1,4 @@
-system: Blockchain
+system: Chain
 subsystem: Rand
 features:
   - name: Draw randomness
@@ -60,7 +60,7 @@ features:
           Given a base random value, a domain tag, chain epoch, entropy, and
           a lookback flag, and the network version is 0-12,
           return a randomly generated array of bytes.
-          Uses `BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_02` to get the 
+          Uses `CHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_02` to get the 
           beacon used in the epoch.
           Uses `Draw randomness` with base random value being the beacon's data.
   
@@ -71,7 +71,7 @@ features:
           Given a base random value, a domain tag, chain epoch, entropy, and
           a lookback flag, and the network version is 13,
           return a randomly generated array of bytes.
-          Uses `BLOCKCHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_03` to get the 
+          Uses `CHAIN_RAND_GET_BEACON_RANDOMNESS_TIPSET_03` to get the 
           beacon used in the epoch.
           Uses `Draw randomness` with base random value being the beacon's data.
   

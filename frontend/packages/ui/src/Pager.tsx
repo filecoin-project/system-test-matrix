@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import { Dropdown } from './Dropdown/Dropdown'
 import { Colors } from './styles/colors'
 import { Text } from './Text'
@@ -80,8 +79,8 @@ const DropdownStyled = styled(Dropdown)`
     }
 
     svg {
-      width: 1rem !important;
-      height: 1rem !important;
+      width: 12px !important;
+      height: 12px !important;
       fill: ${Colors.gray80};
     }
   }

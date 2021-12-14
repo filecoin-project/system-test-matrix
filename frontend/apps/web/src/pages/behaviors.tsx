@@ -1,3 +1,5 @@
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
@@ -23,9 +25,6 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-
-import { PageContainer } from '@/containers/PageContainer'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface BehaviorQueryParams {
   id?: string
@@ -290,7 +289,6 @@ const Behaviors = () => {
                 onChange={e => {
                   setSelectedFilter(e.value)
                 }}
-                onClearFilter={() => setSelectedFilter(undefined)}
               />
             </SearchAndFilterWrapper>
           </StackLayout>

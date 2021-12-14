@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import { TestModal } from '@/components/tests/TestModal'
+import { PageContainer } from '@/containers/PageContainer'
+import { TestNamings } from '@filecoin/core'
+import { System, Test, TestKind, TestQueryParams } from '@filecoin/types'
 import {
   BoxLayout,
   CardLayout,
   Colors,
   ColumnLayout,
   MatrixMap,
+  Modal,
   StackLayout,
   Text,
-  Modal,
 } from '@filecoin/ui'
-import styled from 'styled-components'
-import ReactTooltip from 'react-tooltip'
-import { System, TestKind, TestQueryParams, Test } from '@filecoin/types'
-import { useNavigate } from 'react-router-dom'
 import qs from 'query-string'
-
-import { TestModal } from '@/components/tests/TestModal'
-import { PageContainer } from '@/containers/PageContainer'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import ReactTooltip from 'react-tooltip'
+import styled from 'styled-components'
 interface Props {
   testKinds: TestKind[]
   system: System
@@ -119,11 +118,11 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
 
       <BoxLayout gap={1.5}>
         <StackLayout gap={1}>
-          <ColumnLayout className={'c-matrix__header'} gap={1}>
+          <ColumnLayout className={'c-matrix__header'} gap={1.5}>
             {testKinds.map(testKind => {
               return (
                 <Text key={testKind} color="textGray">
-                  {testKind}
+                  {TestNamings(testKind)}
                 </Text>
               )
             })}
@@ -144,7 +143,6 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                   const tests = subsystem.tests.filter(
                     test => test.kind === testKind,
                   )
-
                   return (
                     <MatrixMap
                       key={testKind}
@@ -193,7 +191,7 @@ const Wrapper = styled(CardLayout)`
   margin-top: 1.25rem;
 
   .c-matrix__header {
-    padding-left: 116px;
+    padding-left: 134px;
 
     > * {
       width: 160px;

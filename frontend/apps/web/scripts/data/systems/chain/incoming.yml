@@ -1,0 +1,83 @@
+system: Chain
+subsystem: Incoming
+features:
+  - name: Handle incoming blocks
+    behaviors:
+      - id: CHAIN_INCOMING_HANDLE_INCOMING_BLOCKS_001
+        description: |
+          Given a context 'ctx', PubSub subscription 'bsub', Syncer 's', Block service 'bs', and Connection manager 'cmgr',
+          Receive new incoming blocks and messages from miners, and 
+          notify the syncer of received blocks.
+      - id: CHAIN_INCOMING_HANDLE_INCOMING_BLOCKS_002
+        description: |
+          If pubsub message retrieval fails, log error message and do nothing
+      - id: CHAIN_INCOMING_HANDLE_INCOMING_BLOCKS_003
+        description: |
+          If pubsub message validation fails, log warning message and do nothing
+      - id: CHAIN_INCOMING_HANDLE_INCOMING_BLOCKS_004
+        description: |
+          If retrieval of new blocks and messages fails, log error message and do nothing
+  - name: Fetch messages by CIDs
+    behaviors:
+      - id: CHAIN_INCOMING_FETCH_MESSAGES_BY_CID_001
+        description: |
+          Given a context 'ctx', Block getter 'bserv', and a list of message CIDs 'cids',
+          Return a list containing the messages identified by the CIDs in the 'cids' list
+  - name: Fetch signed messages by CIDs
+    behaviors:
+      - id: CHAIN_INCOMING_FETCH_SIGNED_MESSAGES_BY_CID_001
+        description: |
+          Given a context 'ctx', Block getter 'bserv', and a list of message CIDs 'cids',
+          Return a list containing the messages identified by the CIDs in the 'cids' list.
+          Duplicate of 'Fetch messages by CIDs'
+  - name: New block validator
+    behaviors:
+      - id: CHAIN_INCOMING_NEW_BLOCK_VALIDATOR_001
+        description: |
+          Given a peer ID of 'self', Chain store 'store', Consensus 'cns', and blacklist function of peer IDs 'blacklist',
+          Return a new Block validator with the specified fields set
+  - name: Validate block pubsub
+    behaviors:
+      - id: CHAIN_INCOMING_VALIDATE_BLOCK_PUBSUB_001
+        description: |
+          Given a context 'ctx', peer ID of 'self', and Pubsub message 'msg',
+          Return success (of type ValidationResult.Accept) if the given message,context and peer ID
+          pass Consensus validation
+      - id: CHAIN_INCOMING_VALIDATE_BLOCK_PUBSUB_002
+        description: |
+          Given a context 'ctx', peer ID of 'self', and Pubsub message 'msg',
+          Return failure (of type ValidationResult.Reject) if the given message,context and peer ID
+          do not pass Consensus validation
+      - id: CHAIN_INCOMING_VALIDATE_BLOCK_PUBSUB_003
+        description: |
+          Given a context 'ctx', peer ID of 'self', and Pubsub message 'msg',
+          Return ignored success (of type ValidationResult.Ignore) if the given message,context and peer ID
+          pass Consensus validation, but were already validated and recorded earlier
+  - name: New message validator
+    behaviors:
+      - id: CHAIN_INCOMING_NEW_MESSAGE_VALIDATOR_001
+        description: |
+          Given a peer ID of 'self', and Message pool 'mp',
+          Return a new Message validator with the specified fields set
+  - name: Validate message pubsub
+    behaviors:
+      - id: CHAIN_INCOMING_VALIDATE_MESSAGE_PUBSUB_001
+        description: |
+          Given a context 'ctx', peer ID of 'self', and Pubsub message 'msg',
+          Return success (of type ValidationResult.Accept) in case the given message passes validation
+      - id: CHAIN_INCOMING_VALIDATE_MESSAGE_PUBSUB_002
+        description: |
+          Given a context 'ctx', peer ID of 'self', and Pubsub message 'msg',
+          Return failure (of type ValidationResult.Reject) in case the given message does not validation
+          (e.g. due to error in decoding the signed message)
+      - id: CHAIN_INCOMING_VALIDATE_MESSAGE_PUBSUB_003
+        description: |
+          Given a context 'ctx', peer ID of 'self', and Pubsub message 'msg',
+          Return ignored success (of type ValidationResult.Accept) in case the given message passes validation,
+          but an message pool issue of any of the following types occurs during the validation process:
+            - Soft validation failure
+            - RBF premium too low
+            - Too many pending messages
+            - Nonce gap
+            - Nonce too low
+      

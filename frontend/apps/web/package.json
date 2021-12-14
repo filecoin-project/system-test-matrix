@@ -12,9 +12,8 @@
     "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "prebuild": "concurrently \"yarn generate:routes\" \"yarn generate:behaviors\"",
     "generate:routes": "node scripts/routes.js",
-    "generate:behaviors": "yarn combine-behaviors && yarn generate-test-data",
+    "generate:behaviors": "yarn combine-behaviors",
     "build": "webpack --config ./config/webpack.prod.js",
-    "generate-test-data": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/generateTestData.ts",
     "combine-behaviors": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/combineBehaviors.ts"
   },
   "browserslist": [

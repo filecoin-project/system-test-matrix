@@ -5,7 +5,6 @@ describe('Model', () => {
 
   const expectedSystemNames = [
     'api',
-    'blockchain',
     'chain',
     'client',
     'market',
@@ -69,6 +68,9 @@ describe('Model', () => {
     it('returns all behaviors', () => {
       const allBehaviors = model.getAllBehaviors()
       expect(allBehaviors.length).toBeGreaterThanOrEqual(expectedBehaviorsMin)
+
+      const tested = allBehaviors.filter(b => b.tested)
+      const untested = allBehaviors.filter(b => !b.tested)
     })
   })
 })

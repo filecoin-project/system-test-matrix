@@ -11,7 +11,13 @@ import {
 } from '@filecoin/ui'
 import styled from 'styled-components'
 import ReactTooltip from 'react-tooltip'
-import { System, TestKind, TestQueryParams, Test } from '@filecoin/types'
+import {
+  System,
+  TestKind,
+  TestQueryParams,
+  Test,
+  Behavior,
+} from '@filecoin/types'
 import { useNavigate } from 'react-router-dom'
 import qs from 'query-string'
 
@@ -41,14 +47,17 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
     behaviorId,
     ...queryParams
   }: TestQueryParams = qs.parse(location.search)
-  const openedTest = allTests.find(
-    test =>
-      (behaviorId &&
-        test.id === 'missing' &&
-        test.linkedBehaviors[0].id === behaviorId) ||
-      (testId && test.id === testId),
-  )
+  const openedTest =
+    testId && testId !== 'missing'
+      ? allTests.find(test => testId && test.id === testId)
+      : undefined
+
   const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
+  const [testBehavior, setTestBehavior] = useState<Behavior | undefined>(
+    behaviorId
+      ? allBehaviors.find(behavior => behavior.id === behaviorId)
+      : undefined,
+  )
 
   useEffect(() => {
     ReactTooltip.rebuild()
@@ -57,9 +66,10 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
   return (
     <Wrapper shadow={false}>
       <Modal
-        isOpen={!!testModal}
+        isOpen={!!(testModal || testBehavior)}
         onClose={() => {
           setTestModal(undefined)
+          setTestBehavior(undefined)
           navigate(
             {
               search: `?${qs.stringify(queryParams)}`,
@@ -68,14 +78,10 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
           )
         }}
       >
-        {testModal?.id !== 'missing' ? (
+        {testModal ? (
           <TestModal test={testModal} />
         ) : (
-          <BehaviorModal
-            behavior={allBehaviors.find(
-              behavior => behavior?.id && testModal?.linkedBehaviors[0]?.id,
-            )}
-          />
+          <BehaviorModal behavior={testBehavior} />
         )}
       </Modal>
       <ReactTooltip
@@ -150,7 +156,18 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                       key={testKind}
                       data={tests}
                       onClick={(test: Test) => {
-                        setTestModal(test)
+                        if (test.id === 'missing') {
+                          setTestModal(undefined)
+                          setTestBehavior(
+                            allBehaviors.find(
+                              behavior =>
+                                behavior.id === test.linkedBehaviors[0].id,
+                            ),
+                          )
+                        } else {
+                          setTestBehavior(undefined)
+                          setTestModal(test)
+                        }
                         navigate(
                           {
                             search: `?${qs.stringify({

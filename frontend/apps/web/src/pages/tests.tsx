@@ -24,6 +24,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
 const Header = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -288,7 +289,6 @@ const AllTests: React.FC = () => {
                 onChange={e => {
                   setSelectedFilter(e.value)
                 }}
-                onClearFilter={() => setSelectedFilter(undefined)}
               />
             </SearchAndFilterWrapper>
           </StackLayout>

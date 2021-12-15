@@ -1479,6 +1479,11 @@ exports[`Storyshots Button Ghost 1`] = `
   color: #24292F;
 }
 
+.c5:hover {
+  border: 1px solid #afb8c1;
+  background-color: #D0D7DE;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -6261,6 +6266,11 @@ exports[`Storyshots Modal Verification Status 1`] = `
   border: 1px solid #D0D7DE;
   border-radius: 5px;
   color: #24292F;
+}
+
+.c16:hover {
+  border: 1px solid #afb8c1;
+  background-color: #D0D7DE;
 }
 
 .c0 {

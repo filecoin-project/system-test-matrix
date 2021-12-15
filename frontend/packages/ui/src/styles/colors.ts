@@ -95,6 +95,8 @@ export const Colors = {
   blueLink: '#218BFF',
   black: '#000000',
   tableHeaderText: '#57606A',
+  secondaryBorder: '#afb8c1',
+  secondaryHover: '#D0D7DE',
 
   progressBarColors: ['#DBCEAD', '#99B2D0', '#C6D9AD', '#CFA0E6', '#D0D7DE'],
 }

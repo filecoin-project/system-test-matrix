@@ -297,7 +297,6 @@ const Behaviors = () => {
                 onChange={e => {
                   setSelectedFilter(e.value)
                 }}
-                onClearFilter={() => setSelectedFilter(undefined)}
               />
             </SearchAndFilterWrapper>
           </StackLayout>

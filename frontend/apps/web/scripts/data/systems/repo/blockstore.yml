@@ -63,7 +63,7 @@ features:
       - id: REPO_BLOCKSTORE_GET_MESSAGE_001
         description: |
           Given a known message CID,
-          return the message from the blockstore with specifed CID
+          return the message from the blockstore with specified CID
   
   - name: Get Messages in Tipset
     behaviors:

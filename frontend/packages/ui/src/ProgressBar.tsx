@@ -3,6 +3,7 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
+
 import { Colors } from './styles/colors'
 
 const ColorChart = {
@@ -36,18 +37,26 @@ export const ProgressBar = ({
   onClick = () => null,
   ...props
 }: Props) => {
-  const prepData = sortBy(props.data, 'name').reduce((acc, value) => {
-    if (!value.name) {
-      Object.defineProperty(value, 'name', {
-        value: 'unknown',
-      })
-    }
-    acc[value.name] = value.percentage
+  const prepData = props.data.map(({ name, ...rest }) => ({
+    name: name ? name : 'unknown',
+    ...rest,
+  }))
+  const dataWithTotal = sortBy(prepData, 'name').reduce(
+    (acc, value, index) => {
+      acc[value.name] = value.percentage
 
-    return acc
-  }, {})
-  const data =
-    Object.keys(prepData).length !== 0 ? prepData : { unknown: 100.0 }
+      acc.total += value.percentage
+      if (index === prepData.length - 1 && acc.total < 100) {
+        acc[value.name] += 100 - acc.total
+      }
+      if (index === prepData.length - 1 && acc.total > 100) {
+        acc[value.name] += 100 - acc.total
+      }
+      return acc
+    },
+    { total: 0 },
+  )
+  const { total, ...data } = dataWithTotal
 
   const getBarShape = (x, y, width, radius) => {
     const height = HEIGHT
@@ -91,11 +100,11 @@ export const ProgressBar = ({
   }
 
   const renderLegend = () => {
-    return sortBy(props.data, 'name').map(stats => {
+    return sortBy(prepData, 'name').map(stats => {
       return (
         <LegendPiece key={stats.name}>
           <LegendCircle color={ColorChart[stats.name || 'unknown']} />
-          {stats.name || 'unknown'}:{' '}
+          {stats.name}:{' '}
           <LegendValue>
             {parseFloat(stats.percentage.toFixed(2))}% ({stats.numberOfTests})
           </LegendValue>
@@ -115,19 +124,18 @@ export const ProgressBar = ({
         getContent={tooltip => {
           const content = JSON.parse(tooltip) || {}
 
-          content.data?.length === 0
-            ? content.data.push({
-                name: 'unknown',
-                percentage: 0,
-                numberOfTests: 0,
-              })
-            : content.data
           return (
             <>
-              {sortBy(content?.data, 'name').map(value => {
+              {sortBy(
+                content?.data?.map(({ name, ...rest }) => ({
+                  name: name ? name : 'unknown',
+                  ...rest,
+                })),
+                'name',
+              ).map(value => {
                 return (
                   <div key={value?.name}>
-                    <b>{value?.name || 'unknown'}</b>:{' '}
+                    <b>{value?.name}</b>:{' '}
                     <span>
                       {Number(value?.percentage).toFixed(2)}% (
                       {value?.numberOfTests})
@@ -145,8 +153,8 @@ export const ProgressBar = ({
           layout="vertical"
           data={[data]}
         >
-          <XAxis hide type="number" />
-          <YAxis hide dataKey="name" type="category" />
+          <XAxis hide type="number" interval={'preserveStartEnd'} />
+          <YAxis hide type={'category'} />
           {renderBars()}
         </BarChart>
       </ResponsiveContainer>

@@ -143,9 +143,9 @@ export class Model implements Model {
       const stats = subsystem.testStatusStats
         .percentages as TestStatusStatistic[]
       const missing = stats.find(s => s.status === 'missing')
-      if (missing && missing.percentage > 50) {
+      if (missing && missing.percentage > 66) {
         subsystem.score = SystemScore.bad
-      } else if (missing && missing.percentage > 10) {
+      } else if (missing && missing.percentage > 33) {
         subsystem.score = SystemScore.mediocre
       } else {
         subsystem.score = SystemScore.good
@@ -180,6 +180,17 @@ export class Model implements Model {
           ),
       )
       system.testStatusStats = new PercentageSet(statusStatistics)
+      const missing = system.testStatusStats.percentages.find(
+        p => p.status === 'missing',
+      )
+
+      if (missing && missing.percentage > 66) {
+        system.score = SystemScore.bad
+      } else if (missing && missing.percentage > 33) {
+        system.score = SystemScore.mediocre
+      } else {
+        system.score = SystemScore.good
+      }
     }
   }
 

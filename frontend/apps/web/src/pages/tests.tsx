@@ -358,7 +358,7 @@ const AllTests: React.FC = () => {
                 Cell: ({ data }) => {
                   return (
                     <Text type="text s" color="textGray">
-                      {data.kind}
+                      {data.kind || 'unknown'}
                     </Text>
                   )
                 },

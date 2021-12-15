@@ -60,26 +60,3 @@ export const getResultsWithFuseSearch = (
     return array
   }
 }
-
-export const TestNamings = name => {
-  switch (name) {
-    case 'unit':
-      return 'Unit'
-    case 'integration':
-      return 'Integration'
-    case 'api':
-      return 'API tests'
-    case 'benchmark':
-      return 'Benchmark'
-    case 'e2e':
-      return 'End-to-End'
-    case 'pass':
-      return 'Passing tests'
-    case 'fail':
-      return 'Failing tests'
-    case 'missing':
-      return 'Missing tests'
-    default:
-      return name
-  }
-}

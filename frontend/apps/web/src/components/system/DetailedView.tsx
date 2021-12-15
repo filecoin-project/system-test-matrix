@@ -1,7 +1,6 @@
 import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 import { TestModal } from '@/components/tests/TestModal'
 import { PageContainer } from '@/containers/PageContainer'
-import { TestNamings } from '@filecoin/core'
 import {
   Behavior,
   System,
@@ -128,7 +127,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
             {testKinds.map(testKind => {
               return (
                 <Text key={testKind} color="textGray">
-                  {TestNamings(testKind)}
+                  {testKind}
                 </Text>
               )
             })}

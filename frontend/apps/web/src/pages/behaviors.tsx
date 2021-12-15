@@ -18,6 +18,8 @@ import {
   StackLayout,
   Table,
   Text,
+  Tooltip,
+  TruncatedText,
   usePageLayout,
 } from '@filecoin/ui'
 import qs from 'query-string'
@@ -174,23 +176,29 @@ const Behaviors = () => {
       header: t('filecoin.behaviors.tableHeaders.behaviorId'),
       Cell: ({ data }) => {
         return (
-          <>
-            <NativeLink
-              className={'u-text--xsmall'}
-              appearance={'system'}
-              onClick={() => {
-                setModalId(data)
-                navigate(
-                  {
-                    search: `?id=${data.id}`,
-                  },
-                  { replace: true },
-                )
-              }}
+          <TruncatedText>
+            <Tooltip
+              element={
+                <NativeLink
+                  className="u-text--xsmall"
+                  appearance="system"
+                  onClick={() => {
+                    setModalId(data)
+                    navigate(
+                      {
+                        search: `?id=${data.id}`,
+                      },
+                      { replace: true },
+                    )
+                  }}
+                >
+                  {data.id}
+                </NativeLink>
+              }
             >
-              {data.id}
-            </NativeLink>
-          </>
+              <Text color="textGray">{data.id}</Text>
+            </Tooltip>
+          </TruncatedText>
         )
       },
     },

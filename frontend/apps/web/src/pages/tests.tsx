@@ -1,31 +1,29 @@
-import { SystemScore, TestStatus, TestQueryParams, Test } from '@filecoin/types'
+import { TestModal } from '@/components/tests/TestModal'
+import { PageContainer } from '@/containers/PageContainer'
+import { getResultsWithFuseSearch } from '@filecoin/core'
+import { SystemScore, Test, TestQueryParams, TestStatus } from '@filecoin/types'
 import {
   Button,
   CardLayout,
+  Dropdown,
+  Modal,
   NativeLink,
   PageLayout,
+  Pager,
+  Paginator,
   ProgressBar,
+  SearchInput,
   StackLayout,
   Table,
   Text,
   TruncatedText,
   usePageLayout,
-  Modal,
-  Pager,
-  Paginator,
-  Dropdown,
-  SearchInput,
 } from '@filecoin/ui'
-import React, { useState, useEffect } from 'react'
+import qs from 'query-string'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import qs from 'query-string'
-import { getResultsWithFuseSearch } from '@filecoin/core'
-
-import { TestModal } from '@/components/tests/TestModal'
-import { PageContainer } from '@/containers/PageContainer'
-
 const Header = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -360,7 +358,7 @@ const AllTests: React.FC = () => {
                 Cell: ({ data }) => {
                   return (
                     <Text type="text s" color="textGray">
-                      {data.kind}
+                      {data.kind || 'unknown'}
                     </Text>
                   )
                 },

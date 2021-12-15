@@ -1,22 +1,21 @@
+import { sortBy } from 'lodash'
 import React from 'react'
+import ReactTooltip from 'react-tooltip'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
-import ReactTooltip from 'react-tooltip'
-import { sortBy } from 'lodash'
-
 import { Colors } from './styles/colors'
 
 const ColorChart = {
-  api: '#FFB347',
-  unit: '#7D7BD3',
+  api: '#CFA0E6',
+  unit: '#FFB347',
   benchmark: '#80CEE1',
   e2e: '#FDB9C8',
-  integration: '#3572A5',
+  integration: '#7D7BD3',
   pass: '#77DF79',
   fail: '#FF837F',
   untested: '#FFABA8',
   missing: '#B2BAC7',
-  unknown: '#B2BAC7',
+  unknown: '#D0D7DE',
   tested: '#00ADD8',
 }
 
@@ -37,10 +36,18 @@ export const ProgressBar = ({
   onClick = () => null,
   ...props
 }: Props) => {
-  const data = sortBy(props.data, 'name').reduce((acc, value) => {
+  const prepData = sortBy(props.data, 'name').reduce((acc, value) => {
+    if (!value.name) {
+      Object.defineProperty(value, 'name', {
+        value: 'unknown',
+      })
+    }
     acc[value.name] = value.percentage
+
     return acc
   }, {})
+  const data =
+    Object.keys(prepData).length !== 0 ? prepData : { unknown: 100.0 }
 
   const getBarShape = (x, y, width, radius) => {
     const height = HEIGHT
@@ -84,11 +91,11 @@ export const ProgressBar = ({
   }
 
   const renderLegend = () => {
-    return props.data.map(stats => {
+    return sortBy(props.data, 'name').map(stats => {
       return (
         <LegendPiece key={stats.name}>
-          <LegendCircle color={ColorChart[stats.name]} />
-          {stats.name}:{' '}
+          <LegendCircle color={ColorChart[stats.name || 'unknown']} />
+          {stats.name || 'unknown'}:{' '}
           <LegendValue>
             {parseFloat(stats.percentage.toFixed(2))}% ({stats.numberOfTests})
           </LegendValue>
@@ -107,12 +114,20 @@ export const ProgressBar = ({
         effect={'solid'}
         getContent={tooltip => {
           const content = JSON.parse(tooltip) || {}
+
+          content.data?.length === 0
+            ? content.data.push({
+                name: 'unknown',
+                percentage: 0,
+                numberOfTests: 0,
+              })
+            : content.data
           return (
             <>
-              {content.data?.map(value => {
+              {sortBy(content?.data, 'name').map(value => {
                 return (
                   <div key={value?.name}>
-                    <b>{value?.name}</b>:{' '}
+                    <b>{value?.name || 'unknown'}</b>:{' '}
                     <span>
                       {Number(value?.percentage).toFixed(2)}% (
                       {value?.numberOfTests})

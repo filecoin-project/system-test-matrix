@@ -40,3 +40,8 @@ features:
       - id: STORAGE_STAT_001
         description: Given an attached storage ID, return statistics (capacity,
           available, reserved,...) about the specified store
+  - name: Storage list
+    behaviors:
+      - id: STORAGE_LIST_001
+        description: Given a context, return map of attached storages, indexed by 
+          their ID

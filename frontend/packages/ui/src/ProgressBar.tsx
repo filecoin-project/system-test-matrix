@@ -113,7 +113,7 @@ export const ProgressBar = ({
     })
   }
 
-  if (!data) {
+  if (!data || !props.data.length) {
     return null
   }
 

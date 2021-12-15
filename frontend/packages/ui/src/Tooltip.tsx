@@ -18,20 +18,30 @@ export const Tooltip = ({ effect = 'float', ...props }: Props) => {
   const id = props.tooltipId || Math.random() * 100
   return (
     <>
-      <span
+      <Content
         data-effect={effect}
         data-place={props.position}
         data-for={`${id}`}
         data-tip
       >
         {props.element}
-      </span>
+      </Content>
       <StyledTooltip data-element="tooltip" width={props.width} id={`${id}`}>
         {props.children}
       </StyledTooltip>
     </>
   )
 }
+const Content = styled.span`
+  .u-text-truncated {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+    max-width: 100%;
+    display: block;
+  }
+`
 
 const StyledTooltip = styled(ReactTooltip)<{ width: number }>`
   &.type-dark.__react_component_tooltip {

@@ -1,5 +1,3 @@
-import { TestModal } from '@/components/tests/TestModal'
-import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { SystemScore, Test, TestQueryParams, TestStatus } from '@filecoin/types'
 import {
@@ -24,6 +22,9 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { TestModal } from '@/components/tests/TestModal'
 
 const Header = () => {
   const navigate = useNavigate()

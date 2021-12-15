@@ -1,4 +1,3 @@
-import { getButton } from '@/pages/tests'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { System } from '@filecoin/types'
 import {
@@ -15,6 +14,8 @@ import {
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import { getButton } from '@/pages/tests'
 
 interface Props {
   system: System

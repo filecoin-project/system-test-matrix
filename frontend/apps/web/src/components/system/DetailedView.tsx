@@ -1,6 +1,3 @@
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import { TestModal } from '@/components/tests/TestModal'
-import { PageContainer } from '@/containers/PageContainer'
 import {
   Behavior,
   System,
@@ -23,6 +20,11 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { TestModal } from '@/components/tests/TestModal'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+
 interface Props {
   testKinds: TestKind[]
   system: System

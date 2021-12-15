@@ -2,6 +2,7 @@ import { useDebounce } from '@filecoin/core'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
 import { BaseInput } from './BaseInput'
 import { Icon } from './Icon'
 import { Loader } from './Loader'

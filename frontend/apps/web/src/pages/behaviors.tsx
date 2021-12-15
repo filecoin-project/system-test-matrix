@@ -1,5 +1,3 @@
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
@@ -27,6 +25,9 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface BehaviorQueryParams {
   id?: string
@@ -176,29 +177,27 @@ const Behaviors = () => {
       header: t('filecoin.behaviors.tableHeaders.behaviorId'),
       Cell: ({ data }) => {
         return (
-          <TruncatedText>
-            <Tooltip
-              element={
-                <NativeLink
-                  className="u-text--xsmall"
-                  appearance="system"
-                  onClick={() => {
-                    setModalId(data)
-                    navigate(
-                      {
-                        search: `?id=${data.id}`,
-                      },
-                      { replace: true },
-                    )
-                  }}
-                >
-                  {data.id}
-                </NativeLink>
-              }
-            >
-              <Text color="textGray">{data.id}</Text>
-            </Tooltip>
-          </TruncatedText>
+          <Tooltip
+            element={
+              <NativeLink
+                className="u-text--xsmall u-text-truncated"
+                appearance="system"
+                onClick={() => {
+                  setModalId(data)
+                  navigate(
+                    {
+                      search: `?id=${data.id}`,
+                    },
+                    { replace: true },
+                  )
+                }}
+              >
+                {data.id}
+              </NativeLink>
+            }
+          >
+            <Text color="textGray">{data.id}</Text>
+          </Tooltip>
         )
       },
     },

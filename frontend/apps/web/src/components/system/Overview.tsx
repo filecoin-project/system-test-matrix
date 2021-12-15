@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import { getButton } from '@/pages/tests'
+import { getResultsWithFuseSearch } from '@filecoin/core'
+import { System } from '@filecoin/types'
 import {
   CardLayout,
-  ProgressBar,
-  Text,
-  Table,
-  Paginator,
+  Dropdown,
   Pager,
+  Paginator,
+  ProgressBar,
   SearchInput,
   StackLayout,
-  Dropdown,
+  Table,
+  Text,
 } from '@filecoin/ui'
-import styled from 'styled-components'
-import { System } from '@filecoin/types'
-import { getResultsWithFuseSearch } from '@filecoin/core'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
-import { getButton } from '@/pages/tests'
+import styled from 'styled-components'
 
 interface Props {
   system: System
@@ -145,7 +144,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
               onChange={e => {
                 setSelectedFilter(e.value)
               }}
-              onClearFilter={() => setSelectedFilter(undefined)}
             />
           </SearchAndFilterWrapper>
         </StackLayout>

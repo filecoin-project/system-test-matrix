@@ -9,14 +9,12 @@ import { find } from 'lodash'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { Loader } from '../Loader'
 import { SearchInput } from '../SearchInput'
 import { Colors } from '../styles/colors'
 import { Text } from '../Text'
-
 import { DropdownItem } from './DropdownItem'
 
 interface Option {
@@ -482,13 +480,10 @@ export const Dropdown: FunctionComponent<Props> = ({
       >
         <HiddenWrapper>{hiddenSelect}</HiddenWrapper>
         {labelElement}
-        {props.value ? (
-          <Icon
-            name="close"
-            size="medium"
-            overflow="visible"
-            onClick={() => props.onClearFilter()}
-          />
+        {props.value && !showField ? (
+          <Icon name="arrow_down" size="xsmall" overflow="visible" />
+        ) : showField ? (
+          <Icon name="arrow_up" size="xsmall" overflow="visible" />
         ) : (
           <Icon name="arrow_up_and_down" size="xsmall" overflow="visible" />
         )}

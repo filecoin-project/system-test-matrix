@@ -97,6 +97,10 @@ features:
         description: |
           Given a sigType = <bls | secp256k1 | secp256k1-ledger>
           Create and return a new address with the given sigType
+      - id: TOKEN_WALLET_NEW_002
+        description: |
+          Given an unsupported sigType,
+          throw an error
   
   - name: Set default
     behaviors:

@@ -1,7 +1,3 @@
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import { TestModal } from '@/components/tests/TestModal'
-import { PageContainer } from '@/containers/PageContainer'
-import { TestNamings } from '@filecoin/core'
 import {
   Behavior,
   System,
@@ -24,6 +20,11 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { TestModal } from '@/components/tests/TestModal'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+
 interface Props {
   testKinds: TestKind[]
   system: System
@@ -128,7 +129,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
             {testKinds.map(testKind => {
               return (
                 <Text key={testKind} color="textGray">
-                  {TestNamings(testKind)}
+                  {testKind}
                 </Text>
               )
             })}

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { BaseInput } from './BaseInput'
-import { Button } from './Button'
 import { Icon } from './Icon'
 import { Loader } from './Loader'
 import { Colors } from './styles/colors'
@@ -62,17 +61,14 @@ export const SearchInput: FunctionComponent<SearchInputProps> = ({
 
       {(isLoading && <SearchLoader />) ||
         (query && (
-          <Button
-            variant="rounded"
-            size="small"
-            color="error"
+          <CancelWrapper
             onClick={() => {
               setIsLoading(true)
               setQuery('')
             }}
           >
-            <Icon name="close" color="white" />
-          </Button>
+            <Icon name="close" color="gray" />
+          </CancelWrapper>
         ))}
     </SearchIconWrapper>
   )
@@ -125,7 +121,18 @@ const SearchIconWrapper = styled.div<Pick<SearchInputProps, 'width'>>`
 
   ${SearchLoader} {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 16px;
+    right: 16px;
+  }
+`
+const CancelWrapper = styled.button`
+  height: 46px;
+  width: 38px;
+  display: flex;
+  border: none;
+  background-color: ${Colors.ghostBtn};
+
+  svg {
+    margin: auto;
   }
 `

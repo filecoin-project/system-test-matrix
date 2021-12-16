@@ -17,7 +17,7 @@ const RepositoryDetails = () => {
   const {
     state: { model },
   } = PageContainer.useContainer()
-  const params: { name: string } = useParams()
+  const params = useParams<{ name: string }>()
   const { t } = useTranslation()
   const navigate = useNavigate()
   const system = model.findSystemByName(params.name)

@@ -1,22 +1,22 @@
-import { TestNamings } from '@filecoin/core'
 import { sortBy } from 'lodash'
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
+
 import { Colors } from './styles/colors'
 
 const ColorChart = {
-  api: '#FFB347',
-  unit: '#7D7BD3',
+  api: '#CFA0E6',
+  unit: '#FFB347',
   benchmark: '#80CEE1',
   e2e: '#FDB9C8',
-  integration: '#3572A5',
+  integration: '#7D7BD3',
   pass: '#77DF79',
   fail: '#FF837F',
   untested: '#FFABA8',
   missing: '#B2BAC7',
-  unknown: '#B2BAC7',
+  unknown: '#D0D7DE',
   tested: '#00ADD8',
 }
 
@@ -37,10 +37,26 @@ export const ProgressBar = ({
   onClick = () => null,
   ...props
 }: Props) => {
-  const data = sortBy(props.data, 'name').reduce((acc, value) => {
-    acc[value.name] = value.percentage
-    return acc
-  }, {})
+  const prepData = props.data.map(({ name, ...rest }) => ({
+    name: name ? name : 'unknown',
+    ...rest,
+  }))
+  const dataWithTotal = sortBy(prepData, 'name').reduce(
+    (acc, value, index) => {
+      acc[value.name] = value.percentage
+
+      acc.total += value.percentage
+      if (index === prepData.length - 1 && acc.total < 100) {
+        acc[value.name] += 100 - acc.total
+      }
+      if (index === prepData.length - 1 && acc.total > 100) {
+        acc[value.name] += 100 - acc.total
+      }
+      return acc
+    },
+    { total: 0 },
+  )
+  const { total, ...data } = dataWithTotal
 
   const getBarShape = (x, y, width, radius) => {
     const height = HEIGHT
@@ -84,11 +100,11 @@ export const ProgressBar = ({
   }
 
   const renderLegend = () => {
-    return props.data.map(stats => {
+    return sortBy(prepData, 'name').map(stats => {
       return (
         <LegendPiece key={stats.name}>
-          <LegendCircle color={ColorChart[stats.name]} />
-          {TestNamings(stats.name)}:{' '}
+          <LegendCircle color={ColorChart[stats.name || 'unknown']} />
+          {stats.name}:{' '}
           <LegendValue>
             {parseFloat(stats.percentage.toFixed(2))}% ({stats.numberOfTests})
           </LegendValue>
@@ -97,7 +113,7 @@ export const ProgressBar = ({
     })
   }
 
-  if (!data) {
+  if (!data || !props.data.length) {
     return null
   }
 
@@ -107,9 +123,16 @@ export const ProgressBar = ({
         effect={'solid'}
         getContent={tooltip => {
           const content = JSON.parse(tooltip) || {}
+
           return (
             <>
-              {content.data?.map(value => {
+              {sortBy(
+                content?.data?.map(({ name, ...rest }) => ({
+                  name: name ? name : 'unknown',
+                  ...rest,
+                })),
+                'name',
+              ).map(value => {
                 return (
                   <div key={value?.name}>
                     <b>{value?.name}</b>:{' '}
@@ -130,8 +153,8 @@ export const ProgressBar = ({
           layout="vertical"
           data={[data]}
         >
-          <XAxis hide type="number" />
-          <YAxis hide dataKey="name" type="category" />
+          <XAxis hide type="number" interval={'preserveStartEnd'} />
+          <YAxis hide type={'category'} />
           {renderBars()}
         </BarChart>
       </ResponsiveContainer>

@@ -66,6 +66,37 @@ features:
     behaviors:
       - id: CLIENT_DEAL_SIZE_001
         description: Given a root CID, calculate the real data size for the specified CID
+
+  - name: Client list imports
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_LIST_IMPORTS_001
+        description: Given a context 'ctx', return all imports for the client
+  
+  - name: Client import
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_IMPORT_LOCAL_001
+        description: |
+          Given a context 'ctx', file reference 'ref', import a file at the path into the filestore, and
+          return the import ID and root CID
+      - id: CLIENT_STORAGE_DEALS_IMPORT_LOCAL_002
+        description: |
+          If import fails, return an error
+
+  - name: Remove client import
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_REMOVE_IMPORT_001
+        description: |
+          Given a context 'ctx', and ID of the import 'id', remove all data associated with the import ID
+
+  - name: Client import local
+    behaviors:
+      - id: CLIENT_STORAGE_DEALS_IMPORT_LOCAL_001
+        description: |
+          Given a context 'ctx', and IOReader 'r', import a standard file into the node as UnixFS payload,
+          storing it in a CarV2 file; return root CID
+      - id: CLIENT_STORAGE_DEALS_IMPORT_LOCAL_002
+        description: |
+          If import fails, return an error
   
   - name: Balances
     behaviors:

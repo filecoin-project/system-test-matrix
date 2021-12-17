@@ -1,5 +1,8 @@
+import { BreadCrumbs, getButton } from '@/components/system/SystemHeader'
+import { TestModal } from '@/components/tests/TestModal'
+import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
-import { SystemScore, Test, TestQueryParams, TestStatus } from '@filecoin/types'
+import { Test, TestQueryParams } from '@filecoin/types'
 import {
   Button,
   CardLayout,
@@ -15,7 +18,7 @@ import {
   Table,
   Text,
   TruncatedText,
-  usePageLayout,
+  usePageLayout
 } from '@filecoin/ui'
 import qs from 'query-string'
 import React, { useEffect, useState } from 'react'
@@ -23,19 +26,16 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { PageContainer } from '@/containers/PageContainer'
-import { TestModal } from '@/components/tests/TestModal'
 
 const Header = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
   return (
+    
     <PageLayout.Header>
       <HeaderWrapper>
-        <Text type="heading 5" semiBold>
-          {t('filecoin.allTests.allTests')}
-        </Text>
+        <BreadCrumbs pageName={t('filecoin.allTests.allTests')}/>
 
         <Button
           onClick={() => navigate('/behaviors')}
@@ -51,50 +51,7 @@ const Header = () => {
   )
 }
 
-export const getButton = (status: TestStatus | SystemScore) => {
-  const { t } = useTranslation()
 
-  const getColor = () => {
-    if (Object.keys(TestStatus).includes(status)) {
-      switch (status) {
-        case TestStatus.pass: {
-          return 'success'
-        }
-        case TestStatus.fail: {
-          return 'error'
-        }
-        case TestStatus.missing: {
-          return 'secondary'
-        }
-      }
-    } else if (Object.keys(SystemScore).includes(status)) {
-      switch (status) {
-        case SystemScore.good: {
-          return 'success'
-        }
-        case SystemScore.bad: {
-          return 'error'
-        }
-        case SystemScore.mediocre: {
-          return 'warning'
-        }
-      }
-    }
-  }
-
-  return (
-    <Button
-      style={{ pointerEvents: 'none' }}
-      variant="rounded"
-      size="small"
-      color={getColor()}
-    >
-      <Text color="white" type="text s" bold>
-        {t(`filecoin.allTests.${status}`)}
-      </Text>
-    </Button>
-  )
-}
 
 const AllTests: React.FC = () => {
   const navigate = useNavigate()

@@ -36,6 +36,13 @@ features:
       - id: CLIENT_DATA_CALCULATE_COMMP_001
         description: Given a file path, calculate the CommP for the specified file
 
+  - name: get deal piece CID
+    behaviors:
+      - id: CLIENT_DATA_GET_DEAL_PIECE_CID_001
+        description: |
+          Given a context 'ctx', and root CID 'root',
+          return the data CID size of the deal
+
   - name: generate car
     behaviors:
       - id: CLIENT_DATA_GENERATE_CAR_001

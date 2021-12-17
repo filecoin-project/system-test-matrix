@@ -68,7 +68,7 @@ export const getButton = (status: TestStatus | SystemScore) => {
 }
 
 
-export const BreadCrumbs:React.FC<BreadCrumbsProps> = ({
+export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
   pageName,
   score,
   ...props

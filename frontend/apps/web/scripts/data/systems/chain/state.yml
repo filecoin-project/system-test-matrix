@@ -14,12 +14,6 @@ features:
           Given a replacing message exists on the chain and allowReplaced=false,
           it returns the original message
 
-  - name: List miners
-    behaviors:
-      - id: CHAIN_STATE_LIST_MINERS_001
-        description: |
-          Returns the addresses of every miner that has claimed power in the power actor
-
   - name: Call
     behaviors:
       - id: CHAIN_STATE_CALL_001
@@ -222,11 +216,12 @@ features:
         description: If a replacing message is found on chain, this method will return a
           Message Lookup for the replacing message
 
-  - name: State List Miners
+  - name: List Miners
     behaviors:
       - id: CHAIN_STATE_LIST_MINERS_001
-        description: Returns the addresses of every miner that has claimed power in the
-          Power Actor given the tipset key
+        description: |
+          Given the tipset key,
+          returns the addresses of every miner that has claimed power in the Power Actor 
 
   - name: List Actors
     behaviors:

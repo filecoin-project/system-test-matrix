@@ -13,8 +13,12 @@ import {
 } from '@filecoin/types'
 import _ from 'lodash'
 
+import { capitalCase, pascalCase } from 'change-case'
+
 import behaviors from '@/behaviors.json'
 import tests from '@/tests.json'
+
+export const DEFAULT_TEST_KINDS = ['unit', 'integration', 'e2e', 'unknown']
 
 // Abstract Model interface.
 // I recommend importing this instead of the implementation, because the implementation may change
@@ -39,12 +43,7 @@ export class Model implements Model {
     const behaviorCache = new Map<string, Behavior>()
     const testCache = new Map<string, Test>()
     const featureCache = new Map<string, Feature>()
-    const testKinds = new Set<string>([
-      'unit',
-      'integration',
-      'e2e',
-      'benchmark',
-    ])
+    const testKinds = new Set<string>(DEFAULT_TEST_KINDS)
 
     Model.loadBehaviors(
       behaviorCache,
@@ -64,24 +63,15 @@ export class Model implements Model {
 
     Model.calculateSummaryStatistics(subsystemCache, testKinds, systemCache)
 
-    return new Model(
-      systemCache,
-      subsystemCache,
-      behaviorCache,
-      testCache,
-      featureCache,
-      testKinds,
-    )
+    return new Model(systemCache, behaviorCache, testCache, testKinds)
   }
 
   private static singleton?: Model
 
   private constructor(
     private systemCache = new Map<string, System>(),
-    private subsystemCache = new Map<string, SubSystem>(),
     private behaviorCache = new Map<string, Behavior>(),
     private testCache = new Map<string, Test>(),
-    private featureCache = new Map<string, Feature>(),
     private testKinds = new Set<string>(),
   ) {}
 
@@ -91,6 +81,32 @@ export class Model implements Model {
     systemCache: Map<string, System>,
   ) {
     for (const subsystem of Array.from(subsystemCache.values())) {
+      // figure out missing tests for this system
+      const untestedBehaviors = _.flatten(
+        subsystem.features.map(f => f.behaviors),
+      ).filter(b => !b.tested)
+
+      for (const untestedBehavior of untestedBehaviors) {
+        for (const testKind of Array.from(testKinds.values()).filter(
+          t => t !== 'unknown',
+        )) {
+          subsystem.tests.push(
+            new Test(
+              `${subsystem.name.replace(
+                / /g,
+                '_',
+              )}_${testKind}_test.go/Test${pascalCase(untestedBehavior.id)}`,
+              'missing',
+              'missing',
+              'missing',
+              testKind,
+              TestStatus.missing,
+              [untestedBehavior],
+            ),
+          )
+        }
+      }
+
       const testsByKind = _.groupBy(subsystem.tests, 'kind') as {
         [key: string]: Test[]
       }
@@ -103,27 +119,6 @@ export class Model implements Model {
           ),
       )
       subsystem.testKindStats = new PercentageSet(kindStatistics)
-
-      // figure out missing tests for this system
-      const untestedBehaviors = _.flatten(
-        subsystem.features.map(f => f.behaviors),
-      ).filter(b => !b.tested)
-
-      for (const untestedBehavior of untestedBehaviors) {
-        for (const testKind of Array.from(testKinds.values())) {
-          subsystem.tests.push(
-            new Test(
-              'missing',
-              'missing',
-              'missing',
-              'missing',
-              testKind,
-              TestStatus.missing,
-              [untestedBehavior],
-            ),
-          )
-        }
-      }
 
       // now calculate the testStatus statistics
       const testsByStatus = _.groupBy(subsystem.tests, 'status') as {
@@ -202,6 +197,10 @@ export class Model implements Model {
     subsystemCache: Map<string, SubSystem>,
   ) {
     for (const rawTestFile of tests.filter(t => t.scenarios)) {
+      if (!rawTestFile.test_type) {
+        rawTestFile.test_type = 'unknown'
+      }
+
       for (const rawScenario of rawTestFile.scenarios) {
         const testBehaviors: Behavior[] = []
 
@@ -253,7 +252,9 @@ export class Model implements Model {
             )
           }
 
-          parentSubsystem.tests.push(test)
+          if (!parentSubsystem.tests.find(t => t.id === test.id)) {
+            parentSubsystem.tests.push(test)
+          }
         }
       }
     }

@@ -35,7 +35,7 @@ func GetTestFiles(root string) (files []TestFile, err error) {
 	}
 
 	for _, file := range fileArray {
-		testFile := NewTestFile(file)
+		testFile := NewFile(file)
 		files = append(files, testFile)
 	}
 
@@ -49,7 +49,7 @@ func listTestFiles(root string) (files []string, err error) {
 				return err
 			}
 
-			if strings.Contains(path, "_test.go") {
+			if strings.Contains(path, ".go") {
 				files = append(files, path)
 			}
 
@@ -67,7 +67,7 @@ func listTestFiles(root string) (files []string, err error) {
 	return nil, nil
 }
 
-func NewTestFile(path string) TestFile {
+func NewFile(path string) TestFile {
 	parts := strings.Split(path, "/")
 
 	return TestFile{

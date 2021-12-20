@@ -1,0 +1,105 @@
+system: Blockstore
+subsystem: Badger Blockstore
+features:
+  - name: Open
+    behaviors:
+      - id: BLOCKSTORE_BADGER_OPEN_001
+        description: |
+          Given badger options 'opts', returns a new blockstore with the settings
+          configured according to the options
+  - name: Close
+    behaviors:
+      - id: BLOCKSTORE_BADGER_CLOSE_001
+        description: |
+          Closes the blockstore
+  - name: Collect garbage
+    behaviors:
+      - id: BLOCKSTORE_BADGER_COLLECT_GARBAGE_001
+        description: |  
+          Given a list of Blockstore GC options 'opts', collects garbage in the blockstore
+          according to the options.
+  - name: Size
+    behaviors:
+      - id: BLOCKSTORE_BADGER_SIZE_001
+        description: |  
+          Returns the aggregate size of the blockstore
+  - name: View
+    behaviors:
+      - id: BLOCKSTORE_BADGER_VIEW_001
+        description: |  
+          Given a context 'ctx', CID 'cid', and a view function 'fn', return read-only value from the blockstore
+      - id: BLOCKSTORE_BADGER_VIEW_002
+        description: |  
+          In case the block with 'cid' could not be found, return an error
+  - name: Has
+    behaviors:
+      - id: BLOCKSTORE_BADGER_HAS_001
+        description: |  
+          Given a context 'ctx', CID 'cid', return true if the block with 'cid' is present in the blockstore
+      - id: BLOCKSTORE_BADGER_HAS_002
+        description: |  
+          In case checking for the block's presence fails, return an error
+  - name: Get
+    behaviors:
+      - id: BLOCKSTORE_BADGER_GET_001
+        description: |  
+          Given a context 'ctx', CID 'cid', return a block from the blockstore
+      - id: BLOCKSTORE_BADGER_GET_002
+        description: |  
+          In case the block with 'cid' is not found, return an error
+  - name: Get size
+    behaviors:
+      - id: BLOCKSTORE_BADGER_GET_SIZE_001
+        description: |  
+          Given a context 'ctx', CID 'cid', return a block's size from the blockstore
+      - id: BLOCKSTORE_BADGER_GET_SIZE_002
+        description: |  
+          In case the block with 'cid' is not found, return an error
+  - name: Put
+    behaviors:
+      - id: BLOCKSTORE_BADGER_PUT_001
+        description: |  
+          Given a context 'ctx', and a block 'block', add the block to the blockstore
+          under its CID.
+  - name: Put many
+    behaviors:
+      - id: BLOCKSTORE_BADGER_PUT_MANY_001
+        description: |  
+          Given a context 'ctx', and a list of blocks 'blocks', add each block to the blockstore
+          under its CID.
+  - name: Delete
+    behaviors:
+      - id: BLOCKSTORE_BADGER_DELETE_001
+        description: |  
+          Given a context 'ctx', and a block CID 'cid', delete the block from the blockstore
+  - name: Delete many
+    behaviors:
+      - id: BLOCKSTORE_BADGER_DELETE_MANY_001
+        description: |  
+          Given a context 'ctx', and a list of block CIDs 'cids', delete each block 
+          from the blockstore marked by its CID.
+  - name: All keys channel
+    behaviors:
+      - id: BLOCKSTORE_BADGER_ALL_KEYS_CHAN_001
+        description: |  
+          Given a context 'ctx', return a channel which will return all keys present in 
+          the blockstore.
+  - name: For each
+    behaviors:
+      - id: BLOCKSTORE_BADGER_FOR_EACH_001
+        description: |  
+          Given a function which operates over a block CID 'f', iterate over all blocks
+          in the blockstore and execute 'f' over each CID.
+  - name: Pooled storage key
+    behaviors:
+      - id: BLOCKSTORE_BADGER_POOLED_STORAGE_KEY_001
+        description: |  
+          Given a block CID 'cid', return the storage key under which 'cid' is stored; also
+          return a flag indicating the storage key must be returned to the pool after use
+  - name: Storage key
+    behaviors:
+      - id: BLOCKSTORE_BADGER_STORAGE_KEY_001
+        description: |  
+          Given a byte slice 'dst', and block CID 'cid', return the storage key for the block
+          into the provided slice.
+          

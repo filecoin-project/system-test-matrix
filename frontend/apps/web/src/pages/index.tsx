@@ -1,3 +1,5 @@
+import { getButton } from '@/components/system/SystemHeader'
+import { PageContainer } from '@/containers/PageContainer'
 import {
   Button,
   Link,
@@ -6,15 +8,13 @@ import {
   StackLayout,
   Table,
   Text,
-  usePageLayout,
+  usePageLayout
 } from '@filecoin/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { getButton } from '@/pages/tests'
-import { PageContainer } from '@/containers/PageContainer'
 
 const Header = () => {
   const { t } = useTranslation()
@@ -143,9 +143,6 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
 `
 const Buttons = styled.div`
-  margin-top: auto;
-  margin-bottom: auto;
-
   button {
     &:first-child {
       margin-right: 10px;

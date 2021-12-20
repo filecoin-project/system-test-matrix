@@ -1,3 +1,6 @@
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import { BreadCrumbs } from '@/components/system/SystemHeader'
+import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
@@ -16,9 +19,7 @@ import {
   StackLayout,
   Table,
   Text,
-  Tooltip,
-  TruncatedText,
-  usePageLayout,
+  Tooltip, usePageLayout
 } from '@filecoin/ui'
 import qs from 'query-string'
 import React, { useEffect, useState } from 'react'
@@ -26,8 +27,6 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { PageContainer } from '@/containers/PageContainer'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface BehaviorQueryParams {
   id?: string
@@ -154,9 +153,8 @@ const Behaviors = () => {
     header: (
       <PageLayout.Header>
         <HeaderWrapper>
-          <Text type="heading 5" semiBold>
-            {t('filecoin.behaviors.title')}
-          </Text>
+        <BreadCrumbs pageName={t('filecoin.behaviors.title')}/>
+
           <Button
             onClick={() => navigate('/tests')}
             variant="outline"

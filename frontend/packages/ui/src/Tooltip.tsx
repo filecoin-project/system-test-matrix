@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
+
 
 interface Props {
   element: JSX.Element
@@ -54,11 +54,23 @@ const StyledTooltip = styled(ReactTooltip)<{ width: number }>`
     ${props => {
       return props.width ? `max-width: ${props.width}px;` : ''
     }}
-
+     &.place-top {
+      &::after {
+        width: 12px;
+        height: 12px;
+        background: #fff;
+        transform: rotate(45deg);
+        border-top: 1px solid transparent;
+        border-left: 1px solid transparent;
+        border-right: 1px solid ${Colors.borderColor};
+        border-bottom: 1px solid ${Colors.borderColor};
+      }
+    }
+  
     &.show {
       opacity: 1;
     }
-
+    
     &.place-bottom {
       &::after {
         width: 12px;

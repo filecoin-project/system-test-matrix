@@ -32,10 +32,18 @@ type Metadata struct {
 	a.HeaderType
 }
 
-func ExtractInfo(file c.TestFile, ctx context.Context) (scenarios []c.Scenario, meta *Metadata, err error) {
+type FileData struct {
+	meta      *Metadata
+	scenarios []c.Scenario
+}
+
+func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, error) {
+
+	fileData := &FileData{}
+
 	content, err := getFileContent(file.Path)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	parser := sitter.NewParser()
@@ -43,23 +51,23 @@ func ExtractInfo(file c.TestFile, ctx context.Context) (scenarios []c.Scenario, 
 
 	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	cursor := sitter.NewTreeCursor(tree.RootNode())
 
-	scenData, meta, err := parseContent(content, cursor, file.Path)
+	fileData, err := parseContent(content, cursor, file.Path)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 	for _, s := range scenData {
-		scenarios = append(scenarios, c.Scenario{
+		fileData.scenarios = append(fileData.scenarios, c.Scenario{
 			Function:  s.Function,
 			Behaviors: s.Behaviors,
 		})
 
 	}
-	return scenarios, meta, nil
+	return fileData, nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -78,24 +86,23 @@ func getFileContent(filePath string) (content string, err error) {
 	return string(src), nil
 }
 
-func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string) ([]c.Scenario, *Metadata, error) {
-	var scenarios []c.Scenario
-	var metadata *Metadata
+func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string) (*FileData, error) {
+	fileData := &FileData{}
 
 	var annotationParser a.Parser
 
-	metadata = getMetadata(content, treeCursor, &annotationParser)
+	fileData.meta = getMetadata(content, treeCursor, &annotationParser)
 	functions := getFunctionNodes(content, treeCursor, &annotationParser)
 
 	for _, function := range functions {
 
 		behaviors := findBehaviorsFromNode(content, function.Node)
 
-		scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
+		fileData.scenarios = append(fileData.scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
 
 	}
 
-	return scenarios, metadata, nil
+	return fileData, nil
 }
 
 func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) *Metadata {

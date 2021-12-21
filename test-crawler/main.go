@@ -47,10 +47,12 @@ func main() {
 			continue
 		}
 
-		files[i].Package = meta.Package
-		files[i].TestType = meta.TestType
-		files[i].Ignore = meta.Ignore
-		files[i].Scenarios = scenarios
+		if meta != nil {
+			files[i].Package = meta.Package
+			files[i].TestType = meta.TestType
+			files[i].Ignore = meta.Ignore
+			files[i].Scenarios = scenarios
+		}
 	}
 
 	Save(files, config.OutputMode, config.OutputDir)

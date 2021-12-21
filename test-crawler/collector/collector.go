@@ -66,14 +66,3 @@ func listTestFiles(root string) (files []string, err error) {
 
 	return nil, nil
 }
-
-func NewFile(path string) TestFile {
-	parts := strings.Split(path, "/")
-
-	return TestFile{
-		File:         parts[len(parts)-1],
-		Path:         path,
-		Project:      parts[1],
-		ParentFolder: parts[len(parts)-2],
-	}
-}

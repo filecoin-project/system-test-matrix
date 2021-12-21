@@ -33,8 +33,8 @@ type Metadata struct {
 }
 
 type FileData struct {
-	meta      *Metadata
-	scenarios []c.Scenario
+	Metadata  *Metadata
+	Scenarios []c.Scenario
 }
 
 func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, error) {
@@ -56,12 +56,12 @@ func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, error) {
 
 	cursor := sitter.NewTreeCursor(tree.RootNode())
 
-	fileData, err := parseContent(content, cursor, file.Path)
+	fData, err := parseContent(content, cursor, file.Path)
 	if err != nil {
 		return nil, err
 	}
-	for _, s := range scenData {
-		fileData.scenarios = append(fileData.scenarios, c.Scenario{
+	for _, s := range fData.Scenarios {
+		fileData.Scenarios = append(fileData.Scenarios, c.Scenario{
 			Function:  s.Function,
 			Behaviors: s.Behaviors,
 		})
@@ -91,14 +91,14 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 
 	var annotationParser a.Parser
 
-	fileData.meta = getMetadata(content, treeCursor, &annotationParser)
+	fileData.Metadata = getMetadata(content, treeCursor, &annotationParser)
 	functions := getFunctionNodes(content, treeCursor, &annotationParser)
 
 	for _, function := range functions {
 
 		behaviors := findBehaviorsFromNode(content, function.Node)
 
-		fileData.scenarios = append(fileData.scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
+		fileData.Scenarios = append(fileData.Scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
 
 	}
 

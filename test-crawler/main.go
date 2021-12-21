@@ -38,20 +38,23 @@ func main() {
 		return
 	}
 
+	completeFuncs := make(map[string][]c.Scenario)
+	incompleteFuncs := make(map[string][]c.Scenario)
+
 	ctx := context.Background()
 
 	for i, file := range files {
-		scenarios, meta, err := ex.ExtractInfo(file, ctx)
+		fileData, err := ex.ExtractInfo(file, ctx)
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
 
-		if meta != nil {
-			files[i].Package = meta.Package
-			files[i].TestType = meta.TestType
-			files[i].Ignore = meta.Ignore
-			files[i].Scenarios = scenarios
+		if fileData.Metadata != nil {
+			files[i].Package = fileData.Metadata.Package
+			files[i].TestType = fileData.Metadata.TestType
+			files[i].Ignore = fileData.Metadata.Ignore
+			files[i].Scenarios = fileData.Scenarios
 		}
 	}
 

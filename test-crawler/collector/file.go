@@ -18,6 +18,17 @@ func (f *FileID) Equal(id FileID) bool {
 	return *f == id
 }
 
+func (f *FileID) ToFile(files map[FileID]TestFile) *TestFile {
+
+	for _, file := range files {
+		if f.Equal(file.ID) {
+			return &file
+		}
+	}
+
+	return nil
+}
+
 func NewFile(path string) TestFile {
 	parts := strings.Split(path, "/")
 

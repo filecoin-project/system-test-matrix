@@ -9,6 +9,7 @@ import (
 )
 
 type TestFile struct {
+	ID           FileID
 	File         string     `json:"file"`
 	Path         string     `json:"path"`
 	Project      string     `json:"repository"`

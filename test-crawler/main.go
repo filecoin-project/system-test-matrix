@@ -38,12 +38,19 @@ func main() {
 		return
 	}
 
-	var finishedFiles []c.TestFile
-	var incompleteFiles []c.TestFile
+	finishedFiles := make(map[c.FileID][]c.Scenario)
+	incompleteFiles := make(map[c.FileID][]c.Scenario)
+
+	allFiles := make(map[c.FileID]c.TestFile)
 
 	ctx := context.Background()
 
 	for i, file := range files {
+
+		fileID := c.CreateFileID(file.Path, file.File)
+
+		allFiles[fileID] = file
+
 		fileData, isCompleted, err := ex.ExtractInfo(file, ctx)
 		if err != nil {
 			fmt.Println(err)
@@ -51,7 +58,7 @@ func main() {
 		}
 
 		if !isCompleted {
-			incompleteFiles = append(incompleteFiles, file)
+			incompleteFiles[fileID] = fileData.Scenarios
 			continue
 		}
 
@@ -62,20 +69,39 @@ func main() {
 			files[i].Scenarios = fileData.Scenarios
 		}
 
-		finishedFiles = append(finishedFiles, file)
+		finishedFiles[fileID] = file.Scenarios
 	}
 
 	complete := trySolveIncomplete(incompleteFiles)
 	if complete != nil {
-		finishedFiles = append(finishedFiles, complete...)
+		merge(finishedFiles, complete)
 	}
 
-	Save(finishedFiles, config.OutputMode, config.OutputDir)
+	files = convertToTestFile(finishedFiles, allFiles)
+
+	Save(files, config.OutputMode, config.OutputDir)
 }
 
-func trySolveIncomplete(incomplete []c.TestFile) []c.TestFile {
+func trySolveIncomplete(map[c.FileID][]c.Scenario) map[c.FileID][]c.Scenario {
 
 	return nil
+}
+
+func convertToTestFile(finishedFiles map[c.FileID][]c.Scenario, allFiles map[c.FileID]c.TestFile) (result []c.TestFile) {
+	for id, _ := range finishedFiles {
+		result = append(result, *id.ToFile(allFiles))
+	}
+	return nil
+}
+
+func merge(ms ...map[c.FileID][]c.Scenario) map[c.FileID][]c.Scenario {
+	res := map[c.FileID][]c.Scenario{}
+	for _, m := range ms {
+		for k, v := range m {
+			res[k] = append(res[k], v...)
+		}
+	}
+	return res
 }
 
 func Save(files []c.TestFile, mode OutputMode, outputDir string) {

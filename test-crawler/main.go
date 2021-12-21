@@ -38,15 +38,20 @@ func main() {
 		return
 	}
 
-	completeFuncs := make(map[string][]c.Scenario)
-	incompleteFuncs := make(map[string][]c.Scenario)
+	var finishedFiles []c.TestFile
+	var incompleteFiles []c.TestFile
 
 	ctx := context.Background()
 
 	for i, file := range files {
-		fileData, err := ex.ExtractInfo(file, ctx)
+		fileData, isCompleted, err := ex.ExtractInfo(file, ctx)
 		if err != nil {
 			fmt.Println(err)
+			continue
+		}
+
+		if !isCompleted {
+			incompleteFiles = append(incompleteFiles, file)
 			continue
 		}
 
@@ -56,9 +61,21 @@ func main() {
 			files[i].Ignore = fileData.Metadata.Ignore
 			files[i].Scenarios = fileData.Scenarios
 		}
+
+		finishedFiles = append(finishedFiles, file)
 	}
 
-	Save(files, config.OutputMode, config.OutputDir)
+	complete := trySolveIncomplete(incompleteFiles)
+	if complete != nil {
+		finishedFiles = append(finishedFiles, complete...)
+	}
+
+	Save(finishedFiles, config.OutputMode, config.OutputDir)
+}
+
+func trySolveIncomplete(incomplete []c.TestFile) []c.TestFile {
+
+	return nil
 }
 
 func Save(files []c.TestFile, mode OutputMode, outputDir string) {

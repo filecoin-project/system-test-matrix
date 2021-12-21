@@ -35,15 +35,18 @@ type Metadata struct {
 type FileData struct {
 	Metadata  *Metadata
 	Scenarios []c.Scenario
+	Complete  bool
 }
 
-func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, error) {
+type isCompleted bool
+
+func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, isCompleted, error) {
 
 	fileData := &FileData{}
 
 	content, err := getFileContent(file.Path)
 	if err != nil {
-		return nil, err
+		return nil, true, err
 	}
 
 	parser := sitter.NewParser()
@@ -51,14 +54,14 @@ func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, error) {
 
 	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
 	if err != nil {
-		return nil, err
+		return nil, true, err
 	}
 
 	cursor := sitter.NewTreeCursor(tree.RootNode())
 
 	fData, err := parseContent(content, cursor, file.Path)
 	if err != nil {
-		return nil, err
+		return nil, true, err
 	}
 	for _, s := range fData.Scenarios {
 		fileData.Scenarios = append(fileData.Scenarios, c.Scenario{
@@ -67,7 +70,8 @@ func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, error) {
 		})
 
 	}
-	return fileData, nil
+
+	return fileData, isCompleted(fileData.Complete), nil
 }
 
 func getFileContent(filePath string) (content string, err error) {

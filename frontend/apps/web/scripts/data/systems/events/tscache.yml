@@ -1,0 +1,35 @@
+system: Events
+subsystem: Tipset cache
+features:
+  - name: Get chain tipset
+    behaviors:
+      - id: EVENTS_CACHE_GET_CHAIN_TIPSET_001
+        description: |
+          Given a context 'ctx', tipset key 'tsk', return the tipset stored at the key
+  - name: Get chain tipset before
+    behaviors:
+      - id: EVENTS_CACHE_GET_CHAIN_TIPSET_BEFORE_001
+        description: |
+          Given a context 'ctx', chain epoch 'height', and tipset key 'tsk', return
+          the tipset stored at the key belonging to an epoch before 'height'
+  - name: Get chain tipset after
+    behaviors:
+      - id: EVENTS_CACHE_GET_CHAIN_TIPSET_AFTER_001
+        description: |
+          Given a context 'ctx', chain epoch 'height', and tipset key 'tsk', return
+          the tipset stored at the key belonging to an epoch after 'height'
+  - name: Get chain head
+    behaviors:
+      - id: EVENTS_CACHE_GET_CHAIN_HEAD_001
+        description: |
+          Given a context 'ctx', return the chain's head tipset
+  - name: Apply
+    behaviors:
+      - id: EVENTS_CACHE_APPLY_001
+        description: |
+          Given a context 'ctx', and tipset 'to', add the tipset to the cache
+  - name: Revert
+    behaviors:
+      - id: EVENTS_CACHE_REVERT_001
+        description: |
+          Given a context 'ctx', and tipset 'from', revert tipsets following from

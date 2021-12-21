@@ -1,5 +1,5 @@
-import { DEFAULT_TEST_KINDS, Model } from '@/model'
-import { System, SystemScore, TestStatus } from '@filecoin/types'
+import { Model } from '@/model'
+import { SystemScore, TestStatus } from '@filecoin/types'
 import {
   testBehaviorIntegrity,
   testSubsystemIntegrity,
@@ -7,6 +7,7 @@ import {
   testTestIntegrity,
 } from './helpers'
 import _ from 'lodash'
+import { DEFAULT_TEST_KINDS } from '../DenormalizedLoader'
 
 describe('Model', () => {
   const model = Model.New()

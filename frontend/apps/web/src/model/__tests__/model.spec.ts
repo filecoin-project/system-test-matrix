@@ -10,6 +10,7 @@ describe('Model', () => {
     'market',
     'miner',
     'network',
+    'splitstore',
     'token',
     'vm',
     'repo',

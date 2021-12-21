@@ -26,6 +26,8 @@ export enum TestStatus {
   pass = 'pass',
   fail = 'fail',
   missing = 'missing',
+  unannotated = 'unannotated',
+  unparsed = 'unparsed',
 }
 
 export type TestKind = string

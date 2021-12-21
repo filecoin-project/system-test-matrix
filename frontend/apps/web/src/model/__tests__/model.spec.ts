@@ -1,6 +1,11 @@
 import { DEFAULT_TEST_KINDS, Model } from '@/model'
-import { SystemScore, TestStatus } from '@filecoin/types'
-import { testSystemIntegrity } from './helpers'
+import { System, SystemScore, TestStatus } from '@filecoin/types'
+import {
+  testBehaviorIntegrity,
+  testSubsystemIntegrity,
+  testSystemIntegrity,
+  testTestIntegrity,
+} from './helpers'
 import _ from 'lodash'
 
 describe('Model', () => {
@@ -30,46 +35,9 @@ describe('Model', () => {
       }
       expect(systemNames).noDuplicates()
 
-      // integrity check for each returned system
+      // check each system
       for (const sys of systems) {
-        testSystemIntegrity(sys)
-
-        // subsystem checks
-        expect(sys.subsystems.length).toBeGreaterThan(0)
-        expect(sys.subsystems.map(s => s.name)).noDuplicates()
-
-        for (const subsystem of sys.subsystems) {
-          testSystemIntegrity(subsystem)
-          expect(subsystem.parentSystemName).toBe(sys.name)
-
-          // feature integrity check
-          expect(subsystem.features.length).toBeGreaterThan(0)
-          expect(subsystem.features.map(f => f.name)).noDuplicates()
-          for (const feature of subsystem.features) {
-            expect(feature.name).toBeDefined()
-            expect(feature.name.length).toBeGreaterThan(0)
-            expect(feature.parentSubsystemName).toBe(subsystem.name)
-
-            // behavior integrity check
-            expect(feature.behaviors.length).toBeGreaterThan(0)
-            expect(feature.behaviors.map(b => b.id)).noDuplicates()
-            for (const behavior of feature.behaviors) {
-              expect(behavior.id).toBeDefined()
-              expect(behavior.id.length).toBeGreaterThan(0)
-              expect(behavior.parentFeatureName).toBe(feature.name)
-              expect(behavior.description).toBeDefined()
-              expect(behavior.description.length).toBeGreaterThan(0)
-              expect(behavior.subsystemName).toBe(subsystem.name)
-              expect(behavior.systemName).toBe(sys.name)
-            }
-
-            expect(feature.systemName).toBe(sys.name)
-          }
-
-          // testIntegrityCheck
-          expect(subsystem.tests.map(t => t.id)).noDuplicates()
-          expect(subsystem.tests.length).toBeGreaterThan(0)
-        }
+        testSubsystemIntegrity(sys)
       }
 
       // at least one system should have score > bad
@@ -92,12 +60,30 @@ describe('Model', () => {
   })
 
   describe('getAllTests', () => {
-    const expectedNumTests = 1
+    const expectedNumTests = 500
 
     it('returns the expected number of tests', () => {
       const allTests = model.getAllTests()
       expect(allTests.length).toBeGreaterThanOrEqual(expectedNumTests)
       expect(allTests.map(t => t.id)).noDuplicates()
+
+      for (const test of allTests) {
+        testTestIntegrity(test)
+      }
+
+      // some tests should be unparsed
+      const unparsed = allTests.filter(t => t.status === TestStatus.unparsed)
+      expect(unparsed.length).toBeGreaterThan(0)
+      // but not all
+      expect(unparsed.length).toBeLessThan(allTests.length)
+
+      // some tests should be unannotated
+      const unannotated = allTests.filter(
+        t => t.status === TestStatus.unannotated,
+      )
+      expect(unannotated.length).toBeGreaterThan(0)
+      // but not all
+      expect(unannotated.length).toBeLessThan(allTests.length)
     })
   })
 
@@ -117,6 +103,10 @@ describe('Model', () => {
       const allBehaviors = model.getAllBehaviors()
       expect(allBehaviors.length).toBeGreaterThanOrEqual(expectedBehaviorsMin)
       expect(allBehaviors.map(b => b.id)).noDuplicates()
+
+      for (const behavior of allBehaviors) {
+        testBehaviorIntegrity(behavior)
+      }
     })
   })
 })

@@ -13,10 +13,10 @@ import {
 } from '@filecoin/types'
 import _ from 'lodash'
 
-import { capitalCase, pascalCase } from 'change-case'
+import { pascalCase } from 'change-case'
 
 import behaviors from '@/behaviors.json'
-import tests from '@/tests.json'
+import testCrawlerOutput from '@/tests.json'
 
 export const DEFAULT_TEST_KINDS = ['unit', 'integration', 'e2e', 'unknown']
 
@@ -196,68 +196,105 @@ export class Model implements Model {
     featureCache: Map<string, Feature>,
     subsystemCache: Map<string, SubSystem>,
   ) {
-    for (const rawTestFile of tests.filter(t => t.scenarios)) {
-      if (!rawTestFile.test_type) {
-        rawTestFile.test_type = 'unknown'
-      }
+    for (const testFile of testCrawlerOutput) {
+      if (!testFile.scenarios || testFile.scenarios.length === 0) {
+        Model.handleUnparsedTest(testFile, testCache, testKinds)
+      } else {
+        if (!testFile.test_type) {
+          testFile.test_type = 'unknown'
+        }
 
-      for (const rawScenario of rawTestFile.scenarios) {
-        const testBehaviors: Behavior[] = []
+        for (const rawScenario of testFile.scenarios) {
+          const testBehaviors: Behavior[] = []
 
-        if (rawScenario.Behaviors) {
-          for (const rawBehavior of rawScenario.Behaviors) {
-            const behavior = behaviorCache.get(rawBehavior.behavior)
-            if (behavior) {
-              behavior.tested = true
-              testBehaviors.push(behavior)
-            } else {
-              throw new Error(
-                `Unknown behavior ${rawBehavior.behavior} for test ${rawTestFile.file}/${rawScenario.function}`,
-              )
+          if (rawScenario.Behaviors) {
+            for (const rawBehavior of rawScenario.Behaviors) {
+              const behavior = behaviorCache.get(rawBehavior.behavior)
+              if (behavior) {
+                behavior.tested = true
+                testBehaviors.push(behavior)
+              } else {
+                throw new Error(
+                  `Unknown behavior ${rawBehavior.behavior} for test ${testFile.file}/${rawScenario.function}`,
+                )
+              }
             }
           }
-        }
-        const test = new Test(
-          `${rawTestFile.file}/${rawScenario.function}`,
-          rawTestFile.file,
-          rawScenario.function,
-          rawTestFile.repository,
-          rawTestFile.test_type,
-          TestStatus.pass,
-          testBehaviors,
-        )
-
-        if (rawTestFile.test_type) {
-          testKinds.add(rawTestFile.test_type)
-        }
-        testCache.set(test.id, test)
-
-        // update the subsystems in the cache
-        for (const behavior of test.linkedBehaviors) {
-          // find the appropriate subsystem
-          const parentFeature = featureCache.get(behavior.parentFeatureName)
-          if (!parentFeature) {
-            throw new Error(
-              `Can't find feature: ${behavior.parentFeatureName} in the cache`,
-            )
-          }
-
-          const parentSubsystem = subsystemCache.get(
-            `${parentFeature.systemName}/${parentFeature.parentSubsystemName}`,
+          const test = new Test(
+            `${testFile.file}/${rawScenario.function}`,
+            testFile.file,
+            rawScenario.function,
+            testFile.repository,
+            testFile.test_type,
+            testBehaviors.length > 0 ? TestStatus.pass : TestStatus.unannotated,
+            testBehaviors,
           )
 
-          if (!parentSubsystem) {
-            throw new Error(
-              `Can't find subsystem: ${parentFeature.parentSubsystemName} in the cache`,
-            )
+          if (testFile.test_type) {
+            testKinds.add(testFile.test_type)
           }
+          testCache.set(test.id, test)
 
-          if (!parentSubsystem.tests.find(t => t.id === test.id)) {
-            parentSubsystem.tests.push(test)
+          // update the subsystems in the cache
+          for (const behavior of test.linkedBehaviors) {
+            // find the appropriate subsystem
+            const parentFeature = featureCache.get(behavior.parentFeatureName)
+            if (!parentFeature) {
+              throw new Error(
+                `Can't find feature: ${behavior.parentFeatureName} in the cache`,
+              )
+            }
+
+            const parentSubsystem = subsystemCache.get(
+              `${parentFeature.systemName}/${parentFeature.parentSubsystemName}`,
+            )
+
+            if (!parentSubsystem) {
+              throw new Error(
+                `Can't find subsystem: ${parentFeature.parentSubsystemName} in the cache`,
+              )
+            }
+
+            if (!parentSubsystem.tests.find(t => t.id === test.id)) {
+              parentSubsystem.tests.push(test)
+            }
           }
         }
       }
     }
+  }
+
+  private static handleUnparsedTest(
+    testFile: {
+      file: string
+      path: string
+      repository: string
+      parent_folder: string
+      package: string
+      test_type: string
+      ignore: boolean
+      scenarios: {
+        function: string
+        Behaviors: { behavior_id: string; behavior: string; ignore: boolean }[]
+      }[]
+    },
+    testCache: Map<string, Test>,
+    testKinds: Set<string>,
+  ) {
+    const test = new Test(
+      `${testFile.file}/${testCache.size}`,
+      testFile.file,
+      '',
+      testFile.repository,
+      testFile.test_type.length > 0 ? testFile.test_type : 'unknown',
+      TestStatus.unparsed,
+      [],
+    )
+
+    if (testFile.test_type) {
+      testKinds.add(testFile.test_type)
+    }
+    testCache.set(test.id, test)
   }
 
   private static subsystemKey(subsystem: SubSystem): string {
@@ -330,11 +367,20 @@ export class Model implements Model {
     return this.systemCache.get(name)
   }
 
+  // getAllTests returns all tests from the database,
+  // sorted lexicographically by file name
   getAllTests(): Test[] {
-    return Array.from(this.testCache.values())
+    return Array.from(this.testCache.values()).sort((a, b) =>
+      a.path.localeCompare(b.path),
+    )
   }
+
+  // getAllBehaviors returns all behaviors from the database,
+  // sorted lexicographically by ID
   getAllBehaviors(): Behavior[] {
-    return Array.from(this.behaviorCache.values())
+    return Array.from(this.behaviorCache.values()).sort((a, b) =>
+      a.id.localeCompare(b.id),
+    )
   }
 
   getAllTestKinds(): TestKind[] {

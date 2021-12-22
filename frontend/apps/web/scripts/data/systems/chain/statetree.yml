@@ -1,0 +1,79 @@
+system: Chain
+subsystem: Statetree
+features:
+  - name: Version for network
+    behaviors:
+      - id: CHAIN_STATETREE_VERSION_FOR_NETWORK_001
+        description: |
+          Given a network version 'ver', return the state tree version for that network
+  - name: Load
+    behaviors:
+      - id: CHAIN_STATETREE_LOAD_001
+        description: |
+          Given an IPLD store 'cst', and a root CID 'c', load and return the state tree indicated
+          by the root CID
+  - name: Set actor
+    behaviors:
+      - id: CHAIN_STATETREE_SET_ACTOR_001
+        description: |
+          Given an address 'addr', and an actor 'act', set the actor for the address in the state tree
+  - name: Get actor
+    behaviors:
+      - id: CHAIN_STATETREE_GET_ACTOR_001
+        description: |
+          Given any type of address 'addr', return the actor indicated to by the address
+  - name: Lookup ID
+    behaviors:
+      - id: CHAIN_STATETREE_LOOKUP_ID_001
+        description: |
+          Given an address 'addr', return the ID address of the given address' actor
+  - name: Delete actor
+    behaviors:
+      - id: CHAIN_STATETREE_DELETE_ACTOR_001
+        description: |
+          Given an address 'addr', delete the actor from the state tree
+  - name: Flush
+    behaviors:
+      - id: CHAIN_STATETREE_FLUSH_001
+        description: |
+          Given a context 'ctx', clear all data stored in the state tree, and return 
+          a new root CID
+  - name: Snapshot
+    behaviors:
+      - id: CHAIN_STATETREE_SNAPSHOT_001
+        description: |
+          Given a context 'ctx', add a new layer (snapshot) to the state tree
+  - name: Clear snapshot
+    behaviors:
+      - id: CHAIN_STATETREE_SNAPSHOT_CLEAR_001
+        description: |
+          Clear the last layer (snapshot) in the state tree
+  - name: Revert
+    behaviors:
+      - id: CHAIN_STATETREE_SNAPSHOT_REVERT_001
+        description: |
+          Drop the last layer (snapshot), and add a new one in its place
+  - name: Register new address
+    behaviors:
+      - id: CHAIN_STATETREE_REGISTER_NEW_ADDR_001
+        description: |
+          Given an address 'addr', register the address to an actor already present in 
+          the state tree
+  - name: Mutate actor
+    behaviors:
+      - id: CHAIN_STATETREE_MUTATE_ACTOR_001
+        description: |
+          Given an address 'addr', and a function operating on an actor 'f',
+          mutate the actor stored at 'addr', according to 'f'.
+  - name: For each
+    behaviors:
+      - id: CHAIN_STATETREE_FOR_EACH_001
+        description: |
+          Given an address 'addr', and a function operating on an address and an actor,
+          execute the function on all actors stored in the state tree
+  - name: Diff
+    behaviors:
+      - id: CHAIN_STATETREE_DIFF_001
+        description: |
+          Given a context 'ctx', and two state trees 'oldTree' and 'newTree',
+          return a mapping of actors representing the difference between the two trees

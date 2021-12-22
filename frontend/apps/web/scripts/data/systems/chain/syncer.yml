@@ -180,3 +180,11 @@ features:
           Given a full block,
           perform semantic validation documented in 
           https://github.com/filecoin-project/lotus/blob/main/documentation/en/block-validation.md
+
+  - name: Set peer head
+    behaviors:
+      - id: CHAIN_SYNCER_SET_PEER_HEAD_001
+        description: |
+          Given a context 'ctx', a peer ID 'p', and a tipset 'ts',
+          sets the peer head for 'p' to be 'ts'
+  

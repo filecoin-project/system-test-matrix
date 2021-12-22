@@ -1,0 +1,23 @@
+system: Chain
+subsystem: Policy
+features:
+  - name: Get max PoSt partitions
+    behaviors:
+      - id: BLOCKCHAIN_POLICY_GET_MAX_POST_PARTITIONS_001
+        description: |
+          Given a network version 'nv', and reigstered PoSt proof 'p',
+          return max number of PoSt partitions
+
+  - name: Set maximum supported proof types
+    behaviors:
+      - id: BLOCKCHAIN_POLICY_SET_MAX_SUPPORTED_PROOF_TYPES_001
+        description: |
+          Given a list of registered seal proof 'types', clear existing,
+          and set the supported proof types for miners.
+
+  - name: Add maximum supported proof types
+    behaviors:
+      - id: BLOCKCHAIN_POLICY_ADD_MAX_SUPPORTED_PROOF_TYPES_001
+        description: |
+          Given a list of registered seal proof 'types', add the list of types 
+          to the supported proof types for miners.

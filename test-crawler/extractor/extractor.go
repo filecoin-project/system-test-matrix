@@ -38,9 +38,9 @@ type FileData struct {
 	Functions []c.Function
 }
 
-type hasNoTests bool
+type hasNoBehaviors bool
 
-func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, hasNoTests, error) {
+func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, hasNoBehaviors, error) {
 
 	fileData := &FileData{}
 
@@ -71,7 +71,7 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileDa
 
 	}
 
-	return fileData, hasNoTests(checkForExistanceOfBehaviors(fData)), nil
+	return fileData, hasNoBehaviors(checkForExistanceOfBehaviors(fData)), nil
 }
 
 func getFileContent(filePath string) (content string, err error) {

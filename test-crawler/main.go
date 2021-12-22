@@ -50,13 +50,13 @@ func main() {
 
 		fileID := c.CreateFileID(file.Path, file.File)
 
-		fileData, hasNoTests, err := ex.ExtractInfo(file, ctx, fileID)
+		fileData, hasNoBehaviors, err := ex.ExtractInfo(file, ctx, fileID)
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
 
-		if !hasNoTests {
+		if !hasNoBehaviors {
 			continue
 		}
 
@@ -66,10 +66,10 @@ func main() {
 			files[i].Package = fileData.Metadata.Package
 			files[i].TestType = fileData.Metadata.TestType
 			files[i].Ignore = fileData.Metadata.Ignore
-			files[i].Scenarios = fileData.Functions
+			files[i].Functions = fileData.Functions
 		}
 
-		finishedFiles[fileID] = file.Scenarios
+		finishedFiles[fileID] = file.Functions
 	}
 
 	complete := trySolveIncomplete(incompleteFiles)

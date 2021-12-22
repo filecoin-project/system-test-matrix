@@ -17,7 +17,7 @@ type TestFile struct {
 	Package      string     `json:"package"`
 	TestType     string     `json:"test_type"`
 	Ignore       bool       `json:"ignore"`
-	Scenarios    []Function `json:"scenarios"`
+	Functions    []Function `json:"scenarios"`
 }
 
 type Function struct {

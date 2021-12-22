@@ -24,6 +24,7 @@ type Function struct {
 	Name            string `json:"function"`
 	CallExpressions []string
 	Behaviors       []a.BehaviorType
+	IsTesting       bool
 }
 
 func GetTestFiles(root string) (files []TestFile, err error) {

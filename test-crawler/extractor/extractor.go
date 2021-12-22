@@ -34,14 +34,13 @@ type Metadata struct {
 }
 
 type FileData struct {
-	Metadata    *Metadata
-	Functions   []c.Function
-	isCompleted bool
+	Metadata  *Metadata
+	Functions []c.Function
 }
 
-type isCompleted bool
+type hasNoTests bool
 
-func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, isCompleted, error) {
+func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, hasNoTests, error) {
 
 	fileData := &FileData{}
 
@@ -72,7 +71,7 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileDa
 
 	}
 
-	return fileData, isCompleted(fileData.isCompleted), nil
+	return fileData, hasNoTests(checkForExistanceOfBehaviors(fData)), nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -105,8 +104,6 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 		var callExpressions []string = nil
 		if len(behaviors) > 0 {
 			callExpressions = findCallExprFromNode(content, function.Node)
-		} else {
-			fileData.isCompleted = true
 		}
 
 		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, function.Name, behaviors, callExpressions))
@@ -114,6 +111,15 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	}
 
 	return fileData, nil
+}
+
+func checkForExistanceOfBehaviors(fData *FileData) bool {
+	for _, data := range fData.Functions {
+		if data.IsTesting {
+			return false
+		}
+	}
+	return true
 }
 
 func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) *Metadata {
@@ -265,6 +271,10 @@ func makeCollectorScenario(filePath string, funcName string, behaviors []a.Behav
 		Name:            funcName,
 		CallExpressions: expressions,
 		Behaviors:       behaviors,
+	}
+
+	if len(behaviors) > 0 {
+		fScenario.IsTesting = true
 	}
 
 	return fScenario

@@ -10,7 +10,7 @@ import (
 type FileID string
 
 func CreateFileID(path string, name string) FileID {
-	hash := md5.Sum([]byte(fmt.Sprintf("%s%s", path, name)))
+	hash := md5.Sum([]byte(fmt.Sprintf("%s//%s", path, name)))
 	return FileID(hex.EncodeToString(hash[:]))
 }
 

@@ -50,18 +50,17 @@ func main() {
 
 		fileID := c.CreateFileID(file.Path, file.File)
 
-		allFiles[fileID] = file
-
-		fileData, isCompleted, err := ex.ExtractInfo(file, ctx, fileID)
+		fileData, hasNoTests, err := ex.ExtractInfo(file, ctx, fileID)
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
 
-		if !isCompleted {
-			incompleteFiles[fileID] = fileData.Functions
+		if !hasNoTests {
 			continue
 		}
+
+		allFiles[fileID] = file
 
 		if fileData.Metadata != nil {
 			files[i].Package = fileData.Metadata.Package

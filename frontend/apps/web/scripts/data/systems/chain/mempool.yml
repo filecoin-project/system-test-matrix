@@ -7,7 +7,7 @@ features:
         description: |
           Given a list of signed messages from a trusted source,
           perform a batch of message pool pushes (see "Push" feature)
-      - id: CHAIN_MEMPOOL_BATCH_PUSH_001
+      - id: CHAIN_MEMPOOL_BATCH_PUSH_002
         description: |
           Given a list of signed messages from an untrusted source,
           perform a batch of message pool pushes (see "Push" feature)

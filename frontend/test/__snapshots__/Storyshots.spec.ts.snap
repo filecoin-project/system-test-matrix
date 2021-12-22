@@ -2452,7 +2452,7 @@ exports[`Storyshots Dropdown Default 1`] = `
   padding: 0.5rem;
   white-space: nowrap;
   min-width: 100%;
-  max-height: 200px;
+  max-height: 310px;
   overflow: auto;
 }
 
@@ -2822,7 +2822,7 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   padding: 0.5rem;
   white-space: nowrap;
   min-width: 100%;
-  max-height: 200px;
+  max-height: 310px;
   overflow: auto;
 }
 
@@ -3195,7 +3195,7 @@ exports[`Storyshots Dropdown Size 1`] = `
   padding: 0.5rem;
   white-space: nowrap;
   min-width: 100%;
-  max-height: 200px;
+  max-height: 310px;
   overflow: auto;
 }
 
@@ -3715,7 +3715,7 @@ exports[`Storyshots Dropdown Status 1`] = `
   padding: 0.5rem;
   white-space: nowrap;
   min-width: 100%;
-  max-height: 200px;
+  max-height: 310px;
   overflow: auto;
 }
 

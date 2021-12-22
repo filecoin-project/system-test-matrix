@@ -18,7 +18,7 @@ import {
   Table,
   Text,
   TruncatedText,
-  usePageLayout
+  usePageLayout,
 } from '@filecoin/ui'
 import qs from 'query-string'
 import React, { useEffect, useState } from 'react'
@@ -26,16 +26,14 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-
 const Header = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
   return (
-    
     <PageLayout.Header>
       <HeaderWrapper>
-        <BreadCrumbs pageName={t('filecoin.allTests.allTests')}/>
+        <BreadCrumbs pageName={t('filecoin.allTests.allTests')} />
 
         <Button
           onClick={() => navigate('/behaviors')}
@@ -50,8 +48,6 @@ const Header = () => {
     </PageLayout.Header>
   )
 }
-
-
 
 const AllTests: React.FC = () => {
   const navigate = useNavigate()
@@ -85,6 +81,10 @@ const AllTests: React.FC = () => {
             d.pass += 1
           } else if (test.status === 'fail') {
             d.fail += 1
+          } else if (test.status === 'unparsed') {
+            d.unparsed += 1
+          } else if (test.status === 'unannotated') {
+            d.unannotated += 1
           } else {
             d.missing += 1
           }
@@ -94,6 +94,8 @@ const AllTests: React.FC = () => {
           pass: 0,
           fail: 0,
           missing: 0,
+          unparsed: 0,
+          unannotated: 0,
         },
       ),
     ).map(([key, count]: any) => ({
@@ -134,6 +136,14 @@ const AllTests: React.FC = () => {
     {
       label: 'Missing',
       value: 'missing',
+    },
+    {
+      label: 'Unparsed',
+      value: 'unparsed',
+    },
+    {
+      label: 'Unannotated',
+      value: 'unannotated',
     },
   ]
 

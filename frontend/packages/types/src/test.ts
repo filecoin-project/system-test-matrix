@@ -1,5 +1,4 @@
 import { Behavior } from './behavior'
-import { Repository, TestKind, TestStatus } from './shared'
 
 export class Test {
   constructor(
@@ -12,3 +11,15 @@ export class Test {
     public linkedBehaviors: Behavior[],
   ) {}
 }
+
+export type TestKind = string
+
+export enum TestStatus {
+  pass = 'pass',
+  fail = 'fail',
+  missing = 'missing',
+  unannotated = 'unannotated',
+  unparsed = 'unparsed',
+}
+
+export type Repository = string

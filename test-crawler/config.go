@@ -14,18 +14,12 @@ const (
 	MODE_FILE   OutputMode = "file"
 )
 
-type Repository struct {
-	Name        []string `yaml:",flow"`
-	Origin      []string `yaml:",flow"`
-	Mode        string   `yaml:"mode"`
-	Destination string   `yaml:"destination"`
-}
-
 type Config struct {
-	Repo       Repository `yaml:"repository"`
+	Paths      []string   `yaml:"paths"`
 	OutputMode OutputMode `yaml:"output"`
 	OutputDir  string     `yaml:"output_dir"`
 	Language   string     `yaml:"lang_mode"`
+	IndentJSON bool       `yaml:"indent_json"`
 }
 
 const filename string = "config.yaml"
@@ -55,13 +49,9 @@ func NewConfig() Config {
 
 func Default() Config {
 	return Config{
-		Repo: Repository{
-			Name:        []string{},
-			Origin:      []string{},
-			Mode:        "local",
-			Destination: "_local",
-		},
+		Paths:      []string{"_modules/lotus"},
 		OutputMode: "stdout",
 		Language:   "auto",
+		IndentJSON: false,
 	}
 }

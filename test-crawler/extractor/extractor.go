@@ -102,8 +102,12 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	for _, function := range functions {
 
 		behaviors := findBehaviorsFromNode(content, function.Node)
-
-		callExpressions := findCallExprFromNode(content, function.Node)
+		var callExpressions []string = nil
+		if len(behaviors) > 0 {
+			callExpressions = findCallExprFromNode(content, function.Node)
+		} else {
+			fileData.Complete = true
+		}
 
 		fileData.Scenarios = append(fileData.Scenarios, makeCollectorScenario(filePath, function.Name, behaviors, callExpressions))
 

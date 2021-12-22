@@ -69,7 +69,7 @@ func main() {
 			files[i].Functions = fileData.Functions
 		}
 
-		finishedFiles[fileID] = file.Functions
+		incompleteFiles[fileID] = file.Functions
 	}
 
 	complete := trySolveIncomplete(incompleteFiles)

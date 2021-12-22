@@ -65,13 +65,15 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileDa
 	}
 	for _, s := range fData.Functions {
 		fileData.Functions = append(fileData.Functions, c.Function{
-			Name:      s.Name,
-			Behaviors: s.Behaviors,
+			Name:            s.Name,
+			Behaviors:       s.Behaviors,
+			CallExpressions: s.CallExpressions,
+			IsTesting:       s.IsTesting,
 		})
 
 	}
 
-	return fileData, hasNoBehaviors(checkForExistanceOfBehaviors(fData)), nil
+	return fileData, hasNoBehaviors(!checkForExistanceOfBehaviors(fData)), nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -116,10 +118,10 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 func checkForExistanceOfBehaviors(fData *FileData) bool {
 	for _, data := range fData.Functions {
 		if data.IsTesting {
-			return false
+			return true
 		}
 	}
-	return true
+	return false
 }
 
 func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) *Metadata {

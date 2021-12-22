@@ -1,248 +1,266 @@
+import _ from 'lodash'
 import {
   Behavior,
   calculateSystemScore,
+  calculateTestKindStatistics,
+  calculateTestStatusStatistics,
   Feature,
   PercentageSet,
   SubSystem,
   System,
   SystemScore,
   Test,
-  TestKindStatistic,
   TestStatus,
-  TestStatusStatistic,
 } from '@filecoin/types'
-import { IModelLoader } from './IModelLoader'
-import _ from 'lodash'
 import { pascalCase } from 'change-case'
+
+import { ModelLoader } from './ModelLoader'
+
 import behaviors from '@/behaviors.json'
 import testCrawlerOutput from '@/tests.json'
 
 export const DEFAULT_TEST_KINDS = ['unit', 'integration', 'e2e', 'unknown']
 
-export class DenormalizedLoader implements IModelLoader {
+interface RawTestFile {
+  file: string
+  path: string
+  repository: string
+  parent_folder: string
+  package: string
+  test_type: string
+  ignore: boolean
+  scenarios: RawScenario[]
+}
+
+interface RawBehavior {
+  behavior_id: string
+  behavior: string
+  ignore: boolean
+}
+
+interface RawScenario {
+  function: string
+  Behaviors: RawBehavior[]
+}
+
+export class DenormalizedLoader implements ModelLoader {
+  private systems = new Map<string, System>()
+  private subsystems = new Map<string, SubSystem>()
+  private behaviors = new Map<string, Behavior>()
+  private tests = new Map<string, Test>()
+  private features = new Map<string, Feature>()
+  private testKinds = new Set<string>(DEFAULT_TEST_KINDS)
+
   public load() {
-    const systems = new Map<string, System>()
-    const subsystems = new Map<string, SubSystem>()
-    const behaviors = new Map<string, Behavior>()
-    const tests = new Map<string, Test>()
-    const features = new Map<string, Feature>()
-    const testKinds = new Set<string>(DEFAULT_TEST_KINDS)
+    this.loadBehaviors()
 
-    this.loadBehaviors(behaviors, features, subsystems, systems)
+    this.loadAndLinkTests()
 
-    this.loadAndLinkTests(behaviors, testKinds, tests, features, subsystems)
-
-    this.calculateSummaryStatistics(subsystems, testKinds, systems)
+    this.calculateSummaryStatistics()
 
     return {
-      systems,
-      subsystems,
-      behaviors,
-      tests,
-      features,
-      testKinds,
+      systems: this.systems,
+      behaviors: this.behaviors,
+      tests: this.tests,
+      testKinds: this.testKinds,
     }
   }
 
-  private calculateSummaryStatistics(
-    subsystemCache: Map<string, SubSystem>,
-    testKinds: Set<string>,
-    systemCache: Map<string, System>,
-  ) {
-    for (const subsystem of Array.from(subsystemCache.values())) {
-      this.calculateSubsystemStatistics(subsystem, testKinds)
+  // calculateSummaryStatistics calculates test kind & status statistics and assigns scores for all systems and subsystems
+  private calculateSummaryStatistics() {
+    for (const subsystem of Array.from(this.subsystems.values())) {
+      this.calculateSubsystemStatistics(subsystem)
     }
 
-    for (const system of Array.from(systemCache.values())) {
+    for (const system of Array.from(this.systems.values())) {
       this.calculateSystemStatistics(system)
     }
   }
 
+  // calculateSystemStatistics calculates test kind & status statistics and assigns a score for a given system
   private calculateSystemStatistics(system: System) {
     const allSystemTests = _.flatten(system.subsystems.map(ss => ss.tests))
 
     system.testKindStats = new PercentageSet(
-      this.calculateTestKindStatistics(allSystemTests),
+      calculateTestKindStatistics(allSystemTests),
     )
 
     system.testStatusStats = new PercentageSet(
-      this.calculateTestStatusStatistics(allSystemTests),
+      calculateTestStatusStatistics(allSystemTests),
     )
     system.score = calculateSystemScore(system.testStatusStats)
   }
 
-  private calculateSubsystemStatistics(
-    subsystem: SubSystem,
-    testKinds: Set<string>,
-  ) {
+  // calculateSubsystemStatistics calculates test kind & status statistics and assigns a score for a given subsystem
+  private calculateSubsystemStatistics(subsystem: SubSystem) {
     const untestedBehaviors = _.flatten(
       subsystem.features.map(f => f.behaviors),
     ).filter((b: Behavior) => !b.tested)
 
     for (const untestedBehavior of untestedBehaviors) {
-      this.handleUntestedBehaviors(testKinds, subsystem, untestedBehavior)
+      this.handleUntestedBehaviors(this.testKinds, subsystem, untestedBehavior)
     }
 
     subsystem.testKindStats = new PercentageSet(
-      this.calculateTestKindStatistics(subsystem.tests),
+      calculateTestKindStatistics(subsystem.tests),
     )
 
     subsystem.testStatusStats = new PercentageSet(
-      this.calculateTestStatusStatistics(subsystem.tests),
+      calculateTestStatusStatistics(subsystem.tests),
     )
 
     subsystem.score = calculateSystemScore(subsystem.testStatusStats)
   }
 
-  private calculateTestStatusStatistics(tests: Test[]) {
-    const testsByStatus = _.groupBy(tests, 'status') as {
-      [key: string]: Test[]
-    }
-    const statusStatistics = Object.entries(testsByStatus).map(
-      ([status, testsWithStatus]) =>
-        new TestStatusStatistic(
-          status as TestStatus,
-          (testsWithStatus.length / tests.length) * 100,
-          testsWithStatus.length,
-        ),
-    )
-    return statusStatistics
-  }
-
-  private calculateTestKindStatistics(tests: Test[]) {
-    const testsByKind = _.groupBy(tests, 'kind') as {
-      [key: string]: Test[]
-    }
-    const kindStatistics = Object.entries(testsByKind).map(
-      ([kind, testsWithKind]) =>
-        new TestKindStatistic(
-          kind,
-          (testsWithKind.length / tests.length) * 100,
-          testsWithKind.length,
-        ),
-    )
-    return kindStatistics
-  }
-
+  // handleUntestedBehaviors creates an "unimplemented" test with status=missing
+  // for each untested behavior for each known test kind.
   private handleUntestedBehaviors(
     testKinds: Set<string>,
     subsystem: SubSystem,
     untestedBehavior: any,
   ) {
-    for (const testKind of Array.from(testKinds.values()).filter(
+    const knownTestKinds = Array.from(testKinds.values()).filter(
       t => t !== 'unknown',
-    )) {
-      subsystem.tests.push(
-        new Test(
-          `${subsystem.name.replace(
-            / /g,
-            '_',
-          )}_${testKind}_test.go/Test${pascalCase(untestedBehavior.id)}`,
-          'missing',
-          'missing',
-          'missing',
-          testKind,
-          TestStatus.missing,
-          [untestedBehavior],
-        ),
+    )
+
+    for (const testKind of knownTestKinds) {
+      this.createMissingTest(subsystem, untestedBehavior, testKind)
+    }
+  }
+
+  // createMissingTest creates a special "missing" test type that's unique and doesn't appear in the test crawler results
+  private createMissingTest(
+    subsystem: SubSystem,
+    untestedBehavior: any,
+    testKind: string,
+  ) {
+    // Missing test have an auto-generated name in the format:
+    // <SUBSYSTEM>_test.go/Test<BEHAVIOR_ID>
+    const subsystemNameClean = subsystem.name.replace(/ /g, '_')
+    const behaviorIdClean = pascalCase(untestedBehavior.id)
+    const missingTestName = `${subsystemNameClean}_${testKind}_test.go/Test${behaviorIdClean}`
+
+    subsystem.tests.push(
+      new Test(
+        missingTestName,
+        'missing',
+        'missing',
+        'missing',
+        testKind,
+        TestStatus.missing,
+        [untestedBehavior],
+      ),
+    )
+  }
+
+  // loadAndLinkTests reads the test crawler results from tests.json and links them to behaviors,
+  // subsystems and systems from the behavior catalogue.
+  // ⚠️ Make sure the behavior catalogue is parsed and cached before calling this method, or it will do nothing
+  private loadAndLinkTests() {
+    if (this.behaviors.size === 0 || this.subsystems.size === 0) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `⚠️ loadAndLinkTests is called on an empty behavior catalogue. Did you forget to call .loadBehaviors()?`,
+      )
+    }
+
+    for (const testFile of testCrawlerOutput) {
+      this.preprocessRawTestFile(testFile)
+
+      if (!testFile.scenarios || testFile.scenarios.length === 0) {
+        this.handleUnparsedTest(testFile)
+      } else {
+        this.handleParsedTest(testFile)
+      }
+    }
+  }
+
+  private handleParsedTest(testFile: RawTestFile) {
+    for (const rawScenario of testFile.scenarios) {
+      const testBehaviors: Behavior[] = []
+
+      if (rawScenario.Behaviors) {
+        for (const rawBehavior of rawScenario.Behaviors) {
+          this.linkTestToBehavior(
+            rawBehavior,
+            testBehaviors,
+            testFile,
+            rawScenario,
+          )
+        }
+      }
+
+      const test = new Test(
+        `${testFile.file}/${rawScenario.function}`,
+        testFile.file,
+        rawScenario.function,
+        testFile.repository,
+        testFile.test_type,
+        testBehaviors.length > 0 ? TestStatus.pass : TestStatus.unannotated,
+        testBehaviors,
+      )
+
+      if (testFile.test_type) {
+        this.testKinds.add(testFile.test_type)
+      }
+      this.tests.set(test.id, test)
+
+      // update the subsystems in the cache
+      for (const behavior of test.linkedBehaviors) {
+        this.updateCachedSubsystems(behavior, test)
+      }
+    }
+  }
+
+  private updateCachedSubsystems(behavior: Behavior, test: Test) {
+    const parentFeature = this.features.get(behavior.parentFeatureName)
+    if (!parentFeature) {
+      throw new Error(
+        `Can't find feature: ${behavior.parentFeatureName} in the cache`,
+      )
+    }
+
+    const parentSubsystem = this.subsystems.get(
+      `${parentFeature.systemName}/${parentFeature.parentSubsystemName}`,
+    )
+
+    if (!parentSubsystem) {
+      throw new Error(
+        `Can't find subsystem: ${parentFeature.parentSubsystemName} in the cache`,
+      )
+    }
+
+    if (!parentSubsystem.tests.find(t => t.id === test.id)) {
+      parentSubsystem.tests.push(test)
+    }
+  }
+
+  private linkTestToBehavior(
+    rawBehavior: RawBehavior,
+    testBehaviors: Behavior[],
+    testFile: RawTestFile,
+    rawScenario: RawScenario,
+  ) {
+    const behavior = this.behaviors.get(rawBehavior.behavior)
+    if (behavior) {
+      behavior.tested = true
+      testBehaviors.push(behavior)
+    } else {
+      throw new Error(
+        `Unknown behavior ${rawBehavior.behavior} for test ${testFile.file}/${rawScenario.function}`,
       )
     }
   }
 
-  private loadAndLinkTests(
-    behaviorCache: Map<string, Behavior>,
-    testKinds: Set<string>,
-    testCache: Map<string, Test>,
-    featureCache: Map<string, Feature>,
-    subsystemCache: Map<string, SubSystem>,
-  ) {
-    for (const testFile of testCrawlerOutput) {
-      if (!testFile.test_type) {
-        testFile.test_type = 'unknown'
-      }
-
-      if (!testFile.scenarios || testFile.scenarios.length === 0) {
-        this.handleUnparsedTest(testFile, testCache, testKinds)
-      } else {
-        for (const rawScenario of testFile.scenarios) {
-          const testBehaviors: Behavior[] = []
-
-          if (rawScenario.Behaviors) {
-            for (const rawBehavior of rawScenario.Behaviors) {
-              const behavior = behaviorCache.get(rawBehavior.behavior)
-              if (behavior) {
-                behavior.tested = true
-                testBehaviors.push(behavior)
-              } else {
-                throw new Error(
-                  `Unknown behavior ${rawBehavior.behavior} for test ${testFile.file}/${rawScenario.function}`,
-                )
-              }
-            }
-          }
-          const test = new Test(
-            `${testFile.file}/${rawScenario.function}`,
-            testFile.file,
-            rawScenario.function,
-            testFile.repository,
-            testFile.test_type,
-            testBehaviors.length > 0 ? TestStatus.pass : TestStatus.unannotated,
-            testBehaviors,
-          )
-
-          if (testFile.test_type) {
-            testKinds.add(testFile.test_type)
-          }
-          testCache.set(test.id, test)
-
-          // update the subsystems in the cache
-          for (const behavior of test.linkedBehaviors) {
-            // find the appropriate subsystem
-            const parentFeature = featureCache.get(behavior.parentFeatureName)
-            if (!parentFeature) {
-              throw new Error(
-                `Can't find feature: ${behavior.parentFeatureName} in the cache`,
-              )
-            }
-
-            const parentSubsystem = subsystemCache.get(
-              `${parentFeature.systemName}/${parentFeature.parentSubsystemName}`,
-            )
-
-            if (!parentSubsystem) {
-              throw new Error(
-                `Can't find subsystem: ${parentFeature.parentSubsystemName} in the cache`,
-              )
-            }
-
-            if (!parentSubsystem.tests.find(t => t.id === test.id)) {
-              parentSubsystem.tests.push(test)
-            }
-          }
-        }
-      }
+  private preprocessRawTestFile(testFile: RawTestFile) {
+    if (!testFile.test_type) {
+      testFile.test_type = 'unknown'
     }
   }
 
-  private handleUnparsedTest(
-    testFile: {
-      file: string
-      path: string
-      repository: string
-      parent_folder: string
-      package: string
-      test_type: string
-      ignore: boolean
-      scenarios: {
-        function: string
-        Behaviors: { behavior_id: string; behavior: string; ignore: boolean }[]
-      }[]
-    },
-    testCache: Map<string, Test>,
-    testKinds: Set<string>,
-  ) {
+  private handleUnparsedTest(testFile: RawTestFile) {
     const test = new Test(
-      `${testFile.file}/${testCache.size}`,
+      `${testFile.file}/${this.tests.size}`,
       testFile.file,
       '',
       testFile.repository,
@@ -252,70 +270,106 @@ export class DenormalizedLoader implements IModelLoader {
     )
 
     if (testFile.test_type) {
-      testKinds.add(testFile.test_type)
+      this.testKinds.add(testFile.test_type)
     }
-    testCache.set(test.id, test)
+    this.tests.set(test.id, test)
   }
 
   private subsystemKey(subsystem: SubSystem): string {
     return `${subsystem?.parentSystemName}/${subsystem?.name}`
   }
 
-  private loadBehaviors(
-    behaviorCache: Map<string, Behavior>,
-    featureCache: Map<string, Feature>,
-    subsystemCache: Map<string, SubSystem>,
-    systemCache: Map<string, System>,
-  ) {
+  private loadBehaviors() {
     for (const systemName in behaviors.systems) {
-      const systemDetails = (behaviors.systems as any)[systemName]
-      const subsystems: SubSystem[] = []
-      for (const subsystemName in systemDetails.subsystems) {
-        const subsystemDetails = systemDetails.subsystems[subsystemName]
-        const subsystemFeatures: Feature[] = []
-        for (const rawFeature of subsystemDetails.features) {
-          const featureBehaviors: Behavior[] = []
-          for (const rawBehavior of rawFeature.behaviors) {
-            const behavior = new Behavior(
-              rawBehavior.id,
-              rawFeature.name,
-              rawBehavior.description,
-              subsystemName,
-              systemName,
-            )
-            behaviorCache.set(behavior.id, behavior)
-            featureBehaviors.push(behavior)
-          }
-          const feature = new Feature(
-            rawFeature.name,
-            subsystemName,
-            featureBehaviors,
-            systemName,
-          )
-          featureCache.set(feature.name, feature)
-          subsystemFeatures.push(feature)
-        }
-        const subsystem = new SubSystem(
-          systemName,
-          subsystemFeatures,
-          [],
-          subsystemName,
-          new PercentageSet([]),
-          new PercentageSet([]),
-          SystemScore.bad,
-          [],
-        )
-        subsystemCache.set(this.subsystemKey(subsystem), subsystem)
-        subsystems.push(subsystem)
-      }
-      const system = new System(
-        systemName,
-        new PercentageSet([]),
-        new PercentageSet([]),
-        SystemScore.bad,
-        subsystems,
-      )
-      systemCache.set(system.name, system)
+      this.loadSystem(systemName)
     }
+  }
+
+  private loadSystem(systemName: string) {
+    const systemDetails = (behaviors.systems as any)[systemName]
+    const subsystems: SubSystem[] = []
+
+    for (const subsystemName in systemDetails.subsystems) {
+      this.loadSubsystem(systemDetails, subsystemName, systemName, subsystems)
+    }
+
+    const system = new System(
+      systemName,
+      new PercentageSet([]),
+      new PercentageSet([]),
+      SystemScore.bad,
+      subsystems,
+    )
+    this.systems.set(system.name, system)
+  }
+
+  private loadSubsystem(
+    systemDetails: any,
+    subsystemName: string,
+    systemName: string,
+    subsystems: SubSystem[],
+  ) {
+    const subsystemDetails = systemDetails.subsystems[subsystemName]
+    const subsystemFeatures: Feature[] = []
+    for (const rawFeature of subsystemDetails.features) {
+      this.loadFeature(rawFeature, subsystemName, systemName, subsystemFeatures)
+    }
+
+    const subsystem = new SubSystem(
+      systemName,
+      subsystemFeatures,
+      [],
+      subsystemName,
+      new PercentageSet([]),
+      new PercentageSet([]),
+      SystemScore.bad,
+      [],
+    )
+    this.subsystems.set(this.subsystemKey(subsystem), subsystem)
+    subsystems.push(subsystem)
+  }
+
+  private loadFeature(
+    rawFeature: any,
+    subsystemName: string,
+    systemName: string,
+    subsystemFeatures: Feature[],
+  ) {
+    const featureBehaviors: Behavior[] = []
+    for (const rawBehavior of rawFeature.behaviors) {
+      this.loadBehavior(
+        rawBehavior,
+        rawFeature,
+        subsystemName,
+        systemName,
+        featureBehaviors,
+      )
+    }
+    const feature = new Feature(
+      rawFeature.name,
+      subsystemName,
+      featureBehaviors,
+      systemName,
+    )
+    this.features.set(feature.name, feature)
+    subsystemFeatures.push(feature)
+  }
+
+  private loadBehavior(
+    rawBehavior: any,
+    rawFeature: any,
+    subsystemName: string,
+    systemName: string,
+    featureBehaviors: Behavior[],
+  ) {
+    const behavior = new Behavior(
+      rawBehavior.id,
+      rawFeature.name,
+      rawBehavior.description,
+      subsystemName,
+      systemName,
+    )
+    this.behaviors.set(behavior.id, behavior)
+    featureBehaviors.push(behavior)
   }
 }

@@ -1,6 +1,6 @@
 import { Test } from './test'
 import { PercentageSet } from './shared'
-import { Feature } from './behavior'
+import { Feature } from './feature'
 import { SystemScore } from './systemScore'
 
 // System is a top-level (architectural) denomination of a software project.

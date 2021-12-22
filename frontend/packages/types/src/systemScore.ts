@@ -12,6 +12,7 @@ export function calculateSystemScore(
 ): SystemScore {
   const stats = testStatusStats.percentages as TestStatusStatistic[]
   const missing = stats.find(s => s.status === 'missing')
+
   if (missing && missing.percentage > 66) {
     return SystemScore.bad
   } else if (missing && missing.percentage > 33) {

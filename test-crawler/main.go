@@ -88,7 +88,7 @@ func trySolveIncomplete(map[c.FileID][]c.Scenario) map[c.FileID][]c.Scenario {
 }
 
 func convertToTestFile(finishedFiles map[c.FileID][]c.Scenario, allFiles map[c.FileID]c.TestFile) (result []c.TestFile) {
-	for id, _ := range finishedFiles {
+	for id := range finishedFiles {
 		result = append(result, *id.ToFile(allFiles))
 	}
 	return nil

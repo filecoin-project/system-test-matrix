@@ -21,8 +21,9 @@ type TestFile struct {
 }
 
 type Scenario struct {
-	Function  string `json:"function"`
-	Behaviors []a.BehaviorType
+	Function        string `json:"function"`
+	CallExpressions []string
+	Behaviors       []a.BehaviorType
 }
 
 func GetTestFiles(root string) (files []TestFile, err error) {

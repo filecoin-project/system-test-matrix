@@ -24,6 +24,7 @@ const (
 	FUNCTION_DECLARATION NodeType = "function_declaration"
 	PARAMETER_LIST       NodeType = "parameter_list"
 	BLOCK                NodeType = "block"
+	CALL_EXPRESSION      NodeType = "call_expression"
 )
 
 type Metadata struct {
@@ -102,7 +103,9 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 
 		behaviors := findBehaviorsFromNode(content, function.Node)
 
-		fileData.Scenarios = append(fileData.Scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
+		callExpressions := findCallExprFromNode(content, function.Node)
+
+		fileData.Scenarios = append(fileData.Scenarios, makeCollectorScenario(filePath, function.Name, behaviors, callExpressions))
 
 	}
 
@@ -230,15 +233,34 @@ func findBehaviorsFromNode(content string, node *sitter.Node) (behaviors []a.Beh
 	return behaviors
 }
 
-func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType) c.Scenario {
+func findCallExprFromNode(content string, node *sitter.Node) (expressions []string) {
+	if node == nil {
+		return nil
+	}
+
+	iter := sitter.NewIterator(node, sitter.DFSMode)
+	iter.ForEach(func(iterChild *sitter.Node) error {
+		if iterChild.Type() == string(CALL_EXPRESSION) {
+			expr := content[iterChild.StartByte():iterChild.EndByte()]
+
+			expressions = append(expressions, expr)
+		}
+		return nil
+	})
+
+	return expressions
+}
+
+func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType, expressions []string) c.Scenario {
 
 	for i := range behaviors {
 		behaviors[i].Id = makeID(filePath, funcName, behaviors[i].Tag)
 	}
 
 	fScenario := c.Scenario{
-		Function:  funcName,
-		Behaviors: behaviors,
+		Function:        funcName,
+		CallExpressions: expressions,
+		Behaviors:       behaviors,
 	}
 
 	return fScenario

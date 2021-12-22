@@ -1,3 +1,5 @@
+/* globals describe, expect, it */
+
 import {
   Behavior,
   Feature,
@@ -54,32 +56,6 @@ export function testSystemIntegrity(sys: System) {
   )
 }
 
-export function testSubsystemIntegrity(sys: System) {
-  testSystemIntegrity(sys)
-
-  // subsystem checks
-  expect(sys.subsystems.length).toBeGreaterThan(0)
-  expect(sys.subsystems.map(s => s.name)).noDuplicates()
-
-  for (const subsystem of sys.subsystems) {
-    testSystemIntegrity(subsystem)
-    expect(subsystem.parentSystemName).toBe(sys.name)
-
-    // feature integrity check
-    expect(subsystem.features.length).toBeGreaterThan(0)
-    expect(subsystem.features.map(f => f.name)).noDuplicates()
-    for (const feature of subsystem.features) {
-      testFeatureIntegrity(feature, subsystem, sys)
-    }
-
-    // test Integrity Check
-    expect(subsystem.tests.map(t => t.id)).noDuplicates()
-    expect(subsystem.tests.length).toBeGreaterThan(0)
-    for (const test of subsystem.tests) {
-      testTestIntegrity(test)
-    }
-  }
-}
 export function testTestIntegrity(test: Test) {
   expect(test.id).toBeDefined()
   expect(test.id.length).toBeGreaterThan(0)
@@ -107,6 +83,19 @@ export function testTestIntegrity(test: Test) {
   }
 }
 
+export function testBehaviorIntegrity(behavior: Behavior) {
+  expect(behavior.id).toBeDefined()
+  expect(behavior.id.length).toBeGreaterThan(0)
+  expect(behavior.parentFeatureName).toBeDefined()
+  expect(behavior.parentFeatureName.length).toBeGreaterThan(0)
+  expect(behavior.description).toBeDefined()
+  expect(behavior.description.length).toBeGreaterThan(0)
+  expect(behavior.subsystemName).toBeDefined()
+  expect(behavior.subsystemName.length).toBeGreaterThan(0)
+  expect(behavior.systemName).toBeDefined()
+  expect(behavior.systemName.length).toBeGreaterThan(0)
+}
+
 function testFeatureIntegrity(
   feature: Feature,
   subsystem: SubSystem,
@@ -128,15 +117,30 @@ function testFeatureIntegrity(
 
   expect(feature.systemName).toBe(sys.name)
 }
-export function testBehaviorIntegrity(behavior: Behavior) {
-  expect(behavior.id).toBeDefined()
-  expect(behavior.id.length).toBeGreaterThan(0)
-  expect(behavior.parentFeatureName).toBeDefined()
-  expect(behavior.parentFeatureName.length).toBeGreaterThan(0)
-  expect(behavior.description).toBeDefined()
-  expect(behavior.description.length).toBeGreaterThan(0)
-  expect(behavior.subsystemName).toBeDefined()
-  expect(behavior.subsystemName.length).toBeGreaterThan(0)
-  expect(behavior.systemName).toBeDefined()
-  expect(behavior.systemName.length).toBeGreaterThan(0)
+
+export function testSubsystemIntegrity(sys: System) {
+  testSystemIntegrity(sys)
+
+  // subsystem checks
+  expect(sys.subsystems.length).toBeGreaterThan(0)
+  expect(sys.subsystems.map(s => s.name)).noDuplicates()
+
+  for (const subsystem of sys.subsystems) {
+    testSystemIntegrity(subsystem)
+    expect(subsystem.parentSystemName).toBe(sys.name)
+
+    // feature integrity check
+    expect(subsystem.features.length).toBeGreaterThan(0)
+    expect(subsystem.features.map(f => f.name)).noDuplicates()
+    for (const feature of subsystem.features) {
+      testFeatureIntegrity(feature, subsystem, sys)
+    }
+
+    // test Integrity Check
+    expect(subsystem.tests.map(t => t.id)).noDuplicates()
+    expect(subsystem.tests.length).toBeGreaterThan(0)
+    for (const test of subsystem.tests) {
+      testTestIntegrity(test)
+    }
+  }
 }

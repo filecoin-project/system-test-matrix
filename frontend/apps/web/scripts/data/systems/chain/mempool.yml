@@ -90,3 +90,9 @@ features:
           perform capping of gas limit and fee using the formula:
           `msg.gasFeeCap = maxFee/msg.GasLimit`
           `msg.gasPremium = min(msg.GasFeeCap, msg.GasPremium)`
+  - name: Create message chains
+    behaviors:
+      - id: CHAIN_MEMPOOL_CREATE_MSG_CHAINS_001
+        description: |
+          Given an address 'actor', a map of signed messages 'mset', base fee 'baseFee', and tipset 'ts',
+          create and return a new message chain

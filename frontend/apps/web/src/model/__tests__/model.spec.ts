@@ -13,6 +13,7 @@ describe('Model', () => {
     'network',
     'splitstore',
     'token',
+    'types',
     'vm',
     'repo',
   ]

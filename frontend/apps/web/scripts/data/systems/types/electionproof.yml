@@ -1,0 +1,9 @@
+system: Types
+subsystem: Election proof
+features:
+  - name: Compute win count
+    behaviors:
+      - id: TYPES_ELECTION_PROOF_COMPUTE_WIN_COUNT_001
+        description: |
+          Given two numbers: 'power' and 'totalPower', compute the number of wins
+          using VRFProof

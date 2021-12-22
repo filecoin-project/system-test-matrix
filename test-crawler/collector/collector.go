@@ -17,11 +17,11 @@ type TestFile struct {
 	Package      string     `json:"package"`
 	TestType     string     `json:"test_type"`
 	Ignore       bool       `json:"ignore"`
-	Scenarios    []Scenario `json:"scenarios"`
+	Scenarios    []Function `json:"scenarios"`
 }
 
-type Scenario struct {
-	Function        string `json:"function"`
+type Function struct {
+	Name            string `json:"function"`
 	CallExpressions []string
 	Behaviors       []a.BehaviorType
 }

@@ -34,14 +34,14 @@ type Metadata struct {
 }
 
 type FileData struct {
-	Metadata  *Metadata
-	Scenarios []c.Scenario
-	Complete  bool
+	Metadata    *Metadata
+	Functions   []c.Function
+	isCompleted bool
 }
 
 type isCompleted bool
 
-func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, isCompleted, error) {
+func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, isCompleted, error) {
 
 	fileData := &FileData{}
 
@@ -64,15 +64,15 @@ func ExtractInfo(file c.TestFile, ctx context.Context) (*FileData, isCompleted, 
 	if err != nil {
 		return nil, true, err
 	}
-	for _, s := range fData.Scenarios {
-		fileData.Scenarios = append(fileData.Scenarios, c.Scenario{
-			Function:  s.Function,
+	for _, s := range fData.Functions {
+		fileData.Functions = append(fileData.Functions, c.Function{
+			Name:      s.Name,
 			Behaviors: s.Behaviors,
 		})
 
 	}
 
-	return fileData, isCompleted(fileData.Complete), nil
+	return fileData, isCompleted(fileData.isCompleted), nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -106,10 +106,10 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 		if len(behaviors) > 0 {
 			callExpressions = findCallExprFromNode(content, function.Node)
 		} else {
-			fileData.Complete = true
+			fileData.isCompleted = true
 		}
 
-		fileData.Scenarios = append(fileData.Scenarios, makeCollectorScenario(filePath, function.Name, behaviors, callExpressions))
+		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, function.Name, behaviors, callExpressions))
 
 	}
 
@@ -255,14 +255,14 @@ func findCallExprFromNode(content string, node *sitter.Node) (expressions []stri
 	return expressions
 }
 
-func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType, expressions []string) c.Scenario {
+func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType, expressions []string) c.Function {
 
 	for i := range behaviors {
 		behaviors[i].Id = makeID(filePath, funcName, behaviors[i].Tag)
 	}
 
-	fScenario := c.Scenario{
-		Function:        funcName,
+	fScenario := c.Function{
+		Name:            funcName,
 		CallExpressions: expressions,
 		Behaviors:       behaviors,
 	}

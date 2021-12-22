@@ -18,3 +18,9 @@ features:
       - id: CHAIN_GEN_NEXT_TIPSET_001
         description: |  
           Return the next tipset from the chain generator
+  - name: Next tipset from miners
+    behaviors:
+      - id: CHAIN_GEN_NEXT_TIPSET_FROM_MINERS_001
+        description: |  
+          Given a tipset 'base', list of miner addresses 'miners', and a chain epoch 'nulls',
+          return the next (mined) tipset by the miners

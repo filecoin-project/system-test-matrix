@@ -1,0 +1,14 @@
+system: Types
+subsystem: Tipset key
+features:
+  - name: New tipset key
+    behaviors:
+      - id: TYPES_TIPSETKEY_NEW_001
+        description: |
+          Build and return a new key from a slice of CIDs
+  - name: Tipset key from bytes
+    behaviors:
+      - id: TYPES_TIPSETKEY_FROM_BYTES_001
+        description: |
+          Given an encoded array of bytes containing a key 'encoded',
+          decode the key and return it as a tipset key

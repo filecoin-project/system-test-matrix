@@ -20,5 +20,5 @@ features:
         description: Releases reserved funds
   - name: Market Withdraw
     behaviors:
-      - id: IdNotSnakeCase
+      - id: MARKET_WITHDRAW_FUNDS_001
         description: Withdraws unlocked funds from the market actor

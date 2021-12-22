@@ -1,0 +1,19 @@
+system: Events
+subsystem: Events
+features:
+  - name: Called
+    behaviors:
+      - id: EVENTS_EVENTS_CALLED_001
+        description: |
+          Given a context 'ctx', check function 'check', message handler 'msgHnd', revert handler 'rev',
+          confidence 'confidence', chain epoch 'timeout', message match function 'mf',
+          registers a callback which is triggered when a specified method is called on an actor,
+          or a timeout is reached
+  - name: Called message 
+    behaviors:
+      - id: EVENTS_EVENTS_CALLED_MSG_001
+        description: |
+          Given a context 'ctx', message handler 'msgHnd', revert handler 'rev',
+          confidence 'confidence', chain epoch 'timeout', chain message 'msg',
+          performs behavior EVENTS_EVENTS_CALLED_001, wrapping the message handler and matcher
+  

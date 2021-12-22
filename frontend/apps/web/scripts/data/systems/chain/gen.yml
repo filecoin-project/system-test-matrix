@@ -1,0 +1,26 @@
+system: Chain
+subsystem: Generator
+features:
+  - name: New generator with sectors 
+    behaviors:
+      - id: CHAIN_GEN_NEW_GEN_WITH_SECTORS_001
+        description: |  
+          Given a number of sectors 'numSectors', return a new Chain generator with 
+          the specified number of sectors, and a default upgrade schedule
+  - name: New generator with upgrade schedule
+    behaviors:
+      - id: CHAIN_GEN_NEW_GEN_WITH_SCHEDULE_001
+        description: |  
+          Given an upgrade schedule 'us', return a new Chain generator with
+          the specified schedule, and 1 sector
+  - name: Next tipset
+    behaviors:
+      - id: CHAIN_GEN_NEXT_TIPSET_001
+        description: |  
+          Return the next tipset from the chain generator
+  - name: Next tipset from miners
+    behaviors:
+      - id: CHAIN_GEN_NEXT_TIPSET_FROM_MINERS_001
+        description: |  
+          Given a tipset 'base', list of miner addresses 'miners', and a chain epoch 'nulls',
+          return the next (mined) tipset by the miners

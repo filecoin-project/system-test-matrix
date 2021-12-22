@@ -1,0 +1,24 @@
+system: Events
+subsystem: Height
+features:
+  - name: Chain at
+    behaviors:
+      - id: EVENTS_HEIGHT_CHAIN_AT_001
+        description: |
+          Given a context 'ctx', height handler 'hnd', revert handler 'rev', confidence 'confidence',
+          and a chain epoch 'h', invoke the specified height handler when the chain reaches the specified
+          height + confidence treshold
+      - id: EVENTS_HEIGHT_CHAIN_AT_002
+        description: |
+          If the chain is rolled back under the specified height, invoke the revert handler
+      - id: EVENTS_HEIGHT_CHAIN_AT_003
+        description: |
+          If an error occurs, return the error
+  - name: Revert
+    behaviors:
+      - id: EVENTS_HEIGHT_REVERT_001
+        description: |
+          Given a context 'ctx', tipsets 'from' and 'to', for each tipset height between 'from' and 'to' 
+          call the tipset's revert handler, including empty tipsets
+      
+  

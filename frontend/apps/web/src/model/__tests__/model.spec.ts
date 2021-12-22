@@ -17,10 +17,13 @@ describe('Model', () => {
     'api',
     'chain',
     'client',
+    'events',
     'market',
     'miner',
     'network',
+    'splitstore',
     'token',
+    'types',
     'vm',
     'repo',
   ]

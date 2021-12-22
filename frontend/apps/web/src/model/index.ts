@@ -5,14 +5,14 @@ import { DenormalizedLoader } from './DenormalizedLoader'
 
 // Abstract Model interface.
 // I recommend importing this instead of the implementation, because the implementation may change
-export interface IModel {
+export interface Model {
   getAllSystems(): System[]
   findSystemByName(name: string): System | undefined
   getAllTests(): Test[]
   getAllBehaviors(): Behavior[]
 }
 
-export class Model implements IModel {
+export class Model implements Model {
   private static singleton?: Model
   public static New(loader = new DenormalizedLoader()): Model {
     if (!this.singleton) {
@@ -27,7 +27,7 @@ export class Model implements IModel {
     private behaviorCache = new Map<string, Behavior>(),
     private testCache = new Map<string, Test>(),
     private testKinds = new Set<string>(),
-  ) {}
+  ) { }
 
   getAllSystems(): System[] {
     const systems = Array.from(this.systemCache.values())

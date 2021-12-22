@@ -8,7 +8,7 @@ features:
           Given a context, starts the timed blockstore
   - name: Stop
     behaviors:
-      - id: SPLITSTORE_TIMED_BLOCKSTORE_VIEW_001
+      - id: SPLITSTORE_TIMED_BLOCKSTORE_STOP_001
         description: |  
           Given a context, stops the timed blockstore
   - name: View

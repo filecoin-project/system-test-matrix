@@ -1,13 +1,16 @@
-import { Model } from '@/model'
-import { SystemScore, TestStatus } from '@filecoin/types'
+/* globals describe, expect, it */
+import { TestStatus } from '@filecoin/types'
+
+import { DEFAULT_TEST_KINDS } from '../DenormalizedLoader'
+
 import {
   testBehaviorIntegrity,
   testSubsystemIntegrity,
   testSystemIntegrity,
   testTestIntegrity,
 } from './helpers'
-import _ from 'lodash'
-import { DEFAULT_TEST_KINDS } from '../DenormalizedLoader'
+
+import { Model } from '@/model'
 
 describe('Model', () => {
   const model = Model.New()
@@ -43,12 +46,6 @@ describe('Model', () => {
       for (const sys of systems) {
         testSubsystemIntegrity(sys)
       }
-
-      // at least one system should have score > bad
-      const notBadSystem = systems.find(
-        s => s.score === SystemScore.mediocre || s.score === SystemScore.good,
-      )
-      expect(notBadSystem).toBeDefined()
     })
   })
 
@@ -57,7 +54,7 @@ describe('Model', () => {
       for (const systemName of expectedSystemNames) {
         const sys = model.findSystemByName(systemName)
         expect(sys).toBeDefined()
-        expect(sys!.name).toBe(systemName)
+        expect(sys.name).toBe(systemName)
         testSystemIntegrity(sys)
       }
     })

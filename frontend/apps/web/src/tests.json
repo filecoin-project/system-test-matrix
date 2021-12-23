@@ -186,11 +186,63 @@
   "scenarios": [
    {
     "function": "TestMapMarkSet",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "492b42ffd08b373b1d6b733b7ac6037a",
+      "behavior": "SPLITSTORE_MARKSET_CREATE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "15229f8da1e0e7195311b45c46166434",
+      "behavior": "SPLITSTORE_MARKSET_HAS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "3776e35ca5afe1026a299a7ddeaa5138",
+      "behavior": "SPLITSTORE_MARKSET_MARK_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "5069075b6a60be244feac6a8f0bab6c3",
+      "behavior": "SPLITSTORE_MARKSET_CLOSE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "491f3ab259e73af18c33843b9e2e24b9",
+      "behavior": "SPLITSTORE_MARKSET_CREATE_VISITOR_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestBadgerMarkSet",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "3a7bb42d6cae0f393f707a7b7b169eba",
+      "behavior": "SPLITSTORE_MARKSET_CREATE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "81012195045bbea551722367f153344a",
+      "behavior": "SPLITSTORE_MARKSET_HAS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "10665b2b0b2df93b30cdf10d94c90bbf",
+      "behavior": "SPLITSTORE_MARKSET_MARK_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "303e72e1c7cace92d8e66b3ea508b2a0",
+      "behavior": "SPLITSTORE_MARKSET_CLOSE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "dfb49c93d3c19354eb6e98fdc60906fb",
+      "behavior": "SPLITSTORE_MARKSET_CREATE_VISITOR_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "testMarkSet",
@@ -3505,7 +3557,7 @@
   "repository": "Users",
   "parent_folder": "tvx",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
@@ -3520,7 +3572,7 @@
   "repository": "Users",
   "parent_folder": "chaos",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
@@ -3529,51 +3581,143 @@
    },
    {
     "function": "TestCallerValidationNone",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "90430a30481dcf9387deb0cec558326d",
+      "behavior": "CONFORMANCE_CHAOS_CALLER_VALIDATION_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestCallerValidationIs",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "ffddcad89cf0a39e122863f2073652d8",
+      "behavior": "CONFORMANCE_CHAOS_CALLER_VALIDATION_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestCallerValidationType",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "314f297632807acc3a22010a6246f525",
+      "behavior": "CONFORMANCE_CHAOS_CALLER_VALIDATION_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestCallerValidationInvalidBranch",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "f16741f24beb0ebf2611b4e297513d9e",
+      "behavior": "CONFORMANCE_CHAOS_CALLER_VALIDATION_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestDeleteActor",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "fcefc9cda47a63c9bdc39e3a007b19b8",
+      "behavior": "CONFORMANCE_CHAOS_CREATE_ACTOR_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestMutateStateInTransaction",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "29b7f2d5f013b5a3c535619df285a877",
+      "behavior": "CONFORMANCE_CHAOS_CREATE_STATE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "f6dd5027c4f4e1a6708c16e580a1bc05",
+      "behavior": "CONFORMANCE_CHAOS_MUTATE_STATE_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestMutateStateAfterTransaction",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "74b8da278c8f82ae113aebdec0f9d1ee",
+      "behavior": "CONFORMANCE_CHAOS_CREATE_STATE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "28880e7cc14373d6e9fec4eb50dceafb",
+      "behavior": "CONFORMANCE_CHAOS_MUTATE_STATE_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestMutateStateReadonly",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "79fabfe256286f7379733109106c50e5",
+      "behavior": "CONFORMANCE_CHAOS_CREATE_STATE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "8a1899e819f222b65539103a7dc1dc98",
+      "behavior": "CONFORMANCE_CHAOS_MUTATE_STATE_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestMutateStateInvalidBranch",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "12e9edf7ae6db58ea66e5688d5d134c6",
+      "behavior": "CONFORMANCE_CHAOS_MUTATE_STATE_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestAbortWith",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "ef3cb84e71253a2b9c1d964838a02e69",
+      "behavior": "CONFORMANCE_CHAOS_ABORT_WITH_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestAbortWithUncontrolled",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "20bf57b347e5f7f03797ba85b5e9e4d6",
+      "behavior": "CONFORMANCE_CHAOS_ABORT_WITH_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestInspectRuntime",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "a313501e655e0b932846425d539a8458",
+      "behavior": "CONFORMANCE_CHAOS_INSPECT_RUNTIME_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "3f9ecf0993c8ddb2de5d60552646b2d6",
+      "behavior": "CONFORMANCE_CHAOS_CREATE_STATE_001",
+      "ignore": false
+     }
+    ]
    }
   ]
  },
@@ -3583,7 +3727,7 @@
   "repository": "Users",
   "parent_folder": "conformance",
   "package": "",
-  "test_type": "",
+  "test_type": "integration",
   "ignore": false,
   "scenarios": [
    {
@@ -3598,12 +3742,18 @@
   "repository": "Users",
   "parent_folder": "gateway",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestGatewayAPIChainGetTipSetByHeight",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "ce5467ee53ebf4f47d0bb9b9d844b407",
+      "behavior": "CHAIN_STORE_GET_TIPSET_BY_HEIGHT_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestGatewayVersion",
@@ -3697,12 +3847,23 @@
   "repository": "Users",
   "parent_folder": "itests",
   "package": "",
-  "test_type": "",
+  "test_type": "integration",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestBatchDealInput",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "2b3c35e61203142b7e1ca402ad11046d",
+      "behavior": "MINER_SECTOR_STATUS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "c48f651d3c15987c1ad245c68b267659",
+      "behavior": "MINER_SECTOR_LIST_001",
+      "ignore": false
+     }
+    ]
    }
   ]
  },
@@ -4523,12 +4684,93 @@
   "repository": "Users",
   "parent_folder": "itests",
   "package": "",
-  "test_type": "",
+  "test_type": "integration",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestDMLevelPartialRetrieval",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "52b053f8069b52c808102cd0e527518d",
+      "behavior": "CHAIN_SYNCER_LOAD_GENESIS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "80d73eee9e7894e0b56012f19d307c0f",
+      "behavior": "CHAIN_SYNCER_FETCH_TIPSET_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "db4503550a44f8d663412eba0173ecae",
+      "behavior": "CHAIN_SYNCER_START_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "632cbe3ce1961f21d804179825843430",
+      "behavior": "CHAIN_SYNCER_SYNC_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "e51d63029b5db914ab8fbd1a17975471",
+      "behavior": "BLOCKCHAIN_BEACON_VALIDATE_BLOCK_VALUES_01",
+      "ignore": false
+     },
+     {
+      "behavior_id": "36ca0d0791714af41e41004c3740794d",
+      "behavior": "CHAIN_SYNCER_COLLECT_CHAIN_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "631a617162fb613de8bcc336e0b41c9b",
+      "behavior": "CHAIN_SYNCER_COLLECT_HEADERS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "4b48461607a5425e7f01843abc33b8c5",
+      "behavior": "CHAIN_SYNCER_VALIDATE_TIPSET_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "31237cac12ae18a4478a0ece28ecd610",
+      "behavior": "CHAIN_SYNCER_NEW_PEER_HEAD_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "cd106ff72ef90f6131861048533bd189",
+      "behavior": "CHAIN_SYNCER_VALIDATE_MESSAGE_META_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "929b2a59b35e1b70c93cf3e0abcb7cc4",
+      "behavior": "CHAIN_SYNCER_STOP_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "056a1252610b82db8f8b05d785a2a062",
+      "behavior": "CHAIN_INCOMING_HANDLE_INCOMING_BLOCKS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "dee2e807469e11bec7409a6cdf38cb66",
+      "behavior": "CHAIN_INCOMING_VALIDATE_BLOCK_PUBSUB_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "8bc527df82aefc707656f0868bfd7de6",
+      "behavior": "CHAIN_INCOMING_VALIDATE_MESSAGE_PUBSUB_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "f20a69368120b5b4f744ba6d511b9c31",
+      "behavior": "CLIENT_RETRIEVAL_RETRIEVE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "d9cf3d79f43f954e347a08a59ee40781",
+      "behavior": "CLIENT_RETRIEVAL_FIND_001",
+      "ignore": false
+     }
+    ]
    }
   ]
  },
@@ -6952,16 +7194,38 @@
   "repository": "Users",
   "parent_folder": "itests",
   "package": "",
-  "test_type": "",
+  "test_type": "integration",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestSelfSentTxnV15",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "1d47a05acca735513298a09c1c20ed05",
+      "behavior": "TOKEN_WALLET_SIGN_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "d9c842cc806299246024cd2156d08230",
+      "behavior": "CHAIN_MEMPOOL_PUSH_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestSelfSentTxnV14",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "0cbc782417d436ee7c3962ba6cff1c81",
+      "behavior": "TOKEN_WALLET_SIGN_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "3af8e2857fc343276993ae2c9b306bf7",
+      "behavior": "CHAIN_MEMPOOL_PUSH_001",
+      "ignore": false
+     }
+    ]
    }
   ]
  },
@@ -7734,12 +7998,28 @@
   "repository": "Users",
   "parent_folder": "alerting",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestAlerting",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "5facfa4cbdd59b440c4499f9c72dcda7",
+      "behavior": "JOURNAL_ALERTS_ADD_ALERT_TYPE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "b00766f4a9523b04465bebbdbf50de97",
+      "behavior": "JOURNAL_ALERTS_RAISE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "53bbecae25bafa6ee86becad2aeee6aa",
+      "behavior": "JOURNAL_ALERTS_GET_ALERTS_001",
+      "ignore": false
+     }
+    ]
    }
   ]
  },
@@ -7749,12 +8029,23 @@
   "repository": "Users",
   "parent_folder": "journal",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestDisabledEvents",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "aa6e5146f427afcdcc01ca0f47915cd8",
+      "behavior": "JOURNAL_REGISTRY_NEW_EVENT_TYPE_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "27a807717aeeb50fe11f467f4d9fea73",
+      "behavior": "JOURNAL_REGISTRY_PARSE_DISABLED_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestParseDisableEvents",
@@ -7768,7 +8059,7 @@
   "repository": "Users",
   "parent_folder": "backupds",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
@@ -7818,7 +8109,7 @@
   "repository": "Users",
   "parent_folder": "bls",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": null
  },
@@ -7828,7 +8119,7 @@
   "repository": "Users",
   "parent_folder": "bls",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
@@ -8056,16 +8347,43 @@
   "repository": "Users",
   "parent_folder": "storageadapter",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestDealPublisher",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "cc9cb8168b973e1d838fd400a647112a",
+      "behavior": "MARKET_DEAL_PUBLISHER_PUBLISH_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "d664cbcc45e949f4450e79fe82d7a03a",
+      "behavior": "MARKET_DEAL_PUBLISHER_GET_PENDING_DEALS_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestForcePublish",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "e5543678c84aae3135f6a141aa058c77",
+      "behavior": "MARKET_DEAL_PUBLISHER_PUBLISH_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "96c4c44f4d91ebc34ee7cffb60c812e5",
+      "behavior": "MARKET_DEAL_PUBLISHER_GET_PENDING_DEALS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "24acdd8598adc59674e581b3ecca329b",
+      "behavior": "MARKET_DEAL_PUBLISHER_FORCE_PUBLISH_ALL_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "publishDeal",
@@ -8147,7 +8465,7 @@
   "repository": "Users",
   "parent_folder": "config",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
@@ -8243,7 +8561,13 @@
   "scenarios": [
    {
     "function": "TestMedian",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "66814f6a3a939f10e86762fd36ebc2ce",
+      "behavior": "MARKET_GAS_GET_MEDIAN_PREMIUM_001",
+      "ignore": false
+     }
+    ]
    }
   ]
  },
@@ -8905,12 +9229,23 @@
   "repository": "Users",
   "parent_folder": "headbuffer",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestHeadBuffer",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "39fec03b9fcb71126ac02a664f9771eb",
+      "behavior": "TOOLS_HEAD_BUFFER_PUSH_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "550fe8c5c91ffce697f9fd2cb085e776",
+      "behavior": "TOOLS_HEAD_BUFFER_POP_001",
+      "ignore": false
+     }
+    ]
    }
   ]
  }

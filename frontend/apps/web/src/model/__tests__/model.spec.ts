@@ -8,6 +8,7 @@ describe('Model', () => {
     'chain',
     'client',
     'cmd',
+    'conformance',
     'events',
     'market',
     'miner',

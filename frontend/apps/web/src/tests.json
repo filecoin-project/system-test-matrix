@@ -7954,12 +7954,33 @@
   "repository": "Users",
   "parent_folder": "dagstore",
   "package": "",
-  "test_type": "",
+  "test_type": "integration",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestShardRegistration",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "8e0e27f4a85f1747a48e8c5090f4bfdf",
+      "behavior": "MARKET_DAGSTORE_MIGRATE_DEALS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "de8ca97f940de1f2092c9199946d323e",
+      "behavior": "MARKET_DAGSTORE_MIGRATE_DEALS_003",
+      "ignore": false
+     },
+     {
+      "behavior_id": "4e66b8107b19846af0b82980886efa85",
+      "behavior": "MARKET_DAGSTORE_GET_ALL_SHARDS_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "60ed09696e5e5c1db93a44562152aba5",
+      "behavior": "MARKET_DAGSTORE_MIGRATE_DEALS_002",
+      "ignore": false
+     }
+    ]
    }
   ]
  },

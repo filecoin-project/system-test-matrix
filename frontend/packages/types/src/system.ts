@@ -1,6 +1,7 @@
 import { Test } from './test'
-import { PercentageSet, TestKind, TestStatus } from './shared'
-import { Feature } from './behavior'
+import { PercentageSet } from './shared'
+import { Feature } from './feature'
+import { SystemScore } from './systemScore'
 
 // System is a top-level (architectural) denomination of a software project.
 export class System {
@@ -10,7 +11,6 @@ export class System {
     public testStatusStats: PercentageSet,
     public score: SystemScore,
     public subsystems: SubSystem[] = [],
-    public cached = false,
   ) {}
 }
 
@@ -24,30 +24,4 @@ export class SubSystem extends System {
   ) {
     super(...p)
   }
-}
-
-// TestKindStatistic says what <percentage> (0-100) of the tests fall under the category <kind>
-// Example: kind=unit, percentage=36
-export class TestKindStatistic {
-  constructor(
-    public kind: TestKind,
-    public percentage: number,
-    public numberOfTests: number,
-  ) {}
-}
-
-// TestStatusStatistic says what <percentage> (0-100) of the tests are in a specific <status>
-// Example: status=fail, percentage=5
-export class TestStatusStatistic {
-  constructor(
-    public status: TestStatus,
-    public percentage: number,
-    public numberOfTests: number,
-  ) {}
-}
-
-export enum SystemScore {
-  bad = 'bad',
-  mediocre = 'mediocre',
-  good = 'good',
 }

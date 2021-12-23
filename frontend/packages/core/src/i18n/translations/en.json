@@ -19,6 +19,8 @@
       "pass": "Passing",
       "fail": "Failing",
       "missing": "Missing",
+      "unparsed": "Unparsed",
+      "unannotated": "Unannotated",
       "bad": "Bad",
       "good": "Good",
       "mediocre": "Mediocre",

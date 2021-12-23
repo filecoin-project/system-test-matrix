@@ -4,7 +4,6 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]
 
@@ -13,13 +12,10 @@ interface HeaderProps {
   score?: SystemScore | TestStatus
   onTabChange?: (Tab) => void
   pageName?: string
-
-  
 }
 interface BreadCrumbsProps {
   pageName: string
   score?: SystemScore | TestStatus
-
 }
 
 export const getButton = (status: TestStatus | SystemScore) => {
@@ -35,6 +31,12 @@ export const getButton = (status: TestStatus | SystemScore) => {
           return 'error'
         }
         case TestStatus.missing: {
+          return 'secondary'
+        }
+        case TestStatus.unannotated: {
+          return 'secondary'
+        }
+        case TestStatus.unparsed: {
           return 'secondary'
         }
       }
@@ -67,24 +69,23 @@ export const getButton = (status: TestStatus | SystemScore) => {
   )
 }
 
-
 export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
   pageName,
   score,
   ...props
 }) => {
   return (
-      <Crumbs>
-        <Link to="/">
-          <Text type="heading 5" semiBold>
-            Systems
-          </Text>
-        </Link>
-        <StyledText type="text xl" semiBold>
-          / {pageName}
-        </StyledText>
-        {getButton(score)}
-      </Crumbs>
+    <Crumbs>
+      <Link to="/">
+        <Text type="heading 5" semiBold>
+          Systems
+        </Text>
+      </Link>
+      <StyledText type="text xl" semiBold>
+        / {pageName}
+      </StyledText>
+      {getButton(score)}
+    </Crumbs>
   )
 }
 
@@ -93,12 +94,10 @@ export const SystemHeader: React.FC<HeaderProps> = ({
   score,
   onTabChange,
   pageName,
-
-
 }) => {
   return (
     <PageLayout.Header>
-      <BreadCrumbs pageName={pageName} score={score}/>
+      <BreadCrumbs pageName={pageName} score={score} />
 
       <PageLayout.Tabs>
         <PageLayout.Tab

@@ -105,6 +105,7 @@ features:
           Given that the chain can't be collected,
           report and set the status of the current sync worker to the error returned by "Collect Chain"
       - id: CHAIN_SYNCER_SYNC_003
+        description: |
           Given that new tipsets can't be persisted to the chain store,
           report and set the status of the current sync worker to the error returned by the chain store
 

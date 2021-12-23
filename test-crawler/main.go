@@ -20,7 +20,7 @@ func main() {
 	allFiles := []c.TestFile{}
 
 	for _, path := range config.Paths {
-		files, err := c.GetTestFiles(path)
+		files, err := c.GetTestFiles(path, config.Ignore)
 		if err != nil {
 			fmt.Println(err)
 			return

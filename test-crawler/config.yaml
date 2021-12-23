@@ -8,3 +8,5 @@ output_dir: outputs
 lang_mode: go
 # should the output JSON be indented
 indent_json: true
+# ignore paths
+ignore: ["extern"]

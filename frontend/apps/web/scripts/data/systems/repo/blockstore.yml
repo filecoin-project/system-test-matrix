@@ -107,7 +107,7 @@ features:
           epoch
       - id: REPO_BLOCKSTORE_GET_TIPSET_AFTER_HEIGHT_002
         description: Given there are no blocks at the specified epoch, return the first
-          non-ni tipset at a later epoch
+          non-nil tipset at a later epoch
   
   - name: Get Tipset by height
     behaviors:

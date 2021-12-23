@@ -21,6 +21,7 @@ type TestFile struct {
 }
 
 type Function struct {
+	FileID          FileID
 	Name            string `json:"function"`
 	CallExpressions []string
 	Behaviors       []a.BehaviorType

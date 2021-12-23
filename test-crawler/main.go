@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 	"time"
 
 	a "testsuites/annotations"
@@ -15,6 +16,7 @@ import (
 )
 
 type FnLink struct {
+	FileID    c.FileID
 	Name      string
 	Links     []string
 	Behaviors []a.BehaviorType
@@ -45,9 +47,9 @@ func main() {
 		return
 	}
 
-	fileFunctions := make(map[c.FileID][]c.Function)
+	var fileFunctions []c.Function
 
-	allFiles := make(map[c.FileID]c.TestFile)
+	allFiles := make(map[c.FileID]*c.TestFile)
 	//var allScenarios []ex.FileData
 
 	ctx := context.Background()
@@ -66,30 +68,27 @@ func main() {
 			continue
 		}
 
-		allFiles[fileID] = file
+		allFiles[fileID] = &file
 
 		if fileData.Metadata != nil {
 			files[i].Package = fileData.Metadata.Package
 			files[i].TestType = fileData.Metadata.TestType
 			files[i].Ignore = fileData.Metadata.Ignore
-			files[i].Functions = fileData.Functions
 		}
 
-		fileFunctions[fileID] = fileData.Functions
+		fileFunctions = fileData.Functions
 	}
 
-	linkedFiles := linkFiles(fileFunctions)
+	linkedFns := linkFiles(fileFunctions)
 
-	files = convertToTestFile(linkedFiles, allFiles)
+	files = convertToTestFile(linkedFns, allFiles)
 
 	Save(files, config.OutputMode, config.OutputDir)
 }
 
-func linkFiles(fns map[c.FileID][]c.Function) map[c.FileID][]c.Function {
+func linkFiles(flist []c.Function) (links [][]FnLink) {
 
 	functions := make(map[string]c.Function)
-
-	flist := convertFileFunctionsToList(fns)
 
 	// map all functions to key(name)-value(function) for fast access later
 	for _, fun := range flist {
@@ -98,12 +97,12 @@ func linkFiles(fns map[c.FileID][]c.Function) map[c.FileID][]c.Function {
 		}
 	}
 
-	var funcStack []FnLink
-
 	for _, fun := range flist {
 		if fun.IsTesting {
+			var funcStack []FnLink
 			if len(funcStack) == 0 {
 				funcStack = append(funcStack, FnLink{
+					FileID:    fun.FileID,
 					Name:      fun.Name,
 					Behaviors: fun.Behaviors,
 				})
@@ -112,10 +111,14 @@ func linkFiles(fns map[c.FileID][]c.Function) map[c.FileID][]c.Function {
 			for _, cexpr := range fun.CallExpressions {
 				fnLookup(cexpr, functions, &funcStack)
 			}
+
+			links = append(links, funcStack)
+
+			funcStack = nil
 		}
 	}
 
-	return nil
+	return links
 }
 
 func fnLookup(callExpr string, functions map[string]c.Function, result *[]FnLink) {
@@ -142,29 +145,40 @@ func fnLookup(callExpr string, functions map[string]c.Function, result *[]FnLink
 
 }
 
-func convertFileFunctionsToList(fns map[c.FileID][]c.Function) (f []c.Function) {
-	for _, mfunc := range fns {
-		f = append(f, mfunc...)
-	}
-	return f
-}
+func convertToTestFile(linkedFiles [][]FnLink, allFiles map[c.FileID]*c.TestFile) (result []c.TestFile) {
 
-func convertToTestFile(finishedFiles map[c.FileID][]c.Function, allFiles map[c.FileID]c.TestFile) (result []c.TestFile) {
-	for id := range finishedFiles {
-		result = append(result, *id.ToFile(allFiles))
-	}
-	return nil
-}
+	// get all main test files
 
-func merge(ms ...map[c.FileID][]c.Function) map[c.FileID][]c.Function {
-	res := map[c.FileID][]c.Function{}
-	for _, m := range ms {
-		for k, v := range m {
-			res[k] = append(res[k], v...)
+	for _, lf := range linkedFiles {
+		if strings.HasPrefix(lf[0].Name, "Test") {
+			for i := 1; i < len(lf); i++ {
+				lf[0].Behaviors = append(lf[0].Behaviors, lf[i].Behaviors...)
+			}
+
+			file := lf[0].FileID.ToFile(allFiles)
+			file.Functions = append(file.Functions, c.Function{
+				FileID:          lf[0].FileID,
+				Name:            lf[0].Name,
+				CallExpressions: nil,
+				Behaviors:       lf[0].Behaviors,
+				IsTesting:       true,
+			})
+			//result = append(result)
 		}
 	}
-	return res
+
+	return result
 }
+
+// func merge(ms ...map[c.FileID][]c.Function) map[c.FileID][]c.Function {
+// 	res := map[c.FileID][]c.Function{}
+// 	for _, m := range ms {
+// 		for k, v := range m {
+// 			res[k] = append(res[k], v...)
+// 		}
+// 	}
+// 	return res
+// }
 
 func Save(files []c.TestFile, mode OutputMode, outputDir string) {
 

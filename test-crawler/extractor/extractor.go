@@ -65,6 +65,7 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileDa
 	}
 	for _, s := range fData.Functions {
 		fileData.Functions = append(fileData.Functions, c.Function{
+			FileID:          fileID,
 			Name:            s.Name,
 			Behaviors:       s.Behaviors,
 			CallExpressions: s.CallExpressions,

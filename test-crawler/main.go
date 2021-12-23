@@ -50,15 +50,14 @@ func main() {
 	var fileFunctions []c.Function
 
 	allFiles := make(map[c.FileID]*c.TestFile)
-	//var allScenarios []ex.FileData
 
 	ctx := context.Background()
 
-	for i, file := range files {
+	for i := 0; i < len(files); i++ {
 
-		fileID := c.CreateFileID(file.Path, file.File)
+		fileID := c.CreateFileID(files[i].Path, files[i].File)
 
-		fileData, hasNoBehaviors, err := ex.ExtractInfo(file, ctx, fileID)
+		fileData, hasNoBehaviors, err := ex.ExtractInfo(files[i], ctx, fileID)
 		if err != nil {
 			fmt.Println(err)
 			continue
@@ -74,7 +73,7 @@ func main() {
 			files[i].Ignore = fileData.Metadata.Ignore
 		}
 
-		allFiles[fileID] = &file
+		allFiles[fileID] = &files[i]
 
 		fileFunctions = append(fileFunctions, fileData.Functions...)
 	}

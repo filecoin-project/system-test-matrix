@@ -18,6 +18,8 @@ const ColorChart = {
   missing: '#B2BAC7',
   unknown: '#D0D7DE',
   tested: '#00ADD8',
+  unparsed: '#94742f',
+  unannotated: '#34d9eb',
 }
 
 interface Props {

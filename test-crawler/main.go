@@ -173,6 +173,7 @@ func filterFilesWhereChildIsRoot(allFiles map[c.FileID]*c.TestFile) []c.TestFile
 		if containsRoot {
 			filteredFiles = append(filteredFiles, *file)
 		}
+		filteredFns = nil
 	}
 
 	return filteredFiles

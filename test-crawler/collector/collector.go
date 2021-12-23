@@ -9,7 +9,7 @@ import (
 )
 
 type TestFile struct {
-	ID           FileID
+	ID           FileID     `json:"-"`
 	File         string     `json:"file"`
 	Path         string     `json:"path"`
 	Project      string     `json:"repository"`
@@ -21,11 +21,11 @@ type TestFile struct {
 }
 
 type Function struct {
-	FileID          FileID
-	Name            string `json:"function"`
-	CallExpressions []string
+	FileID          FileID   `json:"-"`
+	Name            string   `json:"function"`
+	CallExpressions []string `json:"-"`
 	Behaviors       []a.BehaviorType
-	IsTesting       bool
+	IsTesting       bool `json:"-"`
 }
 
 func GetTestFiles(root string) (files []TestFile, err error) {

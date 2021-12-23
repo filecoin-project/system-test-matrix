@@ -45,8 +45,7 @@ func main() {
 		return
 	}
 
-	finishedFiles := make(map[c.FileID][]c.Function)
-	incompleteFiles := make(map[c.FileID][]c.Function)
+	fileFunctions := make(map[c.FileID][]c.Function)
 
 	allFiles := make(map[c.FileID]c.TestFile)
 	//var allScenarios []ex.FileData
@@ -76,20 +75,17 @@ func main() {
 			files[i].Functions = fileData.Functions
 		}
 
-		incompleteFiles[fileID] = fileData.Functions
+		fileFunctions[fileID] = fileData.Functions
 	}
 
-	complete := trySolveIncomplete(incompleteFiles)
-	if complete != nil {
-		merge(finishedFiles, complete)
-	}
+	linkedFiles := linkFiles(fileFunctions)
 
-	files = convertToTestFile(finishedFiles, allFiles)
+	files = convertToTestFile(linkedFiles, allFiles)
 
 	Save(files, config.OutputMode, config.OutputDir)
 }
 
-func trySolveIncomplete(fns map[c.FileID][]c.Function) map[c.FileID][]c.Function {
+func linkFiles(fns map[c.FileID][]c.Function) map[c.FileID][]c.Function {
 
 	functions := make(map[string]c.Function)
 

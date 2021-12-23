@@ -9,9 +9,16 @@ import (
 	"os/exec"
 	"time"
 
+	a "testsuites/annotations"
 	c "testsuites/collector"
 	ex "testsuites/extractor"
 )
+
+type FnLink struct {
+	Name      string
+	Links     []string
+	Behaviors []a.BehaviorType
+}
 
 func main() {
 
@@ -69,7 +76,7 @@ func main() {
 			files[i].Functions = fileData.Functions
 		}
 
-		incompleteFiles[fileID] = file.Functions
+		incompleteFiles[fileID] = fileData.Functions
 	}
 
 	complete := trySolveIncomplete(incompleteFiles)
@@ -82,9 +89,68 @@ func main() {
 	Save(files, config.OutputMode, config.OutputDir)
 }
 
-func trySolveIncomplete(map[c.FileID][]c.Function) map[c.FileID][]c.Function {
+func trySolveIncomplete(fns map[c.FileID][]c.Function) map[c.FileID][]c.Function {
+
+	functions := make(map[string]c.Function)
+
+	flist := convertFileFunctionsToList(fns)
+
+	// map all functions to key(name)-value(function) for fast access later
+	for _, fun := range flist {
+		if fun.IsTesting {
+			functions[fun.Name] = fun
+		}
+	}
+
+	var funcStack []FnLink
+
+	for _, fun := range flist {
+		if fun.IsTesting {
+			if len(funcStack) == 0 {
+				funcStack = append(funcStack, FnLink{
+					Name:      fun.Name,
+					Behaviors: fun.Behaviors,
+				})
+			}
+
+			for _, cexpr := range fun.CallExpressions {
+				fnLookup(cexpr, functions, &funcStack)
+			}
+		}
+	}
 
 	return nil
+}
+
+func fnLookup(callExpr string, functions map[string]c.Function, result *[]FnLink) {
+	// if the function exists in lookup table
+	if callExpr == functions[callExpr].Name {
+		// take its value
+		val := functions[callExpr]
+		// link new found function to previous one in stack
+		(*result)[len(*result)-1].Links = append((*result)[len(*result)-1].Links, val.Name)
+		// push new found function on to the stack
+		*result = append(*result, FnLink{
+			Name:      val.Name,
+			Behaviors: val.Behaviors,
+		})
+
+		// use recursion to try and find another link
+		for _, cexpr := range val.CallExpressions {
+			fnLookup(cexpr, functions, result)
+		}
+	} else {
+		// return if nothing is found
+		return
+	}
+
+}
+
+func convertFileFunctionsToList(fns map[c.FileID][]c.Function) (f []c.Function) {
+	for _, mfunc := range fns {
+		f = append(f, mfunc...)
+	}
+	return f
 }
 
 func convertToTestFile(finishedFiles map[c.FileID][]c.Function, allFiles map[c.FileID]c.TestFile) (result []c.TestFile) {

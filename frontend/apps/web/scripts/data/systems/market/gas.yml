@@ -1,0 +1,36 @@
+system: Market
+subsystem: Gas
+features:
+  - name: Get Tipset stats
+    behaviors:
+      - id: MARKET_GAS_GET_TIPSET_STATS_001
+        description: |
+          Given a context 'ctx', a chain store 'cstore', a tipset 'ts', 
+          return a list of gas meta stats for the tipset
+  - name: Median gas premium
+    behaviors:
+      - id: MARKET_GAS_GET_MEDIAN_PREMIUM_001
+        description: |
+          Given a list of gas meta 'prices', and a number of blocks 'blocks',
+          find and return the median gas premium 
+  - name: Estimate gas premium
+    behaviors:
+      - id: MARKET_GAS_ESTIMATE_PREMIUM_001
+        description: |
+          Given a context 'ctx', a chain store 'cstore', price cache 'cache',
+          and number of blocks 'nblockssincl',
+          estimate and return the gas premium
+  - name: Estimate gas limit
+    behaviors:
+      - id: MARKET_GAS_ESTIMATE_LIMIT_001
+        description: |
+          Given a context 'ctx', a chain store 'cstore', price cache 'cache',
+          state mamanger 'smrg', message pool 'mpool', a message 'msgIn', and
+          a tipset 'currTs',
+          estimate and return the gas limit
+  - name: Estimate message gas
+    behaviors:
+      - id: MARKET_GAS_ESTIMATE_MESSAGE_001
+        description: |
+          Given a context 'ctx', a message 'msg', message send specs 'spec',
+          estimate and return the message gas

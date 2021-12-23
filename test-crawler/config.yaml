@@ -1,17 +1,12 @@
-
-repository: 
-  # names of cloned repositories
-  name: [lotus, spec-actors]
-  # origins for above repositories, need to be in order as in name list
-  origin: [https://github.com/filecoin-project/lotus/, https://github.com/filecoin-project/specs-actors/]
-  # origin or local
-  mode: local
-  # destination folder, needed for origin mode to clone/pull
-  destination: _local_modules
-
+# list of paths to directories that should be crawled
+paths: [/home/menko/Documents/Bloxico/filecoin/system-test-matrix/test-crawler/_modules/lotus]
 # stdout or file(json)
-output: stdout
+output: file
 # if output is file, choose directory
 output_dir: outputs
 # auto or one of the supported languages for specific repo
-lang_mode: auto
+lang_mode: go
+# should the output JSON be indented
+indent_json: true
+# ignore paths
+ignore: ["extern"]

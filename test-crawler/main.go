@@ -26,56 +26,42 @@ func main() {
 
 	config := NewConfig()
 
-	// for origin mode, pull or clone remote origin, for local just ignore and continue
-	if config.Repo.Mode == "origin" {
-		for i, repo := range config.Repo.Name {
-			if _, err := os.Stat(fmt.Sprintf("%s/%s", config.Repo.Destination, repo)); os.IsNotExist(err) {
-				_ = os.Mkdir(config.Repo.Destination, 7660)
-				_, _, err := Shell(fmt.Sprintf("git clone %s %s", config.Repo.Origin[i], repo), config.Repo.Destination)
-				if err != nil {
-					fmt.Printf("error: %s", err.Error())
-				}
-			} else {
-				Shell("git pull", config.Repo.Destination)
-			}
-		}
-	}
-
-	files, err := c.GetTestFiles(config.Repo.Destination)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
+	allFiles := make(map[c.FileID]*c.TestFile)
 	var fileFunctions []c.Function
 
-	allFiles := make(map[c.FileID]*c.TestFile)
-
-	ctx := context.Background()
-
-	for i := 0; i < len(files); i++ {
-
-		fileID := c.CreateFileID(files[i].Path, files[i].File)
-
-		fileData, hasNoBehaviors, err := ex.ExtractInfo(files[i], ctx, fileID)
+	for _, path := range config.Paths {
+		files, err := c.GetTestFiles(path, config.Ignore)
 		if err != nil {
 			fmt.Println(err)
-			continue
+			return
 		}
 
-		if hasNoBehaviors {
-			continue
+		ctx := context.Background()
+
+		for i := 0; i < len(files); i++ {
+
+			fileID := c.CreateFileID(files[i].Path, files[i].File)
+
+			fileData, hasNoBehaviors, err := ex.ExtractInfo(files[i], ctx, fileID)
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
+
+			if hasNoBehaviors {
+				continue
+			}
+
+			if fileData.Metadata != nil {
+				files[i].Package = fileData.Metadata.Package
+				files[i].TestType = fileData.Metadata.TestType
+				files[i].Ignore = fileData.Metadata.Ignore
+			}
+
+			allFiles[fileID] = &files[i]
+
+			fileFunctions = append(fileFunctions, fileData.Functions...)
 		}
-
-		if fileData.Metadata != nil {
-			files[i].Package = fileData.Metadata.Package
-			files[i].TestType = fileData.Metadata.TestType
-			files[i].Ignore = fileData.Metadata.Ignore
-		}
-
-		allFiles[fileID] = &files[i]
-
-		fileFunctions = append(fileFunctions, fileData.Functions...)
 	}
 
 	linkedFns := linkFiles(fileFunctions)
@@ -84,7 +70,7 @@ func main() {
 
 	result := filterFilesWhereChildIsRoot(allFiles)
 
-	Save(result, config.OutputMode, config.OutputDir)
+	Save(result, config.OutputMode, config.OutputDir, config.IndentJSON)
 }
 
 func linkFiles(flist []c.Function) (links [][]FnLink) {
@@ -192,11 +178,16 @@ func filterFilesWhereChildIsRoot(allFiles map[c.FileID]*c.TestFile) []c.TestFile
 	return filteredFiles
 }
 
-func Save(files []c.TestFile, mode OutputMode, outputDir string) {
-
-	content, err := json.Marshal(files)
+func Save(files []c.TestFile, mode OutputMode, outputDir string, indentJSON bool) {
+	var content []byte
+	var err error
+	if indentJSON {
+		content, err = json.MarshalIndent(files, "", " ")
+	} else {
+		content, err = json.Marshal(files)
+	}
 	if err != nil {
-		return
+		panic(err)
 	}
 
 	switch mode {
@@ -221,9 +212,9 @@ func Save(files []c.TestFile, mode OutputMode, outputDir string) {
 
 		file.Write(content)
 	case MODE_STDOUT:
-		fmt.Print(string(content))
+		fmt.Println(string(content))
 	default:
-		fmt.Print(string(content))
+		fmt.Println(string(content))
 	}
 
 }

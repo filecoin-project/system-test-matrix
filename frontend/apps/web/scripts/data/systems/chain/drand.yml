@@ -22,7 +22,7 @@ features:
           Given a Drand beacon, and a beacon entry,
           cache the entry in the beacon's cache for the entry's round
   
-  - name: Cache value
+  - name: Get Cached value
     behaviors:
       - id: BLOCKCHAIN_BEACON_DRAND_GET_CACHED_VALUE_01
         description: |

@@ -14,12 +14,6 @@ features:
           Given a replacing message exists on the chain and allowReplaced=false,
           it returns the original message
 
-  - name: List miners
-    behaviors:
-      - id: CHAIN_STATE_LIST_MINERS_001
-        description: |
-          Returns the addresses of every miner that has claimed power in the power actor
-
   - name: Call
     behaviors:
       - id: CHAIN_STATE_CALL_001
@@ -222,11 +216,12 @@ features:
         description: If a replacing message is found on chain, this method will return a
           Message Lookup for the replacing message
 
-  - name: State List Miners
+  - name: List Miners
     behaviors:
       - id: CHAIN_STATE_LIST_MINERS_001
-        description: Returns the addresses of every miner that has claimed power in the
-          Power Actor given the tipset key
+        description: |
+          Given the tipset key,
+          returns the addresses of every miner that has claimed power in the Power Actor 
 
   - name: List Actors
     behaviors:
@@ -342,6 +337,13 @@ features:
         description: Returns an approximation of the circulating supply of Filecoin at
           the given tipset
   
+  - name: Set VM constructor
+    behaviors:
+      - id: CHAIN_STATE_SET_VM_CONSTRUCTOR_001
+        description: |
+          Given a function accepting a context, and VM options, set the state manager's
+          VM constructor to the function
+
   - name: Network Version
     behaviors:
       - id: CHAIN_STATE_NETWORK_VERSION_001
@@ -356,3 +358,11 @@ features:
     behaviors:
       - id: CHAIN_STATE_GET_RANDOMNESS_FROM_BEACON_001
         description: Sample the beacon for randomness
+  
+  - name: Resolve to key address
+    behaviors:
+      - id: CHAIN_STATE_RESOLVE_TO_KEY_ADDR_001
+        description: |
+          Given a context 'ctx', address 'addr', tipset 'ts',
+          return the public key type of address (`BLS`/`SECP256K1`) of an account actor
+          identified by 'addr'

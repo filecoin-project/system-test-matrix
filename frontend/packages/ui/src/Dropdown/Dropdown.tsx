@@ -787,7 +787,7 @@ const Content = styled.div<{
   padding: 0.5rem;
   white-space: nowrap;
   min-width: 100%;
-  max-height: 200px;
+  max-height: 310px;
   overflow: auto;
   ${props =>
     `${props.scrollHeight ? `max-height: ${props.scrollHeight || ''}px` : ''}`}

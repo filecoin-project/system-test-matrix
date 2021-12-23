@@ -7,7 +7,7 @@ features:
         description: |
           Given a list of signed messages from a trusted source,
           perform a batch of message pool pushes (see "Push" feature)
-      - id: CHAIN_MEMPOOL_BATCH_PUSH_001
+      - id: CHAIN_MEMPOOL_BATCH_PUSH_002
         description: |
           Given a list of signed messages from an untrusted source,
           perform a batch of message pool pushes (see "Push" feature)
@@ -90,3 +90,9 @@ features:
           perform capping of gas limit and fee using the formula:
           `msg.gasFeeCap = maxFee/msg.GasLimit`
           `msg.gasPremium = min(msg.GasFeeCap, msg.GasPremium)`
+  - name: Create message chains
+    behaviors:
+      - id: CHAIN_MEMPOOL_CREATE_MSG_CHAINS_001
+        description: |
+          Given an address 'actor', a map of signed messages 'mset', base fee 'baseFee', and tipset 'ts',
+          create and return a new message chain

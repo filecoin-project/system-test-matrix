@@ -1,0 +1,69 @@
+system: Market
+subsystem: Dagstore
+features:
+  - name: Load shard
+    behaviors:
+      - id: MARKET_DAGSTORE_ACQUIRE_SHARD_001
+        description: |
+          Given a piece CID,
+          return a blockstore shard for that piece CID
+      - id: MARKET_DAGSTORE_ACQUIRE_SHARD_002
+        description: |
+          Given that the DAG store does not know about a given piece CID,
+          register it and then try to acquire it again
+
+  - name: Start
+    behaviors:
+      - id: MARKET_DAGSTORE_START_001
+        description: |
+          Given a DAG store config,
+          start the store wrapper in a background routine
+      - id: MARKET_DAGSTORE_START_002
+        description: |
+          Given a running DAG store wrapper & a GC interval in the store config,
+          call garbage collection on the underlying DAG store on every tick of the GC interval
+
+  - name: Get All Shards
+    behaviors: 
+      - id: MARKET_DAGSTORE_GET_ALL_SHARDS_001
+        description: |
+          Given a running DAG store wrapper,
+          return all shards registered in the underlying DAG store
+
+  - name: Close
+    behaviors:
+      - id: MARKET_DAGSTORE_CLOSE_001
+        description: |
+          Given a running DAG store wrapper,
+          close the underlying DAG store
+
+  - name: Register Shard
+    behaviors:
+      - id: MARKET_DAGSTORE_REGISTER_SHARD_001
+        description: |
+          Given a piece CID and a path to a CAR file,
+          create a lotus mount for the given piece CID
+          and schedule the piece for registration in the underlying DAG store
+      - id: MARKET_DAGSTORE_REGISTER_SHARD_002
+        description: |
+          Given that a lotus mount can't be created for the given piece CID,
+          abort and throw an error message containing the given CID
+      - id: MARKET_DAGSTORE_REGISTER_SHARD_003
+        description: |
+          Given that a piece can't be scheduled for registration in the underlying DAG store,
+          abort and throw an error message containing the given CID  
+
+  - name: Migrate deals
+    behaviors:
+      - id: MARKET_DAGSTORE_MIGRATE_DEALS_001
+        description: |
+          Given a list of miner deals that are in "Sealing" state,
+          register them as shards
+      - id: MARKET_DAGSTORE_MIGRATE_DEALS_002
+        description: |
+          Given deals that are already registered as shards,
+          do nothing (ignore them)
+      - id: MARKET_DAGSTORE_MIGRATE_DEALS_003
+        description: |
+          Given a deal that that is no longer active, or is not yet sealing,
+          do nothing (ignore it)

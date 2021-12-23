@@ -1,0 +1,22 @@
+system: Cmd
+subsystem: Health
+features:
+  - name: Check window
+    behaviors:
+      - id: CMD_HEALTH_CHECK_WINDOW_001
+        description: |
+          Given a cidWindow 'window', and a number 't',
+          read a channel of slices of CIDs, and return true if head is still updated
+  - name: Update window
+    behaviors:
+      - id: CMD_HEALTH_UPDATE_WINDOW_001
+        description: |
+          Given a context 'ctx', full node 'a', cidWindow 'w', numers indicating a threshold 't' and 'r',
+          and a time duration 'to',
+          return a slice of slices of CIDs from the chain head, and append them to the window
+  - name: Append CIDs to window
+    behaviors:
+      - id: CMD_HEALTH_APPEND_CIDS_001
+        description: |
+          Given a cidWindow 'w', and a slice of CIDs 'c', and a number 't'
+          append the slice to the window

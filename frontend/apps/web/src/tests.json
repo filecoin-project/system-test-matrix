@@ -7969,16 +7969,38 @@
   "repository": "Users",
   "parent_folder": "dagstore",
   "package": "",
-  "test_type": "",
+  "test_type": "unit",
   "ignore": false,
   "scenarios": [
    {
     "function": "TestWrapperAcquireRecovery",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "3b0dad3f5dc52022d218bb5801d2246a",
+      "behavior": "MARKET_DAGSTORE_ACQUIRE_SHARD_002",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "TestWrapperBackground",
-    "Behaviors": null
+    "Behaviors": [
+     {
+      "behavior_id": "096e556de125c01ceb29b9b2bab01272",
+      "behavior": "MARKET_DAGSTORE_START_001",
+      "ignore": false
+     },
+     {
+      "behavior_id": "bc320bfc00142fb1773410bb5adc7fe7",
+      "behavior": "MARKET_DAGSTORE_START_002",
+      "ignore": false
+     },
+     {
+      "behavior_id": "32c7e6f7fcbadd7dec8c4c463924080f",
+      "behavior": "MARKET_DAGSTORE_CLOSE_001",
+      "ignore": false
+     }
+    ]
    },
    {
     "function": "getShardAccessor",

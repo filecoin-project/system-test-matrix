@@ -1,0 +1,31 @@
+system: Market
+subsystem: Dagstore
+features:
+  - name: Load shard
+    behaviors:
+      - id: MARKET_DAGSTORE_ACQUIRE_SHARD_001
+        description: |
+          Given a piece CID,
+          return a blockstore shard for that piece CID
+      - id: MARKET_DAGSTORE_ACQUIRE_SHARD_002
+        description: |
+          Given that the DAG store does not know about a given piece CID,
+          register it and then try to acquire it again
+
+  - name: Start
+    behaviors:
+      - id: MARKET_DAGSTORE_START_001
+        description: |
+          Given a DAG store config,
+          start the store wrapper in a background go routine
+      - id: MARKET_DAGSTORE_START_002
+        description: |
+          Given a running DAG store wrapper & a GC interval in the store config,
+          call garbage collection on the underlying DAG store on every tick of the GC interval
+
+  - name: Close
+    behaviors:
+      - id: MARKET_DAGSTORE_CLOSE_001
+        description: |
+          Given a running DAG store wrapper,
+          close the underlying DAG store

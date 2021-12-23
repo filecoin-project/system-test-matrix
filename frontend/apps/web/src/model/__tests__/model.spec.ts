@@ -62,7 +62,7 @@ describe('Model', () => {
   })
 
   describe('getAllTests', () => {
-    const expectedNumTests = 500
+    const expectedNumTests = 300
 
     it('returns the expected number of tests', () => {
       const allTests = model.getAllTests()

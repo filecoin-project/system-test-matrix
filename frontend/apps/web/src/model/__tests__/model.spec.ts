@@ -10,6 +10,7 @@ describe('Model', () => {
     'cmd',
     'conformance',
     'events',
+    'journal',
     'market',
     'miner',
     'network',

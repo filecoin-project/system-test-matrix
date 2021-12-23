@@ -12,16 +12,25 @@ export class System {
     public score: SystemScore,
     public subsystems: SubSystem[] = [],
   ) {}
+
+  public get id(): string {
+    return this.name
+  }
 }
 
 // Subsystem is a child of a System - second level (architectural) denomination of a software project
 export class SubSystem extends System {
   constructor(
-    public parentSystemName: string,
+    public system: string,
     public features: Feature[],
     public tests: Test[],
+
     ...p: ConstructorParameters<typeof System>
   ) {
     super(...p)
+  }
+
+  public get id(): string {
+    return `${this.system}/${this.name}`
   }
 }

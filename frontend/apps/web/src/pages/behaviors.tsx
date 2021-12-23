@@ -78,13 +78,7 @@ const Behaviors = () => {
   const navigate = useNavigate()
   const options = {
     threshold: 0.1,
-    keys: [
-      'description',
-      'id',
-      'parentFeatureName',
-      'systemName',
-      'subsystemName',
-    ],
+    keys: ['description', 'id', 'feature', 'system', 'subsystem'],
   }
   const testedOptions = {
     keys: ['tested'],
@@ -201,18 +195,14 @@ const Behaviors = () => {
     },
     name: {
       header: t('filecoin.behaviors.tableHeaders.featureName'),
-      Cell: ({ data: { parentFeatureName } }) => {
-        return <Text color="textGray">{parentFeatureName}</Text>
+      Cell: ({ data: { feature } }) => {
+        return <Text color="textGray">{feature}</Text>
       },
     },
     path: {
       header: t('filecoin.behaviors.tableHeaders.path'),
-      Cell: ({ data: { systemName, subsystemName } }) => {
-        return (
-          <Text color="textGray">
-            {systemName}/{subsystemName}
-          </Text>
-        )
+      Cell: ({ data: { subsystem } }) => {
+        return <Text color="textGray">{subsystem}</Text>
       },
     },
     description: {

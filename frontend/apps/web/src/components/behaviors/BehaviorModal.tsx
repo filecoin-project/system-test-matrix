@@ -72,13 +72,11 @@ export const BehaviorModal = (props: Props) => {
           <Text>{props.behavior.description}</Text>
           <div>
             <Text bold>System/Subsystem: </Text>
-            <Text>
-              {props.behavior.systemName}/{props.behavior.subsystemName}
-            </Text>
+            <Text>{props.behavior.subsystem}</Text>
           </div>
           <div>
             <Text bold>Feature name: </Text>
-            <Text>{props.behavior.parentFeatureName}</Text>
+            <Text>{props.behavior.feature}</Text>
           </div>
         </StackLayout>
       )}

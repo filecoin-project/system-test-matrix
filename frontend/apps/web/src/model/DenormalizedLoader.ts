@@ -213,20 +213,16 @@ export class DenormalizedLoader implements ModelLoader {
   }
 
   private updateCachedSubsystems(behavior: Behavior, test: Test) {
-    const parentFeature = this.features.get(behavior.parentFeatureName)
+    const parentFeature = this.features.get(behavior.feature)
     if (!parentFeature) {
-      throw new Error(
-        `Can't find feature: ${behavior.parentFeatureName} in the cache`,
-      )
+      throw new Error(`Can't find feature: ${behavior.feature} in the cache`)
     }
 
-    const parentSubsystem = this.subsystems.get(
-      `${parentFeature.systemName}/${parentFeature.parentSubsystemName}`,
-    )
+    const parentSubsystem = this.subsystems.get(parentFeature.subsystem)
 
     if (!parentSubsystem) {
       throw new Error(
-        `Can't find subsystem: ${parentFeature.parentSubsystemName} in the cache`,
+        `Can't find subsystem: ${parentFeature.subsystem} in the cache`,
       )
     }
 
@@ -275,10 +271,6 @@ export class DenormalizedLoader implements ModelLoader {
     this.tests.set(test.id, test)
   }
 
-  private subsystemKey(subsystem: SubSystem): string {
-    return `${subsystem?.parentSystemName}/${subsystem?.name}`
-  }
-
   private loadBehaviors() {
     for (const systemName in behaviors.systems) {
       this.loadSystem(systemName)
@@ -287,37 +279,40 @@ export class DenormalizedLoader implements ModelLoader {
 
   private loadSystem(systemName: string) {
     const systemDetails = (behaviors.systems as any)[systemName]
-    const subsystems: SubSystem[] = []
-
-    for (const subsystemName in systemDetails.subsystems) {
-      this.loadSubsystem(systemDetails, subsystemName, systemName, subsystems)
-    }
 
     const system = new System(
       systemName,
       new PercentageSet([]),
       new PercentageSet([]),
       SystemScore.bad,
-      subsystems,
+      [],
     )
-    this.systems.set(system.name, system)
+
+    for (const subsystemName in systemDetails.subsystems) {
+      this.loadSubsystem(
+        subsystemName,
+        systemDetails.subsystems[subsystemName],
+        system,
+      )
+    }
+
+    if (!this.systems.has(system.id)) {
+      this.systems.set(system.id, system)
+    } else {
+      throw new Error(
+        `System with id=${system.id} already exists in cache. Overwrites are not allowed.`,
+      )
+    }
   }
 
   private loadSubsystem(
-    systemDetails: any,
     subsystemName: string,
-    systemName: string,
-    subsystems: SubSystem[],
+    subsystemDetails: any,
+    system: System,
   ) {
-    const subsystemDetails = systemDetails.subsystems[subsystemName]
-    const subsystemFeatures: Feature[] = []
-    for (const rawFeature of subsystemDetails.features) {
-      this.loadFeature(rawFeature, subsystemName, systemName, subsystemFeatures)
-    }
-
     const subsystem = new SubSystem(
-      systemName,
-      subsystemFeatures,
+      system.id,
+      [],
       [],
       subsystemName,
       new PercentageSet([]),
@@ -325,51 +320,43 @@ export class DenormalizedLoader implements ModelLoader {
       SystemScore.bad,
       [],
     )
-    this.subsystems.set(this.subsystemKey(subsystem), subsystem)
-    subsystems.push(subsystem)
-  }
+    for (const rawFeature of subsystemDetails.features) {
+      this.loadFeature(rawFeature, subsystem)
+    }
 
-  private loadFeature(
-    rawFeature: any,
-    subsystemName: string,
-    systemName: string,
-    subsystemFeatures: Feature[],
-  ) {
-    const featureBehaviors: Behavior[] = []
-    for (const rawBehavior of rawFeature.behaviors) {
-      this.loadBehavior(
-        rawBehavior,
-        rawFeature,
-        subsystemName,
-        systemName,
-        featureBehaviors,
+    if (!this.subsystems.has(subsystem.id)) {
+      this.subsystems.set(subsystem.id, subsystem)
+    } else {
+      throw new Error(
+        `Subsystem with id=${subsystem.id} already exists in cache. Overwrites are not allowed.`,
       )
     }
-    const feature = new Feature(
-      rawFeature.name,
-      subsystemName,
-      featureBehaviors,
-      systemName,
-    )
-    this.features.set(feature.name, feature)
-    subsystemFeatures.push(feature)
+    system.subsystems.push(subsystem)
   }
 
-  private loadBehavior(
-    rawBehavior: any,
-    rawFeature: any,
-    subsystemName: string,
-    systemName: string,
-    featureBehaviors: Behavior[],
-  ) {
+  private loadFeature(rawFeature: any, subsystem: SubSystem) {
+    const feature = new Feature(
+      rawFeature.name,
+      subsystem.id,
+      [],
+      subsystem.system,
+    )
+    for (const rawBehavior of rawFeature.behaviors) {
+      this.loadBehavior(rawBehavior, feature)
+    }
+    this.features.set(feature.id, feature)
+    subsystem.features.push(feature)
+  }
+
+  private loadBehavior(rawBehavior: any, feature: Feature) {
     const behavior = new Behavior(
       rawBehavior.id,
-      rawFeature.name,
+      feature.id,
       rawBehavior.description,
-      subsystemName,
-      systemName,
+      feature.subsystem,
+      feature.system,
     )
     this.behaviors.set(behavior.id, behavior)
-    featureBehaviors.push(behavior)
+    feature.behaviors.push(behavior)
   }
 }

@@ -116,6 +116,7 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	return fileData, nil
 }
 
+// if non of the files contain any behaviors, the file should be ignored
 func checkForExistanceOfBehaviors(fData *FileData) bool {
 	for _, data := range fData.Functions {
 		if data.IsTesting {
@@ -133,7 +134,7 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	for childId := 0; numChildsRootNode > 0; childId++ {
 		child := treeCursor.CurrentNode().Child(childId)
 
-		if !child.IsNull() {
+		if child != nil {
 
 			if child.Type() == string(PACKAGE_CLAUSE) {
 				break

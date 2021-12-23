@@ -64,7 +64,7 @@ func main() {
 			continue
 		}
 
-		if !hasNoBehaviors {
+		if hasNoBehaviors {
 			continue
 		}
 

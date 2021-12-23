@@ -111,7 +111,7 @@ func linkFiles(flist []c.Function) (links [][]FnLink) {
 			}
 
 			for _, cexpr := range fun.CallExpressions {
-				fnLookup(cexpr, functions, &funcStack)
+				fnLookup(cexpr, functions, funcStack)
 			}
 
 			links = append(links, funcStack)
@@ -123,15 +123,15 @@ func linkFiles(flist []c.Function) (links [][]FnLink) {
 	return links
 }
 
-func fnLookup(callExpr string, functions map[string]c.Function, result *[]FnLink) {
+func fnLookup(callExpr string, functions map[string]c.Function, result []FnLink) {
 	// if the function exists in lookup table
 	if callExpr == functions[callExpr].Name {
 		// take its value
 		val := functions[callExpr]
 		// link new found function to previous one in stack
-		(*result)[len(*result)-1].Links = append((*result)[len(*result)-1].Links, val.Name)
+		result[len(result)-1].Links = append(result[len(result)-1].Links, val.Name)
 		// push new found function on to the stack
-		*result = append(*result, FnLink{
+		result = append(result, FnLink{
 			Name:      val.Name,
 			Behaviors: val.Behaviors,
 		})

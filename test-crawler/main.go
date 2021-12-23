@@ -76,7 +76,7 @@ func main() {
 
 		allFiles[fileID] = &file
 
-		fileFunctions = fileData.Functions
+		fileFunctions = append(fileFunctions, fileData.Functions...)
 	}
 
 	linkedFns := linkFiles(fileFunctions)
@@ -156,13 +156,15 @@ func convertToTestFile(linkedFiles [][]FnLink, allFiles map[c.FileID]*c.TestFile
 			}
 
 			file := lf[0].FileID.ToFile(allFiles)
-			file.Functions = append(file.Functions, c.Function{
-				FileID:          lf[0].FileID,
-				Name:            lf[0].Name,
-				CallExpressions: nil,
-				Behaviors:       lf[0].Behaviors,
-				IsTesting:       true,
-			})
+			if file != nil {
+				file.Functions = append(file.Functions, c.Function{
+					FileID:          lf[0].FileID,
+					Name:            lf[0].Name,
+					CallExpressions: nil,
+					Behaviors:       lf[0].Behaviors,
+					IsTesting:       true,
+				})
+			}
 		}
 	}
 }

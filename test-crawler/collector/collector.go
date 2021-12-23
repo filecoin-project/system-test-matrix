@@ -53,7 +53,7 @@ func listTestFiles(root string) (files []string, err error) {
 				return err
 			}
 
-			if strings.Contains(path, ".go") {
+			if strings.HasSuffix(path, ".go") {
 				files = append(files, path)
 			}
 

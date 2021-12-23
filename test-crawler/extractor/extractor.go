@@ -25,6 +25,7 @@ const (
 	PARAMETER_LIST       NodeType = "parameter_list"
 	BLOCK                NodeType = "block"
 	CALL_EXPRESSION      NodeType = "call_expression"
+	IDENTIFIER           NodeType = "identifier"
 )
 
 type Metadata struct {
@@ -131,7 +132,7 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	meta := Metadata{}
 
 	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
-	for childId := 0; numChildsRootNode > 0; childId++ {
+	for childId := 0; childId < int(numChildsRootNode); childId++ {
 		child := treeCursor.CurrentNode().Child(childId)
 
 		if child != nil {
@@ -255,9 +256,19 @@ func findCallExprFromNode(content string, node *sitter.Node) (expressions []stri
 	iter := sitter.NewIterator(node, sitter.DFSMode)
 	iter.ForEach(func(iterChild *sitter.Node) error {
 		if iterChild.Type() == string(CALL_EXPRESSION) {
-			expr := content[iterChild.StartByte():iterChild.EndByte()]
+			childCount := iterChild.ChildCount()
 
-			expressions = append(expressions, expr)
+			for i := 0; i < int(childCount); i++ {
+				child := iterChild.Child(i)
+
+				if child.Type() == string(IDENTIFIER) {
+					expr := content[child.StartByte():child.EndByte()]
+
+					expressions = append(expressions, expr)
+
+				}
+			}
+
 		}
 		return nil
 	})

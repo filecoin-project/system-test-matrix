@@ -20,8 +20,8 @@ func (f *FileID) Equal(id FileID) bool {
 
 func (f *FileID) ToFile(files map[FileID]*TestFile) *TestFile {
 
-	for _, file := range files {
-		if f.Equal(file.ID) {
+	for fileID, file := range files {
+		if f.Equal(fileID) {
 			return file
 		}
 	}

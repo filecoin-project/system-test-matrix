@@ -131,6 +131,7 @@ func fnLookup(callExpr string, functions map[string]c.Function, result []FnLink)
 		result[len(result)-1].Links = append(result[len(result)-1].Links, val.Name)
 		// push new found function on to the stack
 		result = append(result, FnLink{
+			FileID:    val.FileID,
 			Name:      val.Name,
 			Behaviors: val.Behaviors,
 		})

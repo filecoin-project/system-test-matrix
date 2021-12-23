@@ -86,14 +86,14 @@ export function testTestIntegrity(test: Test) {
 export function testBehaviorIntegrity(behavior: Behavior) {
   expect(behavior.id).toBeDefined()
   expect(behavior.id.length).toBeGreaterThan(0)
-  expect(behavior.parentFeatureName).toBeDefined()
-  expect(behavior.parentFeatureName.length).toBeGreaterThan(0)
+  expect(behavior.feature).toBeDefined()
+  expect(behavior.feature.length).toBeGreaterThan(0)
   expect(behavior.description).toBeDefined()
   expect(behavior.description.length).toBeGreaterThan(0)
-  expect(behavior.subsystemName).toBeDefined()
-  expect(behavior.subsystemName.length).toBeGreaterThan(0)
-  expect(behavior.systemName).toBeDefined()
-  expect(behavior.systemName.length).toBeGreaterThan(0)
+  expect(behavior.subsystem).toBeDefined()
+  expect(behavior.subsystem.length).toBeGreaterThan(0)
+  expect(behavior.system).toBeDefined()
+  expect(behavior.system.length).toBeGreaterThan(0)
 }
 
 function testFeatureIntegrity(
@@ -103,19 +103,19 @@ function testFeatureIntegrity(
 ) {
   expect(feature.name).toBeDefined()
   expect(feature.name.length).toBeGreaterThan(0)
-  expect(feature.parentSubsystemName).toBe(subsystem.name)
+  expect(feature.subsystem).toBe(subsystem.id)
 
   // behavior integrity check
   expect(feature.behaviors.length).toBeGreaterThan(0)
   expect(feature.behaviors.map(b => b.id)).noDuplicates()
   for (const behavior of feature.behaviors) {
     testBehaviorIntegrity(behavior)
-    expect(behavior.parentFeatureName).toBe(feature.name)
-    expect(behavior.subsystemName).toBe(subsystem.name)
-    expect(behavior.systemName).toBe(sys.name)
+    expect(behavior.feature).toBe(feature.id)
+    expect(behavior.subsystem).toBe(subsystem.id)
+    expect(behavior.system).toBe(sys.id)
   }
 
-  expect(feature.systemName).toBe(sys.name)
+  expect(feature.system).toBe(sys.id)
 }
 
 export function testSubsystemIntegrity(sys: System) {
@@ -127,7 +127,7 @@ export function testSubsystemIntegrity(sys: System) {
 
   for (const subsystem of sys.subsystems) {
     testSystemIntegrity(subsystem)
-    expect(subsystem.parentSystemName).toBe(sys.name)
+    expect(subsystem.system).toBe(sys.id)
 
     // feature integrity check
     expect(subsystem.features.length).toBeGreaterThan(0)

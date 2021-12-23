@@ -68,22 +68,24 @@ func main() {
 			continue
 		}
 
-		allFiles[fileID] = &file
-
 		if fileData.Metadata != nil {
 			files[i].Package = fileData.Metadata.Package
 			files[i].TestType = fileData.Metadata.TestType
 			files[i].Ignore = fileData.Metadata.Ignore
 		}
 
+		allFiles[fileID] = &file
+
 		fileFunctions = fileData.Functions
 	}
 
 	linkedFns := linkFiles(fileFunctions)
 
-	files = convertToTestFile(linkedFns, allFiles)
+	convertToTestFile(linkedFns, allFiles)
 
-	Save(files, config.OutputMode, config.OutputDir)
+	result := filterFilesWhereChildIsRoot(allFiles)
+
+	Save(result, config.OutputMode, config.OutputDir)
 }
 
 func linkFiles(flist []c.Function) (links [][]FnLink) {
@@ -145,9 +147,7 @@ func fnLookup(callExpr string, functions map[string]c.Function, result *[]FnLink
 
 }
 
-func convertToTestFile(linkedFiles [][]FnLink, allFiles map[c.FileID]*c.TestFile) (result []c.TestFile) {
-
-	// get all main test files
+func convertToTestFile(linkedFiles [][]FnLink, allFiles map[c.FileID]*c.TestFile) {
 
 	for _, lf := range linkedFiles {
 		if strings.HasPrefix(lf[0].Name, "Test") {
@@ -163,22 +163,32 @@ func convertToTestFile(linkedFiles [][]FnLink, allFiles map[c.FileID]*c.TestFile
 				Behaviors:       lf[0].Behaviors,
 				IsTesting:       true,
 			})
-			//result = append(result)
+		}
+	}
+}
+
+func filterFilesWhereChildIsRoot(allFiles map[c.FileID]*c.TestFile) []c.TestFile {
+
+	var filteredFiles []c.TestFile
+	var filteredFns []c.Function
+
+	for _, file := range allFiles {
+		containsRoot := false
+		for _, test := range file.Functions {
+			if strings.HasPrefix(test.Name, "Test") {
+				containsRoot = true
+				filteredFns = append(filteredFns, test)
+			}
+		}
+		file.Functions = filteredFns
+
+		if containsRoot {
+			filteredFiles = append(filteredFiles, *file)
 		}
 	}
 
-	return result
+	return filteredFiles
 }
-
-// func merge(ms ...map[c.FileID][]c.Function) map[c.FileID][]c.Function {
-// 	res := map[c.FileID][]c.Function{}
-// 	for _, m := range ms {
-// 		for k, v := range m {
-// 			res[k] = append(res[k], v...)
-// 		}
-// 	}
-// 	return res
-// }
 
 func Save(files []c.TestFile, mode OutputMode, outputDir string) {
 

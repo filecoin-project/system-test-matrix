@@ -120,7 +120,7 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	return fileData, nil
 }
 
-// if non of the files contain any behaviors, the file should be ignored
+// if non of the functions contain any behaviors, the file should be ignored
 func checkForExistanceOfBehaviors(fData *FileData) bool {
 	for _, data := range fData.Functions {
 		if data.IsTesting {

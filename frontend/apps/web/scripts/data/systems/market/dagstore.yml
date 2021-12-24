@@ -67,3 +67,26 @@ features:
         description: |
           Given a deal that that is no longer active, or is not yet sealing,
           do nothing (ignore it)
+  
+  - name: Is unsealed
+    behaviors:
+      - id: MARKET_DAGSTORE_IS_PIECE_UNSEALED_001
+        description: |
+          Given a piece CID, check if an unsealed sector containing the piece
+          exists
+  
+  - name: Fetch unsealed piece
+    behaviors:
+      - id: MARKET_DAGSTORE_FETCH_UNSEALED_PIECE_001
+        description: |
+          Given a piece CID, return a reader for the data piece from an unsealed sector
+      - id: MARKET_DAGSTORE_FETCH_UNSEALED_PIECE_002
+        description: |
+          If the piece is invalid, or not contained in any sector, return an error
+
+  - name: Get unpadded CAR size
+    behaviors:
+      - id: MARKET_DAGSTORE_GET_UNPADDED_CAR_SIZE_001
+        description: |
+          Given a piece CID, return the unpadded CAR size for the piece's deal
+

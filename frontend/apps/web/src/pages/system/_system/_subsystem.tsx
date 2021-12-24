@@ -85,13 +85,9 @@ const SubSystem = () => {
                   test => test.kind === testKind,
                 )
                 return (
-                  <StackLayout>
+                  <StackLayout key={testKind}>
                     <Text semiBold>{testKind}</Text>
-                    <MatrixMap
-                      key={testKind}
-                      data={tests}
-                      onClick={() => null}
-                    />
+                    <MatrixMap data={tests} onClick={() => null} />
                   </StackLayout>
                 )
               })}

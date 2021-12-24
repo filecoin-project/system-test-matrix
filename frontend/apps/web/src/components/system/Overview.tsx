@@ -4,19 +4,19 @@ import { System } from '@filecoin/types'
 import {
   CardLayout,
   Dropdown,
+  NativeLink,
   Pager,
   Paginator,
   ProgressBar,
   SearchInput,
   StackLayout,
   Table,
-  Text
+  Text,
 } from '@filecoin/ui'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
-
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   system: System
@@ -27,6 +27,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
   const [searchTerm, setSearchTerm] = useState(undefined)
   const [selectedFilter, setSelectedFilter] = useState(undefined)
   const [searchResults, setSearchResults] = useState(null)
+  const navigate = useNavigate()
   const { t } = useTranslation()
 
   const options = {
@@ -124,7 +125,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
           legend
         />
       </ProgressBarWrapper>
-
       <TableWrapper>
         <StackLayout gap={1}>
           <Text type="subtitle l">Subsystems ({totalSubsystems})</Text>
@@ -155,9 +155,17 @@ export const Overview: React.FC<Props> = ({ system }) => {
             Subsystems: {
               header: 'Subsystem',
               Cell: ({ data }) => (
-                <Text type="text s" color="textGray">
-                  {data.name}
-                </Text>
+                <NativeLink
+                  className={'u-text--xsmall'}
+                  appearance={'system'}
+                  onClick={() =>
+                    navigate(`/system/${data.system}/${data.name}`)
+                  }
+                >
+                  <Text type="text s" color="blue">
+                    {data.name}
+                  </Text>
+                </NativeLink>
               ),
             },
             testKinds: {

@@ -177,28 +177,20 @@ export class DenormalizedLoader implements ModelLoader {
 
   private handleParsedTest(testFile: RawTestFile) {
     for (const rawScenario of testFile.scenarios) {
-      const testBehaviors: Behavior[] = []
-
-      if (rawScenario.Behaviors) {
-        for (const rawBehavior of rawScenario.Behaviors) {
-          this.linkTestToBehavior(
-            rawBehavior,
-            testBehaviors,
-            testFile,
-            rawScenario,
-          )
-        }
-      }
-
       const test = new Test(
         `${testFile.file}/${rawScenario.function}`,
         testFile.file,
         rawScenario.function,
         testFile.repository,
         testFile.test_type,
-        testBehaviors.length > 0 ? TestStatus.pass : TestStatus.unannotated,
-        testBehaviors,
       )
+
+      if (rawScenario.Behaviors) {
+        for (const rawBehavior of rawScenario.Behaviors) {
+          this.linkTestToBehavior(rawBehavior, test)
+          test.status = TestStatus.pass
+        }
+      }
 
       if (testFile.test_type) {
         this.testKinds.add(testFile.test_type)
@@ -231,19 +223,16 @@ export class DenormalizedLoader implements ModelLoader {
     }
   }
 
-  private linkTestToBehavior(
-    rawBehavior: RawBehavior,
-    testBehaviors: Behavior[],
-    testFile: RawTestFile,
-    rawScenario: RawScenario,
-  ) {
+  private linkTestToBehavior(rawBehavior: RawBehavior, test: Test) {
     const behavior = this.behaviors.get(rawBehavior.behavior)
+
     if (behavior) {
       behavior.tested = true
-      testBehaviors.push(behavior)
+      behavior.tests.push(test)
+      test.linkedBehaviors.push(behavior)
     } else {
       throw new Error(
-        `Unknown behavior ${rawBehavior.behavior} for test ${testFile.file}/${rawScenario.function}`,
+        `Unknown behavior ${rawBehavior.behavior} for test ${test.path}/${test.functionName}`,
       )
     }
   }

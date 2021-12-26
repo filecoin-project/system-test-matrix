@@ -8,12 +8,12 @@ import {
 import {
   BoxLayout,
   CardLayout,
-  Colors,
   ColumnLayout,
   MatrixMap,
   Modal,
   StackLayout,
   Text,
+  TestLegend,
 } from '@filecoin/ui'
 import qs from 'query-string'
 import React, { useEffect, useState } from 'react'
@@ -188,17 +188,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
             )
           })}
 
-          <Legend>
-            <div>
-              Missing tests <div />
-            </div>
-            <div>
-              Passing tests <div />
-            </div>
-            <div>
-              Failing tests <div />
-            </div>
-          </Legend>
+          <TestLegend />
         </StackLayout>
       </BoxLayout>
     </Wrapper>
@@ -222,44 +212,6 @@ const Wrapper = styled(CardLayout)`
       align-items: end;
       width: 100px;
       min-width: 100px;
-    }
-  }
-`
-
-const Legend = styled.div`
-  display: flex;
-  justify-content: end;
-  color: ${Colors.textGray};
-
-  > div {
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-
-    > div {
-      display: inline-block;
-      width: 13px;
-      height: 13px;
-      border-radius: 3px;
-      margin-left: 0.5rem;
-    }
-
-    &:first-child {
-      > div {
-        background: ${Colors.grayBtn};
-      }
-    }
-
-    &:nth-child(2) {
-      > div {
-        background: ${Colors.greenBtn};
-      }
-    }
-
-    &:last-child {
-      > div {
-        background: ${Colors.redBtn};
-      }
     }
   }
 `

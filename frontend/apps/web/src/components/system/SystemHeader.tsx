@@ -6,15 +6,19 @@ import styled from 'styled-components'
 
 const TABS = ['overview', 'detailedView'] as const
 type Tab = typeof TABS[number]
+type pageAncestors = { path: string; name: string }[]
 
 interface HeaderProps {
   activeTab?: Tab
   score?: SystemScore | TestStatus
   onTabChange?: (Tab) => void
   pageName?: string
+  pageAncestors?: pageAncestors
+  hideTabs?: boolean
 }
 interface BreadCrumbsProps {
   pageName: string
+  pageAncestors?: pageAncestors
   score?: SystemScore | TestStatus
 }
 
@@ -72,6 +76,7 @@ export const getButton = (status: TestStatus | SystemScore) => {
 export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
   pageName,
   score,
+  pageAncestors,
   ...props
 }) => {
   return (
@@ -81,48 +86,66 @@ export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
           Systems
         </Text>
       </Link>
+      {pageAncestors?.map(ancestor => (
+        <Link to={ancestor.path} key={ancestor.name}>
+          <StyledText type="text xl" semiBold>
+            / {ancestor.name}
+          </StyledText>
+        </Link>
+      ))}
       <StyledText type="text xl" semiBold>
         / {pageName}
       </StyledText>
-      {getButton(score)}
+      <ButtonWrapper>{getButton(score)}</ButtonWrapper>
     </Crumbs>
   )
 }
 
 export const SystemHeader: React.FC<HeaderProps> = ({
   activeTab,
+  hideTabs = false,
   score,
   onTabChange,
   pageName,
+  pageAncestors,
 }) => {
   return (
     <PageLayout.Header>
-      <BreadCrumbs pageName={pageName} score={score} />
+      <BreadCrumbs
+        pageName={pageName}
+        score={score}
+        pageAncestors={pageAncestors}
+      />
 
-      <PageLayout.Tabs>
-        <PageLayout.Tab
-          onClick={() => {
-            onTabChange('overview')
-          }}
-          active={activeTab === 'overview'}
-        >
-          <Icon name="book" size="small" />
-          <Text>Overview</Text>
-        </PageLayout.Tab>
-        <PageLayout.Tab
-          onClick={() => onTabChange('detailedView')}
-          active={activeTab === 'detailedView'}
-        >
-          <Icon name="detailed_view" size="small" />
-          <Text>Detailed view</Text>
-        </PageLayout.Tab>
-      </PageLayout.Tabs>
+      {!hideTabs && (
+        <PageLayout.Tabs>
+          <PageLayout.Tab
+            onClick={() => {
+              onTabChange('overview')
+            }}
+            active={activeTab === 'overview'}
+          >
+            <Icon name="book" size="small" />
+            <Text>Overview</Text>
+          </PageLayout.Tab>
+          <PageLayout.Tab
+            onClick={() => onTabChange('detailedView')}
+            active={activeTab === 'detailedView'}
+          >
+            <Icon name="detailed_view" size="small" />
+            <Text>Detailed view</Text>
+          </PageLayout.Tab>
+        </PageLayout.Tabs>
+      )}
     </PageLayout.Header>
   )
 }
 
 const Crumbs = styled.div``
+const ButtonWrapper = styled.span`
+  padding-left: 15px;
+`
 const StyledText = styled(Text)`
-  padding-right: 15px;
+  padding-right: 5px;
   padding-left: 5px;
 `

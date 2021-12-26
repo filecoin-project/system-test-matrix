@@ -8,7 +8,7 @@ function createRoute(filename = '') {
   // build path
 
   // replace _ with : as react-router-dom requires
-  path = path.replace(/_/, ':')
+  path = path.replace(/_/g, ':')
   path = `/${path}` // makes regex more accurate/easier
 
   // replace index with /

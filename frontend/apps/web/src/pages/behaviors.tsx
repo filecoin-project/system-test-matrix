@@ -19,14 +19,14 @@ import {
   StackLayout,
   Table,
   Text,
-  Tooltip, usePageLayout
+  Tooltip,
+  usePageLayout,
 } from '@filecoin/ui'
 import qs from 'query-string'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-
 
 interface BehaviorQueryParams {
   id?: string
@@ -147,7 +147,7 @@ const Behaviors = () => {
     header: (
       <PageLayout.Header>
         <HeaderWrapper>
-        <BreadCrumbs pageName={t('filecoin.behaviors.title')}/>
+          <BreadCrumbs pageName={t('filecoin.behaviors.title')} />
 
           <Button
             onClick={() => navigate('/tests')}

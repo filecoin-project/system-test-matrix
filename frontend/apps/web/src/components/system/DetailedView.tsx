@@ -20,6 +20,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
+import { uniqBy } from 'lodash'
 
 import { PageContainer } from '@/containers/PageContainer'
 import { TestModal } from '@/components/tests/TestModal'
@@ -147,8 +148,23 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                 </Text>
 
                 {testKinds.map(testKind => {
-                  const tests = subsystem.tests.filter(
-                    test => test.kind === testKind,
+                  const tests = uniqBy(
+                    subsystem.tests
+                      .filter(test => test.kind === testKind)
+                      .reduce<Test[]>((collection, test) => {
+                        if (test.linkedBehaviors.length) {
+                          return [
+                            ...collection,
+                            ...test.linkedBehaviors.map(behavior => ({
+                              ...test,
+                              linkedBehaviors: [behavior],
+                            })),
+                          ]
+                        }
+
+                        return [...collection, test]
+                      }, []),
+                    test => test.linkedBehaviors[0].id,
                   )
                   return (
                     <MatrixMap

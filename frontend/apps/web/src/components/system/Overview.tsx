@@ -1,4 +1,3 @@
-import { getButton } from '@/components/system/SystemHeader'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { System } from '@filecoin/types'
 import {
@@ -17,6 +16,8 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+
+import { getButton } from '@/components/system/SystemHeader'
 
 interface Props {
   system: System

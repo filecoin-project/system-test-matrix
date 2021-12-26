@@ -1,4 +1,5 @@
 import _ from 'lodash'
+
 import { TestKind, Test } from '.'
 
 // TestKindStatistic says what <percentage> (0-100) of the tests fall under the category <kind>

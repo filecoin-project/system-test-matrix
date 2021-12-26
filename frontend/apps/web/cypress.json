@@ -1,0 +1,11 @@
+{
+  "baseUrl": "http://localhost:8080",
+  "fixturesFolder": "cypress/fixtures",
+  "integrationFolder": "cypress/integration",
+  "screenshotsFolder": "cypress/screenshots",
+  "videosFolder": "cypress/videos",
+  "pluginsFile": "cypress/plugins/index.js",
+  "supportFile": "cypress/support/index.js",
+  "viewportWidth": 1280,
+  "viewportHeight": 720
+}

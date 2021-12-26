@@ -1,5 +1,4 @@
 import React from 'react'
-import { PageContainer } from '@/containers/PageContainer'
 import { useParams } from 'react-router-dom'
 import {
   PageLayout,
@@ -13,9 +12,11 @@ import {
   StackLayout,
   TestLegend,
 } from '@filecoin/ui'
-import { SystemHeader } from '@/components/system/SystemHeader'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import { SystemHeader } from '@/components/system/SystemHeader'
+import { PageContainer } from '@/containers/PageContainer'
 
 const SubSystem = () => {
   const {

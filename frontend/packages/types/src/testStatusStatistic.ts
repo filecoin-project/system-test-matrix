@@ -1,4 +1,5 @@
 import _ from 'lodash'
+
 import { Test, TestStatus } from './test'
 
 // TestStatusStatistic says what <percentage> (0-100) of the tests are in a specific <status>

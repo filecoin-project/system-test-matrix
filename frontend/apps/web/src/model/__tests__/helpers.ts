@@ -2,6 +2,7 @@
 
 import {
   Behavior,
+  BehaviorStatus,
   Feature,
   SubSystem,
   System,
@@ -94,6 +95,10 @@ export function testBehaviorIntegrity(behavior: Behavior) {
   expect(behavior.subsystem.length).toBeGreaterThan(0)
   expect(behavior.system).toBeDefined()
   expect(behavior.system.length).toBeGreaterThan(0)
+
+  if (behavior.status === BehaviorStatus.untested) {
+    expect(behavior.tests).toHaveLength(0)
+  }
 }
 
 function testFeatureIntegrity(
@@ -141,6 +146,14 @@ export function testSubsystemIntegrity(sys: System) {
     expect(subsystem.tests.length).toBeGreaterThan(0)
     for (const test of subsystem.tests) {
       testTestIntegrity(test)
+    }
+
+    // behavior integrity check
+    expect(subsystem.behaviors.length).toBeGreaterThan(0)
+    expect(subsystem.behaviors.map(b => b.id)).noDuplicates()
+    for (const behavior of subsystem.behaviors) {
+      testBehaviorIntegrity(behavior)
+      expect(behavior.subsystem).toBe(subsystem.id)
     }
   }
 }

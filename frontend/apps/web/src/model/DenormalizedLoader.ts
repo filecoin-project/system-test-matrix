@@ -303,6 +303,7 @@ export class DenormalizedLoader implements ModelLoader {
       system.id,
       [],
       [],
+      [],
       subsystemName,
       new PercentageSet([]),
       new PercentageSet([]),
@@ -331,13 +332,17 @@ export class DenormalizedLoader implements ModelLoader {
       subsystem.system,
     )
     for (const rawBehavior of rawFeature.behaviors) {
-      this.loadBehavior(rawBehavior, feature)
+      this.loadBehavior(rawBehavior, feature, subsystem)
     }
     this.features.set(feature.id, feature)
     subsystem.features.push(feature)
   }
 
-  private loadBehavior(rawBehavior: any, feature: Feature) {
+  private loadBehavior(
+    rawBehavior: any,
+    feature: Feature,
+    subsystem: SubSystem,
+  ) {
     const behavior = new Behavior(
       rawBehavior.id,
       feature.id,
@@ -347,5 +352,6 @@ export class DenormalizedLoader implements ModelLoader {
     )
     this.behaviors.set(behavior.id, behavior)
     feature.behaviors.push(behavior)
+    subsystem.behaviors.push(behavior)
   }
 }

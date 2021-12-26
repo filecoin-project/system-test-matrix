@@ -2,6 +2,7 @@ import { Test } from './test'
 import { PercentageSet } from './shared'
 import { Feature } from './feature'
 import { SystemScore } from './systemScore'
+import { Behavior } from './behavior'
 
 // System is a top-level (architectural) denomination of a software project.
 export class System {
@@ -23,7 +24,8 @@ export class SubSystem extends System {
   constructor(
     public system: string,
     public features: Feature[],
-    public tests: Test[],
+    public tests: Test[] = [],
+    public behaviors: Behavior[] = [],
 
     ...p: ConstructorParameters<typeof System>
   ) {

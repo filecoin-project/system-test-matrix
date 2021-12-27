@@ -30,6 +30,7 @@ function combineBehaviors() {
         const { system, subsystem, features } = parsed
         const systemName = system.toString().toLowerCase()
         const subsystemName = subsystem.toString().toLowerCase()
+        // console.log(`System: ${systemName}, subsystem: ${subsystemName}`)
 
         if (systemName in output.systems) {
           output.systems[systemName].subsystems[subsystemName] = {
@@ -40,9 +41,9 @@ function combineBehaviors() {
           subsystems[subsystemName] = {
             features,
           }
-          // const sysSubsystems = (output.systems[systemName] = {
-          //   subsystems,
-          // })
+          const sysSubsystems = (output.systems[systemName] = {
+            subsystems,
+          })
         }
       } catch (err) {
         console.error(`YAML SYNTAX ERROR: ${subsystemPath}`)

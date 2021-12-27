@@ -1,5 +1,4 @@
 import { Behavior, System, Test, TestKind } from '@filecoin/types'
-import _ from 'lodash'
 
 import { DenormalizedLoader } from './DenormalizedLoader'
 
@@ -27,7 +26,7 @@ export class Model implements Model {
     private behaviorCache = new Map<string, Behavior>(),
     private testCache = new Map<string, Test>(),
     private testKinds = new Set<string>(),
-  ) { }
+  ) {}
 
   getAllSystems(): System[] {
     const systems = Array.from(this.systemCache.values())

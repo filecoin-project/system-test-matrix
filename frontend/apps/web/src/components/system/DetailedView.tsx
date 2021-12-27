@@ -1,5 +1,6 @@
 import {
   Behavior,
+  BehaviorStatus,
   System,
   Test,
   TestKind,
@@ -20,7 +21,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
-import { uniqBy } from 'lodash'
+import { partition } from 'lodash'
 
 import { PageContainer } from '@/containers/PageContainer'
 import { TestModal } from '@/components/tests/TestModal'
@@ -88,39 +89,23 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
       <ReactTooltip
         effect="solid"
         getContent={data => {
-          const { functionName, path, repository, linkedBehaviors } =
-            JSON.parse(data) || {}
+          const { id, feature, description } = JSON.parse(data) || {}
 
-          if (functionName !== 'missing') {
-            return (
-              <>
-                <div>
-                  <b>Name</b>: <span>{functionName}</span>
-                </div>
+          return (
+            <>
+              <div>
+                <b>Behavior ID</b>: <span>{id}</span>
+              </div>
 
-                <div>
-                  <b>Path</b>: <span>{path}</span>
-                </div>
+              <div>
+                <b>Feature ID</b>: <span>{feature}</span>
+              </div>
 
-                <div>
-                  <b>Repository</b>: <span>{repository}</span>
-                </div>
-              </>
-            )
-          } else {
-            return (
-              <>
-                <div>
-                  <b>Untested behavior ID</b>:{' '}
-                  <span>{linkedBehaviors[0].id}</span>
-                </div>
-                <div>
-                  <b>Description</b>:{' '}
-                  <span>{linkedBehaviors[0].description}</span>
-                </div>
-              </>
-            )
-          }
+              <div>
+                <b>Description</b>: <span>{description}</span>
+              </div>
+            </>
+          )
         }}
       />
 
@@ -148,54 +133,64 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                 </Text>
 
                 {testKinds.map(testKind => {
-                  const tests = uniqBy(
-                    subsystem.tests
-                      .filter(test => test.kind === testKind)
-                      .reduce<Test[]>((collection, test) => {
-                        if (test.linkedBehaviors.length) {
-                          return [
-                            ...collection,
-                            ...test.linkedBehaviors.map(behavior => ({
-                              ...test,
-                              linkedBehaviors: [behavior],
-                            })),
-                          ]
-                        }
-
-                        return [...collection, test]
-                      }, []),
-                    test => test.linkedBehaviors[0].id,
+                  // figure out which behaviors are tested for the current test kind
+                  const [testedForKind, untestedForKind] = partition(
+                    subsystem.behaviors,
+                    b => b.tests.find(t => t.kind === testKind),
                   )
+
+                  // behaviors tested for current kind should have status == pass
+                  const testedBehaviorData = testedForKind.map(b => ({
+                    ...b,
+                    statusForKind: BehaviorStatus.pass,
+                  }))
+
+                  // other behaviors have status == untested, except for behaviors in the "unknown" column
+                  // it doesn't make sense to tell the user that he should write an "unknown" test
+                  const untestedBehaviorData =
+                    testKind !== 'unknown'
+                      ? untestedForKind.map(b => ({
+                          ...b,
+                          statusForKind: BehaviorStatus.untested,
+                        }))
+                      : []
+
+                  // sort the behaviors lexicographically, so it's easier to find a specific behavior in the matrix cell
+                  const behaviorData = testedBehaviorData
+                    .concat(untestedBehaviorData)
+                    .sort((a, b) => a.id.localeCompare(b.id))
+
                   return (
                     <MatrixMap
                       key={testKind}
-                      data={tests}
-                      onClick={(test: Test) => {
-                        if (test.id === 'missing') {
-                          setTestModal(undefined)
-                          setTestBehavior(
-                            allBehaviors.find(
-                              behavior =>
-                                behavior.id === test.linkedBehaviors[0].id,
-                            ),
-                          )
-                        } else {
-                          setTestBehavior(undefined)
-                          setTestModal(test)
-                        }
-                        navigate(
-                          {
-                            search: `?${qs.stringify({
-                              ...queryParams,
-                              behaviorId:
-                                test.id === 'missing'
-                                  ? test.linkedBehaviors[0].id
-                                  : null,
-                              id: test.id === 'missing' ? null : test.id,
-                            })}`,
-                          },
-                          { replace: true },
-                        )
+                      data={behaviorData}
+                      onClick={(b: Behavior) => {
+                        console.error('Not implemented yet')
+                        // if (test.id === 'missing') {
+                        //   setTestModal(undefined)
+                        //   setTestBehavior(
+                        //     allBehaviors.find(
+                        //       behavior =>
+                        //         behavior.id === test.linkedBehaviors[0].id,
+                        //     ),
+                        //   )
+                        // } else {
+                        //   setTestBehavior(undefined)
+                        //   setTestModal(test)
+                        // }
+                        // navigate(
+                        //   {
+                        //     search: `?${qs.stringify({
+                        //       ...queryParams,
+                        //       behaviorId:
+                        //         test.id === 'missing'
+                        //           ? test.linkedBehaviors[0].id
+                        //           : null,
+                        //       id: test.id === 'missing' ? null : test.id,
+                        //     })}`,
+                        //   },
+                        //   { replace: true },
+                        // )
                       }}
                     />
                   )

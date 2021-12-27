@@ -81,13 +81,11 @@ const SubSystem = () => {
               key={subsystem.name}
             >
               {testKinds.map(testKind => {
-                const tests = subsystem.tests.filter(
-                  test => test.kind === testKind,
-                )
+                const behaviors = subsystem.behaviors.filter(b => b.tests.find(t => t.kind === testKind))
                 return (
                   <StackLayout key={testKind}>
                     <Text semiBold>{testKind}</Text>
-                    <MatrixMap data={tests} onClick={() => null} />
+                    <MatrixMap data={behaviors} onClick={() => null} />
                   </StackLayout>
                 )
               })}

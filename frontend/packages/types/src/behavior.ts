@@ -14,7 +14,7 @@ export class Behavior {
     public subsystem: string,
     public system: string,
     public tested = false,
-    public tests: Test[] = [],
+    public tests: BehaviorTest[] = [],
   ) {}
 
   public get status(): BehaviorStatus {
@@ -23,4 +23,15 @@ export class Behavior {
     }
     return BehaviorStatus.untested
   }
+
+  public statusByKind(testKind: string): BehaviorStatus {
+    return this.tests.find(t => t.kind === testKind)
+      ? BehaviorStatus.pass
+      : BehaviorStatus.untested
+  }
 }
+
+type BehaviorTest = Pick<
+  Test,
+  'id' | 'path' | 'functionName' | 'repository' | 'kind' | 'status'
+>

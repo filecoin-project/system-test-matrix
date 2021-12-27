@@ -1,24 +1,25 @@
 import React from 'react'
 import { Treemap as Chart } from 'recharts'
-import { Test, TestStatus } from '@filecoin/types'
+import { Behavior, BehaviorStatus } from '@filecoin/types'
 
-interface TestData extends Partial<Test> {
+interface BehaviorData extends Partial<Behavior> {
   value?: number
   color?: string
+  statusForKind?: BehaviorStatus
 }
 
 interface Props {
-  data: TestData[]
-  onClick: (test: Partial<Test>) => void
+  data: BehaviorData[]
+  onClick: (behavior: Partial<Behavior>) => void
 }
 
-const getStatusColor = (status?: Test['status']) => {
+const getStatusColor = (status?: Behavior['status']) => {
   switch (status) {
-    case TestStatus.pass:
+    case BehaviorStatus.pass:
       return '#77DF79'
-    case TestStatus.fail:
+    case BehaviorStatus.fail:
       return '#FF837F'
-    case TestStatus.missing:
+    case BehaviorStatus.untested:
       return '#B2BAC7'
     default:
       return '#F5F5F5'
@@ -30,14 +31,13 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
     ? data.map(node => ({
         ...node,
         value: 1,
-        color: getStatusColor(node.status),
+        color: getStatusColor(node.statusForKind),
       }))
     : [
         {
           value: 1,
-          functionName: 'missing',
-          status: 'null' as TestStatus,
-          color: getStatusColor('null' as TestStatus),
+          status: 'null' as BehaviorStatus,
+          color: getStatusColor('null' as BehaviorStatus),
         },
       ]
 
@@ -49,37 +49,30 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
   const countMissingNodes = Math.max(NODES_LIMIT - data.length, 0)
   const missingData = Array(countMissingNodes).fill({
     value: 1,
-    functionName: 'missing',
     status: 'null',
-    color: getStatusColor('null' as TestStatus),
+    color: getStatusColor('null' as BehaviorStatus),
   })
 
   const CustomizedContent = (props: any) => {
-    const {
-      color,
-      index,
-      id,
-      functionName,
-      path,
-      repository,
-      linkedBehaviors,
-      status,
-    } = props
+    const { color, index, id, feature, description, subsystem, tested, tests } =
+      props
     const rowNumber = Math.floor(Math.max(index / NUMBER_OF_ROWS, 0))
     const columnIndex = index % NUMBER_OF_COLUMNS
 
-    if (!functionName) {
-      return null
-    }
+    // if (!functionName) {
+    //   return null
+    // }
 
     return (
       <g>
         <rect
           data-tip={JSON.stringify({
-            functionName,
-            path,
-            repository,
-            linkedBehaviors,
+            id,
+            feature,
+            description,
+            tested,
+            subsystem,
+            tests,
           })}
           x={NODE_SIZE * columnIndex}
           y={NODE_SIZE * rowNumber}
@@ -96,10 +89,10 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
           onClick={() =>
             onClick({
               id,
-              functionName,
-              path,
-              repository,
-              linkedBehaviors,
+              feature,
+              description,
+              tested,
+              tests,
             })
           }
         />

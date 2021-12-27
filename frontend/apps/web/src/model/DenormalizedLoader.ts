@@ -228,7 +228,14 @@ export class DenormalizedLoader implements ModelLoader {
 
     if (behavior) {
       behavior.tested = true
-      behavior.tests.push(test)
+      behavior.tests.push({
+        functionName: test.functionName,
+        id: test.id,
+        kind: test.kind,
+        path: test.path,
+        repository: test.repository,
+        status: test.status,
+      })
       test.linkedBehaviors.push(behavior)
     } else {
       throw new Error(

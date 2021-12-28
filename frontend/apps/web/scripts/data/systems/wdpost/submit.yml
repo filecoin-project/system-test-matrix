@@ -1,5 +1,5 @@
 system: Window PoSt
-subsystem: Change handler
+subsystem: Submit handler
 features:
   - name: Process head change
     behaviors:

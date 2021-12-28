@@ -35,7 +35,7 @@ interface RawTestFile {
 interface RawBehavior {
   behavior_id: string
   behavior: string
-  ignore: boolean
+  ignore?: boolean
 }
 
 interface RawScenario {

@@ -9,7 +9,6 @@ import {
   CardLayout,
   MatrixMap,
   ColumnLayout,
-  BoxLayout,
   StackLayout,
   TestLegend,
   Modal,

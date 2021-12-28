@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PageContainer } from '@/containers/PageContainer'
 import { useParams } from 'react-router-dom'
 import {
@@ -12,22 +12,35 @@ import {
   BoxLayout,
   StackLayout,
   TestLegend,
+  Modal,
 } from '@filecoin/ui'
+import { Test, TestQueryParams } from '@filecoin/types'
 import { SystemHeader } from '@/components/system/SystemHeader'
+import { TestModal } from '@/components/tests/TestModal'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import qs from 'query-string'
+import { useNavigate } from 'react-router-dom'
+import ReactTooltip from 'react-tooltip'
 
 const SubSystem = () => {
   const {
     state: { model },
   } = PageContainer.useContainer()
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const params = useParams<{ system: string; subsystem: string }>()
   const system = model.findSystemByName(params.system)
   const subsystem = system.subsystems.find(
     subsystem => subsystem.name === params.subsystem,
   )
   const testKinds = model.getAllTestKinds()
+  const { id: testId }: TestQueryParams = qs.parse(location.search)
+  const openedTest = testId
+    ? subsystem.tests.find(test => testId && test.id === testId)
+    : undefined
+
+  const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
 
   const pageLayout = usePageLayout({
     header: (
@@ -43,6 +56,58 @@ const SubSystem = () => {
 
   return (
     <PageLayout {...pageLayout}>
+      <Modal
+        isOpen={!!testModal}
+        onClose={() => {
+          setTestModal(undefined)
+          navigate(
+            {
+              search: '',
+            },
+            { replace: true },
+          )
+        }}
+      >
+        <TestModal test={testModal} />
+      </Modal>
+      <ReactTooltip
+        effect="solid"
+        getContent={data => {
+          const { functionName, path, repository, linkedBehaviors } =
+            JSON.parse(data) || {}
+
+          if (functionName !== 'missing') {
+            return (
+              <>
+                <div>
+                  <b>Name</b>: <span>{functionName}</span>
+                </div>
+
+                <div>
+                  <b>Path</b>: <span>{path}</span>
+                </div>
+
+                <div>
+                  <b>Repository</b>: <span>{repository}</span>
+                </div>
+              </>
+            )
+          } else {
+            return (
+              <>
+                <div>
+                  <b>Untested behavior ID</b>:{' '}
+                  <span>{linkedBehaviors[0].id}</span>
+                </div>
+                <div>
+                  <b>Description</b>:{' '}
+                  <span>{linkedBehaviors[0].description}</span>
+                </div>
+              </>
+            )
+          }
+        }}
+      />
       <PageLayout.Section>
         <Text type={'subtitle l'} color={'gray80'}>
           {subsystem.tests.length} {t('filecoin.subsystem.totalTests')}
@@ -57,6 +122,7 @@ const SubSystem = () => {
               }),
             )}
             legend
+            tooltip={false}
           />
         </ProgressBarWrapper>
         <ProgressBarWrapper shadow={false}>
@@ -69,32 +135,39 @@ const SubSystem = () => {
               }),
             )}
             legend
+            tooltip={false}
           />
         </ProgressBarWrapper>
       </PageLayout.Section>
       <PageLayout.Section>
-        <BoxLayout gap={1.5}>
-          <StackLayout gap={1.5}>
-            <ColumnLayout
-              className={'c-matrix__row'}
-              gap={1}
-              key={subsystem.name}
-            >
-              {testKinds.map(testKind => {
-                const tests = subsystem.tests.filter(
-                  test => test.kind === testKind,
-                )
-                return (
-                  <StackLayout key={testKind}>
-                    <Text semiBold>{testKind}</Text>
-                    <MatrixMap data={tests} onClick={() => null} />
-                  </StackLayout>
-                )
-              })}
-            </ColumnLayout>
-            <TestLegend />
-          </StackLayout>
-        </BoxLayout>
+        <TestsWrapper shadow={false}>
+          <ColumnLayout className={'c-matrix__row'} key={subsystem.name}>
+            {testKinds.map(testKind => {
+              const tests = subsystem.tests.filter(
+                test => test.kind === testKind,
+              )
+              return (
+                <StackLayout key={testKind}>
+                  <Text>{testKind}</Text>
+                  <MatrixMap
+                    data={tests}
+                    key={testKind}
+                    onClick={(test: Test) => {
+                      setTestModal(test)
+                      navigate(
+                        {
+                          search: `?id=${test.id}`,
+                        },
+                        { replace: true },
+                      )
+                    }}
+                  />
+                </StackLayout>
+              )
+            })}
+          </ColumnLayout>
+          <TestLegend />
+        </TestsWrapper>
       </PageLayout.Section>
     </PageLayout>
   )
@@ -110,4 +183,7 @@ const ProgressBarWrapper = styled(CardLayout)`
   }
 `
 
+const TestsWrapper = styled(CardLayout)`
+  padding: 2.5rem;
+`
 export default SubSystem

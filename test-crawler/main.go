@@ -111,7 +111,6 @@ func linkFiles(flist []c.Function) (links [][]FnLink) {
 func fnLookup(callExpr string, functions map[string]c.Function, result []FnLink) {
 	// if the function exists in lookup table
 	if callExpr == functions[callExpr].Name {
-		// take its value
 		val := functions[callExpr]
 		// link new found function to previous one in stack
 		result[len(result)-1].Links = append(result[len(result)-1].Links, val.Name)
@@ -127,7 +126,6 @@ func fnLookup(callExpr string, functions map[string]c.Function, result []FnLink)
 			fnLookup(cexpr, functions, result)
 		}
 	} else {
-		// return if nothing is found
 		return
 	}
 

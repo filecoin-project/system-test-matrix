@@ -39,9 +39,9 @@ type FileData struct {
 	Functions []c.Function
 }
 
-type hasNoBehaviors bool
+type hasNoTests bool
 
-func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, hasNoBehaviors, error) {
+func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, hasNoTests, error) {
 
 	fileData := &FileData{}
 
@@ -78,7 +78,7 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileDa
 
 	}
 
-	return fileData, hasNoBehaviors(!checkForExistanceOfBehaviors(fData)), nil
+	return fileData, hasNoTests(!checkForExistanceOfTests(fData)), nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -120,8 +120,7 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	return fileData, nil
 }
 
-// if non of the functions contain any behaviors, the file should be ignored
-func checkForExistanceOfBehaviors(fData *FileData) bool {
+func checkForExistanceOfTests(fData *FileData) bool {
 	for _, data := range fData.Functions {
 		if data.IsTesting {
 			return true
@@ -291,7 +290,7 @@ func makeCollectorScenario(filePath string, funcName string, behaviors []a.Behav
 		Behaviors:       behaviors,
 	}
 
-	if len(behaviors) > 0 {
+	if len(behaviors) > 0 || strings.HasPrefix(funcName, "Test") {
 		fScenario.IsTesting = true
 	}
 

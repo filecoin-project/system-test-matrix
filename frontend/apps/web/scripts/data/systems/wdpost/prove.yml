@@ -1,4 +1,4 @@
-system: Window PoSt
+system: wdpost
 subsystem: Prove handler
 features:
   - name: Process head change

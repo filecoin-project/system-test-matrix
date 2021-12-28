@@ -85,9 +85,8 @@ func getBehaviorInfo(input string) ([]BehaviorType, error) {
 	for _, tag := range behaviorsTags {
 		behaviors = append(behaviors, BehaviorType{
 			// Id is calculated later
-			Id:     "",
-			Tag:    tag,
-			Ignore: false,
+			Id:  "",
+			Tag: tag,
 		})
 	}
 

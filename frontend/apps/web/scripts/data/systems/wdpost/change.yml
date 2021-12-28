@@ -1,4 +1,4 @@
-system: Window PoSt
+system: wdpost
 subsystem: Change handler
 features:
   - name: Start

@@ -1,4 +1,4 @@
-system: Window PoSt
+system: wdpost
 subsystem: Submit handler
 features:
   - name: Process head change

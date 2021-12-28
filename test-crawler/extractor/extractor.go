@@ -24,6 +24,8 @@ const (
 	FUNCTION_DECLARATION NodeType = "function_declaration"
 	PARAMETER_LIST       NodeType = "parameter_list"
 	BLOCK                NodeType = "block"
+	CALL_EXPRESSION      NodeType = "call_expression"
+	IDENTIFIER           NodeType = "identifier"
 )
 
 type Metadata struct {
@@ -32,10 +34,20 @@ type Metadata struct {
 	a.HeaderType
 }
 
-func ExtractInfo(file c.TestFile, ctx context.Context) (scenarios []c.Scenario, meta *Metadata, err error) {
+type FileData struct {
+	Metadata  *Metadata
+	Functions []c.Function
+}
+
+type hasNoTests bool
+
+func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, hasNoTests, error) {
+
+	fileData := &FileData{}
+
 	content, err := getFileContent(file.Path)
 	if err != nil {
-		return nil, nil, err
+		return nil, true, err
 	}
 
 	parser := sitter.NewParser()
@@ -43,23 +55,30 @@ func ExtractInfo(file c.TestFile, ctx context.Context) (scenarios []c.Scenario, 
 
 	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
 	if err != nil {
-		return nil, nil, err
+		return nil, true, err
 	}
 
 	cursor := sitter.NewTreeCursor(tree.RootNode())
 
-	scenData, meta, err := parseContent(content, cursor, file.Path)
+	fData, err := parseContent(content, cursor, file.Path)
 	if err != nil {
-		return nil, nil, err
+		return nil, true, err
 	}
-	for _, s := range scenData {
-		scenarios = append(scenarios, c.Scenario{
-			Function:  s.Function,
-			Behaviors: s.Behaviors,
+
+	fileData.Metadata = fData.Metadata
+
+	for _, s := range fData.Functions {
+		fileData.Functions = append(fileData.Functions, c.Function{
+			FileID:          fileID,
+			Name:            s.Name,
+			Behaviors:       s.Behaviors,
+			CallExpressions: s.CallExpressions,
+			IsTesting:       s.IsTesting,
 		})
 
 	}
-	return scenarios, meta, nil
+
+	return fileData, hasNoTests(!checkForExistanceOfTests(fData)), nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -78,24 +97,36 @@ func getFileContent(filePath string) (content string, err error) {
 	return string(src), nil
 }
 
-func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string) ([]c.Scenario, *Metadata, error) {
-	var scenarios []c.Scenario
-	var metadata *Metadata
+func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string) (*FileData, error) {
+	fileData := &FileData{}
 
 	var annotationParser a.Parser
 
-	metadata = getMetadata(content, treeCursor, &annotationParser)
+	fileData.Metadata = getMetadata(content, treeCursor, &annotationParser)
 	functions := getFunctionNodes(content, treeCursor, &annotationParser)
 
 	for _, function := range functions {
 
 		behaviors := findBehaviorsFromNode(content, function.Node)
+		var callExpressions []string = nil
+		if len(behaviors) > 0 {
+			callExpressions = findCallExprFromNode(content, function.Node)
+		}
 
-		scenarios = append(scenarios, makeCollectorScenario(filePath, function.Name, behaviors))
+		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, function.Name, behaviors, callExpressions))
 
 	}
 
-	return scenarios, metadata, nil
+	return fileData, nil
+}
+
+func checkForExistanceOfTests(fData *FileData) bool {
+	for _, data := range fData.Functions {
+		if data.IsTesting {
+			return true
+		}
+	}
+	return false
 }
 
 func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) *Metadata {
@@ -103,10 +134,10 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	meta := Metadata{}
 
 	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
-	for childId := 0; numChildsRootNode > 0; childId++ {
+	for childId := 0; childId < int(numChildsRootNode); childId++ {
 		child := treeCursor.CurrentNode().Child(childId)
 
-		if !child.IsNull() {
+		if child != nil {
 
 			if child.Type() == string(PACKAGE_CLAUSE) {
 				break
@@ -219,15 +250,48 @@ func findBehaviorsFromNode(content string, node *sitter.Node) (behaviors []a.Beh
 	return behaviors
 }
 
-func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType) c.Scenario {
+func findCallExprFromNode(content string, node *sitter.Node) (expressions []string) {
+	if node == nil {
+		return nil
+	}
+
+	iter := sitter.NewIterator(node, sitter.DFSMode)
+	iter.ForEach(func(iterChild *sitter.Node) error {
+		if iterChild.Type() == string(CALL_EXPRESSION) {
+			childCount := iterChild.ChildCount()
+
+			for i := 0; i < int(childCount); i++ {
+				child := iterChild.Child(i)
+
+				if child.Type() == string(IDENTIFIER) {
+					expr := content[child.StartByte():child.EndByte()]
+
+					expressions = append(expressions, expr)
+
+				}
+			}
+
+		}
+		return nil
+	})
+
+	return expressions
+}
+
+func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType, expressions []string) c.Function {
 
 	for i := range behaviors {
 		behaviors[i].Id = makeID(filePath, funcName, behaviors[i].Tag)
 	}
 
-	fScenario := c.Scenario{
-		Function:  funcName,
-		Behaviors: behaviors,
+	fScenario := c.Function{
+		Name:            funcName,
+		CallExpressions: expressions,
+		Behaviors:       behaviors,
+	}
+
+	if len(behaviors) > 0 || strings.HasPrefix(funcName, "Test") {
+		fScenario.IsTesting = true
 	}
 
 	return fScenario

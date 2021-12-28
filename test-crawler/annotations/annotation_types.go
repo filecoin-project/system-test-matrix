@@ -9,7 +9,6 @@ type ScenarioType struct {
 }
 
 type BehaviorType struct {
-	Id     string `json:"behavior_id"`
-	Tag    string `json:"behavior"`
-	Ignore bool   `json:"ignore"`
+	Id  string `json:"behavior_id"`
+	Tag string `json:"behavior"`
 }

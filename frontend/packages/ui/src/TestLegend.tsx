@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+
 import { Colors } from './styles/colors'
 
 export const TestLegend = () => {

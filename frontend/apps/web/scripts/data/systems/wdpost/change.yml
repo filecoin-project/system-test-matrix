@@ -1,0 +1,20 @@
+system: wdpost
+subsystem: Change handler
+features:
+  - name: Start
+    behaviors:
+      - id: WDPOST_CHANGE_HANDLER_START_001
+        description: |
+          Start the change handler.
+  - name: Update
+    behaviors:
+      - id: WDPOST_CHANGE_HANDLER_UPDATE_001
+        description: |
+          Given a tipset to revert, and a tipset to advance,
+          process the head changes.
+  - name: Next deadline
+    behaviors:
+      - id: WDPOST_NEXT_DEADLINE_001
+        description: |
+          Given a deadline, return deadline info for the subsequent deadline.
+  

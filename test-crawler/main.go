@@ -7,17 +7,27 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 	"time"
 
+	a "testsuites/annotations"
 	c "testsuites/collector"
 	ex "testsuites/extractor"
 )
+
+type FnLink struct {
+	FileID    c.FileID
+	Name      string
+	Links     []string
+	Behaviors []a.BehaviorType
+}
 
 func main() {
 
 	config := NewConfig()
 
-	allFiles := []c.TestFile{}
+	allFiles := make(map[c.FileID]*c.TestFile)
+	var fileFunctions []c.Function
 
 	for _, path := range config.Paths {
 		files, err := c.GetTestFiles(path, config.Ignore)
@@ -28,23 +38,143 @@ func main() {
 
 		ctx := context.Background()
 
-		for i, file := range files {
-			scenarios, meta, err := ex.ExtractInfo(file, ctx)
+		for i := 0; i < len(files); i++ {
+
+			fileID := c.CreateFileID(files[i].Path, files[i].File)
+
+			fileData, hasNoBehaviors, err := ex.ExtractInfo(files[i], ctx, fileID)
 			if err != nil {
 				fmt.Println(err)
 				continue
 			}
 
-			files[i].Package = meta.Package
-			files[i].TestType = meta.TestType
-			files[i].Ignore = meta.Ignore
-			files[i].Scenarios = scenarios
-		}
+			if hasNoBehaviors {
+				continue
+			}
 
-		allFiles = append(allFiles, files...)
+			if fileData.Metadata != nil {
+				files[i].Package = fileData.Metadata.Package
+				files[i].TestType = fileData.Metadata.TestType
+				files[i].Ignore = fileData.Metadata.Ignore
+			}
+
+			allFiles[fileID] = &files[i]
+
+			fileFunctions = append(fileFunctions, fileData.Functions...)
+		}
 	}
 
-	Save(allFiles, config.OutputMode, config.OutputDir, config.IndentJSON)
+	linkedFns := linkFiles(fileFunctions)
+
+	convertToTestFile(linkedFns, allFiles)
+
+	result := filterFilesWhereChildIsRoot(allFiles)
+
+	Save(result, config.OutputMode, config.OutputDir, config.IndentJSON)
+}
+
+func linkFiles(flist []c.Function) (links [][]FnLink) {
+
+	functions := make(map[string]c.Function)
+
+	// map all functions to key(name)-value(function) for fast access later
+	for _, fun := range flist {
+		if fun.IsTesting {
+			functions[fun.Name] = fun
+		}
+	}
+
+	for _, fun := range flist {
+		if fun.IsTesting {
+			var funcStack []FnLink
+			if len(funcStack) == 0 {
+				funcStack = append(funcStack, FnLink{
+					FileID:    fun.FileID,
+					Name:      fun.Name,
+					Behaviors: fun.Behaviors,
+				})
+			}
+
+			for _, cexpr := range fun.CallExpressions {
+				fnLookup(cexpr, functions, funcStack)
+			}
+
+			links = append(links, funcStack)
+
+			funcStack = nil
+		}
+	}
+
+	return links
+}
+
+func fnLookup(callExpr string, functions map[string]c.Function, result []FnLink) {
+	// if the function exists in lookup table
+	if callExpr == functions[callExpr].Name {
+		val := functions[callExpr]
+		// link new found function to previous one in stack
+		result[len(result)-1].Links = append(result[len(result)-1].Links, val.Name)
+		// push new found function on to the stack
+		result = append(result, FnLink{
+			FileID:    val.FileID,
+			Name:      val.Name,
+			Behaviors: val.Behaviors,
+		})
+
+		// use recursion to try and find another link
+		for _, cexpr := range val.CallExpressions {
+			fnLookup(cexpr, functions, result)
+		}
+	} else {
+		return
+	}
+
+}
+
+func convertToTestFile(linkedFiles [][]FnLink, allFiles map[c.FileID]*c.TestFile) {
+
+	for _, lf := range linkedFiles {
+		if strings.HasPrefix(lf[0].Name, "Test") {
+			for i := 1; i < len(lf); i++ {
+				lf[0].Behaviors = append(lf[0].Behaviors, lf[i].Behaviors...)
+			}
+
+			file := lf[0].FileID.ToFile(allFiles)
+			if file != nil {
+				file.Functions = append(file.Functions, c.Function{
+					FileID:          lf[0].FileID,
+					Name:            lf[0].Name,
+					CallExpressions: nil,
+					Behaviors:       lf[0].Behaviors,
+					IsTesting:       true,
+				})
+			}
+		}
+	}
+}
+
+func filterFilesWhereChildIsRoot(allFiles map[c.FileID]*c.TestFile) []c.TestFile {
+
+	var filteredFiles []c.TestFile
+	var filteredFns []c.Function
+
+	for _, file := range allFiles {
+		containsRoot := false
+		for _, test := range file.Functions {
+			if strings.HasPrefix(test.Name, "Test") {
+				containsRoot = true
+				filteredFns = append(filteredFns, test)
+			}
+		}
+		file.Functions = filteredFns
+
+		if containsRoot {
+			filteredFiles = append(filteredFiles, *file)
+		}
+		filteredFns = nil
+	}
+
+	return filteredFiles
 }
 
 func Save(files []c.TestFile, mode OutputMode, outputDir string, indentJSON bool) {

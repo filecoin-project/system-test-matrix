@@ -1,6 +1,3 @@
-import { BreadCrumbs, getButton } from '@/components/system/SystemHeader'
-import { TestModal } from '@/components/tests/TestModal'
-import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Test, TestQueryParams } from '@filecoin/types'
 import {
@@ -25,6 +22,10 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { TestModal } from '@/components/tests/TestModal'
+import { BreadCrumbs, getButton } from '@/components/system/SystemHeader'
 
 const Header = () => {
   const navigate = useNavigate()

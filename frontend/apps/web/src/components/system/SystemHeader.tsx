@@ -77,7 +77,6 @@ export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
   pageName,
   score,
   pageAncestors,
-  ...props
 }) => {
   return (
     <Crumbs>

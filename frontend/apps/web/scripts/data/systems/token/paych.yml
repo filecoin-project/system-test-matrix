@@ -98,6 +98,20 @@
         - id: TOKEN_PAYCH_WAIT_READY_001
           description: Waits until the create channel / add funds message with the given message CID arrives
 
+    - name: register on msg complete
+      behaviors:
+        - id: TOKEN_PAYCH_REG_ON_MSG_COMPLETE_001
+          description: |
+            Given a message CID, and a callback function, 
+            register the callback for when the message with the given CID completes
+
+    - name: fire on msg complete
+      behaviors:
+        - id: TOKEN_PAYCH_FIRE_ON_MSG_COMPLETE_001
+          description: |
+            Given a message CID, and a callback function, 
+            fire an event signifying that the messsage with the given CID has been completed
+
     - name: available funds
       behaviors:
         - id: TOKEN_PAYCH_AVAILABLE_FUNDS_001

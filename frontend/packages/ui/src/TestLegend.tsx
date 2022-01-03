@@ -23,6 +23,7 @@ export const Legend = styled.div`
   display: flex;
   justify-content: end;
   color: ${Colors.textGray};
+  margin-top: 1rem;
 
   > div {
     margin-left: 2rem;

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { PageContainer } from '@/containers/PageContainer'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import {
   PageLayout,
   Text,
@@ -14,13 +13,14 @@ import {
   Modal,
 } from '@filecoin/ui'
 import { Test, TestQueryParams } from '@filecoin/types'
-import { SystemHeader } from '@/components/system/SystemHeader'
-import { TestModal } from '@/components/tests/TestModal'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import qs from 'query-string'
-import { useNavigate } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
+
+import { TestModal } from '@/components/tests/TestModal'
+import { SystemHeader } from '@/components/system/SystemHeader'
+import { PageContainer } from '@/containers/PageContainer'
 
 const SubSystem = () => {
   const {

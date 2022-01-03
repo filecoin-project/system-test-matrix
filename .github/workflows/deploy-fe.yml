@@ -166,8 +166,8 @@ jobs:
         with:
           name: artifact-fe
           path: |
-            apps/web/cypress/videos
-            apps/web/cypress/screenshots
+            frontend/apps/web/cypress/videos
+            frontend/apps/web/cypress/screenshots
 
       #
       # Notify if there is a failure or if this is a pull_request event

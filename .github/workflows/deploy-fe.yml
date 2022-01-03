@@ -154,7 +154,7 @@ jobs:
       #
       - name: E2E test
         id: e2e-tests
-        run: ./node_modules/.bin/cypress install && yarn ci:e2e
+        run: mv ../../../apps/web/ ./ && ./node_modules/.bin/cypress install && yarn ci:e2e
         working-directory: ./frontend/apps/web
 
       #

@@ -7,7 +7,7 @@
   "license": "ISC",
   "main": "src/main.tsx",
   "scripts": {
-    "start": "http-server dist -P http://localhost:8080? -g",
+    "start": "http-server dist -P http://localhost:8080? -g -s",
     "preserve": "yarn prebuild",
     "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "prebuild": "concurrently \"yarn generate:routes\" \"yarn generate:behaviors\"",

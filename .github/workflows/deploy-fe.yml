@@ -118,7 +118,7 @@ jobs:
             develop-fe-
 
       #
-      # Run lint
+      # Run generate scripts
       #
       - name: Generate routes and behaviors
         id: generate-data

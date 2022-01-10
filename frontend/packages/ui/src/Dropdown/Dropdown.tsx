@@ -3,20 +3,18 @@ import {
   filterItems,
   findSingle,
   relativePosition,
-  scrollInView,
+  scrollInView
 } from '@filecoin/core'
 import { find } from 'lodash'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { Loader } from '../Loader'
 import { SearchInput } from '../SearchInput'
 import { Colors } from '../styles/colors'
 import { Text } from '../Text'
-
 import { DropdownItem } from './DropdownItem'
 
 interface Option {
@@ -174,6 +172,7 @@ export const Dropdown: FunctionComponent<Props> = ({
     }
     document.removeEventListener('mouseup', remove, false)
     setShow(false)
+    myRef.current.classList.remove('openedAbove')
   }
 
   const show = () => {
@@ -181,7 +180,11 @@ export const Dropdown: FunctionComponent<Props> = ({
       setTimeout(() => {
         document.addEventListener('mouseup', remove, false)
         setShow(true)
-        relativePosition(myRef.current, containerRef.current)
+        const position = relativePosition(myRef.current, containerRef.current)
+        if(position < 0) {
+          myRef.current.classList.add('openedAbove')
+        }
+
         if (containerRef.current) {
           containerRef.current.focus()
         }
@@ -484,7 +487,7 @@ export const Dropdown: FunctionComponent<Props> = ({
         {labelElement}
         {props.value && !showField ? (
           <Icon name="arrow_down" size="xsmall" overflow="visible" />
-        ) : showField ? (
+       ) : showField ? (
           <Icon name="arrow_up" size="xsmall" overflow="visible" />
         ) : (
           <Icon name="arrow_up_and_down" size="xsmall" overflow="visible" />
@@ -660,7 +663,7 @@ const Wrapper = styled.div<{
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
-  
+
   label {
     cursor: pointer;
   }
@@ -736,7 +739,7 @@ const SelectWrapper = styled.div<{
       align-items: center;
       justify-content: space-between;
       padding: 0 3rem 0 1rem;
-
+      
       i {
         position: absolute;
         right: 1rem;
@@ -778,7 +781,12 @@ const Element = styled.div<{
   border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
-`
+  
+  &.openedAbove {
+   border-top: 1px solid ${Colors.gray60};
+   border-radius: 5px 5px 0 0;
+   border-bottom: none;
+   }`
 
 const Content = styled.div<{
   scrollHeight?: number
@@ -790,7 +798,7 @@ const Content = styled.div<{
   max-height: 310px;
   overflow: auto;
   ${props =>
-    `${props.scrollHeight ? `max-height: ${props.scrollHeight || ''}px` : ''}`}
+    `${props.scrollHeight ? `max-height: ${props.scrollHeight || ''}px;` : ''}`}
 `
 
 const FilterButton = styled(Button)`

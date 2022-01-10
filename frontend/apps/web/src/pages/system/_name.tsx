@@ -22,9 +22,11 @@ const RepositoryDetails = () => {
   const navigate = useNavigate()
   const system = model.findSystemByName(params.name)
   const testKinds = model.getAllTestKinds()
-  const totalTests = system.subsystems.reduce((totalTests, subsystem) => {
-    return totalTests + subsystem.tests.length
-  }, 0)
+
+  const numberOfBehaviors = system.subsystems.reduce(
+    (prevValue, { behaviors = [] }) => [...prevValue, ...behaviors],
+    [],
+  ).length
 
   const { tab: tabQueryParam, ...queryParams }: TestQueryParams = qs.parse(
     location.search,
@@ -69,7 +71,7 @@ const RepositoryDetails = () => {
     <PageLayout {...pageLayout}>
       <PageLayout.Section>
         <Text type={'subtitle l'} color={'gray80'}>
-          {totalTests} {t('filecoin.system.totalTests')}
+          {numberOfBehaviors} {t('filecoin.system.totalBehaviors')}
         </Text>
         {activeTab === 'overview' ? (
           <Overview system={system} />

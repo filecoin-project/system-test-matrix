@@ -54,14 +54,19 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
   })
 
   const CustomizedContent = (props: any) => {
-    const { color, index, id, feature, description, subsystem, tested, tests } =
-      props
+    const {
+      color,
+      index,
+      id,
+      status,
+      feature,
+      description,
+      subsystem,
+      tested,
+      tests,
+    } = props
     const rowNumber = Math.floor(Math.max(index / NUMBER_OF_ROWS, 0))
     const columnIndex = index % NUMBER_OF_COLUMNS
-
-    // if (!functionName) {
-    //   return null
-    // }
 
     return (
       <g>

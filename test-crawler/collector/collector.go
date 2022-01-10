@@ -9,6 +9,7 @@ import (
 )
 
 type TestFile struct {
+	ID           FileID     `json:"-"`
 	File         string     `json:"file"`
 	Path         string     `json:"path"`
 	Project      string     `json:"repository"`
@@ -16,12 +17,15 @@ type TestFile struct {
 	Package      string     `json:"package"`
 	TestType     string     `json:"test_type"`
 	Ignore       bool       `json:"ignore"`
-	Scenarios    []Scenario `json:"scenarios"`
+	Functions    []Function `json:"scenarios"`
 }
 
-type Scenario struct {
-	Function  string `json:"function"`
-	Behaviors []a.BehaviorType
+type Function struct {
+	FileID          FileID   `json:"-"`
+	Name            string   `json:"function"`
+	CallExpressions []string `json:"-"`
+	Behaviors       []a.BehaviorType
+	IsTesting       bool `json:"-"`
 }
 
 func GetTestFiles(root string, ignore []string) (files []TestFile, err error) {
@@ -35,7 +39,7 @@ func GetTestFiles(root string, ignore []string) (files []TestFile, err error) {
 	}
 
 	for _, file := range fileArray {
-		testFile := NewTestFile(file)
+		testFile := NewFile(file)
 		files = append(files, testFile)
 	}
 
@@ -59,7 +63,7 @@ func listTestFiles(root string, ignore []string) (files []string, err error) {
 				}
 			}
 
-			if strings.Contains(path, "_test.go") {
+			if strings.HasSuffix(path, ".go") {
 				files = append(files, path)
 			}
 
@@ -75,15 +79,4 @@ func listTestFiles(root string, ignore []string) (files []string, err error) {
 	}
 
 	return nil, nil
-}
-
-func NewTestFile(path string) TestFile {
-	parts := strings.Split(path, "/")
-
-	return TestFile{
-		File:         parts[len(parts)-1],
-		Path:         path,
-		Project:      parts[1],
-		ParentFolder: parts[len(parts)-2],
-	}
 }

@@ -77,7 +77,6 @@ export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
   pageName,
   score,
   pageAncestors,
-  ...props
 }) => {
   return (
     <Crumbs>
@@ -86,15 +85,25 @@ export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
           Systems
         </Text>
       </Link>
+      <Text type="text xl" semiBold>
+        {' '}
+        /
+      </Text>
       {pageAncestors?.map(ancestor => (
-        <Link to={ancestor.path} key={ancestor.name}>
-          <StyledText type="text xl" semiBold>
-            / {ancestor.name}
-          </StyledText>
-        </Link>
+        <>
+          <Link to={ancestor.path} key={ancestor.name}>
+            <StyledText type="text xl" semiBold>
+              {ancestor.name}
+            </StyledText>
+          </Link>
+          <Text type="text xl" semiBold>
+            {' '}
+            /
+          </Text>
+        </>
       ))}
       <StyledText type="text xl" semiBold>
-        / {pageName}
+        {pageName}
       </StyledText>
       <ButtonWrapper>{getButton(score)}</ButtonWrapper>
     </Crumbs>

@@ -44,6 +44,7 @@ jobs:
             frontend/**/.cache
             frontend/apps/**/node_modules/
             frontend/packages/**/node_modules/
+            ~/.cache/Cypress
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             develop-fe-
@@ -111,12 +112,13 @@ jobs:
             frontend/**/.cache
             frontend/apps/**/node_modules/
             frontend/packages/**/node_modules/
+            ~/.cache/Cypress
           key: develop-fe-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             develop-fe-
 
       #
-      # Run lint
+      # Run generate scripts
       #
       - name: Generate routes and behaviors
         id: generate-data
@@ -138,6 +140,34 @@ jobs:
         id: unit-tests
         run: yarn test
         working-directory: ./frontend
+
+      #
+      # Download artifact for e2e testing
+      #
+      - uses: actions/download-artifact@v2
+        id: download-artifact
+        with:
+          name: artifact-fe
+
+      #
+      # Run e2e tests
+      #
+      - name: E2E test
+        id: e2e-tests
+        run: mv ../../../apps/web/* ./ && ./node_modules/.bin/cypress install && yarn ci:e2e
+        working-directory: ./frontend/apps/web
+
+      #
+      # Upload cypress video to artifact
+      #
+      - name: Artifacts
+        uses: actions/upload-artifact@v2
+        id: upload-artifact-cypress
+        with:
+          name: artifact-fe
+          path: |
+            frontend/apps/web/cypress/videos
+            frontend/apps/web/cypress/screenshots
 
       #
       # Notify if there is a failure or if this is a pull_request event

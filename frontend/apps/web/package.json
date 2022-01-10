@@ -1,20 +1,23 @@
 {
   "name": "@filecoin/web",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "private": false,
   "description": "FILECOIN web application",
   "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
   "license": "ISC",
   "main": "src/main.tsx",
   "scripts": {
-    "start": "http-server dist -P http://localhost:8080? -g",
+    "start": "http-server dist -P http://localhost:8080? -g -s",
     "preserve": "yarn prebuild",
     "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "prebuild": "concurrently \"yarn generate:routes\" \"yarn generate:behaviors\"",
     "generate:routes": "node scripts/routes.js",
     "generate:behaviors": "yarn combine-behaviors",
     "build": "webpack --config ./config/webpack.prod.js",
-    "combine-behaviors": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/combineBehaviors.ts"
+    "combine-behaviors": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/combineBehaviors.ts",
+    "test:e2e": "cypress run",
+    "test:e2e:dev": "cypress open",
+    "ci:e2e": "start-server-and-test start http://localhost:8080 test:e2e"
   },
   "browserslist": [
     "defaults",
@@ -22,12 +25,14 @@
   ],
   "devDependencies": {
     "@babel/runtime": "^7.14.6",
-    "@types/react-router-dom": "^5.1.6",
     "@types/change-case": "^2.3.1",
-    "concurrently": "^6.0.0",
+    "@types/react-router-dom": "^5.1.6",
     "change-case": "^4.1.2",
+    "concurrently": "^7.0.0",
     "csv-parse": "^5.0.3",
+    "cypress": "^9.2.0",
     "http-server": "^14.0.0",
+    "start-server-and-test": "^1.14.0",
     "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^4.0.0",
     "yaml": "^1.10.2"

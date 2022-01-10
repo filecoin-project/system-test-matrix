@@ -1,10 +1,9 @@
-import { getButton } from '@/components/system/SystemHeader'
-import { PageContainer } from '@/containers/PageContainer'
 import { Behavior } from '@filecoin/types'
 import { StackLayout, Table, Text, TruncatedText } from '@filecoin/ui'
 import React from 'react'
 
-
+import { PageContainer } from '@/containers/PageContainer'
+import { getButton } from '@/components/system/SystemHeader'
 
 interface Props {
   behavior: Behavior

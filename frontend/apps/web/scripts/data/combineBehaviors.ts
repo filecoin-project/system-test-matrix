@@ -40,9 +40,9 @@ function combineBehaviors() {
           subsystems[subsystemName] = {
             features,
           }
-          const sysSubsystems = (output.systems[systemName] = {
+          output.systems[systemName] = {
             subsystems,
-          })
+          }
         }
       } catch (err) {
         console.error(`YAML SYNTAX ERROR: ${subsystemPath}`)

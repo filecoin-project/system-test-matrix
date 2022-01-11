@@ -105,7 +105,7 @@ export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
       <StyledText type="text xl" semiBold>
         {pageName}
       </StyledText>
-      <ButtonWrapper>{getButton(score)}</ButtonWrapper>
+      {score && <ButtonWrapper>{getButton(score)}</ButtonWrapper>}
     </Crumbs>
   )
 }

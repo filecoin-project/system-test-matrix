@@ -1,10 +1,10 @@
 import { ReactProps } from '@filecoin/types'
 import classNames from 'classnames'
 import React from 'react'
-
 import { Text } from '../Text'
-
 import { BoxLayout } from './BoxLayout'
+
+
 
 export interface FooterProps {
   /**
@@ -28,7 +28,7 @@ export const PageLayoutFooter = React.forwardRef(
       <Component ref={ref} {...props} className={className}>
         <BoxLayout>
           <Text type="text xs" color="textGray">
-            &copy; 2021 FileCoin
+            &copy; {new Date().getFullYear()} FileCoin
           </Text>
         </BoxLayout>
       </Component>

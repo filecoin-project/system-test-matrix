@@ -2883,17 +2883,17 @@
     global "^4.4.0"
 
 "@storybook/addon-storyshots@^6.1.11":
-  version "6.4.9"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-6.4.9.tgz#99661f0fa90bbac6528ab76a12f8c794794169cc"
-  integrity sha512-sTj+o1k2JbKbJ0Dc0aGmiQP1Vw4lNugDEugFTYv3xBZebyLDfv7WHJ1Yhy+h0ZtMg3Tfuie7i8Ukr6c7/jPhtg==
+  version "6.4.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-6.4.10.tgz#62666da1723c3ce5eb50e6296dd710530cfcc495"
+  integrity sha512-lVTiEH3qAPhYykJrWfTFG110PPu/fIq6a8NVAeWALKF55B7y4AzxdylNo/zpyVknFwr4lH2Fk6ySzi8yNcmKJg==
   dependencies:
     "@jest/transform" "^26.6.2"
-    "@storybook/addons" "6.4.9"
+    "@storybook/addons" "6.4.10"
     "@storybook/babel-plugin-require-context-hook" "1.0.1"
-    "@storybook/client-api" "6.4.9"
-    "@storybook/core" "6.4.9"
-    "@storybook/core-client" "6.4.9"
-    "@storybook/core-common" "6.4.9"
+    "@storybook/client-api" "6.4.10"
+    "@storybook/core" "6.4.10"
+    "@storybook/core-client" "6.4.10"
+    "@storybook/core-common" "6.4.10"
     "@storybook/csf" "0.0.2--canary.87bc651.0"
     "@types/glob" "^7.1.3"
     "@types/jest" "^26.0.16"

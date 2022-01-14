@@ -88,11 +88,12 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
       </Modal>
       <ReactTooltip
         effect="solid"
+        multiline
         getContent={data => {
           const { id, feature, description } = JSON.parse(data) || {}
 
           return (
-            <>
+            <TooltipWrapper>
               <div>
                 <b>Behavior ID</b>: <span>{id}</span>
               </div>
@@ -104,7 +105,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
               <div>
                 <b>Description</b>: <span>{description}</span>
               </div>
-            </>
+            </TooltipWrapper>
           )
         }}
       />
@@ -165,32 +166,25 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                       key={testKind}
                       data={behaviorData}
                       onClick={(b: Behavior) => {
-                        console.error('Not implemented yet')
-                        // if (test.id === 'missing') {
-                        //   setTestModal(undefined)
-                        //   setTestBehavior(
-                        //     allBehaviors.find(
-                        //       behavior =>
-                        //         behavior.id === test.linkedBehaviors[0].id,
-                        //     ),
-                        //   )
-                        // } else {
-                        //   setTestBehavior(undefined)
-                        //   setTestModal(test)
-                        // }
-                        // navigate(
-                        //   {
-                        //     search: `?${qs.stringify({
-                        //       ...queryParams,
-                        //       behaviorId:
-                        //         test.id === 'missing'
-                        //           ? test.linkedBehaviors[0].id
-                        //           : null,
-                        //       id: test.id === 'missing' ? null : test.id,
-                        //     })}`,
-                        //   },
-                        //   { replace: true },
-                        // )
+                        const behavior = allBehaviors.find(
+                          behavior => behavior.id === b.id,
+                        )
+
+                        if (behavior) {
+                          setTestBehavior(
+                            allBehaviors.find(behavior => behavior.id === b.id),
+                          )
+
+                          navigate(
+                            {
+                              search: `?${qs.stringify({
+                                ...queryParams,
+                                behaviorId: behavior.id,
+                              })}`,
+                            },
+                            { replace: true },
+                          )
+                        }
                       }}
                     />
                   )
@@ -225,4 +219,8 @@ const Wrapper = styled(CardLayout)`
       min-width: 100px;
     }
   }
+`
+
+export const TooltipWrapper = styled.div`
+  max-width: 400px;
 `

@@ -12,15 +12,17 @@ import {
   TestLegend,
   Modal,
 } from '@filecoin/ui'
-import { Test, TestQueryParams } from '@filecoin/types'
+import { Behavior, BehaviorStatus, TestQueryParams } from '@filecoin/types'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import qs from 'query-string'
 import ReactTooltip from 'react-tooltip'
+import { partition } from 'lodash'
 
-import { TestModal } from '@/components/tests/TestModal'
 import { SystemHeader } from '@/components/system/SystemHeader'
 import { PageContainer } from '@/containers/PageContainer'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import { TooltipWrapper } from '@/components/system/DetailedView'
 
 const SubSystem = () => {
   const {
@@ -34,12 +36,13 @@ const SubSystem = () => {
     subsystem => subsystem.name === params.subsystem,
   )
   const testKinds = model.getAllTestKinds()
-  const { id: testId }: TestQueryParams = qs.parse(location.search)
-  const openedTest = testId
-    ? subsystem.tests.find(test => testId && test.id === testId)
-    : undefined
-
-  const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
+  const { id: behaviorId }: TestQueryParams = qs.parse(location.search)
+  const allBehaviors = model.getAllBehaviors()
+  const [testBehavior, setTestBehavior] = useState<Behavior | undefined>(
+    behaviorId
+      ? allBehaviors.find(behavior => behavior.id === behaviorId)
+      : undefined,
+  )
 
   const pageLayout = usePageLayout({
     header: (
@@ -56,9 +59,9 @@ const SubSystem = () => {
   return (
     <PageLayout {...pageLayout}>
       <Modal
-        isOpen={!!testModal}
+        isOpen={!!testBehavior}
         onClose={() => {
-          setTestModal(undefined)
+          setTestBehavior(undefined)
           navigate(
             {
               search: '',
@@ -67,49 +70,34 @@ const SubSystem = () => {
           )
         }}
       >
-        <TestModal test={testModal} />
+        <BehaviorModal behavior={testBehavior} />
       </Modal>
       <ReactTooltip
         effect="solid"
+        multiline
         getContent={data => {
-          const { functionName, path, repository, linkedBehaviors } =
-            JSON.parse(data) || {}
+          const { id, feature, description } = JSON.parse(data) || {}
 
-          if (functionName !== 'missing') {
-            return (
-              <>
-                <div>
-                  <b>Name</b>: <span>{functionName}</span>
-                </div>
+          return (
+            <TooltipWrapper>
+              <div>
+                <b>Behavior ID</b>: <span>{id}</span>
+              </div>
 
-                <div>
-                  <b>Path</b>: <span>{path}</span>
-                </div>
+              <div>
+                <b>Feature ID</b>: <span>{feature}</span>
+              </div>
 
-                <div>
-                  <b>Repository</b>: <span>{repository}</span>
-                </div>
-              </>
-            )
-          } else {
-            return (
-              <>
-                <div>
-                  <b>Untested behavior ID</b>:{' '}
-                  <span>{linkedBehaviors[0].id}</span>
-                </div>
-                <div>
-                  <b>Description</b>:{' '}
-                  <span>{linkedBehaviors[0].description}</span>
-                </div>
-              </>
-            )
-          }
+              <div>
+                <b>Description</b>: <span>{description}</span>
+              </div>
+            </TooltipWrapper>
+          )
         }}
       />
       <PageLayout.Section>
         <Text type={'subtitle l'} color={'gray80'}>
-          {subsystem.tests.length} {t('filecoin.subsystem.totalTests')}
+          {subsystem.behaviors.length} {t('filecoin.system.totalBehaviors')}
         </Text>
         <ProgressBarWrapper shadow={false}>
           <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
@@ -140,22 +128,51 @@ const SubSystem = () => {
       </PageLayout.Section>
       <PageLayout.Section>
         <TestsWrapper shadow={false}>
-          <ColumnLayout className={'c-matrix__row'} key={subsystem.name}>
+          <ColumnLayout
+            className={'c-matrix__row'}
+            gap={1}
+            key={subsystem.name}
+          >
             {testKinds.map(testKind => {
-              const tests = subsystem.tests.filter(
-                test => test.kind === testKind,
+              // const behaviors = subsystem.behaviors.filter(b =>
+              //   b.tests.find(t => t.kind === testKind),
+              // )
+              const [testedForKind, untestedForKind] = partition(
+                subsystem.behaviors,
+                b => b.tests.find(t => t.kind === testKind),
               )
+
+              // behaviors tested for current kind should have status == pass
+              const testedBehaviorData = testedForKind.map(b => ({
+                ...b,
+                statusForKind: BehaviorStatus.pass,
+              }))
+
+              // other behaviors have status == untested, except for behaviors in the "unknown" column
+              // it doesn't make sense to tell the user that he should write an "unknown" test
+              const untestedBehaviorData =
+                testKind !== 'unknown'
+                  ? untestedForKind.map(b => ({
+                      ...b,
+                      statusForKind: BehaviorStatus.untested,
+                    }))
+                  : []
+
+              // sort the behaviors lexicographically, so it's easier to find a specific behavior in the matrix cell
+              const behaviorData = testedBehaviorData
+                .concat(untestedBehaviorData)
+                .sort((a, b) => a.id.localeCompare(b.id))
+
               return (
                 <StackLayout key={testKind}>
-                  <Text>{testKind}</Text>
+                  <Text semiBold>{testKind}</Text>
                   <MatrixMap
-                    data={tests}
-                    key={testKind}
-                    onClick={(test: Test) => {
-                      setTestModal(test)
+                    data={behaviorData}
+                    onClick={(behavior: Behavior) => {
+                      setTestBehavior(behavior)
                       navigate(
                         {
-                          search: `?id=${test.id}`,
+                          search: `?id=${behavior.id}`,
                         },
                         { replace: true },
                       )

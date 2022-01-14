@@ -1,6 +1,9 @@
 {
   "filecoin": {
-    "system": { "totalTests": "tests in the system" },
+    "system": {
+      "totalTests": "tests in the system",
+      "totalBehaviors": "behaviors in the system"
+    },
     "subsystem": { "totalTests": "tests in the subsystem" },
     "behaviors": {
       "title": "Behaviors",

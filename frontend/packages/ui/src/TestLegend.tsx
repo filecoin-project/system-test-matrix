@@ -7,13 +7,10 @@ export const TestLegend = () => {
   return (
     <Legend>
       <div>
-        Missing tests <div />
+        Untested behavior <div />
       </div>
       <div>
-        Passing tests <div />
-      </div>
-      <div>
-        Failing tests <div />
+        Tested behavior <div />
       </div>
     </Legend>
   )
@@ -47,12 +44,6 @@ export const Legend = styled.div`
     &:nth-child(2) {
       > div {
         background: ${Colors.greenBtn};
-      }
-    }
-
-    &:last-child {
-      > div {
-        background: ${Colors.redBtn};
       }
     }
   }

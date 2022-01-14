@@ -37,23 +37,23 @@ export function testSystemIntegrity(sys: System) {
   expect(sys.name.length).toBeGreaterThan(0)
 
   // test kind integrity checks
-  expect(sys.testKindStats.percentages.length).toBeGreaterThan(0)
-  const testKindSum = sys.testKindStats.percentages.reduce(
+  expect(sys.testStatistics.percentages.length).toBeGreaterThan(0)
+  const testKindSum = sys.testStatistics.percentages.reduce(
     (sum, next) => sum + next.percentage,
     0,
   )
   expect(Math.abs(testKindSum - 100)).toBeLessThan(
-    sys.testKindStats.roundingError,
+    sys.testStatistics.roundingError,
   )
 
   // test status integrity checks
-  expect(sys.testStatusStats.percentages.length).toBeGreaterThan(0)
-  const testStatusSum = sys.testStatusStats.percentages.reduce(
+  expect(sys.behaviorStatistics.percentages.length).toBeGreaterThan(0)
+  const testStatusSum = sys.behaviorStatistics.percentages.reduce(
     (sum, next) => sum + next.percentage,
     0,
   )
   expect(Math.abs(testStatusSum - 100)).toBeLessThan(
-    sys.testStatusStats.roundingError,
+    sys.behaviorStatistics.roundingError,
   )
 }
 

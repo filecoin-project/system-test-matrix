@@ -6,8 +6,8 @@ import { SubSystem } from './subsystem'
 export class System {
   constructor(
     public name: string,
-    public testKindStats: PercentageSet,
-    public testStatusStats: PercentageSet,
+    public testStatistics: PercentageSet,
+    public behaviorStatistics: PercentageSet,
     public score: SystemScore,
     public subsystems: SubSystem[] = [],
   ) {}

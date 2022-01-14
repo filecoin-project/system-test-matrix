@@ -12,7 +12,7 @@ export class TestKindStatistic {
   ) {}
 }
 
-export function calculateTestKindStatistics(tests: Test[]) {
+export function calculateTestStatistics(tests: Test[]) {
   const testsByKind = _.groupBy(tests, 'kind') as {
     [key: string]: Test[]
   }

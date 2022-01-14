@@ -3,8 +3,8 @@ import {
   Behavior,
   BehaviorStatus,
   calculateSystemScore,
-  calculateTestKindStatistics,
-  calculateTestStatusStatistics,
+  calculateTestStatistics,
+  calculateBehaviorStatistics,
   Feature,
   PercentageSet,
   SubSystem,
@@ -63,15 +63,18 @@ export class DenormalizedLoader implements ModelLoader {
   // calculateSystemStatistics calculates test kind & status statistics and assigns a score for a given system
   private calculateSystemStatistics(system: System) {
     const allSystemTests = _.flatten(system.subsystems.map(ss => ss.tests))
-
-    system.testKindStats = new PercentageSet(
-      calculateTestKindStatistics(allSystemTests),
+    const allSystemBehaviors = _.flatten(
+      system.subsystems.map(ss => ss.behaviors),
     )
 
-    system.testStatusStats = new PercentageSet(
-      calculateTestStatusStatistics(allSystemTests),
+    system.testStatistics = new PercentageSet(
+      calculateTestStatistics(allSystemTests),
     )
-    system.score = calculateSystemScore(system.testStatusStats)
+
+    system.behaviorStatistics = new PercentageSet(
+      calculateBehaviorStatistics(allSystemBehaviors),
+    )
+    system.score = calculateSystemScore(system.behaviorStatistics)
   }
 
   // calculateSubsystemStatistics calculates test kind & status statistics and assigns a score for a given subsystem
@@ -84,15 +87,15 @@ export class DenormalizedLoader implements ModelLoader {
       this.checkBehaviorTested(this.testKinds, subsystem, behavior)
     }
 
-    subsystem.testKindStats = new PercentageSet(
-      calculateTestKindStatistics(subsystem.tests),
+    subsystem.testStatistics = new PercentageSet(
+      calculateTestStatistics(subsystem.tests),
     )
 
-    subsystem.testStatusStats = new PercentageSet(
-      calculateTestStatusStatistics(subsystem.tests),
+    subsystem.behaviorStatistics = new PercentageSet(
+      calculateBehaviorStatistics(subsystemBehaviors),
     )
 
-    subsystem.score = calculateSystemScore(subsystem.testStatusStats)
+    subsystem.score = calculateSystemScore(subsystem.behaviorStatistics)
   }
 
   // handleUntestedBehaviors creates an "unimplemented" test with status=missing

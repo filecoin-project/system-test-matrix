@@ -102,7 +102,7 @@ const SubSystem = () => {
         <ProgressBarWrapper shadow={false}>
           <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
           <ProgressBar
-            data={subsystem.testKindStats.percentages.map(
+            data={subsystem.testStatistics.percentages.map(
               ({ kind, ...rest }) => ({
                 name: kind,
                 ...rest,
@@ -115,7 +115,7 @@ const SubSystem = () => {
         <ProgressBarWrapper shadow={false}>
           <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
           <ProgressBar
-            data={subsystem.testStatusStats.percentages.map(
+            data={subsystem.behaviorStatistics.percentages.map(
               ({ status, ...rest }) => ({
                 name: status,
                 ...rest,

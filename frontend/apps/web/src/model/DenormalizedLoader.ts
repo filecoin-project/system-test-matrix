@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import {
   Behavior,
+  BehaviorStatus,
   calculateSystemScore,
   calculateTestKindStatistics,
   calculateTestStatusStatistics,
@@ -75,12 +76,12 @@ export class DenormalizedLoader implements ModelLoader {
 
   // calculateSubsystemStatistics calculates test kind & status statistics and assigns a score for a given subsystem
   private calculateSubsystemStatistics(subsystem: SubSystem) {
-    const untestedBehaviors = _.flatten(
+    const subsystemBehaviors = _.flatten(
       subsystem.features.map(f => f.behaviors),
-    ).filter((b: Behavior) => !b.tested)
+    )
 
-    for (const untestedBehavior of untestedBehaviors) {
-      this.handleUntestedBehaviors(this.testKinds, subsystem, untestedBehavior)
+    for (const behavior of subsystemBehaviors) {
+      this.checkBehaviorTested(this.testKinds, subsystem, behavior)
     }
 
     subsystem.testKindStats = new PercentageSet(
@@ -96,24 +97,23 @@ export class DenormalizedLoader implements ModelLoader {
 
   // handleUntestedBehaviors creates an "unimplemented" test with status=missing
   // for each untested behavior for each known test kind.
-  private handleUntestedBehaviors(
+  private checkBehaviorTested(
     testKinds: Set<string>,
     subsystem: SubSystem,
-    untestedBehavior: any,
+    behavior: Behavior,
   ) {
-    const knownTestKinds = Array.from(testKinds.values()).filter(
-      t => t !== 'unknown',
-    )
-
-    for (const testKind of knownTestKinds) {
-      this.createMissingTest(subsystem, untestedBehavior, testKind)
+    for (const testKind of behavior.expectedTestKinds) {
+      const status = behavior.statusByKind(testKind)
+      if (status === BehaviorStatus.untested) {
+        this.createMissingTest(subsystem, behavior, testKind)
+      }
     }
   }
 
   // createMissingTest creates a special "missing" test type that's unique and doesn't appear in the test crawler results
   private createMissingTest(
     subsystem: SubSystem,
-    untestedBehavior: any,
+    untestedBehavior: Behavior,
     testKind: string,
   ) {
     // Missing test have an auto-generated name in the format:
@@ -122,17 +122,18 @@ export class DenormalizedLoader implements ModelLoader {
     const behaviorIdClean = pascalCase(untestedBehavior.id)
     const missingTestName = `${subsystemNameClean}_${testKind}_test.go/Test${behaviorIdClean}`
 
-    subsystem.tests.push(
-      new Test(
-        missingTestName,
-        'missing',
-        'missing',
-        'missing',
-        testKind,
-        TestStatus.missing,
-        [untestedBehavior],
-      ),
+    const missingTest = new Test(
+      missingTestName,
+      'missing',
+      'missing',
+      'missing',
+      testKind,
+      TestStatus.missing,
+      [untestedBehavior],
     )
+
+    untestedBehavior.testedBy.push(missingTest)
+    subsystem.tests.push(missingTest)
   }
 
   // loadAndLinkTests reads the test crawler results from tests.json and links them to behaviors,
@@ -209,8 +210,7 @@ export class DenormalizedLoader implements ModelLoader {
     const behavior = this.behaviors.get(rawBehavior.behavior)
 
     if (behavior) {
-      behavior.tested = true
-      behavior.tests.push({
+      behavior.testedBy.push({
         functionName: test.functionName,
         id: test.id,
         kind: test.kind,
@@ -292,12 +292,10 @@ export class DenormalizedLoader implements ModelLoader {
       system.id,
       [],
       [],
-      [],
       subsystemName,
       new PercentageSet([]),
       new PercentageSet([]),
       SystemScore.bad,
-      [],
     )
     for (const rawFeature of subsystemDetails.features) {
       this.loadFeature(rawFeature, subsystem)
@@ -341,6 +339,5 @@ export class DenormalizedLoader implements ModelLoader {
     )
     this.behaviors.set(behavior.id, behavior)
     feature.behaviors.push(behavior)
-    subsystem.behaviors.push(behavior)
   }
 }

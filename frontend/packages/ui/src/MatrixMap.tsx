@@ -97,7 +97,7 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
               feature,
               description,
               tested,
-              tests,
+              testedBy: tests,
             })
           }
         />

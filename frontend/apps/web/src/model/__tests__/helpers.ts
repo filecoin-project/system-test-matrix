@@ -95,10 +95,6 @@ export function testBehaviorIntegrity(behavior: Behavior) {
   expect(behavior.subsystem.length).toBeGreaterThan(0)
   expect(behavior.system).toBeDefined()
   expect(behavior.system.length).toBeGreaterThan(0)
-
-  if (behavior.status === BehaviorStatus.untested) {
-    expect(behavior.tests).toHaveLength(0)
-  }
 }
 
 function testFeatureIntegrity(

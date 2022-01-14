@@ -26,7 +26,7 @@ Each app has a `serve` and `build` npm script and by utilising `lerna` we can bu
 Summary
 1. Install node.js https://www.webucator.com/how-to/how-install-nodejs-on-mac.cfm or run in Terminal: `brew install node`
 2. run in Terminal command: `npm install --global yarn`
-3. `git clone git@github.com:Bloxico/filecoin-fe-mono.git`
+3. `git clone https://github.com/filecoin-project/system-test-matrix.git`
 4. in frontend folder run command: `yarn && yarn lerna bootstrap`
 5. rename "frontend/apps/web/.env.example" - .env.example => .env
 6. run command: `yarn serve` in frontend folder

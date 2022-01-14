@@ -137,7 +137,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                   // figure out which behaviors are tested for the current test kind
                   const [testedForKind, untestedForKind] = partition(
                     subsystem.behaviors,
-                    b => b.tests.find(t => t.kind === testKind),
+                    b => b.testedBy.find(t => t.kind === testKind),
                   )
 
                   // behaviors tested for current kind should have status == pass

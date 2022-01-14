@@ -2447,6 +2447,12 @@ exports[`Storyshots Dropdown Default 1`] = `
   background-color: #fff;
 }
 
+.c7.openedAbove {
+  border-top: 1px solid #A6A9C3;
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
+}
+
 .c8 {
   color: #939AAD;
   padding: 0.5rem;
@@ -2815,6 +2821,12 @@ exports[`Storyshots Dropdown Multiple 1`] = `
   border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
+}
+
+.c7.openedAbove {
+  border-top: 1px solid #A6A9C3;
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
 }
 
 .c8 {
@@ -3188,6 +3200,12 @@ exports[`Storyshots Dropdown Size 1`] = `
   border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
+}
+
+.c8.openedAbove {
+  border-top: 1px solid #A6A9C3;
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
 }
 
 .c9 {
@@ -3695,6 +3713,12 @@ exports[`Storyshots Dropdown Status 1`] = `
   background-color: #fff;
 }
 
+.c8.openedAbove {
+  border-top: 1px solid #A6A9C3;
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
+}
+
 .c15 {
   margin-top: -8px;
   margin-left: -1px;
@@ -3708,6 +3732,12 @@ exports[`Storyshots Dropdown Status 1`] = `
   border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
+}
+
+.c15.openedAbove {
+  border-top: 1px solid #A6A9C3;
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
 }
 
 .c9 {

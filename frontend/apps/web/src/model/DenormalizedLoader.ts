@@ -19,29 +19,11 @@ import { ModelLoader } from './ModelLoader'
 import behaviors from '@/behaviors.json'
 import testCrawlerOutput from '@/tests.json'
 
+import { RawTestFile } from './RawTestFile'
+
+import { RawBehavior } from './RawBehavior'
+
 export const DEFAULT_TEST_KINDS = ['unit', 'integration', 'e2e', 'unknown']
-
-interface RawTestFile {
-  file: string
-  path: string
-  repository: string
-  parent_folder: string
-  package: string
-  test_type: string
-  ignore: boolean
-  scenarios: RawScenario[]
-}
-
-interface RawBehavior {
-  behavior_id: string
-  behavior: string
-  ignore?: boolean
-}
-
-interface RawScenario {
-  function: string
-  Behaviors: RawBehavior[]
-}
 
 export class DenormalizedLoader implements ModelLoader {
   private systems = new Map<string, System>()

@@ -14,7 +14,7 @@
     "generate:routes": "node scripts/routes.js",
     "generate:behaviors": "yarn combine-behaviors",
     "build": "webpack --config ./config/webpack.prod.js",
-    "combine-behaviors": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/combineBehaviors.ts",
+    "combine-behaviors": "ts-node -O {\\\"module\\\":\\\"commonjs\\\"} scripts/data/combineBehaviors.ts",
     "test:e2e": "cypress run",
     "test:e2e:dev": "cypress open",
     "ci:e2e": "start-server-and-test start http://localhost:8080 test:e2e"

@@ -1,9 +1,11 @@
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
+import { BreadCrumbs } from '@/components/system/SystemHeader'
+import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
-  Button,
-  CardLayout,
-  CenterLayout,
+  Button, CenterLayout,
   Dropdown,
   Icon,
   Modal,
@@ -17,7 +19,7 @@ import {
   Table,
   Text,
   Tooltip,
-  usePageLayout,
+  usePageLayout
 } from '@filecoin/ui'
 import qs from 'query-string'
 import React, { useEffect, useState } from 'react'
@@ -25,9 +27,6 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { PageContainer } from '@/containers/PageContainer'
-import { BreadCrumbs } from '@/components/system/SystemHeader'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface BehaviorQueryParams {
   id?: string
@@ -327,8 +326,4 @@ const SearchAndFilterWrapper = styled.div`
     margin-left: auto;
   }
 `
-const ProgressBarWrapper = styled(CardLayout)`
-  max-width: 58.75rem;
-  margin-bottom: 1rem;
-  padding: 2.65rem 3.625rem;
-`
+

@@ -1,10 +1,14 @@
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import { TestModal } from '@/components/tests/TestModal'
+import { PageContainer } from '@/containers/PageContainer'
+import { useHorizontalScroll } from '@/hooks/useHorisontalScroll'
 import {
   Behavior,
   BehaviorStatus,
   System,
   Test,
   TestKind,
-  TestQueryParams,
+  TestQueryParams
 } from '@filecoin/types'
 import {
   BoxLayout,
@@ -12,20 +16,15 @@ import {
   ColumnLayout,
   MatrixMap,
   Modal,
-  StackLayout,
-  Text,
-  TestLegend,
+  StackLayout, TestLegend, Text
 } from '@filecoin/ui'
+import { partition } from 'lodash'
 import qs from 'query-string'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
-import { partition } from 'lodash'
 
-import { PageContainer } from '@/containers/PageContainer'
-import { TestModal } from '@/components/tests/TestModal'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface Props {
   testKinds: TestKind[]
@@ -65,6 +64,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
     ReactTooltip.rebuild()
   }, [testKinds])
 
+  const scrollRef = useHorizontalScroll();
   return (
     <Wrapper shadow={false}>
       <Modal
@@ -110,9 +110,14 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
         }}
       />
 
-      <BoxLayout gap={1.5}>
+      <BoxLayout gap={1.5} >
+          <MatrixWrapper ref={scrollRef}>
         <StackLayout gap={1}>
-          <ColumnLayout className={'c-matrix__header'} gap={1.5}>
+          <ColumnLayout
+              className={'c-matrix__header'}
+              gap={1} >
+                
+            <span/>
             {testKinds.map(testKind => {
               return (
                 <Text key={testKind} color="textGray">
@@ -121,18 +126,18 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
               )
             })}
           </ColumnLayout>
-
+            
           {system.subsystems.map(subsystem => {
-            return (
+            return (            
               <ColumnLayout
-                className={'c-matrix__row'}
-                gap={1}
-                key={subsystem.name}
+              className={'c-matrix__row'}
+              gap={1}
+              key={subsystem.name}
               >
                 <Text color="textGray" semiBold>
                   {subsystem.name}
                 </Text>
-
+                
                 {testKinds.map(testKind => {
                   // figure out which behaviors are tested for the current test kind
                   const [testedForKind, untestedForKind] = partition(
@@ -160,8 +165,8 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                   const behaviorData = testedBehaviorData
                     .concat(untestedBehaviorData)
                     .sort((a, b) => a.id.localeCompare(b.id))
-
-                  return (
+                     
+                  return (                    
                     <MatrixMap
                       key={testKind}
                       data={behaviorData}
@@ -186,15 +191,16 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
                           )
                         }
                       }}
-                    />
+                    />                   
                   )
                 })}
-              </ColumnLayout>
+              </ColumnLayout>           
             )
           })}
-
-          <TestLegend />
+    
         </StackLayout>
+        </MatrixWrapper>
+        <TestLegend />
       </BoxLayout>
     </Wrapper>
   )
@@ -203,11 +209,17 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
 const Wrapper = styled(CardLayout)`
   margin-top: 1.25rem;
 
-  .c-matrix__header {
-    padding-left: 134px;
-
+    .c-matrix__header {
     > * {
-      width: 160px;
+    min-width: 160px;
+    width: 217px;
+
+    &:first-child {
+    width: 157px;
+    min-width: 100px;
+     display: flex;
+      align-items: end;
+      }
     }
   }
 
@@ -220,7 +232,11 @@ const Wrapper = styled(CardLayout)`
     }
   }
 `
-
+const MatrixWrapper = styled.div`
+display: flex;
+overflow-y: auto;
+padding-bottom: 2rem;
+`
 export const TooltipWrapper = styled.div`
   max-width: 400px;
 `

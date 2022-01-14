@@ -1,28 +1,22 @@
-import React, { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import {
-  PageLayout,
-  Text,
-  usePageLayout,
-  ProgressBar,
-  CardLayout,
-  MatrixMap,
-  ColumnLayout,
-  StackLayout,
-  TestLegend,
-  Modal,
-} from '@filecoin/ui'
-import { Behavior, BehaviorStatus, TestQueryParams } from '@filecoin/types'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-import qs from 'query-string'
-import ReactTooltip from 'react-tooltip'
-import { partition } from 'lodash'
-
-import { SystemHeader } from '@/components/system/SystemHeader'
-import { PageContainer } from '@/containers/PageContainer'
 import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 import { TooltipWrapper } from '@/components/system/DetailedView'
+import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
+import { SystemHeader } from '@/components/system/SystemHeader'
+import { PageContainer } from '@/containers/PageContainer'
+import { Behavior, BehaviorStatus, TestQueryParams } from '@filecoin/types'
+import {
+  CardLayout, ColumnLayout, MatrixMap, Modal, PageLayout, ProgressBar, StackLayout,
+  TestLegend, Text,
+  usePageLayout
+} from '@filecoin/ui'
+import { partition } from 'lodash'
+import qs from 'query-string'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate, useParams } from 'react-router-dom'
+import ReactTooltip from 'react-tooltip'
+import styled from 'styled-components'
+
 
 const SubSystem = () => {
   const {
@@ -188,16 +182,6 @@ const SubSystem = () => {
     </PageLayout>
   )
 }
-
-const ProgressBarWrapper = styled(CardLayout)`
-  max-width: 58.75rem;
-  margin-bottom: 1rem;
-  padding: 2.65rem 3.625rem;
-
-  &:first-of-type {
-    margin-top: 1rem;
-  }
-`
 
 const TestsWrapper = styled(CardLayout)`
   padding: 2.5rem;

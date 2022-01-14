@@ -30,12 +30,14 @@ interface Props {
   }[]
   onClick?: () => void
   legend?: boolean
+  tooltip?: boolean
 }
 
 const HEIGHT = 14
 
 export const ProgressBar = ({
   legend = false,
+  tooltip = true,
   onClick = () => null,
   ...props
 }: Props) => {
@@ -121,34 +123,36 @@ export const ProgressBar = ({
 
   return (
     <Wrapper data-tip={legend ? null : JSON.stringify(props)}>
-      <ReactTooltip
-        effect={'solid'}
-        getContent={tooltip => {
-          const content = JSON.parse(tooltip) || {}
+      {tooltip && (
+        <ReactTooltip
+          effect={'solid'}
+          getContent={tooltip => {
+            const content = JSON.parse(tooltip) || {}
 
-          return (
-            <>
-              {sortBy(
-                content?.data?.map(({ name, ...rest }) => ({
-                  name: name ? name : 'unknown',
-                  ...rest,
-                })),
-                'name',
-              ).map(value => {
-                return (
-                  <div key={value?.name}>
-                    <b>{value?.name}</b>:{' '}
-                    <span>
-                      {Number(value?.percentage).toFixed(2)}% (
-                      {value?.numberOfTests})
-                    </span>
-                  </div>
-                )
-              })}
-            </>
-          )
-        }}
-      />
+            return (
+              <>
+                {sortBy(
+                  content?.data?.map(({ name, ...rest }) => ({
+                    name: name ? name : 'unknown',
+                    ...rest,
+                  })),
+                  'name',
+                ).map(value => {
+                  return (
+                    <div key={value?.name}>
+                      <b>{value?.name}</b>:{' '}
+                      <span>
+                        {Number(value?.percentage).toFixed(2)}% (
+                        {value?.numberOfTests})
+                      </span>
+                    </div>
+                  )
+                })}
+              </>
+            )
+          }}
+        />
+      )}
       <ResponsiveContainer width="100%" height={HEIGHT}>
         <BarChart
           margin={{ top: 0, left: 0, right: 0, bottom: 0 }}

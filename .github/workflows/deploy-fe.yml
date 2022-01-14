@@ -118,7 +118,7 @@ jobs:
             develop-fe-
 
       #
-      # Run lint
+      # Run generate scripts
       #
       - name: Generate routes and behaviors
         id: generate-data
@@ -154,7 +154,7 @@ jobs:
       #
       - name: E2E test
         id: e2e-tests
-        run: ./node_modules/.bin/cypress install && yarn ci:e2e
+        run: mv ../../../apps/web/* ./ && ./node_modules/.bin/cypress install && yarn ci:e2e
         working-directory: ./frontend/apps/web
 
       #
@@ -166,8 +166,8 @@ jobs:
         with:
           name: artifact-fe
           path: |
-            apps/web/cypress/videos
-            apps/web/cypress/screenshots
+            frontend/apps/web/cypress/videos
+            frontend/apps/web/cypress/screenshots
 
       #
       # Notify if there is a failure or if this is a pull_request event

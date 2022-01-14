@@ -1,13 +1,13 @@
 {
   "name": "@filecoin/web",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "private": false,
   "description": "FILECOIN web application",
   "author": "Aleksa Toljic <aleksa.toljic@bloxico.com>",
   "license": "ISC",
   "main": "src/main.tsx",
   "scripts": {
-    "start": "http-server dist -P http://localhost:8080? -g",
+    "start": "http-server dist -P http://localhost:8080? -g -s",
     "preserve": "yarn prebuild",
     "serve": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "prebuild": "concurrently \"yarn generate:routes\" \"yarn generate:behaviors\"",
@@ -17,7 +17,7 @@
     "combine-behaviors": "ts-node --compiler-options='{\"module\":\"commonjs\"}' scripts/data/combineBehaviors.ts",
     "test:e2e": "cypress run",
     "test:e2e:dev": "cypress open",
-    "ci:e2e": "start-server-and-test start http://localhost:8081 test:e2e"
+    "ci:e2e": "start-server-and-test start http://localhost:8080 test:e2e"
   },
   "browserslist": [
     "defaults",
@@ -28,7 +28,7 @@
     "@types/change-case": "^2.3.1",
     "@types/react-router-dom": "^5.1.6",
     "change-case": "^4.1.2",
-    "concurrently": "^6.0.0",
+    "concurrently": "^7.0.0",
     "csv-parse": "^5.0.3",
     "cypress": "^9.2.0",
     "http-server": "^14.0.0",

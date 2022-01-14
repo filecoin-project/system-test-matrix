@@ -33,7 +33,6 @@ describe('Model', () => {
     'types',
     'vm',
     'repo',
-    'wdpost',
   ]
 
   describe('getAllSystems', () => {

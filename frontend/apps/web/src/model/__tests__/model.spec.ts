@@ -76,11 +76,11 @@ describe('Model', () => {
         testTestIntegrity(test)
       }
 
-      // some tests should be unparsed
-      const unparsed = allTests.filter(t => t.status === TestStatus.unparsed)
-      expect(unparsed.length).toBeGreaterThan(0)
-      // but not all
-      expect(unparsed.length).toBeLessThan(allTests.length)
+      // // some tests should be unparsed
+      // const unparsed = allTests.filter(t => t.status === TestStatus.unparsed)
+      // expect(unparsed.length).toBeGreaterThan(0)
+      // // but not all
+      // expect(unparsed.length).toBeLessThan(allTests.length)
 
       // some tests should be unannotated
       const unannotated = allTests.filter(

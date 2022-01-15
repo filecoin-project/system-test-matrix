@@ -1,4 +1,4 @@
-import { Test, TestKind, TestStatus } from '.'
+import { Test, TestKind, TestStatus } from './test'
 
 export enum BehaviorStatus {
   tested = 'tested',

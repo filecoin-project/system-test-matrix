@@ -14,12 +14,13 @@ const ColorChart = {
   integration: '#7D7BD3',
   pass: '#77DF79',
   fail: '#FF837F',
-  untested: '#FFABA8',
+  untested: '#D0D7DE',
   missing: '#B2BAC7',
   unknown: '#D0D7DE',
-  tested: '#00ADD8',
+  tested: '#77DF79',
   unparsed: '#94742f',
   unannotated: '#34d9eb',
+  partiallyTested: '#FFC046',
 }
 
 interface Props {

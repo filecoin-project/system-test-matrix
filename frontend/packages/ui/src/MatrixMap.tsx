@@ -15,10 +15,10 @@ interface Props {
 
 const getStatusColor = (status?: Behavior['status']) => {
   switch (status) {
-    case BehaviorStatus.pass:
+    case BehaviorStatus.tested:
       return '#77DF79'
-    case BehaviorStatus.fail:
-      return '#FF837F'
+    case BehaviorStatus.partiallyTested:
+      return '#FFC046'
     case BehaviorStatus.untested:
       return '#B2BAC7'
     default:
@@ -96,7 +96,7 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
               id,
               feature,
               description,
-              tested,
+              status,
               testedBy: tests,
             })
           }

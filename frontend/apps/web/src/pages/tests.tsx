@@ -227,7 +227,7 @@ const AllTests: React.FC = () => {
           <ProgressBarWrapper shadow={false}>
             <StackLayout gap={0.5}>
               <Text type="text xl" color="textGray" semiBold>
-                {t('filecoin.allTests.allStatus')}
+                {t('filecoin.allTests.allTestStatus')}
               </Text>
               <ProgressBar legend data={allTestsStatus} />
             </StackLayout>

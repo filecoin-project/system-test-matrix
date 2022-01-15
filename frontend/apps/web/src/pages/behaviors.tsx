@@ -51,19 +51,13 @@ const Behaviors = () => {
     return Object.entries(
       behaviors.reduce(
         (d, behavior) => {
-          if (behavior.tested === true) {
-            d.tested += 1
-          } else if (behavior.tested === false) {
-            d.untested += 1
-          } else {
-            d.unknown += 1
-          }
+          d[behavior.status] += 1
           return d
         },
         {
           untested: 0,
           tested: 0,
-          unknown: 0,
+          partiallyTested: 0,
         },
       ),
     ).map(([key, count]) => ({
@@ -212,21 +206,21 @@ const Behaviors = () => {
         return <Text color="textGray">{description}</Text>
       },
     },
-    isTested: {
-      header: t('filecoin.behaviors.tableHeaders.isTested'),
-      width: 100,
-      Cell: ({ data: { tested } }) => {
-        return (
-          <CenterLayout>
-            {tested ? (
-              <Icon name={'check_mark'} color={'green'} />
-            ) : (
-              <Icon name={'minus'} color={'red'} />
-            )}
-          </CenterLayout>
-        )
-      },
-    },
+    // isTested: {
+    //   header: t('filecoin.behaviors.tableHeaders.isTested'),
+    //   width: 100,
+    //   Cell: ({ data: { tested } }) => {
+    //     return (
+    //       <CenterLayout>
+    //         {tested ? (
+    //           <Icon name={'check_mark'} color={'green'} />
+    //         ) : (
+    //           <Icon name={'minus'} color={'red'} />
+    //         )}
+    //       </CenterLayout>
+    //     )
+    //   },
+    // },
   }
 
   useEffect(() => {
@@ -267,26 +261,23 @@ const Behaviors = () => {
             <Text type="subtitle l" color="textGray" semiBold>
               {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
             </Text>
-            <SearchAndFilterWrapper>
-              <SearchInput
-                onSearch={value => {
-                  setSearchTerm(value)
-                }}
-                value={searchTerm}
-                placeholder="Search behaviors"
-                width="58.75rem"
-                autoFocus={false}
-              />
-              <Dropdown
-                placeholder="All statuses"
-                name="score"
-                options={filterOptions}
-                value={selectedFilter}
-                onChange={e => {
-                  setSelectedFilter(e.value)
-                }}
-              />
-            </SearchAndFilterWrapper>
+            <SearchInput
+              onSearch={value => {
+                setSearchTerm(value)
+              }}
+              value={searchTerm}
+              placeholder="Search behaviors"
+              autoFocus={false}
+            />
+            {/*<Dropdown*/}
+            {/*  placeholder="All statuses"*/}
+            {/*  name="score"*/}
+            {/*  options={filterOptions}*/}
+            {/*  value={selectedFilter}*/}
+            {/*  onChange={e => {*/}
+            {/*    setSelectedFilter(e.value)*/}
+            {/*  }}*/}
+            {/*/>*/}
           </StackLayout>
           <Table data={paginatedData.data} columns={tableColumns} />
         </StackLayout>
@@ -319,14 +310,14 @@ const HeaderWrapper = styled.div`
     margin-bottom: auto;
   }
 `
-const SearchAndFilterWrapper = styled.div`
-  display: flex;
-
-  [data-element='dropdown'] {
-    max-width: 181px;
-    margin-left: auto;
-  }
-`
+// const SearchAndFilterWrapper = styled.div`
+//   display: flex;
+//
+//   [data-element='dropdown'] {
+//     max-width: 181px;
+//     margin-left: auto;
+//   }
+// `
 const ProgressBarWrapper = styled(CardLayout)`
   max-width: 58.75rem;
   margin-bottom: 1rem;

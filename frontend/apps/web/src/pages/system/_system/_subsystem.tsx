@@ -134,40 +134,19 @@ const SubSystem = () => {
             key={subsystem.name}
           >
             {testKinds.map(testKind => {
-              // const behaviors = subsystem.behaviors.filter(b =>
-              //   b.tests.find(t => t.kind === testKind),
-              // )
-              const [testedForKind, untestedForKind] = partition(
-                subsystem.behaviors,
-                b => b.testedBy.find(t => t.kind === testKind),
-              )
-
-              // behaviors tested for current kind should have status == pass
-              const testedBehaviorData = testedForKind.map(b => ({
-                ...b,
-                statusForKind: BehaviorStatus.pass,
-              }))
-
-              // other behaviors have status == untested, except for behaviors in the "unknown" column
-              // it doesn't make sense to tell the user that he should write an "unknown" test
-              const untestedBehaviorData =
-                testKind !== 'unknown'
-                  ? untestedForKind.map(b => ({
-                      ...b,
-                      statusForKind: BehaviorStatus.untested,
-                    }))
-                  : []
-
-              // sort the behaviors lexicographically, so it's easier to find a specific behavior in the matrix cell
-              const behaviorData = testedBehaviorData
-                .concat(untestedBehaviorData)
+              // figure out which behaviors are tested for the current test kind
+              const behaviors = subsystem.behaviors
+                .filter(behavior =>
+                  behavior.expectedTestKinds.includes(testKind),
+                )
+                .map(b => ({ ...b, statusForKind: b.status }))
                 .sort((a, b) => a.id.localeCompare(b.id))
 
               return (
                 <StackLayout key={testKind}>
                   <Text semiBold>{testKind}</Text>
                   <MatrixMap
-                    data={behaviorData}
+                    data={behaviors}
                     onClick={(behavior: Behavior) => {
                       setTestBehavior(behavior)
                       navigate(

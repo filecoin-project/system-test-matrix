@@ -107,10 +107,12 @@ export const Overview: React.FC<Props> = ({ system }) => {
       <ProgressBarWrapper shadow={false}>
         <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
         <ProgressBar
-          data={system.testStatistics.percentages.map(({ kind, ...rest }) => ({
-            name: kind,
-            ...rest,
-          }))}
+          data={system?.testStatistics?.percentages.map(
+            ({ kind, ...rest }) => ({
+              name: kind,
+              ...rest,
+            }),
+          )}
           legend
         />
       </ProgressBarWrapper>
@@ -175,7 +177,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
               Cell: ({ data }) => (
                 <Bar>
                   <ProgressBar
-                    data={data.testKindStats.percentages.map(
+                    data={data.testStatistics.percentages.map(
                       ({ kind, ...rest }) => ({ name: kind, ...rest }),
                     )}
                   />
@@ -183,12 +185,12 @@ export const Overview: React.FC<Props> = ({ system }) => {
               ),
             },
             testStatus: {
-              header: 'Test Status',
+              header: t('filecoin.systems.testStatus'),
               width: 325,
               Cell: ({ data }) => (
                 <Bar>
                   <ProgressBar
-                    data={data.testStatusStats.percentages.map(
+                    data={data.behaviorStatistics.percentages.map(
                       ({ status, ...rest }) => ({
                         name: status,
                         ...rest,

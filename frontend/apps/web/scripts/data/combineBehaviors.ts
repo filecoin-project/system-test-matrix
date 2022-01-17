@@ -22,6 +22,10 @@ function combineBehaviors() {
     const subsystemPaths = subsystems.map(s => path.resolve(systemPath, s))
 
     for (const subsystemPath of subsystemPaths) {
+      if (!subsystemPath.endsWith('.yml')) {
+        continue
+      }
+
       const yamlContents = fs.readFileSync(subsystemPath)
 
       try {
@@ -30,6 +34,7 @@ function combineBehaviors() {
         const { system, subsystem, features } = parsed
         const systemName = system.toString().toLowerCase()
         const subsystemName = subsystem.toString().toLowerCase()
+        // console.log(`System: ${systemName}, subsystem: ${subsystemName}`)
 
         if (systemName in output.systems) {
           output.systems[systemName].subsystems[subsystemName] = {

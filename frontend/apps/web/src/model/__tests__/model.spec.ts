@@ -1,4 +1,6 @@
 /* globals describe, expect, it */
+import _ from 'lodash'
+
 import { TestStatus } from '@filecoin/types'
 
 import { DEFAULT_TEST_KINDS } from '../DenormalizedLoader'
@@ -18,23 +20,28 @@ describe('Model', () => {
   // we expect AT LEAST these systems to be returned
   const expectedSystemNames = [
     'api',
+    'blockstore',
     'chain',
     'client',
     'cmd',
     'conformance',
-    'events',
     'journal',
     'market',
     'miner',
     'network',
-    'splitstore',
     'token',
     'tools',
     'types',
     'vm',
     'repo',
-    'wdpost',
   ]
+
+  // Rules of referential integrity for this model:
+  // the System Test Matrix contains one or more Systems, each System is unique and contains at least one Subsystem;
+  // each Subsystem is unique, can belong to exactly one System, contains zero or more Features & Tests;
+  // Each Feature is unique, can belong to exactly one Subsystem, contains one or more Behaviors;
+  // Each Behavior is unique, cna belong to exactly one Feature, and is tested by zero or more tests;
+  // Each Test is unique and tests zero or more Behaviors;
 
   describe('getAllSystems', () => {
     it('returns all expected systems', () => {
@@ -77,11 +84,11 @@ describe('Model', () => {
         testTestIntegrity(test)
       }
 
-      // some tests should be unparsed
-      const unparsed = allTests.filter(t => t.status === TestStatus.unparsed)
-      expect(unparsed.length).toBeGreaterThan(0)
-      // but not all
-      expect(unparsed.length).toBeLessThan(allTests.length)
+      // // some tests should be unparsed
+      // const unparsed = allTests.filter(t => t.status === TestStatus.unparsed)
+      // expect(unparsed.length).toBeGreaterThan(0)
+      // // but not all
+      // expect(unparsed.length).toBeLessThan(allTests.length)
 
       // some tests should be unannotated
       const unannotated = allTests.filter(
@@ -105,16 +112,39 @@ describe('Model', () => {
 
   describe('getAllBehaviors', () => {
     const expectedBehaviorsMin = 300
+    const allBehaviors = model.getAllBehaviors()
     it('returns all behaviors', () => {
-      const allBehaviors = model.getAllBehaviors()
       expect(allBehaviors.length).toBeGreaterThanOrEqual(expectedBehaviorsMin)
       expect(allBehaviors.map(b => b.id)).noDuplicates()
 
       for (const behavior of allBehaviors) {
         testBehaviorIntegrity(behavior)
       }
+
+      // expect some behaviors for every status
+      // TODO: Remove this test after everything is tested
+      const behaviorsByStatus = _.groupBy(allBehaviors, 'status')
+      expect(Object.keys(behaviorsByStatus)).toHaveLength(3) // there are 3 different behav statuses
+      // console.log(testBeh.tests)
+      // for debugging purposes
+      // for (const [status, behaviors] of Object.entries(behaviorsByStatus)) {
+      //   console.log(`Status: ${status}, behaviors: ${behaviors.length}`)
+      // }
     })
   })
+
+  // TODO: See how to properly test this
+  // describe('matrix integrity', () => {
+  //   it('numTests = numBehaviors * numTestKinds', () => {
+  //     const allBehaviors = model.getAllBehaviors()
+  //     const allTests = model.getAllTests()
+  //     const allTestKinds = model.getAllTestKinds()
+
+  //     console.log(`Num behaviors: ${allBehaviors.length}`)
+  //     console.log(`Num tests: ${allTests.length}`)
+  //     console.log(`Num test kinds: ${allTestKinds.length}`)
+  //   })
+  // })
 })
 
 export {}

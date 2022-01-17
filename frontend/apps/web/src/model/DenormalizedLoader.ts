@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import {
   Behavior,
+  BehaviorStatus,
   calculateSystemScore,
-  calculateTestKindStatistics,
-  calculateTestStatusStatistics,
+  calculateTestStatistics,
+  calculateBehaviorStatistics,
   Feature,
   PercentageSet,
   SubSystem,
@@ -19,29 +20,11 @@ import { ModelLoader } from './ModelLoader'
 import behaviors from '@/behaviors.json'
 import testCrawlerOutput from '@/tests.json'
 
+import { RawTestFile } from './RawTestFile'
+
+import { RawBehavior } from './RawBehavior'
+
 export const DEFAULT_TEST_KINDS = ['unit', 'integration', 'e2e', 'unknown']
-
-interface RawTestFile {
-  file: string
-  path: string
-  repository: string
-  parent_folder: string
-  package: string
-  test_type: string
-  ignore: boolean
-  scenarios: RawScenario[]
-}
-
-interface RawBehavior {
-  behavior_id: string
-  behavior: string
-  ignore?: boolean
-}
-
-interface RawScenario {
-  function: string
-  Behaviors: RawBehavior[]
-}
 
 export class DenormalizedLoader implements ModelLoader {
   private systems = new Map<string, System>()
@@ -80,58 +63,60 @@ export class DenormalizedLoader implements ModelLoader {
   // calculateSystemStatistics calculates test kind & status statistics and assigns a score for a given system
   private calculateSystemStatistics(system: System) {
     const allSystemTests = _.flatten(system.subsystems.map(ss => ss.tests))
-
-    system.testKindStats = new PercentageSet(
-      calculateTestKindStatistics(allSystemTests),
+    const allSystemBehaviors = _.flatten(
+      system.subsystems.map(ss => ss.behaviors),
     )
 
-    system.testStatusStats = new PercentageSet(
-      calculateTestStatusStatistics(allSystemTests),
+    system.testStatistics = new PercentageSet(
+      calculateTestStatistics(allSystemTests),
     )
-    system.score = calculateSystemScore(system.testStatusStats)
+
+    system.behaviorStatistics = new PercentageSet(
+      calculateBehaviorStatistics(allSystemBehaviors),
+    )
+    system.score = calculateSystemScore(system.behaviorStatistics)
   }
 
   // calculateSubsystemStatistics calculates test kind & status statistics and assigns a score for a given subsystem
   private calculateSubsystemStatistics(subsystem: SubSystem) {
-    const untestedBehaviors = _.flatten(
+    const subsystemBehaviors = _.flatten(
       subsystem.features.map(f => f.behaviors),
-    ).filter((b: Behavior) => !b.tested)
+    )
 
-    for (const untestedBehavior of untestedBehaviors) {
-      this.handleUntestedBehaviors(this.testKinds, subsystem, untestedBehavior)
+    for (const behavior of subsystemBehaviors) {
+      this.checkBehaviorTested(this.testKinds, subsystem, behavior)
     }
 
-    subsystem.testKindStats = new PercentageSet(
-      calculateTestKindStatistics(subsystem.tests),
+    subsystem.testStatistics = new PercentageSet(
+      calculateTestStatistics(subsystem.tests),
     )
 
-    subsystem.testStatusStats = new PercentageSet(
-      calculateTestStatusStatistics(subsystem.tests),
+    subsystem.behaviorStatistics = new PercentageSet(
+      calculateBehaviorStatistics(subsystemBehaviors),
     )
 
-    subsystem.score = calculateSystemScore(subsystem.testStatusStats)
+    subsystem.score = calculateSystemScore(subsystem.behaviorStatistics)
   }
 
   // handleUntestedBehaviors creates an "unimplemented" test with status=missing
   // for each untested behavior for each known test kind.
-  private handleUntestedBehaviors(
+  private checkBehaviorTested(
     testKinds: Set<string>,
     subsystem: SubSystem,
-    untestedBehavior: any,
+    behavior: Behavior,
   ) {
-    const knownTestKinds = Array.from(testKinds.values()).filter(
-      t => t !== 'unknown',
-    )
-
-    for (const testKind of knownTestKinds) {
-      this.createMissingTest(subsystem, untestedBehavior, testKind)
+    for (const testKind of behavior.expectedTestKinds) {
+      const status = behavior.statusByKind(testKind)
+      if (status === BehaviorStatus.untested) {
+        this.createMissingTest(subsystem, behavior, testKind)
+      }
     }
   }
 
   // createMissingTest creates a special "missing" test type that's unique and doesn't appear in the test crawler results
   private createMissingTest(
     subsystem: SubSystem,
-    untestedBehavior: any,
+    untestedBehavior: Behavior,
     testKind: string,
   ) {
     // Missing test have an auto-generated name in the format:
@@ -140,17 +125,18 @@ export class DenormalizedLoader implements ModelLoader {
     const behaviorIdClean = pascalCase(untestedBehavior.id)
     const missingTestName = `${subsystemNameClean}_${testKind}_test.go/Test${behaviorIdClean}`
 
-    subsystem.tests.push(
-      new Test(
-        missingTestName,
-        'missing',
-        'missing',
-        'missing',
-        testKind,
-        TestStatus.missing,
-        [untestedBehavior],
-      ),
+    const missingTest = new Test(
+      missingTestName,
+      'missing',
+      'missing',
+      'missing',
+      testKind,
+      TestStatus.missing,
+      [untestedBehavior],
     )
+
+    untestedBehavior.testedBy.push(missingTest)
+    subsystem.tests.push(missingTest)
   }
 
   // loadAndLinkTests reads the test crawler results from tests.json and links them to behaviors,
@@ -177,28 +163,21 @@ export class DenormalizedLoader implements ModelLoader {
 
   private handleParsedTest(testFile: RawTestFile) {
     for (const rawScenario of testFile.scenarios) {
-      const testBehaviors: Behavior[] = []
-
-      if (rawScenario.Behaviors) {
-        for (const rawBehavior of rawScenario.Behaviors) {
-          this.linkTestToBehavior(
-            rawBehavior,
-            testBehaviors,
-            testFile,
-            rawScenario,
-          )
-        }
-      }
-
       const test = new Test(
         `${testFile.file}/${rawScenario.function}`,
         testFile.file,
         rawScenario.function,
         testFile.repository,
         testFile.test_type,
-        testBehaviors.length > 0 ? TestStatus.pass : TestStatus.unannotated,
-        testBehaviors,
+        TestStatus.unannotated,
       )
+
+      if (rawScenario.Behaviors) {
+        for (const rawBehavior of rawScenario.Behaviors) {
+          test.status = TestStatus.pass
+          this.linkTestToBehavior(rawBehavior, test)
+        }
+      }
 
       if (testFile.test_type) {
         this.testKinds.add(testFile.test_type)
@@ -231,19 +210,22 @@ export class DenormalizedLoader implements ModelLoader {
     }
   }
 
-  private linkTestToBehavior(
-    rawBehavior: RawBehavior,
-    testBehaviors: Behavior[],
-    testFile: RawTestFile,
-    rawScenario: RawScenario,
-  ) {
+  private linkTestToBehavior(rawBehavior: RawBehavior, test: Test) {
     const behavior = this.behaviors.get(rawBehavior.behavior)
+
     if (behavior) {
-      behavior.tested = true
-      testBehaviors.push(behavior)
+      behavior.testedBy.push({
+        functionName: test.functionName,
+        id: test.id,
+        kind: test.kind,
+        path: test.path,
+        repository: test.repository,
+        status: test.status,
+      })
+      test.linkedBehaviors.push(behavior)
     } else {
       throw new Error(
-        `Unknown behavior ${rawBehavior.behavior} for test ${testFile.file}/${rawScenario.function}`,
+        `Unknown behavior ${rawBehavior.behavior} for test ${test.path}/${test.functionName}`,
       )
     }
   }
@@ -318,7 +300,6 @@ export class DenormalizedLoader implements ModelLoader {
       new PercentageSet([]),
       new PercentageSet([]),
       SystemScore.bad,
-      [],
     )
     for (const rawFeature of subsystemDetails.features) {
       this.loadFeature(rawFeature, subsystem)
@@ -342,13 +323,17 @@ export class DenormalizedLoader implements ModelLoader {
       subsystem.system,
     )
     for (const rawBehavior of rawFeature.behaviors) {
-      this.loadBehavior(rawBehavior, feature)
+      this.loadBehavior(rawBehavior, feature, subsystem)
     }
     this.features.set(feature.id, feature)
     subsystem.features.push(feature)
   }
 
-  private loadBehavior(rawBehavior: any, feature: Feature) {
+  private loadBehavior(
+    rawBehavior: any,
+    feature: Feature,
+    subsystem: SubSystem,
+  ) {
     const behavior = new Behavior(
       rawBehavior.id,
       feature.id,

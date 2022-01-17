@@ -93,7 +93,7 @@ const Home = () => {
                   <Bar>
                     <ProgressBar
                       onClick={() => navigate(`system/${data.name}`)}
-                      data={data.testKindStats.percentages.map(
+                      data={data.testStatistics.percentages.map(
                         ({ kind, ...rest }) => ({
                           name: kind,
                           ...rest,
@@ -112,7 +112,7 @@ const Home = () => {
                   <Bar>
                     <ProgressBar
                       onClick={() => navigate(`system/${data.name}`)}
-                      data={data.testStatusStats.percentages.map(
+                      data={data.behaviorStatistics.percentages.map(
                         ({ status, ...rest }) => ({
                           name: status,
                           ...rest,

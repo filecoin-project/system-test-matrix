@@ -1,6 +1,9 @@
 {
   "filecoin": {
-    "system": { "totalTests": "tests in the system" },
+    "system": {
+      "totalTests": "tests in the system",
+      "totalBehaviors": "behaviors in the system"
+    },
     "subsystem": { "totalTests": "tests in the subsystem" },
     "behaviors": {
       "title": "Behaviors",
@@ -26,7 +29,8 @@
       "good": "Good",
       "mediocre": "Mediocre",
       "allKinds": "All Tests Kinds",
-      "allStatus": "All Tests Status",
+      "allStatus": "All Behaviors Status",
+      "allTestStatus": "All Tests Status",
       "listOfAllTests": "List of all tests",
       "suite": "Suite",
       "function": "Function",
@@ -39,10 +43,15 @@
       "systems": "Systems",
       "system": "System",
       "testKinds": "Test Kinds",
-      "testStatus": "Test Status",
+      "testStatus": "Behavior Status",
       "score": "Score",
       "keyWithCount_one": "{{count}} subsystem",
       "keyWithCount_other": "{{count}} subsystems"
+    },
+    "matrix": {
+      "behaviorId": "Behavior ID",
+      "featureId": "Feature ID",
+      "desc": "Description"
     }
   },
   "global": {

@@ -1,26 +1,27 @@
-import React, { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import {
-  PageLayout,
-  Text,
-  usePageLayout,
-  ProgressBar,
-  CardLayout,
-  MatrixMap,
-  ColumnLayout,
-  StackLayout,
-  TestLegend,
-  Modal,
-} from '@filecoin/ui'
-import { Test, TestQueryParams } from '@filecoin/types'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-import qs from 'query-string'
-import ReactTooltip from 'react-tooltip'
-
-import { TestModal } from '@/components/tests/TestModal'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import MatrixReactTooltip from '@/components/system/MatrixReactTooltip'
+import MatrixTestKindsMapper from '@/components/system/MatrixTestKindsMapper'
+import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
 import { SystemHeader } from '@/components/system/SystemHeader'
 import { PageContainer } from '@/containers/PageContainer'
+import { useHorizontalScroll } from '@/hooks/useHorisontalScroll'
+import { Behavior, TestQueryParams } from '@filecoin/types'
+import {
+  CardLayout,
+  ColumnLayout,
+  Modal,
+  PageLayout,
+  ProgressBar,
+  StackLayout,
+  TestLegend,
+  Text,
+  usePageLayout,
+} from '@filecoin/ui'
+import qs from 'query-string'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate, useParams } from 'react-router-dom'
+import styled from 'styled-components'
 
 const SubSystem = () => {
   const {
@@ -34,12 +35,13 @@ const SubSystem = () => {
     subsystem => subsystem.name === params.subsystem,
   )
   const testKinds = model.getAllTestKinds()
-  const { id: testId }: TestQueryParams = qs.parse(location.search)
-  const openedTest = testId
-    ? subsystem.tests.find(test => testId && test.id === testId)
-    : undefined
-
-  const [testModal, setTestModal] = useState<Test | undefined>(openedTest)
+  const { id: behaviorId }: TestQueryParams = qs.parse(location.search)
+  const allBehaviors = model.getAllBehaviors()
+  const [testBehavior, setTestBehavior] = useState<Behavior | undefined>(
+    behaviorId
+      ? allBehaviors.find(behavior => behavior.id === behaviorId)
+      : undefined,
+  )
 
   const pageLayout = usePageLayout({
     header: (
@@ -52,13 +54,14 @@ const SubSystem = () => {
     ),
     footer: <PageLayout.Footer />,
   })
+  const scrollRef = useHorizontalScroll()
 
   return (
     <PageLayout {...pageLayout}>
       <Modal
-        isOpen={!!testModal}
+        isOpen={!!testBehavior}
         onClose={() => {
-          setTestModal(undefined)
+          setTestBehavior(undefined)
           navigate(
             {
               search: '',
@@ -67,54 +70,17 @@ const SubSystem = () => {
           )
         }}
       >
-        <TestModal test={testModal} />
+        <BehaviorModal behavior={testBehavior} />
       </Modal>
-      <ReactTooltip
-        effect="solid"
-        getContent={data => {
-          const { functionName, path, repository, linkedBehaviors } =
-            JSON.parse(data) || {}
-
-          if (functionName !== 'missing') {
-            return (
-              <>
-                <div>
-                  <b>Name</b>: <span>{functionName}</span>
-                </div>
-
-                <div>
-                  <b>Path</b>: <span>{path}</span>
-                </div>
-
-                <div>
-                  <b>Repository</b>: <span>{repository}</span>
-                </div>
-              </>
-            )
-          } else {
-            return (
-              <>
-                <div>
-                  <b>Untested behavior ID</b>:{' '}
-                  <span>{linkedBehaviors[0].id}</span>
-                </div>
-                <div>
-                  <b>Description</b>:{' '}
-                  <span>{linkedBehaviors[0].description}</span>
-                </div>
-              </>
-            )
-          }
-        }}
-      />
+      <MatrixReactTooltip />
       <PageLayout.Section>
         <Text type={'subtitle l'} color={'gray80'}>
-          {subsystem.tests.length} {t('filecoin.subsystem.totalTests')}
+          {subsystem.behaviors.length} {t('filecoin.system.totalBehaviors')}
         </Text>
         <ProgressBarWrapper shadow={false}>
           <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
           <ProgressBar
-            data={subsystem.testKindStats.percentages.map(
+            data={subsystem.testStatistics.percentages.map(
               ({ kind, ...rest }) => ({
                 name: kind,
                 ...rest,
@@ -127,7 +93,7 @@ const SubSystem = () => {
         <ProgressBarWrapper shadow={false}>
           <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
           <ProgressBar
-            data={subsystem.testStatusStats.percentages.map(
+            data={subsystem.behaviorStatistics.percentages.map(
               ({ status, ...rest }) => ({
                 name: status,
                 ...rest,
@@ -140,48 +106,46 @@ const SubSystem = () => {
       </PageLayout.Section>
       <PageLayout.Section>
         <TestsWrapper shadow={false}>
-          <ColumnLayout className={'c-matrix__row'} key={subsystem.name}>
-            {testKinds.map(testKind => {
-              const tests = subsystem.tests.filter(
-                test => test.kind === testKind,
-              )
-              return (
-                <StackLayout key={testKind}>
-                  <Text>{testKind}</Text>
-                  <MatrixMap
-                    data={tests}
-                    key={testKind}
-                    onClick={(test: Test) => {
-                      setTestModal(test)
-                      navigate(
-                        {
-                          search: `?id=${test.id}`,
-                        },
-                        { replace: true },
-                      )
-                    }}
-                  />
-                </StackLayout>
-              )
-            })}
-          </ColumnLayout>
+          <MatrixWrapper ref={scrollRef}>
+            <Wrapper gap={1}>
+              <ColumnLayout className={'c-matrix__header'} gap={1}>
+                {testKinds.map(testKind => {
+                  return (
+                    <Text key={testKind} color="textGray">
+                      {testKind}
+                    </Text>
+                  )
+                })}
+              </ColumnLayout>
+              <ColumnLayout gap={1}>
+                <MatrixTestKindsMapper
+                  testKinds={testKinds}
+                  system={system}
+                  subsystem={subsystem}
+                  setTestBehavior={setTestBehavior}
+                />
+              </ColumnLayout>
+            </Wrapper>
+          </MatrixWrapper>
           <TestLegend />
         </TestsWrapper>
       </PageLayout.Section>
     </PageLayout>
   )
 }
-
-const ProgressBarWrapper = styled(CardLayout)`
-  max-width: 58.75rem;
-  margin-bottom: 1rem;
-  padding: 2.65rem 3.625rem;
-
-  &:first-of-type {
-    margin-top: 1rem;
+const Wrapper = styled(StackLayout)`
+  .c-matrix__header {
+    > * {
+      min-width: 160px;
+      width: 250px;
+    }
   }
 `
-
+const MatrixWrapper = styled.div`
+  display: flex;
+  overflow-y: auto;
+  padding-bottom: 2rem;
+`
 const TestsWrapper = styled(CardLayout)`
   padding: 2.5rem;
 `

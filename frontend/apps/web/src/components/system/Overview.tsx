@@ -1,7 +1,7 @@
+import { getButton } from '@/components/system/SystemHeader'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { System } from '@filecoin/types'
 import {
-  CardLayout,
   Dropdown,
   NativeLink,
   Pager,
@@ -10,14 +10,14 @@ import {
   SearchInput,
   StackLayout,
   Table,
-  Text,
+  Text
 } from '@filecoin/ui'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import ProgressBarWrapper from './ProgressBarWrapper'
 
-import { getButton } from '@/components/system/SystemHeader'
 
 interface Props {
   system: System
@@ -107,17 +107,19 @@ export const Overview: React.FC<Props> = ({ system }) => {
       <ProgressBarWrapper shadow={false}>
         <Text type="text xl">{t('filecoin.allTests.allKinds')}</Text>
         <ProgressBar
-          data={system.testKindStats.percentages.map(({ kind, ...rest }) => ({
-            name: kind,
-            ...rest,
-          }))}
+          data={system?.testStatistics?.percentages.map(
+            ({ kind, ...rest }) => ({
+              name: kind,
+              ...rest,
+            }),
+          )}
           legend
         />
       </ProgressBarWrapper>
       <ProgressBarWrapper shadow={false}>
         <Text type="text xl">{t('filecoin.allTests.allStatus')}</Text>
         <ProgressBar
-          data={system.testStatusStats.percentages.map(
+          data={system.behaviorStatistics.percentages.map(
             ({ status, ...rest }) => ({
               name: status,
               ...rest,
@@ -175,7 +177,7 @@ export const Overview: React.FC<Props> = ({ system }) => {
               Cell: ({ data }) => (
                 <Bar>
                   <ProgressBar
-                    data={data.testKindStats.percentages.map(
+                    data={data.testStatistics.percentages.map(
                       ({ kind, ...rest }) => ({ name: kind, ...rest }),
                     )}
                   />
@@ -183,12 +185,12 @@ export const Overview: React.FC<Props> = ({ system }) => {
               ),
             },
             testStatus: {
-              header: 'Test Status',
+              header: t('filecoin.systems.testStatus'),
               width: 325,
               Cell: ({ data }) => (
                 <Bar>
                   <ProgressBar
-                    data={data.testStatusStats.percentages.map(
+                    data={data.behaviorStatistics.percentages.map(
                       ({ status, ...rest }) => ({
                         name: status,
                         ...rest,
@@ -226,12 +228,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
 
 const Wrapper = styled(StackLayout)`
   margin-top: 1.25rem;
-`
-
-const ProgressBarWrapper = styled(CardLayout)`
-  max-width: 58.75rem;
-  margin-bottom: 1rem;
-  padding: 2.65rem 3.625rem;
 `
 
 const TableWrapper = styled(StackLayout)`

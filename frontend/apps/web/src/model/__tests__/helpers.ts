@@ -2,6 +2,7 @@
 
 import {
   Behavior,
+  BehaviorStatus,
   Feature,
   SubSystem,
   System,
@@ -36,23 +37,23 @@ export function testSystemIntegrity(sys: System) {
   expect(sys.name.length).toBeGreaterThan(0)
 
   // test kind integrity checks
-  expect(sys.testKindStats.percentages.length).toBeGreaterThan(0)
-  const testKindSum = sys.testKindStats.percentages.reduce(
+  expect(sys.testStatistics.percentages.length).toBeGreaterThan(0)
+  const testKindSum = sys.testStatistics.percentages.reduce(
     (sum, next) => sum + next.percentage,
     0,
   )
   expect(Math.abs(testKindSum - 100)).toBeLessThan(
-    sys.testKindStats.roundingError,
+    sys.testStatistics.roundingError,
   )
 
   // test status integrity checks
-  expect(sys.testStatusStats.percentages.length).toBeGreaterThan(0)
-  const testStatusSum = sys.testStatusStats.percentages.reduce(
+  expect(sys.behaviorStatistics.percentages.length).toBeGreaterThan(0)
+  const testStatusSum = sys.behaviorStatistics.percentages.reduce(
     (sum, next) => sum + next.percentage,
     0,
   )
   expect(Math.abs(testStatusSum - 100)).toBeLessThan(
-    sys.testStatusStats.roundingError,
+    sys.behaviorStatistics.roundingError,
   )
 }
 
@@ -94,6 +95,14 @@ export function testBehaviorIntegrity(behavior: Behavior) {
   expect(behavior.subsystem.length).toBeGreaterThan(0)
   expect(behavior.system).toBeDefined()
   expect(behavior.system.length).toBeGreaterThan(0)
+
+  for (const test of behavior.testedBy) {
+    if (test.status === TestStatus.unannotated) {
+      console.log(behavior)
+    }
+
+    expect(test.status).not.toBe(TestStatus.unannotated)
+  }
 }
 
 function testFeatureIntegrity(
@@ -141,6 +150,14 @@ export function testSubsystemIntegrity(sys: System) {
     expect(subsystem.tests.length).toBeGreaterThan(0)
     for (const test of subsystem.tests) {
       testTestIntegrity(test)
+    }
+
+    // behavior integrity check
+    expect(subsystem.behaviors.length).toBeGreaterThan(0)
+    expect(subsystem.behaviors.map(b => b.id)).noDuplicates()
+    for (const behavior of subsystem.behaviors) {
+      testBehaviorIntegrity(behavior)
+      expect(behavior.subsystem).toBe(subsystem.id)
     }
   }
 }

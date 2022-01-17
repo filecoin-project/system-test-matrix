@@ -1,5 +1,5 @@
-system: Splitstore
-subsystem: Timed cache blockstore
+system: Blockstore
+subsystem: Timed
 features:
   - name: Start
     behaviors:

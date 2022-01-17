@@ -95,6 +95,14 @@ export function testBehaviorIntegrity(behavior: Behavior) {
   expect(behavior.subsystem.length).toBeGreaterThan(0)
   expect(behavior.system).toBeDefined()
   expect(behavior.system.length).toBeGreaterThan(0)
+
+  for (const test of behavior.testedBy) {
+    if (test.status === TestStatus.unannotated) {
+      console.log(behavior)
+    }
+
+    expect(test.status).not.toBe(TestStatus.unannotated)
+  }
 }
 
 function testFeatureIntegrity(

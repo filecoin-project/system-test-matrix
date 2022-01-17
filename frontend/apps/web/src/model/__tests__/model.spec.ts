@@ -95,6 +95,7 @@ describe('Model', () => {
       const unannotated = allTests.filter(
         t => t.status === TestStatus.unannotated,
       )
+      console.log('Unannotated: ', unannotated.length)
       expect(unannotated.length).toBeGreaterThan(0)
       // but not all
       expect(unannotated.length).toBeLessThan(allTests.length)
@@ -113,8 +114,8 @@ describe('Model', () => {
 
   describe('getAllBehaviors', () => {
     const expectedBehaviorsMin = 300
+    const allBehaviors = model.getAllBehaviors()
     it('returns all behaviors', () => {
-      const allBehaviors = model.getAllBehaviors()
       expect(allBehaviors.length).toBeGreaterThanOrEqual(expectedBehaviorsMin)
       expect(allBehaviors.map(b => b.id)).noDuplicates()
 
@@ -126,7 +127,7 @@ describe('Model', () => {
       // TODO: Remove this test after everything is tested
       const behaviorsByStatus = _.groupBy(allBehaviors, 'status')
       expect(Object.keys(behaviorsByStatus)).toHaveLength(3) // there are 3 different behav statuses
-
+      // console.log(testBeh.tests)
       // for debugging purposes
       // for (const [status, behaviors] of Object.entries(behaviorsByStatus)) {
       //   console.log(`Status: ${status}, behaviors: ${behaviors.length}`)

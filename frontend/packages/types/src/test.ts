@@ -15,7 +15,7 @@ export class Test {
     public functionName: string,
     public repository: Repository,
     public kind: TestKind,
-    public status = TestStatus.unannotated,
+    public status,
     public linkedBehaviors: Behavior[] = [],
   ) {}
 }

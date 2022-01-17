@@ -169,12 +169,13 @@ export class DenormalizedLoader implements ModelLoader {
         rawScenario.function,
         testFile.repository,
         testFile.test_type,
+        TestStatus.unannotated,
       )
 
       if (rawScenario.Behaviors) {
         for (const rawBehavior of rawScenario.Behaviors) {
-          this.linkTestToBehavior(rawBehavior, test)
           test.status = TestStatus.pass
+          this.linkTestToBehavior(rawBehavior, test)
         }
       }
 

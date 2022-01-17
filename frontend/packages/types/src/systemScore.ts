@@ -10,12 +10,13 @@ export enum SystemScore {
 export function calculateSystemScore(
   testStatusStats: PercentageSet,
 ): SystemScore {
-  const stats = testStatusStats.percentages as TestStatusStatistic[]
-  const missing = stats.find(s => s.status === 'missing')
+  const stats = testStatusStats.percentages
 
-  if (missing && missing.percentage > 66) {
+  const untested = stats.find(s => s.status === 'untested')
+
+  if (untested && untested.percentage > 66) {
     return SystemScore.bad
-  } else if (missing && missing.percentage > 33) {
+  } else if (untested && untested.percentage > 33) {
     return SystemScore.mediocre
   } else {
     return SystemScore.good

@@ -1,0 +1,37 @@
+system: Chain
+subsystem: State Manager
+features:
+  - name: Call
+    behaviors:
+      - id: CHAIN_STATE_CALL_001
+        description: |
+          Given the message and tipset key,
+          queries, inspects or interacts with chain state
+  
+  - name: Get Paych State
+    behaviors:
+      - id: CHAIN_STMGR_GET_PAYCH_STATE_001
+        description: |
+          Given a payment channel address and a tipset,
+          return the actor and the payment channel state at the given address
+  
+  - name: Load Actor
+    behaviors:
+      - id: CHAIN_STMGR_LOAD_ACTOR_001
+        description: |
+          Given an actor address and a tipset key,
+          return the actor by the given address and tipset key
+  
+  - name: Lookup ID
+    behaviors:
+      - id: CHAIN_STATE_LOOKUP_ID_001
+        description: |
+          Retrieves the ID address of the given address, given the address and tipset
+  
+  - name: Resolve To Key Address
+    behaviors:
+      - id: CHAIN_STATE_RESOLVE_TO_KEY_ADDR_001
+        description: |
+          Given a context 'ctx', address 'addr', tipset 'ts',
+          return the public key type of address (`BLS`/`SECP256K1`) of an account actor
+          identified by 'addr'

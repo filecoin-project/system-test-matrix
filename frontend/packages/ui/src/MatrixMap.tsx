@@ -1,6 +1,6 @@
+import { Behavior, BehaviorStatus } from '@filecoin/types'
 import React from 'react'
 import { Treemap as Chart } from 'recharts'
-import { Behavior, BehaviorStatus } from '@filecoin/types'
 
 interface BehaviorData extends Partial<Behavior> {
   value?: number
@@ -87,7 +87,7 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
             cursor: 'pointer',
             fill: color,
             stroke: '#fff',
-            strokeWidth: NODE_SIZE * 0.0625,
+            strokeWidth: '2px',
             strokeOpacity: 1,
             pointerEvents: status === 'null' ? 'none' : null,
           }}

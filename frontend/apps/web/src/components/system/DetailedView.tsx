@@ -1,6 +1,9 @@
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import { TestModal } from '@/components/tests/TestModal'
+import { PageContainer } from '@/containers/PageContainer'
+import { useHorizontalScroll } from '@/hooks/useHorisontalScroll'
 import {
   Behavior,
-  BehaviorStatus,
   System,
   Test,
   TestKind,
@@ -10,22 +13,17 @@ import {
   BoxLayout,
   CardLayout,
   ColumnLayout,
-  MatrixMap,
   Modal,
   StackLayout,
-  Text,
   TestLegend,
+  Text,
 } from '@filecoin/ui'
 import qs from 'query-string'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
-import { partition } from 'lodash'
-
-import { PageContainer } from '@/containers/PageContainer'
-import { TestModal } from '@/components/tests/TestModal'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import MatrixReactTooltip from './MatrixReactTooltip'
+import MatrixTestKindsMapper from './MatrixTestKindsMapper'
 
 interface Props {
   testKinds: TestKind[]
@@ -61,10 +59,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
       : undefined,
   )
 
-  useEffect(() => {
-    ReactTooltip.rebuild()
-  }, [testKinds])
-
+  const scrollRef = useHorizontalScroll()
   return (
     <Wrapper shadow={false}>
       <Modal
@@ -86,96 +81,45 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
           <BehaviorModal behavior={testBehavior} />
         )}
       </Modal>
-      <ReactTooltip
-        effect="solid"
-        multiline
-        getContent={data => {
-          const { id, feature, description } = JSON.parse(data) || {}
-
-          return (
-            <TooltipWrapper>
-              <div>
-                <b>Behavior ID</b>: <span>{id}</span>
-              </div>
-
-              <div>
-                <b>Feature ID</b>: <span>{feature}</span>
-              </div>
-
-              <div>
-                <b>Description</b>: <span>{description}</span>
-              </div>
-            </TooltipWrapper>
-          )
-        }}
-      />
-
+      <MatrixReactTooltip />
       <BoxLayout gap={1.5}>
-        <StackLayout gap={1}>
-          <ColumnLayout className={'c-matrix__header'} gap={1.5}>
-            {testKinds.map(testKind => {
+        <MatrixWrapper ref={scrollRef}>
+          <StackLayout gap={1}>
+            <ColumnLayout className={'c-matrix__header'} gap={1}>
+              <span />
+              {testKinds.map(testKind => {
+                return (
+                  <>
+                    <Text key={testKind} color="textGray">
+                      {testKind}
+                    </Text>
+                  </>
+                )
+              })}
+            </ColumnLayout>
+
+            {system.subsystems.map(subsystem => {
               return (
-                <Text key={testKind} color="textGray">
-                  {testKind}
-                </Text>
+                <ColumnLayout
+                  className={'c-matrix__row'}
+                  gap={1}
+                  key={subsystem.name}
+                >
+                  <Text color="textGray" semiBold>
+                    {subsystem.name}
+                  </Text>
+                  <MatrixTestKindsMapper
+                    testKinds={testKinds}
+                    system={system}
+                    subsystem={subsystem}
+                    setTestBehavior={setTestBehavior}
+                  />
+                </ColumnLayout>
               )
             })}
-          </ColumnLayout>
-
-          {system.subsystems.map(subsystem => {
-            return (
-              <ColumnLayout
-                className={'c-matrix__row'}
-                gap={1}
-                key={subsystem.name}
-              >
-                <Text color="textGray" semiBold>
-                  {subsystem.name}
-                </Text>
-
-                {testKinds.map(testKind => {
-                  // figure out which behaviors are tested for the current test kind
-                  const behaviors = subsystem.behaviors
-                    .filter(behavior =>
-                      behavior.expectedTestKinds.includes(testKind),
-                    )
-                    .map(b => ({ ...b, statusForKind: b.status }))
-                    .sort((a, b) => a.id.localeCompare(b.id))
-
-                  return (
-                    <MatrixMap
-                      key={testKind}
-                      data={behaviors}
-                      onClick={(b: Behavior) => {
-                        const behavior = allBehaviors.find(
-                          behavior => behavior.id === b.id,
-                        )
-
-                        if (behavior) {
-                          setTestBehavior(
-                            allBehaviors.find(behavior => behavior.id === b.id),
-                          )
-
-                          navigate(
-                            {
-                              search: `?${qs.stringify({
-                                ...queryParams,
-                                behaviorId: behavior.id,
-                              })}`,
-                            },
-                            { replace: true },
-                          )
-                        }
-                      }}
-                    />
-                  )
-                })}
-              </ColumnLayout>
-            )
-          })}
-
-          <TestLegend />
-        </StackLayout>
+          </StackLayout>
+        </MatrixWrapper>
+        <TestLegend />
       </BoxLayout>
     </Wrapper>
   )
@@ -185,21 +129,42 @@ const Wrapper = styled(CardLayout)`
   margin-top: 1.25rem;
 
   .c-matrix__header {
-    padding-left: 134px;
-
     > * {
-      width: 160px;
+      min-width: 160px;
+      width: 217px;
+
+      &:first-child {
+        width: 157px;
+        min-width: 100px;
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: white;
+        display: flex;
+        align-items: end;
+      }
     }
   }
 
   .c-matrix__row {
+    position: relative;
+
     > span:first-child {
-      display: flex;
-      align-items: end;
       width: 100px;
       min-width: 100px;
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      background-color: white;
     }
   }
+`
+const MatrixWrapper = styled.div`
+  display: flex;
+  overflow-y: auto;
+  padding-bottom: 2rem;
 `
 
 export const TooltipWrapper = styled.div`

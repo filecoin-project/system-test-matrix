@@ -1,7 +1,7 @@
+import { getButton } from '@/components/system/SystemHeader'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { System } from '@filecoin/types'
 import {
-  CardLayout,
   Dropdown,
   NativeLink,
   Pager,
@@ -10,14 +10,14 @@ import {
   SearchInput,
   StackLayout,
   Table,
-  Text,
+  Text
 } from '@filecoin/ui'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import ProgressBarWrapper from './ProgressBarWrapper'
 
-import { getButton } from '@/components/system/SystemHeader'
 
 interface Props {
   system: System
@@ -228,12 +228,6 @@ export const Overview: React.FC<Props> = ({ system }) => {
 
 const Wrapper = styled(StackLayout)`
   margin-top: 1.25rem;
-`
-
-const ProgressBarWrapper = styled(CardLayout)`
-  max-width: 58.75rem;
-  margin-bottom: 1rem;
-  padding: 2.65rem 3.625rem;
 `
 
 const TableWrapper = styled(StackLayout)`

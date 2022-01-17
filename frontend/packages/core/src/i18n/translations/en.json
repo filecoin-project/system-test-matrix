@@ -47,6 +47,11 @@
       "score": "Score",
       "keyWithCount_one": "{{count}} subsystem",
       "keyWithCount_other": "{{count}} subsystems"
+    },
+    "matrix": {
+      "behaviorId": "Behavior ID",
+      "featureId": "Feature ID",
+      "desc": "Description"
     }
   },
   "global": {

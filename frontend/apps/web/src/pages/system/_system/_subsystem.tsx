@@ -1,28 +1,27 @@
-import React, { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import {
-  PageLayout,
-  Text,
-  usePageLayout,
-  ProgressBar,
-  CardLayout,
-  MatrixMap,
-  ColumnLayout,
-  StackLayout,
-  TestLegend,
-  Modal,
-} from '@filecoin/ui'
-import { Behavior, BehaviorStatus, TestQueryParams } from '@filecoin/types'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-import qs from 'query-string'
-import ReactTooltip from 'react-tooltip'
-import { partition } from 'lodash'
-
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import MatrixReactTooltip from '@/components/system/MatrixReactTooltip'
+import MatrixTestKindsMapper from '@/components/system/MatrixTestKindsMapper'
+import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
 import { SystemHeader } from '@/components/system/SystemHeader'
 import { PageContainer } from '@/containers/PageContainer'
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import { TooltipWrapper } from '@/components/system/DetailedView'
+import { useHorizontalScroll } from '@/hooks/useHorisontalScroll'
+import { Behavior, TestQueryParams } from '@filecoin/types'
+import {
+  CardLayout,
+  ColumnLayout,
+  Modal,
+  PageLayout,
+  ProgressBar,
+  StackLayout,
+  TestLegend,
+  Text,
+  usePageLayout,
+} from '@filecoin/ui'
+import qs from 'query-string'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate, useParams } from 'react-router-dom'
+import styled from 'styled-components'
 
 const SubSystem = () => {
   const {
@@ -55,6 +54,7 @@ const SubSystem = () => {
     ),
     footer: <PageLayout.Footer />,
   })
+  const scrollRef = useHorizontalScroll()
 
   return (
     <PageLayout {...pageLayout}>
@@ -72,29 +72,7 @@ const SubSystem = () => {
       >
         <BehaviorModal behavior={testBehavior} />
       </Modal>
-      <ReactTooltip
-        effect="solid"
-        multiline
-        getContent={data => {
-          const { id, feature, description } = JSON.parse(data) || {}
-
-          return (
-            <TooltipWrapper>
-              <div>
-                <b>Behavior ID</b>: <span>{id}</span>
-              </div>
-
-              <div>
-                <b>Feature ID</b>: <span>{feature}</span>
-              </div>
-
-              <div>
-                <b>Description</b>: <span>{description}</span>
-              </div>
-            </TooltipWrapper>
-          )
-        }}
-      />
+      <MatrixReactTooltip />
       <PageLayout.Section>
         <Text type={'subtitle l'} color={'gray80'}>
           {subsystem.behaviors.length} {t('filecoin.system.totalBehaviors')}
@@ -128,56 +106,46 @@ const SubSystem = () => {
       </PageLayout.Section>
       <PageLayout.Section>
         <TestsWrapper shadow={false}>
-          <ColumnLayout
-            className={'c-matrix__row'}
-            gap={1}
-            key={subsystem.name}
-          >
-            {testKinds.map(testKind => {
-              // figure out which behaviors are tested for the current test kind
-              const behaviors = subsystem.behaviors
-                .filter(behavior =>
-                  behavior.expectedTestKinds.includes(testKind),
-                )
-                .map(b => ({ ...b, statusForKind: b.status }))
-                .sort((a, b) => a.id.localeCompare(b.id))
-
-              return (
-                <StackLayout key={testKind}>
-                  <Text semiBold>{testKind}</Text>
-                  <MatrixMap
-                    data={behaviors}
-                    onClick={(behavior: Behavior) => {
-                      setTestBehavior(behavior)
-                      navigate(
-                        {
-                          search: `?id=${behavior.id}`,
-                        },
-                        { replace: true },
-                      )
-                    }}
-                  />
-                </StackLayout>
-              )
-            })}
-          </ColumnLayout>
+          <MatrixWrapper ref={scrollRef}>
+            <Wrapper gap={1}>
+              <ColumnLayout className={'c-matrix__header'} gap={1}>
+                {testKinds.map(testKind => {
+                  return (
+                    <Text key={testKind} color="textGray">
+                      {testKind}
+                    </Text>
+                  )
+                })}
+              </ColumnLayout>
+              <ColumnLayout gap={1}>
+                <MatrixTestKindsMapper
+                  testKinds={testKinds}
+                  system={system}
+                  subsystem={subsystem}
+                  setTestBehavior={setTestBehavior}
+                />
+              </ColumnLayout>
+            </Wrapper>
+          </MatrixWrapper>
           <TestLegend />
         </TestsWrapper>
       </PageLayout.Section>
     </PageLayout>
   )
 }
-
-const ProgressBarWrapper = styled(CardLayout)`
-  max-width: 58.75rem;
-  margin-bottom: 1rem;
-  padding: 2.65rem 3.625rem;
-
-  &:first-of-type {
-    margin-top: 1rem;
+const Wrapper = styled(StackLayout)`
+  .c-matrix__header {
+    > * {
+      min-width: 160px;
+      width: 250px;
+    }
   }
 `
-
+const MatrixWrapper = styled.div`
+  display: flex;
+  overflow-y: auto;
+  padding-bottom: 2rem;
+`
 const TestsWrapper = styled(CardLayout)`
   padding: 2.5rem;
 `

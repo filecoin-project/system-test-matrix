@@ -1,6 +1,7 @@
 import { PageContainer } from '@/containers/PageContainer'
 import {
   Behavior,
+  BehaviorStatus,
   SubSystem,
   System,
   TestKind,
@@ -44,10 +45,16 @@ const MatrixTestKindsMapper: React.FC<Props> = ({
   return (
     <>
       {testKinds.map(testKind => {
-        // figure out which behaviors are tested for the current test kind
         const behaviors = subsystem.behaviors
           .filter(behavior => behavior.expectedTestKinds.includes(testKind))
-          .map(b => ({ ...b, statusForKind: b.status }))
+          .map(b => ({
+            ...b,
+            statusForKind: b.testedBy.filter(
+              test => test.kind === testKind && test.status !== 'missing',
+            ).length
+              ? ('tested' as BehaviorStatus)
+              : ('untested' as BehaviorStatus),
+          }))
           .sort((a, b) => a.id.localeCompare(b.id))
 
         return (

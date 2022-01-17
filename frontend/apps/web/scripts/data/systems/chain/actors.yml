@@ -1,6 +1,20 @@
 system: Chain
-subsystem: Policy
+subsystem: Actors
 features:
+  - name: Adt array diff
+    behaviors:
+      - id: CHAIN_ADT_ARRAY_DIFF_001
+        description: |  
+          Given two arrays 'preArr' and 'curArr', and array diff object 'out',
+          calculate the difference between the two arrays and store it in 'out'
+  
+  - name: Adt map diff
+    behaviors:
+      - id: CHAIN_ADT_MAP_DIFF_001
+        description: |  
+          Given two maps 'preMap' and 'curMap', and map diff object 'out',
+          calculate the difference between the two maps and store it in 'out'
+
   - name: Get max PoSt partitions
     behaviors:
       - id: BLOCKCHAIN_POLICY_GET_MAX_POST_PARTITIONS_001

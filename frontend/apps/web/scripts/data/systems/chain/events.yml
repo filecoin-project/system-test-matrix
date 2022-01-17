@@ -1,95 +1,186 @@
-system: Events
-subsystem: Predicates
+system: Chain
+subsystem: Events
 features:
+  - name: Called
+    behaviors:
+      - id: EVENTS_EVENTS_CALLED_001
+        description: |
+          Given a context 'ctx', check function 'check', message handler 'msgHnd', revert handler 'rev',
+          confidence 'confidence', chain epoch 'timeout', message match function 'mf',
+          registers a callback which is triggered when a specified method is called on an actor,
+          or a timeout is reached
+  
+  - name: Called message 
+    behaviors:
+      - id: EVENTS_EVENTS_CALLED_MSG_001
+        description: |
+          Given a context 'ctx', message handler 'msgHnd', revert handler 'rev',
+          confidence 'confidence', chain epoch 'timeout', chain message 'msg',
+          performs behavior EVENTS_EVENTS_CALLED_001, wrapping the message handler and matcher
+
+  - name: Chain at
+    behaviors:
+      - id: EVENTS_HEIGHT_CHAIN_AT_001
+        description: |
+          Given a context 'ctx', height handler 'hnd', revert handler 'rev', confidence 'confidence',
+          and a chain epoch 'h', invoke the specified height handler when the chain reaches the specified
+          height + confidence treshold
+      - id: EVENTS_HEIGHT_CHAIN_AT_002
+        description: |
+          If the chain is rolled back under the specified height, invoke the revert handler
+      - id: EVENTS_HEIGHT_CHAIN_AT_003
+        description: |
+          If an error occurs, return the error
+  
+  - name: Revert
+    behaviors:
+      - id: EVENTS_HEIGHT_REVERT_001
+        description: |
+          Given a context 'ctx', tipsets 'from' and 'to', for each tipset height between 'from' and 'to' 
+          call the tipset's revert handler, including empty tipsets
+
   - name: On actor state changed
     behaviors:
       - id: EVENTS_PREDICATES_ON_ACTOR_STATE_CHANGED_001
         description: |
           Given an address 'addr', and function to be called when actor state changes 'diffStateFunc',
           call 'diffStateFunc' when the state changes for the given actor
+  
   - name: On storage market actor changed
     behaviors:
       - id: EVENTS_PREDICATES_ON_MARKET_ACTOR_STATE_CHANGED_001
         description: |
           Given a function to be called when market actor state changes 'diffStorageMarketState',
           call 'diffStorageMarketState' when the state changes for the given market actor
+  
   - name: On balance changed
     behaviors:
       - id: EVENTS_PREDICATES_ON_BALANCE_CHANGED_001
         description: |
           Given a function to be called when the state changes 'diffBalances',
           call 'diffBalances' when the escrow table for available balances changes
+  
   - name: On deal state changed
     behaviors:
       - id: EVENTS_PREDICATES_DEAL_STATE_CHANGED_001
         description: |
           Given a function to be called when the state changes 'diffDealStates',
           call 'diffDealStates' when the marked deal state changes
+  
   - name: On deal proposal changed
     behaviors:
       - id: EVENTS_PREDICATES_ON_DEAL_PROPOSAL_CHANGED_001
         description: |
           Given a function to be called when the state changes 'diffDealProps',
           call 'diffDealProps' when the market proposal state changes
+  
   - name: On deal proposal amt changed
     behaviors:
       - id: EVENTS_PREDICATES_PROPOSAL_AMT_CHANGED_001
         description: |
           Detect changes in the deal proposal AMT for all deal proposals, and return a structure
           containing added, modified, and removed proposals
+  
   - name: On deal state amt changed
     behaviors:
       - id: EVENTS_PREDICATES_DEAL_AMT_CHANGED_001
         description: |
           Detect changes in the deal state AMT for all deal states, and return a structure
           containing added, modified, and removed deals
+  
   - name: Deal state changed for IDs
     behaviors:
       - id: EVENTS_PREDICATES_DEAL_CHANGED_FOR_IDS
         description: |
           Given an array of Deal IDs 'dealIds',
           detect changes in deal state AMT for given deal IDs
+  
   - name: Available balance changed for address
     behaviors:
       - id: EVENTS_PREDICATES_BALANCE_CHANGED_FOR_ADDRESS_001
         description: |
           Given a function which returns a list of addresses 'getAddrs', 
           detect changes in the escrow table for the given addresses
+  
   - name: On init actor change
     behaviors:
       - id: EVENTS_PREDICATES_ON_INIT_ACTOR_CHANGE_001
         description: |
           Given a function to be called when the state changes 'diffInitActorState',
           call the function when the actor's init state changes
+  
   - name: On miner actor change
     behaviors:
       - id: EVENTS_PREDICATES_MINER_ACTOR_CHANGE_001
         description: |
           Given an address 'minerAddr', and a function to be called when the state changes 'diffMinerActorState',
           call the function when the miners's state changes
+  
   - name: On miner sector change
     behaviors:
       - id: EVENTS_PREDICATES_MINER_SECTOR_CHANGE_001
         description: |
           Detect changes in miner sectors
+  
   - name: On miner pre commit change
     behaviors:
       - id: EVENTS_PREDICATES_MINER_PRE_COMMIT_CHANGE_001
         description: |
           Detect changes in miner pre commit sectors
+  
   - name: On payment channel actor change
     behaviors:
       - id: EVENTS_PREDICATES_PAYMENT_CHAN_CHANGE_001
         description: |
           Given an address 'paychAddr', function to be called when state changes 'diffPaymentChannelState',
           call 'diffPaymentChannelState' when the state changes for the payment channel actor
+  
   - name: On to send amount change
     behaviors:
       - id: EVENTS_PREDICATES_ON_TO_SEND_AMOUNT_CHANGE_001
         description: |
           Monitor changes on the total amount to send from one party to the other on a payment channel
+  
   - name: On address map change
     behaviors:
       - id: EVENTS_PREDICATES_ON_ADDRESS_MAP_CHANGE_001
         description: |
           Monitor changes when an address is added, removed, or modified in the state
+
+  - name: Get chain tipset
+    behaviors:
+      - id: EVENTS_CACHE_GET_CHAIN_TIPSET_001
+        description: |
+          Given a context 'ctx', tipset key 'tsk', return the tipset stored at the key
+  
+  - name: Get chain tipset before
+    behaviors:
+      - id: EVENTS_CACHE_GET_CHAIN_TIPSET_BEFORE_001
+        description: |
+          Given a context 'ctx', chain epoch 'height', and tipset key 'tsk', return
+          the tipset stored at the key belonging to an epoch before 'height'
+  
+  - name: Get chain tipset after
+    behaviors:
+      - id: EVENTS_CACHE_GET_CHAIN_TIPSET_AFTER_001
+        description: |
+          Given a context 'ctx', chain epoch 'height', and tipset key 'tsk', return
+          the tipset stored at the key belonging to an epoch after 'height'
+  
+  - name: Get chain head
+    behaviors:
+      - id: EVENTS_CACHE_GET_CHAIN_HEAD_001
+        description: |
+          Given a context 'ctx', return the chain's head tipset
+  
+  - name: Apply
+    behaviors:
+      - id: EVENTS_CACHE_APPLY_001
+        description: |
+          Given a context 'ctx', and tipset 'to', add the tipset to the cache
+  
+  - name: Cache Revert
+    behaviors:
+      - id: EVENTS_CACHE_REVERT_001
+        description: |
+          Given a context 'ctx', and tipset 'from', revert tipsets following from

@@ -25,7 +25,6 @@ describe('Model', () => {
     'client',
     'cmd',
     'conformance',
-    'events',
     'journal',
     'market',
     'miner',
@@ -95,7 +94,6 @@ describe('Model', () => {
       const unannotated = allTests.filter(
         t => t.status === TestStatus.unannotated,
       )
-      console.log('Unannotated: ', unannotated.length)
       expect(unannotated.length).toBeGreaterThan(0)
       // but not all
       expect(unannotated.length).toBeLessThan(allTests.length)

@@ -1,0 +1,61 @@
+system: Chain
+subsystem: Exchange
+description: |
+  ChainExchange is the basic chain synchronization protocol of Filecoin.
+  ChainExchange is an RPC-oriented protocol, with a single operation to
+  request blocks for now.
+features:
+  - name: Server Handle Stream
+    behaviors:
+      - id: CHAIN_EXCHANGE_SERVER_HANDLE_STREAM_001
+        description: |
+          Given a inet.Stream,
+          deserialize the given CBOR,
+          and if it's a valid block sync request, start streaming chain segments requested by the client.
+      - id: CHAIN_EXCHANGE_SERVER_HANDLE_STREAM_002
+        description: |
+          Given an invalid block sync request, stream the error response to the client.
+          A request is invalid if:
+          1. Request options is unset
+          2. Request length is over maxiumum allowed
+          3. Request length is zero
+          4. There are no CIDs in the request
+          5. The request type is unsupported. Refer to the client features in this subsystem for supported client requests.
+
+  - name: Client Get Blocks
+    behaviors:
+      - id: CHAIN_EXCHANGE_CLIENT_GET_BLOCKS_001
+        description: |
+          Given a tipset key and a number of blocks (`count`),
+          return block headers from the network, from the provided tipset *backwards*, 
+          returning as many tipsets as the `count` parameter
+
+  # - name: Client Get Messages
+  #   behaviors:
+  #     - id: CHAIN_EXCHANGE_CLIENT_GET_MESSAGES_001
+  #       description: |
+  #         Given an array of tipsets,
+  #         return messages from the network, starting from the first provided tipset
+	#         and returning messages from as many tipsets as requested or less
+
+  # - name: Client Get Tipset
+  #   behaviors:
+  #     - id: CHAIN_EXCHANGE_CLIENT_GET_TIPSET_001
+  #       description: |
+  #         Given a peer ID and a Tipset key,
+  #         Greturn a full tipset from a given peer. 
+  #         If successful, the fetched object contains block headers and all messages in full form.
+
+  # - name: Client Add Peer
+  #   behaviors:
+  #     - id: CHAIN_EXCHANGE_CLIENT_ADD_PEER_001
+  #       description: |
+  #         Given a peer ID,
+  #         add a peer to the pool of peers that the client requests data from
+
+  # - name: Client Remove Peer
+  #   behaviors:
+  #     - id: CHAIN_EXCHANGE_CLIENT_REMOVE_PEER_001
+  #       description: |
+  #         Given a peer ID,
+  #         remove a peer from the pool of peers that the Client requests data from

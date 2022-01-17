@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
 
 export const TestLegend = () => {
@@ -11,9 +10,6 @@ export const TestLegend = () => {
       </div>
       <div>
         Tested behavior <div />
-      </div>
-      <div>
-        Partially tested behavior <div />
       </div>
     </Legend>
   )
@@ -47,12 +43,6 @@ export const Legend = styled.div`
     &:nth-child(2) {
       > div {
         background: ${Colors.greenBtn};
-      }
-    }
-
-    &:last-child {
-      > div {
-        background: ${Colors.orangeBtn};
       }
     }
   }

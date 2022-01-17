@@ -1,0 +1,29 @@
+system: Chain
+subsystem: Bad Block Cache
+features:
+  - name: Add
+    behaviors:
+      - id: CHAIN_BAD_BLOCK_CACHE_ADD_001
+        description: |
+          Given a block CID and a reason,
+          add the block to the bad block cache
+  
+  - name: Remove
+    behaviors:
+      - id: CHAIN_BAD_BLOCK_CACHE_REMOVE_001
+        description: |
+          Given a block CID,
+          remove the block from the bad block cache
+
+  - name: Purge
+    behaviors:
+      - id: CHAIN_BAD_BLOCK_CACHE_PURGE_001
+        description: |
+          Remove all blocks from the bad block cache
+
+  - name: Has
+    behaviors:
+      - id: CHAIN_BAD_BLOCK_CACHE_HAS_001
+        description: |
+          Given a block CID,
+          return the reason why it's bad if it exists in the bad block cache

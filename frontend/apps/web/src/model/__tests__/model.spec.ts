@@ -31,8 +31,6 @@ describe('Model', () => {
     'network',
     'token',
     'tools',
-    'types',
-    'vm',
     'repo',
   ]
 

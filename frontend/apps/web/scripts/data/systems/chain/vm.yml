@@ -1,0 +1,62 @@
+system: Chain
+subsystem: Virtual Machine
+features:
+  - name: Compute gas outputs
+    behaviors:
+      - id: BURN_ESTIMATE_GAS_OUTPUTS_001
+        description: |
+          Given the amount of gas used, gas limit, base fee, fee cap, gas premium,
+          and flag indicating whether to charge the network fee,
+          calculate and return gas outputs
+  
+  - name: Compute gas overestimation burn
+    behaviors:
+      - id: BURN_ESTIMATE_GAS_OVERESTIMATION_BURN_001
+        description: |
+          Given the amount of gas used, and gas limit,
+          compute and return the amount of gas to be refunded and amount to be burned
+
+  - name: Deadlines
+    behaviors:
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_001
+        description: |
+          Given a sector is ProveCommitted,
+          assign a deadline to that sector
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_002
+        description: |
+          Given a miner fails to submit a PoSt for a sector on time and doesn't declare the sector as faulty, 
+          apply the "Undeclared fault penalty"
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_003
+        description: |
+          Given a miner fails to ProveCommit a PreCommited sector in time,
+          apply a "PreCommit expiry penalty"
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_004
+        description: |
+          Given a miner fails to submit a PoSt for a sector and declares the sector as faulty,
+          apply the "Declared fault penalty".
+          The fee should be lower than the undeclared fault penalty.
+      - id: SYSTEM_ACTORS_MINER_DEADLINES_005
+        description: |
+          Given a miner terminates a sector before its expiration,
+          apply a "Termination penalty"
+
+  - name: Gas Estimate Cap
+    behaviors:
+      - id: GAS_ESTIMATE_CAP_001
+        description: Given a Message and a known Tipset key, return an estimated gas fee
+          cap for the specified message
+
+  - name: Gas Estimate Limit
+    behaviors:
+      - id: GAS_ESTIMATE_LIMIT_001
+        description: Given a Message and a known Tipset key, return the estimated gas
+          limit for the specified message
+      - id: GAS_ESTIMATE_LIMIT_002
+        description: Fails if given message fails to execute
+
+  - name: Gas Estimate Premium
+    behaviors:
+      - id: GAS_ESTIMATE_PREMIUM_001
+        description: Given a number of epochs nblocksincl, estimate what gas price
+          should be used for a message to have high likelihood of
+          inclusion in specified number of epochs

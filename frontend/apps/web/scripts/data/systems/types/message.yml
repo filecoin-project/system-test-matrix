@@ -1,9 +1,0 @@
-system: Types
-subsystem: Message
-features:
-  - name: Equal call
-    behaviors:
-      - id: TYPES_MESSAGE_EQUAL_CALL_001
-        description: |
-          Given two messages 'o' and 'm',
-          return true if messages are equal

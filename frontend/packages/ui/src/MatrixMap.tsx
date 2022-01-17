@@ -18,7 +18,7 @@ const getStatusColor = (status?: Behavior['status']) => {
     case BehaviorStatus.tested:
       return '#77DF79'
     case BehaviorStatus.partiallyTested:
-      return '#FFC046'
+      return '#77DF79'
     case BehaviorStatus.untested:
       return '#B2BAC7'
     default:

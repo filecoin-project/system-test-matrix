@@ -22,6 +22,10 @@ function combineBehaviors() {
     const subsystemPaths = subsystems.map(s => path.resolve(systemPath, s))
 
     for (const subsystemPath of subsystemPaths) {
+      if (!subsystemPath.endsWith('.yml')) {
+        continue
+      }
+
       const yamlContents = fs.readFileSync(subsystemPath)
 
       try {

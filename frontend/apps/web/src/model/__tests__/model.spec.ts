@@ -20,6 +20,7 @@ describe('Model', () => {
   // we expect AT LEAST these systems to be returned
   const expectedSystemNames = [
     'api',
+    'blockstore',
     'chain',
     'client',
     'cmd',
@@ -29,7 +30,6 @@ describe('Model', () => {
     'market',
     'miner',
     'network',
-    'splitstore',
     'token',
     'tools',
     'types',

@@ -1,5 +1,5 @@
-system: Splitstore
-subsystem: Union blockstore
+system: Blockstore
+subsystem: Union
 features:
   - name: View
     behaviors:

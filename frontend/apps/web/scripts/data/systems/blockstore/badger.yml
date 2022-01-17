@@ -1,5 +1,5 @@
-system: Splitstore
-subsystem: Badger Blockstore
+system: Blockstore
+subsystem: Badger
 features:
   - name: Open
     behaviors:
@@ -102,4 +102,3 @@ features:
         description: |  
           Given a byte slice 'dst', and block CID 'cid', return the storage key for the block
           into the provided slice.
-          

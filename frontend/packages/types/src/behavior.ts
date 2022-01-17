@@ -1,8 +1,8 @@
-import { Test } from '.'
+import { Test, TestKind, TestStatus } from './test'
 
 export enum BehaviorStatus {
-  pass = 'pass',
-  fail = 'fail',
+  tested = 'tested',
+  partiallyTested = 'partiallyTested',
   untested = 'untested',
 }
 
@@ -13,20 +13,30 @@ export class Behavior {
     public description: string,
     public subsystem: string,
     public system: string,
-    public tested = false,
-    public tests: BehaviorTest[] = [],
+    public testedBy: BehaviorTest[] = [],
+    public expectedTestKinds: TestKind[] = ['unit', 'integration'],
   ) {}
-
   public get status(): BehaviorStatus {
-    if (this.tests.length > 0) {
-      return BehaviorStatus.pass
+    const statusesByKind = this.expectedTestKinds.map(tk =>
+      this.statusByKind(tk),
+    )
+    // it's tested if it has passing tests for all expected test kinds
+    if (statusesByKind.every(sbk => sbk === BehaviorStatus.tested)) {
+      return BehaviorStatus.tested
     }
+    // it's partial if it misses some
+    if (statusesByKind.some(sbk => sbk === BehaviorStatus.tested)) {
+      return BehaviorStatus.partiallyTested
+    }
+    // it's untested if it doesn't have tests for any expected test kind
     return BehaviorStatus.untested
   }
 
   public statusByKind(testKind: string): BehaviorStatus {
-    return this.tests.find(t => t.kind === testKind)
-      ? BehaviorStatus.pass
+    return this.testedBy.find(
+      t => t.kind === testKind && t.status === TestStatus.pass,
+    )
+      ? BehaviorStatus.tested
       : BehaviorStatus.untested
   }
 }

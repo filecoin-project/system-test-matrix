@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { Behavior } from '.'
 
 import { Test, TestStatus } from './test'
 
@@ -12,16 +13,15 @@ export class TestStatusStatistic {
   ) {}
 }
 
-export function calculateTestStatusStatistics(tests: Test[]) {
-  const testsByStatus = _.groupBy(tests, 'status') as {
-    [key: string]: Test[]
-  }
-  const statusStatistics = Object.entries(testsByStatus).map(
-    ([status, testsWithStatus]) =>
+export function calculateBehaviorStatistics(behaviors: Behavior[]) {
+  const behaviorsByStatus = _.groupBy(behaviors, 'status')
+
+  const statusStatistics = Object.entries(behaviorsByStatus).map(
+    ([status, behaviorsWithStatus]) =>
       new TestStatusStatistic(
         status as TestStatus,
-        (testsWithStatus.length / tests.length) * 100,
-        testsWithStatus.length,
+        (behaviorsWithStatus.length / behaviors.length) * 100,
+        behaviorsWithStatus.length,
       ),
   )
   return statusStatistics

@@ -1,5 +1,5 @@
 # `@filecoin/web`
 
-> SL wallet web application https://wallet.slaff.io
+> System test matrix application http://fc-fe-dev.s3-website.eu-central-1.amazonaws.com/
 
 ## Code guidelines

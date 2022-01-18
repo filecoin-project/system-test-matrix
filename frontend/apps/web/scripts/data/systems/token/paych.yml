@@ -169,3 +169,14 @@
         description: Checks if vaucher is valid and passes when voucher total redeemed <= balance
       - id: TOKEN_PAYCH_VOUCHER_VALID_010
         description: Checks if vaucher is valid and fails when voucher total redeemed > balance
+
+    - name: track channel
+      behaviors:
+        - id: TOKEN_PAYCH_TRACK_CHANNEL_001
+          description: |
+            Given a new channel info,
+            start tracking it in the channel store
+        - id: TOKEN_PAYCH_TRACK_CHANNEL_002
+          description: |
+            Given an already tracked channel info,
+            return an error

@@ -1,0 +1,8 @@
+system: Node
+subsystem: Common
+features:
+  - name: Shutdown
+    behaviors:
+      - id: NODE_COMMON_SHUTDOWN_001
+        description: |
+          Node exits after receiving a shutdown signal

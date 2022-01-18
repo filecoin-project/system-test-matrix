@@ -6,11 +6,13 @@ features:
       - id: REPO_NET_001
         description: Api endpoint should return multiaddress for communication with
           Lotus API
+  
   - name: Set Api Endpoint
     behaviors:
       - id: REPO_NET_002
         description: Set the endpoint of the current API so it can be read by API
           clients
+  
   - name: Api Endpoint with closed repo
     behaviors:
       - id: REPO_NET_003

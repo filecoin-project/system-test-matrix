@@ -1,0 +1,7 @@
+system: Other
+subsystem: Implementation
+features:
+  - name: Reflection
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_001
+        description: Go reflection behaves as expected

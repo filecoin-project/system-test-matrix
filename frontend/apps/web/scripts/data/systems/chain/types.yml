@@ -29,7 +29,7 @@ features:
     behaviors:
       - id: TYPES_MESSAGE_JSON_EQUAL_CALL_001
         description: |
-          Aftern encoding json message, check if the formating is correct
+          Aftern encoding json message, check if the formating is correct 
       - id: TYPES_MESSAGE_JSON_EQUAL_CALL_002
         description: |
           Decode previously encoded json message and compare it to original message

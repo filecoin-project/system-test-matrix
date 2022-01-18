@@ -265,3 +265,9 @@ features:
         description: |  
           Given a context 'ctx', tipset 'ts', 
           calculate and return the base fee for the tipset
+
+  - name: Coalesce head change
+    behaviors:
+      - id: CHAIN_STORE_COALESCE_HEAD_CHANGE_001
+        description: |
+          Receive an incoming head change, and schedule a dispatch of a coalesced head change in the background

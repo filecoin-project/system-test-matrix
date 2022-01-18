@@ -36,3 +36,8 @@ features:
     behaviors:
       - id: OTHER_IMPLEMENTATION_BLOCK_INTEROP_001
         description: Block header can work across different address protocols
+
+  - name: Epoch codenames
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_EPOCH_CODENAMES_001
+        description: Expected epoch codenames match specified values

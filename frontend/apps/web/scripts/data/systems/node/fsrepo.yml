@@ -1,0 +1,73 @@
+system: Node
+subsystem: FS Repo
+features:
+  - name: Lock
+    behaviors:
+      - id: NODE_FS_REPO_LOCK_001
+        description: |
+          Given that the repo is unlocked,
+          lock the repo
+      - id: NODE_FS_REPO_LOCK_002
+        description: |
+          Given that the repo is already locked,
+          do nothing and return nil
+      
+  - name: Unlock
+    behaviors:
+      - id: NODE_FS_REPO_UNLOCK_001
+        description: |
+          Given that the repo is locked,
+          unlock it
+
+  - name: Set API endpoint
+    behaviors:
+      - id: NODE_FS_REPO_SET_API_ENDPOINT_001
+        description: |
+          Given a multiAddr,
+          set the repo API endpoint to given multiAddr
+
+  - name: Get API endpoint
+    behaviors:
+      - id: NODE_FS_REPO_GET_API_ENDPOINT_001
+        description: |
+          Return the API endpoint (multiAddr) of the repo
+
+  - name: Get config
+    behaviors:
+      - id: NODE_FS_REPO_GET_CONFIG_001
+        description: |
+          Return the configuration object for the repo
+
+  - name: Set config
+    behaviors:
+      - id: NODE_FS_REPO_SET_CONFIG_001
+        description: |
+          Given a configuration object,
+          mutate the repo configuration and persist it
+
+  - name: List Keys
+    behaviors:
+      - id: NODE_FS_REPO_LIST_KEYS_001
+        description: |
+          Return all keys in the repo
+
+  - name: Put key
+    behaviors:
+      - id: NODE_FS_REPO_PUT_KEY_001
+        description: |
+          Given key info,
+          persist it to the repo
+
+  - name: Get key
+    behaviors:
+      - id: NODE_FS_REPO_GET_KEY_001
+        description: |
+          Given a key ID,
+          return it from the repo
+
+  - name: Delete key
+    behaviors:
+      - id: NODE_FS_REPO_DELETE_KEY_001
+        description: |
+          Given a key ID,
+          delete it from the repo

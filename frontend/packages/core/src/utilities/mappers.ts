@@ -38,25 +38,31 @@ export const getResultsWithFuseSearch = (
   selectedFilter,
   filterOptions,
 ) => {
+  const searchTermResults = array => {
+    if (searchTerm) {
+      const isSelectedFilterEqualToSearchTerm = filterOptions.find(
+        key => key.label.toLowerCase() === searchTerm.toLowerCase(),
+      )
+
+      if (isSelectedFilterEqualToSearchTerm) {
+        return searchWithFuse(array, options2, searchTerm)
+      } else {
+        return searchWithFuse(array, options1, searchTerm)
+      }
+    } else {
+      return array
+    }
+  }
   if (selectedFilter) {
     const filterResult: any = searchWithFuse(array, options2, selectedFilter)
-    if (searchTerm) {
-      return searchWithFuse(filterResult, options1, searchTerm)
-    } else {
-      return filterResult
-    }
+    return searchTermResults(filterResult)
   }
-  if (searchTerm) {
-    const manualFilter = filterOptions.find(
-      key => key.label.toLowerCase() === searchTerm.toLowerCase(),
-    )
+  return searchTermResults(array)
+}
 
-    if (manualFilter) {
-      return searchWithFuse(array, options2, manualFilter.value)
-    } else {
-      return searchWithFuse(array, options1, searchTerm)
-    }
-  } else {
-    return array
+export const isObjectEmpty = object => {
+  for (const property in object) {
+    return false
   }
+  return true
 }

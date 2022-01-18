@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-
 import { Icon } from './Icon'
 import { Colors } from './styles/colors'
 
@@ -64,8 +63,9 @@ export const Paginator = ({
 
       let pagesI = range(startPage, endPage)
 
-      const hasLeftSpill = startPage > 2
-      const hasRightSpill = totalPages - endPage > 1
+      const hasLeftSpill = startPage > 2 && currentPage > 5
+      const hasRightSpill =
+        totalPages - endPage > 1 && totalPages - currentPage > 4
       const spillOffset = totalNumbers - (pagesI.length + 1)
 
       switch (true) {
@@ -132,7 +132,7 @@ export const Paginator = ({
                   return (
                     <PaginatorItem key={index}>
                       <PaginatorAction onClick={handleMoveLeft}>
-                        <ArrowIcon name={'arrow_left'} />
+                        <Icon size="small" name={'arrow_left'} />
                       </PaginatorAction>
                     </PaginatorItem>
                   )
@@ -146,7 +146,7 @@ export const Paginator = ({
                   return (
                     <PaginatorItem key={index}>
                       <PaginatorAction onClick={handleMoveRight}>
-                        <ArrowIcon name={'arrow_right'} />
+                        <Icon size="small" name={'arrow_right'} />
                       </PaginatorAction>
                     </PaginatorItem>
                   )
@@ -175,6 +175,7 @@ export const Paginator = ({
 }
 
 const PaginatorWrapper = styled.nav`
+  margin-top: -45px;
   text-align: center;
 `
 
@@ -192,21 +193,17 @@ const PaginatorAction = styled.a<{
   onClick?: Function
   disabled?: boolean
 }>`
-  font-size: 1rem;
-  color: ${Colors.textColor};
+  font-size: 0.875rem;
+  color: ${Colors.textGray};
   cursor: pointer;
   display: flex;
-  padding: 0 5px;
-  border: 1px solid transparent;
+  margin: 0 3px;
+  border-bottom: 1px solid transparent;
   ${props =>
     props.active &&
     `
-      color: ${Colors.redBtn};
+      font-weight:bold;
       cursor: default;
-      border: 1px solid ${Colors.redBtn};
-      border-radius: 5px;
+      
     `};
-`
-const ArrowIcon = styled(Icon)`
-  background-color: ${Colors.secondary};
 `

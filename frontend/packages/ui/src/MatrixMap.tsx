@@ -89,7 +89,7 @@ export const MatrixMap: React.FC<Props> = ({ data, onClick }) => {
             stroke: '#fff',
             strokeWidth: '2px',
             strokeOpacity: 1,
-            pointerEvents: status === 'null' ? 'none' : null,
+            pointerEvents: id ? null : 'none',
           }}
           onClick={() =>
             onClick({

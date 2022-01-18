@@ -3,7 +3,6 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
 
 const ColorChart = {
@@ -18,8 +17,8 @@ const ColorChart = {
   missing: '#B2BAC7',
   unknown: '#D0D7DE',
   tested: '#77DF79',
-  unparsed: '#94742f',
-  unannotated: '#34d9eb',
+  unparsed: '#855476',
+  unannotated: '#7AAEAD',
   partiallyTested: '#FFC046',
 }
 

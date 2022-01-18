@@ -1,3 +1,4 @@
+import { isObjectEmpty } from '@filecoin/core'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactTooltip from 'react-tooltip'
@@ -13,19 +14,21 @@ const MatrixReactTooltip = () => {
         const { id, feature, description } = JSON.parse(data) || {}
 
         return (
-          <TooltipWrapper>
-            <div>
-              <b>{t('filecoin.matrix.behaviorId')}</b>: <span>{id}</span>
-            </div>
+          !isObjectEmpty(JSON.parse(data)) && (
+            <TooltipWrapper>
+              <div>
+                <b>{t('filecoin.matrix.behaviorId')}</b>: <span>{id}</span>
+              </div>
 
-            <div>
-              <b>{t('filecoin.matrix.featureId')}</b>: <span>{feature}</span>
-            </div>
+              <div>
+                <b>{t('filecoin.matrix.featureId')}</b>: <span>{feature}</span>
+              </div>
 
-            <div>
-              <b>{t('filecoin.matrix.desc')}</b>: <span>{description}</span>
-            </div>
-          </TooltipWrapper>
+              <div>
+                <b>{t('filecoin.matrix.desc')}</b>: <span>{description}</span>
+              </div>
+            </TooltipWrapper>
+          )
         )
       }}
     />

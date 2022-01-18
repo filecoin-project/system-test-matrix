@@ -41,3 +41,9 @@ features:
     behaviors:
       - id: OTHER_IMPLEMENTATION_EPOCH_CODENAMES_001
         description: Expected epoch codenames match specified values
+
+  - name: OpenRPC Version
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_OPENRPC_VERSION_001
+        description: |
+          Returns the current version of the OpenRPC API docs

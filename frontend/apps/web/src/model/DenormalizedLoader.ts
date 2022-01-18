@@ -151,6 +151,10 @@ export class DenormalizedLoader implements ModelLoader {
     }
 
     for (const testFile of testCrawlerOutput) {
+      if (testFile.ignore) {
+        continue
+      }
+
       this.preprocessRawTestFile(testFile)
 
       if (!testFile.scenarios || testFile.scenarios.length === 0) {

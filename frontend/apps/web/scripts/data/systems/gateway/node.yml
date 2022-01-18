@@ -1,0 +1,15 @@
+system: Gateway
+subsystem: Node
+features:
+  - name: Get tipset by height
+    behaviors:
+      - id: GATEWAY_NODE_GET_TIPSET_BY_HEIGHT_001
+        description: |
+          Given a context 'ctx', chain epoch 'h', tipset 'ts', and prev retrieval flag 'prev',
+          return the tipset on the chain behind 'ts' at the given height
+
+  - name: Get Version
+    behaviors:
+      - id: GATEWAY_NODE_GET_VERSION_001
+        description: |
+          Return the version of the API "bridged" by this gateway

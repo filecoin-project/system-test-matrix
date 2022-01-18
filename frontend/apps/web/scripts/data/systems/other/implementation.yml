@@ -47,3 +47,9 @@ features:
       - id: OTHER_IMPLEMENTATION_OPENRPC_VERSION_001
         description: |
           Returns the current version of the OpenRPC API docs
+
+  - name: API internal structs
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_API_STRUCTS_001
+        description: |
+          Proxy internal structs should behave as expected

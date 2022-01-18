@@ -28,6 +28,7 @@ features:
         description: |
           Given a list of registered seal proof 'types', clear existing,
           and set the supported proof types for miners.
+  
   - name: Add maximum supported proof types
     behaviors:
       - id: BLOCKCHAIN_POLICY_ADD_MAX_SUPPORTED_PROOF_TYPES_001
@@ -35,6 +36,12 @@ features:
           Given a list of registered seal proof 'types', add the list of types 
           to the supported proof types for miners.
           
+  - name: Assumptions
+    behaviors:
+      - id: BLOCKCHAIN_POLICY_ASSUMPTIONS_001
+        description: |
+          Assumptions about policies should be the same between actor versions
+  
   - name: Send
     behaviors:
       - id: CHAIN_ACTOR_CHAOS_SEND_001
@@ -99,3 +106,9 @@ features:
         description: |
           Given a receiving actor address 'addr', initialize and return a new builder
           with a receiving actor address set
+
+  - name: Partition sizes
+    behaviors:
+      - id: CHAIN_ACTOR_PARTITION_SIZES_001
+        description: |
+          Partition sizes in v0 and v2 should be equal

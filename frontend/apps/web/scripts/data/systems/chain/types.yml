@@ -73,3 +73,15 @@ features:
         description: |
           Given x in Q.256 format,
           compute and return e^-x
+
+  - name: Parse BigInt string
+    behaviors: 
+      - id: CHAIN_TYPES_PARSE_BIGINT_001
+        description: |
+         Given a string representing a BigInt, parse the string and return a BigInt
+
+  - name: BigInt size
+    behaviors: 
+      - id: CHAIN_TYPES_SIZE_BIGINT_001
+        description: |
+         Given a BigInt, return the byte size of the big int

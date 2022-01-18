@@ -5,3 +5,17 @@ features:
     behaviors:
       - id: OTHER_IMPLEMENTATION_001
         description: Go reflection behaves as expected
+  - name: API Tags
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_PERM_TAGS_001
+        description: API Permission tags behave as expected
+  - name: Worker key change
+    behaviors:
+      - id: OTHER_WORKER_KEY_CHANGE_001
+        description: Propose a worker key change
+  - name: FFI dependence
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_FFI_DEPENDENCE_001
+        description: Throw an error if the API depends on the FFI code folder
+      - id: OTHER_IMPLEMENTATION_FFI_DEPENDENCE_002
+        description: Throw an error if the API depends on the FFI build folder

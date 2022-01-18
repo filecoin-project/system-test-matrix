@@ -60,3 +60,10 @@ features:
         description: Given a number of epochs nblocksincl, estimate what gas price
           should be used for a message to have high likelihood of
           inclusion in specified number of epochs
+
+  - name: Invoker transform
+    behaviors:
+      - id: INVOKER_TRANSFORM_001
+        description: |
+          Given an go invokee function,
+          transform it to native code and return it

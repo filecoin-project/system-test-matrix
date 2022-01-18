@@ -51,3 +51,25 @@ features:
         description: |
           Given a CBOR representation of a block header,
           deserialize it.
+
+  - name: Poisson inverted CDF
+    behaviors:
+      - id: CHAIN_TYPES_POISSON_001
+        description: |
+          Given a lambda in Q.256 format,
+          return Poisson CDF value and `1-poisscdf(0, lambda)`.
+          CDF value returend is reused when calling `next`
+
+  - name: Lambda Q.256
+    behaviors:
+      - id: CHAIN_TYPES_LAMBDA_001
+        description: |
+          Given power and total power,
+          return lambda in Q.256 format
+
+  - name: Negative Exponential
+    behaviors:
+      - id: CHAIN_TYPES_NEGATIVE_EXP_001
+        description: |
+          Given x in Q.256 format,
+          compute and return e^-x

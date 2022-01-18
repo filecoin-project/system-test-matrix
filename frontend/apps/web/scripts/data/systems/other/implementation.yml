@@ -19,3 +19,8 @@ features:
         description: Throw an error if the API depends on the FFI code folder
       - id: OTHER_IMPLEMENTATION_FFI_DEPENDENCE_002
         description: Throw an error if the API depends on the FFI build folder
+
+  - name: Actor Errors
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_ACTOR_ERRORS_001
+        description: Actor errors have correct levels & return codes

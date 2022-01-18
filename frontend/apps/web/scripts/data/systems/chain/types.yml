@@ -94,3 +94,21 @@ features:
       - id: CHAIN_TYPES_SIZE_BIGINT_001
         description: |
          Given a BigInt, return the byte size of the big int
+
+  - name: Block serialization
+    behaviors: 
+      - id: CHAIN_TYPES_SERIALIZATION_BLOCK_001
+        description: |
+         Serialize a given block into an array of bytes
+  
+  - name: Signed message serialization
+    behaviors: 
+      - id: CHAIN_TYPES_SERIALIZATION_SIGNED_MESSAGE_001
+        description: |
+         Create a new signed message from a loaded message signing vector
+
+  - name: Message serialization
+    behaviors: 
+      - id: CHAIN_TYPES_SERIALIZATION_MESSAGE_001
+        description: |
+         Serialize a given message into an array of bytes

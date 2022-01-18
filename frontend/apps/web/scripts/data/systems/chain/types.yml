@@ -25,6 +25,18 @@ features:
           Given two messages 'o' and 'm',
           return true if messages are equal
 
+  - name: Message Json Equal call
+    behaviors:
+      - id: TYPES_MESSAGE_JSON_EQUAL_CALL_001
+        description: |
+          Aftern encoding json message, check if the formating is correct
+  
+  - name: Message Json Equal call
+    behaviors:
+      - id: TYPES_MESSAGE_JSON_EQUAL_CALL_002
+        description: |
+          Decode previously encoded json message and compare it to original message
+
   - name: New tipset key
     behaviors:
       - id: TYPES_TIPSETKEY_NEW_001

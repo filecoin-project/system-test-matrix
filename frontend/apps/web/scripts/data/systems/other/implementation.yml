@@ -5,3 +5,8 @@ features:
     behaviors:
       - id: OTHER_IMPLEMENTATION_001
         description: Go reflection behaves as expected
+
+  - name: Actor Errors
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_ACTOR_ERRORS_001
+        description: Actor errors have correct levels & return codes

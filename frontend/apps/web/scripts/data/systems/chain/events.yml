@@ -184,3 +184,15 @@ features:
       - id: EVENTS_CACHE_REVERT_001
         description: |
           Given a context 'ctx', and tipset 'from', revert tipsets following from
+
+  - name: Cache add
+    behaviors:
+      - id: EVENTS_CACHE_ADD_001
+        description: |
+          Given a tipset, add the tipset to the tipset cache
+
+  - name: Cache get
+    behaviors:
+      - id: EVENTS_CACHE_GET_001
+        description: |
+          Given an epoch and tipset key, return a tipset from the cache

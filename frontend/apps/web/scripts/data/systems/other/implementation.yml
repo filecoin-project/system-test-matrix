@@ -31,7 +31,7 @@ features:
         description: Block probabilities fall into expected range
       - id: OTHER_IMPLEMENTATION_BLOCK_PROB_002
         description: Block probabilities with no winners fall into expected range
-
+  
   - name: Block header interop
     behaviors:
       - id: OTHER_IMPLEMENTATION_BLOCK_INTEROP_001

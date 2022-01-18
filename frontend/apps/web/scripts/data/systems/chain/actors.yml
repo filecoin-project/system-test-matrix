@@ -35,7 +35,7 @@ features:
           Given a list of registered seal proof 'types', add the list of types 
           to the supported proof types for miners.
           
-  - name: Send 
+  - name: Send
     behaviors:
       - id: CHAIN_ACTOR_CHAOS_SEND_001
         description: |
@@ -93,3 +93,9 @@ features:
         description: |
           Given a runtime 'rt', return a copy of the serializable values
           available in the runtime
+  - name: Build chaos actor
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_BUILDER_001
+        description: |
+          Given a receiving actor address 'addr', initialize and return a new builder
+          with a receiving actor address set

@@ -24,7 +24,6 @@ describe('Model', () => {
     'chain',
     'client',
     'cmd',
-    'conformance',
     'journal',
     'market',
     'miner',

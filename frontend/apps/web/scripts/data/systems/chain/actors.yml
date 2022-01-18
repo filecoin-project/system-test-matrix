@@ -28,10 +28,68 @@ features:
         description: |
           Given a list of registered seal proof 'types', clear existing,
           and set the supported proof types for miners.
-
   - name: Add maximum supported proof types
     behaviors:
       - id: BLOCKCHAIN_POLICY_ADD_MAX_SUPPORTED_PROOF_TYPES_001
         description: |
           Given a list of registered seal proof 'types', add the list of types 
           to the supported proof types for miners.
+          
+  - name: Send 
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_SEND_001
+        description: |
+          Given a runtime 'rt', and send args 'args',
+          send requests for the actor to send a message to another actor
+          with the specified parameters
+  - name: Caller validation
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_CALLER_VALIDATION_001
+        description: |
+          Given a runtime 'rt', and caller validation args 'args',
+          violate VM call validation constraints 
+  - name: Create actor
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_CREATE_ACTOR_001
+        description: |
+          Given a runtime 'rt', and create actor args 'args',
+          create a new actor with the supplied CID and address and return it
+  - name: Delete actor
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_DELETE_ACTOR_001
+        description: |
+          Given a runtime 'rt', and an address 'beneficiary'
+          delete the executing actor from the state tree, and transfer any balance 
+          to the beneficiary address
+  - name: Resolve address
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_RESOLVE_ADDRESS_001
+        description: |
+          Given a runtime 'rt', and address 'args',
+          resolve the address and return i
+  - name: Create state
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_CREATE_STATE_001
+        description: |
+          Given a runtime 'rt', create the chaos actor's state
+  - name: Mutate state
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_MUTATE_STATE_001
+        description: |
+          Given a runtime 'rt', and mutate state args 'args'
+          attempt to mutate the state according to the passed args
+      - id: CHAIN_ACTOR_CHAOS_MUTATE_STATE_002
+        description: |
+          If mutation fails, return an error
+  - name: Abort with
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_ABORT_WITH_001
+        description: |
+          Given a runtime 'rt', and abort args 'args',
+          cause a panic with the passed exit code
+  - name: Inspect runtime
+    behaviors:
+      - id: CHAIN_ACTOR_CHAOS_INSPECT_RUNTIME_001
+        description: |
+          Given a runtime 'rt', return a copy of the serializable values
+          available in the runtime

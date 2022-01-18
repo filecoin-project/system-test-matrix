@@ -24,3 +24,15 @@ features:
     behaviors:
       - id: OTHER_IMPLEMENTATION_ACTOR_ERRORS_001
         description: Actor errors have correct levels & return codes
+
+  - name: Block probabilities
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_BLOCK_PROB_001
+        description: Block probabilities fall into expected range
+      - id: OTHER_IMPLEMENTATION_BLOCK_PROB_002
+        description: Block probabilities with no winners fall into expected range
+
+  - name: Block header interop
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_BLOCK_INTEROP_001
+        description: Block header can work across different address protocols

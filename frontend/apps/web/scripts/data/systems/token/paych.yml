@@ -11,6 +11,17 @@
       behaviors:
         - id: TOKEN_PAYCH_BEST_SPENDABLE_001
           description: Returns the best spendable voucher if channel address is valid
+
+    - name: check spendable
+      behaviors:
+        - id: TOKEN_PAYCH_CHECK_SPENDABLE_001
+          description: |
+            Given that the voucher is not submitted yet,
+            return true
+        - id: TOKEN_PAYCH_CHECK_SPENDABLE_002
+          description: |
+            Given that the voucher was already submitted,
+            return false
     
     - name: collect
       behaviors:
@@ -65,7 +76,7 @@
         - id: TOKEN_PAYCH_VOUCHER_CREATE_005
           description: Fails if voucher signature is invalid
         - id: TOKEN_PAYCH_VOUCHER_CREATE_006
-          description: Fails when signed by channel recipient instead of sender
+          description: Fails when signed by anybody except the sender
         - id: TOKEN_PAYCH_VOUCHER_CREATE_007
           description: Fails when nonce too low
   

@@ -46,7 +46,11 @@ features:
     behaviors:
       - id: OTHER_IMPLEMENTATION_TABLE_WRITE_001
         description: Write a map of values into a table
-  - name: Flush table
-    behaviors:
       - id: OTHER_IMPLEMENTATION_TABLE_FLUSH_001
         description: Flush the table into a given ioWriter
+
+  - name: OpenRPC Version
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_OPENRPC_VERSION_001
+        description: |
+          Returns the current version of the OpenRPC API docs

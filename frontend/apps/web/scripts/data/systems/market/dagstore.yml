@@ -90,3 +90,9 @@ features:
         description: |
           Given a piece CID, return the unpadded CAR size for the piece's deal
 
+  - name: Deserialize CID 
+    behaviors:
+      - id: MARKET_DAGSTORE_DESERIALIZE_CID_001
+        description: |
+          Given a CID url in the format `lotusScheme://cid`,
+          parse it as a Piece CID

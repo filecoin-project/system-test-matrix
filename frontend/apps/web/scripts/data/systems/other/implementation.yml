@@ -41,3 +41,12 @@ features:
     behaviors:
       - id: OTHER_IMPLEMENTATION_EPOCH_CODENAMES_001
         description: Expected epoch codenames match specified values
+
+  - name: Write table
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_TABLE_WRITE_001
+        description: Write a map of values into a table
+  - name: Flush table
+    behaviors:
+      - id: OTHER_IMPLEMENTATION_TABLE_FLUSH_001
+        description: Flush the table into a given ioWriter

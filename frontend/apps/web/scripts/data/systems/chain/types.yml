@@ -112,3 +112,9 @@ features:
       - id: CHAIN_TYPES_SERIALIZATION_MESSAGE_001
         description: |
          Serialize a given message into an array of bytes
+
+  - name: Address prefix
+    behaviors: 
+      - id: CHAIN_TYPES_ADDRESS_PREFIX_001
+        description: |
+         Verify an address' prefix matches the specified (test/main) net prefix

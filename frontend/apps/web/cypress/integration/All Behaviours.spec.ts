@@ -1,0 +1,22 @@
+describe('All behaviours spec', () => {
+  it('Should check all behaviours page', () => {
+    cy.visit('/behaviors')
+    cy.get('.recharts-responsive-container')
+    cy.get('.c-text--subtitle-l').should('contain', 'Behavior status')
+    cy.get('div>ul>li>span').should('have.attr', 'color')
+    cy.get('.c-native-link ').should('have.value', '')
+    cy.get('input').type('?Working?')
+    cy.get('.c-native-link ').should('not.exist')
+    cy.get('input').clear()
+    cy.get('td>.c-text--text-m').should('have.value', '')
+    cy.get('td>div>.c-text--text-m').should('have.value', '')
+    cy.get('nav>ul>li>a').eq(1).click()
+    cy.get('[data-element="dropdown"]>div>div>span').eq(0).click()
+    //how to select from dropdown here ??
+    cy.get('[data-element="button"]').contains('All Tests').click()
+    cy.url().should('eq', Cypress.config().baseUrl + '/tests')
+    cy.go('back')
+    cy.get('h5.c-text--heading-5').should('contain', 'Systems').click()
+    cy.url().should('eq', Cypress.config().baseUrl + '/')
+  })
+})

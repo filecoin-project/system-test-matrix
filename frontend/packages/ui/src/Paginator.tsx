@@ -132,7 +132,7 @@ export const Paginator = ({
                   return (
                     <PaginatorItem key={index}>
                       <PaginatorAction onClick={handleMoveLeft}>
-                        <Icon size="small" name={'arrow_left'} />
+                        <Icon size="xsmall" name="arrow_left_double" />
                       </PaginatorAction>
                     </PaginatorItem>
                   )
@@ -146,7 +146,7 @@ export const Paginator = ({
                   return (
                     <PaginatorItem key={index}>
                       <PaginatorAction onClick={handleMoveRight}>
-                        <Icon size="small" name={'arrow_right'} />
+                        <Icon size="xsmall" name="arrow_right_double" />
                       </PaginatorAction>
                     </PaginatorItem>
                   )

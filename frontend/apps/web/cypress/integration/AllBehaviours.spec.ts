@@ -24,7 +24,6 @@ describe('All behaviours spec', () => {
     cy.get('nav>ul>li>a').eq(1).click()
     //get rows per page dropdown and click it
     cy.get('[data-element="dropdown"]>div>div>span').eq(0).click()
-
     //get all tests button and click it
     cy.get('[data-element="button"]').contains('All Tests').click()
     //url should have /tests in it

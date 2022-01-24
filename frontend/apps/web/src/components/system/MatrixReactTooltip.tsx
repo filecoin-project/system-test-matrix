@@ -12,9 +12,8 @@ const MatrixReactTooltip = () => {
       multiline
       getContent={data => {
         const { id, feature, description } = JSON.parse(data) || {}
-
-        return (
-          !isObjectEmpty(JSON.parse(data)) && (
+        if (!isObjectEmpty(JSON.parse(data))) {
+          return (
             <TooltipWrapper>
               <div>
                 <b>{t('filecoin.matrix.behaviorId')}</b>: <span>{id}</span>
@@ -29,7 +28,9 @@ const MatrixReactTooltip = () => {
               </div>
             </TooltipWrapper>
           )
-        )
+        } else {
+          return null
+        }
       }}
     />
   )

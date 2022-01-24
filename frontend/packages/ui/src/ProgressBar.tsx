@@ -3,7 +3,6 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
 
 const ColorChart = {
@@ -21,6 +20,7 @@ const ColorChart = {
   unparsed: '#94742f',
   unannotated: '#34d9eb',
   partiallyTested: '#FFC046',
+  chaos: '#855476',
 }
 
 interface Props {

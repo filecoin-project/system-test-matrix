@@ -3097,7 +3097,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/api@6.4.10", "@storybook/api@^6.3.3":
+"@storybook/api@6.4.10":
   version "6.4.10"
   resolved "https://registry.yarnpkg.com/@storybook/api/-/api-6.4.10.tgz#523475bcfdfa29013ee15778f015388aa2bc0dd5"
   integrity sha512-k9o21dLyGype6WEvgWfRAW2Psx/1OvIXSYkWw+9jZNu/X6uUIvOcaj1Y9WZHUyhOiT/B5aaC3lw+ST8iNaykiw==
@@ -3120,7 +3120,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/api@6.4.14":
+"@storybook/api@6.4.14", "@storybook/api@^6.3.3":
   version "6.4.14"
   resolved "https://registry.yarnpkg.com/@storybook/api/-/api-6.4.14.tgz#a477646f7e020a362f044d2e614e3d1a86ba8f6f"
   integrity sha512-GGGwB5+EquoausTXYx4dnLBBk2sOiS1Z58mDj0swBXCZdjfyUfLyxjxvvb/hl65ltufWP3IdmlKKaLiuARXNtw==
@@ -3456,14 +3456,6 @@
     core-js "^3.8.2"
     global "^4.4.0"
 
-"@storybook/client-logger@6.4.12":
-  version "6.4.12"
-  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-6.4.12.tgz#e3841029df44ae3a71991720e2f4b7033422befd"
-  integrity sha512-OxGfjjJkfIHAGgtRalUIkTG5ECGgZIU8jxvtfnB6SQKKR7cO6ldYsf+UatqkY7+CtraoqGU9TMcv9BkXsdFnAw==
-  dependencies:
-    core-js "^3.8.2"
-    global "^4.4.0"
-
 "@storybook/client-logger@6.4.14":
   version "6.4.14"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-6.4.14.tgz#a7aed982407e4146548f9ac4b3af5eba24cd045e"
@@ -3765,14 +3757,14 @@
   dependencies:
     core-js "^3.8.2"
 
-"@storybook/core-events@6.4.10", "@storybook/core-events@^6.3.3":
+"@storybook/core-events@6.4.10":
   version "6.4.10"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-6.4.10.tgz#b32b74d095f942912330e9b95d39054e1588e0e6"
   integrity sha512-EPKO4fJJNbQUf6h6ZkiKSRiUr0QL7+0rEBTbwGnrWEXXZhU34unSY9q/ZD8HY9pdrx0ELwGKaRTixMlEqDZ/iA==
   dependencies:
     core-js "^3.8.2"
 
-"@storybook/core-events@6.4.14":
+"@storybook/core-events@6.4.14", "@storybook/core-events@^6.3.3":
   version "6.4.14"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-6.4.14.tgz#37293c0fce703f2643cec6f24fc6ef7c40e30ded"
   integrity sha512-9QFltg2mxTDjMBfmVtFHtrAEPY/i0oVp2kVdTWo6g05cPffYKAjNUnUVjUl7yiqcQmdEcdqUUQ0ut3xgmcYi/A==
@@ -4336,7 +4328,7 @@
     resolve-from "^5.0.0"
     ts-dedent "^2.0.0"
 
-"@storybook/theming@6.4.14":
+"@storybook/theming@6.4.14", "@storybook/theming@^6.0.0":
   version "6.4.14"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-6.4.14.tgz#f034914eb1853a80f588c7c141d47af0595f6d1f"
   integrity sha512-kqmXNnIoOSAS4cgr9PitMgVrOps725O99eTsJNxB6J1Ide0CsA5v2tV6AmQn/scnpCQNr8uSjZerNlEcl/ensg==
@@ -4345,24 +4337,6 @@
     "@emotion/is-prop-valid" "^0.8.6"
     "@emotion/styled" "^10.0.27"
     "@storybook/client-logger" "6.4.14"
-    core-js "^3.8.2"
-    deep-object-diff "^1.1.0"
-    emotion-theming "^10.0.27"
-    global "^4.4.0"
-    memoizerific "^1.11.3"
-    polished "^4.0.5"
-    resolve-from "^5.0.0"
-    ts-dedent "^2.0.0"
-
-"@storybook/theming@^6.0.0":
-  version "6.4.12"
-  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-6.4.12.tgz#a6f15284ffe9c03d91335203903c38883855c8f3"
-  integrity sha512-f40OgKpI0ymnCiXaY2KeDqYUrHBVxxYYww1WfyQXMv8tv5Mx64nqD8IL/Vyf6t/Wdl5jLdgbgLITwqIij9WJPg==
-  dependencies:
-    "@emotion/core" "^10.1.1"
-    "@emotion/is-prop-valid" "^0.8.6"
-    "@emotion/styled" "^10.0.27"
-    "@storybook/client-logger" "6.4.12"
     core-js "^3.8.2"
     deep-object-diff "^1.1.0"
     emotion-theming "^10.0.27"
@@ -6192,14 +6166,6 @@ babel-plugin-polyfill-corejs3@^0.1.0:
     "@babel/helper-define-polyfill-provider" "^0.1.5"
     core-js-compat "^3.8.1"
 
-babel-plugin-polyfill-corejs3@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.4.0.tgz#0b571f4cf3d67f911512f5c04842a7b8e8263087"
-  integrity sha512-YxFreYwUfglYKdLUGvIF2nJEsGwj+RhWSX/ije3D2vQPOXuyMLMtg/cCGMDpOA7Nd+MwlNdnGODbd2EwUZPlsw==
-  dependencies:
-    "@babel/helper-define-polyfill-provider" "^0.3.0"
-    core-js-compat "^3.18.0"
-
 babel-plugin-polyfill-corejs3@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.5.1.tgz#d66183bf10976ea677f4149a7fcc4d8df43d4060"
@@ -7518,15 +7484,7 @@ copy-webpack-plugin@^10.0.0:
     schema-utils "^4.0.0"
     serialize-javascript "^6.0.0"
 
-core-js-compat@^3.18.0, core-js-compat@^3.20.0, core-js-compat@^3.20.2, core-js-compat@^3.8.1:
-  version "3.20.3"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.20.3.tgz#d71f85f94eb5e4bea3407412e549daa083d23bd6"
-  integrity sha512-c8M5h0IkNZ+I92QhIpuSijOxGAcj3lgpsWdkCqmUTZNwidujF4r3pi6x1DCN+Vcs5qTS2XWWMfWSuCqyupX8gw==
-  dependencies:
-    browserslist "^4.19.1"
-    semver "7.0.0"
-
-core-js-compat@^3.20.0:
+core-js-compat@^3.20.0, core-js-compat@^3.20.2, core-js-compat@^3.8.1:
   version "3.20.3"
   resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.20.3.tgz#d71f85f94eb5e4bea3407412e549daa083d23bd6"
   integrity sha512-c8M5h0IkNZ+I92QhIpuSijOxGAcj3lgpsWdkCqmUTZNwidujF4r3pi6x1DCN+Vcs5qTS2XWWMfWSuCqyupX8gw==

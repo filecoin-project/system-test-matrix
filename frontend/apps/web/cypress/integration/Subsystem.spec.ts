@@ -1,8 +1,8 @@
-import { Button } from './../selectors/button'
-import { Matrix } from './../selectors/matrix'
-import { ProgressBar } from './../selectors/progressBar'
-import { Table } from './../selectors/table'
-import { Text } from './../selectors/text'
+import { Button } from '../selectors/button'
+import { Matrix } from '../selectors/matrix'
+import { ProgressBar } from '../selectors/progressBar'
+import { Table } from '../selectors/table'
+import { Text } from '../selectors/text'
 
 describe('Subsystem specs', () => {
   it('Should check subsystem page', () => {

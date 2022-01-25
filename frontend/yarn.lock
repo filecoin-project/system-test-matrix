@@ -2912,15 +2912,15 @@
     ts-dedent "^2.0.0"
 
 "@storybook/addon-measure@^6.4.8":
-  version "6.4.10"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-measure/-/addon-measure-6.4.10.tgz#3e2a5bb197ccfdd7a34d9dfd9d09f7f29af12fe9"
-  integrity sha512-ki2NgzPQC+9y5djYCUrtcEfk5ovBoa3jY9ZOk8AFiSUXPZorV7SC0ap8+n+hU0tKgWvSJZwcDDWLjckUlKmunQ==
+  version "6.4.14"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-measure/-/addon-measure-6.4.14.tgz#5bd35b12e09f82b0f3dad2e477e26014d5c016e6"
+  integrity sha512-irL4dk9LJopTPPt8ukDyOa453tB8AqRIYGY91Ou2Tr/JvBy2J/KqEZxWoHXQdaIhR+QLi5ShBNEcLxawi+j3tg==
   dependencies:
-    "@storybook/addons" "6.4.10"
-    "@storybook/api" "6.4.10"
-    "@storybook/client-logger" "6.4.10"
-    "@storybook/components" "6.4.10"
-    "@storybook/core-events" "6.4.10"
+    "@storybook/addons" "6.4.14"
+    "@storybook/api" "6.4.14"
+    "@storybook/client-logger" "6.4.14"
+    "@storybook/components" "6.4.14"
+    "@storybook/core-events" "6.4.14"
     "@storybook/csf" "0.0.2--canary.87bc651.0"
     core-js "^3.8.2"
     global "^4.4.0"

@@ -1,4 +1,4 @@
-import { SystemScore, TestStatus } from '@filecoin/types'
+import { BehaviorStatus, SystemScore, TestStatus } from '@filecoin/types'
 import { Button, Icon, Link, PageLayout, Text } from '@filecoin/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -22,7 +22,9 @@ interface BreadCrumbsProps {
   score?: SystemScore | TestStatus
 }
 
-export const getButton = (status: TestStatus | SystemScore) => {
+export const getButton = (
+  status: TestStatus | SystemScore | BehaviorStatus,
+) => {
   const { t } = useTranslation()
 
   const getColor = () => {
@@ -54,6 +56,18 @@ export const getButton = (status: TestStatus | SystemScore) => {
         }
         case SystemScore.mediocre: {
           return 'warning'
+        }
+      }
+    } else if (Object.keys(BehaviorStatus).includes(status)) {
+      switch (status) {
+        case BehaviorStatus.tested: {
+          return 'success'
+        }
+        case BehaviorStatus.partiallyTested: {
+          return 'warning'
+        }
+        case BehaviorStatus.untested: {
+          return 'error'
         }
       }
     }

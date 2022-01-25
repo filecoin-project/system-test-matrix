@@ -4232,6 +4232,22 @@ exports[`Storyshots Icon All Icons 1`] = `
   <svg
     id="/assets/icons/arrow_up_and_down.svg"
   />
+  <span
+    className="c1 c-text--text-m"
+  >
+    arrow_left_double
+  </span>
+  <svg
+    id="/assets/icons/arrow_left_double.svg"
+  />
+  <span
+    className="c1 c-text--text-m"
+  >
+    arrow_right_double
+  </span>
+  <svg
+    id="/assets/icons/arrow_right_double.svg"
+  />
 </div>
 `;
 

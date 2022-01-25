@@ -37,7 +37,10 @@
       "repository": "Repository",
       "kinds": "Kinds (tags)",
       "behaviors": "behaviors",
-      "status": "Status"
+      "status": "Status",
+      "tested": "Tested",
+      "partiallyTested": "Partially Tested",
+      "untested": "Untested"
     },
     "systems": {
       "systems": "Systems",

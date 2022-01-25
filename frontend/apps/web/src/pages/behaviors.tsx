@@ -1,11 +1,12 @@
 import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
-import { BreadCrumbs } from '@/components/system/SystemHeader'
+import { BreadCrumbs, getButton } from '@/components/system/SystemHeader'
 import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
   Button,
+  Dropdown,
   Modal,
   NativeLink,
   PageLayout,
@@ -34,11 +35,14 @@ const Behaviors = () => {
     state: { model },
   } = PageContainer.useContainer()
   const { t } = useTranslation()
-  const behaviors = model.getAllBehaviors()
+  const invokedBehaviors = () =>
+    model.getAllBehaviors().map(b => ({ ...b, status: b.status }))
+  const behaviors = invokedBehaviors()
   const { id: behaviorId }: BehaviorQueryParams = qs.parse(location.search)
   const openedSystemId = behaviors.find(behavior => behavior.id === behaviorId)
-
-  const [modalId, setModalId] = useState<Behavior | undefined>(openedSystemId)
+  const [modalId, setModalId] = useState<Behavior | undefined>(
+    openedSystemId as Behavior,
+  )
   const [searchTerm, setSearchTerm] = useState(undefined)
   const [selectedFilter, setSelectedFilter] = useState(undefined)
   const [searchResults, setSearchResults] = useState(null)
@@ -66,13 +70,15 @@ const Behaviors = () => {
   const [behaviorChartData, setBehaviorChartData] = useState(
     prepareBehaviorChart(),
   )
+
   const navigate = useNavigate()
   const options = {
     threshold: 0.1,
-    keys: ['description', 'id', 'feature', 'system', 'subsystem'],
+    keys: ['description', 'id', 'feature', 'system', 'subsystem', 'status'],
   }
-  const testedOptions = {
-    keys: ['tested'],
+  const StatusOptions = {
+    threshold: 0,
+    keys: ['status'],
   }
   const filterOptions = [
     {
@@ -81,29 +87,32 @@ const Behaviors = () => {
     },
     {
       label: 'Tested',
-      value: 'true',
+      value: 'tested',
+    },
+    {
+      label: 'Partially Tested',
+      value: 'partiallyTested',
     },
     {
       label: 'Untested',
-      value: 'false',
+      value: 'untested',
     },
   ]
   const results = getResultsWithFuseSearch(
     behaviors,
     options,
-    testedOptions,
+    StatusOptions,
     searchTerm,
     selectedFilter,
     filterOptions,
   )
 
-  useEffect(() => {
-    setSearchResults(results)
-  }, [selectedFilter, searchTerm])
-
-  const getPaginationData = (pageNum: number, pageLimit: number) =>
-    searchResults &&
-    searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
+  const getPaginationData = (pageNum: number, pageLimit: number) => {
+    return (
+      searchResults &&
+      searchResults.slice(pageNum * pageLimit - pageLimit, pageNum * pageLimit)
+    )
+  }
 
   const [paginatedData, setPaginatedData] = useState({
     data: getPaginationData(1, 5),
@@ -125,6 +134,9 @@ const Behaviors = () => {
       pageLimit: dataPerPage,
     })
   }
+  useEffect(() => {
+    setSearchResults(results)
+  }, [selectedFilter, searchTerm])
 
   useEffect(() => {
     setPaginatedData({
@@ -202,21 +214,11 @@ const Behaviors = () => {
         return <Text color="textGray">{description}</Text>
       },
     },
-    // isTested: {
-    //   header: t('filecoin.behaviors.tableHeaders.isTested'),
-    //   width: 100,
-    //   Cell: ({ data: { tested } }) => {
-    //     return (
-    //       <CenterLayout>
-    //         {tested ? (
-    //           <Icon name={'check_mark'} color={'green'} />
-    //         ) : (
-    //           <Icon name={'minus'} color={'red'} />
-    //         )}
-    //       </CenterLayout>
-    //     )
-    //   },
-    // },
+    isTested: {
+      header: t('filecoin.behaviors.tableHeaders.isTested'),
+      width: 175,
+      Cell: ({ data: { status } }) => getButton(status),
+    },
   }
 
   useEffect(() => {
@@ -257,23 +259,26 @@ const Behaviors = () => {
             <Text type="subtitle l" color="textGray" semiBold>
               {t('filecoin.behaviors.listOfAllBehaviors')} ({behaviors.length})
             </Text>
-            <SearchInput
-              onSearch={value => {
-                setSearchTerm(value)
-              }}
-              value={searchTerm}
-              placeholder="Search behaviors"
-              autoFocus={false}
-            />
-            {/*<Dropdown*/}
-            {/*  placeholder="All statuses"*/}
-            {/*  name="score"*/}
-            {/*  options={filterOptions}*/}
-            {/*  value={selectedFilter}*/}
-            {/*  onChange={e => {*/}
-            {/*    setSelectedFilter(e.value)*/}
-            {/*  }}*/}
-            {/*/>*/}
+            <SearchAndFilterWrapper>
+              <SearchInput
+                onSearch={value => {
+                  setSearchTerm(value)
+                }}
+                value={searchTerm}
+                placeholder="Search behaviors"
+                width="58.75rem"
+                autoFocus={false}
+              />
+              <Dropdown
+                placeholder="All statuses"
+                name="score"
+                options={filterOptions}
+                value={selectedFilter}
+                onChange={e => {
+                  setSelectedFilter(e.value)
+                }}
+              />
+            </SearchAndFilterWrapper>
           </StackLayout>
           <Table data={paginatedData.data} columns={tableColumns} />
         </StackLayout>

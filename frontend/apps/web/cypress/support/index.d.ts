@@ -7,5 +7,7 @@ declare namespace Cypress {
      * @example cy.homepage()
      */
     homepage(): void
+    scrollingResolution(): void
+    defaultWindowSize(): void
   }
 }

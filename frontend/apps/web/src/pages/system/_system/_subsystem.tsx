@@ -106,7 +106,7 @@ const SubSystem = () => {
       </PageLayout.Section>
       <PageLayout.Section>
         <TestsWrapper shadow={false}>
-          <MatrixWrapper ref={scrollRef}>
+          <MatrixWrapper data-element="matrix-wrapper" ref={scrollRef}>
             <Wrapper gap={1}>
               <ColumnLayout className={'c-matrix__header'} gap={1}>
                 {testKinds.map(testKind => {

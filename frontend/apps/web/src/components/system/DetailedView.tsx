@@ -83,7 +83,7 @@ export const DetailedView: React.FC<Props> = ({ testKinds, system }) => {
       </Modal>
       <MatrixReactTooltip />
       <BoxLayout gap={1.5}>
-        <MatrixWrapper ref={scrollRef}>
+        <MatrixWrapper data-element="matrix-wrapper" ref={scrollRef}>
           <StackLayout gap={1}>
             <ColumnLayout className={'c-matrix__header'} gap={1}>
               <span />

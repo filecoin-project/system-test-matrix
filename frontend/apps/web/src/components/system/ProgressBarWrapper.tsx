@@ -10,7 +10,6 @@ export interface ProgressBarWrapperProps {
 const ProgressBarWrapper: React.FC<ProgressBarWrapperProps> = ({
   shadow = false,
   children,
-  ...props
 }) => {
   return <Wrapper shadow={shadow}>{children}</Wrapper>
 }

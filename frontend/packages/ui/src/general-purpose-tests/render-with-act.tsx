@@ -1,10 +1,10 @@
 import { act, render, RenderResult } from '@testing-library/react'
 import React from 'react'
 
-export async function renderWithAct(element: React.ReactElement) {
+export const renderWithAct = async (element: React.ReactElement) => {
   let result: RenderResult
-  await act(async () => {
+  act(() => {
     result = render(element)
   })
-  return result
+  return Promise.resolve(result)
 }

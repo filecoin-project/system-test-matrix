@@ -1,7 +1,7 @@
+import { itRendersChildren } from '@filecoin/ui/src/general-purpose-tests/it-renders-children'
 import ProgressBarWrapper, {
   ProgressBarWrapperProps,
 } from '../ProgressBarWrapper'
-import { itRendersChildren } from './../../../tests/index'
 
 const defaultProps: ProgressBarWrapperProps = {
   shadow: false,

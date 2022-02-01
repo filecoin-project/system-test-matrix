@@ -2673,32 +2673,29 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@react-to-styled/essentials@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/essentials/-/essentials-0.1.0.tgz#b5df417988a4b066ab7d25d146cb69e1f38f3c81"
-  integrity sha512-L+C7kBKqp74bxQ5lbVutuv8N84rSCFGWq0S9tfWspTK9OdnOVuICdogFGIPjNGWBjjQ+SJy47TzlFXF5N3JZ6g==
+"@react-to-styled/essentials@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/essentials/-/essentials-0.1.1.tgz#907638226738eba7b574adbba264783430c0ce45"
+  integrity sha512-2/cjkZ6Ejb1w4chojuShBrz0E7YXAtKpi6UFcJSArxr17ryWDwzhKYT1XiAF/KFXFwrQ4wcZCb/lcYHTf/hELA==
 
-"@react-to-styled/loader@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/loader/-/loader-0.1.0.tgz#92119d8f8a9eed024c74518bef4c465453c37edc"
-  integrity sha512-7d1HjRVpkefaE/U8AUtUXub4CcTL4pyqzdEJXEkrDEG3LWHuVeI575uiLxhT1bhyKMr4z0dflpkZdw9QrW6NnA==
+"@react-to-styled/loader@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/loader/-/loader-0.1.1.tgz#c8321356962ede3fa895bc6d35e0918c403c01e1"
+  integrity sha512-YyXxW3Piej6fuHlx1B0+/5Ou/WcndDJumrMLTrxiNcaQSidaayfRvAWUB0swTx/pELwvAQE/x4eI0HLrKuZR6g==
   dependencies:
-    "@react-to-styled/essentials" "^0.1.0"
+    "@react-to-styled/essentials" "^0.1.1"
     react "^17.0.2"
     styled-components "^5.1.1"
-    typescript "^4"
 
 "@react-to-styled/table@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/table/-/table-0.1.0.tgz#b10ca5839b79859cd5177959a1f541990682570b"
-  integrity sha512-ygYq6ZN6b9NwCSYR9Z2iEHvuZ+jvElZc8suHSsMur9NkBVnXKeqOvqYMfRFz8P1c6TbdPLJ1ckCrtOBVJmQnUg==
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/table/-/table-0.1.4.tgz#e6efb07e2f711d883b51903077beb37ee940b983"
+  integrity sha512-u6BwJgwVFSnFb/XJO5sW866jZctruPya4YFkw54h3Lzs8EdIlkVFnXdjRJA0xhjPaAkl/22Nxz07nd1BW8ivyg==
   dependencies:
-    "@react-to-styled/essentials" "^0.1.0"
-    "@react-to-styled/loader" "^0.1.0"
-    "@types/styled-components" "^5.1.21"
+    "@react-to-styled/essentials" "^0.1.1"
+    "@react-to-styled/loader" "^0.1.1"
     react "^17.0.2"
     styled-components "^5.1.1"
-    typescript "^4"
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
@@ -4464,7 +4461,7 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
 
-"@types/styled-components@^5.0.2", "@types/styled-components@^5.1.21":
+"@types/styled-components@^5.0.2":
   version "5.1.21"
   resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.21.tgz#39f6bdc4103254d899531ef099dae5619b039cdb"
   integrity sha512-lQzA0T6CaLXoeiOkSe2US2JfFgJV2/yJ8W1BaJubQQh2wdq7H+qScQQfbjURyLkgI1Ig+S/jRHCrWikfMHC6zA==
@@ -17110,7 +17107,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4, typescript@^4.1.3, typescript@^4.4.3:
+typescript@^4.1.3, typescript@^4.4.3:
   version "4.5.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
   integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==

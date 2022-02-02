@@ -29,6 +29,14 @@ features:
           perform logical checks (see "Check Messages" feature) 
           for all pending messages from the specified address
   
+  - name: Check Replace Messages
+    behaviors:
+      - id: CHAIN_MEMPOOL_CHECK_REPLACE_MESSAGES_001
+        description: |
+          Given an address, and a list of replacement messages,
+          perform logical checks (see "Check Messages" feature) 
+          for the pending messages and messages used to replace them
+
   - name: Clear
     behaviors:
       - id: CHAIN_MEMPOOL_CLEAR_001
@@ -66,7 +74,7 @@ features:
         description: |
           Given a signed Message from an untrusted source, 
           push it to the mempool and return its CID.
-          Perform extra strict checks such as: no nonce gaps, at most 10 pending messages for the actor"
+          Perform extra strict checks such as: no nonce gaps, at most 10 pending messages for the actor
 
   - name: Select
     behaviors:
@@ -86,7 +94,7 @@ features:
     behaviors:
       - id: CHAIN_MEMPOOL_CAP_GAS_FEE_001
         description: |
-          Given a mex fee and a message with a set gas limit and premium,
+          Given a max fee and a message with a set gas limit and premium,
           perform capping of gas limit and fee using the formula:
           `msg.gasFeeCap = maxFee/msg.GasLimit`
           `msg.gasPremium = min(msg.GasFeeCap, msg.GasPremium)`

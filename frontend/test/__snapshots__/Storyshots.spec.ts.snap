@@ -6518,6 +6518,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
       <button
         className="c12 c16 c17"
         data-element="button"
+        data-testid="close-btn"
         size="medium"
         variant="outline"
       >

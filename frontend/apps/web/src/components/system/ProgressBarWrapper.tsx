@@ -2,14 +2,16 @@ import { CardLayout } from '@filecoin/ui'
 import React from 'react'
 import styled from 'styled-components'
 
+export interface ProgressBarWrapperProps {
+  shadow: boolean
+  children: React.ReactNode
+}
 
-const ProgressBarWrapper = ({shadow=false,children,...props}) => {
-    return (
-        <Wrapper shadow={shadow}>
-          {children}
-        </Wrapper>
-    )
-
+const ProgressBarWrapper: React.FC<ProgressBarWrapperProps> = ({
+  shadow = false,
+  children,
+}) => {
+  return <Wrapper shadow={shadow}>{children}</Wrapper>
 }
 
 const Wrapper = styled(CardLayout)`
@@ -22,4 +24,4 @@ const Wrapper = styled(CardLayout)`
   }
 `
 
-export default ProgressBarWrapper;
+export default ProgressBarWrapper

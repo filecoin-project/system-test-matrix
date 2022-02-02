@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import React from 'react'
 import InlineSVG, { Props } from 'react-inlinesvg'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
 
 export const IconNames = [
@@ -34,6 +33,8 @@ export const IconNames = [
   'search',
   'warning',
   'arrow_up_and_down',
+  'arrow_left_double',
+  'arrow_right_double',
 ] as const
 export type IconNamesType = typeof IconNames[number]
 

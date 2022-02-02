@@ -3,7 +3,7 @@ import {
   filterItems,
   findSingle,
   relativePosition,
-  scrollInView
+  scrollInView,
 } from '@filecoin/core'
 import { find } from 'lodash'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
@@ -36,7 +36,7 @@ export type DropdownSizes = typeof DropdownSizes[number]
 export const DropdownStatus = ['success', 'error'] as const
 export type DropdownStatus = typeof DropdownStatus[number]
 
-interface Props {
+export interface DropdownProps {
   /**
    * Seletc item options
    */
@@ -95,7 +95,7 @@ interface Props {
   tabIndex?: number
 }
 
-export const Dropdown: FunctionComponent<Props> = ({
+export const Dropdown: FunctionComponent<DropdownProps> = ({
   size = 'medium',
   ...props
 }) => {
@@ -181,7 +181,7 @@ export const Dropdown: FunctionComponent<Props> = ({
         document.addEventListener('mouseup', remove, false)
         setShow(true)
         const position = relativePosition(myRef.current, containerRef.current)
-        if(position < 0) {
+        if (position < 0) {
           myRef.current.classList.add('openedAbove')
         }
 
@@ -487,7 +487,7 @@ export const Dropdown: FunctionComponent<Props> = ({
         {labelElement}
         {props.value && !showField ? (
           <Icon name="arrow_down" size="xsmall" overflow="visible" />
-       ) : showField ? (
+        ) : showField ? (
           <Icon name="arrow_up" size="xsmall" overflow="visible" />
         ) : (
           <Icon name="arrow_up_and_down" size="xsmall" overflow="visible" />
@@ -781,12 +781,13 @@ const Element = styled.div<{
   border-radius: 0 0 5px 5px;
   box-shadow: 0 16px 24px rgb(20 20 43 12%);
   background-color: #fff;
-  
+
   &.openedAbove {
-   border-top: 1px solid ${Colors.gray60};
-   border-radius: 5px 5px 0 0;
-   border-bottom: none;
-   }`
+    border-top: 1px solid ${Colors.gray60};
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+  }
+`
 
 const Content = styled.div<{
   scrollHeight?: number

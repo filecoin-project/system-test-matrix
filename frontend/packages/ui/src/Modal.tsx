@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-
 import { Button } from './Button'
 import { Icon } from './Icon'
 import { CenterLayout } from './Layouts'
@@ -58,7 +57,12 @@ export const Modal: FunctionComponent<ModalProps> = ({
           {footer ? (
             footer
           ) : (
-            <CloseButton variant="outline" size="medium" onClick={onClose}>
+            <CloseButton
+              data-testid="close-btn"
+              variant="outline"
+              size="medium"
+              onClick={onClose}
+            >
               Cancel
             </CloseButton>
           )}

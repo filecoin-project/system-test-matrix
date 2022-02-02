@@ -105,3 +105,10 @@ features:
         description: |
           Given an address 'actor', a map of signed messages 'mset', base fee 'baseFee', and tipset 'ts',
           create and return a new message chain
+
+  - name: Get Gas Reward
+    behaviors:
+      - id: CHAIN_MEMPOOL_GET_GAS_REWARD_001
+        description: |
+          Given a signed message and a base fee,
+          return the gas reward

@@ -117,4 +117,11 @@ features:
     behaviors: 
       - id: CHAIN_TYPES_ADDRESS_PREFIX_001
         description: |
-         Verify an address' prefix matches the specified (test/main) net prefix
+          Verify an address' prefix matches the specified (test/main) net prefix
+
+  - name: Signature serialization
+    behaviors:
+      - id: CHAIN_TYPES_SIGNATURE_SERIALIZATION_001
+        description: |
+          Given a BLS signature, check deserialize(serialize(original)) == original (round trip check)
+

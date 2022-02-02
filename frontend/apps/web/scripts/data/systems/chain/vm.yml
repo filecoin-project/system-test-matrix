@@ -67,3 +67,14 @@ features:
         description: |
           Given an go invokee function,
           transform it to native code and return it
+
+  - name: Store Put
+    behaviors:
+      - id: CHAIN_VM_STORE_PUT_001
+        description: |
+          Given an object that can be marshalled as CBOR,
+          put it in the store and return it's CID
+      - id: CHAIN_VM_STORE_PUT_002
+        description: |
+          Given that the object marshalling fails,
+          return an appropriate error

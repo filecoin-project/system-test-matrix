@@ -1,3 +1,5 @@
+import { getButton } from '@/components/system/SystemHeader'
+import { PageContainer } from '@/containers/PageContainer'
 import {
   Button,
   Link,
@@ -12,9 +14,6 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-
-import { PageContainer } from '@/containers/PageContainer'
-import { getButton } from '@/components/system/SystemHeader'
 
 const Header = () => {
   const { t } = useTranslation()
@@ -92,7 +91,6 @@ const Home = () => {
                 return (
                   <Bar>
                     <ProgressBar
-                      onClick={() => navigate(`system/${data.name}`)}
                       data={data.testStatistics.percentages.map(
                         ({ kind, ...rest }) => ({
                           name: kind,
@@ -111,7 +109,6 @@ const Home = () => {
                 return (
                   <Bar>
                     <ProgressBar
-                      onClick={() => navigate(`system/${data.name}`)}
                       data={data.behaviorStatistics.percentages.map(
                         ({ status, ...rest }) => ({
                           name: status,

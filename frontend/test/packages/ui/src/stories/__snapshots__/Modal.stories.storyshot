@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Modal Modal Example 1`] = `
+<button
+  className="sc-dlVxhl sc-kfPuZi kJRGFw bWgxaE"
+  data-element="button"
+  onClick={[Function]}
+  size="medium"
+  variant="rounded"
+>
+  Open Modal
+</button>
+`;
+
+exports[`Storyshots Modal Verification Status 1`] = `
+<div
+  className="sc-jgrJph hZsHde"
+>
+  <div
+    className="sc-gSQFLo hmHPlj"
+  />
+  <div
+    className="o-center-layout sc-dkPtRN sc-lbhJGD jYpkXZ bNpmiH"
+    gap={2}
+  >
+    <div
+      className="sc-iNGGcK fieSjp"
+    >
+      <span
+        className="sc-gKclnd eqycBs c-text--text-xl"
+        semiBold={true}
+      >
+        Details
+      </span>
+      <svg
+        id="/assets/icons/close.svg"
+      />
+    </div>
+    <div
+      className="sc-jeraig iVVcPh"
+    >
+      <div
+        center={true}
+        className="sc-jrQzAO sc-uojGG lhCVrE kzNlgK"
+        gap={1.5}
+      >
+        <div
+          className="sc-ilfuhL eudApD"
+        />
+        <span
+          bold={true}
+          className="sc-gKclnd ljlKbj c-text--text-xl"
+        >
+          iam.modal.verificationStatus
+        </span>
+        <span
+          className="sc-gKclnd jFgZxI c-text--text-m c-text--color-gray80"
+        >
+          iam.modal.description
+        </span>
+      </div>
+      <button
+        className="sc-dlVxhl sc-kfPuZi kJRGFw bWgxaE sc-bilyIR fHYbzd"
+        data-element="button"
+        size="medium"
+        variant="rounded"
+      >
+        iam.modal.okBtn
+      </button>
+    </div>
+    <div
+      className="sc-eJwWfJ cTNUmi"
+    >
+      <button
+        className="sc-dlVxhl sc-fKVqWL kJRGFw jsYCsA sc-nVkyK daGAke"
+        data-element="button"
+        data-testid="close-btn"
+        size="medium"
+        variant="outline"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -1,3 +1,8 @@
-import initStoryshots from '@storybook/addon-storyshots'
+import initStoryshots, {
+  multiSnapshotWithOptions,
+} from '@storybook/addon-storyshots'
 
-initStoryshots()
+initStoryshots({
+  //separate snapshot file for each stories file
+  test: multiSnapshotWithOptions(),
+})

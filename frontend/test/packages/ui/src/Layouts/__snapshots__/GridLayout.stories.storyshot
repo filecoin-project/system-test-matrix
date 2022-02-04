@@ -1,0 +1,316 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Layout/GridLayout Details 1`] = `
+<div
+  className="sc-jRQBWg cxpPjD"
+>
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "#199fd5",
+        "minHeight": 50,
+      }
+    }
+  />
+  <section
+    className="sc-eCImPb dkiFle"
+    span={2}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb dkiFle"
+    span={2}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb dkiFle"
+    span={2}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb dkiFle"
+    span={2}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb dkiFle"
+    span={2}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb dkiFle"
+    span={2}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb flLgbD"
+    span={3}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb flLgbD"
+    span={3}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+   
+  <section
+    className="sc-eCImPb flLgbD"
+    span={3}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+   
+  <section
+    className="sc-eCImPb flLgbD"
+    span={3}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb flLgbD"
+    span={3}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb dXYuDs"
+    span={4}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+   
+  <section
+    className="sc-eCImPb dXYuDs"
+    span={4}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+   
+  <section
+    className="sc-eCImPb duMwno"
+    span={6}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb duMwno"
+    span={6}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+  <section
+    className="sc-eCImPb fXUkud"
+    span={12}
+  >
+    <div
+      style={
+        Object {
+          "background": "#199fd5",
+          "minHeight": 50,
+        }
+      }
+    />
+  </section>
+</div>
+`;

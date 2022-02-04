@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Layout/BoxLayout Overview 1`] = `
+<div
+  className="sc-bdvvtL braPyZ"
+  gap={1}
+  style={
+    Object {
+      "background": "#f9d56e",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "background": "#e8505b",
+        "minHeight": 120,
+      }
+    }
+  />
+</div>
+`;

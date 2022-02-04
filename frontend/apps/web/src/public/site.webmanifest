@@ -1,14 +1,9 @@
 {
-  "name": "SL WALLET",
-  "short_name": "WALLET",
+  "name": "Filecoin",
+  "short_name": "FIL",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
+      "src": "./img/logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }

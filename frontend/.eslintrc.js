@@ -4,8 +4,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'plugin:import/recommended',
@@ -71,6 +69,7 @@ module.exports = {
     // TODO: turn on later
     'react/prop-types': 'off',
   },
+
   settings: {
     react: {
       version: 'detect',
@@ -85,4 +84,22 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      files: ['*.mdx'],
+      extends: 'plugin:mdx/recommended',
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+
+      parserOptions: {
+        project: ['./tsconfig.json'],
+      },
+    },
+  ],
 }

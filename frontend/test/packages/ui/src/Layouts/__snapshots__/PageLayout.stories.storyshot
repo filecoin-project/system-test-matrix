@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Layout/PageLayout Overview 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-kDTinF ebTNpx"
+    setFooter={[Function]}
+    setHeader={[Function]}
+  >
+    <div
+      className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
+      gap={4}
+    >
+      <section
+        className="c-page-layout__section"
+      >
+        <div
+          center={true}
+          className="sc-jrQzAO ijnGys"
+        >
+          Some Content
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+`;

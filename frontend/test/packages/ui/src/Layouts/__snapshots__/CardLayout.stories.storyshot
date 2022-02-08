@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Layout/CardLayout Overview 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-kDTinF ebTNpx"
+    setFooter={[Function]}
+    setHeader={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#f9f9fe",
+      }
+    }
+  >
+    <div
+      className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
+      gap={4}
+    >
+      <section
+        className="c-page-layout__section"
+      >
+        <div
+          className="o-center-layout sc-dkPtRN kyAoRl"
+        >
+          <div
+            className="sc-gsDKAQ kRyEwj c-card-layout"
+            style={
+              Object {
+                "height": 300,
+                "textAlign": "center",
+                "width": 250,
+              }
+            }
+          >
+            <p>
+              Lorem ipsum dolor sit amet
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+`;

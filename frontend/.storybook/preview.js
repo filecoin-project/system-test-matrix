@@ -1,6 +1,6 @@
-import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks'
+import { DocsPage, DocsContainer } from '@storybook/addon-docs'
 import { initTranslations } from '@filecoin/core'
-
+import React from 'react'
 initTranslations()
 
 export const decorators = [

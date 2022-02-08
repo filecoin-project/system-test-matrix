@@ -1,0 +1,615 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Dropdown Default 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN sc-dtDOqo kyAoRl kzEgoZ"
+  >
+    <div
+      className="sc-cCcXHH jGwqIL"
+      data-element="dropdown"
+      onKeyUp={[Function]}
+      tabIndex={0}
+    >
+      <div
+        onMouseUp={[Function]}
+      >
+        <div
+          className="sc-jcFjpl ezNekg"
+          size="medium"
+        >
+          <div
+            className="sc-caiLqq Scuxf"
+          >
+            <select
+              multiple={false}
+              tabIndex={-1}
+            >
+              <option
+                value=""
+              >
+                <span
+                  bold={true}
+                  className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
+                >
+                  Select option
+                </span>
+              </option>
+            </select>
+          </div>
+          <span
+            className="sc-cidDSM jqOdPa"
+          >
+            Select option
+          </span>
+          <svg
+            id="/assets/icons/arrow_up_and_down.svg"
+          />
+        </div>
+      </div>
+      <div
+        className="sc-iUKqMP ffBUXf"
+      >
+        <div
+          className="sc-iAKWXU fFqyuy"
+        >
+          <ul
+            className="sc-kLwhqv kFsyta"
+          >
+            <li
+              className="sc-ezbkAF ievrwD"
+              label="Menu item 1 "
+              onClick={[Function]}
+              selected={false}
+            >
+              <span
+                className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+              >
+                Menu item 1 
+              </span>
+            </li>
+            <li
+              className="sc-ezbkAF ievrwD"
+              label="Menu item 2"
+              onClick={[Function]}
+              selected={false}
+            >
+              <span
+                className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+              >
+                Menu item 2
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown Multiple 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN sc-dtDOqo kyAoRl kzEgoZ"
+  >
+    <div
+      className="sc-cCcXHH jGwqIL"
+      data-element="dropdown"
+      onKeyUp={[Function]}
+      tabIndex={0}
+    >
+      <div
+        onMouseUp={[Function]}
+      >
+        <div
+          className="sc-jcFjpl ezNekg"
+          size="medium"
+        >
+          <div
+            className="sc-caiLqq Scuxf"
+          >
+            <select
+              multiple={true}
+              tabIndex={-1}
+            >
+              <option
+                value=""
+              >
+                <span
+                  bold={true}
+                  className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
+                >
+                  Select options
+                </span>
+              </option>
+            </select>
+          </div>
+          <span
+            className="sc-cidDSM jqOdPa"
+          >
+            Select options
+          </span>
+          <svg
+            id="/assets/icons/arrow_up_and_down.svg"
+          />
+        </div>
+      </div>
+      <div
+        className="sc-iUKqMP ffBUXf"
+      >
+        <div
+          className="sc-iAKWXU fFqyuy"
+        >
+          <ul
+            className="sc-kLwhqv kFsyta"
+          >
+            <li
+              className="sc-ezbkAF ievrwD"
+              label="Menu item 1 "
+              onClick={[Function]}
+              selected={false}
+            >
+              <label
+                htmlFor={1}
+              >
+                <input
+                  checked={false}
+                  className="sc-bBHxTw evIPrh"
+                  data-element="checkbox"
+                  disabled={true}
+                  id={1}
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </label>
+              <span
+                className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+              >
+                Menu item 1 
+              </span>
+            </li>
+            <li
+              className="sc-ezbkAF ievrwD"
+              label="Menu item 2"
+              onClick={[Function]}
+              selected={false}
+            >
+              <label
+                htmlFor={1}
+              >
+                <input
+                  checked={false}
+                  className="sc-bBHxTw evIPrh"
+                  data-element="checkbox"
+                  disabled={true}
+                  id={1}
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </label>
+              <span
+                className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+              >
+                Menu item 2
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown Size 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN sc-dtDOqo kyAoRl kzEgoZ"
+  >
+    <div
+      className="sc-jrQzAO ehlnOo"
+    >
+      <div
+        style={
+          Object {
+            "margin": 10,
+            "width": 328,
+          }
+        }
+      >
+        <div
+          className="sc-cCcXHH jGwqIL"
+          data-element="dropdown"
+          onKeyUp={[Function]}
+          tabIndex={0}
+        >
+          <div
+            onMouseUp={[Function]}
+          >
+            <div
+              className="sc-jcFjpl dSSKEi"
+              size="large"
+            >
+              <div
+                className="sc-caiLqq Scuxf"
+              >
+                <select
+                  multiple={false}
+                  tabIndex={-1}
+                >
+                  <option
+                    value=""
+                  >
+                    <span
+                      bold={true}
+                      className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
+                    >
+                      Select  large
+                    </span>
+                  </option>
+                </select>
+              </div>
+              <span
+                className="sc-cidDSM jqOdPa"
+              >
+                Select  large
+              </span>
+              <svg
+                id="/assets/icons/arrow_up_and_down.svg"
+              />
+            </div>
+          </div>
+          <div
+            className="sc-iUKqMP ffBUXf"
+          >
+            <div
+              className="sc-iAKWXU fFqyuy"
+            >
+              <ul
+                className="sc-kLwhqv kFsyta"
+              >
+                <li
+                  className="sc-ezbkAF ievrwD"
+                  label="Menu item 1 "
+                  onClick={[Function]}
+                  selected={false}
+                >
+                  <span
+                    className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  >
+                    Menu item 1 
+                  </span>
+                </li>
+                <li
+                  className="sc-ezbkAF ievrwD"
+                  label="Menu item 2"
+                  onClick={[Function]}
+                  selected={false}
+                >
+                  <span
+                    className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  >
+                    Menu item 2
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "margin": 10,
+            "width": 328,
+          }
+        }
+      >
+        <div
+          className="sc-cCcXHH jGwqIL"
+          data-element="dropdown"
+          onKeyUp={[Function]}
+          tabIndex={0}
+        >
+          <div
+            onMouseUp={[Function]}
+          >
+            <div
+              className="sc-jcFjpl ezNekg"
+              size="medium"
+            >
+              <div
+                className="sc-caiLqq Scuxf"
+              >
+                <select
+                  multiple={false}
+                  tabIndex={-1}
+                >
+                  <option
+                    value=""
+                  >
+                    <span
+                      bold={true}
+                      className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
+                    >
+                      Select  medium
+                    </span>
+                  </option>
+                </select>
+              </div>
+              <span
+                className="sc-cidDSM jqOdPa"
+              >
+                Select  medium
+              </span>
+              <svg
+                id="/assets/icons/arrow_up_and_down.svg"
+              />
+            </div>
+          </div>
+          <div
+            className="sc-iUKqMP ffBUXf"
+          >
+            <div
+              className="sc-iAKWXU fFqyuy"
+            >
+              <ul
+                className="sc-kLwhqv kFsyta"
+              >
+                <li
+                  className="sc-ezbkAF ievrwD"
+                  label="Menu item 1 "
+                  onClick={[Function]}
+                  selected={false}
+                >
+                  <span
+                    className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  >
+                    Menu item 1 
+                  </span>
+                </li>
+                <li
+                  className="sc-ezbkAF ievrwD"
+                  label="Menu item 2"
+                  onClick={[Function]}
+                  selected={false}
+                >
+                  <span
+                    className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  >
+                    Menu item 2
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown Status 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN sc-dtDOqo kyAoRl kzEgoZ"
+  >
+    <div
+      className="sc-jrQzAO ehlnOo"
+    >
+      <div
+        style={
+          Object {
+            "margin": 10,
+            "width": 328,
+          }
+        }
+      >
+        <div
+          className="sc-cCcXHH hiJnTN"
+          data-element="dropdown"
+          onKeyUp={[Function]}
+          tabIndex={0}
+        >
+          <div
+            onMouseUp={[Function]}
+          >
+            <div
+              className="sc-jcFjpl ezNekg"
+              size="medium"
+            >
+              <div
+                className="sc-caiLqq Scuxf"
+              >
+                <select
+                  multiple={false}
+                  tabIndex={-1}
+                >
+                  <option
+                    value=""
+                  >
+                    <span
+                      bold={true}
+                      className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
+                    >
+                      Select success
+                    </span>
+                  </option>
+                </select>
+              </div>
+              <span
+                className="sc-cidDSM jqOdPa"
+              >
+                Select success
+              </span>
+              <svg
+                id="/assets/icons/arrow_up_and_down.svg"
+              />
+            </div>
+          </div>
+          <div
+            className="sc-iUKqMP cJcGJq"
+          >
+            <div
+              className="sc-iAKWXU fFqyuy"
+            >
+              <ul
+                className="sc-kLwhqv kFsyta"
+              >
+                <li
+                  className="sc-ezbkAF ievrwD"
+                  label="Menu item 1 "
+                  onClick={[Function]}
+                  selected={false}
+                >
+                  <span
+                    className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  >
+                    Menu item 1 
+                  </span>
+                </li>
+                <li
+                  className="sc-ezbkAF ievrwD"
+                  label="Menu item 2"
+                  onClick={[Function]}
+                  selected={false}
+                >
+                  <span
+                    className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  >
+                    Menu item 2
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span
+            className="sc-bYoBSM irefIK"
+          >
+            Text
+          </span>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "margin": 10,
+            "width": 328,
+          }
+        }
+      >
+        <div
+          className="sc-cCcXHH hJODlp"
+          data-element="dropdown"
+          onKeyUp={[Function]}
+          tabIndex={0}
+        >
+          <div
+            onMouseUp={[Function]}
+          >
+            <div
+              className="sc-jcFjpl ezNekg"
+              size="medium"
+            >
+              <div
+                className="sc-caiLqq Scuxf"
+              >
+                <select
+                  multiple={false}
+                  tabIndex={-1}
+                >
+                  <option
+                    value=""
+                  >
+                    <span
+                      bold={true}
+                      className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
+                    >
+                      Select error
+                    </span>
+                  </option>
+                </select>
+              </div>
+              <span
+                className="sc-cidDSM jqOdPa"
+              >
+                Select error
+              </span>
+              <svg
+                id="/assets/icons/arrow_up_and_down.svg"
+              />
+            </div>
+          </div>
+          <div
+            className="sc-iUKqMP kPXjTQ"
+          >
+            <div
+              className="sc-iAKWXU fFqyuy"
+            >
+              <ul
+                className="sc-kLwhqv kFsyta"
+              >
+                <li
+                  className="sc-ezbkAF ievrwD"
+                  label="Menu item 1 "
+                  onClick={[Function]}
+                  selected={false}
+                >
+                  <span
+                    className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  >
+                    Menu item 1 
+                  </span>
+                </li>
+                <li
+                  className="sc-ezbkAF ievrwD"
+                  label="Menu item 2"
+                  onClick={[Function]}
+                  selected={false}
+                >
+                  <span
+                    className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  >
+                    Menu item 2
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span
+            className="sc-bYoBSM kYSPjk"
+          >
+            Text
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

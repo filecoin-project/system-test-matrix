@@ -23,7 +23,7 @@ const ColorChart = {
   chaos: '#855476',
 }
 
-interface Props {
+export interface ProgressBarProps {
   data: {
     name: string
     percentage: number
@@ -41,7 +41,7 @@ export const ProgressBar = ({
   tooltip = true,
   onClick = () => null,
   ...props
-}: Props) => {
+}: ProgressBarProps) => {
   const prepData = props.data.map(({ name, ...rest }) => ({
     name: name ? name : 'unknown',
     ...rest,
@@ -123,7 +123,10 @@ export const ProgressBar = ({
   }
 
   return (
-    <Wrapper data-tip={legend ? null : JSON.stringify(props)}>
+    <Wrapper
+      data-testid="progress-bar-test"
+      data-tip={legend ? null : JSON.stringify(props)}
+    >
       {tooltip && (
         <ReactTooltip
           effect={'solid'}

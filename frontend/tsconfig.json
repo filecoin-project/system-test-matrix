@@ -10,6 +10,7 @@
     "allowJs": true,
     "skipLibCheck": true
   },
+  "include": ["./index.d.ts"],
   "exclude": [
     "node_modules",
     "**/dist/**/*",

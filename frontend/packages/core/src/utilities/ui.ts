@@ -54,7 +54,7 @@ export const relativePosition = (
           (leftMenu || rightMenu ? targetHeight : 1) +
           -0.97 * elementDimensions.height
         if (targetOffset.top + top < 0) {
-         top =
+          top =
             -1 *
             (leftMenu || rightMenu
               ? targetOffset.top - targetHeight

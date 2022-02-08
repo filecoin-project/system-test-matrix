@@ -1,10 +1,3 @@
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import MatrixReactTooltip from '@/components/system/MatrixReactTooltip'
-import MatrixTestKindsMapper from '@/components/system/MatrixTestKindsMapper'
-import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
-import { SystemHeader } from '@/components/system/SystemHeader'
-import { PageContainer } from '@/containers/PageContainer'
-import { useHorizontalScroll } from '@/hooks/useHorisontalScroll'
 import { Behavior, TestQueryParams } from '@filecoin/types'
 import {
   CardLayout,
@@ -22,6 +15,14 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
+import MatrixReactTooltip from '@/components/system/MatrixReactTooltip'
+import MatrixTestKindsMapper from '@/components/system/MatrixTestKindsMapper'
+import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
+import { SystemHeader } from '@/components/system/SystemHeader'
+import { PageContainer } from '@/containers/PageContainer'
+import { useHorizontalScroll } from '@/hooks/useHorisontalScroll'
 
 const SubSystem = () => {
   const {

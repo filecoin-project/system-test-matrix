@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React from 'react'
+
 import { Checkbox } from '../../Checkbox'
+
 import CheckboxDocs from './CheckboxDocs.mdx'
 
 export default {

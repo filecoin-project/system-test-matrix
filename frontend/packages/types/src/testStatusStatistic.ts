@@ -1,7 +1,8 @@
 import _ from 'lodash'
-import { Behavior } from '.'
 
 import { Test, TestStatus } from './test'
+
+import { Behavior } from '.'
 
 // TestStatusStatistic says what <percentage> (0-100) of the tests are in a specific <status>
 // Example: status=fail, percentage=5

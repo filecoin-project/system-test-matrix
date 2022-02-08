@@ -13,7 +13,7 @@
     "serve": "lerna run serve --parallel",
     "test": "jest",
     "lint": "eslint --ext .ts,.tsx --cache --color apps/ packages/ && stylelint --cache \"packages/**/*.tsx\" \"apps/**/*.tsx\"",
-    "format": "prettier --write \"packages/**/*.tsx\" \"packages/**/*.ts\" \"apps/**/*.tsx\" \"apps/**/*.ts\"",
+    "format": "prettier --write \"packages/**/*.tsx\" \"packages/**/*.ts\" \"packages/**/*.mdx\" \"apps/**/*.tsx\" \"apps/**/*.ts\"",
     "storybook": "start-storybook -p 6006 -s ./apps/web/src/public,./packages/ui/src/fonts",
     "build-storybook": "build-storybook --quiet -s ./apps/web/src/public,./packages/ui/src/fonts"
   },

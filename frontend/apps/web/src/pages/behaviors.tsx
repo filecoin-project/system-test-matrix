@@ -1,7 +1,3 @@
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
-import { BreadCrumbs, getButton } from '@/components/system/SystemHeader'
-import { PageContainer } from '@/containers/PageContainer'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { Behavior } from '@filecoin/types'
 import {
@@ -25,6 +21,11 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { PageContainer } from '@/containers/PageContainer'
+import { BreadCrumbs, getButton } from '@/components/system/SystemHeader'
+import ProgressBarWrapper from '@/components/system/ProgressBarWrapper'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface BehaviorQueryParams {
   id?: string

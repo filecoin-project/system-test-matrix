@@ -1,4 +1,3 @@
-import { getButton } from '@/components/system/SystemHeader'
 import { getResultsWithFuseSearch } from '@filecoin/core'
 import { System } from '@filecoin/types'
 import {
@@ -10,14 +9,16 @@ import {
   SearchInput,
   StackLayout,
   Table,
-  Text
+  Text,
 } from '@filecoin/ui'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
 import ProgressBarWrapper from './ProgressBarWrapper'
 
+import { getButton } from '@/components/system/SystemHeader'
 
 interface Props {
   system: System

@@ -1,7 +1,3 @@
-import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
-import { TestModal } from '@/components/tests/TestModal'
-import { PageContainer } from '@/containers/PageContainer'
-import { useHorizontalScroll } from '@/hooks/useHorisontalScroll'
 import {
   Behavior,
   System,
@@ -22,8 +18,14 @@ import qs from 'query-string'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+
 import MatrixReactTooltip from './MatrixReactTooltip'
 import MatrixTestKindsMapper from './MatrixTestKindsMapper'
+
+import { useHorizontalScroll } from '@/hooks/useHorisontalScroll'
+import { PageContainer } from '@/containers/PageContainer'
+import { TestModal } from '@/components/tests/TestModal'
+import { BehaviorModal } from '@/components/behaviors/BehaviorModal'
 
 interface Props {
   testKinds: TestKind[]

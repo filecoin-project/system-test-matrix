@@ -1,5 +1,6 @@
 import { expect } from '@jest/globals'
 import React from 'react'
+
 import { renderWithAct } from './render-with-act'
 
 export function itRendersChildren(

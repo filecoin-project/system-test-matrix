@@ -1,6 +1,7 @@
 import { ReactProps } from '@filecoin/types'
 import React from 'react'
 import styled from 'styled-components'
+
 import { Colors } from '../styles/colors'
 
 export interface TabProps extends ReactProps<'div'> {
@@ -50,6 +51,7 @@ export const PageLayoutTab = styled(Tab)`
     active &&
     `border-bottom: 2px solid ${Colors.tabHover}; padding-bottom: 10px;`}
   &:hover {
-    ${({ active }) => !active && `border-bottom: 2px solid ${Colors.borderColor};`}
+    ${({ active }) =>
+      !active && `border-bottom: 2px solid ${Colors.borderColor};`}
   }
 `

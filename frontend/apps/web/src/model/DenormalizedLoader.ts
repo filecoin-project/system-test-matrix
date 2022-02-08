@@ -16,13 +16,11 @@ import {
 import { pascalCase } from 'change-case'
 
 import { ModelLoader } from './ModelLoader'
+import { RawTestFile } from './RawTestFile'
+import { RawBehavior } from './RawBehavior'
 
 import behaviors from '@/behaviors.json'
 import testCrawlerOutput from '@/tests.json'
-
-import { RawTestFile } from './RawTestFile'
-
-import { RawBehavior } from './RawBehavior'
 
 export const DEFAULT_TEST_KINDS = ['unit', 'integration', 'e2e', 'unknown']
 

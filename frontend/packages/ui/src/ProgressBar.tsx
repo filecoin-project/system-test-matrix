@@ -3,6 +3,7 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
+
 import { Colors } from './styles/colors'
 
 const ColorChart = {

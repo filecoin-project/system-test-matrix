@@ -1,4 +1,3 @@
-import { PageContainer } from '@/containers/PageContainer'
 import {
   Behavior,
   BehaviorStatus,
@@ -12,6 +11,8 @@ import qs from 'query-string'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
+
+import { PageContainer } from '@/containers/PageContainer'
 
 interface Props {
   testKinds: TestKind[]

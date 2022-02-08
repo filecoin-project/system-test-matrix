@@ -2,6 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "types": ["node", "react", "styled-components", "jest"]
+    "types": ["node", "react", "styled-components", "jest", "mdx"]
   }
 }

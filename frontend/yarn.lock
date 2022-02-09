@@ -2698,23 +2698,37 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@react-to-styled/essentials@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/essentials/-/essentials-0.1.6.tgz#20d7b0723c3de2e2160864b86d28d61454067aa2"
-  integrity sha512-JBoWRyX31mmZ7872m6k5xpXGfZ5t8Wl9PlQ6p7syrHNIa9SkTxlrryT8SBaLKeh2ES5X4X4mwBX/Fw5Ecg6tFw==
+"@react-to-styled/components@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/components/-/components-0.2.0.tgz#8c5680f0c017f254daf72925c2e360b54b06f76d"
+  integrity sha512-/966geqQyFPa2/U/vEOKPfMZPvshN0EQ4GwsQEJyPiatPUJVCL6e9mjveBnmpwrZLBscxtoKFclM7Jw8Aca19w==
 
-"@react-to-styled/loader@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/loader/-/loader-0.1.4.tgz#00a8053de5c17fae3f90b1177c4105f81c80f33b"
-  integrity sha512-9qOSBF4jntzCEWEqiu2n6rSjYy1uVioVRzke5aSzoQr8KZH6iyXVXfhoeOgAKeTDthe065JmKQWv1qAuOdB2Hw==
+"@react-to-styled/essentials@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/essentials/-/essentials-0.2.0.tgz#4a92eb45d2314b77397c30f5fb1a86a8752ab9f7"
+  integrity sha512-DqhwDinyG/O3XjUE1PU7yQ6m6QLsAkbnLuS/GTg16B3Idz3okrtmyt47dRgyzVRbUZF9a6ATZqxGejelUQJsDw==
 
-"@react-to-styled/table@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/table/-/table-0.4.1.tgz#62eb6906c8d0618745315ed374146e115ed17453"
-  integrity sha512-6xVFc2zyrYmK2ixzrI8/laDDH7pa6Bcpqyh1nqbKhkAgy/9NqIrEWGP4S3bjFPEk6z0Ie2nVT3II+Ugx9WZ7Kg==
+"@react-to-styled/loader@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/loader/-/loader-0.2.0.tgz#92ffdbb59f029b7bde9a2f20c382a99433bf72c7"
+  integrity sha512-2aEppvAmcjWoVW526DDzcKmrKzbCgxuCLsf6FC/Gt94lxtfOcOvfzS2WsOPuYWTogdA+So10KP4/wjYV8DeEPA==
   dependencies:
-    "@react-to-styled/essentials" "^0.1.6"
-    "@react-to-styled/loader" "^0.1.4"
+    "@react-to-styled/essentials" "^0.2.0"
+
+"@react-to-styled/table@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/table/-/table-0.5.0.tgz#c22d5704205a1b1862880ac6c193d36c6a335980"
+  integrity sha512-iyHcl5npjd8HIPnP+NxoOViRODu+HlYp6z8UiCsZLDqxYX4dMBpmr86QMs+r73zsUADjpTFmR6PVAaSikxkwhQ==
+  dependencies:
+    "@react-to-styled/essentials" "^0.2.0"
+    "@react-to-styled/loader" "^0.2.0"
+
+"@react-to-styled/toggle@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/toggle/-/toggle-0.2.0.tgz#f1f3bc862f90a7b2fdc98c5a610eb960c6507f94"
+  integrity sha512-AYNxAuAfRJLVTcH7eHC23S6FC5/XOBHjvCooYeWyHt12tVTCsycJWq311AfIay9qPc+6+cX3NIXNyijnK4gzvQ==
+  dependencies:
+    "@react-to-styled/essentials" "^0.2.0"
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"

@@ -2,24 +2,32 @@
 
 exports[`Storyshots Layout/PageLayout Overview 1`] = `
 <div
-  className="sc-kDTinF ebTNpx"
-  setFooter={[Function]}
-  setHeader={[Function]}
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
 >
   <div
-    className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
-    gap={4}
+    className="sc-kDTinF ebTNpx"
+    setFooter={[Function]}
+    setHeader={[Function]}
   >
-    <section
-      className="c-page-layout__section"
+    <div
+      className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
+      gap={4}
     >
-      <div
-        center={true}
-        className="sc-jrQzAO ijnGys"
+      <section
+        className="c-page-layout__section"
       >
-        Some Content
-      </div>
-    </section>
+        <div
+          center={true}
+          className="sc-jrQzAO ijnGys"
+        >
+          Some Content
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 `;

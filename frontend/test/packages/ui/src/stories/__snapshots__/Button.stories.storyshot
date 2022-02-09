@@ -2,39 +2,47 @@
 
 exports[`Storyshots Button Ghost 1`] = `
 <div
-  className="sc-bdvvtL sc-gIDmLj braPyZ kvKVhE"
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
 >
   <div
-    className="sc-fHeRUh bpoAMN"
-  >
-    Ghost Buttons
-  </div>
-  <div
-    className="sc-fHeRUh bpoAMN"
+    className="sc-bdvvtL sc-brSvTw braPyZ dzxXLz"
   >
     <div
-      className="sc-evcjhq jKgMkM"
+      className="sc-evcjhq hdqrhC"
     >
-      <button
-        className="sc-dlVxhl sc-fKVqWL kJRGFw jsYCsA"
-        data-element="button"
-        size="medium"
-        variant="outline"
-      >
-        All Behaviours
-      </button>
+      Ghost Buttons
     </div>
     <div
-      className="sc-evcjhq jKgMkM"
+      className="sc-evcjhq hdqrhC"
     >
-      <button
-        className="sc-dlVxhl sc-fKVqWL kJRGFw jsYCsA"
-        data-element="button"
-        size="medium"
-        variant="outline"
+      <div
+        className="sc-gIDmLj eDDpVq"
       >
-        All Tests
-      </button>
+        <button
+          className="sc-hGPBjI sc-kfPuZi jGEcwg cyjURS"
+          data-element="button"
+          size="medium"
+          variant="outline"
+        >
+          All Behaviours
+        </button>
+      </div>
+      <div
+        className="sc-gIDmLj eDDpVq"
+      >
+        <button
+          className="sc-hGPBjI sc-kfPuZi jGEcwg cyjURS"
+          data-element="button"
+          size="medium"
+          variant="outline"
+        >
+          All Tests
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -42,67 +50,75 @@ exports[`Storyshots Button Ghost 1`] = `
 
 exports[`Storyshots Button System 1`] = `
 <div
-  className="sc-bdvvtL sc-gIDmLj braPyZ kvKVhE"
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
 >
   <div
-    className="sc-fHeRUh bpoAMN"
-  >
-    Rounded Buttons
-  </div>
-  <div
-    className="sc-fHeRUh bpoAMN"
+    className="sc-bdvvtL sc-brSvTw braPyZ dzxXLz"
   >
     <div
-      className="sc-evcjhq jKgMkM"
+      className="sc-evcjhq hdqrhC"
     >
-      <button
-        className="sc-dlVxhl sc-kfPuZi eGfBNR bWgxaE"
-        color="success"
-        data-element="button"
-        size="small"
-        variant="rounded"
-      >
-        Good
-      </button>
+      Rounded Buttons
     </div>
     <div
-      className="sc-evcjhq jKgMkM"
+      className="sc-evcjhq hdqrhC"
     >
-      <button
-        className="sc-dlVxhl sc-kfPuZi cdJIFB bWgxaE"
-        color="error"
-        data-element="button"
-        size="small"
-        variant="rounded"
+      <div
+        className="sc-gIDmLj eDDpVq"
       >
-        Bad
-      </button>
-    </div>
-    <div
-      className="sc-evcjhq jKgMkM"
-    >
-      <button
-        className="sc-dlVxhl sc-kfPuZi eVYtgi bWgxaE"
-        color="warning"
-        data-element="button"
-        size="small"
-        variant="rounded"
+        <button
+          className="sc-hGPBjI sc-dlVxhl fdJHWR jjjrNB"
+          color="success"
+          data-element="button"
+          size="small"
+          variant="rounded"
+        >
+          Good
+        </button>
+      </div>
+      <div
+        className="sc-gIDmLj eDDpVq"
       >
-        Mediocre
-      </button>
-    </div>
-    <div
-      className="sc-evcjhq jKgMkM"
-    >
-      <button
-        className="sc-dlVxhl sc-kfPuZi cfevsQ bWgxaE"
-        color="secondary"
-        data-element="button"
-        size="small"
-        variant="rounded"
+        <button
+          className="sc-hGPBjI sc-dlVxhl hKiCXh jjjrNB"
+          color="error"
+          data-element="button"
+          size="small"
+          variant="rounded"
+        >
+          Bad
+        </button>
+      </div>
+      <div
+        className="sc-gIDmLj eDDpVq"
       >
-        Missing
-      </button>
+        <button
+          className="sc-hGPBjI sc-dlVxhl fYXMVG jjjrNB"
+          color="warning"
+          data-element="button"
+          size="small"
+          variant="rounded"
+        >
+          Mediocre
+        </button>
+      </div>
+      <div
+        className="sc-gIDmLj eDDpVq"
+      >
+        <button
+          className="sc-hGPBjI sc-dlVxhl eCrKlI jjjrNB"
+          color="secondary"
+          data-element="button"
+          size="small"
+          variant="rounded"
+        >
+          Missing
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -2,927 +2,951 @@
 
 exports[`Storyshots Text Headings 1`] = `
 <div
-  className="sc-kDTinF ebTNpx"
-  setFooter={[Function]}
-  setHeader={[Function]}
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
 >
   <div
-    className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
-    gap={4}
+    className="sc-kDTinF ebTNpx"
+    setFooter={[Function]}
+    setHeader={[Function]}
   >
-    <section
-      className="c-page-layout__section"
+    <div
+      className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
+      gap={4}
     >
-      <div
-        className="sc-jrQzAO gWROrG"
-        gap={0}
+      <section
+        className="c-page-layout__section"
       >
         <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
+          className="sc-jrQzAO gWROrG"
+          gap={0}
         >
-          <h1
-            bold={true}
-            className="sc-gKclnd evmpqh c-text--heading-1"
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
           >
-            Display
-          </h1>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
+            <h1
+              bold={true}
+              className="sc-gKclnd evmpqh c-text--heading-1"
+            >
+              Display
+            </h1>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H1
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              72px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              -0.7px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
           >
-            H1
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
+            <h1
+              className="sc-gKclnd kBPMqH c-text--heading-1"
+            >
+              Display
+            </h1>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H1 Light
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              72px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              -0.7px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
           >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
+            <h2
+              bold={true}
+              className="sc-gKclnd cZPIGv c-text--heading-2"
+            >
+              Display
+            </h2>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H2
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              54px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0.3px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
           >
-            72px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
+            <h2
+              className="sc-gKclnd lmfPhl c-text--heading-2"
+            >
+              Display
+            </h2>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H2 Light
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              54px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0.3px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
           >
-            -0.7px
-          </span>
+            <h3
+              bold={true}
+              className="sc-gKclnd fmywTE c-text--heading-3"
+            >
+              Display
+            </h3>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H3
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              40px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0.3px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h3
+              className="sc-gKclnd jvwoUr c-text--heading-3"
+            >
+              Display
+            </h3>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H3 Light
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              40px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0.3px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h4
+              bold={true}
+              className="sc-gKclnd lhxhdl c-text--heading-4"
+            >
+              Display
+            </h4>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H4
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              28px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0.3px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h4
+              className="sc-gKclnd geMtgu c-text--heading-4"
+            >
+              Display
+            </h4>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H4 Light
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              28px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0.3px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h5
+              bold={true}
+              className="sc-gKclnd griyVj c-text--heading-5"
+            >
+              Display
+            </h5>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H5
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              24px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0.3px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h5
+              className="sc-gKclnd iBetHb c-text--heading-5"
+            >
+              Display
+            </h5>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H5 Light
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              24px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0.3px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h6
+              bold={true}
+              className="sc-gKclnd hLyWHZ c-text--heading-6"
+            >
+              Display
+            </h6>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H6
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              18px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h6
+              className="sc-gKclnd bEDpur c-text--heading-6"
+            >
+              Display
+            </h6>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H6 Lignt
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              18px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h6
+              bold={true}
+              className="sc-gKclnd gLgEA-d c-text--heading-7"
+            >
+              Display
+            </h6>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H7
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              16px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI"
+          >
+            <h6
+              className="sc-gKclnd dFPKaa c-text--heading-7"
+            >
+              Display
+            </h6>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              H7 Light
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              16px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              0px
+            </span>
+          </div>
         </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h1
-            className="sc-gKclnd kBPMqH c-text--heading-1"
-          >
-            Display
-          </h1>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H1 Light
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            72px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            -0.7px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h2
-            bold={true}
-            className="sc-gKclnd cZPIGv c-text--heading-2"
-          >
-            Display
-          </h2>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H2
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            54px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0.3px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h2
-            className="sc-gKclnd lmfPhl c-text--heading-2"
-          >
-            Display
-          </h2>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H2 Light
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            54px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0.3px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h3
-            bold={true}
-            className="sc-gKclnd fmywTE c-text--heading-3"
-          >
-            Display
-          </h3>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H3
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            40px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0.3px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h3
-            className="sc-gKclnd jvwoUr c-text--heading-3"
-          >
-            Display
-          </h3>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H3 Light
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            40px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0.3px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h4
-            bold={true}
-            className="sc-gKclnd lhxhdl c-text--heading-4"
-          >
-            Display
-          </h4>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H4
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            28px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0.3px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h4
-            className="sc-gKclnd geMtgu c-text--heading-4"
-          >
-            Display
-          </h4>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H4 Light
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            28px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0.3px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h5
-            bold={true}
-            className="sc-gKclnd griyVj c-text--heading-5"
-          >
-            Display
-          </h5>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H5
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            24px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0.3px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h5
-            className="sc-gKclnd iBetHb c-text--heading-5"
-          >
-            Display
-          </h5>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H5 Light
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            24px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0.3px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h6
-            bold={true}
-            className="sc-gKclnd hLyWHZ c-text--heading-6"
-          >
-            Display
-          </h6>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H6
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            18px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h6
-            className="sc-gKclnd bEDpur c-text--heading-6"
-          >
-            Display
-          </h6>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H6 Lignt
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            18px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h6
-            bold={true}
-            className="sc-gKclnd gLgEA-d c-text--heading-7"
-          >
-            Display
-          </h6>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H7
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            16px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh"
-        >
-          <h6
-            className="sc-gKclnd dFPKaa c-text--heading-7"
-          >
-            Display
-          </h6>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            H7 Light
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            16px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            0px
-          </span>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Storyshots Text Paragraphs 1`] = `
 <div
-  className="sc-kDTinF ebTNpx"
-  setFooter={[Function]}
-  setHeader={[Function]}
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
 >
   <div
-    className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
-    gap={4}
+    className="sc-kDTinF ebTNpx"
+    setFooter={[Function]}
+    setHeader={[Function]}
   >
-    <section
-      className="c-page-layout__section"
+    <div
+      className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
+      gap={4}
     >
-      <div
-        className="sc-jrQzAO gWROrG"
-        gap={0}
+      <section
+        className="c-page-layout__section"
       >
         <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
+          className="sc-jrQzAO gWROrG"
+          gap={0}
         >
-          <span
-            className="sc-gKclnd fOMVsZ c-text--text-xl"
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
           >
-            Text XL
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
+            <span
+              className="sc-gKclnd fOMVsZ c-text--text-xl"
+            >
+              Text XL
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              20px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
           >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
+            <span
+              bold={true}
+              className="sc-gKclnd ljlKbj c-text--text-xl"
+            >
+              Text XL Bold
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              20px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
           >
-            20px
-          </span>
+            <span
+              className="sc-gKclnd bUDMss c-text--text-l"
+            >
+              Text L
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              18px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              bold={true}
+              className="sc-gKclnd kHIzmS c-text--text-l"
+            >
+              Text L Bold
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              18px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Text M
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              16px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              bold={true}
+              className="sc-gKclnd ebnDGv c-text--text-m"
+            >
+              Text M Bold
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              16px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              className="sc-gKclnd fLjQgc c-text--text-s"
+            >
+              Text S
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              14px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              bold={true}
+              className="sc-gKclnd bTCVEK c-text--text-s"
+            >
+              Text S Bold
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              14px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              className="sc-gKclnd kKrpii c-text--text-xs"
+            >
+              Text XS
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              13px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              bold={true}
+              className="sc-gKclnd hfarUg c-text--text-xs"
+            >
+              Text XS Bold
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              13px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              className="sc-gKclnd hwCFHi c-text--text-xxs"
+            >
+              Text XXS
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              11px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              bold={true}
+              className="sc-gKclnd lgHJgY c-text--text-xxs"
+            >
+              Text XXS Bold
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              11px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
         </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd ljlKbj c-text--text-xl"
-          >
-            Text XL Bold
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            20px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            className="sc-gKclnd bUDMss c-text--text-l"
-          >
-            Text L
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            18px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd kHIzmS c-text--text-l"
-          >
-            Text L Bold
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            18px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Text M
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            16px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd ebnDGv c-text--text-m"
-          >
-            Text M Bold
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            16px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            className="sc-gKclnd fLjQgc c-text--text-s"
-          >
-            Text S
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            14px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd bTCVEK c-text--text-s"
-          >
-            Text S Bold
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            14px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            className="sc-gKclnd kKrpii c-text--text-xs"
-          >
-            Text XS
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            13px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd hfarUg c-text--text-xs"
-          >
-            Text XS Bold
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            13px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            className="sc-gKclnd hwCFHi c-text--text-xxs"
-          >
-            Text XXS
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            11px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd lgHJgY c-text--text-xxs"
-          >
-            Text XXS Bold
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            11px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Storyshots Text Rest 1`] = `
 <div
-  className="sc-kDTinF ebTNpx"
-  setFooter={[Function]}
-  setHeader={[Function]}
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
 >
   <div
-    className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
-    gap={4}
+    className="sc-kDTinF ebTNpx"
+    setFooter={[Function]}
+    setHeader={[Function]}
   >
-    <section
-      className="c-page-layout__section"
+    <div
+      className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
+      gap={4}
     >
-      <div
-        className="sc-jrQzAO gWROrG"
-        gap={0}
+      <section
+        className="c-page-layout__section"
       >
         <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
+          className="sc-jrQzAO gWROrG"
+          gap={0}
         >
-          <span
-            className="sc-gKclnd eSdjUJ c-text--subtitle-l"
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
           >
-            Subtitle Large
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
+            <span
+              className="sc-gKclnd eSdjUJ c-text--subtitle-l"
+            >
+              Subtitle Large
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              20px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
           >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
+            <span
+              bold={true}
+              className="sc-gKclnd jMohHQ c-text--subtitle-l"
+            >
+              Subtitle Large Bold
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              20px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
           >
-            20px
-          </span>
+            <span
+              className="sc-gKclnd dagLnM c-text--subtitle-m"
+            >
+              Subtitle Base
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              18px
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              bold={true}
+              className="sc-gKclnd uziLO c-text--subtitle-m"
+            >
+              Subtitle Base Bold
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              18px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              bold={true}
+              className="sc-gKclnd fBA-drr c-text--button"
+            >
+              Button Large
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              16px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <span
+              className="sc-gKclnd hwhQZy c-text--button"
+            >
+              Button Small
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              13px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <label
+              bold={true}
+              className="sc-gKclnd gidEKS c-text--overline"
+            >
+              Label / Input Overline Bold
+            </label>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              16px
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Bold
+            </span>
+          </div>
+          <div
+            className="sc-crHmcD fauIhR sc-dkPtRN sc-eGPXGI jYpkXZ eRrxHI textColumn"
+          >
+            <label
+              className="sc-gKclnd eQhALF c-text--overline"
+            >
+              Label / Input Overline
+            </label>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              Segoe UI
+            </span>
+            <span
+              className="sc-gKclnd bhtCnV c-text--text-m"
+            >
+              13px
+            </span>
+          </div>
         </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd jMohHQ c-text--subtitle-l"
-          >
-            Subtitle Large Bold
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            20px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            className="sc-gKclnd dagLnM c-text--subtitle-m"
-          >
-            Subtitle Base
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            18px
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd uziLO c-text--subtitle-m"
-          >
-            Subtitle Base Bold
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            18px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            bold={true}
-            className="sc-gKclnd fBA-drr c-text--button"
-          >
-            Button Large
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            16px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <span
-            className="sc-gKclnd hwhQZy c-text--button"
-          >
-            Button Small
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            13px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <label
-            bold={true}
-            className="sc-gKclnd gidEKS c-text--overline"
-          >
-            Label / Input Overline Bold
-          </label>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            16px
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Bold
-          </span>
-        </div>
-        <div
-          className="sc-crHmcD fauIhR sc-dkPtRN sc-hAcGzb jYpkXZ kEzcuh textColumn"
-        >
-          <label
-            className="sc-gKclnd eQhALF c-text--overline"
-          >
-            Label / Input Overline
-          </label>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            Segoe UI
-          </span>
-          <span
-            className="sc-gKclnd bhtCnV c-text--text-m"
-          >
-            13px
-          </span>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </div>
 `;

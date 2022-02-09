@@ -1,0 +1,388 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots BaseInput/All stories Basic 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE kkpAzG"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={false}
+          id={1}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="Basic"
+          type="text"
+        />
+        <fieldset
+          className=""
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots BaseInput/All stories Disabled 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE kkpAzG disabled"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={true}
+          id={1}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="Disabled"
+          type="text"
+        />
+        <fieldset
+          className="disabled"
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots BaseInput/All stories Password 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE kkpAzG"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={false}
+          id={1}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="Password"
+          type="password"
+        />
+        <fieldset
+          className=""
+        >
+          <div
+            className="sc-hBUSln sc-bkkeKt imodpN fnIseg"
+            onClick={[Function]}
+          >
+            <svg
+              id="/assets/icons/eye.svg"
+            />
+          </div>
+        </fieldset>
+      </div>
+      <span
+        className="sc-dJjYzT gauyiY"
+      >
+        Password must have at least 12 characters
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots BaseInput/All stories With Clear Button 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE kkpAzG"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={false}
+          id={1}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="With Clear Button"
+          type="text"
+          value=""
+        />
+        <fieldset
+          className=""
+        >
+          
+        </fieldset>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots BaseInput/All stories With Error Message 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE kkpAzG error"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={false}
+          id={1}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="With Error Message"
+          status="error"
+          type="text"
+        />
+        <fieldset
+          className=""
+        />
+      </div>
+      <span
+        className="sc-dJjYzT dnnZGf"
+      >
+        This is error message
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots BaseInput/All stories With Icon After 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE kkpAzG"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={false}
+          id={1}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="With Icon After"
+          type="text"
+        />
+        <fieldset
+          className=""
+        >
+          <div
+            className="sc-hBUSln sc-fFeiMQ imodpN MddVR"
+          >
+            <svg
+              id="/assets/icons/search.svg"
+            />
+          </div>
+        </fieldset>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots BaseInput/All stories With Icon Before 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE jEmSLP"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={false}
+          id={1}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="With Icon Before"
+          type="text"
+        />
+        <fieldset
+          className=""
+        >
+          <div
+            className="sc-hBUSln sc-fotOHu imodpN"
+          >
+            <svg
+              id="/assets/icons/search.svg"
+            />
+          </div>
+        </fieldset>
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots BaseInput/All stories With Success Message 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE kkpAzG success"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={false}
+          id={1}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="With Success Message"
+          status="success"
+          type="text"
+        />
+        <fieldset
+          className=""
+        />
+      </div>
+      <span
+        className="sc-dJjYzT izfPdB"
+      >
+        This is success message
+      </span>
+    </div>
+  </div>
+</div>
+`;

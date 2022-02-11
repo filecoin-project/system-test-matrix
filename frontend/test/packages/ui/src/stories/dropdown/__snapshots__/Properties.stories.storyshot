@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Dropdown/Properties Properties 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "margin": "50px auto",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="o-center-layout sc-dkPtRN kyAoRl"
+    >
+      <div
+        className="sc-gWXbKe eImtus"
+        data-element="dropdown"
+        onKeyUp={[Function]}
+        tabIndex={0}
+      >
+        <div
+          onMouseUp={[Function]}
+        >
+          <div
+            className="sc-cidDSM jRMgWJ"
+            size="medium"
+          >
+            <div
+              className="sc-jcFjpl efdnRd"
+            >
+              <select
+                multiple={false}
+                tabIndex={-1}
+              >
+                <option
+                  value=""
+                >
+                  <span
+                    bold={true}
+                    className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
+                  >
+                    Select option
+                  </span>
+                </option>
+              </select>
+            </div>
+            <span
+              className="sc-cCcXHH gWLfkZ"
+            >
+              Select option
+            </span>
+            <svg
+              id="/assets/icons/arrow_up_and_down.svg"
+            />
+          </div>
+        </div>
+        <div
+          className="sc-caiLqq ennwHr"
+        >
+          <div
+            className="sc-iUKqMP lcaUyx"
+          >
+            <ul
+              className="sc-bYoBSM dydsUZ"
+            >
+              <li
+                className="sc-giYglK ihXKMR"
+                label="Menu item 1 "
+                onClick={[Function]}
+                selected={false}
+              >
+                <span
+                  className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                >
+                  Menu item 1 
+                </span>
+              </li>
+              <li
+                className="sc-giYglK ihXKMR"
+                label="Menu item 2"
+                onClick={[Function]}
+                selected={false}
+              >
+                <span
+                  className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                >
+                  Menu item 2
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <span
+          className="sc-ezbkAF ceXLeO"
+        >
+          This is info text
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

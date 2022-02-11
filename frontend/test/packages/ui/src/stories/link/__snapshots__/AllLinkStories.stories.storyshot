@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Link/All Link Stories Default 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-crHmcD dgzXGK"
+  >
+    <span>
+      <a
+        appearance="default"
+        className="sc-cTAqQK sc-dPiLbb fndmZX kgdNVF u-text--large"
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        Blockchain
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="default"
+        className="sc-cTAqQK sc-dPiLbb fndmZX kgdNVF u-text--large"
+        disabled={true}
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        Blockchain
+      </a>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Link/All Link Stories Sizing 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-crHmcD dgzXGK"
+  >
+    <span>
+      <a
+        appearance="default"
+        className="sc-cTAqQK sc-dPiLbb fndmZX kgdNVF u-text--large"
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        Large
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="default"
+        className="sc-cTAqQK sc-dPiLbb dBtlpJ kgdNVF"
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        Regular
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="default"
+        className="sc-cTAqQK sc-dPiLbb dlbOXI kgdNVF u-text--small"
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        Small
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="default"
+        className="sc-cTAqQK sc-dPiLbb fSvsbp kgdNVF u-text--xsmall"
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        XS Small
+      </a>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Link/All Link Stories System 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-crHmcD dgzXGK"
+  >
+    <span>
+      <a
+        appearance="system"
+        className="sc-cTAqQK sc-jObWnj dBtlpJ etnEz u-text--medium"
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        Blockchain
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="system"
+        className="sc-cTAqQK sc-jObWnj fSvsbp etnEz u-text--xsmall"
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        <svg
+          id="/assets/icons/link.svg"
+        />
+        /lotus/miner
+      </a>
+    </span>
+    <span>
+      <a
+        appearance="system"
+        className="sc-cTAqQK sc-jObWnj fSvsbp etnEz u-text--xsmall"
+        disabled={true}
+        href="/https://lotus.systemtestmatrix.com/"
+        onClick={[Function]}
+        target="blank"
+      >
+        <svg
+          id="/assets/icons/link.svg"
+        />
+        /lotus/miner
+      </a>
+    </span>
+  </div>
+</div>
+`;

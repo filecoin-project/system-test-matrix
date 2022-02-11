@@ -2,7 +2,6 @@ import { ElementProps } from '@filecoin/types'
 import React from 'react'
 import styled from 'styled-components'
 import { v4 as generateRandomId } from 'uuid'
-
 import { Colors } from './styles/colors'
 
 /**

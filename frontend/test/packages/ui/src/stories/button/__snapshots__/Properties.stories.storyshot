@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button/Properties Properties 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN kyAoRl"
+  >
+    <button
+      className="sc-hGPBjI sc-dlVxhl fdJHWR jjjrNB"
+      color="success"
+      data-element="button"
+      size="small"
+      variant="rounded"
+    >
+      Button Text
+    </button>
+  </div>
+</div>
+`;

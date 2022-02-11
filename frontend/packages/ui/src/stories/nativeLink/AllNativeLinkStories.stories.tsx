@@ -1,44 +1,20 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React from 'react'
 import styled from 'styled-components'
-
-import { BoxLayout } from '../Layouts/BoxLayout'
-import { ColumnLayout } from '../Layouts/ColumnLayout'
-import { NativeLink, NativeLinkAppearance } from '../NativeLink'
+import { BoxLayout } from '../../Layouts/BoxLayout'
+import { ColumnLayout } from '../../Layouts/ColumnLayout'
+import { NativeLink } from '../../NativeLink'
 
 export default {
-  title: 'NativeLink',
+  title: 'NativeLink/All NativeLink Stories',
   component: NativeLink,
-  argTypes: {
-    icon: {
-      name: 'icon',
-    },
-    appearance: {
-      name: 'appearance',
-      defaultValue: 'default',
-      options: NativeLinkAppearance,
-    },
-    className: {
-      name: 'className',
-      default: 'u-text--regular',
-      control: {
-        type: 'select',
-        options: {
-          xsmall: 'u-text--xsmall',
-          small: 'u-text--small',
-          regular: 'u-text--regular',
-        },
-      },
-    },
-    disabled: {
-      name: 'disabled',
-      defaultValue: false,
-      control: {
-        type: 'boolean',
-      },
+  parameters: {
+    controls: {
+      disable: true,
     },
   },
-}
-export const Default = () => (
+} as ComponentMeta<typeof NativeLink>
+export const Default: ComponentStory<typeof NativeLink> = () => (
   <Wrapper>
     <ColumnLayout>
       <NativeLink
@@ -62,7 +38,7 @@ export const Default = () => (
   </Wrapper>
 )
 
-export const System = () => (
+export const System: ComponentStory<typeof NativeLink> = () => (
   <Wrapper>
     <ColumnLayout>
       <NativeLink
@@ -99,7 +75,7 @@ export const System = () => (
   </Wrapper>
 )
 
-export const Sizing = () => (
+export const Sizing: ComponentStory<typeof NativeLink> = () => (
   <Wrapper>
     <ColumnLayout>
       <NativeLink

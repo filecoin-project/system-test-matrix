@@ -21,7 +21,7 @@ export default {
   ],
   parameters: {
     controls: {
-      exclude: /.*/s,
+      disable: true,
     },
   },
 } as ComponentMeta<typeof BaseInput>

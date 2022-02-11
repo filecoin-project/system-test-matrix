@@ -56,11 +56,11 @@ exports[`Storyshots Modal Verification Status 1`] = `
       >
         <div
           center={true}
-          className="sc-jrQzAO sc-ilfuhL lhCVrE cyuXVs"
+          className="sc-jrQzAO sc-evcjhq lhCVrE bbwhxJ"
           gap={1.5}
         >
           <div
-            className="sc-XxNYO bnaFCJ"
+            className="sc-gIDmLj fmQpII"
           />
           <span
             bold={true}
@@ -75,7 +75,7 @@ exports[`Storyshots Modal Verification Status 1`] = `
           </span>
         </div>
         <button
-          className="sc-hGPBjI sc-dlVxhl jGEcwg jjjrNB sc-uojGG jNHvok"
+          className="sc-hGPBjI sc-dlVxhl jGEcwg jjjrNB sc-fHeRUh kkaphk"
           data-element="button"
           size="medium"
           variant="rounded"

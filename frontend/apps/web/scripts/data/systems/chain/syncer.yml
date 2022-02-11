@@ -188,3 +188,18 @@ features:
           Given a context 'ctx', a peer ID 'p', and a tipset 'ts',
           sets the peer head for 'p' to be 'ts'
   
+  - name: Add sync target
+    behaviors:
+      - id: CHAIN_SYNCER_ADD_SYNC_TARGET_001
+        description: |
+          Given a tipset,
+          add that tipset as a potential sync target
+
+  - name: Select sync target
+    behaviors:
+      - id: CHAIN_SYNCER_SELECT_SYNC_TARGET_001
+        description: |
+          Given the last processed tipset,
+          select the next sync target to work on after the current sync is finished.
+          The target should be the heaviest potential sync target if not synced already,
+          or any tipsets related to the heaviest target.

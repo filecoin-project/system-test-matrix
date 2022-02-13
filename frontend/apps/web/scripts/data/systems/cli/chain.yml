@@ -1,0 +1,129 @@
+system: Cli
+subsystem: Chain
+features:
+  - name: Head
+    behaviors:
+      - id: CLI_CHAIN_HEAD_001
+        description: |
+          Print the current head of the chain
+
+  - name: Get block
+    behaviors:
+      - id: CLI_CHAIN_GET_BLOCK_001
+        description: |
+          Given a block CID,
+          print that block as JSON
+
+  - name: Read object
+    behaviors:
+      - id: CLI_CHAIN_READ_OBJECT_001
+        description: |
+          Given an chain object CID,
+          print the given object as hex
+
+  - name: Delete object
+    behaviors:
+      - id: CLI_CHAIN_DELETE_OBJECT_001
+        description: |
+          Given a chain object CID and --really-do-it flag,
+          delete the object from the chainstore
+      - id: CLI_CHAIN_DELETE_OBJECT_002
+        description: |
+            Given no --really-do-it flag,
+            print an error
+
+  - name: Stat object
+    behaviors:
+      - id: CLI_CHAIN_STAT_OBJECT_001
+        description: |
+          Given an object CID,
+          return the stats (number of links and size) of that object in the chainstore
+      - id: CLI_CHAIN_STAT_OBJECT_002
+        description: |
+          Given an object CID and a --base=CID flag,
+          return the diff of stats between the base and given object
+
+  - name: Get Message
+    behaviors:
+      - id: CLI_CHAIN_GET_MESSAGE_001
+        description: | 
+          Given a message CID,
+          print that message as JSON
+
+  - name: Set head
+    behaviors:
+      - id: CLI_CHAIN_SET_HEAD_001
+        description: |
+          Given a tipset key,
+          reset the head to that key
+      - id: CLI_CHAIN_SET_HEAD_002
+        description: |
+          Given the -epoch flag,
+          reset the head to the tipset at given epoch
+      - id: CLI_CHAIN_SET_HEAD_003
+        description: |
+          Given flag -genesis=true,
+          reset the head to the genesis tipset
+
+  - name: Inspect usage
+    behaviors:
+      - id: CLI_CHAIN_INSPECT_USAGE_001
+        description: |
+          Given no parameters, 
+          print block space usage statistics for @head with 10 results per category
+      - id: CLI_CHAIN_INSPECT_USAGE_002
+        description: |
+          Given -tipset, -length, -num-results flags,
+          print block space usage statistics for -tipset, looking back -length tipsets with -num-results results per category
+
+  - name: List
+    behaviors:
+      - id: CLI_CHAIN_LIST_001
+        description: |
+          Given no parameters,
+          print a segment of the chain 30 tipsets back from the @head
+      - id: CLI_CHAIN_LIST_002
+        description: |
+          Given -height and -count flags,
+          print a segment of the chain -count tipsets back from the tipset at -height
+
+  - name: Get
+    behaviors:
+      - id: CLI_CHAIN_GET_001
+        description: |
+          Given a path with the /ipfs/ prefix,
+          print the object at path as JSON
+      - id: CLI_CHAIN_GET_002
+        description: |
+          Given a path with the /pstate/ prefix,
+          print the object at head parent state root as JSON
+      - id: CLI_CHAIN_GET_003
+        description: |
+          Given a path and -as-type=supported_supported flag ,
+          fetch the object at path and try to deserialize it -as-type and print as JSON.
+
+      - id: CLI_CHAIN_GET_004
+        description: |
+          Given a path and -as-type=unknown_type flag ,
+          return an error
+
+  - name: Bisect
+    behaviors:
+      - id: CLI_CHAIN_BISECT_001
+        description: |
+          Given minHeight, maxHeight, path and shellCommand,
+          return the first tipset in which condition (evaluated by shell comand) is true 
+
+  - name: Export
+    behaviors:
+      - id: CLI_CHAIN_EXPORT_001
+        description: |
+          Given a path to a local file,
+          export the chain to that file
+
+  - name: Gas price
+    behaviors:
+      - id: CLI_CHAIN_GAS_PRICE_001
+        description: |
+          Print the gas price estimate at various block ranges (1-300)
+

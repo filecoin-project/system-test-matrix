@@ -1,0 +1,49 @@
+system: Cli
+subsystem: Sync
+features:
+  - name: Status
+    behaviors: 
+      - id: CLI_SYNC_STATUS_001
+        description: |
+          Prints the current sync status of the node
+
+  - name: Mark Bad
+    behaviors:
+      - id: CLI_SYNC_MARK_BAD_001
+        description: |
+          Given a block CID,
+          marks it as bad and prevents syncing that block
+
+  - name: Unmark bad
+    behaviors:
+      - id: CLI_SYNC_UNMARK_BAD_001
+        description: |
+          Given a block CID,
+          unmark it as bad, so it can be synced
+      - id: CLI_SYNC_UNMARK_BAD_002
+        description: |
+          Given the -all flag,
+          unmark all blocks that have been marked as bad
+
+  - name: Check bad
+    behaviors:
+      - id: CLI_SYNC_CHECK_BAD_001
+        description: |
+          Given a CID of a block that has been marked as bad,
+          return the reason why
+      - id: CLI_SYNC_CHECK_BAD_002
+        description: |
+          Given a CID of a block that wasn't marked as bad,
+          return "" for the reason
+
+  - name: Checkpoint
+    behaviors:
+      - id: CLI_SYNC_CHECKPOINT_001
+        description: | 
+          Given a tipset CID,
+          create a sync checkpoint at that tipset
+
+      - id: CLI_SYNC_CHECKPOINT_002
+        description: | 
+          Given the -epoch flag,
+          create a sync checkpoint at the tipset at -epoch

@@ -14,18 +14,29 @@ export default {
     },
   },
 } as ComponentMeta<typeof Icon>
-
+const usedIcons = [
+  'arrow_up',
+  'arrow_down',
+  'arrow_left_double',
+  'arrow_right_double',
+  'book',
+  'detailed_view',
+  'close',
+  'search',
+]
 export const AllIcons: ComponentStory<typeof Icon> = () => (
   <GridLayout>
-    {IconNames.map((name: IconNamesType) => (
-      <React.Fragment key={name}>
-        <Text>{name}</Text>
-        {name === 'check_mark' ? (
-          <Icon name={name} style={{ background: 'gray' }} />
-        ) : (
-          <Icon name={name} />
-        )}
-      </React.Fragment>
-    ))}
+    {IconNames.map((name: IconNamesType) => {
+      return usedIcons.includes(name) ? (
+        <React.Fragment key={name}>
+          <Text>{name}</Text>
+          {name === 'check_mark' ? (
+            <Icon name={name} style={{ background: 'gray' }} />
+          ) : (
+            <Icon name={name} />
+          )}
+        </React.Fragment>
+      ) : null
+    })}
   </GridLayout>
 )

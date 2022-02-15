@@ -12,97 +12,93 @@ exports[`Storyshots Dropdown/Properties Properties 1`] = `
     style={
       Object {
         "margin": "50px auto",
-        "width": "328px",
+        "width": "179px",
       }
     }
   >
     <div
-      className="o-center-layout sc-dkPtRN kyAoRl"
+      className="sc-gWXbKe eImtus"
+      data-element="dropdown"
+      onKeyUp={[Function]}
+      tabIndex={0}
     >
       <div
-        className="sc-gWXbKe eImtus"
-        data-element="dropdown"
-        onKeyUp={[Function]}
-        tabIndex={0}
+        onMouseUp={[Function]}
       >
         <div
-          onMouseUp={[Function]}
+          className="sc-cidDSM jRMgWJ"
+          size="medium"
         >
           <div
-            className="sc-cidDSM jRMgWJ"
-            size="medium"
+            className="sc-jcFjpl efdnRd"
           >
-            <div
-              className="sc-jcFjpl efdnRd"
+            <select
+              multiple={false}
+              tabIndex={-1}
             >
-              <select
-                multiple={false}
-                tabIndex={-1}
-              >
-                <option
-                  value=""
-                >
-                  <span
-                    bold={true}
-                    className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
-                  >
-                    Select option
-                  </span>
-                </option>
-              </select>
-            </div>
-            <span
-              className="sc-cCcXHH gWLfkZ"
-            >
-              Select option
-            </span>
-            <svg
-              id="/assets/icons/arrow_up_and_down.svg"
-            />
-          </div>
-        </div>
-        <div
-          className="sc-caiLqq ennwHr"
-        >
-          <div
-            className="sc-iUKqMP lcaUyx"
-          >
-            <ul
-              className="sc-bYoBSM dydsUZ"
-            >
-              <li
-                className="sc-giYglK ihXKMR"
-                label="Menu item 1 "
-                onClick={[Function]}
-                selected={false}
+              <option
+                value=""
               >
                 <span
-                  className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+                  bold={true}
+                  className="sc-gKclnd uoJfL c-text--text-m c-text--color-gray70"
                 >
-                  Menu item 1 
+                  Select option
                 </span>
-              </li>
-              <li
-                className="sc-giYglK ihXKMR"
-                label="Menu item 2"
-                onClick={[Function]}
-                selected={false}
-              >
-                <span
-                  className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
-                >
-                  Menu item 2
-                </span>
-              </li>
-            </ul>
+              </option>
+            </select>
           </div>
+          <span
+            className="sc-cCcXHH gWLfkZ"
+          >
+            Select option
+          </span>
+          <svg
+            id="/assets/icons/arrow_up_and_down.svg"
+          />
         </div>
-        <span
-          className="sc-ezbkAF ceXLeO"
-        >
-          This is info text
-        </span>
       </div>
+      <div
+        className="sc-caiLqq ennwHr"
+      >
+        <div
+          className="sc-iUKqMP lcaUyx"
+        >
+          <ul
+            className="sc-bYoBSM dydsUZ"
+          >
+            <li
+              className="sc-giYglK ihXKMR"
+              label="Menu item 1 "
+              onClick={[Function]}
+              selected={false}
+            >
+              <span
+                className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+              >
+                Menu item 1 
+              </span>
+            </li>
+            <li
+              className="sc-giYglK ihXKMR"
+              label="Menu item 2"
+              onClick={[Function]}
+              selected={false}
+            >
+              <span
+                className="sc-gKclnd heblof c-text--text-s c-text--color-gray90"
+              >
+                Menu item 2
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <span
+        className="sc-ezbkAF ceXLeO"
+      >
+        This is info text
+      </span>
     </div>
   </div>
 </div>

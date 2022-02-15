@@ -14,20 +14,15 @@ export default {
   },
   argTypes: {
     name: {
-      name: 'icon name',
       options: IconNames,
     },
     size: {
-      name: 'icon size',
       options: IconSizes,
     },
     color: {
-      name: 'icon color',
       options: IconColor,
     },
-    className: {
-      name: 'class name',
-    },
+    className: {},
   },
 } as ComponentMeta<typeof Icon>
 

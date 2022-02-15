@@ -23,21 +23,18 @@ export default {
   },
   argTypes: {
     icon: {
-      name: 'icon',
       control: {
         type: 'select',
         options: IconNames,
       },
     },
     appearance: {
-      name: 'appearance',
       control: {
         type: 'select',
         options: LinkAppearance,
       },
     },
     className: {
-      name: 'className',
       default: 'u-text--regular',
       control: {
         type: 'select',
@@ -50,7 +47,6 @@ export default {
       },
     },
     disabled: {
-      name: 'disabled',
       defaultValue: false,
       control: {
         type: 'boolean',

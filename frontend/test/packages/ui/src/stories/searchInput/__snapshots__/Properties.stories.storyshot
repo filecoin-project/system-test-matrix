@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots SearchInput/Properties Properties 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "940px",
+      }
+    }
+  >
+    <div
+      className="sc-llYSUQ bAvTbw"
+      width="58.75rem"
+    >
+      <div
+        className="sc-bqiRlB fZtLhY"
+      >
+        <div
+          className="sc-ksdxgE jEmSLP"
+        >
+          <input
+            autoComplete="new-password"
+            disabled={false}
+            id={1}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="Search"
+            type="text"
+            value=""
+            width="58.75rem"
+          />
+          <fieldset
+            className=""
+          >
+            <div
+              className="sc-hBUSln sc-fotOHu imodpN"
+            >
+              <svg
+                id="/assets/icons/search.svg"
+              />
+            </div>
+          </fieldset>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;

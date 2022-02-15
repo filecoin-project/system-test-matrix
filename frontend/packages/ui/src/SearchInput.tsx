@@ -2,7 +2,6 @@ import { useDebounce } from '@filecoin/core'
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
 import { BaseInput } from './BaseInput'
 import { Icon } from './Icon'
 import { Loader } from './Loader'
@@ -126,7 +125,7 @@ const SearchIconWrapper = styled.div<Pick<SearchInputProps, 'width'>>`
   }
 `
 const CancelWrapper = styled.button`
-  height: 46px;
+  height: 44px;
   width: 38px;
   display: flex;
   border: none;

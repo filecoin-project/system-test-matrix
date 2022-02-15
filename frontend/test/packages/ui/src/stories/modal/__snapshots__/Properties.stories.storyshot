@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Modal/Properties Properties 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-hUpaCq fCsWTF"
+  >
+    <div
+      className="sc-jgrJph hGrxLe"
+    />
+    <div
+      className="o-center-layout sc-dkPtRN sc-gSQFLo jYpkXZ gPmcls"
+      gap={2}
+    >
+      <div
+        className="sc-lbhJGD gDbgOd"
+      >
+        <span
+          className="sc-gKclnd eqycBs c-text--text-xl"
+          semiBold={true}
+        >
+          
+        </span>
+        <svg
+          id="/assets/icons/close.svg"
+        />
+      </div>
+      <div
+        className="sc-iNGGcK jmtzBA"
+      >
+        <div
+          className="sc-jrQzAO hXEXJQ"
+          gap={2}
+        >
+          <div
+            className="sc-jrQzAO iYjUxd"
+            gap={0.5}
+          >
+            <div>
+              <span
+                bold={true}
+                className="sc-gKclnd ebnDGv c-text--text-m"
+              >
+                Name: 
+              </span>
+              <span
+                className="sc-gKclnd bhtCnV c-text--text-m"
+              >
+                This is function name
+              </span>
+            </div>
+            <div>
+              <span
+                bold={true}
+                className="sc-gKclnd ebnDGv c-text--text-m"
+              >
+                Repository: 
+              </span>
+              <span
+                className="sc-gKclnd bhtCnV c-text--text-m"
+              >
+                This is repository name
+              </span>
+            </div>
+          </div>
+          <div
+            className="sc-jrQzAO gTnjqf"
+            gap={1}
+          >
+            <span
+              className="sc-gKclnd eSdjUJ c-text--subtitle-l"
+            >
+              Linked Behaviours
+            </span>
+            <div
+              className="sc-bTfYFJ cDyCee sc-fbyfCU kwIJFJ"
+              data-element="tableWrapper"
+            >
+              <table
+                className="sc-hOGkXu crgeRP"
+                data-element="table"
+              >
+                <thead
+                  className="sc-bXTejn giArNH"
+                >
+                  <tr
+                    className="sc-kHOZwM dyIaWS"
+                  >
+                    <td
+                      className="sc-jUosCB kZeojB"
+                    >
+                      <div
+                        className="sc-dtMgUX sc-cZMNgc fwJRXN jLnPAa"
+                      >
+                         
+                      </div>
+                    </td>
+                    <td
+                      className="sc-jUosCB jvQkNi"
+                    >
+                      <div
+                        className="sc-dtMgUX sc-cZMNgc fwJRXN jLnPAa"
+                      >
+                         
+                      </div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    className="sc-gsNilK eoNHnq"
+                  >
+                    <td
+                      className="sc-jUosCB fDrICq"
+                    >
+                      <span
+                        className="sc-gKclnd bhtCnV c-text--text-m"
+                      >
+                        Data example
+                      </span>
+                    </td>
+                    <td
+                      className="sc-jUosCB bxfnGR"
+                    >
+                      <span
+                        className="sc-gKclnd bhtCnV c-text--text-m"
+                      >
+                        Data example
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="sc-jeraig fIvFUH"
+      >
+        <button
+          className="sc-hGPBjI sc-kfPuZi jGEcwg cyjURS sc-eJwWfJ heFsMw"
+          data-element="button"
+          data-testid="close-btn"
+          size="medium"
+          variant="outline"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

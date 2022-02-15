@@ -1,22 +1,21 @@
-import { Meta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-
 import {
   CenterLayout,
   ColumnLayout,
   PageLayout,
   StackLayout,
   usePageLayout,
-} from '../Layouts'
-import { Text } from '../Text'
+} from '../../Layouts'
+import { Text } from '../../Text'
 
 export default {
-  title: 'Text',
+  title: 'Text/All text stories',
   component: Text,
-} as Meta
+} as ComponentMeta<typeof Text>
 
-export const Headings = () => {
+export const Headings: ComponentStory<typeof Text> = () => {
   const nav = usePageLayout()
   useEffect(() => {
     nav.setHeader(null)
@@ -157,7 +156,7 @@ export const Headings = () => {
   )
 }
 
-export const Paragraphs = () => {
+export const Paragraphs: ComponentStory<typeof Text> = () => {
   const nav = usePageLayout()
   useEffect(() => {
     nav.setHeader(null)
@@ -262,7 +261,7 @@ export const Paragraphs = () => {
   )
 }
 
-export const Rest = () => {
+export const Rest: ComponentStory<typeof Text> = () => {
   const nav = usePageLayout()
   useEffect(() => {
     nav.setHeader(null)

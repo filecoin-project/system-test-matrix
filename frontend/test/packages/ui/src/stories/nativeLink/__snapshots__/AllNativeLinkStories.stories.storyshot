@@ -9,7 +9,7 @@ exports[`Storyshots NativeLink/All NativeLink Stories Default 1`] = `
   }
 >
   <div
-    className="sc-bdvvtL sc-dtDOqo braPyZ fNTFAP"
+    className="sc-bdvvtL sc-fHeRUh braPyZ NPPrC"
   >
     <div
       className="sc-crHmcD dgzXGK"
@@ -49,7 +49,7 @@ exports[`Storyshots NativeLink/All NativeLink Stories Sizing 1`] = `
   }
 >
   <div
-    className="sc-bdvvtL sc-dtDOqo braPyZ fNTFAP"
+    className="sc-bdvvtL sc-fHeRUh braPyZ NPPrC"
   >
     <div
       className="sc-crHmcD dgzXGK"
@@ -112,7 +112,7 @@ exports[`Storyshots NativeLink/All NativeLink Stories System 1`] = `
   }
 >
   <div
-    className="sc-bdvvtL sc-dtDOqo braPyZ fNTFAP"
+    className="sc-bdvvtL sc-fHeRUh braPyZ NPPrC"
   >
     <div
       className="sc-crHmcD dgzXGK"

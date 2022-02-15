@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React, { useState } from 'react'
-import { CenterLayout } from '../..'
 import {
   Dropdown,
   DropdownSizes,
@@ -14,7 +13,7 @@ export default {
     Story => (
       <div
         style={{
-          width: '328px',
+          width: '179px',
           margin: '50px auto',
         }}
       >
@@ -40,22 +39,17 @@ export default {
   },
   argTypes: {
     size: {
-      name: 'dropdown size',
       options: DropdownSizes,
     },
     multiple: {
-      name: 'multiple options',
       control: {
         type: 'boolean',
       },
     },
     status: {
-      name: 'status',
       options: DropdownStatus,
     },
-    info: {
-      name: 'info message',
-    },
+    info: {},
     scrollHeight: {
       control: {
         type: 'range',
@@ -70,14 +64,12 @@ export default {
 export const DropdownProperties: ComponentStory<typeof Dropdown> = args => {
   const [value, setValue] = useState()
   return (
-    <CenterLayout>
-      <Dropdown
-        value={value}
-        onChange={e => setValue(e.value)}
-        placeholder="Select option"
-        {...args}
-      />
-    </CenterLayout>
+    <Dropdown
+      value={value}
+      onChange={e => setValue(e.value)}
+      placeholder="Select option"
+      {...args}
+    />
   )
 }
 

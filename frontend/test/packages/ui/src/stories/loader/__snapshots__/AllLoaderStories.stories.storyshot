@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Loader Default 1`] = `
+exports[`Storyshots Loader/All loader stories Search Input Loader 1`] = `
 <div
   style={
     Object {
@@ -9,11 +9,12 @@ exports[`Storyshots Loader Default 1`] = `
   }
 >
   <div
-    className="sc-brSvTw edbTDH"
+    className="o-center-layout sc-dkPtRN kyAoRl"
   >
     <div
-      className="sc-iwjdpV jmHfyo"
+      className="sc-iwjdpV kezlUH"
       data-element="loader"
+      height={14}
     />
   </div>
 </div>

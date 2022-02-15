@@ -11,7 +11,6 @@ export default {
     size: 'small',
     color: 'success',
   },
-  argTypes: {},
 } as ComponentMeta<typeof Button>
 
 export const ButtonProperties: ComponentStory<typeof Button> = args => {

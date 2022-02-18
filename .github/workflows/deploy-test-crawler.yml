@@ -45,5 +45,5 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           base: main
-          branch: feat/new-tests-file
+          branch: chore/generate-tests
           commit-message: "chore(test-crawler): Update tests.json"

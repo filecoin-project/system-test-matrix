@@ -17,15 +17,15 @@ jobs:
           go-version: "^1.17.7"
 
       # Install build-essential
-      - name: install build-essential
+      - name: Install build-essential
         run: sudo apt-get install build-essential
 
       # run test crawler
-      - name: make run
+      - name: Make run
         run: pwd
-        working-directory: test-crawler
+        # working-directory: test-crawler
 
       # copy crawler output
-      - name: copy output
-        run: make copy-output
+      - name: Copy output
+        run: pwd
         working-directory: test-crawler

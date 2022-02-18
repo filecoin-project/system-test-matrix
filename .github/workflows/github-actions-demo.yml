@@ -22,7 +22,7 @@ jobs:
 
       # run test crawler
       - name: make run
-        run: make run && ls
+        run: pwd
         working-directory: test-crawler
 
       # copy crawler output

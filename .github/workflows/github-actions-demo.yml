@@ -5,10 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Clone lotus repo
-      - uses: actions/checkout@v2
+      - name: Clone lotus  repo
+        uses: actions/checkout@v2
         with:
           repository: filecoin-project/lotus
-          path: test-crawler
+          path: repo-to-crawl
 
       # Install go lang
       - uses: actions/setup-go@v2
@@ -24,7 +25,7 @@ jobs:
 
       # run test crawler
       - name: make run
-        run: ls -a
+        run: ls
         working-directory: test-crawler
 
       # copy crawler output

@@ -4,11 +4,6 @@ jobs:
   run-test-crawler:
     runs-on: ubuntu-latest
     steps:
-      - name: PWDs
-        run: pwd && ls
-
-      - name: PWD
-        run: ls -a
       # Clone lotus repo
       - name: Clone lotus  repo
         uses: actions/checkout@v2
@@ -17,6 +12,7 @@ jobs:
           path: repo-to-crawl
 
       # Install go lang
+      - name: Install go lang 1.17.7
       - uses: actions/setup-go@v2
         with:
           go-version: "^1.17.7"
@@ -27,10 +23,10 @@ jobs:
 
       # run test crawler
       - name: Make run
-        run: pwd
-        # working-directory: test-crawler
+        run: make run
+        working-directory: test-crawler
 
-      # copy crawler output
-      # - name: Copy output
-      #   run: cd ../test-crawler
-      #   working-directory: ../test-crawler
+      copy crawler output
+      - name: Copy output
+        run: make copy-output
+        working-directory: test-crawler

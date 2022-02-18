@@ -1,0 +1,50 @@
+name: Deploy Test Crawler
+on: [push]
+jobs:
+  run-test-crawler:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository.
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      # Clone lotus repo into repo-to-crawl folder
+      - name: Clone lotus  repo
+        uses: actions/checkout@v2
+        with:
+          repository: filecoin-project/lotus
+          path: repo-to-crawl
+
+      # Install go lang
+      - name: Install go lang 1.17.7
+        uses: actions/setup-go@v2
+        with:
+          go-version: "^1.17.7"
+
+      # Install build-essential
+      - name: Install build-essential
+        run: sudo apt-get install build-essential
+
+      # Run test crawler
+      - name: Make run
+        run: make run
+        working-directory: test-crawler
+
+      # Copy crawler output
+      - name: Copy output
+        run: make copy-output
+        working-directory: test-crawler
+
+      # Delete cloned repo
+      - name: Delete cloned repo
+        run: find . ! -name 'uniqueREADME.md' -delete
+        working-directory: repo-to-crawl
+
+      # Create Pull Request for this action
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          base: main
+          branch: feat/new-tests-file
+          commit-message: Generated new tests.json file
+          title: Generated new tests file with github actions

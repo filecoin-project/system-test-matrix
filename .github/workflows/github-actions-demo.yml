@@ -4,8 +4,10 @@ jobs:
   run-test-crawler:
     runs-on: ubuntu-latest
     steps:
+    - name: PWD
+        run: cd ../
       - name: PWD
-        run: pwd
+        run: ls -a
       # Clone lotus repo
       - name: Clone lotus  repo
         uses: actions/checkout@v2
@@ -28,6 +30,6 @@ jobs:
         # working-directory: test-crawler
 
       # copy crawler output
-      - name: Copy output
-        run: pwd
-        working-directory: ../test-crawler
+      # - name: Copy output
+      #   run: cd ../test-crawler
+      #   working-directory: ../test-crawler

@@ -5,26 +5,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Clone lotus repo
+      - name: clone lotus repo
       - uses: actions/checkout@v2
         with:
           repository: filecoin-project/lotus
           path: test-crawler
 
       # Install go lang
+      - name: install go lang
       - uses: actions/setup-go@v2
         with:
           go-version: "^1.17.7"
 
       # Install build-essential
       - name: install build-essential
+        run : sudo apt-get update
         run: sudo apt-get install build-essential
 
       # run test crawler
-      - name: make build
-        working-directory: ./test-crawler
+      - name: make run
         run: make run
+        working-directory: test-crawler
 
       # copy crawler output
       - name: copy output
-        working-directory: ./test-crawler
         run: make copy-output
+        working-directory: test-crawler

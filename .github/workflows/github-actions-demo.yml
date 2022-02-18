@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PWD
-        run: pwd
+        run: ls
       # Clone lotus repo
       - name: Clone lotus  repo
         uses: actions/checkout@v2

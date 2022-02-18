@@ -21,12 +21,12 @@ jobs:
       - name: Install build-essential
         run: sudo apt-get install build-essential
 
-      # run test crawler
+      # Run test crawler
       - name: Make run
         run: make run
         working-directory: test-crawler
 
-      copy crawler output
+      # Copy crawler output
       - name: Copy output
         run: make copy-output
         working-directory: test-crawler

@@ -6,14 +6,14 @@ jobs:
     steps:
       # Clone lotus repo
       - name: clone lotus repo
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         with:
           repository: filecoin-project/lotus
           path: test-crawler
 
       # Install go lang
       - name: install go lang
-      - uses: actions/setup-go@v2
+        uses: actions/setup-go@v2
         with:
           go-version: "^1.17.7"
 

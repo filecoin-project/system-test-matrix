@@ -47,3 +47,4 @@ jobs:
           base: main
           branch: chore/generate-tests
           commit-message: "chore(test-crawler): Update tests.json"
+          delete-branch: true

@@ -24,7 +24,7 @@ jobs:
 
       # run test crawler
       - name: make run
-        run: make --version
+        run: ls -a
         working-directory: test-crawler
 
       # copy crawler output

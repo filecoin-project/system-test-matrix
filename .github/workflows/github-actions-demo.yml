@@ -7,7 +7,7 @@ jobs:
       # Checkout the repository.
       - name: Checkout the repository
         uses: actions/checkout@v2
-      # Clone lotus repo
+      # Clone lotus repo into repo-to-crawl folder
       - name: Clone lotus  repo
         uses: actions/checkout@v2
         with:
@@ -33,3 +33,9 @@ jobs:
       - name: Copy output
         run: make copy-output
         working-directory: test-crawler
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Generated new tests.json file
+          branch: feat/new-tests-file

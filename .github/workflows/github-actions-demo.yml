@@ -4,8 +4,9 @@ jobs:
   run-test-crawler:
     runs-on: ubuntu-latest
     steps:
-    - name: PWD
-        run: cd ../
+      - name: PWDs
+        run: pwd && ls
+
       - name: PWD
         run: ls -a
       # Clone lotus repo

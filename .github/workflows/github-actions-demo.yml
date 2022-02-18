@@ -18,12 +18,13 @@ jobs:
       # Install build-essential
       - name: update
         run: sudo apt-get update
+
       - name: install build-essential
         run: sudo apt-get install build-essential
 
       # run test crawler
       - name: make run
-        run: make run
+        run: pwd
         working-directory: test-crawler
 
       # copy crawler output

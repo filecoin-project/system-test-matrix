@@ -46,5 +46,4 @@ jobs:
         with:
           base: main
           branch: feat/new-tests-file
-          commit-message: Generated new tests.json file
-          title: Generated new tests file with github actions
+          commit-message: "chore(test-crawler): Update tests.json"

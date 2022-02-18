@@ -1,5 +1,5 @@
 # list of paths to directories that should be crawled
-paths: ["/Users/divic/Code/bloxico/filecoin/bloxico-lotus"]
+paths: ["../repo-to-crawl"]
 # stdout or file(json)
 output: stdout
 # if output is file, choose directory

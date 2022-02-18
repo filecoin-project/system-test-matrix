@@ -4,6 +4,8 @@ jobs:
   run-test-crawler:
     runs-on: ubuntu-latest
     steps:
+      - name: PWD
+        run: pwd
       # Clone lotus repo
       - name: Clone lotus  repo
         uses: actions/checkout@v2

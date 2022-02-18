@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & discussions 🤔
+    url: https://github.com/filecoin-project/system-test-matrix/discussions
+    about: Ask questions and request features

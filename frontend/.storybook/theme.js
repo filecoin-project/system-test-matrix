@@ -34,5 +34,5 @@ export default create({
 
   brandTitle: 'FILECOIN',
   brandUrl: 'https://filecoin.com',
-  brandImage: '//TODO@replace',
+  brandImage: '/img/storybookLogo.png',
 })

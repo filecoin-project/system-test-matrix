@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Loader/All loader stories Search Input Loader 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN kyAoRl"
+  >
+    <div
+      className="sc-iwjdpV kezlUH"
+      data-element="loader"
+      height={14}
+    />
+  </div>
+</div>
+`;

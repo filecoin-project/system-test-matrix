@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Modal/All Modal Stories Behavior Modal 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <button
+    className="sc-hGPBjI sc-dlVxhl iScDhz jjjrNB"
+    color="success"
+    data-element="button"
+    onClick={[Function]}
+    size="medium"
+    variant="rounded"
+  >
+    Open Modal
+  </button>
+</div>
+`;
+
+exports[`Storyshots Modal/All Modal Stories Test Modal 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <button
+    className="sc-hGPBjI sc-dlVxhl iScDhz jjjrNB"
+    color="success"
+    data-element="button"
+    onClick={[Function]}
+    size="medium"
+    variant="rounded"
+  >
+    Open Modal
+  </button>
+</div>
+`;

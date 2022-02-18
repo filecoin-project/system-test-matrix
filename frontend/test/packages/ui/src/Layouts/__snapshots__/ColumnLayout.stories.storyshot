@@ -2,39 +2,47 @@
 
 exports[`Storyshots Layout/ColumnLayout Overview 1`] = `
 <div
-  className="sc-crHmcD dgzXGK"
   style={
     Object {
-      "minHeight": 400,
+      "padding": "2rem",
     }
   }
 >
   <div
+    className="sc-crHmcD dgzXGK"
     style={
       Object {
-        "background": "#e8505b",
-        "minHeight": 50,
-        "width": 160,
+        "minHeight": 400,
       }
     }
-  />
-  <div
-    style={
-      Object {
-        "background": "#00FF00",
-        "minHeight": 50,
-        "width": 160,
+  >
+    <div
+      style={
+        Object {
+          "background": "#e8505b",
+          "minHeight": 50,
+          "width": 160,
+        }
       }
-    }
-  />
-  <div
-    style={
-      Object {
-        "background": "#FF00FF",
-        "minHeight": 50,
-        "width": 160,
+    />
+    <div
+      style={
+        Object {
+          "background": "#00FF00",
+          "minHeight": 50,
+          "width": 160,
+        }
       }
-    }
-  />
+    />
+    <div
+      style={
+        Object {
+          "background": "#FF00FF",
+          "minHeight": 50,
+          "width": 160,
+        }
+      }
+    />
+  </div>
 </div>
 `;

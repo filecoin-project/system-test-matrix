@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Icon/All Icon Stories All Icons 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-jRQBWg cxpPjD"
+  >
+    <span
+      className="sc-gKclnd bhtCnV c-text--text-m"
+    >
+      arrow_down
+    </span>
+    <svg
+      id="/assets/icons/arrow_down.svg"
+    />
+    <span
+      className="sc-gKclnd bhtCnV c-text--text-m"
+    >
+      arrow_up
+    </span>
+    <svg
+      id="/assets/icons/arrow_up.svg"
+    />
+    <span
+      className="sc-gKclnd bhtCnV c-text--text-m"
+    >
+      book
+    </span>
+    <svg
+      id="/assets/icons/book.svg"
+    />
+    <span
+      className="sc-gKclnd bhtCnV c-text--text-m"
+    >
+      close
+    </span>
+    <svg
+      id="/assets/icons/close.svg"
+    />
+    <span
+      className="sc-gKclnd bhtCnV c-text--text-m"
+    >
+      detailed_view
+    </span>
+    <svg
+      id="/assets/icons/detailed_view.svg"
+    />
+    <span
+      className="sc-gKclnd bhtCnV c-text--text-m"
+    >
+      search
+    </span>
+    <svg
+      id="/assets/icons/search.svg"
+    />
+    <span
+      className="sc-gKclnd bhtCnV c-text--text-m"
+    >
+      arrow_left_double
+    </span>
+    <svg
+      id="/assets/icons/arrow_left_double.svg"
+    />
+    <span
+      className="sc-gKclnd bhtCnV c-text--text-m"
+    >
+      arrow_right_double
+    </span>
+    <svg
+      id="/assets/icons/arrow_right_double.svg"
+    />
+  </div>
+</div>
+`;

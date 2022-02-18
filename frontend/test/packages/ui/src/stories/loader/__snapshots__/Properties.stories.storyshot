@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Loader/Properties Properties 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN kyAoRl"
+  >
+    <div
+      className="sc-bBHxTw dFIVXP"
+      height={14}
+    >
+      <div
+        className="sc-iwjdpV kezlUH"
+        data-element="loader"
+        height={14}
+      />
+    </div>
+  </div>
+</div>
+`;

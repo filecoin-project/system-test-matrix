@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 import styled, { keyframes } from 'styled-components'
-
 import { Colors } from './styles/colors'
 
 interface Props {
@@ -14,10 +13,10 @@ export const Loader: FunctionComponent<Props> = ({
 }) => {
   return fullScreen ? (
     <Wrapper height={height}>
-      <Element data-element="loader" {...props} />
+      <Element data-element="loader" height={height} {...props} />
     </Wrapper>
   ) : (
-    <Element data-element="loader" {...props} />
+    <Element data-element="loader" height={height} {...props} />
   )
 }
 
@@ -31,7 +30,7 @@ const loaderKeyframe = keyframes`
   }
 `
 
-const Wrapper = styled.div<{ height?: number }>`
+const Wrapper = styled.div<Pick<Props, 'height'>>`
   width: 100%;
   ${props => `height: ${props.height}px`};
   display: flex;
@@ -39,9 +38,9 @@ const Wrapper = styled.div<{ height?: number }>`
   justify-content: center;
 `
 
-const Element = styled.div`
-  width: 72px;
-  height: 72px;
+const Element = styled.div<Pick<Props, 'height'>>`
+  width: ${({ height }) => `${height || 72}px`};
+  height: ${({ height }) => `${height || 72}px`};
   border-radius: 50%;
   font-size: 10px;
   position: relative;
@@ -51,8 +50,8 @@ const Element = styled.div`
   animation: ${loaderKeyframe} 1.1s infinite linear;
 
   ::after {
-    width: 72px;
-    height: 72px;
+    width: ${({ height }) => `${height || 72}px`};
+    height: ${({ height }) => `${height || 72}px`};
     border-radius: 50%;
   }
 `

@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button/All Button Stories Ghost 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN kyAoRl"
+  >
+    <div
+      className="sc-jrQzAO hXEXJQ"
+      gap={2}
+    >
+      <span
+        align="center"
+        className="sc-gKclnd gYkIwC c-text--text-m"
+      >
+        Ghost Buttons
+      </span>
+      <button
+        className="sc-hGPBjI sc-kfPuZi jGEcwg cyjURS"
+        data-element="button"
+        size="medium"
+        variant="outline"
+      >
+        All Behaviours
+      </button>
+      <button
+        className="sc-hGPBjI sc-kfPuZi jGEcwg cyjURS"
+        data-element="button"
+        size="medium"
+        variant="outline"
+      >
+        All Tests
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Button/All Button Stories System 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN kyAoRl"
+  >
+    <div
+      className="sc-jrQzAO hXEXJQ"
+      gap={2}
+    >
+      <span
+        align="center"
+        className="sc-gKclnd gYkIwC c-text--text-m"
+      >
+        Rounded Buttons
+      </span>
+      <button
+        className="sc-hGPBjI sc-dlVxhl fdJHWR jjjrNB"
+        color="success"
+        data-element="button"
+        size="small"
+        variant="rounded"
+      >
+        Good
+      </button>
+      <button
+        className="sc-hGPBjI sc-dlVxhl hKiCXh jjjrNB"
+        color="error"
+        data-element="button"
+        size="small"
+        variant="rounded"
+      >
+        Bad
+      </button>
+      <button
+        className="sc-hGPBjI sc-dlVxhl fYXMVG jjjrNB"
+        color="warning"
+        data-element="button"
+        size="small"
+        variant="rounded"
+      >
+        Mediocre
+      </button>
+      <button
+        className="sc-hGPBjI sc-dlVxhl eCrKlI jjjrNB"
+        color="secondary"
+        data-element="button"
+        size="small"
+        variant="rounded"
+      >
+        Missing
+      </button>
+    </div>
+  </div>
+</div>
+`;

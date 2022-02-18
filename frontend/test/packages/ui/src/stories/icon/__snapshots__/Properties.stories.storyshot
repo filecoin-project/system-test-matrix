@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Icon/Properties Properties 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN kyAoRl"
+  >
+    <svg
+      id="/assets/icons/book.svg"
+    />
+  </div>
+</div>
+`;

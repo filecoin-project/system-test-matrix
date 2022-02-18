@@ -2,41 +2,49 @@
 
 exports[`Storyshots Layout/CardLayout Overview 1`] = `
 <div
-  className="sc-kDTinF ebTNpx"
-  setFooter={[Function]}
-  setHeader={[Function]}
   style={
     Object {
-      "backgroundColor": "#f9f9fe",
+      "padding": "2rem",
     }
   }
 >
   <div
-    className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
-    gap={4}
+    className="sc-kDTinF ebTNpx"
+    setFooter={[Function]}
+    setHeader={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#f9f9fe",
+      }
+    }
   >
-    <section
-      className="c-page-layout__section"
+    <div
+      className="sc-jrQzAO sc-iqseJM kzkJVu ctSMHZ"
+      gap={4}
     >
-      <div
-        className="o-center-layout sc-dkPtRN kyAoRl"
+      <section
+        className="c-page-layout__section"
       >
         <div
-          className="sc-gsDKAQ kRyEwj c-card-layout"
-          style={
-            Object {
-              "height": 300,
-              "textAlign": "center",
-              "width": 250,
-            }
-          }
+          className="o-center-layout sc-dkPtRN kyAoRl"
         >
-          <p>
-            Lorem ipsum dolor sit amet
-          </p>
+          <div
+            className="sc-gsDKAQ kRyEwj c-card-layout"
+            style={
+              Object {
+                "height": 300,
+                "textAlign": "center",
+                "width": 250,
+              }
+            }
+          >
+            <p>
+              Lorem ipsum dolor sit amet
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </div>
 `;

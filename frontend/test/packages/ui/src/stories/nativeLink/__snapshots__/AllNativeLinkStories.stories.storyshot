@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots NativeLink/All NativeLink Stories Default 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-bdvvtL sc-fHeRUh braPyZ NPPrC"
+  >
+    <div
+      className="sc-crHmcD dgzXGK"
+    >
+      <span>
+        <a
+          className="c-native-link sc-nVkyK sc-ehCJOs bhVlKR WkQqo u-text--large"
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Blockchain
+        </a>
+      </span>
+      <span>
+        <a
+          className="c-native-link sc-nVkyK sc-ehCJOs bhVlKR WkQqo u-text--large"
+          disabled={true}
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Blockchain
+        </a>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots NativeLink/All NativeLink Stories Sizing 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-bdvvtL sc-fHeRUh braPyZ NPPrC"
+  >
+    <div
+      className="sc-crHmcD dgzXGK"
+    >
+      <span>
+        <a
+          appearance="default"
+          className="c-native-link sc-nVkyK sc-ehCJOs bhVlKR WkQqo u-text--large"
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Large
+        </a>
+      </span>
+      <span>
+        <a
+          appearance="default"
+          className="c-native-link sc-nVkyK sc-ehCJOs gAYAaz WkQqo"
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Regular
+        </a>
+      </span>
+      <span>
+        <a
+          appearance="default"
+          className="c-native-link sc-nVkyK sc-ehCJOs gcMlyG WkQqo u-text--small"
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Small
+        </a>
+      </span>
+      <span>
+        <a
+          appearance="default"
+          className="c-native-link sc-nVkyK sc-ehCJOs goCUaL WkQqo u-text--xsmall"
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          XS Small
+        </a>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots NativeLink/All NativeLink Stories System 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="sc-bdvvtL sc-fHeRUh braPyZ NPPrC"
+  >
+    <div
+      className="sc-crHmcD dgzXGK"
+    >
+      <span>
+        <a
+          appearance="system"
+          className="c-native-link sc-nVkyK sc-hiwPVj gAYAaz jzmlNq u-text--medium"
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Blockchain
+        </a>
+      </span>
+      <span>
+        <a
+          appearance="system"
+          className="c-native-link sc-nVkyK sc-hiwPVj goCUaL jzmlNq u-text--xsmall"
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg
+            id="/assets/icons/link.svg"
+          />
+          /lotus/miner
+        </a>
+      </span>
+      <span>
+        <a
+          appearance="system"
+          className="c-native-link sc-nVkyK sc-hiwPVj goCUaL jzmlNq u-text--xsmall"
+          disabled={true}
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg
+            id="/assets/icons/link.svg"
+          />
+          /lotus/miner
+        </a>
+      </span>
+    </div>
+  </div>
+</div>
+`;

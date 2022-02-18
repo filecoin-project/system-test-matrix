@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots BaseInput/Properties Properties 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "margin": "50px auto",
+        "position": "relative",
+        "width": "328px",
+      }
+    }
+  >
+    <div
+      className="sc-bqiRlB fZtLhY"
+    >
+      <div
+        className="sc-ksdxgE kkpAzG"
+      >
+        <input
+          autoComplete="new-password"
+          disabled={false}
+          id={1}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="Input your props below"
+          type="text"
+        />
+        <fieldset
+          className=""
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;

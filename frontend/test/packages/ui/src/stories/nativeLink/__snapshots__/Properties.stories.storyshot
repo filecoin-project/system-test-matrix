@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots NativeLink/Properties Properties 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN kyAoRl"
+  >
+    <span>
+      <a
+        appearance="system"
+        className="c-native-link sc-nVkyK sc-hiwPVj gAYAaz jzmlNq"
+        disabled={false}
+        href="https://lotus.systemtestmatrix.com/"
+        target="blank"
+      >
+        <svg
+          id="/assets/icons/link.svg"
+        />
+        NativeLink Example
+      </a>
+    </span>
+  </div>
+</div>
+`;

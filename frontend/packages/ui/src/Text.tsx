@@ -1,11 +1,10 @@
 import classNames from 'classnames'
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
-
 import { Colors } from './styles/colors'
 import { FullWidth, Hidden } from './styles/mixins'
 
-const TextStyle = [
+export const TextStyle = [
   'heading 1',
   'heading 2',
   'heading 3',
@@ -26,7 +25,7 @@ const TextStyle = [
 ] as const
 type TextStyle = typeof TextStyle[number]
 
-const TextColors = [
+export const TextColors = [
   'red',
   'green',
   'white',
@@ -36,7 +35,7 @@ const TextColors = [
   'gray80',
   'gray90',
   'textGray',
-]
+] as const
 type TextColors = typeof TextColors[number]
 const defaultElement = 'span'
 const defaultHTMLElement = new Map<TextStyle, React.ElementType>([

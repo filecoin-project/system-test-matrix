@@ -2,4 +2,4 @@ _modules
 _local_modules
 outputs
 .vscode
-.config.yaml
+config.yaml

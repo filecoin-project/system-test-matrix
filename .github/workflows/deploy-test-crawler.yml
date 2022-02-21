@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: filecoin-project/lotus
-          path: repo-to-crawl/
+          path: repo-to-crawl
 
       # Install go lang
       - name: Install go lang 1.17.7

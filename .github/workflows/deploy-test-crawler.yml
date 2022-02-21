@@ -1,11 +1,11 @@
 name: Deploy Test Crawler
 on: push
 # on:
-  push:
-    branches:
-      - main
-    paths:
-      - test-crawler/**
+# push:
+#   branches:
+#     - main
+#   paths:
+#     - test-crawler/**
 jobs:
   run-test-crawler:
     runs-on: ubuntu-latest

@@ -2699,25 +2699,25 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@react-to-styled/essentials@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/essentials/-/essentials-0.2.0.tgz#4a92eb45d2314b77397c30f5fb1a86a8752ab9f7"
-  integrity sha512-DqhwDinyG/O3XjUE1PU7yQ6m6QLsAkbnLuS/GTg16B3Idz3okrtmyt47dRgyzVRbUZF9a6ATZqxGejelUQJsDw==
+"@react-to-styled/essentials@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/essentials/-/essentials-0.2.7.tgz#087d874183e82f63babe3b76944477bec4726cb3"
+  integrity sha512-P5NQOGMRBUA+4xFeuU+Gjq7PdECV1LJ5Dvv0ExWG8FrcgDNJpS9IYdqXvCmSggxGtYYNDGRq97u3vl4/KGjnpw==
 
-"@react-to-styled/loader@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/loader/-/loader-0.2.0.tgz#92ffdbb59f029b7bde9a2f20c382a99433bf72c7"
-  integrity sha512-2aEppvAmcjWoVW526DDzcKmrKzbCgxuCLsf6FC/Gt94lxtfOcOvfzS2WsOPuYWTogdA+So10KP4/wjYV8DeEPA==
+"@react-to-styled/loader@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/loader/-/loader-0.2.7.tgz#affddbf254d9e460b73ece4f202af48060117718"
+  integrity sha512-uXhvxssxhS0bVge2KJM0mCDNSsKoMc0L9ei3DbzMU7nlbYsZy8+/1F+fLi/bSIpA62Wf3okf/yG4ruXGiMz/jw==
   dependencies:
-    "@react-to-styled/essentials" "^0.2.0"
+    "@react-to-styled/essentials" "^0.2.7"
 
 "@react-to-styled/table@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@react-to-styled/table/-/table-0.5.0.tgz#c22d5704205a1b1862880ac6c193d36c6a335980"
-  integrity sha512-iyHcl5npjd8HIPnP+NxoOViRODu+HlYp6z8UiCsZLDqxYX4dMBpmr86QMs+r73zsUADjpTFmR6PVAaSikxkwhQ==
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/@react-to-styled/table/-/table-0.5.7.tgz#efa64be85029bb1dab77ccbb0f0836800f7709b3"
+  integrity sha512-QOYnD08mLaSsXggsMMnIWjgOYYxfTNm/tNL56vQgIUt2d7nYW9zmu0RSSOqCMWYERTmaMLz28188LReGuvzabQ==
   dependencies:
-    "@react-to-styled/essentials" "^0.2.0"
-    "@react-to-styled/loader" "^0.2.0"
+    "@react-to-styled/essentials" "^0.2.7"
+    "@react-to-styled/loader" "^0.2.7"
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"

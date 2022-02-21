@@ -11,7 +11,7 @@ jobs:
         id: filecoin-lotus-version
         run: |
           echo ::set-output name=release_tag::$(curl -sL https://api.github.com/repos/filecoin-project/lotus/releases/latest | jq -r ".tag_name")
-          echo ::set-output name=current_tag::$(release-versions/filecoin-lotus-latest.txt)
+          echo ::set-output name=current_tag::$(cat release-versions/filecoin-lotus-latest.txt)
       - name: Check if new version
         id: git-check
         if: steps.filecoin-lotus-version.outputs.current_tag != steps.filecoin-lotus-version.outputs.release_tag

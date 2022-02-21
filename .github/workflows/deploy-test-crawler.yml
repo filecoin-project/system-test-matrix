@@ -1,5 +1,6 @@
 name: Deploy Test Crawler
-on:
+on: push
+# on:
   push:
     branches:
       - main

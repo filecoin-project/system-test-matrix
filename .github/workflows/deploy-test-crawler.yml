@@ -47,7 +47,7 @@ jobs:
 
       # Delete cloned repo
       - name: Delete cloned repo
-        run: find . ! -name 'uniqueREADME.md' -delete
+        run: find . -delete
         working-directory: repo-to-crawl
 
       # Move back uniqueREADME

@@ -15,4 +15,4 @@ jobs:
       - name: Check if new version
         id: git-check
         if: steps.filecoin-lotus-version.outputs.current_tag != steps.filecoin-lotus-version.outputs.release_tag
-        run: echo steps.filecoin-lotus-version.outputs.current_tag
+        run: echo ${{steps.filecoin-lotus-version.outputs.current_tag}}

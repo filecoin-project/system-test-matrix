@@ -13,9 +13,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	//	"testsuites/TestFile"
-	//	"testsuites/Function"
-	//	"testsuites/Scenario"
 )
 
 const circleCiApiEndpoint = "https://circleci.com/api/v2/"
@@ -28,26 +25,34 @@ type Pipelines struct {
 		State string `json:"state"`
 		VCS   struct {
 			Branch string `json:"branch"`
-			//			Revision string `json:"revision"` // Might be used in future
 		}
 		Trigger struct {
 			Type string `json:"type"`
 		}
-	}
+	} `json:"items"`
 }
 
 // Hold the Workflows extracted data. IDs will be propagated for further use in scraping job statuses.
 type Payload struct {
 	Items []struct {
-		ID     string `json:"id"`
-		Name   string `json:"name"`
-		Status string `json:"status"`
-	}
+		JobNumber int    `json:"job_number"`
+		ID        string `json:"id"`
+		Name      string `json:"name"`
+		Status    string `json:"status"`
+	} `json:"items"`
 }
 
-// func testCrawlerResults() {
+// Hold the job's tests metadata.
+type ResultItems struct {
+	Name      string `json:"name"`
+	ClassName string `json:"classname"`
+	Results   string `json:"result"`
+	Source    string `json:"source"`
+}
 
-// }
+type Results struct {
+	Items []ResultItems `json:"items"`
+}
 
 func circleciApiCall(url string) []byte {
 	req, _ := http.NewRequest("GET", url, nil)
@@ -82,13 +87,13 @@ func getPipelines(branch string) Pipelines {
 	return pipelines
 }
 
-func getWorkloads() Payload {
+func getWorkflows() Payload {
 	var workflows Payload
 	var body []byte
 	pipelines := getPipelines("master") // Change to be passed as a command-line argument
 
 	for i := range pipelines.Items {
-		if pipelines.Items[i].Trigger.Type == "webhook" { // Only use the _ci_ workflows. Discuss nightly builds.
+		if pipelines.Items[i].Trigger.Type == "webhook" { // Only use the _ci_ workflows.
 			body = circleciApiCall(circleCiApiEndpoint + "pipeline/" + pipelines.Items[i].ID + "/workflow") // Todo: maybe select a hash via command line
 			break
 		}
@@ -100,14 +105,13 @@ func getWorkloads() Payload {
 		fmt.Println(err)
 	}
 
-	//	fmt.Println(workflows)
 	return workflows
 }
 
 func getJobs() Payload {
 	var jobs Payload
 
-	workflows := getWorkloads()
+	workflows := getWorkflows()
 	body := circleciApiCall(circleCiApiEndpoint + "workflow/" + workflows.Items[0].ID + "/job") // There should be only one item
 
 	err := json.Unmarshal(body, &jobs)
@@ -118,6 +122,33 @@ func getJobs() Payload {
 	return jobs
 }
 
+func getResults() []byte {
+	var results Results
+	var aggregatedResults []Results
+
+	jobs := getJobs()
+
+	for i := range jobs.Items {
+		body := circleciApiCall(circleCiApiEndpoint + "project/gh/filecoin-project/lotus/" + fmt.Sprint(jobs.Items[i].JobNumber) + "/tests")
+
+		err := json.Unmarshal(body, &results)
+		aggregatedResults = append(aggregatedResults, results)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
+
+	result, err := json.Marshal(aggregatedResults)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return result
+}
+
 func main() {
-	fmt.Println(getJobs())
+	err := os.WriteFile("scraper.json", getResults(), 0644)
+	if err != nil {
+		panic(err)
+	}
 }

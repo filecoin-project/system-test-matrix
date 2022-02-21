@@ -43,7 +43,7 @@ jobs:
 
       # Delete cloned repo
       - name: Delete cloned repo
-        run: find . ! -name 'uniqueREADME.md' -delete
+        run: find . -type f -not -name 'uniqueREADME.md'-delete
         working-directory: repo-to-crawl
 
       # Create Pull Request for this action

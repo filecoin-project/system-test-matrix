@@ -6,6 +6,13 @@ export enum BehaviorStatus {
   untested = 'untested',
 }
 
+class BeheviorStatusHelper {
+  constructor(
+    public kind: TestKind,
+    public status: BehaviorStatus,
+  ) { }
+}
+
 export class Behavior {
   constructor(
     public id: string,
@@ -15,17 +22,21 @@ export class Behavior {
     public system: string,
     public testedBy: BehaviorTest[] = [],
     public expectedTestKinds: TestKind[] = ['unit', 'integration'],
-  ) {}
+  ) { }
   public get status(): BehaviorStatus {
     const statusesByKind = this.expectedTestKinds.map(tk =>
-      this.statusByKind(tk),
+      new BeheviorStatusHelper(
+        tk,
+        this.statusByKind(tk),
+      )
     )
-    // it's tested if it has passing tests for all expected test kinds
-    if (statusesByKind.every(sbk => sbk === BehaviorStatus.tested)) {
+
+    // it's tested if there is integration test, unit test doesn't mater in this case
+    if (statusesByKind.some(sbk => sbk.status === BehaviorStatus.tested && sbk.kind === 'integration')) {
       return BehaviorStatus.tested
     }
-    // it's partial if it misses some
-    if (statusesByKind.some(sbk => sbk === BehaviorStatus.tested)) {
+    // it's partial if there is no integration test but there is unit test
+    if (statusesByKind.some(sbk => sbk.status === BehaviorStatus.tested)) {
       return BehaviorStatus.partiallyTested
     }
     // it's untested if it doesn't have tests for any expected test kind

@@ -13,6 +13,7 @@ exports[`Storyshots Loader/Properties Properties 1`] = `
   >
     <div
       className="sc-bBHxTw dFIVXP"
+      data-testid="loader-test-id"
       height={14}
     >
       <div

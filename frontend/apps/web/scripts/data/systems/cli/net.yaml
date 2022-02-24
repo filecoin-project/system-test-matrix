@@ -1,0 +1,95 @@
+system: Cli
+subsystem: Net
+features:
+  - name: Peers
+    behaviors:
+      - id: CLI_NETWORK_PEERS_001
+        description: |
+          Get peers on network
+
+  - name: Scores
+    behaviors:
+      - id: CLI_NETWORK_SCORES_001
+        description: |
+          Get network scores
+
+  - name: Listen
+    behaviors:
+      - id: CLI_NETWORK_LISTEN_001
+        description: |
+          Get listen address
+
+  - name: Reachability
+    behaviors:
+      - id: CLI_NETWORK_REACHABILITY_001
+        description: |
+          Get network reachability status
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_ID_001
+        description: |
+          Get peer ID
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_BANDWIDTH_001
+        description: |
+          Get network bandwidth stats
+
+      - id: CLI_NETWORK_BANDWIDTH_002
+        description: |
+          Get network bandwidth stats by peer id
+
+      - id: CLI_NETWORK_BANDWIDTH_003
+        description: |
+          Get network bandwidth stats by protocol
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_FIND_PEER_001
+        description: |
+          Find address info provided peer id
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_BLOCK_PEER_001
+        description: |
+          Block node by peer id
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_BLOCK_IP_001
+        description: |
+          Block node by ip address
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_BLOCK_SUBNET_001
+        description: |
+          Block node by subnet
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_BLOCK_LIST_001
+        description: |
+          Get network block list
+  
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_UNBLOCK_PEER_001
+        description: |
+          Unblock node by peer id
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_UNBLOCK_IP_001
+        description: |
+          Unblock node by ip address
+
+  - name: ID
+    behaviors:
+      - id: CLI_NETWORK_UNBLOCK_SUBNET_001
+        description: |
+          Unblock node by subnet
+ 

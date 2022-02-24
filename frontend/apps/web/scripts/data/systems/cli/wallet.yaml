@@ -1,0 +1,78 @@
+system: Cli
+subsystem: Wallet
+features:
+  - name: Wallet New
+    behaviors:
+      - id: CLI_WALLET_NEW_001
+        description: |
+          Create new wallet
+
+  - name: Wallet List
+    behaviors:
+      - id: CLI_WALLET_LIST_001
+        description: |
+          List wallet address only
+
+      - id: CLI_WALLET_LIST_002
+        description: |
+          List wallet id 
+
+      - id: CLI_WALLET_LIST_003
+        description: |
+          List wallet market data
+
+  - name: Wallet Balance
+    behaviors:
+      - id: CLI_WALLET_BALANCE_001
+        description: |
+          Get wallet balance
+
+  - name: Wallet Default
+    behaviors:
+      - id: CLI_WALLET_GET_DEFAULT_001
+        description: |
+          Get default wallet for node
+
+  - name: Wallet Set Default
+    behaviors:
+      - id: CLI_WALLET_SET_DEFAULT_001
+        description: |
+          Set default wallet for node
+
+  - name: Wallet Set Default
+    behaviors:
+      - id: CLI_WALLET_EXPORT_001
+        description: |
+          Export wallet
+
+  - name: Wallet Sign
+    behaviors:
+      - id: CLI_WALLET_SIGN_001
+        description: |
+          Sign wallet message
+
+  - name: Wallet Verify
+    behaviors:
+      - id: CLI_WALLET_VERIFY_001
+        description: |
+          Verify wallet message
+
+  - name: Wallet Delete
+    behaviors:
+      - id: CLI_WALLET_DELETE_001
+        description: |
+          Delete wallet 
+
+  - name: Wallet Withdraw
+    behaviors:
+      - id: CLI_WALLET_MARKET_WITHDRAW_001
+        description: |
+          Withdraw balance from wallet
+
+  - name: Wallet Add
+    behaviors:
+      - id: CLI_WALLET_MARKET_ADD_001
+        description: |
+          Deposit balance to wallet
+
+          

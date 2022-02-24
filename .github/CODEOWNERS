@@ -1,9 +1,11 @@
-*                                                       @TheDivic @aleksaToljic
+*                                                       @TheDivic @aleksaToljic @TheMenko @brdji @AbominableSnowman730
 
-/frontend/apps/web/scripts/data/                        @TheMenko @brdji
+/frontend/apps/web/scripts/data/                        @TheMenko @brdji @TheDivic
 
-/frontend/apps/web/src/tests.json                       @TheMenko @brdji
+/frontend/apps/web/src/tests.json                       @TheMenko @brdji @TheDivic
 
 /test-crawler/                                          @TheMenko
 
-/.github/                                               @aleksaToljic
+/frontend                                               @aleksaToljic
+
+/.github/                                               @aleksaToljic 

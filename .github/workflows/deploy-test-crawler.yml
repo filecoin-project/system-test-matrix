@@ -1,10 +1,14 @@
 name: Deploy Test Crawler
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - test-crawler/**
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - test-crawler/**
+  repository_dispatch:
+    types: [testing-repository-dispatch]
+
 jobs:
   run-test-crawler:
     runs-on: ubuntu-latest

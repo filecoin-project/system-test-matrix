@@ -2,17 +2,17 @@ import React, { FunctionComponent } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Colors } from './styles/colors'
 
-interface Props {
+export interface LoaderProps {
   fullScreen?: boolean
   height?: number
 }
-export const Loader: FunctionComponent<Props> = ({
+export const Loader: FunctionComponent<LoaderProps> = ({
   fullScreen,
-  height = 300,
+  height = 72,
   ...props
 }) => {
   return fullScreen ? (
-    <Wrapper height={height}>
+    <Wrapper height={height} data-testid="loader-test-id">
       <Element data-element="loader" height={height} {...props} />
     </Wrapper>
   ) : (
@@ -30,7 +30,7 @@ const loaderKeyframe = keyframes`
   }
 `
 
-const Wrapper = styled.div<Pick<Props, 'height'>>`
+const Wrapper = styled.div<Pick<LoaderProps, 'height'>>`
   width: 100%;
   ${props => `height: ${props.height}px`};
   display: flex;
@@ -38,7 +38,7 @@ const Wrapper = styled.div<Pick<Props, 'height'>>`
   justify-content: center;
 `
 
-const Element = styled.div<Pick<Props, 'height'>>`
+const Element = styled.div<Pick<LoaderProps, 'height'>>`
   width: ${({ height }) => `${height || 72}px`};
   height: ${({ height }) => `${height || 72}px`};
   border-radius: 50%;

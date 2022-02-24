@@ -6,7 +6,8 @@ name: Deploy Test Crawler
 #     paths:
 #       - test-crawler/**
 on:
-  workflow_dispatch:
+  repository_dispatch:
+    types: [testing-repository-dispatch]
 
 jobs:
   run-test-crawler:

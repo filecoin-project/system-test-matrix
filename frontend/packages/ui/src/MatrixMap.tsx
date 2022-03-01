@@ -2,7 +2,7 @@ import { Behavior, BehaviorStatus } from '@filecoin/types'
 import React from 'react'
 import { Treemap as Chart } from 'recharts'
 
-interface BehaviorData extends Partial<Behavior> {
+export interface BehaviorData extends Partial<Behavior> {
   value?: number
   color?: string
   statusForKind?: BehaviorStatus

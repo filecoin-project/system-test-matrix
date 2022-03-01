@@ -15,57 +15,63 @@ import (
 	"os"
 )
 
-const circleCiApiEndpoint = "https://circleci.com/api/v2/"
+const circleCiApiEndpoint = "https://circleci.com/api/v2"
 
-// Initialize structures for scraping JSON data
-// Hold the Pipelines extracted data. This is the only static URL that is going to be used.
-type Pipelines struct {
-	Items []struct {
-		ID    string `json:"id"`
-		State string `json:"state"`
-		VCS   struct {
-			Branch string `json:"branch"`
-		}
-		Trigger struct {
-			Type string `json:"type"`
-		}
-	} `json:"items"`
+type Pipeline struct {
+	ID     string `json:"id"`
+	State  string `json:"state"`
+	Number int    `json:"number"`
+	VCS    struct {
+		Branch string `json:"branch"`
+	}
+	Trigger struct {
+		Type string `json:"type"`
+	}
 }
 
-// Hold the Workflows extracted data. IDs will be propagated for further use in scraping job statuses.
-type Payload struct {
-	Items []struct {
-		JobNumber int    `json:"job_number"`
-		ID        string `json:"id"`
-		Name      string `json:"name"`
-		Status    string `json:"status"`
-	} `json:"items"`
+type Workflow struct {
+	ID       string   `json:"id"`
+	Name     string   `json:"name"`
+	Status   string   `json:"status"`
+	Pipeline Pipeline `json:"pipeline"`
+}
+
+type Job struct {
+	JobNumber int      `json:"job_number"`
+	ID        string   `json:"id"`
+	Name      string   `json:"name"`
+	Number    int      `json:"number"`
+	Status    string   `json:"status"`
+	Workflow  Workflow `json:"workflow"`
+	URL       string   `json:"url"`
 }
 
 // Hold the job's tests metadata.
-type ResultItems struct {
+type Test struct {
 	Name      string `json:"name"`
 	ClassName string `json:"classname"`
 	Results   string `json:"result"`
 	Source    string `json:"source"`
+	Job       Job    `json:"job"`
 }
 
-type Results struct {
-	Items []ResultItems `json:"items"`
-}
+func circleciApiCall(endpoint string) []byte {
+	url := fmt.Sprintf("%s/%s", circleCiApiEndpoint, endpoint)
 
-func circleciApiCall(url string) []byte {
-	req, _ := http.NewRequest("GET", url, nil)
+	fmt.Println("GET: ", url)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		panic(err)
+	}
+
 	res, err := http.DefaultClient.Do(req)
-
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-
 	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
 
+	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -74,81 +80,126 @@ func circleciApiCall(url string) []byte {
 	return body
 }
 
-func getPipelines(branch string) Pipelines {
-	var pipelines Pipelines
+func getPipelines(branch string) []Pipeline {
+	body := circleciApiCall(fmt.Sprintf("project/gh/filecoin-project/lotus/pipeline?branch=%s", branch))
 
-	body := circleciApiCall(circleCiApiEndpoint + "project/gh/filecoin-project/lotus/pipeline?branch=" + branch)
-	err := json.Unmarshal(body, &pipelines)
+	var response struct {
+		Pipelines []Pipeline `json:"items"`
+	}
+
+	err := json.Unmarshal(body, &response)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return response.Pipelines
+}
+
+func getCiWorkflow(pline Pipeline) Workflow {
+	var response struct {
+		Workflows []Workflow `json:"items"`
+	}
+
+	body := circleciApiCall(fmt.Sprintf("pipeline/%s/workflow", pline.ID))
+
+	err := json.Unmarshal(body, &response)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	return pipelines
+	if len(response.Workflows) != 1 {
+		panic(fmt.Sprintf("expected exactly one CI workflow, received: %v", response.Workflows))
+	}
+
+	ci := response.Workflows[0]
+	ci.Pipeline = pline
+
+	return ci
 }
 
-func getWorkflows() Payload {
-	var workflows Payload
-	var body []byte
-	pipelines := getPipelines("master") // Change to be passed as a command-line argument
-
-	for i := range pipelines.Items {
-		if pipelines.Items[i].Trigger.Type == "webhook" { // Only use the _ci_ workflows.
-			body = circleciApiCall(circleCiApiEndpoint + "pipeline/" + pipelines.Items[i].ID + "/workflow") // Todo: maybe select a hash via command line
-			break
-		}
+func getJobs(wf Workflow) []Job {
+	var response struct {
+		Jobs []Job `json:"items"`
 	}
 
-	err := json.Unmarshal(body, &workflows)
+	body := circleciApiCall(fmt.Sprintf("workflow/%s/job", wf.ID)) // There should be only one item
 
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	return workflows
-}
-
-func getJobs() Payload {
-	var jobs Payload
-
-	workflows := getWorkflows()
-	body := circleciApiCall(circleCiApiEndpoint + "workflow/" + workflows.Items[0].ID + "/job") // There should be only one item
-
-	err := json.Unmarshal(body, &jobs)
-
-	if err != nil {
-		fmt.Println(err)
-	}
-	return jobs
-}
-
-func getResults() []byte {
-	var results Results
-	var aggregatedResults []Results
-
-	jobs := getJobs()
-
-	for i := range jobs.Items {
-		body := circleciApiCall(circleCiApiEndpoint + "project/gh/filecoin-project/lotus/" + fmt.Sprint(jobs.Items[i].JobNumber) + "/tests")
-
-		err := json.Unmarshal(body, &results)
-		aggregatedResults = append(aggregatedResults, results)
-
-		if err != nil {
-			fmt.Println(err)
-		}
-	}
-
-	result, err := json.Marshal(aggregatedResults)
-	if err != nil {
-		fmt.Println(err)
-	}
-	return result
-}
-
-func main() {
-	err := os.WriteFile("scraper.json", getResults(), 0644)
+	err := json.Unmarshal(body, &response)
 	if err != nil {
 		panic(err)
 	}
+
+	for i := range response.Jobs {
+		response.Jobs[i].Workflow = wf
+	}
+
+	return response.Jobs
+}
+
+func getTests(job Job) []Test {
+	var response struct {
+		Tests []Test `json:"items"`
+	}
+
+	body := circleciApiCall(fmt.Sprintf("project/gh/filecoin-project/lotus/%d/tests", job.JobNumber))
+
+	err := json.Unmarshal(body, &response)
+	if err != nil {
+		panic(err)
+	}
+
+	for i := range response.Tests {
+		response.Tests[i].Job = job
+	}
+
+	return response.Tests
+}
+
+func formatJobURL(job Job) string {
+	return fmt.Sprintf(
+		"https://app.circleci.com/pipelines/github/filecoin-project/lotus/%d/workflows/%s/jobs/%d/tests",
+		job.Workflow.Pipeline.Number,
+		job.Workflow.ID,
+		job.JobNumber,
+	)
+}
+
+func scrape(branch string) []Test {
+	// get all pipelines for branch, sorted by latest desc
+	plines := getPipelines(branch)
+
+	// find the latest, webhook pipeline
+	var whPline *Pipeline
+	for i := 0; i < len(plines) && whPline == nil; i++ {
+		if plines[i].Trigger.Type == "webhook" {
+			whPline = &plines[i]
+		}
+	}
+
+	// get the CI workflow for the webhook pipeline
+	ci := getCiWorkflow(*whPline)
+
+	// get jobs for the CI workflow
+	jobs := getJobs(ci)
+
+	// get tests for each job, and form job url
+	var tests []Test
+	for i := range jobs {
+		jobs[i].URL = formatJobURL(jobs[i])
+		tests = append(tests, getTests(jobs[i])...)
+	}
+
+	return tests
+}
+
+func main() {
+	tests := scrape("master")
+
+	out, err := json.MarshalIndent(tests, "", " ")
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("%s\n", out)
 }

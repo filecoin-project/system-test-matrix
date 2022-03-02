@@ -30,7 +30,7 @@ func main() {
 	var fileFunctions []c.Function
 
 	for _, path := range config.Paths {
-		files, err := c.GetTestFiles(path, config.Ignore)
+		files, err := c.GetTestFiles(path, config.Ignore, config.Language)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -42,7 +42,7 @@ func main() {
 
 			fileID := c.CreateFileID(files[i].Path, files[i].File)
 
-			fileData, hasNoBehaviors, err := ex.ExtractInfo(files[i], ctx, fileID)
+			fileData, hasNoBehaviors, err := ex.ExtractInfo(files[i], ctx, fileID, config.Language)
 			if err != nil {
 				fmt.Println(err)
 				continue

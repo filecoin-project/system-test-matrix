@@ -28,8 +28,8 @@ type Function struct {
 	IsTesting       bool `json:"-"`
 }
 
-func GetTestFiles(root string, ignore []string) (files []TestFile, err error) {
-	fileArray, err := listTestFiles(root, ignore)
+func GetTestFiles(root string, ignore []string, lang_mode string) (files []TestFile, err error) {
+	fileArray, err := listTestFiles(root, ignore, lang_mode)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,13 @@ func GetTestFiles(root string, ignore []string) (files []TestFile, err error) {
 	return files, nil
 }
 
-func listTestFiles(root string, ignore []string) (files []string, err error) {
+func listTestFiles(root string, ignore []string, lang_mode string) (files []string, err error) {
+
+	langExt, err := getLangExt(lang_mode)
+	if err != nil {
+		return nil, err
+	}
+
 	err = filepath.Walk(root,
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
@@ -63,7 +69,7 @@ func listTestFiles(root string, ignore []string) (files []string, err error) {
 				}
 			}
 
-			if strings.HasSuffix(path, ".go") {
+			if strings.HasSuffix(path, langExt) {
 				files = append(files, path)
 			}
 

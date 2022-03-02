@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"strings"
+	a "testsuites/annotations"
 )
 
 type FileID string
@@ -38,4 +39,15 @@ func NewFile(path string) TestFile {
 		Project:      parts[1],
 		ParentFolder: parts[len(parts)-2],
 	}
+}
+
+type Metadata struct {
+	Package string
+	Ignore  bool
+	a.HeaderType
+}
+
+type FileData struct {
+	Metadata  *Metadata
+	Functions []Function
 }

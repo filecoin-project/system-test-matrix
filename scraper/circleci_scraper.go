@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
 )
 
 const circleCiApiEndpoint = "https://circleci.com/api/v2"
@@ -60,7 +59,6 @@ type Test struct {
 func circleciApiCall(endpoint string) []byte {
 	url := fmt.Sprintf("%s/%s", circleCiApiEndpoint, endpoint)
 
-	fmt.Println("GET: ", url)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		panic(err)
@@ -68,15 +66,13 @@ func circleciApiCall(endpoint string) []byte {
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		panic(err)
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		panic(err)
 	}
 
 	return body
@@ -91,7 +87,7 @@ func getPipelines(branch string) []Pipeline {
 
 	err := json.Unmarshal(body, &response)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
 	return response.Pipelines
@@ -107,7 +103,7 @@ func getCiWorkflow(pline Pipeline) Workflow {
 	err := json.Unmarshal(body, &response)
 
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
 	if len(response.Workflows) != 1 {

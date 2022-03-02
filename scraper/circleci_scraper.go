@@ -16,6 +16,8 @@ import (
 )
 
 const circleCiApiEndpoint = "https://circleci.com/api/v2"
+const circleCiUi = "https://app.circleci.com"
+const circleCiProject = "github/filecoin-project/lotus"
 
 type Pipeline struct {
 	ID     string `json:"id"`
@@ -81,7 +83,7 @@ func circleciApiCall(endpoint string) []byte {
 }
 
 func getPipelines(branch string) []Pipeline {
-	body := circleciApiCall(fmt.Sprintf("project/gh/filecoin-project/lotus/pipeline?branch=%s", branch))
+	body := circleciApiCall(fmt.Sprintf("project/%s/pipeline?branch=%s", circleCiProject, branch))
 
 	var response struct {
 		Pipelines []Pipeline `json:"items"`
@@ -142,7 +144,7 @@ func getTests(job Job) []Test {
 		Tests []Test `json:"items"`
 	}
 
-	body := circleciApiCall(fmt.Sprintf("project/gh/filecoin-project/lotus/%d/tests", job.JobNumber))
+	body := circleciApiCall(fmt.Sprintf("project/%s/%d/tests", circleCiProject, job.JobNumber))
 
 	err := json.Unmarshal(body, &response)
 	if err != nil {
@@ -158,7 +160,9 @@ func getTests(job Job) []Test {
 
 func formatJobURL(job Job) string {
 	return fmt.Sprintf(
-		"https://app.circleci.com/pipelines/github/filecoin-project/lotus/%d/workflows/%s/jobs/%d/tests",
+		"%s/pipelines/%s/%d/workflows/%s/jobs/%d/tests",
+		circleCiUi,
+		circleCiProject,
 		job.Workflow.Pipeline.Number,
 		job.Workflow.ID,
 		job.JobNumber,

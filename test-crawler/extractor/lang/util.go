@@ -15,14 +15,24 @@ type Language interface {
 
 type NodeType string
 
+// should split this on language based node types in the future
 const (
+	//golang
 	COMMENT              NodeType = "comment"
 	PACKAGE_CLAUSE       NodeType = "package_clause"
 	FUNCTION_DECLARATION NodeType = "function_declaration"
 	PARAMETER_LIST       NodeType = "parameter_list"
 	BLOCK                NodeType = "block"
 	CALL_EXPRESSION      NodeType = "call_expression"
-	IDENTIFIER           NodeType = "identifier"
+	//rust
+	IDENTIFIER       NodeType = "identifier"
+	ATTRIBUTE_ITEM   NodeType = "attribute_item"
+	META_ITEM        NodeType = "meta_item"
+	MOD_ITEM         NodeType = "mod_item"
+	FUNCTION_ITEM    NodeType = "function_item"
+	DECLARATION_LIST NodeType = "declaration_list"
+	LINE_COMMENT     NodeType = "line_comment"
+	META_ARGUMENTS   NodeType = "meta_arguments"
 )
 
 func makeCollectorScenario(filePath string, funcName string, behaviors []a.BehaviorType, expressions []string) c.Function {

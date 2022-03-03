@@ -20,6 +20,10 @@ import { ModelLoader } from './ModelLoader'
 import behaviors from '@/behaviors.json'
 import testCrawlerOutput from '@/tests.json'
 
+import ci from '@/ci.json'
+
+import { CiTest } from './CI'
+
 import { RawTestFile } from './RawTestFile'
 
 import { RawBehavior } from './RawBehavior'
@@ -32,14 +36,22 @@ export class DenormalizedLoader implements ModelLoader {
   private behaviors = new Map<string, Behavior>()
   private tests = new Map<string, Test>()
   private features = new Map<string, Feature>()
+  private ciTests = new Map<string, CiTest>()
   private testKinds = new Set<string>(DEFAULT_TEST_KINDS)
 
   public load() {
     this.loadBehaviors()
 
+    this.loadCiTests()
+
     this.loadAndLinkTests()
 
     this.calculateSummaryStatistics()
+
+    console.log(Array.from(this.tests.entries())[0])
+    console.log(Array.from(this.ciTests.entries())[0])
+    // console.log(Object.entries(this.tests))
+    // // console.log(Object.entries(this.ciTests)[0])
 
     return {
       systems: this.systems,
@@ -132,6 +144,7 @@ export class DenormalizedLoader implements ModelLoader {
       'missing',
       testKind,
       TestStatus.missing,
+      'missing',
       [untestedBehavior],
     )
 
@@ -174,7 +187,18 @@ export class DenormalizedLoader implements ModelLoader {
         testFile.repository,
         testFile.test_type,
         TestStatus.unannotated,
+        testFile.parent_folder,
+        [],
       )
+
+      const ciId = `${testFile.parent_folder}/${rawScenario.function}`
+      const relatedCiTest = this.ciTests.get(ciId)
+
+      if (relatedCiTest) {
+        test.ciLink = relatedCiTest.job.url
+      } else {
+        console.error(`Not url for ${ciId}`)
+      }
 
       if (rawScenario.Behaviors) {
         for (const rawBehavior of rawScenario.Behaviors) {
@@ -248,6 +272,7 @@ export class DenormalizedLoader implements ModelLoader {
       testFile.repository,
       testFile.test_type.length > 0 ? testFile.test_type : 'unknown',
       TestStatus.unparsed,
+      testFile.parent_folder,
       [],
     )
 
@@ -255,6 +280,15 @@ export class DenormalizedLoader implements ModelLoader {
       this.testKinds.add(testFile.test_type)
     }
     this.tests.set(test.id, test)
+  }
+
+  private loadCiTests() {
+    for (const test of ci as CiTest[]) {
+      const classnameSplit = test.classname.split('/')
+      const parentFolder = classnameSplit.pop()
+      const id = `${parentFolder}/${test.name}`
+      this.ciTests.set(id, test)
+    }
   }
 
   private loadBehaviors() {

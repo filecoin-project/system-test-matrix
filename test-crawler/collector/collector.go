@@ -26,6 +26,7 @@ type Function struct {
 	CallExpressions []string `json:"-"`
 	Behaviors       []a.BehaviorType
 	IsTesting       bool `json:"-"`
+	IsMainTest      bool `json:"-"`
 }
 
 func GetTestFiles(root string, ignore []string, lang_mode string) (files []TestFile, err error) {

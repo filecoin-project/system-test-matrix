@@ -30,7 +30,7 @@ func (r *RustLang) ParseContent() (*c.FileData, error) {
 			callExpressions = r.findCallExprFromNode(function.Node)
 		}
 
-		fileData.Functions = append(fileData.Functions, makeCollectorScenario(r.FilePath, function.Name, behaviors, callExpressions))
+		fileData.Functions = append(fileData.Functions, makeCollectorScenario(r.FilePath, function.Name, behaviors, callExpressions, "rust"))
 
 	}
 
@@ -48,23 +48,23 @@ func (r *RustLang) getMetadata(parser *a.Parser) *c.Metadata {
 
 			// check if attribute is start of test mod
 			if child.Type() == string(ATTRIBUTE_ITEM) {
-				argChild := child.ChildByFieldName(string(META_ARGUMENTS))
-				if argChild != nil {
-					metaChild := argChild.ChildByFieldName(string(META_ITEM))
-					if metaChild != nil {
-						arg := r.Content[metaChild.StartByte():metaChild.EndByte()]
-						if arg != "test" {
-							continue
-						}
+				metaChild := findNodeByPath(child, META_ITEM, META_ARGUMENTS, META_ITEM)
+				if metaChild != nil {
+					arg := r.Content[metaChild.StartByte():metaChild.EndByte()]
+					if arg != "test" {
+						continue
 					}
 				}
+			} else {
+				// all test functions should have test attribute
+				continue
 			}
 
 			//  get body declaration
-			bodyChild := r.Cursor.CurrentNode().Child(childId + 1).ChildByFieldName(string(DECLARATION_LIST))
+			bodyChild := findNodeByPath(r.Cursor.CurrentNode().Child(childId+1), DECLARATION_LIST)
 			if bodyChild != nil {
 				bodyChildCount := bodyChild.ChildCount()
-				for cId := 0; cId < int(bodyChildCount); cId++ {
+				for cId := 1; cId < int(bodyChildCount); cId++ {
 					// parse line comments if found, first non comment breaks
 					bchild := bodyChild.Child(cId)
 					if bchild.Type() == string(LINE_COMMENT) {
@@ -82,11 +82,14 @@ func (r *RustLang) getMetadata(parser *a.Parser) *c.Metadata {
 								}
 							}
 						}
+					} else {
+						break
 					}
 				}
 				// no overflow would occur because next node is checked
 				childId = childId + 1
 			}
+
 		}
 	}
 
@@ -94,8 +97,9 @@ func (r *RustLang) getMetadata(parser *a.Parser) *c.Metadata {
 }
 
 func (r *RustLang) getFunctionNodes(parser *a.Parser) (funcAnnoPair []struct {
-	Node *sitter.Node
-	Name string
+	Node       *sitter.Node
+	Name       string
+	IsMainTest bool
 }) {
 	numChildsRootNode := r.Cursor.CurrentNode().ChildCount()
 	funcName := ""
@@ -106,27 +110,27 @@ func (r *RustLang) getFunctionNodes(parser *a.Parser) (funcAnnoPair []struct {
 
 			// check if attribute is start of test mod
 			if child.Type() == string(ATTRIBUTE_ITEM) {
-				argChild := child.ChildByFieldName(string(META_ARGUMENTS))
-				if argChild != nil {
-					metaChild := argChild.ChildByFieldName(string(META_ITEM))
-					if metaChild != nil {
-						arg := r.Content[metaChild.StartByte():metaChild.EndByte()]
-						if arg != "test" {
-							continue
-						}
+				metaChild := findNodeByPath(child, META_ITEM, META_ARGUMENTS, META_ITEM)
+				if metaChild != nil {
+					arg := r.Content[metaChild.StartByte():metaChild.EndByte()]
+					if arg != "test" {
+						continue
 					}
 				}
+			} else {
+				// all test functions should have test attribute
+				continue
 			}
 
 			//  get body declaration
-			bodyChild := r.Cursor.CurrentNode().Child(childId + 1).ChildByFieldName(string(DECLARATION_LIST))
+			bodyChild := findNodeByPath(r.Cursor.CurrentNode().Child(childId+1), DECLARATION_LIST)
 			if bodyChild != nil {
 				bodyChildCount := bodyChild.ChildCount()
 				for cId := 0; cId < int(bodyChildCount); cId++ {
 					bchild := bodyChild.Child(cId)
 
 					if bchild.Type() == string(ATTRIBUTE_ITEM) {
-						meta := bchild.ChildByFieldName(string(META_ITEM))
+						meta := findNodeByPath(bchild, META_ITEM)
 						// we are only interested in function with "test" attribute
 						if r.Content[meta.StartByte():meta.EndByte()] != "test" {
 							continue
@@ -139,11 +143,13 @@ func (r *RustLang) getFunctionNodes(parser *a.Parser) (funcAnnoPair []struct {
 							}
 
 							funcAnnoPair = append(funcAnnoPair, struct {
-								Node *sitter.Node
-								Name string
+								Node       *sitter.Node
+								Name       string
+								IsMainTest bool
 							}{
-								Node: fnChild,
-								Name: funcName,
+								Node:       fnChild,
+								Name:       funcName,
+								IsMainTest: true,
 							})
 
 							// no overflow would occur because next node is checked

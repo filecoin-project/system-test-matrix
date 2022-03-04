@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"strings"
 	"time"
 
 	a "testsuites/annotations"
@@ -16,10 +15,11 @@ import (
 )
 
 type FnLink struct {
-	FileID    c.FileID
-	Name      string
-	Links     []string
-	Behaviors []a.BehaviorType
+	FileID     c.FileID
+	Name       string
+	Links      []string
+	Behaviors  []a.BehaviorType
+	IsMainTest bool
 }
 
 func main() {
@@ -89,9 +89,10 @@ func linkFiles(flist []c.Function) (links [][]FnLink) {
 			var funcStack []FnLink
 			if len(funcStack) == 0 {
 				funcStack = append(funcStack, FnLink{
-					FileID:    fun.FileID,
-					Name:      fun.Name,
-					Behaviors: fun.Behaviors,
+					FileID:     fun.FileID,
+					Name:       fun.Name,
+					Behaviors:  fun.Behaviors,
+					IsMainTest: fun.IsMainTest,
 				})
 			}
 
@@ -116,9 +117,10 @@ func fnLookup(callExpr string, functions map[string]c.Function, result []FnLink)
 		result[len(result)-1].Links = append(result[len(result)-1].Links, val.Name)
 		// push new found function on to the stack
 		result = append(result, FnLink{
-			FileID:    val.FileID,
-			Name:      val.Name,
-			Behaviors: val.Behaviors,
+			FileID:     val.FileID,
+			Name:       val.Name,
+			Behaviors:  val.Behaviors,
+			IsMainTest: val.IsMainTest,
 		})
 
 		// use recursion to try and find another link
@@ -134,7 +136,7 @@ func fnLookup(callExpr string, functions map[string]c.Function, result []FnLink)
 func convertToTestFile(linkedFiles [][]FnLink, allFiles map[c.FileID]*c.TestFile) {
 
 	for _, lf := range linkedFiles {
-		if strings.HasPrefix(lf[0].Name, "Test") {
+		if lf[0].IsMainTest {
 			for i := 1; i < len(lf); i++ {
 				lf[0].Behaviors = append(lf[0].Behaviors, lf[i].Behaviors...)
 			}
@@ -147,6 +149,7 @@ func convertToTestFile(linkedFiles [][]FnLink, allFiles map[c.FileID]*c.TestFile
 					CallExpressions: nil,
 					Behaviors:       lf[0].Behaviors,
 					IsTesting:       true,
+					IsMainTest:      true,
 				})
 			}
 		}
@@ -161,7 +164,7 @@ func filterFilesWhereChildIsRoot(allFiles map[c.FileID]*c.TestFile) []c.TestFile
 	for _, file := range allFiles {
 		containsRoot := false
 		for _, test := range file.Functions {
-			if strings.HasPrefix(test.Name, "Test") {
+			if test.IsMainTest {
 				containsRoot = true
 				filteredFns = append(filteredFns, test)
 			}

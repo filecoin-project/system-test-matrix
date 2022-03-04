@@ -32,8 +32,7 @@ func (g *GoLang) ParseContent() (*c.FileData, error) {
 			callExpressions = g.findCallExprFromNode(function.Node)
 		}
 
-		fileData.Functions = append(fileData.Functions, makeCollectorScenario(g.FilePath, function.Name, behaviors, callExpressions))
-
+		fileData.Functions = append(fileData.Functions, makeCollectorScenario(g.FilePath, function.Name, behaviors, callExpressions, "go"))
 	}
 
 	return fileData, nil

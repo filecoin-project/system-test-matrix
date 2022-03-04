@@ -54,7 +54,7 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID, lang_mod
 	}
 
 	fData, err := contentLang.ParseContent()
-	if err != nil {
+	if err != nil || len(fData.Functions) == 0 {
 		return nil, true, err
 	}
 
@@ -67,6 +67,7 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID, lang_mod
 			Behaviors:       s.Behaviors,
 			CallExpressions: s.CallExpressions,
 			IsTesting:       s.IsTesting,
+			IsMainTest:      s.IsMainTest,
 		})
 
 	}

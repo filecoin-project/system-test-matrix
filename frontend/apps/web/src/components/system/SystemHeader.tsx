@@ -24,6 +24,7 @@ interface BreadCrumbsProps {
 
 export const getButton = (
   status: TestStatus | SystemScore | BehaviorStatus,
+  ciLink?: string,
 ) => {
   const { t } = useTranslation()
 
@@ -75,10 +76,11 @@ export const getButton = (
 
   return (
     <Button
-      style={{ pointerEvents: 'none' }}
+      style={ciLink ? { pointerEvents: 'all' } : { pointerEvents: 'none' }}
       variant="rounded"
       size="small"
       color={getColor()}
+      onClick={() => (window.open(ciLink), '_blank')}
     >
       <Text color="white" type="text s" bold>
         {t(`filecoin.allTests.${status}`)}

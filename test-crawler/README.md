@@ -77,3 +77,29 @@ before package clause. The order of annotations doesn't mater
             }
 }
 ```
+
+## Test Annotations
+
+Symboles used that preceed tags indicate what type of tag it is.
+- `//stm: @` is used for function-level annotations
+- `//stm: #` is used for file-level annotations
+- `//stm: ignore` is special case for ignoring certain files/functions
+
+The expected format is: `//stm: tag`
+
+### File-Level annotations
+File-Level annotations are comments at the top of your `_test.go` files.
+
+- Examples of tags are: `#unit`, `#integration`, `#cli`, `#api` ...
+- Files or functions can be ignored with `ignore` tag
+- Mind that there is **no whitespace** between `//` and `stm`. This is a go convention for comments that are not meant to be read by humans.
+- **Example:** `//stm: #integration`
+
+### Function-Level annotations
+Function-Level annotations are comments above your `TestSomething(t *testing.T)` functions.
+
+The expected format is: `//stm @scenario`
+
+- Scenarios are a list of scenario IDs.
+- Ignore can be placed as comment on top of function. The crawler will skip this test case.
+- **Example:** `//stm: @VOUCH_CREATE_001, @PAYCH_ALLOC_001`

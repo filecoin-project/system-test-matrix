@@ -22,7 +22,7 @@ function combineBehaviors() {
     const subsystemPaths = subsystems.map(s => path.resolve(systemPath, s))
 
     for (const subsystemPath of subsystemPaths) {
-      if (!subsystemPath.endsWith('.yml')) {
+      if (!subsystemPath.endsWith('.yml') && !subsystemPath.endsWith('.yaml')) {
         continue
       }
 
@@ -35,7 +35,7 @@ function combineBehaviors() {
         const systemName = system.toString().toLowerCase()
         const subsystemName = subsystem.toString().toLowerCase()
         // console.log(`System: ${systemName}, subsystem: ${subsystemName}`)
-
+        
         if (systemName in output.systems) {
           output.systems[systemName].subsystems[subsystemName] = {
             features,

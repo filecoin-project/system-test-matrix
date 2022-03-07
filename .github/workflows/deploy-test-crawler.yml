@@ -1,10 +1,15 @@
 name: Deploy Test Crawler
+
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - test-crawler/**
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - test-crawler/**
+  repository_dispatch:
+    types: [testing-repository-dispatch]
+
 jobs:
   run-test-crawler:
     runs-on: ubuntu-latest
@@ -12,6 +17,10 @@ jobs:
       # Checkout the repository.
       - name: Checkout the repository
         uses: actions/checkout@v2
+
+      # Move uniqueREADME because it gets deleted when cloning repo
+      - name: Move readme file
+        run: mv repo-to-crawl/uniqueREADME.md ./
 
       # Clone lotus repo into repo-to-crawl folder
       - name: Clone lotus  repo
@@ -26,10 +35,6 @@ jobs:
         with:
           go-version: "^1.17.7"
 
-      # Install build-essential
-      - name: Install build-essential
-        run: sudo apt-get install build-essential
-
       # Run test crawler
       - name: Make run
         run: make run
@@ -42,8 +47,12 @@ jobs:
 
       # Delete cloned repo
       - name: Delete cloned repo
-        run: find . ! -name 'uniqueREADME.md' -delete
+        run: find . -delete
         working-directory: repo-to-crawl
+
+      # Move back uniqueREADME
+      - name: Move readme file back
+        run: mv uniqueREADME.md repo-to-crawl
 
       # Create Pull Request for this action
       - name: Create Pull Request

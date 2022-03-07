@@ -82,6 +82,10 @@ export function testTestIntegrity(test: Test) {
   if (test.status === TestStatus.unannotated) {
     expect(test.linkedBehaviors).toHaveLength(0)
   }
+
+  if (test.status !== TestStatus.missing) {
+    expect(test.ciLink).not.toBe('')
+  }
 }
 
 export function testBehaviorIntegrity(behavior: Behavior) {

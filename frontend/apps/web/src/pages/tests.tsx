@@ -344,7 +344,7 @@ const AllTests: React.FC = () => {
               },
               status: {
                 header: t('filecoin.allTests.status'),
-                Cell: ({ data }) => getButton(data.status),
+                Cell: ({ data }) => getButton(data.status, data.ciLink),
               },
             }}
             data={paginatedData.data}

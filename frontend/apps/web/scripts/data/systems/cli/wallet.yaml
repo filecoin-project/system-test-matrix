@@ -39,7 +39,7 @@ features:
         description: |
           Set default wallet for node
 
-  - name: Wallet Set Default
+  - name: Wallet Export
     behaviors:
       - id: CLI_WALLET_EXPORT_001
         description: |

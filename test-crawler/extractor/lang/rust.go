@@ -40,11 +40,43 @@ func (r *RustLang) ParseContent() (*c.FileData, error) {
 func (r *RustLang) getMetadata(parser *a.Parser) *c.Metadata {
 	meta := c.Metadata{}
 
+	shouldSearchForAttrib := false
+	metaIsSet := false
+
 	numChildsRootNode := r.Cursor.CurrentNode().ChildCount()
 	for childId := 0; childId < int(numChildsRootNode); childId++ {
 		child := r.Cursor.CurrentNode().Child(childId)
 
 		if child != nil {
+
+			if child.Type() != string(LINE_COMMENT) {
+				shouldSearchForAttrib = true
+			}
+
+			if !shouldSearchForAttrib {
+
+				value, annotationType, _ := parser.Parse(r.Content[child.StartByte():child.EndByte()])
+
+				if value != nil && (annotationType == a.Header || annotationType == a.Ignore) {
+					switch dynType := value.(type) {
+					case *a.HeaderType:
+						{
+							meta.HeaderType = *dynType
+							metaIsSet = true
+						}
+					case bool:
+						{
+							meta.Ignore = dynType
+						}
+					}
+				}
+
+				continue
+			}
+
+			if metaIsSet {
+				return &meta
+			}
 
 			// check if attribute is start of test mod
 			if child.Type() == string(ATTRIBUTE_ITEM) {

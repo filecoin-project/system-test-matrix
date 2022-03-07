@@ -31,7 +31,7 @@ features:
         description: |
           Get peer ID
 
-  - name: ID
+  - name: Bandwidth
     behaviors:
       - id: CLI_NETWORK_BANDWIDTH_001
         description: |
@@ -45,49 +45,49 @@ features:
         description: |
           Get network bandwidth stats by protocol
 
-  - name: ID
+  - name: Find Peer
     behaviors:
       - id: CLI_NETWORK_FIND_PEER_001
         description: |
           Find address info provided peer id
 
-  - name: ID
+  - name: Block Peer
     behaviors:
       - id: CLI_NETWORK_BLOCK_PEER_001
         description: |
           Block node by peer id
 
-  - name: ID
+  - name: Block Ip
     behaviors:
       - id: CLI_NETWORK_BLOCK_IP_001
         description: |
           Block node by ip address
 
-  - name: ID
+  - name: Block Subnet
     behaviors:
       - id: CLI_NETWORK_BLOCK_SUBNET_001
         description: |
           Block node by subnet
 
-  - name: ID
+  - name: Block List
     behaviors:
       - id: CLI_NETWORK_BLOCK_LIST_001
         description: |
           Get network block list
   
-  - name: ID
+  - name: Unblock Peer
     behaviors:
       - id: CLI_NETWORK_UNBLOCK_PEER_001
         description: |
           Unblock node by peer id
 
-  - name: ID
+  - name: Unblock Ip
     behaviors:
       - id: CLI_NETWORK_UNBLOCK_IP_001
         description: |
           Unblock node by ip address
 
-  - name: ID
+  - name: Unblock Subnet
     behaviors:
       - id: CLI_NETWORK_UNBLOCK_SUBNET_001
         description: |

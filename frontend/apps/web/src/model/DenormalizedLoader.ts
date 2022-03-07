@@ -48,11 +48,6 @@ export class DenormalizedLoader implements ModelLoader {
 
     this.calculateSummaryStatistics()
 
-    console.log(Array.from(this.tests.entries())[0])
-    console.log(Array.from(this.ciTests.entries())[0])
-    // console.log(Object.entries(this.tests))
-    // // console.log(Object.entries(this.ciTests)[0])
-
     return {
       systems: this.systems,
       behaviors: this.behaviors,
@@ -191,13 +186,15 @@ export class DenormalizedLoader implements ModelLoader {
         [],
       )
 
-      const ciId = `${testFile.parent_folder}/${rawScenario.function}`
-      const relatedCiTest = this.ciTests.get(ciId)
+      const relatedCiTest = this.ciTests.get(test.functionName)
 
       if (relatedCiTest) {
         test.ciLink = relatedCiTest.job.url
+        if (!['success', 'skipped'].includes(relatedCiTest.result)) {
+          test.status = TestStatus.fail
+        }
       } else {
-        console.error(`Not url for ${ciId}`)
+        console.error(`No url for ${test.functionName}`)
       }
 
       if (rawScenario.Behaviors) {
@@ -284,10 +281,10 @@ export class DenormalizedLoader implements ModelLoader {
 
   private loadCiTests() {
     for (const test of ci as CiTest[]) {
-      const classnameSplit = test.classname.split('/')
-      const parentFolder = classnameSplit.pop()
-      const id = `${parentFolder}/${test.name}`
-      this.ciTests.set(id, test)
+      // look only for top-level tests
+      if (!test.name.includes('/')) {
+        this.ciTests.set(test.name, test)
+      }
     }
   }
 

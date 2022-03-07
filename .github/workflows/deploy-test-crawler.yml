@@ -1,18 +1,57 @@
 name: Deploy Test Crawler
 
-# on:
-#   push:
-#     branches:
-#       - main
-#     paths:
-#       - test-crawler/**
 on:
-  repository_dispatch:
-    types: [testing-repository-dispatch]
+  schedule:
+    - cron: "0 0-23/1 * * *"
 
 jobs:
-  run-test-crawler:
+  get-push-date:
     runs-on: ubuntu-latest
+    outputs:
+      isPushed: ${{ steps.git-check.outputs.pushed}}
+    steps:
+      # Checkout the repository.
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      # Create date variable
+      - name: Create Date Variable
+        id: get-date
+        run: echo "::set-output name=date::$(date "+%s")"
+
+      # Cache .txt file and use date as dependancy to create new cache
+      - name: Store/Restore file in cache
+        id: cachedFile
+        uses: actions/cache@v2
+        with:
+          path: filecoin-lotus-latest-push-date.txt
+          key: ${{ runner.os }}-lotus-date-${{ steps.get-date.outputs.date }}
+          restore-keys: |
+            ${{ runner.os }}-lotus-date
+            ${{ runner.os }}-
+
+      # Create .txt file if it doesn't exist
+      - name: Create .txt file if it doesn't exist
+        if: hashFiles('filecoin-lotus-latest-push-date.txt') == ''
+        run: echo "initialDate" >> filecoin-lotus-latest-push-date.txt
+
+      # Get pushed_at value from github api https://api.github.com/repos/filecoin-project/lotus
+      - name: Fetch latest push
+        id: filecoin-lotus
+        run: |
+          echo ::set-output name=push_tag::$(curl -sL https://api.github.com/repos/filecoin-project/lotus | jq -r ".pushed_at")
+          echo ::set-output name=current_tag::$(cat filecoin-lotus-latest-push-date.txt)
+
+      # Update .txt file with latest pushed_at value if needed
+      - name: Check if new push
+        id: git-check
+        if: steps.filecoin-lotus.outputs.current_tag != steps.filecoin-lotus.outputs.push_tag
+        run: echo "::set-output name=pushed::true" && truncate -s 0 filecoin-lotus-latest-push-date.txt && echo ${{steps.filecoin-lotus.outputs.push_tag}} >> filecoin-lotus-latest-push-date.txt && cat filecoin-lotus-latest-push-date.txt;
+
+  run-test-crawler:
+    needs: [get-push-date]
+    runs-on: ubuntu-latest
+    if: needs.get-push-date.outputs.isPushed == 'true'
     steps:
       # Checkout the repository.
       - name: Checkout the repository

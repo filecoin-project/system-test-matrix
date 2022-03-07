@@ -1,151 +1,85 @@
-import { getButton } from '@/components/system/SystemHeader'
-import { PageContainer } from '@/containers/PageContainer'
 import {
   Button,
-  Link,
-  PageLayout,
-  ProgressBar,
+  ColumnLayout,
+  CoverLayout,
+  NativeLink,
   StackLayout,
-  Table,
   Text,
-  usePageLayout,
 } from '@filecoin/ui'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Header = () => {
-  const { t } = useTranslation()
+const HomePage = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   return (
-    <PageLayout.Header>
-      <HeaderWrapper>
-        <Text type="heading 5" semiBold>
-          {t('filecoin.systems.systems')}
+    <Wrapper>
+      <CoverLayout>
+        <Text type="heading 1" semiBold align="center">
+          {t('filecoin.home.sysTestMatrix')}
         </Text>
-        <Buttons>
-          <Button
-            onClick={() => navigate('/tests')}
-            variant="outline"
-            size="medium"
-          >
-            <Text type="text s" semiBold>
-              {t('filecoin.allTests.allTests')}
-            </Text>
-          </Button>
-          <Button
-            onClick={() => navigate('/behaviors')}
-            variant="outline"
-            size="medium"
-          >
-            <Text type="text s" semiBold>
-              {t('filecoin.allTests.allBehaviours')}
-            </Text>
-          </Button>
-        </Buttons>
-      </HeaderWrapper>
-    </PageLayout.Header>
+        <StackLayout gap={4} center style={{ maxWidth: '700px' }}>
+          <Text type="text xl" color="textGray" semiBold align="center">
+            {t('filecoin.home.subHeading')}
+          </Text>
+
+          <Text type="text xl" semiBold align="center">
+            <i>{t('filecoin.home.paragraph1')}</i>
+          </Text>
+          <Text type="text xl" semiBold align="center">
+            <i>{t('filecoin.home.paragraph2')}</i>
+          </Text>
+          <ColumnLayout style={{ maxWidth: '400px' }}>
+            <Button
+              color="primary"
+              size="medium"
+              variant="outline"
+              onClick={() => (
+                window.open(
+                  'https://github.com/filecoin-project/system-test-matrix',
+                ),
+                '_blank'
+              )}
+            >
+              <Text semiBold>{t('filecoin.home.git')}</Text>
+            </Button>
+
+            <Button
+              color="primary"
+              size="medium"
+              variant="outline"
+              onClick={() => navigate('/system')}
+            >
+              <Text semiBold>{t('filecoin.home.enter')}</Text>
+            </Button>
+          </ColumnLayout>
+        </StackLayout>
+        <Footer>
+          <Text type="text xl" semiBold align="center">
+            {t('filecoin.home.developedBy')}{' '}
+            <NativeLink
+              href="https://bloxico.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t('filecoin.home.bloxico')}
+            </NativeLink>
+          </Text>
+        </Footer>
+      </CoverLayout>
+    </Wrapper>
   )
 }
-const Home = () => {
-  const {
-    state: { model },
-  } = PageContainer.useContainer()
+export default HomePage
 
-  const { t } = useTranslation()
-  const systems = model.getAllSystems()
-  const navigate = useNavigate()
-  const pageLayout = usePageLayout({
-    header: <Header />,
-    footer: <PageLayout.Footer />,
-  })
-
-  return (
-    <PageLayout {...pageLayout}>
-      <PageLayout.Section>
-        <Table
-          variant="subtle"
-          columns={{
-            system: {
-              header: t('filecoin.systems.system'),
-              Cell: ({ data }) => {
-                return (
-                  <StackLayout gap={0.5}>
-                    <Link to={`system/${data.name}`} appearance="system">
-                      {data.name}
-                    </Link>
-                    <Text color="textGray">
-                      {t('filecoin.systems.keyWithCount', {
-                        count: data.subsystems.length,
-                      })}
-                    </Text>
-                  </StackLayout>
-                )
-              },
-            },
-            testKinds: {
-              header: t('filecoin.systems.testKinds'),
-              width: 325,
-              Cell: ({ data }) => {
-                return (
-                  <Bar>
-                    <ProgressBar
-                      data={data.testStatistics.percentages.map(
-                        ({ kind, ...rest }) => ({
-                          name: kind,
-                          ...rest,
-                        }),
-                      )}
-                    />
-                  </Bar>
-                )
-              },
-            },
-            testStatus: {
-              header: t('filecoin.systems.testStatus'),
-              width: 325,
-              Cell: ({ data }) => {
-                return (
-                  <Bar>
-                    <ProgressBar
-                      data={data.behaviorStatistics.percentages.map(
-                        ({ status, ...rest }) => ({
-                          name: status,
-                          ...rest,
-                        }),
-                      )}
-                    />
-                  </Bar>
-                )
-              },
-            },
-            score: {
-              header: t('filecoin.systems.score'),
-              width: 200,
-              Cell: ({ data }) => getButton(data.score),
-            },
-          }}
-          data={systems}
-        />
-      </PageLayout.Section>
-    </PageLayout>
-  )
-}
-
-export default Home
-
-const HeaderWrapper = styled.div`
+const Wrapper = styled.body`
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 `
-const Buttons = styled.div`
-  button {
-    &:first-child {
-      margin-right: 10px;
-    }
-  }
-`
-const Bar = styled.div`
-  width: 190px;
+const Footer = styled.div`
+  margin-top: auto;
+  margin-bottom: 1rem;
 `

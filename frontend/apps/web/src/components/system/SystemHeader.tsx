@@ -96,7 +96,7 @@ export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({
 }) => {
   return (
     <Crumbs>
-      <Link to="/">
+      <Link to="/system">
         <Text type="heading 5" semiBold>
           Systems
         </Text>

@@ -20,6 +20,10 @@ import { ModelLoader } from './ModelLoader'
 import behaviors from '@/behaviors.json'
 import testCrawlerOutput from '@/tests.json'
 
+import ci from '@/ci.json'
+
+import { CiTest } from './CI'
+
 import { RawTestFile } from './RawTestFile'
 
 import { RawBehavior } from './RawBehavior'
@@ -32,10 +36,13 @@ export class DenormalizedLoader implements ModelLoader {
   private behaviors = new Map<string, Behavior>()
   private tests = new Map<string, Test>()
   private features = new Map<string, Feature>()
+  private ciTests = new Map<string, CiTest>()
   private testKinds = new Set<string>(DEFAULT_TEST_KINDS)
 
   public load() {
     this.loadBehaviors()
+
+    this.loadCiTests()
 
     this.loadAndLinkTests()
 
@@ -132,6 +139,7 @@ export class DenormalizedLoader implements ModelLoader {
       'missing',
       testKind,
       TestStatus.missing,
+      'missing',
       [untestedBehavior],
     )
 
@@ -174,7 +182,20 @@ export class DenormalizedLoader implements ModelLoader {
         testFile.repository,
         testFile.test_type,
         TestStatus.unannotated,
+        testFile.parent_folder,
+        [],
       )
+
+      const relatedCiTest = this.ciTests.get(test.functionName)
+
+      if (relatedCiTest) {
+        test.ciLink = relatedCiTest.job.url
+        if (!['success', 'skipped'].includes(relatedCiTest.result)) {
+          test.status = TestStatus.fail
+        }
+      } else {
+        console.error(`No url for ${test.functionName}`)
+      }
 
       if (rawScenario.Behaviors) {
         for (const rawBehavior of rawScenario.Behaviors) {
@@ -248,6 +269,7 @@ export class DenormalizedLoader implements ModelLoader {
       testFile.repository,
       testFile.test_type.length > 0 ? testFile.test_type : 'unknown',
       TestStatus.unparsed,
+      testFile.parent_folder,
       [],
     )
 
@@ -255,6 +277,15 @@ export class DenormalizedLoader implements ModelLoader {
       this.testKinds.add(testFile.test_type)
     }
     this.tests.set(test.id, test)
+  }
+
+  private loadCiTests() {
+    for (const test of ci as CiTest[]) {
+      // look only for top-level tests
+      if (!test.name.includes('/')) {
+        this.ciTests.set(test.name, test)
+      }
+    }
   }
 
   private loadBehaviors() {

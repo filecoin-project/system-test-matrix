@@ -16,7 +16,9 @@ export class Test {
     public repository: Repository,
     public kind: TestKind,
     public status,
+    public parentFolder: string,
     public linkedBehaviors: Behavior[] = [],
+    public ciLink: string = '',
   ) {}
 }
 

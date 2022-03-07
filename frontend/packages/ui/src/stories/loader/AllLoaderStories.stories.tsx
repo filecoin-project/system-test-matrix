@@ -13,3 +13,8 @@ export const SearchInputLoader: ComponentStory<typeof Loader> = () => (
     <Loader height={14} />
   </CenterLayout>
 )
+export const RouterSuspenseLoader: ComponentStory<typeof Loader> = () => (
+  <CenterLayout>
+    <Loader fullScreen />
+  </CenterLayout>
+)

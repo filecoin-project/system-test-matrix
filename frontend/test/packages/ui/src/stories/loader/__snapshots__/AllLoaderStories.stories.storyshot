@@ -1,5 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Loader/All loader stories Router Suspense Loader 1`] = `
+<div
+  style={
+    Object {
+      "padding": "2rem",
+    }
+  }
+>
+  <div
+    className="o-center-layout sc-dkPtRN kyAoRl"
+  >
+    <div
+      className="sc-bBHxTw kTuutX"
+      data-testid="loader-test-id"
+      height={72}
+    >
+      <div
+        className="sc-iwjdpV fuQUhD"
+        data-element="loader"
+        height={72}
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Loader/All loader stories Search Input Loader 1`] = `
 <div
   style={

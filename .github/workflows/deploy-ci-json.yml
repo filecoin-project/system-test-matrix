@@ -29,7 +29,7 @@ jobs:
 
       # Run scraper
       - name: Run scraper
-        run: go run circleci_scraper.go > ci.json
+        run: go run circleci_scraper.go > ../frontend/apps/web/src/ci.json
         working-directory: scraper
 
       # Check if there are any changes

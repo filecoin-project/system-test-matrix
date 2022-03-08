@@ -1,0 +1,52 @@
+name: Deploy ci.json
+
+on:
+  push
+  # schedule:
+  #   - cron: "*/5 * * * *"
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository.
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+        id: checkout
+
+      # Check if ci.json exists
+      - name: Check if ci.json file exists
+        id: is_existing
+        if: hashFiles('scraper/ci.json') == ''
+        run: echo "::set-output name=ci_exists::false"
+
+      # Install go lang
+      - name: Install go lang 1.17.7
+        uses: actions/setup-go@v2
+        with:
+          go-version: "^1.17.7"
+
+      # Run scraper
+      - name: Run scraper
+        run: go run circleci_scraper.go > ci.json
+        working-directory: scraper
+
+      # Check if there are any changes
+      - name: Check if there are any changes
+        id: verify_diff
+        run: git diff --quiet || echo "::set-output name=new_ci::true"
+
+      # Commit changes
+      - name: Git identity and commit
+        if: steps.verify_diff.outputs.new_ci == 'true' || steps.is_existing.outputs.ci_exists == 'false'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '42103905+github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "chore: update ci.json" 
+          git push

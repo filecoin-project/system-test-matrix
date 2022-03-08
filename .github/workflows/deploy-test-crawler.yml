@@ -1,8 +1,9 @@
 name: Deploy Test Crawler
 
 on:
-  schedule:
-    - cron: "0 0-23/1 * * *"
+  push
+  # schedule:
+  #   - cron: "*/10 * * * *"
 
 jobs:
   get-push-date:
@@ -56,6 +57,15 @@ jobs:
       # Checkout the repository.
       - name: Checkout the repository
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+        id: checkout
+
+      # Check if tests.json exists
+      - name: Check if tests.json file exists
+        id: is_existing
+        if: hashFiles('frontend/apps/web/src/tests.json') == ''
+        run: echo "::set-output name=tests_exist::false"
 
       # Move uniqueREADME because it gets deleted when cloning repo
       - name: Move readme file
@@ -94,11 +104,29 @@ jobs:
         run: mv uniqueREADME.md repo-to-crawl
 
       # Create Pull Request for this action
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          base: main
-          branch: chore/generate-tests
-          commit-message: Update tests.json
-          title: "chore(test-crawler): Update tests.json"
-          delete-branch: true
+      # - name: Create Pull Request
+      #   uses: peter-evans/create-pull-request@v3
+      #   with:
+      #     base: main
+      #     branch: chore/generate-tests
+      #     commit-message: Update tests.json
+      #     title: "chore(test-crawler): Update tests.json"
+      #     delete-branch: true
+
+      # Check if there are any changes
+      - name: Check if there are any changes
+        id: verify_diff
+        run: git diff --quiet || echo "::set-output name=new_tests::true"
+
+      # Commit changes
+      - name: Git identity and commit
+        if: steps.verify_diff.outputs.new_tests == 'true' || steps.is_existing.outputs.tests_exist == 'false'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '42103905+github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "chore: update tests.json"
+          git push

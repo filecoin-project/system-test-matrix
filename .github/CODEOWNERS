@@ -2,9 +2,11 @@
 
 /frontend                                               @aleksaToljic
 
-/.github/                                               @aleksaToljic 
+/.github                                                @aleksaToljic 
 
 /test-crawler/                                          @TheMenko
+
+/scrapper                                               @TheMenko @TheDivic @AbominableSnowman730
 
 /frontend/apps/web/scripts/data/                        @TheMenko @brdji @TheDivic
 

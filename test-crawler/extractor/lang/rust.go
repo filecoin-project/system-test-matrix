@@ -124,65 +124,95 @@ func (r *RustLang) getFunctionNodes(parser *a.Parser) (funcAnnoPair []struct {
 }) {
 	numChildsRootNode := r.Cursor.CurrentNode().ChildCount()
 	funcName := ""
-	for childId := 0; int(numChildsRootNode) > childId; childId++ {
-		child := r.Cursor.CurrentNode().Child(childId)
 
-		if child != nil {
+	fileParseType := r.checkFileParseType(r.Cursor.CurrentNode(), parser)
 
-			// check if attribute is start of test mod
-			if child.Type() == string(ATTRIBUTE_ITEM) {
-				metaChild := findNodeByPath(child, META_ITEM, META_ARGUMENTS, META_ITEM)
-				if metaChild != nil {
-					arg := r.Content[metaChild.StartByte():metaChild.EndByte()]
-					if arg != "test" {
-						continue
-					}
+	if fileParseType == WITH_ATTRIB {
+		for childId := 0; int(numChildsRootNode) > childId; childId++ {
+			child := r.Cursor.CurrentNode().Child(childId)
+
+			if child != nil {
+
+				// check if attribute is start of test mod
+				if !r.checkForTestAttrib(child) {
+					continue
 				}
-			} else {
-				// all test functions should have test attribute
-				continue
-			}
 
-			//  get body declaration
-			bodyChild := findNodeByPath(r.Cursor.CurrentNode().Child(childId+1), DECLARATION_LIST)
-			if bodyChild != nil {
-				bodyChildCount := bodyChild.ChildCount()
-				for cId := 0; cId < int(bodyChildCount); cId++ {
-					bchild := bodyChild.Child(cId)
+				//  get body declaration
+				bodyChild := findNodeByPath(r.Cursor.CurrentNode().Child(childId+1), DECLARATION_LIST)
+				if bodyChild != nil {
+					bodyChildCount := bodyChild.ChildCount()
+					for cId := 0; cId < int(bodyChildCount); cId++ {
+						bchild := bodyChild.Child(cId)
 
-					if bchild.Type() == string(ATTRIBUTE_ITEM) {
-						meta := findNodeByPath(bchild, META_ITEM)
-						// we are only interested in function with "test" attribute
-						if r.Content[meta.StartByte():meta.EndByte()] != "test" {
-							continue
-						}
-
-						fnChild := bodyChild.Child(cId + 1)
-						if fnChild != nil && fnChild.Type() == string(FUNCTION_ITEM) {
-							if fnChild.Child(1).Type() == string(IDENTIFIER) {
-								funcName = r.Content[fnChild.Child(1).StartByte():fnChild.Child(1).EndByte()]
+						if bchild.Type() == string(ATTRIBUTE_ITEM) {
+							meta := findNodeByPath(bchild, META_ITEM)
+							if r.Content[meta.StartByte():meta.EndByte()] != "test" {
+								continue
 							}
 
-							funcAnnoPair = append(funcAnnoPair, struct {
-								Node       *sitter.Node
-								Name       string
-								IsMainTest bool
-							}{
-								Node:       fnChild,
-								Name:       funcName,
-								IsMainTest: true,
-							})
+							fnChild := bodyChild.Child(cId + 1)
+							if fnChild != nil && fnChild.Type() == string(FUNCTION_ITEM) {
+								if fnChild.Child(1).Type() == string(IDENTIFIER) {
+									funcName = r.Content[fnChild.Child(1).StartByte():fnChild.Child(1).EndByte()]
+								}
 
-							// no overflow would occur because next node is checked
-							cId = cId + 1
-							funcName = ""
+								funcAnnoPair = append(funcAnnoPair, struct {
+									Node       *sitter.Node
+									Name       string
+									IsMainTest bool
+								}{
+									Node:       fnChild,
+									Name:       funcName,
+									IsMainTest: true,
+								})
+
+								// no overflow would occur because next node is checked
+								cId = cId + 1
+								funcName = ""
+							}
 						}
+
+					}
+				}
+			}
+
+		}
+	} else {
+		for childId := 0; int(numChildsRootNode) > childId; childId++ {
+			child := r.Cursor.CurrentNode().Child(childId)
+
+			if child != nil {
+				if child.Type() == string(ATTRIBUTE_ITEM) {
+					meta := findNodeByPath(child, META_ITEM)
+					if r.Content[meta.StartByte():meta.EndByte()] != "test" {
+						continue
 					}
 
+					fnChild := r.Cursor.CurrentNode().Child(childId + 1)
+
+					if fnChild != nil && fnChild.Type() == string(FUNCTION_ITEM) {
+						if fnChild.Child(1).Type() == string(IDENTIFIER) {
+							funcName = r.Content[fnChild.Child(1).StartByte():fnChild.Child(1).EndByte()]
+						}
+
+						funcAnnoPair = append(funcAnnoPair, struct {
+							Node       *sitter.Node
+							Name       string
+							IsMainTest bool
+						}{
+							Node:       fnChild,
+							Name:       funcName,
+							IsMainTest: true,
+						})
+
+						childId = childId + 1
+					}
+
+					funcName = ""
 				}
 			}
 		}
-
 	}
 
 	return funcAnnoPair

@@ -20,7 +20,12 @@ const HomePage = () => {
         <Text type="heading 1" semiBold align="center">
           {t('filecoin.home.sysTestMatrix')}
         </Text>
-        <StackLayout gap={4} center style={{ maxWidth: '700px' }}>
+        <StackLayout
+          gap={4}
+          center
+          style={{ maxWidth: '700px' }}
+          data-testId="text-body"
+        >
           <Text type="text xl" color="textGray" semiBold align="center">
             {t('filecoin.home.subHeading')}
           </Text>
@@ -42,6 +47,7 @@ const HomePage = () => {
                 ),
                 '_blank'
               )}
+              data-testid="github"
             >
               <Text semiBold>{t('filecoin.home.git')}</Text>
             </Button>
@@ -51,6 +57,7 @@ const HomePage = () => {
               size="medium"
               variant="outline"
               onClick={() => navigate('/system')}
+              data-testid="systems"
             >
               <Text semiBold>{t('filecoin.home.enter')}</Text>
             </Button>

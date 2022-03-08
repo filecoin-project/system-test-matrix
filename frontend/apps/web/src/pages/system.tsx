@@ -72,7 +72,7 @@ const Home = () => {
               Cell: ({ data }) => {
                 return (
                   <StackLayout gap={0.5}>
-                    <Link to={`system/${data.name}`} appearance="system">
+                    <Link to={`${data.name}`} appearance="system">
                       {data.name}
                     </Link>
                     <Text color="textGray">

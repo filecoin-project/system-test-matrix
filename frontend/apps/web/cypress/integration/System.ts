@@ -1,12 +1,12 @@
 import { SEARCH_TERM } from '../fixtures/constants'
-import { HomePage } from '../pages/homePage'
+import { AllSystemsPage } from '../pages/allSystemsPage'
 import { PageHeader } from '../pages/pageHeader'
 import { SystemPage } from '../pages/systemPage'
 
 describe('System tests', () => {
   beforeEach('Visit first system', () => {
-    cy.homepage()
-    HomePage.systemLinks().first().click()
+    cy.allSystems()
+    AllSystemsPage.systemLinks().first().click()
   })
   it('Should check page elments visibility', () => {
     PageHeader.statusVisibility()
@@ -20,7 +20,7 @@ describe('System tests', () => {
   })
   it('Checks page breadcrumbs links', () => {
     PageHeader.systemBreadcrumbClick()
-    cy.url().should('eq', Cypress.config().baseUrl + '/')
+    cy.url().should('eq', Cypress.config().baseUrl + '/system')
   })
   it('Checks search', () => {
     SystemPage.checkSearch(SEARCH_TERM)

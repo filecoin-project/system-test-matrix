@@ -1,18 +1,16 @@
 export const HomePage = {
   //locators
-  tableHead: () => cy.get('thead>tr>td'),
-  systemLinks: () => cy.get('tbody>tr>td>div>span>a'),
-  subsystems: () => cy.get('tbody>tr>td>div>span').next(),
-  progressBars: () => cy.get('tbody>tr>td>div>div'),
-  scoreButtons: () => cy.get('td>[data-element="button"]>span'),
-  tooltip: () => cy.get('.__react_component_tooltip'),
-
+  heading: () => cy.get('h1'),
+  textBody: () => cy.get('[data-testId="text-body"]'),
+  githubButton: () => cy.get('[data-testid="github"]'),
+  enterButton: () => cy.get('[data-testid="systems"]'),
+  bloxicoLink: () => cy.get('div>span>span'),
   //actions
   visibilityOfPageElements: () => {
-    HomePage.tableHead().should('be.visible')
-    HomePage.systemLinks().should('be.visible')
-    HomePage.subsystems().should('be.visible')
-    HomePage.progressBars().should('be.visible')
-    HomePage.scoreButtons().should('be.visible')
+    HomePage.heading().should('be.visible')
+    HomePage.textBody().should('be.visible')
+    HomePage.githubButton().should('be.visible')
+    HomePage.enterButton().should('be.visible')
+    HomePage.bloxicoLink().should('be.visible')
   },
 }

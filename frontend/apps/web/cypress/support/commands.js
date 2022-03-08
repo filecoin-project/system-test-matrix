@@ -1,6 +1,9 @@
 Cypress.Commands.add('homepage', () => {
   cy.visit('/')
 })
+Cypress.Commands.add('allSystems', () => {
+  cy.visit('/system')
+})
 Cypress.Commands.add('scrollingResolution', () => {
   cy.viewport(768, 1024)
 })

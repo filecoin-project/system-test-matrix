@@ -8,6 +8,10 @@ declare namespace Cypress {
      */
     homepage(): void
     /**
+     * All systems page
+     */
+    allSystems(): void
+    /**
      * Page resolution change so matrix can be scrollable
      */
     scrollingResolution(): void

@@ -1,12 +1,11 @@
-import { HomePage } from '../pages/homePage'
+import { AllSystemsPage } from '../pages/allSystemsPage'
 import { PageHeader } from '../pages/pageHeader'
 import { SubsystemPage } from '../pages/subsystemPage'
 
 describe('Subsystem tests', () => {
   beforeEach('Visit first subsystem', () => {
-    cy.homepage()
-    HomePage.systemLinks().first().click()
-    //TODO@vojo
+    cy.allSystems()
+    AllSystemsPage.systemLinks().first().click()
     cy.get('tbody>tr>td>span>a').first().click()
   })
   it('Should check page elments visibility', () => {
@@ -19,6 +18,6 @@ describe('Subsystem tests', () => {
   it('Checks page breadcrumbs links', () => {
     PageHeader.secondBreadcrumbClick()
     PageHeader.systemBreadcrumbClick()
-    cy.url().should('eq', Cypress.config().baseUrl + '/')
+    cy.url().should('eq', Cypress.config().baseUrl + '/system')
   })
 })

@@ -55,6 +55,16 @@
       "behaviorId": "Behavior ID",
       "featureId": "Feature ID",
       "desc": "Description"
+    },
+    "home": {
+      "sysTestMatrix": "System Test Matrix",
+      "subHeading": "💊😎 The \"Red Pill\" for Filecoin node implementations",
+      "paragraph1": "The Filecoin System Test Matrix is a dashboard with a detailed list of Filecoin features and behaviors and a mapping between those features and test suites, systems and subsystems that those features are related to.",
+      "paragraph2": "The main goal of this project is closing the discrepancy between specification and the actual state of implementations.",
+      "git": "Github Repo",
+      "enter": "💊 Enter the matrix",
+      "developedBy": "Developed by",
+      "bloxico": "Bloxico Software Solutions"
     }
   },
   "global": {

@@ -4,7 +4,7 @@ import { PageHeader } from '../pages/pageHeader'
 
 describe('All behaviours tests', () => {
   beforeEach('Visit first system', () => {
-    cy.homepage()
+    cy.allSystems()
     PageHeader.allBehaviorsButton().click()
   })
   it('Should check page elments visibility', () => {
@@ -25,6 +25,6 @@ describe('All behaviours tests', () => {
     PageHeader.allTestsButton().click()
     PageHeader.allBehaviorsButton().click()
     PageHeader.systemBreadcrumbClick()
-    cy.url().should('eq', Cypress.config().baseUrl + '/')
+    cy.url().should('eq', Cypress.config().baseUrl + '/system')
   })
 })

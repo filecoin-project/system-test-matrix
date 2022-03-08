@@ -13,7 +13,6 @@ func getLangExt(lang_mode string) (string, error) {
 	case "rust":
 		return ".rs", nil
 	default:
-		// get all files regardless of extension
 		return "", &UnsupportedLanguageError{}
 	}
 }

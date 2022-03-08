@@ -1,9 +1,8 @@
 name: Deploy ci.json
 
 on:
-  push
-  # schedule:
-  #   - cron: "*/5 * * * *"
+  schedule:
+    - cron: "*/5 * * * *"
 
 jobs:
   run-scraper:

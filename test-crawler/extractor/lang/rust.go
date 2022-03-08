@@ -13,6 +13,13 @@ type RustLang struct {
 	FilePath string
 }
 
+type RustFileParseType int
+
+const (
+	WITH_ATTRIB RustFileParseType = iota
+	NO_ATTRIB
+)
+
 func (r *RustLang) ParseContent() (*c.FileData, error) {
 
 	fileData := &c.FileData{}
@@ -40,8 +47,7 @@ func (r *RustLang) ParseContent() (*c.FileData, error) {
 func (r *RustLang) getMetadata(parser *a.Parser) *c.Metadata {
 	meta := c.Metadata{}
 
-	shouldSearchForAttrib := false
-	metaIsSet := false
+	fileParseType := r.checkFileParseType(r.Cursor.CurrentNode(), parser)
 
 	numChildsRootNode := r.Cursor.CurrentNode().ChildCount()
 	for childId := 0; childId < int(numChildsRootNode); childId++ {
@@ -49,11 +55,7 @@ func (r *RustLang) getMetadata(parser *a.Parser) *c.Metadata {
 
 		if child != nil {
 
-			if child.Type() != string(LINE_COMMENT) {
-				shouldSearchForAttrib = true
-			}
-
-			if !shouldSearchForAttrib {
+			if fileParseType == NO_ATTRIB {
 
 				value, annotationType, _ := parser.Parse(r.Content[child.StartByte():child.EndByte()])
 
@@ -62,7 +64,7 @@ func (r *RustLang) getMetadata(parser *a.Parser) *c.Metadata {
 					case *a.HeaderType:
 						{
 							meta.HeaderType = *dynType
-							metaIsSet = true
+							return &meta
 						}
 					case bool:
 						{
@@ -74,21 +76,8 @@ func (r *RustLang) getMetadata(parser *a.Parser) *c.Metadata {
 				continue
 			}
 
-			if metaIsSet {
-				return &meta
-			}
-
 			// check if attribute is start of test mod
-			if child.Type() == string(ATTRIBUTE_ITEM) {
-				metaChild := findNodeByPath(child, META_ITEM, META_ARGUMENTS, META_ITEM)
-				if metaChild != nil {
-					arg := r.Content[metaChild.StartByte():metaChild.EndByte()]
-					if arg != "test" {
-						continue
-					}
-				}
-			} else {
-				// all test functions should have test attribute
+			if !r.checkForTestAttrib(child) {
 				continue
 			}
 
@@ -197,6 +186,52 @@ func (r *RustLang) getFunctionNodes(parser *a.Parser) (funcAnnoPair []struct {
 	}
 
 	return funcAnnoPair
+}
+
+func (r *RustLang) checkForTestAttrib(node *sitter.Node) bool {
+	if node.Type() == string(ATTRIBUTE_ITEM) {
+		metaChild := findNodeByPath(node, META_ITEM)
+		if metaChild != nil {
+			arg := r.Content[metaChild.StartByte():metaChild.EndByte()]
+			if arg == "cfg(test)" {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func (r *RustLang) checkFileParseType(node *sitter.Node, parser *a.Parser) RustFileParseType {
+
+	parsedMeta := false
+
+	numChildsRootNode := r.Cursor.CurrentNode().ChildCount()
+	for childId := 0; int(numChildsRootNode) > childId; childId++ {
+		child := r.Cursor.CurrentNode().Child(childId)
+		if child != nil {
+			if child.Type() != string(LINE_COMMENT) && !parsedMeta {
+				return WITH_ATTRIB
+			} else if child.Type() == string(LINE_COMMENT) {
+				value, annotationType, _ := parser.Parse(r.Content[child.StartByte():child.EndByte()])
+
+				if value != nil && (annotationType == a.Header || annotationType == a.Ignore) {
+					switch value.(type) {
+					case *a.HeaderType:
+						{
+							parsedMeta = true
+						}
+					default:
+						continue
+					}
+				}
+			} else if child.Type() != string(LINE_COMMENT) && parsedMeta {
+				return NO_ATTRIB
+			}
+		}
+	}
+
+	return WITH_ATTRIB
+
 }
 
 func (r *RustLang) findBehaviorsFromNode(node *sitter.Node) (behaviors []a.BehaviorType) {

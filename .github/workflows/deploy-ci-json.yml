@@ -18,7 +18,7 @@ jobs:
       # Check if ci.json exists
       - name: Check if ci.json file exists
         id: is_existing
-        if: hashFiles('scraper/ci.json') == ''
+        if: hashFiles('frontend/apps/web/src/ci.json') == ''
         run: echo "::set-output name=ci_exists::false"
 
       # Install go lang

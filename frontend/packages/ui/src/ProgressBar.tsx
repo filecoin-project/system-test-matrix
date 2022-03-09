@@ -21,6 +21,7 @@ const ColorChart = {
   unannotated: '#7AAEAD',
   partiallyTested: '#FFC046',
   chaos: '#855476',
+  cli: '#03cefc',
 }
 
 export interface ProgressBarProps {

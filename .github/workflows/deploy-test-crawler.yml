@@ -35,11 +35,12 @@ jobs:
         if: hashFiles('filecoin-lotus-latest-push-date.txt') == ''
         run: echo "initialDate" >> filecoin-lotus-latest-push-date.txt
 
-      # Get pushed_at value from github api https://api.github.com/repos/filecoin-project/lotus
+      # Get pushed_at value from github api https://api.github.com/repos/Bloxico/lotus
+      # After this PR (filecoin-project/lotus#8272) is merged to lotus repo please revert github api link to https://api.github.com/repos/filecoin-project/lotus
       - name: Fetch latest push
         id: filecoin-lotus
         run: |
-          echo ::set-output name=push_tag::$(curl -sL https://api.github.com/repos/filecoin-project/lotus | jq -r ".pushed_at")
+          echo ::set-output name=push_tag::$(curl -sL https://api.github.com/repos/Bloxico/lotus | jq -r ".pushed_at")
           echo ::set-output name=current_tag::$(cat filecoin-lotus-latest-push-date.txt)
 
       # Update .txt file with latest pushed_at value if needed

@@ -36,6 +36,7 @@ jobs:
         run: echo "initialDate" >> filecoin-lotus-latest-push-date.txt
 
       # Get pushed_at value from github api https://api.github.com/repos/Bloxico/lotus
+      # After this PR (filecoin-project/lotus#8272) is merged to lotus repo please revert github api link to https://api.github.com/repos/filecoin-project/lotus
       - name: Fetch latest push
         id: filecoin-lotus
         run: |

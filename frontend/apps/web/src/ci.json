@@ -10740,6 +10740,186 @@
   }
  },
  {
+  "name": "TestWindowedPost/upgrade--1",
+  "classname": "command-line-arguments",
+  "result": "success",
+  "source": "itest-wdpost",
+  "job": {
+   "job_number": 501450,
+   "id": "017a420f-f367-41b2-ac3f-3bef3c237550",
+   "name": "test-itest-wdpost",
+   "number": 0,
+   "status": "success",
+   "workflow": {
+    "id": "1d49864d-a170-4779-bce0-405e6e6dfa9b",
+    "name": "ci",
+    "status": "running",
+    "pipeline": {
+     "id": "a95634fb-1b6c-4257-82c9-3d27350011da",
+     "state": "created",
+     "number": 21756,
+     "VCS": {
+      "branch": "master"
+     },
+     "Trigger": {
+      "type": "webhook"
+     }
+    }
+   },
+   "url": "https://app.circleci.com/pipelines/github/filecoin-project/lotus/21756/workflows/1d49864d-a170-4779-bce0-405e6e6dfa9b/jobs/501450/tests"
+  }
+ },
+ {
+  "name": "TestWindowedPost/upgrade-162",
+  "classname": "command-line-arguments",
+  "result": "success",
+  "source": "itest-wdpost",
+  "job": {
+   "job_number": 501450,
+   "id": "017a420f-f367-41b2-ac3f-3bef3c237550",
+   "name": "test-itest-wdpost",
+   "number": 0,
+   "status": "success",
+   "workflow": {
+    "id": "1d49864d-a170-4779-bce0-405e6e6dfa9b",
+    "name": "ci",
+    "status": "running",
+    "pipeline": {
+     "id": "a95634fb-1b6c-4257-82c9-3d27350011da",
+     "state": "created",
+     "number": 21756,
+     "VCS": {
+      "branch": "master"
+     },
+     "Trigger": {
+      "type": "webhook"
+     }
+    }
+   },
+   "url": "https://app.circleci.com/pipelines/github/filecoin-project/lotus/21756/workflows/1d49864d-a170-4779-bce0-405e6e6dfa9b/jobs/501450/tests"
+  }
+ },
+ {
+  "name": "TestWindowedPost/upgrade-5000",
+  "classname": "command-line-arguments",
+  "result": "success",
+  "source": "itest-wdpost",
+  "job": {
+   "job_number": 501450,
+   "id": "017a420f-f367-41b2-ac3f-3bef3c237550",
+   "name": "test-itest-wdpost",
+   "number": 0,
+   "status": "success",
+   "workflow": {
+    "id": "1d49864d-a170-4779-bce0-405e6e6dfa9b",
+    "name": "ci",
+    "status": "running",
+    "pipeline": {
+     "id": "a95634fb-1b6c-4257-82c9-3d27350011da",
+     "state": "created",
+     "number": 21756,
+     "VCS": {
+      "branch": "master"
+     },
+     "Trigger": {
+      "type": "webhook"
+     }
+    }
+   },
+   "url": "https://app.circleci.com/pipelines/github/filecoin-project/lotus/21756/workflows/1d49864d-a170-4779-bce0-405e6e6dfa9b/jobs/501450/tests"
+  }
+ },
+ {
+  "name": "TestWindowedPost",
+  "classname": "command-line-arguments",
+  "result": "success",
+  "source": "itest-wdpost",
+  "job": {
+   "job_number": 501450,
+   "id": "017a420f-f367-41b2-ac3f-3bef3c237550",
+   "name": "test-itest-wdpost",
+   "number": 0,
+   "status": "success",
+   "workflow": {
+    "id": "1d49864d-a170-4779-bce0-405e6e6dfa9b",
+    "name": "ci",
+    "status": "running",
+    "pipeline": {
+     "id": "a95634fb-1b6c-4257-82c9-3d27350011da",
+     "state": "created",
+     "number": 21756,
+     "VCS": {
+      "branch": "master"
+     },
+     "Trigger": {
+      "type": "webhook"
+     }
+    }
+   },
+   "url": "https://app.circleci.com/pipelines/github/filecoin-project/lotus/21756/workflows/1d49864d-a170-4779-bce0-405e6e6dfa9b/jobs/501450/tests"
+  }
+ },
+ {
+  "name": "TestWindowPostBaseFeeNoBurn",
+  "classname": "command-line-arguments",
+  "result": "success",
+  "source": "itest-wdpost",
+  "job": {
+   "job_number": 501450,
+   "id": "017a420f-f367-41b2-ac3f-3bef3c237550",
+   "name": "test-itest-wdpost",
+   "number": 0,
+   "status": "success",
+   "workflow": {
+    "id": "1d49864d-a170-4779-bce0-405e6e6dfa9b",
+    "name": "ci",
+    "status": "running",
+    "pipeline": {
+     "id": "a95634fb-1b6c-4257-82c9-3d27350011da",
+     "state": "created",
+     "number": 21756,
+     "VCS": {
+      "branch": "master"
+     },
+     "Trigger": {
+      "type": "webhook"
+     }
+    }
+   },
+   "url": "https://app.circleci.com/pipelines/github/filecoin-project/lotus/21756/workflows/1d49864d-a170-4779-bce0-405e6e6dfa9b/jobs/501450/tests"
+  }
+ },
+ {
+  "name": "TestWindowPostBaseFeeBurn",
+  "classname": "command-line-arguments",
+  "result": "success",
+  "source": "itest-wdpost",
+  "job": {
+   "job_number": 501450,
+   "id": "017a420f-f367-41b2-ac3f-3bef3c237550",
+   "name": "test-itest-wdpost",
+   "number": 0,
+   "status": "success",
+   "workflow": {
+    "id": "1d49864d-a170-4779-bce0-405e6e6dfa9b",
+    "name": "ci",
+    "status": "running",
+    "pipeline": {
+     "id": "a95634fb-1b6c-4257-82c9-3d27350011da",
+     "state": "created",
+     "number": 21756,
+     "VCS": {
+      "branch": "master"
+     },
+     "Trigger": {
+      "type": "webhook"
+     }
+    }
+   },
+   "url": "https://app.circleci.com/pipelines/github/filecoin-project/lotus/21756/workflows/1d49864d-a170-4779-bce0-405e6e6dfa9b/jobs/501450/tests"
+  }
+ },
+ {
   "name": "TestVerifiedClientTopUp/nv12",
   "classname": "command-line-arguments",
   "result": "success",

@@ -1,0 +1,15 @@
+system: consensus
+subsystem: Proof verifier
+features:
+  - name: Verify VRF
+    behaviors:
+      - id: CONSENSUS_VERIFIER_VERIFY_VRF_001
+        description: |
+          Given a worker address, a vrf base and proof,
+          verify the vrf proof is valid.
+  - name: Verify PoSt VRF
+    behaviors:
+      - id: CONSENSUS_VERIFIER_VERIFY_POST_VRF_001
+        description: |
+          Given a worker address, a list of random bytes, and a list of election VRF values,
+          verify election PoSt value in block.

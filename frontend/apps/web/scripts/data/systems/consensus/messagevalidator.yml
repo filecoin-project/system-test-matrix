@@ -1,0 +1,21 @@
+system: consensus
+subsystem: Message validator
+features:
+  - name: Validate
+    behaviors:
+      - id: CONSENSUS_VALIDATOR_VALIDATE_001
+        description: |
+          Given a signed message, 
+          validate the signed message signature.
+  - name: Validate signed message
+    behaviors:
+      - id: CONSENSUS_VALIDATOR_VALIDATE_SIGNED_SYNTAX_001
+        description: |
+          Given a signed message, 
+          validate the signed message syntax and state-independent invariants.
+  - name: Validate unsigned message
+    behaviors:
+      - id: CONSENSUS_VALIDATOR_VALIDATE_UNSIGNED_SYNTAX_001
+        description: |
+          Given a signed message, 
+          validate the unsigned message syntax and state-independent invariants.

@@ -1,0 +1,32 @@
+system: market
+subsystem: Fund manager
+features:
+  - name: Start
+    behaviors:
+      - id: MARKET_FUND_MANAGER_START_001
+        description: |
+          Starts the fund manager.
+  - name: Reserve
+    behaviors:
+      - id: MARKET_FUND_MANAGER_RESERVE_001
+        description: |
+          Given a wallet, an address, and a token amount,
+          adds the amount to reserved funds.
+  - name: Release
+    behaviors:
+      - id: MARKET_FUND_MANAGER_RELEASE_001
+        description: |
+          Given an address, and a token amount,
+          subtracts the amount from reserved funds.
+  - name: Withdraw
+    behaviors:
+      - id: MARKET_FUND_MANAGER_WITHDRAW_001
+        description: |
+          Given a wallet, an address, and a token amount,
+          withdraws the amount from unreserved funds.
+  - name: Get reserved
+    behaviors:
+      - id: MARKET_FUND_MANAGER_GET_RESERVED_001
+        description: |
+          Given an address, return the reserved amount of funds
+          for that address.

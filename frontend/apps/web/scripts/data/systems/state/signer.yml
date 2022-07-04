@@ -1,0 +1,17 @@
+system: state
+subsystem: Signer
+description: |
+  Looks up non-signing addresses before signing.
+features:
+  - name: Sign bytes
+    behaviors:
+      - id: STATE_VIEW_SIGN_BYTES_001
+        description: |
+          Given data as an array of bytes, and an address,
+          create a signature for the given data.
+  - name: Has address
+    behaviors:
+      - id: STATE_VIEW_HAS_ADDRESS_001
+        description: |
+          Given an address, returns true if this signer can
+          sign with the given address.

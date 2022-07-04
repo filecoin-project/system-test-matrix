@@ -1,0 +1,15 @@
+system: network
+subsystem: Address
+features:
+  - name: Address to info
+    behaviors:
+      - id: NETWORK_ADDRESS_ADDRESS_TO_INFO_001
+        description: |
+          Given a list of addresses,
+          return a list of PeerInfos (AddrInfos).
+  - name: Address info to peer ID
+    behaviors:
+      - id: NETWORK_ADDRESS_INFO_TO_PEER_ID_001
+        description: |
+          Given a list of address infos,
+          return a list of peer IDs.

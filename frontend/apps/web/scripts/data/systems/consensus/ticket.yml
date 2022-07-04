@@ -1,0 +1,15 @@
+system: consensus
+subsystem: Ticket
+features:
+  - name: Make ticket
+    behaviors:
+      - id: CONSENSUS_TICKET_MAKE_001
+        description: |
+          Given a base tipset, epoch, miner address, beacon entry, worker and signer address,
+          create a new ticket from a Chain and target epoch.
+  - name: Is valid
+    behaviors:
+      - id: CONSENSUS_TICKET_IS_VALID_001
+        description: |
+          Given a base tipset, epoch, miner address, beacon entry, worker and signer address,
+          and a ticket, verify that the ticket's proof of randomness is valid.

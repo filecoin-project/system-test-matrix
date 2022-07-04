@@ -1,0 +1,18 @@
+system: crypto
+subsystem: Key info
+features:
+  - name: Private key
+    behaviors:
+      - id: CRYPTO_KEYINFO_PRIVATE_KEY_001
+        description: |
+          Return the private key of this KeyInfo.
+  - name: Public key
+    behaviors:
+      - id: CRYPTO_KEYINFO_PUBLIC_KEY_001
+        description: |
+          Return the public key of this KeyInfo.
+  - name: Address
+    behaviors:
+      - id: CRYPTO_KEYINFO_ADDRESS_001
+        description: |
+          Return the address of this KeyInfo.

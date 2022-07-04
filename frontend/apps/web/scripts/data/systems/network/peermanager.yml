@@ -1,0 +1,34 @@
+system: network
+subsystem: Peer manager
+features:
+  - name: Add filecoin peer
+    behaviors:
+      - id: NETWORK_PEER_MANAGER_ADD_PEER_001
+        description: |
+          Given a peer ID, add the peer to the list of peers.
+  - name: Get peer latency
+    behaviors:
+      - id: NETWORK_PEER_MANAGER_GET_PEER_LATENCY_001
+        description: |
+          Given a peer ID, return the current latency to that peer.
+  - name: Set peer latency
+    behaviors:
+      - id: NETWORK_PEER_MANAGER_SET_PEER_LATENCY_001
+        description: |
+          Given a peer ID and a latency,
+          set the latency for the given peer.
+  - name: Disconnect
+    behaviors:
+      - id: NETWORK_PEER_MANAGER_DISCONNECT_001
+        description: |
+          Given a peer ID, disconnect the peer from list.
+  - name: Run
+    behaviors:
+      - id: NETWORK_PEER_MANAGER_RUN_001
+        description: |
+          Start the peer manager.
+  - name: Stop
+    behaviors:
+      - id: NETWORK_PEER_MANAGER_STOP_001
+        description: |
+          Stop the peer manager.

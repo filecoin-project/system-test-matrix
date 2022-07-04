@@ -1,0 +1,31 @@
+system: crypto
+subsystem: Signatures
+features:
+  - name: Sign
+    behaviors:
+      - id: CRYPTO_SIG_SIGN_001
+        description: |
+          Given a message, a private key, and a signature type (SECP or BLS),
+          return the signature for that message.
+  - name: Verify
+    behaviors:
+      - id: CRYPTO_SIG_VERIFY_001
+        description: |
+          Given a signature and an address,
+          verify the signature is valid.
+  - name: Verify aggregate
+    behaviors:
+      - id: CRYPTO_SIG_VERIFY_AGGREGATE_001
+        description: |
+          Given a list of public keys, messages, and signatures,
+          verify that all signatures are valid.
+  - name: Generate
+    behaviors:
+      - id: CRYPTO_SIG_GENERATE_001
+        description: |
+          Generate a signature of the given type.
+  - name: To public
+    behaviors:
+      - id: CRYPTO_SIG_TO_PUBLIC_001
+        description: |
+          Convert a private key to a public key.

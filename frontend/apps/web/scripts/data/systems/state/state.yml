@@ -1,0 +1,79 @@
+system: state
+subsystem: State tree
+description: |
+  Stores actors state by their ID.
+features:
+  - name: New state
+    behaviors:
+      - id: STATE_TREE_NEW_STATE_001
+        description: |
+          Given an ipld store, and a state tree version,
+          create and return a new state tree.
+  - name: Load state
+    behaviors:
+      - id: STATE_TREE_LOAD_STATE_001
+        description: |
+          Given an ipld store, and a CID,
+          loads the state from the provided ipld store.
+  - name: Set actor
+    behaviors:
+      - id: STATE_VIEW_SET_ACTOR_001
+        description: |
+          Given an actor key, and actor, 
+          set the provided actor to be stored at the provided key.
+  - name: Lookup ID
+    behaviors:
+      - id: STATE_VIEW_LOOKUP_ID_001
+        description: |
+          Given an actor key, return the address of the actor
+          stored at the indicated key.
+  - name: Get actor
+    behaviors:
+      - id: STATE_VIEW_GET_ACTOR_001
+        description: |
+          Given an actor key, return the actor from any type of address
+          pointing to that actor.
+  - name: Delete actor
+    behaviors:
+      - id: STATE_VIEW_DELETE_ACTOR_001
+        description: |
+          Given an actor key, delete the actor at the indicated key.
+  - name: Flush
+    behaviors:
+      - id: STATE_VIEW_FLUSH_001
+        description: |
+          Flush all data from the tree, and return an empty tree CID.
+  - name: Snapshot
+    behaviors:
+      - id: STATE_VIEW_SNAPSHOT_001
+        description: |
+          Create a snapshot of this state tree.
+  - name: Clear snapshot
+    behaviors:
+      - id: STATE_VIEW_CLEAR_SNAPSHOT_001
+        description: |
+          Clear the last taken snapshot.
+  - name: Register new address
+    behaviors:
+      - id: STATE_VIEW_REGISTER_NEW_ADDRESS_001
+        description: |
+          Given an actor key, create a new address for the actor, 
+          and return it.
+  - name: Revert
+    behaviors:
+      - id: STATE_VIEW_REVERT_001
+        description: |
+          Revert the last change to this state tree.
+  - name: Mutate actor
+    behaviors:
+      - id: STATE_VIEW_MUTATE_ACTOR_001
+        description: |
+          Given an actor key, and an actor mutation function,
+          mutate the actor at the indicated key using the mutation function.
+  - name: For each
+    behaviors:
+      - id: STATE_VIEW_FOR_EACH_001
+        description: |
+          Given a function that operates on an actor key and an actor,
+          run the function on each actor in this state tree.
+          

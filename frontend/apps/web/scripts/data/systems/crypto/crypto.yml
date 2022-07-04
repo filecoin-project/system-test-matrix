@@ -1,0 +1,15 @@
+system: crypto
+subsystem: Crypto
+features:
+  - name: New SECP key
+    behaviors:
+      - id: CRYPTO_CRYPTO_NEW_SECP_KEY_001
+        description: |
+          Given a seed reader, 
+          generate a new SECP key from the reader.
+  - name: New BLS key
+    behaviors:
+      - id: CRYPTO_CRYPTO_NEW_BLS_KEY_001
+        description: |
+          Given a seed reader, 
+          generate a new BLS key from the reader.

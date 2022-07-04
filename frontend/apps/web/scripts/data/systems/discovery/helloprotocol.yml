@@ -1,0 +1,10 @@
+system: discovery
+subsystem: Hello protocol
+features:
+  - name: Register
+    behaviors:
+      - id: DISCOVERY_HELLO_REGISTER_001
+        description: |
+          Given the callback when a peer is discovered, and a callback 
+          which returns the heaviest tipset,
+          registers the handler with the network.

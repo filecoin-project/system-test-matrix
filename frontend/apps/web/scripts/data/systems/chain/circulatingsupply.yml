@@ -1,0 +1,16 @@
+system: chain
+subsystem: Circulating supply
+features:
+  - name: Get circulating supply detailed
+    behaviors:
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_DETAILED_001
+        description: |
+          Given a chain epoch, and a tree state,
+          query contract and calculate circulation status at specific height 
+          and tree state
+  - name: Get vested FIL
+    behaviors:
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_VESTED_001
+        description: |
+          Given a chain epoch height, and a state tree,
+          return all funds that have "left" actors that are in the genesis state

@@ -1,0 +1,93 @@
+system: paychmgr
+subsystem: Manager
+features:
+  - name: Start
+    behaviors:
+      - id: PAYCHMGR_MANAGER_START_001
+        description: |
+          Restarts tracking of any messages sent to the chain.
+  - name: Stop
+    behaviors:
+      - id: PAYCHMGR_MANAGER_STOP_001
+        description: |
+          Shut down any processes used by the manager.
+  - name: Get paych
+    behaviors:
+      - id: PAYCHMGR_MANAGER_GET_PAYCH_001
+        description: |
+          Given a pair of from and to addresses, and an amount,
+          return an address and CID.
+  - name: Available funds
+    behaviors:
+      - id: PAYCHMGR_MANAGER_AVAILABLE_FUNDS_001
+        description: |
+          Given an address, return a channel with available funds 
+          for the indicated address.
+  - name: Available funds by from to 
+    behaviors:
+      - id: PAYCHMGR_MANAGER_AVAILABLE_FUNDS_BY_FROM_TO_001
+        description: |
+          Given a pair of from and to addresses,
+          return a channel with available funds from one address
+          to the other.
+  - name: List channels
+    behaviors:
+      - id: PAYCHMGR_MANAGER_LIST_CHANNELS_001
+        description: |
+          Return a list of addresses representing payment channels.
+  - name: Get channel info
+    behaviors:
+      - id: PAYCHMGR_MANAGER_GET_CHANNEL_INFO_001
+        description: |
+          Given an address, return channel info for the indicated address.
+  - name: Create voucher
+    behaviors:
+      - id: PAYCHMGR_MANAGER_CREATE_VOUCHER_001
+        description: |
+          Given an address, and a signed voucher, 
+          create and return a new payment voucher.
+  - name: Check voucher valid
+    behaviors:
+      - id: PAYCHMGR_MANAGER_CHECK_VOUCHER_VALD_001
+        description: |
+          Given an address, and a signed voucher, 
+          check if the given voucher is valid.
+  - name: Check voucher spendable
+    behaviors:
+      - id: PAYCHMGR_MANAGER_CHECK_VOUCHER_SPENDABLE_001
+        description: |
+          Given an address, and a signed voucher, a secret and proof,
+          check if the given voucher is currently spendable.
+  - name: Add voucher outbound
+    behaviors:
+      - id: PAYCHMGR_MANAGER_ADD_VOUCHER_OUTBOUND_001
+        description: |
+          Given an address, a signed voucher, a proof, and minDelta,
+          add the voucher for an outbound channel.
+  - name: Add voucher inbound
+    behaviors:
+      - id: PAYCHMGR_MANAGER_ADD_VOUCHER_INBOUND_001
+        description: |
+          Given an address, a signed voucher, a proof, and minDelta,
+          add the voucher for an inbound channel.
+  - name: Submit voucher
+    behaviors:
+      - id: PAYCHMGR_MANAGER_SUBMIT_VOUCHER_001
+        description: |
+          Given an address, a signed voucher, a secret, and proof,
+          submit the voucher.
+  - name: List vouchers
+    behaviors:
+      - id: PAYCHMGR_MANAGER_LIST_VOUCHERS_001
+        description: |  
+          Given an address, list all vouchers for that address.
+  - name: Settle
+    behaviors:
+      - id: PAYCHMGR_MANAGER_SETTLE_001
+        description: |  
+          Given an address, settle the channel for the indicated address.
+  - name: Collect
+    behaviors:
+      - id: PAYCHMGR_MANAGER_COLLECT_001
+        description: |  
+          Given an address, collect from the channel for the indicated address.

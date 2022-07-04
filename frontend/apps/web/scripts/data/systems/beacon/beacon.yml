@@ -1,0 +1,15 @@
+system: beacon
+subsystem: Beacon
+features:
+  - name: Validate block values
+    behaviors:
+      - id: BEACON_BEACON_VALIDATE_BLOCK_VALUES_001
+        description: |
+          Given a schedule, block header, parent epoch, and previous entry,
+          verify that the beacon in the block header is correct.
+  - name: Beacon entries for block
+    behaviors:
+      - id: BEACON_BEACON_BEACON_ENTRIES_FOR_BLOCK_001
+        description: |
+          Given a schedule, epoch, parent epoch, and previous entry,
+          return all beacon entries for the block.

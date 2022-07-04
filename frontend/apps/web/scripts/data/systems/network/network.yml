@@ -1,0 +1,29 @@
+system: network
+subsystem: Network
+features:
+  - name: Get peer addresses
+    behaviors:
+      - id: NETWORK_NETWORK_GET_PEER_ADDRESSES_001
+        description: |
+          Return all the current addresses of the node.
+  - name: Get peer ID
+    behaviors:
+      - id: NETWORK_NETWORK_GET_PEER_ID_001
+        description: |
+          Return the current peer ID from libp2p host.
+  - name: Get bandwidth stats
+    behaviors:
+      - id: NETWORK_NETWORK_GET_BANDWIDTH_STATS_001
+        description: |
+          Return stats on the current bandwidth usage of the network.
+  - name: Connect
+    behaviors:
+      - id: NETWORK_NETWORK_GET_BANDWIDTH_STATS_001
+        description: |
+          Given a list of addresses, attempt to connect to peers
+          at given addreses.
+  - name: Get known peers
+    behaviors:
+      - id: NETWORK_NETWORK_GET_KNOWN_PEERS_001
+        description: |
+          List the peers currently available on the network.

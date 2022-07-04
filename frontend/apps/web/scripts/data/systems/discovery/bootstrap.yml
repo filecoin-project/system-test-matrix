@@ -1,0 +1,13 @@
+system: discovery
+subsystem: Bootstrap
+features:
+  - name: Start
+    behaviors:
+      - id: DISCOVERY_BOOTSTRAP_START_001
+        description: |
+          Starts the bootstrapper.
+  - name: Stop
+    behaviors:
+      - id: DISCOVERY_BOOTSTRAP_STOP_001
+        description: |
+          Stops the bootstrapper.

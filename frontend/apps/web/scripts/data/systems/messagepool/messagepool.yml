@@ -1,0 +1,112 @@
+system: messagepool
+subsystem: Message pool
+features:
+  - name: Publish 
+    behaviors:
+      - id: MESSAGEPOOL_POOL_PUBLISH_001
+        description: |
+          Given a signed message, publish the message to the pool.
+  - name: Publish for wallet
+    behaviors:
+      - id: MESSAGEPOOL_POOL_PUBLISH_FOR_WALLET
+        description: |
+          Given an address, publish all pending messages for that address.
+  - name: Delete by address
+    behaviors:
+      - id: MESSAGEPOOL_POOL_DELETE_BY_ADDRESS_001
+        description: |
+          Given an address, delete all pending messages for that address.
+  - name: Close
+    behaviors:
+      - id: MESSAGEPOOL_POOL_CLOSE_001
+        description: |
+          Close the message pool.
+  - name: Prune
+    behaviors:
+      - id: MESSAGEPOOL_POOL_PRUNE_001
+        description: |
+          Prunes excess messages from the message pool.
+  - name: Push
+    behaviors:
+      - id: MESSAGEPOOL_POOL_PUSH_001
+        description: |
+          Given a signed message, push the message to the pool.
+  - name: Add
+    behaviors:
+      - id: MESSAGEPOOL_POOL_ADD_001
+        description: |
+          Given a signed message, add the message to the pool.
+  - name: Verify message signature
+    behaviors:
+      - id: MESSAGEPOOL_POOL_VERIFY_MSG_SIG_001
+        description: |
+          Given a signed message, validate the message's signature.
+  - name: Push untrusted
+    behaviors:
+      - id: MESSAGEPOOL_POOL_PUSH_UNTRUSTED
+        description: |
+          Given a signed message, push the message to the pool, while
+          performing extra validity checks.
+  - name: Remove
+    behaviors:
+      - id: MESSAGEPOOL_POOL_REMOVE_001
+        description: |
+          Given a sender address, a nonce, and applied status,
+          remove the indicated message from the pool.
+  - name: Get pending
+    behaviors:
+      - id: MESSAGEPOOL_POOL_GET_PENDING_001
+        description: |
+          Return all pending messages.
+  - name: Get pending for address
+    behaviors:
+      - id: MESSAGEPOOL_POOL_GET_PENDING_FOR_ADDRESS_001
+        description: |
+          Given an address, return all pending messages for that address.
+  - name: Get messages for blocks
+    behaviors:
+      - id: MESSAGEPOOL_POOL_GET_MESSAGES_FOR_BLOCKS_001
+        description: |
+          Given an array of block headers,
+          return all messages for any of the indicated blocks.
+  - name: Recover signature
+    behaviors:
+      - id: MESSAGEPOOL_POOL_RECOVER_SIG_001
+        description: |
+          Given a message, recover the messages' signature from cache,
+          and return a signed message.
+  - name: Clear
+    behaviors:
+      - id: MESSAGEPOOL_POOL_CLEAR_001
+        description: |
+          Given a local clear flag, clear the pool, removing messages
+          from the local datastore, if indicated by the given flag.
+  - name: Check messages
+    behaviors:
+      - id: MESSAGEPOOL_POOL_CHECK_MESSAGES_001
+        description: |
+          Given a list of messages, perform logical checks.
+          Check the actor balance, serialization, message size, syntax validity,
+          gas limit, min base fee, base fee, nonce, required funds and
+          balance and return the status of each check
+  - name: Check Pending Messages
+    behaviors:
+      - id: MESSAGEPOOL_POOL_CHECK_PENDING_MESSAGES_001
+        description: |
+          Given an address (representing an actor), 
+          perform logical checks (see "Check Messages" feature) 
+          for all pending messages from the specified address
+  - name: Check Replace Messages
+    behaviors:
+      - id: MESSAGEPOOL_POOL_CHECK_REPLACE_MESSAGES_001
+        description: |
+          Given a list of replacement messages,
+          perform logical checks (see "Check Messages" feature) 
+          for related messages while performing a replacement.
+  - name: Select messages
+    behaviors:
+      - id: MESSAGEPOOL_POOL_SELECT_MESSAGES_001
+        description: |
+          Given a tipset, and a ticket quality, select and return a list of messages
+          to be included in the tipset.
+  

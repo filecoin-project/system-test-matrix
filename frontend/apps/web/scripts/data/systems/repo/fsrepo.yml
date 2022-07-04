@@ -1,0 +1,62 @@
+system: repo
+subsystem: FS repo
+description: |
+  Repo implementation backed by a filesystem
+features:
+  - name: Init
+    behaviors:
+      - id: REPO_FSREPO_INIT_001
+        description: |
+          Given a target path, a version, and a config,
+          initialize a new repo at the target path with the 
+          provided configuration.
+  - name: Init direct
+    behaviors:
+      - id: REPO_FSREPO_INIT_DIRECT_001
+        description: |
+          Given a target path, a version, and a config,
+          initialize a new repo at the target path with the 
+          provided configuration.
+  - name: Exists
+    behaviors:
+      - id: REPO_FSREPO_EXISTS_001
+        description: |
+          Given a path, return true if the path exists in the repo.
+  - name: Open repo
+    behaviors:
+      - id: REPO_FSREPO_OPEN_REPO_001
+        description: |
+          Given a repo path, and a version, open an initialized repo.
+  - name: Make repo dir name
+    behaviors:
+      - id: REPO_FSREPO_MAKE_DIR_NAME_001
+        description: |
+          Given a prefix, a time, version, and uniquefier number,
+          construct a name for a concrete repo directory.
+  - name: Replace config
+    behaviors:
+      - id: REPO_FSREPO_REPLACE_CONFIG_001
+        description: |
+          Given a config, replace the current config with the new one.
+  - name: Snapshot config
+    behaviors:
+      - id: REPO_FSREPO_SNAPSHOT_CONFIG_001
+        description: |
+          Given a config, store a copy of it in the snapshot repo path.
+  - name: Close
+    behaviors:
+      - id: REPO_FSREPO_CLOSE_001
+        description: |
+          Close the repo.
+  - name: Read version
+    behaviors:
+      - id: REPO_FSREPO_READ_VERSION_001
+        description: |
+          Given a repo path, read the unparsed version from the file 
+          at the specified path.
+  - name: Set API address
+    behaviors:
+      - id: REPO_FSREPO_SET_API_ADDRESS
+        description: |
+          Given an address string, write the address to the API file.
+  

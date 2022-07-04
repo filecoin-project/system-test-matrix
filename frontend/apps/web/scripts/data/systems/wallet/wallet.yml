@@ -1,0 +1,94 @@
+system: wallet
+subsystem: Wallet
+features:
+  - name: Has address
+    behaviors:
+      - id: WALLET_WALLET_HAS_ADDRESS_001
+        description: |
+          Given an address, return true if the address is stored in this wallet.
+  - name: Find
+    behaviors:
+      - id: WALLET_WALLET_FIND_001
+        description: |
+          Given an address, return the backend storing the address in this wallet.
+  - name: Addresses
+    behaviors:
+      - id: WALLET_WALLET_ADDRESSES_001
+        description: |
+          Return all addresses stored in this wallet.
+  - name: Backends
+    behaviors:
+      - id: WALLET_WALLET_BACKENDS_001
+        description: |
+          Return all backends backing this wallet.
+  - name: Sign bytes
+    behaviors:
+      - id: WALLET_WALLET_SIGN_BYTES_001
+        description: |
+          Given a data slice of bytes, and an address,
+          cryptographically sign the data using the private key corresponding
+          to the address.
+  - name: Addresses
+    behaviors:
+      - id: WALLET_WALLET_ADDRESSES_001
+        description: |
+          Return all addresses stored in this wallet.
+  - name: New address
+    behaviors:
+      - id: WALLET_WALLET_NEW_ADDRESS_001
+        description: |
+          Given a protocol, create a new account address on the 
+          default wallet backend.
+  - name: Get pub key for address
+    behaviors:
+      - id: WALLET_WALLET_GET_ADDRESS_PUBKEY_001
+        description: |
+          Given an address, return the public key in the keystore 
+          associated with the given address.
+  - name: New key info
+    behaviors:
+      - id: WALLET_WALLET_NEW_KEY_INFO_001
+        description: |
+          Create a new KeyInfo in the wallet backend.
+  - name: Import
+    behaviors:
+      - id: WALLET_WALLET_IMPORT_001
+        description: |
+          Given a KeyInfo, add it to the wallet.
+  - name: Export
+    behaviors:
+      - id: WALLET_WALLET_EXPORT_001
+        description: |
+          Given an address, and a password,
+          return the KeyInfos for the given address.
+  - name: Sign
+    behaviors:
+      - id: WALLET_WALLET_SIGN_001
+        description: |
+          Given an address, a message as array of bytes, and a message meta,
+          sign the message using the given address' private key.
+  - name: Lock
+    behaviors:
+      - id: WALLET_WALLET_LOCK_001
+        description: |
+          Lock the wallet.
+  - name: Unlock
+    behaviors:
+      - id: WALLET_WALLET_UNLOCK_001
+        description: |
+          Given a password, unlock the wallet.
+  - name: Set password
+    behaviors:
+      - id: WALLET_WALLET_SET_PASSWORD_001
+        description: |
+          Given a password, set the password for the wallet.
+  - name: Has password
+    behaviors:
+      - id: WALLET_WALLET_HAS_PASSWORD_001
+        description: |
+          Return true if the wallet has a password.
+  - name: Get state
+    behaviors:
+      - id: WALLET_WALLET_GET_STATE_001
+        description: |
+          Return current wallet state: locked or unlocked.

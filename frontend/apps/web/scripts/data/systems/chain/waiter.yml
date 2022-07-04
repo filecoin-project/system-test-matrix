@@ -1,0 +1,15 @@
+system: chain
+subsystem: Waiter
+features:
+  - name: Find
+    behaviors:
+      - id: CHAIN_WAITER_FIND_001
+        description: |
+          Given a message, a lookback epoch, and a tipset,
+          searches the blockchain history for the message (but doesn't wait).
+  - name: Wait
+    behaviors:
+      - id: CHAIN_WAITER_WAIT_001
+        description: |
+          Given a message to wait for, and a lookback epoch
+          wait until the message appears on chain, and return it.

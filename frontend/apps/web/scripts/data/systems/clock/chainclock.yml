@@ -1,0 +1,25 @@
+system: clock
+subsystem: Chain clock
+description: |
+  Provides an interface that packages can use instead of directly using
+  the time module.
+features:
+  - name: New chain clock
+    behaviors:
+      - id: CLOCK_CHAIN_CLOCK_NEW_001
+        description: |
+          Given a genesisTime, and a blockTime,
+          create and return a new ChainEpochClock
+  - name: Epoch at time
+    behaviors:
+      - id: CLOCK_CHAIN_CLOCK_EPOCH_AT_TIME_001
+        description: |
+          Given a specified time,
+          return the chain epoch corresponding to the time.
+  - name: Epoch range at timestamp
+    behaviors:
+      - id: CLOCK_CHAIN_CLOCK_EPOCH_RANGE_AT_TIMESTAMP_001
+        description: |
+          Given a specified timestamp,
+          return the possible epoch number range a given unix 
+          second timestamp can validly belong to.

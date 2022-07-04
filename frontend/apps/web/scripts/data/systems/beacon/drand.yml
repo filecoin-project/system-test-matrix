@@ -1,0 +1,15 @@
+system: beacon
+subsystem: Drand
+features:
+  - name: Get entry
+    behaviors:
+      - id: BEACON_DRAND_GET_ENTRY_001
+        description: |
+          Given a beacon value round,
+          return a Drand beacon entry.
+  - name: Verify entry
+    behaviors:
+      - id: BEACON_DRAND_VERIFY_ENTRY_001
+        description: |
+          Given a current and previous beacon entry,
+          verify that the beacon entries are valid.

@@ -1,0 +1,16 @@
+system: consensus
+subsystem: Processor
+features:
+  - name: Process tipset
+    behaviors:
+      - id: CONSENSUS_PROCESSOR_PROCESS_001
+        description: |
+          Given a parent tipset, a list of messages, and vm options,
+          compute the state transition specified by the messages in all blocks
+          in a tipset.
+  - name: Process implicit message
+    behaviors:
+      - id: CONSENSUS_PROCESSOR_PROCESS_IMPLICIT_001
+        description: |
+          Given a message, and a vm option,
+          compute the state of specified message, but skip value and gask checks.

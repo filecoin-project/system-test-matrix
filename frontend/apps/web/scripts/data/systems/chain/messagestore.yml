@@ -1,0 +1,14 @@
+system: chain
+subsystem: Message store
+features:
+  - name: Load meta messages
+    behaviors:
+      - id: CHAIN_MESSAGE_STORE_LOAD_META_001
+        description: |
+          Given a meta message CID,
+          load the signed message in the collection from IPLD storage
+  - name: Read message meta CID
+    behaviors:
+      - id: CHAIN_MESSAGE_READ_META_CID_001
+        description: |
+          Given a message CID, read the message meta CID

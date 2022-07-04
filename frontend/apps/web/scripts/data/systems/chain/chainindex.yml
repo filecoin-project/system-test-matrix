@@ -1,0 +1,16 @@
+system: chain
+subsystem: Index
+features:
+  - name: Get tipset by height
+    behaviors:
+      - id: CHAIN_INDEX_GET_TIPSET_BY_HEIGHT_001
+        description: |
+          Given a tipset from, and chain epoch to,
+          return tipset at specified height from the specified tipset.
+  - name: Get tipset by height no cache
+    behaviors:
+      - id: CHAIN_INDEX_GET_TIPSET_BY_HEIGHT_NO_CACHE_001
+        description: |
+          Given a tipset from, and chain epoch to,
+          return tipset at specified height from the specified tipset, 
+          by reading the database directly, skipping the cache.

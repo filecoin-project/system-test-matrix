@@ -1,0 +1,18 @@
+system: consensus
+subsystem: Chain selector
+description: |
+  Weighs and compares chains.
+features:
+  - name: Weight
+    behaviors:
+      - id: CONSENSUS_CHAIN_SELECTOR_WEIGHT_001
+        description: |
+          Given a tipset, 
+          calculate and return the EC weight of the TipSet.
+  - name: Is heavier
+    behaviors:
+      - id: CONSENSUS_CHAIN_SELECTOR_WEIGHT_001
+        description: |
+          Given two tipsets,
+          return true if first tipset is heavier than the second one, 
+          and false otherwise.

@@ -1,0 +1,25 @@
+system: discovery
+subsystem: Peer tracker
+features:
+  - name: Select head
+    behaviors:
+      - id: DISCOVERY_PEER_TRACKER_SELECT_HEAD_001
+        description: |
+          Return the chain info from trusted peers with the 
+          greatest height.s
+  - name: Track
+    behaviors:
+      - id: DISCOVERY_PEER_TRACKER_TRACK_001
+        description: |
+          Given a chain info,
+          add information about the given peer ID
+  - name: List
+    behaviors:
+      - id: DISCOVERY_PEER_TRACKER_LIST_001
+        description: |
+          Return the chain info of the currently tracked peers.
+  - name: Remove
+    behaviors:
+      - id: DISCOVERY_PEER_TRACKER_REMOVE_001
+        description: |
+          Given a peer ID, remove a peer from the tracker.

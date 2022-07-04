@@ -1,0 +1,53 @@
+system: state
+subsystem: View
+description: |
+  Builds state views from state root CIDs.
+features:
+  - name: Get miner info
+    behaviors:
+      - id: STATE_VIEW_GET_MINER_INFO_001
+        description: |
+          Given a miner address, and network version,
+          return info about the miner at the indicated address.
+  - name: Get miner sector info
+    behaviors:
+      - id: STATE_VIEW_GET_MINER_SECTOR_INFO_001
+        description: |
+          Given a miner address, and sector number,
+          load sector info from miner state.
+  - name: Get sectors for winning PoSt
+    behaviors:
+      - id: STATE_VIEW_GET_SECTORS_FOR_WINNING_POST_001
+        description: |
+          Given a network version, verifier, miner address, and post randomness,
+          return sector of winning PoSt challenge result.
+  - name: Sector pre commit info
+    behaviors:
+      - id: STATE_VIEW_SECTOR_PRE_COMMIT_INFO_001
+        description: |
+          Given a miner address, and sector number,
+          return the PreCommit info for the specified miner's sector.
+  - name: State sector partition
+    behaviors:
+      - id: STATE_VIEW_STATE_SECTOR_PARTITION_001
+        description: |
+          Given a miner address, and sector number,
+          find the deadline/partition with the specified sector.
+  - name: Deadline info
+    behaviors:
+      - id: STATE_VIEW_DEADLINE_INFO_001
+        description: |
+          Given a miner address, and sector number,
+          return information relevant to the current proving deadline.
+  - name: Miner exists
+    behaviors:
+      - id: STATE_VIEW_MINER_EXISTS_001
+        description: |
+          Given a miner address,
+          return true iff the miner exists.
+  - name: Miner get precommited sector
+    behaviors:
+      - id: STATE_VIEW_MINER_GET_PRECOMMITED_SECTOR
+        description: |
+          Given a miner address, and a sector number,
+          return info for a miners precommited sector.

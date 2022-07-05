@@ -20,3 +20,21 @@ features:
         description: |
           Given a tipset to start from, and a number,
           return an iterator over tipsets from head to genesis
+  - name: Get tipset by height
+    behaviors:
+      - id: CHAIN_STORE_GET_TIPSET_BY_HEIGHT_001
+        description: |
+          Given a tipset, an epoch, and a prev flag,
+          look back and return a tipset at the specified epoch.
+      - id: CHAIN_STORE_GET_TIPSET_BY_HEIGHT_002
+        description: |
+          If the epoch is greater than the tipset's height,
+          return an error.
+      - id: CHAIN_STORE_GET_TIPSET_BY_HEIGHT_003
+        description: |
+          If an error occurs retrieving the tipset from the chain index,
+          return an error.
+      - id: CHAIN_STORE_GET_TIPSET_BY_HEIGHT_004
+        description: |
+          If an error occurs retrieving the tipset from the chain index
+          (without accessing the index cache), return an error.

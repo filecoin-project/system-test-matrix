@@ -7,9 +7,41 @@ features:
         description: |
           Given a schedule, block header, parent epoch, and previous entry,
           verify that the beacon in the block header is correct.
+      - id: BEACON_BEACON_VALIDATE_BLOCK_VALUES_002
+        description: |
+          If parent beacon is not the same as current beacon, and there is not
+          exactly two beacon entries,
+          return error.
+      - id: BEACON_BEACON_VALIDATE_BLOCK_VALUES_003
+        description: |
+          If parent beacon is not the same as current beacon,
+          and verification of beacon's entires is not successfull,
+          return error.
+      - id: BEACON_BEACON_VALIDATE_BLOCK_VALUES_004
+        description: |
+          If max beacon round for epoch is equal to previous entry round,
+          and there is no entries in current block,
+          return error.
+      - id: BEACON_BEACON_VALIDATE_BLOCK_VALUES_005
+        description: |
+          For given block header, check number of beacon entries, if there is none,
+          return error.
+      - id: BEACON_BEACON_VALIDATE_BLOCK_VALUES_006
+        description: |
+          If final beacon entry is not equal to maxRound(max beacon round for epoch),
+          return error.
+      - id: BEACON_BEACON_VALIDATE_BLOCK_VALUES_007
+        description: |
+          If any of beacon entries of current block fails the verification,
+          return error.
+    ###
   - name: Beacon entries for block
     behaviors:
       - id: BEACON_BEACON_BEACON_ENTRIES_FOR_BLOCK_001
         description: |
           Given a schedule, epoch, parent epoch, and previous entry,
           return all beacon entries for the block.
+      - id: BEACON_BEACON_BEACON_ENTRIES_FOR_BLOCK_002
+        description: |
+          If there is any response received from channel after calling Entry() function,
+          return error.

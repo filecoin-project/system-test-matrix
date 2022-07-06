@@ -249,7 +249,7 @@ export class DenormalizedLoader implements ModelLoader {
       })
       test.linkedBehaviors.push(behavior)
     } else {
-      throw new Error(
+      console.warn(
         `Unknown behavior ${rawBehavior.behavior} for test ${test.path}/${test.functionName}`,
       )
     }

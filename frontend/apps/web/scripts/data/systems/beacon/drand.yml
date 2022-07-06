@@ -13,3 +13,17 @@ features:
         description: |
           Given a current and previous beacon entry,
           verify that the beacon entries are valid.
+      - id: BEACON_DRAND_VERIFY_ENTRY_002
+        description: |
+          Checks if there is already beacon in the cache based on Round, and returns an error
+          if the data is unmatched.
+      - id: BEACON_DRAND_VERIFY_ENTRY_003
+        description: |
+          Returns and error while verifing beacon on the chain, providing drand beacon's pubkey 
+          and new beacon generated from previous
+          and current beacon's data.
+  - name: Max beacon round for epoch
+    behaviors:
+      - id: BEACON_DRAND_MAX_BEACON_ROUND_FOR_EPOCH_001
+        description: |
+          Given chain epoch, get the turn of beacon chain corresponding to chain height

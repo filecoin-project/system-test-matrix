@@ -1,0 +1,8 @@
+system: dispatcher
+subsystem: Dispatcher
+features:
+  - name: Sync Tracker
+    behaviors:
+      - id: CHAINSYNC_DISPATCHER_SYNC_TRACKER_001
+        description: |
+          Sync Tracker returns the target tracker of syncing

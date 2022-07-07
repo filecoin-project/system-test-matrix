@@ -1,0 +1,18 @@
+system: clock
+subsystem: Testing
+description: |
+  Testing time related calculations
+features:
+  - name: New timer
+    behaviors:
+      - id: CLOCK_TESTING_NEW_TIMER_001
+        description: |
+         Creates a new Timer that will send the current time on its channel
+         after the given duration elapses on the fake clock.
+  - name: After Func
+    behaviors:
+      - id: CLOCK_TESTING_AFTER_FUNC_001
+        description: |
+          Waits for the duration to elapse on the fake clock and then calls function f
+          in its own goroutine.
+          It returns a Timer that can be used to cancel the call using its Stop method.

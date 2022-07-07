@@ -23,3 +23,18 @@ features:
           Given a specified timestamp,
           return the possible epoch number range a given unix 
           second timestamp can validly belong to.
+  - name: Start time of epoch
+    behaviors:
+      - id: CLOCK_CHAIN_CLOCK_START_TIME_OF_EPOCH_001
+        description: |
+          Returns the start time of the given epoch.
+  - name: Wait next epoch
+    behaviors:
+      - id: CLOCK_CHAIN_CLOCK_WAIT_NEXT_EPOCH_001
+        description: |
+          Returns after the next epoch occurs, or context is done.
+  - name: Wait for epoch
+    behaviors:
+      - id: CLOCK_CHAIN_CLOCK_WAIT_FOR_EPOCH_001
+        description: |
+          Returns when an epoch is due to start, or context is done.

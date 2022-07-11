@@ -15,7 +15,7 @@
     "compression-webpack-plugin": "^9.0.0",
     "copy-webpack-plugin": "^10.0.0",
     "cssnano": "^5.0.2",
-    "dotenv-webpack": "^7.0.1",
+    "dotenv-webpack": "^8.0.0",
     "fork-ts-checker-webpack-plugin": "^7",
     "html-webpack-plugin": "^5.4.0",
     "style-loader": "^3.0.0",

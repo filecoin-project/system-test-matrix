@@ -7,10 +7,72 @@ features:
         description: |
           Given a chain epoch, and a tree state,
           query contract and calculate circulation status at specific height 
-          and tree state
+          and tree state.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_DETAILED_002
+        description: |
+          If there is an error after calling GetFilVested on specific height,
+          return error.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_DETAILED_003
+        description: |
+          If height is greater than UpgradeAssemblyHeight,
+          and there is an error calculating filReserveDisbursed,
+          return error.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_DETAILED_004
+        description: |
+          If there is an error calucating total Fil mined,
+          return error.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_DETAILED_005
+        description: |
+          If there is an error calucating total Fil burnt,
+          return error.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_DETAILED_006
+        description: |
+          If there is an error calucating total Fil locked,
+          return error.
+    ###
   - name: Get vested FIL
     behaviors:
       - id: CHAIN_CIRCULATING_SUPPLY_GET_VESTED_001
         description: |
           Given a chain epoch height, and a state tree,
           return all funds that have "left" actors that are in the genesis state
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_VESTED_002
+        description: |
+          If there is an error trying to setup pre-ignition vesting schedule,
+          return error.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_VESTED_003
+        description: |
+          If postIgnitionVesting is nil,
+          try to setup post-ignition vesting scheduler,
+          return error if occurs.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_VESTED_004
+        description: |
+          If postCalicoVesting is nil,
+          try to setup post-calico vesting scheduler,
+          return error if occurs.
+    ###
+  - name: Get reserve disbursed FIL
+    behaviors:
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_RESERVE_DISBURSED_001
+        description: |
+          Given a state tree,
+          return reserved fils.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_RESERVE_DISBURSED_002
+        description: |
+          If actor can not be found, or some other error occurs,
+          return zero for reserved fils, and error.
+    ###
+  - name: Get locked FIL
+    behaviors:
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_LOCKED_001
+        description: |
+          Given a state tree,
+          query the market contract and power contract to get the amount of locked fils.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_LOCKED_002
+        description: |
+          If actor can not be found, or some other error occurs,
+          return zero for locked fils, and error.
+      - id: CHAIN_CIRCULATING_SUPPLY_GET_LOCKED_003
+        description: |
+          If actor can not be found, or some other error occurs while trying to getFilPowerLocked,
+          return zero for locked fils, and error.

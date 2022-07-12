@@ -7,6 +7,21 @@ features:
         description: |
           Given a tipset from, and chain epoch to,
           return tipset at specified height from the specified tipset.
+      - id: CHAIN_INDEX_GET_TIPSET_BY_HEIGHT_002
+        description: |
+          If the height difference exceeds skipLenght, the tipset is read from cache.
+      - id: CHAIN_INDEX_GET_TIPSET_BY_HEIGHT_003
+        description: |
+          If error occurs after calling roundDown function,
+          error is returned, otherwise we can rounded tipset.
+      - id: CHAIN_INDEX_GET_TIPSET_BY_HEIGHT_004
+        description: |
+          Try to get key from cache, 
+          if it is not found, fill cahce with new key,
+          if any error occurs,
+          return nil for tipset, and error.
+
+      
   - name: Get tipset by height no cache
     behaviors:
       - id: CHAIN_INDEX_GET_TIPSET_BY_HEIGHT_NO_CACHE_001

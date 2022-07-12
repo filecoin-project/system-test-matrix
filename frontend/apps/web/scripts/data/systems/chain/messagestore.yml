@@ -7,8 +7,173 @@ features:
         description: |
           Given a meta message CID,
           load the signed message in the collection from IPLD storage
+      - id: CHAIN_MESSAGE_STORE_LOAD_META_002
+        description: |
+          If there is an error loading secproot,blsroot and data from message store,
+          return error
+      - id: CHAIN_MESSAGE_STORE_LOAD_META_003
+        description: |
+          If error occurs after calling loadAMTCids, 
+          return error
+      - id: CHAIN_MESSAGE_STORE_LOAD_META_004
+        description: |
+          If error occurs while loading signed messages of cir arry,
+          return error
+      - id: CHAIN_MESSAGE_STORE_LOAD_META_005
+        description: |
+          If error occurs while load unsigned messages of cid array,
+          return error
+      ###
   - name: Read message meta CID
     behaviors:
       - id: CHAIN_MESSAGE_READ_META_CID_001
         description: |
           Given a message CID, read the message meta CID
+      - id: CHAIN_MESSAGE_READ_META_CID_002
+        description: |
+          If there is an error loading secproot,blsroot and data from message store,
+          return error
+      - id: CHAIN_MESSAGE_READ_META_CID_003
+        description: |
+          If error occurs after calling loadAMTCids, 
+          return error
+      ###
+  - name: Load Message
+    behaviors:
+      - id: CHAIN_MESSAGE_LOAD_MESSAGE_001
+        description: |
+          Given message cid, load signed or unsigned message
+      - id: CHAIN_MESSAGE_LOAD_MESSAGE_002
+        description: |
+          If there is an error loading unsigned message based on cid,
+          return error
+      - id: CHAIN_MESSAGE_LOAD_MESSAGE_003
+        description: |
+          If message is not found, return error.
+      ###
+  - name: Load unsigned message
+    behaviors:
+      - id: CHAIN_MESSAGE_LOAD_UNSIGNED_001
+        description: |
+          Given a cid, returns usigned message.
+      - id: CHAIN_MESSAGE_LOAD_UNSIGNED_002
+        description: |
+          If there is an error getting message  from blockstore, 
+          return error.
+      - id: CHAIN_MESSAGE_LOAD_UNSIGNED_003
+        description: |
+          If there is an error unmarshaling message block to struct,
+          return error.
+      ###
+  - name: Load signed message
+    behaviors:
+      - id: CHAIN_MESSAGE_LOAD_SIGNED_001
+        description: |
+          Given a cid, returns usigned message.
+      - id: CHAIN_MESSAGE_LOAD_SIGNED_002
+        description: |
+          If there is an error getting message  from blockstore, 
+          return error.
+      - id: CHAIN_MESSAGE_LOAD_SIGNED_003
+        description: |
+          If there is an error unmarshaling message block to struct,
+          return error.
+  - name: Load unsigned messages from cid array
+    behaviors:
+      - id: CHAIN_MESSAGE_LOAD_UNSIGNED_FROM_CIDS_001
+        description: |
+          Given a cid array, returns usigned message array.
+      - id: CHAIN_MESSAGE_LOAD_UNSIGNED_FROM_CIDS_001
+        description: |
+          If there is an error while iterating through cirds array,
+          and loading unsigned message for current cid,
+          return error.
+  - name: Load signed messages from cid array
+    behaviors:
+      - id: CHAIN_MESSAGE_LOAD_SIGNED_FROM_CIDS_001
+        description: |
+          Given a cid array, returns signed message array.
+      - id: CHAIN_MESSAGE_LOAD_SIGNED_FROM_CIDS_001
+        description: |
+          If there is an error while iterating through cirds array,
+          and loading signed message for current cid,
+          return error.
+      #####
+  - name: Store messages
+    behaviors:
+      - id: CHAIN_MESSAGE_STORE_MESSAGES_001
+        description: |
+          StoreMessages puts the input signed messages to a collection and then writes,
+          this collection to ipld storage.  The cid of the collection is returned
+      - id: CHAIN_MESSAGE_STORE_MESSAGES_002
+        description: |
+          If there is an error storing message in database,
+          return it.
+      - id: CHAIN_MESSAGE_STORE_MESSAGES_003
+        description: |
+          If there is an error setting stored message cid to secpMsgArr,
+          return it.
+      - id: CHAIN_MESSAGE_STORE_MESSAGES_004
+        description: |
+          If there is an error returning root CID of the AMT array,
+          return error.
+      ###
+  - name: Loat tipset messages
+    behaviors:
+      - id: CHAIN_MESSAGE_LOAD_TIPSET_MESSAGES_001
+        description: |
+          Given a tipset, load message from tipset.
+      - id: CHAIN_MESSAGE_LOAD_TIPSET_MESSAGES_002
+        description: |
+          If there is an error loading state from tree,
+          return it.
+      - id: CHAIN_MESSAGE_LOAD_TIPSET_MESSAGES_003
+        description: |
+          If there is error calling LookupID, to get ID address,
+          of actor, return error.
+      - id: CHAIN_MESSAGE_LOAD_TIPSET_MESSAGES_004
+        description: |
+          If there is error loading signed messages in the collection with cid,
+          return it.
+    ####
+  - name: Load receipts
+    behaviors:
+      - id: CHAIN_MESSAGE_LOAD_RECEIPTS_001
+        description: |
+          Given a cid, loads the signed messages in the colletion from
+          ipld storage and returns the slice implied by the collection.
+      - id: CHAIN_MESSAGE_LOAD_RECEIPTS_002
+        description: |
+          If there is an error interpreting a store as an AMT-based array,
+          return error
+      - id: CHAIN_MESSAGE_LOAD_RECEIPTS_003
+        description: |
+          If there is an error calling Get, retrieving array element into the out unmarsahler,
+          return error
+      - id: CHAIN_MESSAGE_LOAD_RECEIPTS_004
+        description: |
+          If the message receipt can not be found, 
+          return error
+    ###
+  - name: Store receipts
+    behaviors:
+      - id: CHAIN_MESSAGE_STORE_RECEIPTS_001
+        description: |
+          Given a slice of receipts, store collection to ipld storage.
+          The cid of the collection is returned
+      - id: CHAIN_MESSAGE_STORE_RECEIPTS_002
+        description: |
+          If there is an error setting receipt in array,
+          return error
+      - id: CHAIN_MESSAGE_STORE_RECEIPTS_003
+        description: |
+          If there is an error returning the root CID of the underlying AMT,
+          return error
+      - id: CHAIN_MESSAGE_STORE_RECEIPTS_004
+        description: |
+          If there is an error coping particial,
+          return error.
+
+
+
+

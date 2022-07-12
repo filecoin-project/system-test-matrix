@@ -1,0 +1,13 @@
+system: chainsync
+subsystem: Chainsync
+features:
+  - name: Start
+    behaviors:
+      - id: CHAINSYNC_CHAINSYNC_START_001
+        description: |
+          Starts the chain sync manager.
+  - name: Block proposer
+    behaviors:
+      - id: CHAINSYNC_CHAINSYNC_BLOCK_PROPOSER_001
+        description: |
+          Returns the block proposer.

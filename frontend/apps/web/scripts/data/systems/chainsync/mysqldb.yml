@@ -1,0 +1,34 @@
+system: chainsync
+subsystem: Slashfilter
+features:
+  - name: New Mysql Slash Filter
+    behaviors:
+      - id: CHAINSYNC_SLASHFILTER_NEW_MYSQL_SLASH_FILTER_001
+        description: |
+          Create a new slash filter base on mysql database.
+      - id: CHAINSYNC_SLASHFILTER_NEW_MYSQL_SLASH_FILTER_002
+        description: |
+          If connection fails to open returns an error.
+      - id: CHAINSYNC_SLASHFILTER_NEW_MYSQL_SLASH_FILTER_003
+        description: |
+          If migrations fails return an error.
+      - id: CHAINSYNC_SLASHFILTER_NEW_MYSQL_SLASH_FILTER_004
+        description: |
+          If database fails return an error.
+  - name: Mined block
+    behaviors:
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_001
+        description: |
+          Check whether the block mined is slash.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_002
+        description: |
+          If the miner mined multi block on the same height then returns an error.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_003
+        description: |
+          If the miner mined block on the same parent returns an error.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_004
+        description: |
+          If Decode fails returns an error.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_005
+        description: |
+          If there is other error except not found returns error.

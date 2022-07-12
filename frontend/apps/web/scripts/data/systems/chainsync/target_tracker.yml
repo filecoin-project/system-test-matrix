@@ -1,0 +1,61 @@
+system: chainsync
+subsystem: Types
+features:
+  - name: Is neighbor
+    behaviors:
+      - id: CHAINSYNC_TYPES_IS_NEIGHBOR_001
+        description: |
+          Takes the target t and checks is neighbor or not
+          the same height, the same weight, the same parent.
+      - id: CHAINSYNC_TYPES_IS_NEIGHBOR_002
+        description: |
+          If target.Head.Height() not equals to t.Head.Height() return false.
+      - id: CHAINSYNC_TYPES_IS_NEIGHBOR_003
+        description: |
+          If targetWeight not equals to weightIn return false.
+      - id: CHAINSYNC_TYPES_IS_NEIGHBOR_004
+        description: |
+          If target.Head.Parents() not equals to t.Head.Parents() return false.
+  - name: Has Child
+    behaviors:
+      - id: CHAINSYNC_TYPES_HAS_CHILD_001
+        description: |
+          Takes the target t and checks if the head contains key.
+  - name: Key
+    behaviors:
+      - id: CHAINSYNC_TYPES_KEY_001
+        description: |
+          Returns identity of target, key equals weight+height+parent.
+  - name: Add
+    behaviors:
+      - id: CHAINSYNC_TYPES_ADD_001
+        description: |
+          Adds a sync target to the target queue.
+      - id: CHAINSYNC_TYPES_ADD_002
+        description: |
+          If the weight is less than the current weight return false and exit automatically.
+      - id: CHAINSYNC_TYPES_ADD_003
+        description: |
+          Call checkTipset and if check tipset failed log the error and return false.
+      - id: CHAINSYNC_TYPES_ADD_004
+        description: |
+          Call widen which expand the tipset, traversing the local existing target,
+          if not ok return false
+  - name: Select
+    behaviors:
+      - id: CHAINSYNC_TYPES_SELECT_001
+        description: |
+          Pop removes and returns the highest priority syncing target.
+      - id: CHAINSYNC_TYPES_SELECT_002
+        description: |
+          If there is nothing in the queue the second argument returns false.
+  - name: Remove
+    behaviors:
+      - id: CHAINSYNC_TYPES_REMOVE_001
+        description: |
+          Remove target from live queue, add the target to history.
+  - name: History
+    behaviors:
+      - id: CHAINSYNC_TYPES_HISTORY_001
+        description: |
+          Return sync history.

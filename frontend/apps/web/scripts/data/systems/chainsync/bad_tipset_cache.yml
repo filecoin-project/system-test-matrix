@@ -1,0 +1,18 @@
+system: chainsync
+subsystem: Types
+features:
+  - name: Add chain
+    behaviors:
+      - id: CHAINSYNC_TYPES_ADD_CHAIN_001
+        description: |
+          Adds the chain of tipsets to the BadTipSetCache, all blocks of the chain to the cache.
+  - name: Add
+    behaviors:
+      - id: CHAINSYNC_TYPES_ADD_001
+        description: |
+          Adds a single tipset key to the BadTipSetCache.
+  - name: Has
+    behaviors:
+      - id: CHAINSYNC_TYPES_HAS_001
+        description: |
+          Checks for membership in the BadTipSetCache.

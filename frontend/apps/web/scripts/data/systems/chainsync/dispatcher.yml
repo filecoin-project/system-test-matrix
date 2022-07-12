@@ -1,0 +1,24 @@
+system: chainsync
+subsystem: Dispatcher
+features:
+  - name: Start
+    behaviors:
+      - id: CHAINSYNC_DISPATCHER_START_001
+        description: |
+          Launches the business logic for the syncing subsystem.
+  - name: Set concurrent
+    behaviors:
+      - id: CHAINSYNC_DISPATCHER_SET_CONCURRENT_001
+        description: |
+          Sets the maximum goroutine to syncing target.
+  - name: Concurrent
+    behaviors:
+      - id: CHAINSYNC_DISPATCHER_CONCURRENT_001
+        description: |
+          Gets current max syncing goroutine.
+  - name: Register callback
+    behaviors:
+      - id: CHAINSYNC_DISPATCHER_REGISTER_CALLBACK_001
+        description: |
+          Registers a callback on the dispatcher that
+          will fire after every successful target sync.

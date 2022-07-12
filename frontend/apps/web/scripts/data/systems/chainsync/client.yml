@@ -1,0 +1,34 @@
+system: chainsync
+subsystem: Exchange
+features:
+  - name: Get blocks
+    behaviors:
+      - id: CHAINSYNC_EXCHANGE_GET_BLOCKS_001
+        description: |
+          Implements Client.GetBlocks() and returns 
+          a pointer to a slice of types.TipSet and an error.
+  - name: Get full tip set
+    behaviors:
+      - id: CHAINSYNC_EXCHANGE_GET_FULL_TIP_SET_001
+        description: |
+          Implements Client.GetFullTipSet() and returns 
+          a pointer of types.FullTipSet and an error.
+  - name: Get chain messages
+    behaviors:
+      - id: CHAINSYNC_EXCHANGE_GET_CHAIN_MESSAGES_001
+        description: |
+          Implements Client.GetChainMessages() and returns 
+          a pointer to a slice of CompactedMessages
+      - id: CHAINSYNC_EXCHANGE_GET_CHAIN_MESSAGES_002
+        description: |
+          If there is an error calling doRequest return an error
+  - name: Add peer
+    behaviors:
+      - id: CHAINSYNC_EXCHANGE_ADD_PEER_001
+        description: |
+          Given a peer ID, add a peer to the pool of peers that the client requests data from.
+  - name: Remove peer
+    behaviors:
+      - id: CHAINSYNC_EXCHANGE_REMOVE_PEER_001
+        description: |
+          Given a peer ID, remove a peer from the pool of peers that the Client requests data from.

@@ -1,0 +1,23 @@
+system: chainsync
+subsystem: Slashfilter
+features:
+  - name: Mined block
+    behaviors:
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_001
+        description: |
+          Check whether the block mined is slash.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_002
+        description: |
+          If double-fork mining (2 blocks at one epoch) faults returns an error.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_003
+        description: |
+          If time-offset mining faults (2 blocks with the same parents) return an error.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_004
+        description: |
+          If parent-grinding fault (didn't mine on top of our own block) return an error.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_005
+        description: |
+          If putting byParents entry fails returns an error.
+      - id: CHAINSYNC_SLASHFILTER_MINED_BLOCK_006
+        description: |
+          If putting byEpoch entry fails returns an error.

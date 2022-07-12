@@ -3,6 +3,27 @@ subsystem: Testing
 description: |
   Testing time related calculations
 features:
+  - name: After
+    behaviors:
+      - id: CLOCK_TESTING_AFTER_001
+        description: |
+         Mimics time.After, waits for the given duration to elapse on the
+         fake clock, then sends the current time on the returned channel.
+  - name: Sleep
+    behaviors:
+      - id: CLOCK_TESTING_SLEEP_001
+        description: |
+         Blocks until the given duration has passed on the fake clock.
+  - name: Now
+    behaviors:
+      - id: CLOCK_TESTING_NOW_001
+        description: |
+         Returns the current time of the fake clock.
+  - name: Since
+    behaviors:
+      - id: CLOCK_TESTING_SINCE_001
+        description: |
+         Returns the duration that has passed since the given time on the fakec clock.
   - name: New timer
     behaviors:
       - id: CLOCK_TESTING_NEW_TIMER_001
@@ -15,4 +36,16 @@ features:
         description: |
           Waits for the duration to elapse on the fake clock and then calls function f
           in its own goroutine.
-          It returns a Timer that can be used to cancel the call using its Stop method.
+          Returns a Timer that can be used to cancel the call using its Stop method.
+  - name: Advance
+    behaviors:
+      - id: CLOCK_TESTING_ADVANCE_001
+        description: |
+         Advances fake clock to a new point in time, ensuring channels from any
+         previous invocations of After are notified appropriately before returning.
+  - name: Block until
+    behaviors:
+      - id: CLOCK_TESTING_BLOCK_UNTIL_001
+        description: |
+         Block until the fake clock has the given number of sleepers (callers of Sleep or After).
+  

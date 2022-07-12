@@ -1,0 +1,15 @@
+system: chainsync
+subsystem: Syncer
+features:
+  - name: Handle new tip set
+    behaviors:
+      - id: CHAINSYNC_SYNCER_HANDLE_NEW_TIP_SET_001
+        description: |
+          Validates and syncs the chain rooted at the provided tipset
+          to a chain bsstore. If catchup is false then the syncer will set the head.
+  - name: Set head
+    behaviors:
+      - id: CHAINSYNC_SYNCER_SET_HEAD_001
+        description: |
+          Try to sethead after complete tipset syncing,
+          if the current target weight is heavier than chain store change a new head.

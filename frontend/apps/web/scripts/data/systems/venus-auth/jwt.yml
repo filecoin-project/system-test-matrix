@@ -1,0 +1,274 @@
+system: venus-auth
+subsystem: Jwt
+features:
+  - name: New OAuth Service
+    behaviors:
+      - id: VENUSAUTH_JWT_NEW_OAUTH_SERVICE_001
+        description: |
+          Given a secret, dbPath and other database configuration,
+          return OAuthService
+  ###
+  - name: Generate token
+    behaviors:
+      - id:  VENUSAUTH_JWT_GENERATE_TOKEN_001
+        description: |
+          Given a jwt payload, 
+          returns generated jwt token
+      - id:  VENUSAUTH_JWT_GENERATE_TOKEN_002
+        description: |
+          If there is an error generating random secret,
+          return error.
+      - id:  VENUSAUTH_JWT_GENERATE_TOKEN_003
+        description: |
+          If there is an error signing a payload with alg,
+          return error.
+      - id:  VENUSAUTH_JWT_GENERATE_TOKEN_004
+        description: |
+          If there is an error trying to put newly generated token to store as KeyPair,
+          return error.
+  ###
+  - name: Verify token
+    behaviors:
+      - id:  VENUSAUTH_JWT_VERIFY_TOKEN_001
+        description: |
+          Given a token, 
+          returns verified payload
+      - id:  VENUSAUTH_JWT_VERIFY_TOKEN_002
+        description: |
+          If there is an error generating keypair from store
+          return error.
+      - id:  VENUSAUTH_JWT_VERIFY_TOKEN_003
+        description: |
+          If there is an error decoding string to get a secret,
+          return error.
+      - id:  VENUSAUTH_JWT_VERIFY_TOKEN_004
+        description: |
+          If there is an error verifying token's signature
+          return error.
+  ###
+  - name: Get token
+    behaviors:
+      - id:  VENUSAUTH_JWT_GET_TOKEN_001
+        description: |
+          Given a token string, 
+          returns all token informations.
+      - id:  VENUSAUTH_JWT_GET_TOKEN_002
+        description: |
+          If there is an error getting token from store
+          return error.
+  ###
+  - name: Get token by name
+    behaviors:
+      - id:  VENUSAUTH_JWT_GET_TOKEN_BY_NAME_001
+        description: |
+          Given a token name, 
+          returns slice of token informations matching that name.
+      - id:  VENUSAUTH_JWT_GET_TOKEN_BY_NAME_002
+        description: |
+          If there is an error getting pairs from store by name
+          return error.
+  ###
+  - name: Tokens
+    behaviors:
+      - id:  VENUSAUTH_JWT_TOKENS_001
+        description: |
+          Given a skip and limit, 
+          returns slice of token informations.
+      - id:  VENUSAUTH_JWT_TOKENS_002
+        description: |
+          If there is an error getting pairs from store using naviagation params(slip and limit),
+          return error.
+  ###
+  - name: Remove token
+    behaviors:
+      - id:  VENUSAUTH_JWT_REMOVE_TOKEN_001
+        description: |
+          Given a token string, 
+          deletes that token from the store.
+      - id:  VENUSAUTH_JWT_REMOVE_TOKEN_002
+        description: |
+          If there is an error removing token from the store,
+          return error.
+  ###
+  - name: Recover token
+    behaviors:
+      - id:  VENUSAUTH_JWT_RECOVER_TOKEN_001
+        description: |
+          Given a token string, 
+          recover a deleted token.
+      - id:  VENUSAUTH_JWT_RECOVER_TOKEN_002
+        description: |
+          If there is an error getting token record from the store,
+          return error.
+      - id:  VENUSAUTH_JWT_RECOVER_TOKEN_003
+        description: |
+          If the token is usable (not deleted),
+          return error.
+  ###
+  - name: Create user
+    behaviors:
+      - id:  VENUSAUTH_JWT_CREATE_USER_001
+        description: |
+          Given a create user request, 
+          creates new user.
+      - id:  VENUSAUTH_JWT_CREATE_USER_002
+        description: |
+          If there is an error checking user in store, based on name,
+          return error.
+      - id:  VENUSAUTH_JWT_CREATE_USER_003
+        description: |
+          If user with that name already exists, 
+          return error.
+      - id:  VENUSAUTH_JWT_CREATE_USER_004
+        description: |
+          If there is an error generating new random uuid, 
+          return error.
+      - id:  VENUSAUTH_JWT_CREATE_USER_005
+        description: |
+          If there is an error putting user in store, 
+          return error.
+  ###
+  - name: Update user
+    behaviors:
+      - id:  VENUSAUTH_JWT_UPDATE_USER_001
+        description: |
+          Given a update user request, 
+          updates user infos.
+      - id:  VENUSAUTH_JWT_UPDATE_USER_002
+        description: |
+          If there is an error checking user in store, based on name,
+          return error.
+  ###
+  - name: List users
+    behaviors:
+      - id:  VENUSAUTH_JWT_LIST_USERS_001
+        description: |
+          Given a list user request, 
+          returns list of users.
+      - id:  VENUSAUTH_JWT_LIST_USERS_002
+        description: |
+          If there is an error listing users from store
+          return error.
+  ###
+  - name: Has user
+    behaviors:
+      - id:  VENUSAUTH_JWT_HAS_USER_001
+        description: |
+          Given a  user's name, 
+          returns if specific user exists in store.
+  ###
+  - name: Delete user
+    behaviors:
+      - id:  VENUSAUTH_JWT_DELETE_USER_001
+        description: |
+          Given a  user's name, 
+          deletes specific user from the store.
+  ###
+  - name: Recover user
+    behaviors:
+      - id:  VENUSAUTH_JWT_RECOVER_USER_001
+        description: |
+          Given a  user's name, 
+          recover a user if previously deleted.
+      - id:  VENUSAUTH_JWT_RECOVER_USER_002
+        description: |
+          If there is an error fetching user record from the store,
+          return error.
+      - id:  VENUSAUTH_JWT_RECOVER_USER_003
+        description: |
+          If user record is not deleted (currently usable),
+          return error.
+  ###
+  - name: Get user by miner
+    behaviors:
+      - id:  VENUSAUTH_JWT_GET_USER_BY_MINER_001
+        description: |
+          Given a  miner address, 
+          returms user's information.
+      - id:  VENUSAUTH_JWT_GET_USER_BY_MINER_002
+        description: |
+          If there is an error representing miner's address,
+          return error.
+      - id:  VENUSAUTH_JWT_GET_USER_BY_MINER_003
+        description: |
+          If there is an error getting user by miner's address from store,
+          return error
+  ###
+  - name: Has miner
+    behaviors:
+      - id:  VENUSAUTH_JWT_HAS_MINER_001
+        description: |
+          Given a  miner address, 
+          returns if that miner is present in store.
+      - id:  VENUSAUTH_JWT_HAS_MINER_002
+        description: |
+          If there is an error representing miner's address,
+          return error.
+      - id:  VENUSAUTH_JWT_HAS_MINER_002
+        description: |
+          If there is an error getting miner  from store,
+          return error
+  ###
+  - name: Get user
+    behaviors:
+      - id:  VENUSAUTH_JWT_GET_USER_001
+        description: |
+          Given a  user's name, 
+          returns user infos.
+      - id:  VENUSAUTH_JWT_GET_USER_002
+        description: |
+          If there is an error getting user from the store,
+          return error.
+  ###
+  - name: Get user rate limits
+    behaviors:
+      - id:  VENUSAUTH_JWT_GET_USER_RATE_LIMITS_001
+        description: |
+          Given a  user'd name and id, 
+          returns his rate limits.
+  ###
+  - name: Upsert user rate limits
+    behaviors:
+      - id:  VENUSAUTH_JWT_UPSERT_USER_RATE_LIMITS_001
+        description: |
+          Increases user rate limit.
+  ###
+  - name: Deletes user rate limits
+    behaviors:
+      - id:  VENUSAUTH_JWT_DELETE_USER_RATE_LIMITS_001
+        description: |
+          Deletes user's rate limits.
+  ###
+  - name: Upsert miner
+    behaviors:
+      - id:  VENUSAUTH_JWT_UPSERT_MINER_001
+        description: |
+          Given a user and miner,
+          upserts that miner.
+      - id:  VENUSAUTH_JWT_UPSERT_MINER_002
+        description: |
+          Given a bad miner's address,
+          return error.
+  ###
+  - name: List miners
+    behaviors:
+      - id:  VENUSAUTH_JWT_LIST_MINERS_001
+        description: |
+          Given a user name,
+          returns his miners.
+      - id:  VENUSAUTH_JWT_LIST_MINERS_002
+        description: |
+          If there is an error getting user's miners from the store,
+          return error
+  ###
+  - name: Delete miner
+    behaviors:
+      - id:  VENUSAUTH_JWT_DELETE_MINER_001
+        description: |
+          Given a miner's address,
+          deletes the miner from the store.
+      - id:  VENUSAUTH_JWT_DELETE_MINER_002
+        description: |
+          Given a bad miner's address,
+          return error
+  

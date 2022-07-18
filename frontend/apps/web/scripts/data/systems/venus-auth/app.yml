@@ -1,0 +1,261 @@
+system: venus-auth
+subsystem: App
+features:
+  - name: Bad Response
+    behaviors:
+      - id: VENUSAUTH_APP_BAD_RESPONSE_001
+        description: |
+          Returns an error.
+  - name: Success Response
+    behaviors:
+      - id: VENUSAUTH_APP_SUCCESS_RESPONSE_001
+        description: |
+          Given empty interface returns StatusOK.
+  - name: Response
+    behaviors:
+      - id: VENUSAUTH_APP_RESPONSE_001
+        description: |
+          Returns a response.
+  - name: Verify
+    behaviors:
+      - id: VENUSAUTH_APP_VERIFY_001
+        description: |
+          Sets a name and returns SuccessResponse.
+      - id: VENUSAUTH_APP_VERIFY_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_VERIFY_003
+        description: |
+          If there is non registered token return an error.
+      - id: VENUSAUTH_APP_VERIFY_004
+        description: |
+          If there is verification failed return an error. 
+      - id: VENUSAUTH_APP_VERIFY_005
+        description: |
+          If there is an error in verify return an error. 
+  - name: Generate token
+    behaviors:
+      - id: VENUSAUTH_APP_GENERATE_TOKEN_001
+        description: |
+          Generates token and returns success response.
+      - id: VENUSAUTH_APP_GENERATE_TOKEN_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_GENERATE_TOKEN_003
+        description: |
+          If there is an error generating token return an error.
+  - name: Remove token
+    behaviors:
+      - id: VENUSAUTH_APP_REMOVE_TOKEN_001
+        description: |
+          Removes a token and returns a response.
+      - id: VENUSAUTH_APP_REMOVE_TOKEN_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_REMOVE_TOKEN_003
+        description: |
+          If there is an error in removing a token return an error.
+  - name: Recover token
+    behaviors:
+      - id: VENUSAUTH_APP_RECOVER_TOKEN_001
+        description: |
+          Recovers a token and returns a response.
+      - id: VENUSAUTH_APP_RECOVER_TOKEN_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_RECOVER_TOKEN_003
+        description: |
+          If there is an error in recovers a token return an error.
+  - name: Get token
+    behaviors:
+      - id: VENUSAUTH_APP_GET_TOKEN_001
+        description: |
+          Gets a token and returns a successful response.
+      - id: VENUSAUTH_APP_GET_TOKEN_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_GET_TOKEN_003
+        description: |
+          If name and token are both empty return an error.
+      - id: VENUSAUTH_APP_GET_TOKEN_004
+        description: |
+          If there is an error in getting a token return an error.
+      - id: VENUSAUTH_APP_GET_TOKEN_005
+        description: |
+          If there is an error in GetTokenByName return an error.
+  - name: Create user
+    behaviors:
+      - id: VENUSAUTH_APP_CREATE_USER_001
+        description: |
+          Creates user and returns a successful response.
+      - id: VENUSAUTH_APP_CREATE_USER_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_CREATE_USER_003
+        description: |
+          If there is an error creating user return an error.
+  - name: Update user
+    behaviors:
+      - id: VENUSAUTH_APP_UPDATE_USER_001
+        description: |
+          Updates user and returns a response.
+      - id: VENUSAUTH_APP_UPDATE_USER_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_UPDATE_USER_003
+        description: |
+          If there is an error updating user return an error.
+  - name: List users
+    behaviors:
+      - id: VENUSAUTH_APP_LIST_USERS_001
+        description: |
+          List users and returns a successful response.
+      - id: VENUSAUTH_APP_LIST_USERS_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_LIST_USERS_003
+        description: |
+          If there is an error listing users return an error.
+  - name: Get user by miner
+    behaviors:
+      - id: VENUSAUTH_APP_GET_USERS_BY_MINER_001
+        description: |
+          Get user by miner and returns a successful response.
+      - id: VENUSAUTH_APP_GET_USERS_BY_MINER_002
+        description: |
+          If there is an error in ShouldBindQuery return an error.
+      - id: VENUSAUTH_APP_GET_USERS_BY_MINER_003
+        description: |
+          If there is an error geting user by miner return an error.
+  - name: Has miner
+    behaviors:
+      - id: VENUSAUTH_APP_HAS_MINER_001
+        description: |
+          If has miner returns a successful response.
+      - id: VENUSAUTH_APP_HAS_MINER_002
+        description: |
+          If there is an error in ShouldBindQuery return an error.
+      - id: VENUSAUTH_APP_HAS_MINER_003
+        description: |
+          If has miner get an error return an error.
+  - name: Get user
+    behaviors:
+      - id: VENUSAUTH_APP_GET_USER_001
+        description: |
+          Gets a user and returns a successful response.
+      - id: VENUSAUTH_APP_GET_USER_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_GET_USER_003
+        description: |
+          If there is an error getting user return an error.
+  - name: Has user
+    behaviors:
+      - id: VENUSAUTH_APP_HAS_USER_001
+        description: |
+          If has user returns a successful response.
+      - id: VENUSAUTH_APP_HAS_USER_002
+        description: |
+          If there is an error in ShouldBindQuery return an error.
+      - id: VENUSAUTH_APP_HAS_USER_003
+        description: |
+          If has user get an error return an error.
+  - name: Delete user
+    behaviors:
+      - id: VENUSAUTH_APP_DELETE_USER_001
+        description: |
+          Delete user and returns a response.
+      - id: VENUSAUTH_APP_DELETE_USER_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_DELETE_USER_003
+        description: |
+          If there is an error deleting user return an error.
+  - name: Recover user
+    behaviors:
+      - id: VENUSAUTH_APP_RECOVER_USER_001
+        description: |
+          Recover user and returns a response.
+      - id: VENUSAUTH_APP_RECOVER_USER_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_RECOVER_USER_003
+        description: |
+          If there is an error recover user return an error.
+  - name: Add user rate limit
+    behaviors:
+      - id: VENUSAUTH_APP_ADD_USER_RATE_LIMIT_001
+        description: |
+          Add user rate limit and returns a successful response.
+      - id: VENUSAUTH_APP_ADD_USER_RATE_LIMIT_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_ADD_USER_RATE_LIMIT_003
+        description: |
+          If there is an error adding user rate limit return an error.
+  - name: Upsert user rate limit
+    behaviors:
+      - id: VENUSAUTH_APP_UPSERT_USER_RATE_LIMIT_001
+        description: |
+          Upsert user rate limit and returns a successful response.
+      - id: VENUSAUTH_APP_UPSERT_USER_RATE_LIMIT_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_UPSERT_USER_RATE_LIMIT_003
+        description: |
+          If there is an error upsert user rate limit return an error.
+  - name: Get user rate limit
+    behaviors:
+      - id: VENUSAUTH_APP_GET_USER_RATE_LIMIT_001
+        description: |
+          Get user rate limit and returns a successful response.
+      - id: VENUSAUTH_APP_GET_USER_RATE_LIMIT_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_GET_USER_RATE_LIMIT_003
+        description: |
+          If there is an error getting user rate limits return an error.
+  - name: Del user rate limit
+    behaviors:
+      - id: VENUSAUTH_APP_DEL_USER_RATE_LIMIT_001
+        description: |
+          Delete user rate limit and returns a successful response.
+      - id: VENUSAUTH_APP_DEL_USER_RATE_LIMIT_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_DEL_USER_RATE_LIMIT_003
+        description: |
+          If there is an error deleting user rate limits return an error.
+  - name: Upsert miner
+    behaviors:
+      - id: VENUSAUTH_APP_UPSERT_MINER_001
+        description: |
+          Upsert miner and returns a successful response.
+      - id: VENUSAUTH_APP_UPSERT_MINER_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_UPSERT_MINER_003
+        description: |
+          If there is an error upsert miner return an error.
+  - name: List miners
+    behaviors:
+      - id: VENUSAUTH_APP_LIST_MINERS_001
+        description: |
+          List miners and returns a successful response.
+      - id: VENUSAUTH_APP_LIST_MINERS_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_LIST_MINERS_003
+        description: |
+          If there is an error in list miners return an error.
+  - name: Del miner
+    behaviors:
+      - id: VENUSAUTH_APP_DEL_MINER_001
+        description: |
+          Deletes miner and returns a successful response.
+      - id: VENUSAUTH_APP_DEL_MINER_002
+        description: |
+          If there is an error in ShouldBind return an error.
+      - id: VENUSAUTH_APP_DEL_MINER_003
+        description: |
+          If there is an error in deleting miner return an error.

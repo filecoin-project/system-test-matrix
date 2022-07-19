@@ -1,0 +1,224 @@
+system: venus-auth
+subsystem: Badger
+features:
+  - name: Put
+    behaviors:
+      - id: VENUSAUTH_BADGER_PUT_001
+        description: |
+          Put keypair in badger store
+  - name: Delete
+    behaviors:
+      - id: VENUSAUTH_BADGER_DELETE_001
+        description: |
+          Soft delete object from the badger store
+  - name: Has
+    behaviors:
+      - id: VENUSAUTH_BADGER_HAS_001
+        description: |
+          Checks if the token is present is badger store
+  - name: Get
+    behaviors:
+      - id: VENUSAUTH_BADGER_GET_001
+        description: |
+          Given a token, returns a keypair coresponding to it.
+  - name: Get token record
+    behaviors:
+      - id: VENUSAUTH_BADGER_GET_001
+        description: |
+          Given a token, returns a keypair coresponding to it.
+  - name: By name
+    behaviors:
+      - id: VENUSAUTH_BADGER_BY_NAME_001
+        description: |
+          Given a name, returns a slice of keyPairs matching that name.
+      - id: VENUSAUTH_BADGER_BY_NAME_002
+        description: |
+          If there is an error loading key pair from bytes, 
+          return error
+      - id: VENUSAUTH_BADGER_BY_NAME_003
+        description: |
+          If there is an error retrieving the value of the item from the value log,
+          return error
+  - name: Update token
+    behaviors:
+      - id: VENUSAUTH_BADGER_UPDATE_TOKEN_001
+        description: |
+          Given a key pair, update it in badget store.
+  - name: List
+    behaviors:
+      - id: VENUSAUTH_BADGER_LIST_001
+        description: |
+          Given a skip and limit,
+          return a slice of key pairs from badger store.
+      - id: VENUSAUTH_BADGER_LIST_002
+        description: |
+          If there is an error loading key pair from bytes, 
+          return error
+  - name: Get user
+    behaviors:
+      - id: VENUSAUTH_BADGER_GET_USER_001
+        description: |
+          Given a name,
+          return a user object from the badger store.
+  - name: Get user record
+    behaviors:
+      - id: VENUSAUTH_BADGER_GET_USER_RECORD_001
+        description: |
+          Given a name,
+          return a user record from the badger store.
+  - name: Update user
+    behaviors:
+      - id: VENUSAUTH_BADGER_UPDATE_USER_001
+        description: |
+          Given a user record,
+          update it in badger store.
+  - name: Has user
+    behaviors:
+      - id: VENUSAUTH_BADGER_HAS_USER_001
+        description: |
+          Given a user's name, 
+          return if that user is present in badger store.
+  - name: Put user
+    behaviors:
+      - id: VENUSAUTH_BADGER_PUT_USER_001
+        description: |
+          Given a user object,
+          update it in badger store.
+  - name: List users
+    behaviors:
+      - id: VENUSAUTH_BADGER_LIST_USERS_001
+        description: |
+          Given a skip, limit, state,
+          returns a list of users
+      - id: VENUSAUTH_BADGER_LIST_USERS_002
+        description: |
+          If the error occurs while converting slice of bytes to user object,
+          return error.
+      - id: VENUSAUTH_BADGER_LIST_USERS_002
+        description: |
+          If the error retrieving value of item from the value log,
+          return error.
+  - name: Has miner
+    behaviors:
+      - id: VENUSAUTH_BADGER_HAS_MINER_001
+        description: |
+          Given a miner address,
+          return if that miner exists.
+  - name: Delete user
+    behaviors:
+      - id: VENUSAUTH_BADGER_DELETE_USER_001
+        description: |
+          Given a user's name,
+          soft deletes a user from badger store, with his miners.
+      - id: VENUSAUTH_BADGER_DELETE_USER_002
+        description: |
+          If there is and error retrieving value of the item from the value log,
+          return error.
+      - id: VENUSAUTH_BADGER_DELETE_USER_003
+        description: |
+          If the user is already deleted
+          return error.
+      - id: VENUSAUTH_BADGER_DELETE_USER_004
+        description: |
+          If there is an error converting user to bytes
+          return error.
+      - id: VENUSAUTH_BADGER_DELETE_USER_005
+        description: |
+          If there is an error setting new key-value pair to datastore,
+          return error.
+      - id: VENUSAUTH_BADGER_DELETE_USER_006
+        description: |
+          If there is an error listing users miners,
+          return error.
+      - id: VENUSAUTH_BADGER_DELETE_USER_007
+        description: |
+          If there is an error getting miner from  badger store,
+          return error.
+      - id: VENUSAUTH_BADGER_DELETE_USER_008
+        description: |
+          If there is an error converting bytes to miner object,
+          return error.
+      - id: VENUSAUTH_BADGER_DELETE_USER_009
+        description: |
+          If there is an error setting deleted miner to datastore,
+          return error.
+  - name: Get rate limits
+    behaviors:
+      - id: VENUSAUTH_BADGER_GET_RATE_LIMITS_001
+        description: |
+          Given a name and id, 
+          return a slice of user rate limits
+      - id: VENUSAUTH_BADGER_GET_RATE_LIMITS_002
+        description: |
+          If there is an error listing rate limits from badger store,
+          return error.
+  ###
+  - name: Del rate limits
+    behaviors:
+      - id: VENUSAUTH_BADGER_DEL_RATE_LIMITS_001
+        description: |
+          Given a name and id, 
+          deletes user's rate limits.
+      - id: VENUSAUTH_BADGER_DEL_RATE_LIMITS_002
+        description: |
+          If there is an error listing rate limits from badger store based on name and id,
+          return error.
+  - name: Get user by miner
+    behaviors:
+      - id: VENUSAUTH_BADGER_GET_USER_BY_MINER_001
+        description: |
+          Given a miner address, 
+          returns a user coresponding to it.
+      - id: VENUSAUTH_BADGER_GET_USER_BY_MINER_002
+        description: |
+          If there is an error getting miner from the store,
+          return error.
+  - name: Del miner
+    behaviors:
+      - id: VENUSAUTH_BADGER_DEL_MINER_001
+        description: |
+          Given a miner address, 
+          soft deletes it from badger store.
+      - id: VENUSAUTH_BADGER_DEL_MINER_002
+        description: |
+          If there is an error soft deleting miner,
+          return error.
+  ###
+  - name: Upsert miner
+    behaviors:
+      - id: VENUSAUTH_BADGER_UPSERT_MINER_001
+        description: |
+          Given a miner address and username 
+          updates a miner or creates new one.
+      - id: VENUSAUTH_BADGER_UPSERT_MINER_002
+        description: |
+          If there is an error getting user from badger store
+          return error.
+      - id: VENUSAUTH_BADGER_UPSERT_MINER_003
+        description: |
+          If some other error occurs except from ErrKeyNotFound while getting miner by minerkey 
+          from badger store,
+          return error.
+      - id: VENUSAUTH_BADGER_UPSERT_MINER_004
+        description: |
+          If there is an error calling Value method upon miner item,
+          return error.
+      - id: VENUSAUTH_BADGER_UPSERT_MINER_005
+        description: |
+          If there is an error getting miner's object data
+          return error.
+  ###
+  - name: List miners
+    behaviors:
+      - id: VENUSAUTH_BADGER_LIST_MINERS_001
+        description: |
+          Given a user,
+          returns a list of his miners.
+      - id: VENUSAUTH_BADGER_LIST_MINERS_002
+        description: |
+          If there is an error retrieving value of the miner item,
+          return error.
+      - id: VENUSAUTH_BADGER_LIST_MINERS_003
+        description: |
+          If there is an error converting bytes to miner object,
+          return error.

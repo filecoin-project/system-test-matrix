@@ -1,0 +1,218 @@
+system: venus-auth
+subsystem: My SQL
+features:
+  - name: Put
+    behaviors:
+      - id: VENUSAUTH_MYSQL_PUT_001
+        description: |
+          Given key pair insert the value into database.
+  - name: Delete
+    behaviors:
+      - id: VENUSAUTH_MYSQL_DELETE_001
+        description: |
+          Given a token deletes from database.
+      - id: VENUSAUTH_MYSQL_DELETE_002
+        description: |
+          If there is an error in Has return an error.
+      - id: VENUSAUTH_MYSQL_DELETE_003
+        description: |
+          If there is no Has return an error.
+  - name: Has
+    behaviors:
+      - id: VENUSAUTH_MYSQL_HAS_001
+        description: |
+          Given a token returns true for more then 0.
+      - id: VENUSAUTH_MYSQL_HAS_002
+        description: |
+          If there is an error return false and error.
+  - name: Get
+    behaviors:
+      - id: VENUSAUTH_MYSQL_GET_001
+        description: |
+          Given a token returns KeyPair.
+      - id: VENUSAUTH_MYSQL_GET_002
+        description: |
+          If there is an error in Take return error.
+  - name: Get token record
+    behaviors:
+      - id: VENUSAUTH_MYSQL_GET_TOKEN_RECORD_001
+        description: |
+          Given a token returns KeyPair.
+      - id: VENUSAUTH_MYSQL_GET_TOKEN_RECORD_002
+        description: |
+          If there is an error in Take return error.
+  - name: By name
+    behaviors:
+      - id: VENUSAUTH_MYSQL_BY_NAME_001
+        description: |
+          Given a name return list of KeyPair.
+      - id: VENUSAUTH_MYSQL_BY_NAME_002
+        description: |
+          If there is an error in Find return error.
+  - name: List
+    behaviors:
+      - id: VENUSAUTH_MYSQL_LIST_001
+        description: |
+          Given a skip and limit return list of KeyPair.
+      - id: VENUSAUTH_MYSQL_LIST_002
+        description: |
+          If there is an error in Offset return error.
+  - name: Update token
+    behaviors:
+      - id: VENUSAUTH_MYSQL_UPDATE_TOKEN_001
+        description: |
+          Given a KeyPair.
+      - id: VENUSAUTH_MYSQL_UPDATE_TOKEN_002
+        description: |
+          If there is an error in Table return error.
+  - name: Has user
+    behaviors:
+      - id: VENUSAUTH_MYSQL_HAS_USER_001
+        description: |
+          Given a name return true for more then 0.
+      - id: VENUSAUTH_MYSQL_HAS_USER_002
+        description: |
+          If there is an error in Table return error.
+  - name: Update user
+    behaviors:
+      - id: VENUSAUTH_MYSQL_UPDATE_USER_001
+        description: |
+          Given a user return innerUpdateUser.
+  - name: Inner update user
+    behaviors:
+      - id: VENUSAUTH_MYSQL_INNER_UPDATE_USER_001
+        description: |
+          Given a transaction and user save user in the table.
+      - id: VENUSAUTH_MYSQL_INNER_UPDATE_USER_002
+        description: |
+          If there is an error in transaction Table return error.
+  - name: Put user
+    behaviors:
+      - id: VENUSAUTH_MYSQL_PUT_USER_001
+        description: |
+          Given a user create user in table.
+      - id: VENUSAUTH_MYSQL_PUT_USER_002
+        description: |
+          If there is an error in Table return error.  
+  - name: List users
+    behaviors:
+      - id: VENUSAUTH_MYSQL_LIST_USERS_001
+        description: |
+          Given skip, limit, state int, sourceType and code returns list of users.
+      - id: VENUSAUTH_MYSQL_LIST_USERS_002
+        description: |
+          If there is an error in Where return error.
+  - name: Get user
+    behaviors:
+      - id: VENUSAUTH_MYSQL_GET_USER_001
+        description: |
+          Given a name return innerGetUser.
+  - name: Inner get user
+    behaviors:
+      - id: VENUSAUTH_MYSQL_INNER_GET_USER_001
+        description: |
+          Given a transaction and name return users.
+      - id: VENUSAUTH_MYSQL_INNER_GET_USER_002
+        description: |
+          If there is an error in transaction Table return error.  
+  - name: Get user record
+    behaviors:
+      - id: VENUSAUTH_MYSQL_GET_USER_RECORD_001
+        description: |
+          Given a name return user.
+      - id: VENUSAUTH_MYSQL_GET_USER_RECORD_002
+        description: |
+          If there is an error in Table return error.  
+  - name: Delete user
+    behaviors:
+      - id: VENUSAUTH_MYSQL_DELETE_USER_001
+        description: |
+          Given a userName delete user.
+      - id: VENUSAUTH_MYSQL_DELETE_USER_002
+        description: |
+          If there is an error in Transaction return error.
+  - name: Has miner
+    behaviors:
+      - id: VENUSAUTH_MYSQL_HAS_MINER_001
+        description: |
+          Given an adress and if count is more then 0 return true.
+      - id: VENUSAUTH_MYSQL_HAS_MINER_002
+        description: |
+          If there is an error in Table return false.
+  - name: Get rate limits
+    behaviors:
+      - id: VENUSAUTH_MYSQL_GET_RATE_LIMITS_001
+        description: |
+          Given a name and id return list of UserRateLimit.
+      - id: VENUSAUTH_MYSQL_GET_RATE_LIMITS_001
+        description: |
+           If there is an error in finding limit return error.
+  - name: Put rate limits
+    behaviors:
+      - id: VENUSAUTH_MYSQL_PUT_RATE_LIMITS_001
+        description: |
+          Given a limit return it as string.
+      - id: VENUSAUTH_MYSQL_PUT_RATE_LIMITS_002
+        description: |
+          If there is an error in saving limit return error.
+  - name: Del rate limits
+    behaviors:
+      - id: VENUSAUTH_MYSQL_DEL_RATE_LIMITS_001
+        description: |
+          Given a name and id deletes rate limit.
+      - id: VENUSAUTH_MYSQL_DEL_RATE_LIMITS_002
+        description: |
+          If there is an error in Delete return error.
+  - name: Get user by miner
+    behaviors:
+      - id: VENUSAUTH_MYSQL_GET_USER_BY_MINER_001
+        description: |
+          Given a miner return user.
+      - id: VENUSAUTH_MYSQL_GET_USER_BY_MINER_002
+        description: |
+          If there is an error in selecting user return error.
+      - id: VENUSAUTH_MYSQL_GET_USER_BY_MINER_003
+        description: |
+          If there are not users return error.
+  - name: Upsert miner
+    behaviors:
+      - id: VENUSAUTH_MYSQL_UPSERT_MINER_001
+        description: |
+          Given a miner and userName update and insert miner and return true.
+      - id: VENUSAUTH_MYSQL_UPSERT_MINER_002
+        description: |
+          If there is an error in Transaction return error and false. 
+  - name: Del miner
+    behaviors:
+      - id: VENUSAUTH_MYSQL_DEL_MINER_001
+        description: |
+          Given a miner return innerDelMiner.
+  - name: Inner del miner
+    behaviors:
+      - id: VENUSAUTH_MYSQL_INNER_DEL_MINER_001
+        description: |
+          Given a transaction and miner deletes miner.
+      - id: VENUSAUTH_MYSQL_INNER_DEL_MINER_002
+        description: |
+          If there is an error deleting miner return error.
+  - name: List miners
+    behaviors:
+      - id: VENUSAUTH_MYSQL_LIST_MINERS_001
+        description: |
+          Given a user return innerListMiners.
+  - name: Inner list miners
+    behaviors:
+      - id: VENUSAUTH_MYSQL_INNER_LIST_MINERS_001
+        description: |
+          Given a transaction and user return list of miners.
+      - id: VENUSAUTH_MYSQL_INNER_LIST_MINERS_002
+        description: |
+          If there is an error finding user return error.
+  - name: Version
+    behaviors:
+      - id: VENUSAUTH_MYSQL_VERSION_001
+        description: |
+          Return version.
+      - id: VENUSAUTH_MYSQL_VERSION_002
+        description: |
+          If there is an error in StoreVersion return error.

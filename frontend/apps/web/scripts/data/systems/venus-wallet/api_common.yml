@@ -1,0 +1,15 @@
+system: venus-wallet
+subsystem: api_common
+features:
+  - name: Auth verify
+    behaviors:
+      - id: VENUSWALLET_API_COMMON_AUTH_VERIFY_001
+        description: |
+          Given a token, verifies it and returns a slice of permissions.
+  - name: Auth new
+    behaviors:
+      - id: VENUSWALLET_API_COMMON_AUTH_NEW_001
+        description: |
+          Given a slice of permisions,
+          signs payload.
+  

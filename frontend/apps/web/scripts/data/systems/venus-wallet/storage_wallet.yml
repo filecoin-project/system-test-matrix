@@ -1,0 +1,18 @@
+system: venus-wallet 
+subsystem: storage_wallet
+features:
+  - name: Set password
+    behaviors:
+      - id: VENUSWALLET_STORAGE_WALLET_SET_PASSWORD_001
+        description: |
+          Sets password upon wallet.
+  - name: Wallet new
+    behaviors:
+      - id: VENUSWALLET_STORAGE_WALLET_WALLET_NEW_001
+        description: |
+          Given a keyType, creates new wallet and returns an address.
+  - name: Wallet has
+    behaviors:
+      - id: VENUSWALLET_STORAGE_WALLET_WALLET_LIST_001
+        description: |
+          Returns a list of addreses from wallet.

@@ -1,0 +1,19 @@
+system: venus-wallet 
+subsystem: filemgr_fs
+features:
+  - name: New fs
+    behaviors:
+      - id: VENUSWALLET_FILEMGR_FS_NEW_001
+        description: |
+          Given a path, and overide params,
+          returns repo interface
+  - name: Api secret
+    behaviors:
+      - id: VENUSWALLET_FILEMGR_FS_API_SECRET_001
+        description: |
+          Decodes a secret.
+  - name: Api strategy token
+    behaviors:
+      - id: VENUSWALLET_FILEMGR_FS_API_STRATEGY_TOKEN_001
+        description: |
+          Given a password, returns a token.

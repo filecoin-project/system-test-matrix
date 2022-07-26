@@ -1,0 +1,40 @@
+system: venus-wallet 
+subsystem: storage_sqlite_strategy_cache
+features:
+  - name: Set
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_CACHE_SET_001
+        description: |
+          Set cache a single keyBind with token index
+  - name: Remove
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_CACHE_REMOVE_001
+        description: |
+          Remove deletes the cache at the specified address
+  - name: Remove st token
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_CACHE_REMOVE_ST_TOKEN_001
+        description: |
+          Deletes the cache by strategy token.
+  - name: Remove tokens
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_CACHE_REMOVE_TOKENS_001
+        description: |
+          Deletes the caches that the key contain strategy tokens
+  - name: Get
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_CACHE_GET_001
+        description: |
+          Gets a keyBind by strategy token and wallet address
+  - name: Set blank
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_CACHE_SET_BLANK_001
+        description: |
+          Given a token and address, 
+          setBlank cache penetration data that does not exist
+  - name: Remove blank
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_CACHE_REMOVE_BLANK_001
+        description: |
+          Given a token and address, 
+          deletes penetration data

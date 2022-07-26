@@ -1,0 +1,29 @@
+system: venus-wallet 
+subsystem: storage_sqlite_key_store
+features:
+  - name: Put
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_KEY_STORE_PUT_001
+        description: |
+          Given an encrypted key,
+          puts it in wallet table
+  - name: Has
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_KEY_STORE_HAS_001
+        description: |
+          Checks if the address is present in database table.
+  - name: List
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_KEY_STORE_LIST_001
+        description: |
+          Returns a list of all addresses present in database.
+  - name: Get
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_KEY_STORE_GET_001
+        description: |
+          Returns a encripted key for specific address if it's present in database.
+  - name: Delete
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_KEY_STORE_DELETE_001
+        description: |
+          Deletes address from database.

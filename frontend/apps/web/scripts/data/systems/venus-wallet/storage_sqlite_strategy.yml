@@ -1,0 +1,19 @@
+system: venus-wallet 
+subsystem: storage_sqlite_strategy
+features:
+  - name: New msg type template
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_NEW_MSG_TYPE_001
+        description: |
+          Given a name and codes,
+          creates new msg type template.
+  - name: Get msg type template
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_GET_MSG_TYPE_001
+        description: |
+          Returns a msg type template for specified name.
+  - name: List msg type template
+    behaviors:
+      - id: VENUSWALLET_STORAGE_SQLITE_STRATEGY_LIST_MSG_TYPE_001
+        description: |
+          Returns a message types templates.

@@ -1,0 +1,10 @@
+system: venus-wallet 
+subsystem: node 
+features:
+  - name: New node client
+    behaviors: 
+      - id: VENUSWALLET_NODE_NEW_NODE_CLIENT_001
+        description: |
+          Given a proper configuration, returns 
+          new node client that connects to Lotus or Venus, and 
+          call json RPC API.

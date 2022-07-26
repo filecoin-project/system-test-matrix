@@ -1,0 +1,8 @@
+system: venus-wallet 
+subsystem: storage_keymix
+features:
+  - name: Set password
+    behaviors:
+      - id: VENUSWALLET_STORAGE_KEYMIX_SET_PASSWORD_001
+        description: |
+          Sets password upon wallet.

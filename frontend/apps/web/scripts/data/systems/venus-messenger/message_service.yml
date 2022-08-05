@@ -1,0 +1,83 @@
+system: venus-messenger
+subsystem: message_service
+features:
+  - name: Push message
+    behaviors:
+      - id: MESSENGER_SERVICE_PUSH_MESSAGE_001
+        description: |
+          Given an account, a message, and a send spec,
+          push the message, and return the message's ID
+      - id: MESSENGER_SERVICE_PUSH_MESSAGE_002
+        description: |
+          If an error occurs, return that error
+  - name: Push message with ID
+    behaviors:
+      - id: MESSENGER_SERVICE_PUSH_MESSAGE_WITH_ID_001
+        description: |
+          Given an account, a message ID, a message, and a send spec,
+          push the message.
+      - id: MESSENGER_SERVICE_PUSH_MESSAGE_WITH_ID_002
+        description: |
+          If an error occurs, return that error
+  - name: Wait message
+    behaviors:
+      - id: MESSENGER_SERVICE_WAIT_MESSAGE_001
+        description: |
+          Given a message ID, and a confidence value,
+          wait until the message is retrieved by the service.
+      - id: MESSENGER_SERVICE_WAIT_MESSAGE_002
+        description: |
+          If the message retrieval fails, return the error
+  - name: Get message by UID
+    behaviors:
+      - id: MESSENGER_SERVICE_GET_MESSAGE_BY_UID_001
+        description: |
+          Given a message UID, retrieve the message from the service
+      - id: MESSENGER_SERVICE_GET_MESSAGE_BY_UID_002
+        description: |
+          If an error occurs, return the error
+  - name: List message
+    behaviors:
+      - id: MESSENGER_SERVICE_LIST_MESSAGE_001
+        description: |
+          Return all messages in the service repo.
+  - name: List message by address
+    behaviors:
+      - id: MESSENGER_SERVICE_LIST_MESSAGE_BY_ADDRESS_001
+        description: |
+          Given an address, list all messages in the service repo for the address.
+  - name: Process new head
+    behaviors:
+      - id: MESSENGER_SERVICE_PROCESS_NEW_HEAD_001
+        description: |
+          Given an apply and revert tipset slices,
+          receive the new head from chain, and apply the changes to the message service.
+  - name: Replace message
+    behaviors:
+      - id: MESSENGER_SERVICE_REPLACE_MESSAGE_001
+        description: |
+          Given parameters to replace a message, retrieve and replace the message according
+          to the parameters.
+      - id: MESSENGER_SERVICE_REPLACE_MESSAGE_002
+        description: |
+          If params are nil, return an error.
+      - id: MESSENGER_SERVICE_REPLACE_MESSAGE_003
+        description: |
+          If the message cannot be found, return an error.
+      - id: MESSENGER_SERVICE_REPLACE_MESSAGE_004
+        description: |
+          If the message is already on the chain, return an error.
+  - name: Republish message
+    behaviors:
+      - id: MESSENGER_SERVICE_REPUBLISH_MESSAGE_001
+        description: |
+          Given a message ID, republish the message with the indicated ID.
+      - id: MESSENGER_SERVICE_REPUBLISH_MESSAGE_002
+        description: |
+          If the message is already on the chain, return an error.
+      - id: MESSENGER_SERVICE_REPUBLISH_MESSAGE_003
+        description: |
+          If the message state is not FillMsg state, return an error.
+      - id: MESSENGER_SERVICE_REPUBLISH_MESSAGE_004
+        description: |
+          If the push to the message pool fails, return an error.

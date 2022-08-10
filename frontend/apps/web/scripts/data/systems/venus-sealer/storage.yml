@@ -1,0 +1,36 @@
+system: venus-sealer 
+subsystem: Config
+features:
+  - name: Storage from file
+    behaviors:
+      - id: VENUSSEALER_CONFIG_STORAGE_FROM_FILE_001
+        description: |
+          Given storage config return StorageFromReader.
+      - id: VENUSSEALER_CONFIG_STORAGE_FROM_FILE_002
+        description: |
+          If there is an error on Expand return an error.
+      - id: VENUSSEALER_CONFIG_STORAGE_FROM_FILE_002
+        description: |
+          If there is an error on Open return an error.
+  - name: Storage from reader
+    behaviors:
+      - id: VENUSSEALER_CONFIG_STORAGE_FROM_READER_001
+        description: |
+          Given reader return StorageConfig.
+      - id: VENUSSEALER_CONFIG_STORAGE_FROM_READER_002
+        description: |
+          If there is an error on Decode return an error.
+  - name: Write storage file
+    behaviors:
+      - id: VENUSSEALER_CONFIG_WRITE_STORAGE_FILE_001
+        description: |
+          Given StorageConfig write storage file.
+      - id: VENUSSEALER_CONFIG_WRITE_STORAGE_FILE_002
+        description: |
+          If there is an error on Expand return an error.
+      - id: VENUSSEALER_CONFIG_WRITE_STORAGE_FILE_003
+        description: |
+          If there is an error on MarshalIndent return an error.
+      - id: VENUSSEALER_CONFIG_WRITE_STORAGE_FILE_004
+        description: |
+          If there is an error on WriteFile return an error.

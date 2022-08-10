@@ -1,0 +1,41 @@
+system: venus-sealer 
+subsystem: Api
+features:
+  - name: Get full node api v2
+    behaviors:
+      - id: VENUSSEALER_API_GET_FULL_NODE_API_V2_001
+        description: |
+          Return FullNode.
+      - id: VENUSSEALER_API_GET_FULL_NODE_API_V2_002
+        description: |
+          If there is an error on GetFullNodeAPIFromConfig return an error.
+      - id: VENUSSEALER_API_GET_FULL_NODE_API_V2_003
+        description: |
+          If there is an error on DialArgs return an error.
+  - name: Get full node from node config
+    behaviors:
+      - id: VENUSSEALER_API_GET_FULL_NODE_FROM_NODE_CONFIG_001
+        description: |
+          Given node congif return FullNode.
+      - id: VENUSSEALER_API_GET_FULL_NODE_FROM_NODE_CONFIG_002
+        description: |
+          If there is an error on DialArgs return an error.
+  - name: Get full node API from config
+    behaviors:
+      - id: VENUSSEALER_API_GET_FULL_NODE_API_FROM_CONFIG_001
+        description: |
+          Return APIInfo.
+      - id: VENUSSEALER_API_GET_FULL_NODE_API_FROM_CONFIG_002
+        description: |
+          If there is an error on MinerFromFile return empty APIInfo and an error.
+  - name: New full node RPC
+    behaviors:
+      - id: VENUSSEALER_API_NEW_FULL_NODE_RPC_001
+        description: |
+          Given address and header creates a new http jsonrpc client.
+  - name: Req context
+    behaviors:
+      - id: VENUSSEALER_API_REQ_CONTEXT_001
+        description: |
+          Returns context for cli execution. Calling it for the first time
+          installs SIGTERM handler that will close returned context.

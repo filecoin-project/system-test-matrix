@@ -1,0 +1,96 @@
+system: venus-sealer 
+subsystem: Config
+features:
+  - name: Worker from file
+    behaviors:
+      - id: VENUSSEALER_CONFIG_WORKER_FROM_FILE_001
+        description: |
+          Loads config from a specified file overriding defaults specified 
+          in the def parameter. Return WorkerFromReader
+      - id: VENUSSEALER_CONFIG_WORKER_FROM_FILE_002
+        description: |
+          If there is an error on Expand return an error.
+      - id: VENUSSEALER_CONFIG_WORKER_FROM_FILE_003
+        description: |
+          If there is an error on Open return an error.
+  - name: Miner from file
+    behaviors:
+      - id: VENUSSEALER_CONFIG_MINER_FROM_FILE_001
+        description: |
+          Loads config from a specified file overriding defaults specified 
+          in the def parameter. Return MinerFromReader.
+      - id: VENUSSEALER_CONFIG_MINER_FROM_FILE_002
+        description: |
+          If there is an error on Expand return an error.
+      - id: VENUSSEALER_CONFIG_MINER_FROM_FILE_003
+        description: |
+          If there is an error on Open return an error.
+  - name: Config exist
+    behaviors:
+      - id: VENUSSEALER_CONFIG_CONFIG_EXIST_001
+        description: |
+          Check if the configuration file exists.
+      - id: VENUSSEALER_CONFIG_CONFIG_EXIST_002
+        description: |
+          If there is an error on Expand return false and an error.
+      - id: VENUSSEALER_CONFIG_CONFIG_EXIST_003
+        description: |
+          If there is an error on Open return false and an error.
+  - name: Save config
+    behaviors:
+      - id: VENUSSEALER_CONFIG_SAVE_CONFIG_001
+        description: |
+          Given path save config.
+      - id: VENUSSEALER_CONFIG_SAVE_CONFIG_002
+        description: |
+          If there is an error on Expand return an error.
+      - id: VENUSSEALER_CONFIG_SAVE_CONFIG_003
+        description: |
+          If there is an error on MkdirAll return an error.
+      - id: VENUSSEALER_CONFIG_SAVE_CONFIG_004
+        description: |
+          If there is an error on Encode return an error.
+  - name: Update config
+    behaviors:
+      - id: VENUSSEALER_CONFIG_UPDATE_CONFIG_001
+        description: |
+          Given path update config.
+      - id: VENUSSEALER_CONFIG_UPDATE_CONFIG_002
+        description: |
+          If there is an error on Encode return an error.
+  - name: Miner from reader
+    behaviors:
+      - id: VENUSSEALER_CONFIG_MINER_FROM_READER_001
+        description: |
+          Given reader and seeker loads config from a reader instance.
+      - id: VENUSSEALER_CONFIG_MINER_FROM_READER_002
+        description: |
+          If there is an error on DecodeReader return an error.
+      - id: VENUSSEALER_CONFIG_MINER_FROM_READER_003
+        description: |
+          If there is an error on Seek return an error.
+      - id: VENUSSEALER_CONFIG_MINER_FROM_READER_004
+        description: |
+          If there is an error on DecodeReader return an error.
+      - id: VENUSSEALER_CONFIG_MINER_FROM_READER_004
+        description: |
+          If there is an error on Process return an error.
+  - name: Worker from reader
+    behaviors:
+      - id: VENUSSEALER_CONFIG_WORKER_FROM_READER_001
+        description: |
+          Given reader loads config from a reader instance.
+      - id: VENUSSEALER_CONFIG_WORKER_FROM_READER_002
+        description: |
+          If there is an error on DecodeReader return an error.
+      - id: VENUSSEALER_CONFIG_WORKER_FROM_READER_003
+        description: |
+          If there is an error on Process return an error.
+  - name: Config comment
+    behaviors:
+      - id: VENUSSEALER_CONFIG_CONFIG_COMMENT_001
+        description: |
+          Config comment, return list.
+      - id: VENUSSEALER_CONFIG_CONFIG_COMMENT_002
+        description: |
+          If there is an error on Encode return an error.

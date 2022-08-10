@@ -1,0 +1,337 @@
+system: venus-sealer 
+subsystem: Impl
+features:
+  - name: Get deals
+    behaviors:
+      - id: VENUSSEALER_IMPL_GET_DEALS_001
+        description: |
+          Given a page index and page size return deals.
+      - id: VENUSSEALER_IMPL_GET_DEALS_002
+        description: |
+          If MarketClient is nil return an error.
+  - name: Mark deals as packing
+    behaviors:
+      - id: VENUSSEALER_IMPL_MARK_DEALS_AS_PACKING_001
+        description: |
+          Given deals return address and deals.
+      - id: VENUSSEALER_IMPL_MARK_DEALS_AS_PACKING_002
+        description: |
+          If MarketClient is nil return an error.
+  - name: Update deal status
+    behaviors:
+      - id: VENUSSEALER_IMPL_UPDATE_DEAL_STATUS_001
+        description: |
+          Given deal ID and status return address, deal ID and price status.
+      - id: VENUSSEALER_IMPL_UPDATE_DEAL_STATUS_002
+        description: |
+          If MarketClient is nil return an error.
+  - name: Is unsealed
+    behaviors:
+      - id: VENUSSEALER_IMPL_IS_UNSEALED_001
+        description: |
+          Given sector, offset and size return true.
+  - name: Sectors unseal piece
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTORS_UNSEAL_PIECE_001
+        description: |
+          Given sector, offset, size, randomness, commd 
+          return sector, offset, size, TicketValue, CommD. 
+      - id: VENUSSEALER_IMPL_SECTORS_UNSEAL_PIECE_002
+        description: |
+          If error is not nil return an error.
+  - name: Serve remote
+    behaviors:
+      - id: VENUSSEALER_IMPL_SERVE_REMOTE_001
+        description: |
+          Given ResponseWriter and Request serve HTTP.
+      - id: VENUSSEALER_IMPL_SERVE_REMOTE_002
+        description: |
+          If authorization doesn't have permission write unauthorized: missing write permissions.
+  - name: Worker stats
+    behaviors:
+      - id: VENUSSEALER_IMPL_WORKER_STATS_001
+        description: |
+          Return WorkerStats.
+  - name: Worker jobs
+    behaviors:
+      - id: VENUSSEALER_IMPL_WORKER_JOBS_001
+        description: |
+          Return WorkerJobs.
+  - name: Actor address
+    behaviors:
+      - id: VENUSSEALER_IMPL_ACTOR_ADDRESS_001
+        description: |
+          Return miner address.
+  - name: Actor sector size
+    behaviors:
+      - id: VENUSSEALER_IMPL_ACTOR_SECTOR_SIZE_001
+        description: |
+          Given address return sector size.
+      - id: VENUSSEALER_IMPL_ACTOR_SECTOR_SIZE_002
+        description: |
+          If error is not nil return 0 and an error.
+  - name: Compute window po st
+    behaviors:
+      - id: VENUSSEALER_IMPL_COMPUTE_WINDOW_PO_ST_001
+        description: |
+          Given dlIdx and tip set key return list of SubmitWindowedPoStParams.
+      - id: VENUSSEALER_IMPL_ACTOR_SECTOR_SIZE_002
+        description: |
+          If error is not nil return an error.
+  - name: Compute data cid
+    behaviors:
+      - id: VENUSSEALER_IMPL_COMPUTE_DATA_CID_001
+        description: |
+          Give piece size and piece data return piece info.
+  - name: Pledge sector
+    behaviors:
+      - id: VENUSSEALER_IMPL_PLEDGE_SECTOR_001
+        description: |
+          Return sector ID.
+      - id: VENUSSEALER_IMPL_PLEDGE_SECTOR_002
+        description: |
+          If error is not nil return an error.
+  - name: Current sector ID
+    behaviors:
+      - id: VENUSSEALER_IMPL_CURRENT_SECTOR_ID_001
+        description: |
+          Return sector number.
+  - name: Deal sector
+    behaviors:
+      - id: VENUSSEALER_IMPL_DEAL_SECTOR_001
+        description: |
+          Return list of DealAssign.
+  - name: Redo sector
+    behaviors:
+      - id: VENUSSEALER_IMPL_REDO_SECTOR_001
+        description: |
+          Given SectorRedoParams.
+  - name: Sector status
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_STATUS_001
+        description: |
+          Given SectorNumber and showOnChainInfo return sector info.
+      - id: VENUSSEALER_IMPL_SECTOR_STATUS_002
+        description: |
+          If error on GetSectorInfo is not nil return an error.
+      - id: VENUSSEALER_IMPL_SECTOR_STATUS_003
+        description: |
+          If error on log service list is not nil return an error.
+      - id: VENUSSEALER_IMPL_SECTOR_STATUS_004
+        description: |
+          If error on StateSectorGetInfo is not nil return an error.
+  - name: Sectors list
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTORS_LIST_001
+        description: |
+          Given sector number list all staged sectors.
+      - id: VENUSSEALER_IMPL_SECTORS_LIST_002
+        description: |
+          If error on list sectors is not nil return an error.
+  - name: Sectors info list in states
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_INFO_LIST_IN_STATES_001
+        description: |
+          Given list of sector state, showOnChainInfo and skipLog 
+          list all staged sector's info in particular states.
+      - id: VENUSSEALER_IMPL_SECTOR_INFO_LIST_IN_STATES_002
+        description: |
+          If error on list sectors is not nil return an error.
+      - id: VENUSSEALER_IMPL_SECTOR_INFO_LIST_IN_STATES_003
+        description: |
+          If error on StateSectorGetInfo is not nil return an error.
+  - name: Sectors list in states
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_LIST_IN_STATES_001
+        description: |
+          Given list of sector state, return list of sector numbers.
+      - id: VENUSSEALER_IMPL_SECTOR_LIST_IN_STATES_002
+        description: |
+          If error on list sectors is not nil return an error.
+  - name: Sectors summary
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTORS_SUMMARY_001
+        description: |
+          Return map which has key of sector state.
+      - id: VENUSSEALER_IMPL_SECTORS_SUMMARY_002
+        description: |
+          If error on list sectors is not nil return an error.
+  - name: Storage local
+    behaviors:
+      - id: VENUSSEALER_IMPL_STORAGE_LOCAL_001
+        description: |
+          Return map which has key of stores ID.
+  - name: Sectors refs
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTORS_REFS_001
+        description: |
+          Return map which has values of list of SealedRef.
+      - id: VENUSSEALER_IMPL_SECTORS_REFS_002
+        description: |
+          If error on sector blocks list return an error.
+  - name: Storage stat
+    behaviors:
+      - id: VENUSSEALER_IMPL_STORAGE_STAT_001
+        description: |
+          Given stores ID return FsStat.
+  - name: Sector start sealing
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_START_SEALING_001
+        description: |
+          Given number of sector number return StartPackingSector number.
+  - name: Sector set seal delay
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_SET_SEAL_DELAY_001
+        description: |
+          Given delay return SetSealingConfigFunc.
+      - id: VENUSSEALER_IMPL_SECTOR_SET_SEAL_DELAY_001
+        description: |
+          If error on GetSealingConfigFunc is not nil return an error.
+  - name: Sector get seal delay
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_GET_SEAL_DELAY_001
+        description: |
+          Return time WaitDealsDelay.
+      - id: VENUSSEALER_IMPL_SECTOR_GET_SEAL_DELAY_001
+        description: |
+          If error on GetSealingConfigFunc is not nil return 0 and an error.
+  - name: Sectors update
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTORS_UPDATE_001
+        description: |
+          Given id and state return ForceSectorState.
+  - name: Sector remove
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_REMOVE_001
+        description: |
+          Given id return RemoveSector.
+  - name: Sector terminate
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_TERMINATE_001
+        description: |
+          Given id return TerminateSector.
+  - name: Sector terminate flush
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_TERMINATE_FLUSH_001
+        description: |
+          Return TerminateFlush.
+  - name: Sector terminate pending
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_TERMINATE_PENDING_001
+        description: |
+          Return list of sector ID.
+  - name: Sector pre commit flush
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_PRE_COMMIT_FLUSH_001
+        description: |
+          Return list of PreCommitBatchRes.
+  - name: Sector pre commit pending
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_PRE_COMMIT_PENDING_001
+        description: |
+          Return list of sector ID.
+  - name: Sector mark for upgrade
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_MARK_FOR_UPGRADE_001
+        description: |
+          Given id and snap return MarkForUpgrade.
+  - name: Sector abort upgrade
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_ABORT_UPGRADE_001
+        description: |
+          Given sector number return SectorAbortUpgrade.
+  - name: Sector commit flush
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_COMMIT_FLUSH_001
+        description: |
+          Return list of CommitBatchRes.
+  - name: Sector commit pending
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_COMMIT_PENDING_001
+        description: |
+          Return list of sector ID.
+  - name: Sector match pending pieces to open sectors
+    behaviors:
+      - id: VENUSSEALER_IMPL_SECTOR_MATCH_PENDING_PIECES_TO_OPEN_SECTORS_001
+        description: |
+          Return SectorMatchPendingPiecesToOpenSectors.
+  - name: Worker connect
+    behaviors:
+      - id: VENUSSEALER_IMPL_WORKER_CONNECT_001
+        description: |
+          Given url return AddWorker.
+      - id: VENUSSEALER_IMPL_WORKER_CONNECT_002
+        description: |
+          If error on connectRemoteWorker return an error.
+  - name: Sealing sched diag
+    behaviors:
+      - id: VENUSSEALER_IMPL_SEALING_SCHED_DIAG_001
+        description: |
+          Given doSched return SchedDiag.
+  - name: Sealing abort
+    behaviors:
+      - id: VENUSSEALER_IMPL_SEALING_ABORT_001
+        description: |
+          Given call ID return Abort.
+  - name: Deals list
+    behaviors:
+      - id: VENUSSEALER_IMPL_DEALS_LIST_001
+        description: |
+          Return list of market deals.
+  - name: Storage add local
+    behaviors:
+      - id: VENUSSEALER_IMPL_STORAGE_ADD_LOCAL_001
+        description: |
+          Given path return AddLocalStorage.
+      - id: VENUSSEALER_IMPL_STORAGE_ADD_LOCAL_002
+        description: |
+          If StorageMgr is nill return an error; no storage manager.
+  - name: Check provable
+    behaviors:
+      - id: VENUSSEALER_IMPL_CHECK_PROVABLE_001
+        description: |
+          Given RegisteredPoStProof, list of SectorRef and expensive 
+          return a map with sector number value.
+      - id: VENUSSEALER_IMPL_CHECK_PROVABLE_002
+        description: |
+          If there is error on GetSectorInfo return an error.
+      - id: VENUSSEALER_IMPL_CHECK_PROVABLE_003
+        description: |
+          If there is error on CheckProvable return an error.
+  - name: Actor address config
+    behaviors:
+      - id: VENUSSEALER_IMPL_ACTOR_ADDRESS_CONFIG_001
+        description: |
+          Return AddressConfig.
+  - name: Net params config
+    behaviors:
+      - id: VENUSSEALER_IMPL_NET_PARAMS_CONFIG_001
+        description: |
+          Return NetParamsConfig.
+  - name: Compute proof
+    behaviors:
+      - id: VENUSSEALER_IMPL_COMPUTE_PROOF_001
+        description: |
+          Given list of ExtendedSectorInfo, PoStRandomness, ChainEpoch and network.Version
+          return list of PoStProof.
+  - name: Messager wait message
+    behaviors:
+      - id: VENUSSEALER_IMPL_MESSAGER_WAIT_MESSAGE_001
+        description: |
+          Given uuid and confidence return MsgLookup.
+      - id: VENUSSEALER_IMPL_MESSAGER_WAIT_MESSAGE_002
+        description: |
+          If there is error on WaitMessage return an error.
+  - name: Messager push message
+    behaviors:
+      - id: VENUSSEALER_IMPL_MESSAGER_PUSH_MESSAGE_001
+        description: |
+          Given message and SendSpec return PushMessage.
+  - name: Messager get message
+    behaviors:
+      - id: VENUSSEALER_IMPL_MESSAGER_GET_MESSAGE_001
+        description: |
+          Given uuid return message.
+      - id: VENUSSEALER_IMPL_MESSAGER_GET_MESSAGE_002
+        description: |
+          If there is error on GetMessageByUid return an error.

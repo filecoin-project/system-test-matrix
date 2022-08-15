@@ -38,7 +38,7 @@ features:
           return sector, offset, size, TicketValue, CommD. 
       - id: VENUSSEALER_IMPL_SECTORS_UNSEAL_PIECE_002
         description: |
-          If error is not nil return an error.
+          If there is error on GetSectorInfo return an error.
   - name: Serve remote
     behaviors:
       - id: VENUSSEALER_IMPL_SERVE_REMOTE_001
@@ -69,15 +69,18 @@ features:
           Given address return sector size.
       - id: VENUSSEALER_IMPL_ACTOR_SECTOR_SIZE_002
         description: |
-          If error is not nil return 0 and an error.
+          If there is error on StateMinerInfo return 0 and an error.
   - name: Compute window po st
     behaviors:
       - id: VENUSSEALER_IMPL_COMPUTE_WINDOW_PO_ST_001
         description: |
           Given dlIdx and tip set key return list of SubmitWindowedPoStParams.
-      - id: VENUSSEALER_IMPL_ACTOR_SECTOR_SIZE_002
+      - id: VENUSSEALER_IMPL_COMPUTE_WINDOW_PO_ST_002
         description: |
-          If error is not nil return an error.
+          If there is error on ChainHead return an error.
+      - id: VENUSSEALER_IMPL_COMPUTE_WINDOW_PO_ST_003
+        description: |
+          If there is error on ChainGetTipSet return an error.
   - name: Compute data cid
     behaviors:
       - id: VENUSSEALER_IMPL_COMPUTE_DATA_CID_001
@@ -90,7 +93,10 @@ features:
           Return sector ID.
       - id: VENUSSEALER_IMPL_PLEDGE_SECTOR_002
         description: |
-          If error is not nil return an error.
+          If there is error on Miner.PledgeSector return empty SectorID and an error.
+      - id: VENUSSEALER_IMPL_PLEDGE_SECTOR_003
+        description: |
+          If there is error on Miner.GetSectorInfo return empty SectorID and an error.
   - name: Current sector ID
     behaviors:
       - id: VENUSSEALER_IMPL_CURRENT_SECTOR_ID_001

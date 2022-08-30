@@ -1,0 +1,35 @@
+system: miner
+subsystem: miningmgr
+features:
+  - name: New Winning PoSt Prover
+    behaviors:
+      - id: MINER_MINERMGR_MANUAL_START_001
+        description: |
+          Providing a list of addreses, sets a isMining flag to true to every miner on the address.
+  - name: Compute Proof
+    behaviors:
+      - id: MINER_MINERMGR_MANUAL_STOP_001
+        description: |
+          Providing a list of addreses, sets a isMining flag to false to every miner on the address.
+  - name: Update address
+    behaviors:
+      - id: MINER_MINERMGR_UPDATE_ADDRESS_001
+        description: |
+          Providing skip and limit, Updates miner infos, creates new MiningPostProver.
+  - name: List address
+    behaviors:
+      - id: MINER_MINERMGR_LIST_ADDRESS_001
+        description: |
+          Returns a list of miner infos over minerManager.
+  - name: States for mining
+    behaviors:
+      - id: MINER_MINERMGR_STATES_FOR_MINING_001
+        description: |
+          For a list of addresses, gets a minerWpp (account, epp, isMining).
+  - name: Count winners
+    behaviors:
+      - id: MINER_MINERMGR_COUNT_WINNERS_001
+        description: |
+          Providing list of addreses, start and end epochs, 
+          returns a list of count winners.
+         

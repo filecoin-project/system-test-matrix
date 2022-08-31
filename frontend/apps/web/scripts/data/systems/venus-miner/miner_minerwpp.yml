@@ -1,15 +1,15 @@
-system: miner
-subsystem: minerwpp
+system: venus-miner
+subsystem: miner_minerwpp
 features:
   - name: New Winning PoSt Prover
     behaviors:
-      - id: MINER_MINERWPP_NEW_WINNING_POST_PROVER_001
+      - id: VENUSMINER_MINERWPP_NEW_WINNING_POST_PROVER_001
         description: |
           Providing api fullNode, gateway config and miner info,
           creates new MiningWpp.
   - name: Compute Proof
     behaviors:
-      - id: MINER_MINERWPP_COMPUTE_PROOF_001
+      - id: VENUSMINER_MINERWPP_COMPUTE_PROOF_001
         description: |
           Providing sector info, randomness, epoch and network version,
           calls ComputeProof over api, and calculates Winning proof.

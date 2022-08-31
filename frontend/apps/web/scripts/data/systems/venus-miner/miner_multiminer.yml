@@ -1,0 +1,30 @@
+system: venus-miner
+subsystem: miner_multiminer
+features:
+  - name: New miner
+    behaviors:
+      - id: VENUSMINER_MULTIMINER_NEW_001
+        description: |
+          Providing an full node interface, gateway node, miner manager and journal, 
+          creates a new miner.  
+  - name: Start
+    behaviors:
+      - id: VENUSMINER_MULTIMINER_START_001
+        description: |
+          Start mining operation.
+  - name: Stop
+    behaviors:
+      - id: VENUSMINER_MULTIMINER_STOP_001
+        description: |
+          Stops the mining operation
+  - name: Get best mining candidate
+    behaviors:
+      - id: VENUSMINER_MULTIMINER_GET_BEST_MINING_CANDIDATE_001
+        description: |
+          Implements the fork choice rule from a miner's perspective. Obtains the current chain head,
+          and compares it to the last tipset we selected as out mining base.
+  - name: Sync status
+    behaviors:
+      - id: VENUSMINER_MULTIMINER_SYNC_STATUS_001
+        description: |
+          Every 2 minutes syncs a status  and gets a chain head.

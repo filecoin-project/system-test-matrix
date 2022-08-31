@@ -1,0 +1,18 @@
+system: venus-miner
+subsystem: node_config_apiinfo
+features:
+  - name: Dial Args
+    behaviors:
+      - id: VENUSMINER_NODECONFIGAPIINFO_DIAL_ARGS_001
+        description: |
+          Providing a version, returns a full address. 
+  - name: Host
+    behaviors:
+      - id: VENUSMINER_NODECONFIGAPIINFO_HOST_001
+        description: |
+          Returns a host after parsing api address.
+  - name: Auth header
+    behaviors:
+      - id: VENUSMINER_NODECONFIGAPIINFO_AUTH_HEADER_001
+        description: |
+          Create new Authorization header with Bearer token attached.

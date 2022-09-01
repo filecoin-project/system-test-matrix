@@ -1,0 +1,13 @@
+system: venus-miner
+subsystem: node_config_gatewaydef
+features:
+  - name: Dial Args
+    behaviors:
+      - id: VENUSMINER_NODECONFIGGATEWAYDEF_DIAL_ARGS_001
+        description: |
+          Returns a list of addreses that gateway is connected to. 
+  - name: Auth header
+    behaviors:
+      - id: VENUSMINER_NODECONFIGGATEWAYDEF_AUTH_HEADER_001
+        description: |
+          Create new Authorization header with Bearer token attached.

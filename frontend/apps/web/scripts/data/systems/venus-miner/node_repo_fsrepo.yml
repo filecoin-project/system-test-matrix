@@ -1,0 +1,84 @@
+system: venus-miner
+subsystem: node_repo_fsrepo
+features:
+  - name: Exists
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_EXISTS_001
+        description: |
+          Checks if there is existing datastore on filepath.
+  - name: Init
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_INIT_001
+        description: |
+          Initialize new report if not exists.
+  - name: Update
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_UPDATE_001
+        description: |
+          Updates a report with new miner configuration.
+  - name: API endpoint
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_API_ENDPOINT_001
+        description: |
+          Returns endpoint of API in the repo.
+  - name: API token
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_API_TOKEN_001
+        description: |
+          Reads a token from the file, and returns it as a slice of bytes.
+  - name: Config
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_API_CONFIG_001
+        description: |
+          Reads config from file.
+  - name: Lock
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_LOCK_001
+        description: |
+          Exclusive locks a repo.
+  - name: Path
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_PATH_001
+        description: |
+          Returns a repo path.
+  - name: Close
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_CLOSE_001
+        description: |
+          Closes a repo.
+  - name: Set Config
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_SET_CONFIG_001
+        description: |
+          Loades config from disk and mutate in-memory reporesentation of config, writes back to file
+  - name: Set API Endpoint
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_SET_API_ENDPOINT_001
+        description: |
+          Providing an address, writes new address to file.
+  - name: Set API Token
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_SET_API_TOKEN_001
+        description: |
+          Providing a token as slice of bytes, checks validity and frites to file.
+  - name: List
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_LIST_001
+        description: |
+          Lists all the keys stored in the keystore.
+  - name: Get
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_GET_001
+        description: |
+          Gets a key out of keystore and returns types.KeyInfo coresponding to named key.
+  - name: Put
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_PUT_001
+        description: |
+          Saves key info under given name.
+  - name: Delete
+    behaviors:
+      - id: VENUSMINER_NODE_REPO_FSREPO_DELETE_001
+        description: |
+          Deletes key based on provided name.
+  

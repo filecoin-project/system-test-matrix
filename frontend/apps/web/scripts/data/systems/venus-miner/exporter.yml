@@ -1,0 +1,14 @@
+system: venus-miner
+subsystem: metrics
+features:
+  - name: Setup metrics
+    behaviors:
+      - id: VENUSMINER_METRICS_SETUP_METRICS_001
+        description: |
+          Given a metrics config, setup metrics.
+      - id: VENUSMINER_METRICS_SETUP_METRICS_002
+        description: |
+          If metrics config is not enabled return an error.
+      - id: VENUSMINER_METRICS_SETUP_METRICS_003
+        description: |
+          If there is an error on the register return an error.

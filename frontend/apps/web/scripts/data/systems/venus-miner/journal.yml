@@ -1,0 +1,23 @@
+system: venus-miner
+subsystem: mockjournal
+features:
+  - name: New mock journal
+    behaviors:
+      - id: VENUSMINER_MOCKJOURNAL_NEW_MOCK_JOURNAL_001
+        description: |
+          Given Controller reates a new mock instance.
+  - name: Close
+    behaviors:
+      - id: VENUSMINER_MOCKJOURNAL_CLOSE_001
+        description: |
+          Indicates an expected call of Close.
+  - name: Record event
+    behaviors:
+      - id: VENUSMINER_MOCKJOURNAL_RECORD_EVENT_001
+        description: |
+          Indicates an expected call of RecordEvent.
+  - name: Register event type
+    behaviors:
+      - id: VENUSMINER_MOCKJOURNAL_REGISTER_EVENT_TYPE_001
+        description: |
+          Indicates an expected call of RegisterEventType.

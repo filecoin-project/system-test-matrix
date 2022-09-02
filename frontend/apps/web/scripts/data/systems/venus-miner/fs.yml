@@ -1,0 +1,21 @@
+system: venus-miner
+subsystem: fsjournal
+features:
+  - name: Open FS Journal
+    behaviors:
+      - id: VENUSMINER_FSJOURNAL_OPEN_FS_JOURNAL_001
+        description: |
+          Given LockedRepo and DisabledEvents constructs a rolling filesystem 
+          journal, with a default per-file size limit of 1GiB.
+      - id: VENUSMINER_FSJOURNAL_OPEN_FS_JOURNAL_002
+        description: |
+          If there is an error on creation directory for file journal
+          return nil and error.
+      - id: VENUSMINER_FSJOURNAL_OPEN_FS_JOURNAL_003
+        description: |
+          If there is an error on rollJournalFile return nil and error.
+  - name: Record event
+    behaviors:
+      - id: VENUSMINER_FSJOURNAL_RECORD_EVENT_001
+        description: |
+          Given EventType and supplier records event.

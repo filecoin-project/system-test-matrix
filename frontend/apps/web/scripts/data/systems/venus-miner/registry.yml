@@ -1,0 +1,13 @@
+system: venus-miner
+subsystem: journal
+features:
+  - name: New event type registry
+    behaviors:
+      - id: VENUSMINER_JOURNAL_NEW_EVENT_TYPE_REGISTRY_001
+        description: |
+          Given DisabledEvents return EventTypeRegistry.
+  - name: Register event type
+    behaviors:
+      - id: VENUSMINER_JOURNAL_REGISTER_EVENT_TYPE_001
+        description: |
+          Given system and event return EventType.

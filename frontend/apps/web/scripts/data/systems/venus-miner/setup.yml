@@ -1,0 +1,14 @@
+system: venus-miner
+subsystem: tracing
+features:
+  - name: Setup jaeger tracing
+    behaviors:
+      - id: VENUSMINER_TRACING_SETUP_JAEGER_TRACING_001
+        description: |
+          Given TraceConfig, return jaeger.Exporter.
+      - id: VENUSMINER_TRACING_SETUP_JAEGER_TRACING_002
+        description: |
+          If jaeger tracing is not enabled return an error.
+      - id: VENUSMINER_TRACING_SETUP_JAEGER_TRACING_003
+        description: |
+          If there is an error on NewExporter return an error.

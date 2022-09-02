@@ -1,0 +1,18 @@
+system: venus-miner
+subsystem: journal
+features:
+  - name: Parse disabled events
+    behaviors:
+      - id: VENUSMINER_JOURNAL_PARSE_DISABLED_EVENTS_001
+        description: |
+          Given a string parses a string of the form: 
+          "system1:event1,system1:event2[,...]" into a DisabledEvents object.
+      - id: VENUSMINER_JOURNAL_PARSE_DISABLED_EVENTS_002
+        description: |
+          Return an error if the string failed to parse.
+  - name: Enabled
+    behaviors:
+      - id: VENUSMINER_JOURNAL_ENABLED_001
+        description: |
+          Returns true or false, whether this event type is enabled in the 
+          journaling subsystem.

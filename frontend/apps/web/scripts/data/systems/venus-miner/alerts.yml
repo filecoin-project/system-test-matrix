@@ -1,0 +1,25 @@
+system: venus-miner
+subsystem: alerting
+features:
+  - name: Add alert type
+    behaviors:
+      - id: VENUSMINER_ALERTING_ADD_ALERT_TYPE_001
+        description: |
+          Given system and subsystem, return AlertType.
+  - name: Raise
+    behaviors:
+      - id: VENUSMINER_ALERTING_RAISE_001
+        description: |
+          Given alert type and message marks the alert condition as active 
+          and records related event in the journal.
+  - name: Resolve
+    behaviors:
+      - id: VENUSMINER_ALERTING_RESOLVE_001
+        description: |
+          Given alert type and message marks the alert condition as resolved 
+          and records related event in the journal.
+  - name: Get Alerts
+    behaviors:
+      - id: VENUSMINER_ALERTING_GET_ALERTS_001
+        description: |
+          Returns all registered (active and inactive) alerts.

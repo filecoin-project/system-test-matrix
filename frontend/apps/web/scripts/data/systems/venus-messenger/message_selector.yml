@@ -10,26 +10,5 @@ features:
       - id: MESSENGER_SELECTOR_SELECT_MESSAGE_002
         description: |
           If an error occurs retrieving nonce in tipset, return that error
-  - name: Estimate message gas
-    behaviors:
-      - id: MESSENGER_SELECTOR_ESTIMATE_MESSAGE_GAS_001
-        description: |
-          Given a message, a send spec, and a tipset key,
-          estimate the message's gas and apply it to the message.
-      - id: MESSENGER_SELECTOR_ESTIMATE_MESSAGE_GAS_002
-        description: |
-          If an error occurs estimating used gas, return that error
-      - id: MESSENGER_SELECTOR_ESTIMATE_MESSAGE_GAS_003
-        description: |
-          If an error occurs estimating gas price, return that error
-      - id: MESSENGER_SELECTOR_ESTIMATE_MESSAGE_GAS_004
-        description: |
-          If an error occurs estimating fee cap, return that error
-  - name: Cap message gas
-    behaviors:
-      - id: MESSENGER_SELECTOR_CAP_MESSAGE_GAS_001
-        description: |
-          Given a message, and a max fee,
-          cap the message's gas to the max fee amount.
-          
+
           

@@ -1,0 +1,81 @@
+system: venus-gateway
+subsystem: wallet_event
+features:
+  - name: Listen wallet event
+    behaviors:
+      - id: VENUSGATEWAY_WALLET_EVENT_LISTEN_WALLET_EVENT_001
+        description: |
+          Passing the wallet register policy, 
+          creates and returns request event channel
+      - id: VENUSGATEWAY_WALLET_EVENT_LISTEN_WALLET_EVENT_002
+        description: |
+          If wallet account does not exist,
+          returns error. 
+  - name: Response wallet event
+    behaviors:
+      - id: VENUSGATEWAY_WALLET_EVENT_RESPONSE_WALLET_EVENT_001
+        description: |
+          Passing the response event, processes it and returns error if there is.
+  - name: Support new account
+    behaviors:
+      - id: VENUSGATEWAY_WALLET_EVENT_SUPPORT_NEW_ACCOUNT_001
+        description: |
+          Passing a channel's id and account
+          adds new supported account to wallet account.
+      - id: VENUSGATEWAY_WALLET_EVENT_SUPPORT_NEW_ACCOUNT_002
+        description: |
+          If wallet account does not exist,
+          return error.
+      - id: VENUSGATEWAY_WALLET_EVENT_SUPPORT_NEW_ACCOUNT_003
+        description: |
+          If there is an error adding new account to wallet account,
+          return error.
+  - name: Add new address
+    behaviors:
+      - id: VENUSGATEWAY_WALLET_EVENT_ADD_NEW_ADDRESS_001
+        description: |
+          Passing a channel's id and account
+          adds new address to wallet account.
+      - id: VENUSGATEWAY_WALLET_EVENT_ADD_NEW_ADDRESS_002
+        description: |
+          If wallet account does not exist,
+          returns error.
+      - id: VENUSGATEWAY_WALLET_EVENT_ADD_NEW_ADDRESS_003
+        description: |
+          If there is an error getting wallet connection info,
+          returns it.
+      - id: VENUSGATEWAY_WALLET_EVENT_ADD_NEW_ADDRESS_004
+        description: |
+          If there is an error verifiing one of the addreses,
+          returns it.
+      - id: VENUSGATEWAY_WALLET_EVENT_ADD_NEW_ADDRESS_005
+        description: |
+          If there is an error adding new address to wallet manager,
+          returns it.
+  - name: Remove address
+    behaviors:
+      - id: VENUSGATEWAY_WALLET_EVENT_REMOVE_ADDRESS_001
+        description: |
+          Passing a channel's id,
+          removes address from wallet account.
+      - id: VENUSGATEWAY_WALLET_EVENT_REMOVE_ADDRESS_002
+        description: |
+          If wallet account does not exist,
+          returns error.
+      - id: VENUSGATEWAY_WALLET_EVENT_REMOVE_ADDRESS_003
+        description: |
+          If there is an error removing account from wallet account,
+          returns it.
+  - name: Wallet sign
+    behaviors:
+      - id: VENUSGATEWAY_WALLET_EVENT_WALLET_SIGN_001
+        description: |
+          Signs a wallet and returns new ctypto signature.
+      - id: VENUSGATEWAY_WALLET_EVENT_WALLET_SIGN_002
+        description: |
+          If there is an error marshalling request, 
+          returns it.
+      - id: VENUSGATEWAY_WALLET_EVENT_WALLET_SIGN_003
+        description: |
+          If there is an error getting channels from miner account and addres, 
+          returns it.

@@ -1,0 +1,55 @@
+system: venus-gateway
+subsystem: market_event
+features:
+  - name: Listen market event
+    behaviors:
+      - id: VENUSGATEWAY_MARKET_EVENT_LISTEN_MARKET_EVENT_001
+        description: |
+          Passing the market register policy, validates miner adder based on IP, 
+          creates and returns event channel
+      - id: VENUSGATEWAY_MARKET_EVENT_LISTEN_MARKET_EVENT_002
+        description: |
+          If ip address can not be extracted from context,
+          returns error. 
+      - id: VENUSGATEWAY_MARKET_EVENT_LISTEN_MARKET_EVENT_003
+        description: |
+          If miner's ip address can not be validated,
+          returns error.
+  - name: Response market event
+    behaviors:
+      - id: VENUSGATEWAY_MARKET_EVENT_RESPONSE_MARKET_EVENT_001
+        description: |
+          Passing the response event, processes it and returns error if there is.
+  - name: List market connections state
+    behaviors:
+      - id: VENUSGATEWAY_MARKET_EVENT_LIST_MARKET_CONNECTIONS_STATE_001
+        description: |
+          Returns a list of all market connections (addr, conn).
+  - name: Is unsealed
+    behaviors:
+      - id: VENUSGATEWAY_MARKET_EVENT_IS_UNSEALED_001
+        description: |
+          Passing the miner's address, cid and sector reference,
+          sends a request and returns a boolean flag if it's sealed.
+      - id: VENUSGATEWAY_MARKET_EVENT_IS_UNSEALED_002
+        description: |
+          If there is an error marshalling request, 
+          returns it.
+      - id: VENUSGATEWAY_MARKET_EVENT_IS_UNSEALED_003
+        description: |
+          If there is an error getting channels from miner addres, 
+          returns it.
+  - name: Sectors Unseal Piece
+    behaviors:
+      - id: VENUSGATEWAY_MARKET_EVENT_SECTORS_UNSEAL_PIECE_001
+        description: |
+          Passing the miner's address, cid and sector reference,
+          sends a request SectorsUnsealPiece.
+      - id: VENUSGATEWAY_MARKET_EVENT_SECTORS_UNSEAL_PIECE_002
+        description: |
+          If there is an error marshalling request, 
+          returns it.
+      - id: VENUSGATEWAY_MARKET_EVENT_SECTORS_UNSEAL_PIECE_003
+        description: |
+          If there is an error getting channels from miner addres, 
+          returns it.

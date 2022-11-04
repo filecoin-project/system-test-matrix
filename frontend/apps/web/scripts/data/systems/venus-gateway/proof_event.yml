@@ -1,0 +1,46 @@
+system: venus-gateway
+subsystem: proof_event
+features:
+  - name: Listen proof event
+    behaviors:
+      - id: VENUSGATEWAY_PROOF_EVENT_LISTEN_PROOF_EVENT_001
+        description: |
+          Passing the proof register policy, validates miner adder based on IP, 
+          creates and returns event channel
+      - id: VENUSGATEWAY_PROOF_EVENT_LISTEN_PROOF_EVENT_002
+        description: |
+          If ip address can not be extracted from context,
+          returns error. 
+      - id: VENUSGATEWAY_PROOF_EVENT_LISTEN_PROOF_EVENT_003
+        description: |
+          If miner's ip address can not be validated,
+          returns error.
+  - name: Response proof event
+    behaviors:
+      - id: VENUSGATEWAY_PROOF_EVENT_RESPONSE_PROOF_EVENT_001
+        description: |
+          Passing the response event, processes it and returns error if there is.
+  - name: Compute proof
+    behaviors:
+      - id: VENUSGATEWAY_PROOF_EVENT_COMPUTE_PROOF_001
+        description: |
+          Passing miner addres, sector info, randomness, height and version,
+          creates compute proof request as marshal bytes
+          and sends request to channels.
+      - id: VENUSGATEWAY_PROOF_EVENT_COMPUTE_PROOF_002
+        description: |
+          If there is error marshaling request body,
+          returns it.
+      - id: VENUSGATEWAY_PROOF_EVENT_COMPUTE_PROOF_003
+        description: |
+          If there is error getting miner's channels,
+          returns it.
+      - id: VENUSGATEWAY_PROOF_EVENT_COMPUTE_PROOF_004
+        description: |
+          If there is error sending requests to channels,
+          returns it.
+  - name: Listen connected miners
+    behaviors:
+      - id: VENUSGATEWAY_PROOF_EVENT_LISTEN_CONNECTED_MINERS_001
+        description: |
+          Returns all miner connections.

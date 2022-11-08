@@ -1,0 +1,19 @@
+system: venus-gateway
+subsystem: types
+features:
+  - name: Send Request
+    behaviors:
+      - id: VENUSGATEWAY_TYPES_SEND_REQUEST_001
+        description: |
+          Takes list of channel info, method, payload and result.
+      - id: VENUSGATEWAY_TYPES_SEND_REQUEST_002
+        description: |
+          If length of channels is 0 return an error.
+  - name: Response event
+    behaviors:
+      - id: VENUSGATEWAY_TYPES_RESPONSE_EVENT_001
+        description: |
+          Takes response event.
+      - id: VENUSGATEWAY_TYPES_RESPONSE_EVENT_002
+        description: |
+          If there is error on idRequest return an error.

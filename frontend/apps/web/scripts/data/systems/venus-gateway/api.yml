@@ -1,0 +1,60 @@
+system: venus-gateway
+subsystem: api
+features:
+  - name: Compute proof
+    behaviors:
+      - id: VENUSGATEWAY_API_COMPUTE_PROOF_001
+        description: |
+          Takes miner address, sectors info, PoStRandomness, ChainEpoch and network version
+          returns link of PoStProof.
+  - name: List connected miners
+    behaviors:
+      - id: VENUSGATEWAY_API_LIST_CONNECTED_MINERS_001
+        description: |
+          Returns list of addresses for connected miners.
+  - name: List miner connection
+    behaviors:
+      - id: VENUSGATEWAY_API_LIST_MINER_CONNECTION_001
+        description: |
+          Takes address and returns miner state.
+  - name: Wallet has
+    behaviors:
+      - id: VENUSGATEWAY_API_WALLET_HAS_001
+        description: |
+          Takes support account and address and returns true or false.
+  - name: Wallet sign
+    behaviors:
+      - id: VENUSGATEWAY_API_WALLET_SIGN_001
+        description: |
+          Takes account, address, toSign, MsgMeta and returns crypto signature.
+  - name: List wallet info
+    behaviors:
+      - id: VENUSGATEWAY_API_LIST_WALLET_INFO_001
+        description: |
+          Returns wallet details.
+  - name: List wallet info by wallet
+    behaviors:
+      - id: VENUSGATEWAY_API_LIST_WALLET_INFO_BY_WALLET_001
+        description: |
+          Takes wallet and returns wallet details.
+  - name: Is unsealed
+    behaviors:
+      - id: VENUSGATEWAY_API_IS_UNSEALED_001
+        description: |
+          Takes miner address, pieceCid, SectorRef, PaddedByteIndex and PaddedPieceSize, 
+          returns true or false.
+  - name: Sectors unseal piece
+    behaviors:
+      - id: VENUSGATEWAY_API_SECTOR_UNSEAL_PRICE_001
+        description: |
+          Takes miner address, pieceCid, SectorRef, PaddedByteIndex and PaddedPieceSize, destination.
+  - name: List market connections state
+    behaviors:
+      - id: VENUSGATEWAY_API_LIST_MARKET_CONNECTIONS_STATE_001
+        description: |
+          Returns list of market connection state.
+  - name: Version
+    behaviors:
+      - id: VENUSGATEWAY_API_VERSION_001
+        description: |
+          Returns version.

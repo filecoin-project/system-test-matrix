@@ -1,0 +1,21 @@
+system: venus-gateway
+subsystem: validator
+features:
+  - name: Validate
+    behaviors:
+      - id: VENUSGATEWAY_VALIDATOR_VALIDATE_001
+        description: |
+          Takes miner's address and validate it.
+          behaviors:
+      - id: VENUSGATEWAY_VALIDATOR_VALIDATE_002
+        description: |
+          If user name not exists in rpc contex return an error.
+      - id: VENUSGATEWAY_VALIDATOR_VALIDATE_003
+        description: |
+          If there is error on GetUserByMiner return an error.
+      - id: VENUSGATEWAY_VALIDATOR_VALIDATE_004
+        description: |
+          If user is disabled return an error.
+      - id: VENUSGATEWAY_VALIDATOR_VALIDATE_005
+        description: |
+          If user name is not same as miner return an error.

@@ -28,11 +28,6 @@ features:
           Given a data slice of bytes, and an address,
           cryptographically sign the data using the private key corresponding
           to the address.
-  - name: Addresses
-    behaviors:
-      - id: WALLET_WALLET_ADDRESSES_001
-        description: |
-          Return all addresses stored in this wallet.
   - name: New address
     behaviors:
       - id: WALLET_WALLET_NEW_ADDRESS_001

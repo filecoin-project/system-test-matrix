@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "i18next": "^21.3.2",
+    "i18next": "^22.0.5",
     "i18next-browser-languagedetector": "^6.0.0",
     "react-i18next": "^11.0.0"
   }

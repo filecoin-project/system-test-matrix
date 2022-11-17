@@ -10,3 +10,4 @@ lang_mode: go
 indent_json: true
 # ignore paths
 ignore: ["extern"]
+single_file: ../repo-to-crawl/venus-gateway/proofevent/proof_event.go # for example, replace with different one

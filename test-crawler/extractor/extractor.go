@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"strings"
+	"unicode"
 
 	a "testsuites/annotations"
 	c "testsuites/collector"
@@ -26,6 +27,7 @@ const (
 	BLOCK                NodeType = "block"
 	CALL_EXPRESSION      NodeType = "call_expression"
 	IDENTIFIER           NodeType = "identifier"
+	METHOD_DECLARATION   NodeType = "method_declaration"
 )
 
 type Metadata struct {
@@ -81,6 +83,29 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileDa
 	return fileData, hasNoTests(!checkForExistanceOfTests(fData)), nil
 }
 
+func GetExportedFunctions(ctx context.Context, filePath string) ([]c.FunctionAnnotation, error) {
+	content, err := getFileContent(filePath)
+	if err != nil {
+		return nil, err
+	}
+
+	parser := sitter.NewParser()
+	parser.SetLanguage(golang.GetLanguage())
+
+	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
+	if err != nil {
+		return nil, err
+	}
+
+	cursor := sitter.NewTreeCursor(tree.RootNode())
+	fnsAnno, err := parseContentForPublicFunctions(content, cursor)
+	if err != nil {
+		return nil, err
+	}
+
+	return fnsAnno, nil
+}
+
 func getFileContent(filePath string) (content string, err error) {
 
 	file, err := os.Open(filePath)
@@ -103,9 +128,9 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	var annotationParser a.Parser
 
 	fileData.Metadata = getMetadata(content, treeCursor, &annotationParser)
-	functions := getFunctionNodes(content, treeCursor, &annotationParser)
+	funcNodes := getFunctionNodes(content, treeCursor, &annotationParser)
 
-	for _, function := range functions {
+	for _, function := range funcNodes {
 
 		behaviors := findBehaviorsFromNode(content, function.Node)
 		var callExpressions []string = nil
@@ -113,7 +138,7 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 			callExpressions = findCallExprFromNode(content, function.Node)
 		}
 
-		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, function.Name, behaviors, callExpressions))
+		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, function.Function.Name, behaviors, callExpressions))
 
 	}
 
@@ -163,9 +188,12 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	return &meta
 }
 
+// this method extracts functions and methods.
+// Function can have 2 types: function_declaration (for example contructor)
+// and method_declaration (can be exported and unexported)
 func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) (funcAnnoPair []struct {
-	Node *sitter.Node
-	Name string
+	Node     *sitter.Node
+	Function c.FunctionAnnotation
 }) {
 
 	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
@@ -204,16 +232,40 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 				}
 
 				funcAnnoPair = append(funcAnnoPair, struct {
-					Node *sitter.Node
-					Name string
+					Node     *sitter.Node
+					Function c.FunctionAnnotation
 				}{
 					Node: node,
-					Name: funcName,
+					Function: c.FunctionAnnotation{
+						Name: funcName,
+					},
 				})
 
 				node = nil
 				funcName = ""
 				isIgnored = false
+			}
+			if child.Type() == string(METHOD_DECLARATION) {
+				funcName = content[child.Child(2).StartByte():child.Child(2).EndByte()]
+				public := unicode.IsUpper(rune(funcName[0]))
+				params := ""
+				returnValues := ""
+				if child.Child(1).Type() == string(PARAMETER_LIST) {
+					params = content[child.Child(3).StartByte():child.Child(3).EndByte()]
+					returnValues = content[child.Child(4).StartByte():child.Child(4).EndByte()]
+				}
+				funcAnnoPair = append(funcAnnoPair, struct {
+					Node     *sitter.Node
+					Function c.FunctionAnnotation
+				}{
+					Node: child,
+					Function: c.FunctionAnnotation{
+						Name:         funcName,
+						Public:       public,
+						InputParams:  params,
+						ReturnValues: returnValues,
+					},
+				})
 			}
 			prevNode = child
 		}
@@ -300,4 +352,16 @@ func makeCollectorScenario(filePath string, funcName string, behaviors []a.Behav
 func makeID(filePath string, funcName string, behavior string) string {
 	hash := md5.Sum([]byte(fmt.Sprintf("%s_%s_%s", filePath, funcName, behavior)))
 	return string(hex.EncodeToString(hash[:]))
+}
+
+func parseContentForPublicFunctions(content string, cursor *sitter.TreeCursor) ([]c.FunctionAnnotation, error) {
+	var annotationParser a.Parser
+
+	var fnsAnno []c.FunctionAnnotation
+	functions := getFunctionNodes(content, cursor, &annotationParser)
+	for _, f := range functions {
+		fnsAnno = append(fnsAnno, f.Function)
+	}
+
+	return fnsAnno, nil
 }

@@ -26,6 +26,11 @@ func main() {
 
 	config := NewConfig()
 
+	// crawlRepoBehaviorsAndSaveToJSON(config)
+	crawlSingleFileForMethods(config)
+}
+
+func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 	allFiles := make(map[c.FileID]*c.TestFile)
 	var fileFunctions []c.Function
 
@@ -71,6 +76,27 @@ func main() {
 	result := filterFilesWhereChildIsRoot(allFiles)
 
 	Save(result, config.OutputMode, config.OutputDir, config.IndentJSON)
+}
+
+func crawlSingleFileForMethods(config Config) {
+	fns, err := extractPublicMethodsFromFile(context.Background(), config.SingleFile)
+	if err != nil {
+		fmt.Print(err)
+		os.Exit(1)
+	}
+	for _, fn := range fns {
+		fmt.Printf(
+			"name %s : public %v : params: %s : return values : %s\n",
+			fn.Name,
+			fn.Public,
+			fn.InputParams,
+			fn.ReturnValues,
+		)
+	}
+}
+
+func extractPublicMethodsFromFile(ctx context.Context, filePath string) ([]c.FunctionAnnotation, error) {
+	return ex.GetExportedFunctions(ctx, filePath)
 }
 
 func linkFiles(flist []c.Function) (links [][]FnLink) {

@@ -41,6 +41,11 @@ type FileData struct {
 	Functions []c.Function
 }
 
+type FunctionAnnotationNode struct {
+	Node     *sitter.Node
+	Function c.FunctionAnnotation
+}
+
 type hasNoTests bool
 
 func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileData, hasNoTests, error) {
@@ -98,7 +103,7 @@ func GetExportedFunctions(ctx context.Context, filePath string) ([]c.FunctionAnn
 	}
 
 	cursor := sitter.NewTreeCursor(tree.RootNode())
-	fnsAnno, err := parseContentForPublicFunctions(content, cursor)
+	fnsAnno, err := parseContentForFunctions(content, cursor)
 	if err != nil {
 		return nil, err
 	}
@@ -130,15 +135,15 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	fileData.Metadata = getMetadata(content, treeCursor, &annotationParser)
 	funcNodes := getFunctionNodes(content, treeCursor, &annotationParser)
 
-	for _, function := range funcNodes {
+	for _, funcNode := range funcNodes {
 
-		behaviors := findBehaviorsFromNode(content, function.Node)
+		behaviors := findBehaviorsFromNode(content, funcNode.Node)
 		var callExpressions []string = nil
 		if len(behaviors) > 0 {
-			callExpressions = findCallExprFromNode(content, function.Node)
+			callExpressions = findCallExprFromNode(content, funcNode.Node)
 		}
 
-		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, function.Function.Name, behaviors, callExpressions))
+		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, funcNode.Function.Name, behaviors, callExpressions))
 
 	}
 
@@ -188,13 +193,11 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	return &meta
 }
 
-// this method extracts functions and methods.
+// getFunctionNodes method extracts functions and methods.
 // Function can have 2 types: function_declaration (for example contructor)
-// and method_declaration (can be exported and unexported)
-func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) (funcAnnoPair []struct {
-	Node     *sitter.Node
-	Function c.FunctionAnnotation
-}) {
+// and method_declaration (can be exported and unexported).
+// Return value is a slice of FunctionAnnotationNode, where each node holds function's annotation.
+func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) (funcAnnoPair []FunctionAnnotationNode) {
 
 	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
 	node := &sitter.Node{}
@@ -231,10 +234,7 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					continue
 				}
 
-				funcAnnoPair = append(funcAnnoPair, struct {
-					Node     *sitter.Node
-					Function c.FunctionAnnotation
-				}{
+				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
 					Node: node,
 					Function: c.FunctionAnnotation{
 						Name: funcName,
@@ -245,6 +245,23 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 				funcName = ""
 				isIgnored = false
 			}
+			/*
+				Take a look at this function for example:
+				*********
+				func (e *ProofEventStream) ListenProofEvent(
+					ctx context.Context,
+					policy *types2.ProofRegisterPolicy)
+				(<-chan *types2.RequestEvent, error){...}
+				*********
+				First iteration through children nodes:
+				Child.Type = method_declaration
+				Child.Value = whole function body func(*x)(a,b)c{...}
+
+				child.Child(1) is a first part of function declaration, and has type of parameter_list: (e *ProofEventStream)
+				child.Child(2): has type of field_identifier  and represents function's name: ListenProofEvent
+				child.Child(3): has type parameter_list and represents input parameters:  (ctx context.Context, policy *types2.ProofRegisterPolicy)
+				child.Child(4): has type parameter_list and represent return parameters:  (<-chan *types2.RequestEvent, error)
+			*/
 			if child.Type() == string(METHOD_DECLARATION) {
 				funcName = content[child.Child(2).StartByte():child.Child(2).EndByte()]
 				public := unicode.IsUpper(rune(funcName[0]))
@@ -254,10 +271,7 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					params = content[child.Child(3).StartByte():child.Child(3).EndByte()]
 					returnValues = content[child.Child(4).StartByte():child.Child(4).EndByte()]
 				}
-				funcAnnoPair = append(funcAnnoPair, struct {
-					Node     *sitter.Node
-					Function c.FunctionAnnotation
-				}{
+				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
 					Node: child,
 					Function: c.FunctionAnnotation{
 						Name:         funcName,
@@ -354,13 +368,15 @@ func makeID(filePath string, funcName string, behavior string) string {
 	return string(hex.EncodeToString(hash[:]))
 }
 
-func parseContentForPublicFunctions(content string, cursor *sitter.TreeCursor) ([]c.FunctionAnnotation, error) {
+// parseContentForFunctions accepts a content which represents whole golang file as a string,
+// parses it and returns a slice of function annotations (including exported and unexported ones).
+func parseContentForFunctions(content string, cursor *sitter.TreeCursor) ([]c.FunctionAnnotation, error) {
 	var annotationParser a.Parser
 
 	var fnsAnno []c.FunctionAnnotation
-	functions := getFunctionNodes(content, cursor, &annotationParser)
-	for _, f := range functions {
-		fnsAnno = append(fnsAnno, f.Function)
+	funcNodes := getFunctionNodes(content, cursor, &annotationParser)
+	for _, funcNode := range funcNodes {
+		fnsAnno = append(fnsAnno, funcNode.Function)
 	}
 
 	return fnsAnno, nil

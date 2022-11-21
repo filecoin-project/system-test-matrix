@@ -26,8 +26,8 @@ func main() {
 
 	config := NewConfig()
 
-	// crawlRepoBehaviorsAndSaveToJSON(config)
-	crawlSingleFileForMethods(config)
+	crawlRepoBehaviorsAndSaveToJSON(config)
+	crawlSingleFileForMethods("../repo-to-crawl/system/subsystem/file.go") // // ex: ../repo-to-crawl/venus-gateway/proofevent/proof_event.go
 }
 
 func crawlRepoBehaviorsAndSaveToJSON(config Config) {
@@ -78,8 +78,10 @@ func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 	Save(result, config.OutputMode, config.OutputDir, config.IndentJSON)
 }
 
-func crawlSingleFileForMethods(config Config) {
-	fns, err := extractPublicMethodsFromFile(context.Background(), config.SingleFile)
+// crawlSingleFileForMethods accepts path of single go file,
+// and prints extracted methods out of it.
+func crawlSingleFileForMethods(path string) {
+	fns, err := extractPublicMethodsFromFile(context.Background(), path)
 	if err != nil {
 		fmt.Print(err)
 		os.Exit(1)

@@ -253,18 +253,13 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					policy *types2.ProofRegisterPolicy)
 				(<-chan *types2.RequestEvent, error){...}
 				*********
-				First iteration through children nodes:
-				Child.Type = method_declaration
-				Child.Value = whole function body func(*x)(a,b)c{...}
-
-				child.Child(1) is a first part of function declaration, and has type of parameter_list: (e *ProofEventStream)
-				child.Child(2): has type of field_identifier  and represents function's name: ListenProofEvent
-				child.Child(3): has type parameter_list and represents input parameters:  (ctx context.Context, policy *types2.ProofRegisterPolicy)
-				child.Child(4): has type parameter_list and represent return parameters:  (<-chan *types2.RequestEvent, error)
+				child.Child(1) is a first part of function declaration (e *ProofEventStream)
+				child.Child(2): field_identifier  'ListenProofEvent'
+				child.Child(3): parameter_list:  (ctx context.Context, policy *types2.ProofRegisterPolicy)
+				child.Child(4): parameter_list:  (<-chan *types2.RequestEvent, error)
 			*/
 			if child.Type() == string(METHOD_DECLARATION) {
 				funcName = content[child.Child(2).StartByte():child.Child(2).EndByte()]
-				public := unicode.IsUpper(rune(funcName[0]))
 				params := ""
 				returnValues := ""
 				if child.Child(1).Type() == string(PARAMETER_LIST) {
@@ -275,7 +270,7 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					Node: child,
 					Function: c.FunctionAnnotation{
 						Name:         funcName,
-						Public:       public,
+						Public:       isPublic(funcName),
 						InputParams:  params,
 						ReturnValues: returnValues,
 					},
@@ -380,4 +375,8 @@ func parseContentForFunctions(content string, cursor *sitter.TreeCursor) ([]c.Fu
 	}
 
 	return fnsAnno, nil
+}
+
+func isPublic(funcName string) bool {
+	return unicode.IsUpper(rune(funcName[0]))
 }

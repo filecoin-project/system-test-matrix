@@ -21,7 +21,6 @@ type Config struct {
 	Language   string     `yaml:"lang_mode"`
 	IndentJSON bool       `yaml:"indent_json"`
 	Ignore     []string   `yaml:"ignore"`
-	SingleFile string     `yaml:"single_file"`
 }
 
 const filename string = "config.yaml"

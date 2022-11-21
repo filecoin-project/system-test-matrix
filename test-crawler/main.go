@@ -27,7 +27,6 @@ func main() {
 	config := NewConfig()
 
 	crawlRepoBehaviorsAndSaveToJSON(config)
-	crawlSingleFileForMethods("../repo-to-crawl/system/subsystem/file.go") // // ex: ../repo-to-crawl/venus-gateway/proofevent/proof_event.go
 }
 
 func crawlRepoBehaviorsAndSaveToJSON(config Config) {

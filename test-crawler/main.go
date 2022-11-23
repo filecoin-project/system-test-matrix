@@ -26,6 +26,10 @@ func main() {
 
 	config := NewConfig()
 
+	crawlRepoBehaviorsAndSaveToJSON(config)
+}
+
+func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 	allFiles := make(map[c.FileID]*c.TestFile)
 	var fileFunctions []c.Function
 
@@ -71,6 +75,29 @@ func main() {
 	result := filterFilesWhereChildIsRoot(allFiles)
 
 	Save(result, config.OutputMode, config.OutputDir, config.IndentJSON)
+}
+
+// crawlSingleFileForMethods accepts path of single go file,
+// and prints extracted methods out of it.
+func crawlSingleFileForMethods(path string) {
+	fns, err := extractPublicMethodsFromFile(context.Background(), path)
+	if err != nil {
+		fmt.Print(err)
+		os.Exit(1)
+	}
+	for _, fn := range fns {
+		fmt.Printf(
+			"name %s : public %v : params: %s : return values : %s\n",
+			fn.Name,
+			fn.Public,
+			fn.InputParams,
+			fn.ReturnValues,
+		)
+	}
+}
+
+func extractPublicMethodsFromFile(ctx context.Context, filePath string) ([]c.FunctionAnnotation, error) {
+	return ex.GetExportedFunctions(ctx, filePath)
 }
 
 func linkFiles(flist []c.Function) (links [][]FnLink) {

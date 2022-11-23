@@ -28,6 +28,14 @@ type Function struct {
 	IsTesting       bool `json:"-"`
 }
 
+type FunctionAnnotation struct {
+	Name         string `yaml:"name"`
+	InputParams  string `yaml:"inputParams"`
+	ReturnValues string `yaml:"returnValues"`
+	Description  string
+	Public       bool
+}
+
 func GetTestFiles(root string, ignore []string) (files []TestFile, err error) {
 	fileArray, err := listTestFiles(root, ignore)
 	if err != nil {

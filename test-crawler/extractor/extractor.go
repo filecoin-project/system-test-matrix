@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"strings"
+	"unicode"
 
 	a "testsuites/annotations"
 	c "testsuites/collector"
@@ -26,6 +27,7 @@ const (
 	BLOCK                NodeType = "block"
 	CALL_EXPRESSION      NodeType = "call_expression"
 	IDENTIFIER           NodeType = "identifier"
+	METHOD_DECLARATION   NodeType = "method_declaration"
 )
 
 type Metadata struct {
@@ -37,6 +39,11 @@ type Metadata struct {
 type FileData struct {
 	Metadata  *Metadata
 	Functions []c.Function
+}
+
+type FunctionAnnotationNode struct {
+	Node     *sitter.Node
+	Function c.FunctionAnnotation
 }
 
 type hasNoTests bool
@@ -81,6 +88,29 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileDa
 	return fileData, hasNoTests(!checkForExistanceOfTests(fData)), nil
 }
 
+func GetExportedFunctions(ctx context.Context, filePath string) ([]c.FunctionAnnotation, error) {
+	content, err := getFileContent(filePath)
+	if err != nil {
+		return nil, err
+	}
+
+	parser := sitter.NewParser()
+	parser.SetLanguage(golang.GetLanguage())
+
+	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
+	if err != nil {
+		return nil, err
+	}
+
+	cursor := sitter.NewTreeCursor(tree.RootNode())
+	fnsAnno, err := parseContentForFunctions(content, cursor)
+	if err != nil {
+		return nil, err
+	}
+
+	return fnsAnno, nil
+}
+
 func getFileContent(filePath string) (content string, err error) {
 
 	file, err := os.Open(filePath)
@@ -103,17 +133,17 @@ func parseContent(content string, treeCursor *sitter.TreeCursor, filePath string
 	var annotationParser a.Parser
 
 	fileData.Metadata = getMetadata(content, treeCursor, &annotationParser)
-	functions := getFunctionNodes(content, treeCursor, &annotationParser)
+	funcNodes := getFunctionNodes(content, treeCursor, &annotationParser)
 
-	for _, function := range functions {
+	for _, funcNode := range funcNodes {
 
-		behaviors := findBehaviorsFromNode(content, function.Node)
+		behaviors := findBehaviorsFromNode(content, funcNode.Node)
 		var callExpressions []string = nil
 		if len(behaviors) > 0 {
-			callExpressions = findCallExprFromNode(content, function.Node)
+			callExpressions = findCallExprFromNode(content, funcNode.Node)
 		}
 
-		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, function.Name, behaviors, callExpressions))
+		fileData.Functions = append(fileData.Functions, makeCollectorScenario(filePath, funcNode.Function.Name, behaviors, callExpressions))
 
 	}
 
@@ -163,10 +193,11 @@ func getMetadata(content string, treeCursor *sitter.TreeCursor, parser *a.Parser
 	return &meta
 }
 
-func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) (funcAnnoPair []struct {
-	Node *sitter.Node
-	Name string
-}) {
+// getFunctionNodes method extracts functions and methods.
+// Function can have 2 types: function_declaration (for example contructor)
+// and method_declaration (can be exported and unexported).
+// Return value is a slice of FunctionAnnotationNode, where each node holds function's annotation.
+func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.Parser) (funcAnnoPair []FunctionAnnotationNode) {
 
 	numChildsRootNode := treeCursor.CurrentNode().ChildCount()
 	node := &sitter.Node{}
@@ -203,17 +234,47 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					continue
 				}
 
-				funcAnnoPair = append(funcAnnoPair, struct {
-					Node *sitter.Node
-					Name string
-				}{
+				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
 					Node: node,
-					Name: funcName,
+					Function: c.FunctionAnnotation{
+						Name: funcName,
+					},
 				})
 
 				node = nil
 				funcName = ""
 				isIgnored = false
+			}
+			/*
+				Take a look at this function for example:
+				*********
+				func (e *ProofEventStream) ListenProofEvent(
+					ctx context.Context,
+					policy *types2.ProofRegisterPolicy)
+				(<-chan *types2.RequestEvent, error){...}
+				*********
+				child.Child(1) is a first part of function declaration (e *ProofEventStream)
+				child.Child(2): field_identifier  'ListenProofEvent'
+				child.Child(3): parameter_list:  (ctx context.Context, policy *types2.ProofRegisterPolicy)
+				child.Child(4): parameter_list:  (<-chan *types2.RequestEvent, error)
+			*/
+			if child.Type() == string(METHOD_DECLARATION) {
+				funcName = content[child.Child(2).StartByte():child.Child(2).EndByte()]
+				params := ""
+				returnValues := ""
+				if child.Child(1).Type() == string(PARAMETER_LIST) {
+					params = content[child.Child(3).StartByte():child.Child(3).EndByte()]
+					returnValues = content[child.Child(4).StartByte():child.Child(4).EndByte()]
+				}
+				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
+					Node: child,
+					Function: c.FunctionAnnotation{
+						Name:         funcName,
+						Public:       isPublic(funcName),
+						InputParams:  params,
+						ReturnValues: returnValues,
+					},
+				})
 			}
 			prevNode = child
 		}
@@ -300,4 +361,22 @@ func makeCollectorScenario(filePath string, funcName string, behaviors []a.Behav
 func makeID(filePath string, funcName string, behavior string) string {
 	hash := md5.Sum([]byte(fmt.Sprintf("%s_%s_%s", filePath, funcName, behavior)))
 	return string(hex.EncodeToString(hash[:]))
+}
+
+// parseContentForFunctions accepts a content which represents whole golang file as a string,
+// parses it and returns a slice of function annotations (including exported and unexported ones).
+func parseContentForFunctions(content string, cursor *sitter.TreeCursor) ([]c.FunctionAnnotation, error) {
+	var annotationParser a.Parser
+
+	var fnsAnno []c.FunctionAnnotation
+	funcNodes := getFunctionNodes(content, cursor, &annotationParser)
+	for _, funcNode := range funcNodes {
+		fnsAnno = append(fnsAnno, funcNode.Function)
+	}
+
+	return fnsAnno, nil
+}
+
+func isPublic(funcName string) bool {
+	return unicode.IsUpper(rune(funcName[0]))
 }

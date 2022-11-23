@@ -28,6 +28,8 @@ const (
 	CALL_EXPRESSION      NodeType = "call_expression"
 	IDENTIFIER           NodeType = "identifier"
 	METHOD_DECLARATION   NodeType = "method_declaration"
+	POINTER_TYPE         NodeType = "pointer_type"
+	TYPE_IDENTIFIER      NodeType = "type_identifier"
 )
 
 type Metadata struct {
@@ -262,8 +264,19 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 				funcName = content[child.Child(2).StartByte():child.Child(2).EndByte()]
 				params := ""
 				returnValues := ""
-				if child.Child(1).Type() == string(PARAMETER_LIST) {
+				if child.Child(3).Type() == string(PARAMETER_LIST) {
 					params = content[child.Child(3).StartByte():child.Child(3).EndByte()]
+				}
+				returnValueType := child.Child(4).Type()
+				/* Return value can be in one of these 3 forms
+				- (type1, type2) ->  PARAMETER_LIST
+				- *type1 -> POINTER_TYPE
+				- type1 ->  TYPE_IDENTIFIER
+				that's why we need to check all of these conditions.
+				*/
+				if returnValueType == string(PARAMETER_LIST) ||
+					returnValueType == string(POINTER_TYPE) ||
+					returnValueType == string(TYPE_IDENTIFIER) {
 					returnValues = content[child.Child(4).StartByte():child.Child(4).EndByte()]
 				}
 				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{

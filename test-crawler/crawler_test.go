@@ -1,19 +1,18 @@
 package main
 
 import (
-	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func TestExtractPublicMethodsFromFile(t *testing.T) {
-	fnsAnn, err := extractPublicMethodsFromFile(context.Background(), "./mocks/event.go")
+func TestCrawlSingleFileForFunctions(t *testing.T) {
+	fnsAnn, err := crawlSingleFileForFunctions("./mocks/event.go")
 	if err != nil {
 		t.Errorf("got error: %v", err.Error())
 	}
 
-	if len(fnsAnn) != 2 {
+	if len(fnsAnn) != 4 {
 		t.Errorf("got %q, expected %q methods", len(fnsAnn), 2)
 	}
 
@@ -24,4 +23,22 @@ func TestExtractPublicMethodsFromFile(t *testing.T) {
 	assert.Equal(t, "HelloEventWithParameter", fnsAnn[1].Name)
 	assert.Equal(t, "(param string)", fnsAnn[1].InputParams)
 	assert.Equal(t, "(string, error)", fnsAnn[1].ReturnValues)
+
+	assert.Equal(t, "FunctionWithoutParameters", fnsAnn[2].Name)
+	assert.Equal(t, "()", fnsAnn[2].InputParams)
+	assert.Equal(t, "", fnsAnn[2].ReturnValues)
+
+	assert.Equal(t, "FunctionWithPointerReturnValue", fnsAnn[3].Name)
+	assert.Equal(t, "()", fnsAnn[3].InputParams)
+	assert.Equal(t, "*Event", fnsAnn[3].ReturnValues)
+}
+
+func TestCrawlFolderForSystemMethods(t *testing.T) {
+	systemMethods, err := crawlFolderForSystemMethods("./mocks")
+	if err != nil {
+		t.Errorf("got error: %v", err.Error())
+	}
+
+	assert.Equal(t, systemMethods.System, "mocks")
+	assert.Equal(t, 6, len(systemMethods.Methods))
 }

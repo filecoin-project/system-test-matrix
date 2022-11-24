@@ -114,10 +114,8 @@ func makeYAML(ctx context.Context, filePath string) error {
 		os.Exit(1)
 	}
 
-	for i, fn := range publicMethods {
-		i++
-		fn.ID = i
-		publicMethods = append(publicMethods[1:], fn)
+	for i := 0; i < len(publicMethods); i++ {
+		publicMethods[i].ID = i
 	}
 
 	yamlData, err := y.Marshal(&publicMethods)

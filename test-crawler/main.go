@@ -30,6 +30,7 @@ func main() {
 	config := NewConfig()
 
 	crawlRepoBehaviorsAndSaveToJSON(config)
+
 }
 
 func crawlRepoBehaviorsAndSaveToJSON(config Config) {
@@ -105,7 +106,7 @@ func extractPublicMethodsFromFile(ctx context.Context, filePath string) ([]c.Fun
 }
 
 // makeYAML will make yaml file from public methods.
-func makeYAML(ctx context.Context, filePath string) ([]byte, error) {
+func makeYAML(ctx context.Context, filePath string) error {
 
 	publicMethods, err := extractPublicMethodsFromFile(ctx, filePath)
 	if err != nil {
@@ -113,12 +114,10 @@ func makeYAML(ctx context.Context, filePath string) ([]byte, error) {
 		os.Exit(1)
 	}
 
-	var count int
-	for _, fn := range publicMethods {
-		count++
-		fn.ID = count
+	for i, fn := range publicMethods {
+		i++
+		fn.ID = i
 		publicMethods = append(publicMethods[1:], fn)
-
 	}
 
 	yamlData, err := y.Marshal(&publicMethods)
@@ -131,7 +130,7 @@ func makeYAML(ctx context.Context, filePath string) ([]byte, error) {
 	if err != nil {
 		panic("Unable to write data into the file")
 	}
-	return yamlData, nil
+	return nil
 }
 
 func linkFiles(flist []c.Function) (links [][]FnLink) {

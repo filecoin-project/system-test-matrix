@@ -29,6 +29,7 @@ type Function struct {
 }
 
 type FunctionAnnotation struct {
+	ID           int    `yaml:"id"`
 	Name         string `yaml:"name"`
 	InputParams  string `yaml:"inputParams"`
 	ReturnValues string `yaml:"returnValues"`

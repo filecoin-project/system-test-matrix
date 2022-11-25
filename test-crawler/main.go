@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -13,6 +14,8 @@ import (
 	a "testsuites/annotations"
 	c "testsuites/collector"
 	ex "testsuites/extractor"
+
+	y "gopkg.in/yaml.v2"
 )
 
 type FnLink struct {
@@ -27,6 +30,7 @@ func main() {
 	config := NewConfig()
 
 	crawlRepoBehaviorsAndSaveToJSON(config)
+
 }
 
 func crawlRepoBehaviorsAndSaveToJSON(config Config) {
@@ -79,8 +83,8 @@ func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 
 // crawlSingleFileForMethods accepts path of single go file,
 // and prints extracted methods out of it.
-func crawlSingleFileForFunctions(path string) ([]c.FunctionAnnotation, error) {
-	fns, err := ex.GetExportedFunctions(context.Background(), path)
+func crawlSingleFileForFunctions(ctx context.Context, path string) ([]c.FunctionAnnotation, error) {
+	fns, err := ex.GetExportedFunctions(ctx, path)
 	if err != nil {
 		return nil, fmt.Errorf("error extracting public methods from file: %w", err)
 	}
@@ -102,8 +106,9 @@ func crawlFolderForSystemMethods(system string) (*c.SystemMethods, error) {
 		Methods: make([]c.FunctionAnnotation, 0),
 	}
 
+	ctx := context.Background()
 	for _, file := range files {
-		fns, err := crawlSingleFileForFunctions(file)
+		fns, err := crawlSingleFileForFunctions(ctx, file)
 		if err != nil {
 			return nil, fmt.Errorf("can not crawl file: %s, err: %w", file, err)
 		}
@@ -111,6 +116,32 @@ func crawlFolderForSystemMethods(system string) (*c.SystemMethods, error) {
 	}
 
 	return &systemFunctions, nil
+}
+
+// makeYAML will make yaml file from public methods.
+func makeYAML(ctx context.Context, filePath string) error {
+
+	publicMethods, err := crawlSingleFileForFunctions(ctx, filePath)
+	if err != nil {
+		fmt.Print(err)
+		os.Exit(1)
+	}
+
+	for i := 0; i < len(publicMethods); i++ {
+		publicMethods[i].ID = i
+	}
+
+	yamlData, err := y.Marshal(&publicMethods)
+	if err != nil {
+		fmt.Printf("Error while Marshaling. %v", err)
+	}
+
+	fileName := "test.yaml"
+	err = ioutil.WriteFile(fileName, yamlData, 0644)
+	if err != nil {
+		panic("Unable to write data into the file")
+	}
+	return nil
 }
 
 func linkFiles(flist []c.Function) (links [][]FnLink) {

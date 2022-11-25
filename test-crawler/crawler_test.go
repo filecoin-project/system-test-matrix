@@ -32,13 +32,3 @@ func TestCrawlSingleFileForFunctions(t *testing.T) {
 	assert.Equal(t, "()", fnsAnn[3].InputParams)
 	assert.Equal(t, "*Event", fnsAnn[3].ReturnValues)
 }
-
-func TestCrawlFolderForSystemMethods(t *testing.T) {
-	systemMethods, err := crawlFolderForSystemMethods("./mocks")
-	if err != nil {
-		t.Errorf("got error: %v", err.Error())
-	}
-
-	assert.Equal(t, systemMethods.System, "mocks")
-	assert.Equal(t, 6, len(systemMethods.Methods))
-}

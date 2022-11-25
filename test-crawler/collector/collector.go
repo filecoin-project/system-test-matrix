@@ -104,7 +104,7 @@ func ListGoFilesInFolder(root string, ignore []string) (system string, files []s
 			}
 
 			// If it's directory, get the name of system.
-			if info.IsDir() {
+			if root == path && info.IsDir() {
 				system = info.Name()
 			}
 

@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -13,6 +14,8 @@ import (
 	a "testsuites/annotations"
 	c "testsuites/collector"
 	ex "testsuites/extractor"
+
+	y "gopkg.in/yaml.v2"
 )
 
 type FnLink struct {
@@ -27,6 +30,7 @@ func main() {
 	config := NewConfig()
 
 	crawlRepoBehaviorsAndSaveToJSON(config)
+
 }
 
 func crawlRepoBehaviorsAndSaveToJSON(config Config) {
@@ -87,7 +91,8 @@ func crawlSingleFileForMethods(path string) {
 	}
 	for _, fn := range fns {
 		fmt.Printf(
-			"name %s : public %v : params: %s : return values : %s\n",
+			"ID %d : name %s : public %v : params: %s : return values : %s\n",
+			fn.ID,
 			fn.Name,
 			fn.Public,
 			fn.InputParams,
@@ -98,6 +103,32 @@ func crawlSingleFileForMethods(path string) {
 
 func extractPublicMethodsFromFile(ctx context.Context, filePath string) ([]c.FunctionAnnotation, error) {
 	return ex.GetExportedFunctions(ctx, filePath)
+}
+
+// makeYAML will make yaml file from public methods.
+func makeYAML(ctx context.Context, filePath string) error {
+
+	publicMethods, err := extractPublicMethodsFromFile(ctx, filePath)
+	if err != nil {
+		fmt.Print(err)
+		os.Exit(1)
+	}
+
+	for i := 0; i < len(publicMethods); i++ {
+		publicMethods[i].ID = i
+	}
+
+	yamlData, err := y.Marshal(&publicMethods)
+	if err != nil {
+		fmt.Printf("Error while Marshaling. %v", err)
+	}
+
+	fileName := "test.yaml"
+	err = ioutil.WriteFile(fileName, yamlData, 0644)
+	if err != nil {
+		panic("Unable to write data into the file")
+	}
+	return nil
 }
 
 func linkFiles(flist []c.Function) (links [][]FnLink) {

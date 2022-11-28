@@ -1,6 +1,6 @@
 
 run: 
-	go run *.go
+	go run main.go config.go
 
 copy-output:
-	go run *.go > ../frontend/apps/web/src/tests.json
+	go run main.go config.go > ../frontend/apps/web/src/tests.json

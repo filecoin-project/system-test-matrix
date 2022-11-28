@@ -3,7 +3,6 @@ package collector
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
 	"strings"
 	"testing"
 
@@ -24,7 +23,6 @@ func TestListGoFilesInFolder(t *testing.T) {
 		systemName := splitedFolderName[len(splitedFolderName)-1]
 		assert.Equal(t, system, systemName)
 		assert.Equal(t, 2, len(files))
-		os.Remove(tempDir)
 	})
 
 	t.Run("Read golang files excluding everything else", func(t *testing.T) {
@@ -41,6 +39,5 @@ func TestListGoFilesInFolder(t *testing.T) {
 		systemName := splitedFolderName[len(splitedFolderName)-1]
 		assert.Equal(t, system, systemName)
 		assert.Equal(t, 2, len(files))
-		os.Remove(tempDir)
 	})
 }

@@ -83,32 +83,45 @@ func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 
 // crawlSingleFileForMethods accepts path of single go file,
 // and prints extracted methods out of it.
-func crawlSingleFileForMethods(path string) {
-	fns, err := extractPublicMethodsFromFile(context.Background(), path)
+func crawlSingleFileForFunctions(ctx context.Context, path string) ([]c.FunctionAnnotation, error) {
+	fns, err := ex.GetExportedFunctions(ctx, path)
 	if err != nil {
-		fmt.Print(err)
-		os.Exit(1)
+		return nil, fmt.Errorf("error extracting public methods from file: %w", err)
 	}
-	for _, fn := range fns {
-		fmt.Printf(
-			"ID %d : name %s : public %v : params: %s : return values : %s\n",
-			fn.ID,
-			fn.Name,
-			fn.Public,
-			fn.InputParams,
-			fn.ReturnValues,
-		)
-	}
+
+	return fns, nil
 }
 
-func extractPublicMethodsFromFile(ctx context.Context, filePath string) ([]c.FunctionAnnotation, error) {
-	return ex.GetExportedFunctions(ctx, filePath)
+// crawlFolderForSystemMethods accepts folder, which represents a system that will be crawled for
+// all of his methods.
+// ex: "../repo-to-crawl/venus-gateway/proofevent"
+func crawlFolderForSystemMethods(system string) (*c.SystemMethods, error) {
+	system, files, err := c.ListGoFilesInFolder(system, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	systemFunctions := c.SystemMethods{
+		System:  system,
+		Methods: make([]c.FunctionAnnotation, 0),
+	}
+
+	ctx := context.Background()
+	for _, file := range files {
+		fns, err := crawlSingleFileForFunctions(ctx, file)
+		if err != nil {
+			return nil, fmt.Errorf("can not crawl file: %s, err: %w", file, err)
+		}
+		systemFunctions.Methods = append(systemFunctions.Methods, fns...)
+	}
+
+	return &systemFunctions, nil
 }
 
 // makeYAML will make yaml file from public methods.
 func makeYAML(ctx context.Context, filePath string) error {
 
-	publicMethods, err := extractPublicMethodsFromFile(ctx, filePath)
+	publicMethods, err := crawlSingleFileForFunctions(ctx, filePath)
 	if err != nil {
 		fmt.Print(err)
 		os.Exit(1)

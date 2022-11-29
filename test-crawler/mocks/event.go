@@ -29,3 +29,13 @@ func (e *Event) HelloEventWithParameter(param string) (string, error) {
 
 	return fmt.Sprintf("HelloEventWithParameter: %v", param), nil
 }
+
+// FunctionWithoutParameters...
+func (e *Event) FunctionWithoutParameters() {
+
+}
+
+// FunctionWithPointerReturnValue returns a simple pointer value.
+func (e *Event) FunctionWithPointerReturnValue() *Event {
+	return &Event{}
+}

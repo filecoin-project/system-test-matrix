@@ -279,14 +279,18 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					returnValueType == string(TYPE_IDENTIFIER) {
 					returnValues = content[child.Child(4).StartByte():child.Child(4).EndByte()]
 				}
+				funcAnn := c.FunctionAnnotation{
+					Name:         funcName,
+					Public:       isPublic(funcName),
+					InputParams:  params,
+					ReturnValues: returnValues,
+				}
+				funcAnn.RegenerateName()
+				funcAnn.RegenerateDescription()
+
 				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
-					Node: child,
-					Function: c.FunctionAnnotation{
-						Name:         funcName,
-						Public:       isPublic(funcName),
-						InputParams:  params,
-						ReturnValues: returnValues,
-					},
+					Node:     child,
+					Function: funcAnn,
 				})
 			}
 			prevNode = child

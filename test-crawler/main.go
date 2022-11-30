@@ -37,8 +37,8 @@ func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 	allFiles := make(map[c.FileID]*c.TestFile)
 	var fileFunctions []c.Function
 
-	for _, path := range config.Paths {
-		files, err := c.GetTestFiles(path, config.Ignore)
+	for _, path := range config.TestCrawlerPaths {
+		files, err := c.GetTestFiles(path, config.TestCrawlerIgnore)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -78,7 +78,7 @@ func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 
 	result := filterFilesWhereChildIsRoot(allFiles)
 
-	Save(result, config.OutputMode, config.OutputDir, config.IndentJSON)
+	Save(result, config.TestCrawlerOutputMode, config.TestCrawlerOutputDir, config.TestCrawlerIndentJSON)
 }
 
 // crawlSingleFileForMethods accepts path of single go file,

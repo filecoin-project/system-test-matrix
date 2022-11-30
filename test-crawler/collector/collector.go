@@ -130,28 +130,30 @@ func ListGoFilesInFolder(root string, ignore []string) (system string, files []s
 	return "", nil, nil
 }
 
-// RegenerateName regenerates name adding underscore and usecase index
+// GeneratMethodName generates name adding underscore and usecase index
 // ex: name: ListenProofRequest -> LISTEN_PROOF_REQUEST_001
-func (f *FunctionAnnotation) RegenerateName() {
+func GeneratMethodName(funcName string) string {
 	usecase := "001" // in the future it will be autoincremented depending how many return cases we have.
 	buf := &bytes.Buffer{}
-	for i, rune := range f.Name {
+	for i, rune := range funcName {
 		if unicode.IsUpper(rune) && i > 0 {
 			buf.WriteRune('_')
 		}
 		buf.WriteRune(rune)
 	}
 
-	f.Name = fmt.Sprintf("%s_%s", strings.ToUpper(buf.String()), usecase)
+	return fmt.Sprintf("%s_%s", strings.ToUpper(buf.String()), usecase)
 }
 
-// GenerateDescription generates description based on inputParams, returnParams
-func (f *FunctionAnnotation) RegenerateDescription() {
+// GenerateMethodDescription generates description based on inputParams, returnParams
+func GenerateMethodDescription(f FunctionAnnotation) string {
+	var dsc string
 	if f.Description == "" {
+		dsc = "Function description not set."
 		if (f.InputParams != "" && f.InputParams != "()") && f.ReturnValues != "" {
-			f.Description = fmt.Sprintf(`Given a %s, returns %s`, f.InputParams, f.ReturnValues)
-		} else if (f.InputParams == "" || f.InputParams == "()") && f.ReturnValues != "" {
-			f.Description = fmt.Sprintf(`Returns %s`, f.ReturnValues)
+			dsc = fmt.Sprintf(`Given a %s, returns %s`, f.InputParams, f.ReturnValues)
 		}
 	}
+
+	return dsc
 }

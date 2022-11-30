@@ -285,8 +285,8 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					InputParams:  params,
 					ReturnValues: returnValues,
 				}
-				funcAnn.RegenerateName()
-				funcAnn.RegenerateDescription()
+				funcAnn.Name = c.GeneratMethodName(funcAnn.Name)
+				funcAnn.Description = c.GenerateMethodDescription(funcAnn)
 
 				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
 					Node:     child,

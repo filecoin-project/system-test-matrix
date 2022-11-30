@@ -130,9 +130,9 @@ func ListGoFilesInFolder(root string, ignore []string) (system string, files []s
 	return "", nil, nil
 }
 
-// GeneratMethodName generates name adding underscore and usecase index
+// GenerateMethodName generates name adding underscore and usecase index
 // ex: name: ListenProofRequest -> LISTEN_PROOF_REQUEST_001
-func GeneratMethodName(funcName string) string {
+func GenerateMethodName(funcName string) string {
 	usecase := "001" // in the future it will be autoincremented depending how many return cases we have.
 	buf := &bytes.Buffer{}
 	for i, rune := range funcName {
@@ -152,6 +152,8 @@ func GenerateMethodDescription(f FunctionAnnotation) string {
 		dsc = "Function description not set."
 		if (f.InputParams != "" && f.InputParams != "()") && f.ReturnValues != "" {
 			dsc = fmt.Sprintf(`Given a %s, returns %s`, f.InputParams, f.ReturnValues)
+		} else if (f.InputParams == "" || f.InputParams == "()") && f.ReturnValues != "" {
+			dsc = fmt.Sprintf(`Returns %s`, f.ReturnValues)
 		}
 	}
 

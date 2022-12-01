@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v2"
 )
 
@@ -23,19 +24,22 @@ func TestNewConfig(t *testing.T) {
 		BehaviorGenOutputDir: "output/catalogue",
 	}
 
-	yamlFile := "config_test.yaml"
+	f, err := ioutil.TempFile("", "config-test.yml")
+	require.Nil(t, err)
+	defer f.Close()
+	defer os.Remove(f.Name())
+
 	configBytes, err := yaml.Marshal(&cfg)
 	assert.NoError(t, err)
 
-	assert.NoError(t, ioutil.WriteFile(yamlFile, configBytes, 0644))
+	assert.NoError(t, ioutil.WriteFile(f.Name(), configBytes, 0644))
 
 	var configFromFile Config
-	fileContent, err := ioutil.ReadFile(yamlFile)
+	fileContent, err := ioutil.ReadFile(f.Name())
 	assert.NoError(t, err)
 
 	err = yaml.Unmarshal(fileContent, &configFromFile)
 	assert.NoError(t, err)
 
 	assert.Equal(t, cfg, configFromFile)
-	os.Remove(yamlFile)
 }

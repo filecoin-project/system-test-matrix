@@ -33,7 +33,7 @@ type FunctionAnnotation struct {
 	Name         string `yaml:"name"`
 	InputParams  string `yaml:"inputParams"`
 	ReturnValues string `yaml:"returnValues"`
-	Description  string
+	Description  string `yaml:"description"`
 	Public       bool
 }
 

@@ -24,7 +24,7 @@ func TestNewConfig(t *testing.T) {
 		BehaviorGenOutputDir: "output/catalogue",
 	}
 
-	f, err := ioutil.TempFile("", "config-test.yml")
+	f, err := os.CreateTemp("", "config-test.yml")
 	require.Nil(t, err)
 	defer f.Close()
 	defer os.Remove(f.Name())

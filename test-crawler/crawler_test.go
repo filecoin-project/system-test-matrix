@@ -21,18 +21,22 @@ func TestCrawlSingleFileForFunctions(t *testing.T) {
 		t.Errorf("got %q, expected %q methods", len(fnsAnn), 2)
 	}
 
+	assert.Equal(t, "", fnsAnn[0].Description)
 	assert.Equal(t, "HelloEvent", fnsAnn[0].Name)
 	assert.Equal(t, "()", fnsAnn[0].InputParams)      // input param
 	assert.Equal(t, "string", fnsAnn[0].ReturnValues) // return param
 
+	assert.Equal(t, "", fnsAnn[1].Description)
 	assert.Equal(t, "HelloEventWithParameter", fnsAnn[1].Name)
 	assert.Equal(t, "(param string)", fnsAnn[1].InputParams)
 	assert.Equal(t, "(string, error)", fnsAnn[1].ReturnValues)
 
+	assert.Equal(t, "", fnsAnn[2].Description)
 	assert.Equal(t, "FunctionWithoutParameters", fnsAnn[2].Name)
 	assert.Equal(t, "()", fnsAnn[2].InputParams)
 	assert.Equal(t, "", fnsAnn[2].ReturnValues)
 
+	assert.Equal(t, "", fnsAnn[3].Description)
 	assert.Equal(t, "FunctionWithPointerReturnValue", fnsAnn[3].Name)
 	assert.Equal(t, "()", fnsAnn[3].InputParams)
 	assert.Equal(t, "*Event", fnsAnn[3].ReturnValues)
@@ -46,7 +50,7 @@ func TestMakeYAML(t *testing.T) {
 			Name:         "SomeName",
 			InputParams:  "(ctx context.Context, param Parameters)",
 			ReturnValues: "error",
-			Description:  "",
+			Description:  "SomeComment",
 			Public:       true,
 		},
 		{
@@ -54,7 +58,7 @@ func TestMakeYAML(t *testing.T) {
 			Name:         "SomeName2",
 			InputParams:  "(ctx context.Context, param2 Parameters2)",
 			ReturnValues: "error",
-			Description:  "",
+			Description:  "SomeComment2",
 			Public:       true,
 		},
 	}

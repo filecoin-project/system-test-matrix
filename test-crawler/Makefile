@@ -12,5 +12,4 @@ go-unit-test:
 	go test ./...
 
 go-integration-test:
-	chmod -R 777 integrations_tests/*.sh
 	./integrations_tests/*.sh

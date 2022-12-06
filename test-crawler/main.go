@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -29,8 +31,17 @@ func main() {
 
 	config := NewConfig()
 
-	crawlRepoBehaviorsAndSaveToJSON(config)
+	var crawl string
+	flag.StringVar(&crawl, "crawl", "behavior", "what should this crawler do? -crawl=src (source files), -crawl=behavior (test files)")
+	flag.Parse()
 
+	if crawl == "behavior" {
+		crawlRepoBehaviorsAndSaveToJSON(config)
+	} else if crawl == "src" {
+		if err := crawlRepoSourceCodeAndSaveToYaml(config); err != nil {
+			fmt.Println(err.Error())
+		}
+	}
 }
 
 func crawlRepoBehaviorsAndSaveToJSON(config Config) {
@@ -81,6 +92,22 @@ func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 	Save(result, config.TestCrawlerOutputMode, config.TestCrawlerOutputDir, config.TestCrawlerIndentJSON)
 }
 
+func crawlRepoSourceCodeAndSaveToYaml(config Config) error {
+	ctx := context.Background()
+	for _, path := range config.BehaviorGenPaths {
+		systemMethods, err := crawlFolderForSystemMethods(path)
+		if err != nil {
+			return err
+		}
+
+		if err := makeYAMLFromSystemMethods(ctx, config, *systemMethods); err != nil {
+			return fmt.Errorf("error %w saving to yaml for system %s", err, systemMethods.System)
+		}
+	}
+
+	return nil
+}
+
 // crawlSingleFileForMethods accepts path of single go file,
 // and prints extracted methods out of it.
 func crawlSingleFileForFunctions(ctx context.Context, path string) ([]c.FunctionAnnotation, error) {
@@ -118,29 +145,34 @@ func crawlFolderForSystemMethods(system string) (*c.SystemMethods, error) {
 	return &systemFunctions, nil
 }
 
-// makeYAML will make yaml file from public methods.
-func makeYAML(ctx context.Context, filePath string) error {
+// makeYAMLFromSystemMethods will make yaml file from public methods.
+func makeYAMLFromSystemMethods(ctx context.Context, config Config, systemMethods c.SystemMethods) error {
 
-	publicMethods, err := crawlSingleFileForFunctions(ctx, filePath)
+	if _, err := os.Stat(config.BehaviorGenOutputDir); errors.Is(err, os.ErrNotExist) {
+		err2 := os.Mkdir(config.BehaviorGenOutputDir, os.ModePerm)
+		if err2 != nil {
+			return fmt.Errorf("error create dir: %w", err)
+		}
+	}
+
+	yamlData, err := y.Marshal(&systemMethods)
 	if err != nil {
-		fmt.Print(err)
-		os.Exit(1)
+		return fmt.Errorf("error marhaling: %w", err)
 	}
 
-	for i := 0; i < len(publicMethods); i++ {
-		publicMethods[i].ID = i
-	}
-
-	yamlData, err := y.Marshal(&publicMethods)
+	filename := fmt.Sprintf("%s/%s.yaml", config.BehaviorGenOutputDir, systemMethods.System)
+	file, err := os.Create(filename)
 	if err != nil {
-		fmt.Printf("Error while Marshaling. %v", err)
+		return fmt.Errorf("error create file: %w", err)
+	}
+	defer file.Close()
+	fmt.Println("File generated: ", filename)
+
+	err = ioutil.WriteFile(filename, yamlData, 0644)
+	if err != nil {
+		return fmt.Errorf("error write to file: %w", err)
 	}
 
-	fileName := "test.yaml"
-	err = ioutil.WriteFile(fileName, yamlData, 0644)
-	if err != nil {
-		panic("Unable to write data into the file")
-	}
 	return nil
 }
 

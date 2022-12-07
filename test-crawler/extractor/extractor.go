@@ -212,7 +212,6 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 		if child != nil {
 			if child.Type() == string(FUNCTION_DECLARATION) {
 				if prevNode.Type() == string(COMMENT) {
-
 					value, annotationType, _ := parser.Parse(content[prevNode.StartByte():prevNode.EndByte()])
 					if value != nil && annotationType == a.Ignore {
 						isIgnored = value.(bool)
@@ -261,6 +260,14 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 				child.Child(4): parameter_list:  (<-chan *types2.RequestEvent, error)
 			*/
 			if child.Type() == string(METHOD_DECLARATION) {
+				comment := ""
+				if prevNode.Type() == string(COMMENT) {
+					comment = content[prevNode.StartByte():prevNode.EndByte()]
+					value, annotationType, _ := parser.Parse(comment)
+					if value != nil && annotationType == a.Ignore {
+						isIgnored = value.(bool)
+					}
+				}
 				funcName = content[child.Child(2).StartByte():child.Child(2).EndByte()]
 				params := ""
 				returnValues := ""
@@ -280,6 +287,7 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					returnValues = content[child.Child(4).StartByte():child.Child(4).EndByte()]
 				}
 				funcAnn := c.FunctionAnnotation{
+					Description:  comment,
 					Name:         funcName,
 					Public:       isPublic(funcName),
 					InputParams:  params,

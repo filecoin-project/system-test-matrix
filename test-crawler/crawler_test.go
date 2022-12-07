@@ -17,7 +17,7 @@ func TestCrawlSingleFileForFunctions(t *testing.T) {
 		t.Errorf("got error: %v", err.Error())
 	}
 
-	if len(fnsAnn) != 4 {
+	if len(fnsAnn) != 5 {
 		t.Errorf("got %q, expected %q methods", len(fnsAnn), 2)
 	}
 
@@ -38,9 +38,13 @@ func TestCrawlSingleFileForFunctions(t *testing.T) {
 
 	assert.Equal(t, "// FunctionWithPointerReturnValue returns a simple pointer value.", fnsAnn[3].Description)
 	assert.Equal(t, "FUNCTION_WITH_POINTER_RETURN_VALUE_001", fnsAnn[3].Name)
-
 	assert.Equal(t, "()", fnsAnn[3].InputParams)
 	assert.Equal(t, "*Event", fnsAnn[3].ReturnValues)
+
+	assert.Equal(t, "Function description not set.", fnsAnn[4].Description)
+	assert.Equal(t, "FUNCTION_WITHOUT_COMMENT_001", fnsAnn[4].Name)
+	assert.Equal(t, "()", fnsAnn[4].InputParams)
+	assert.Equal(t, "*Event", fnsAnn[4].ReturnValues)
 }
 
 func TestMakeYAML(t *testing.T) {

@@ -1,12 +1,17 @@
 # list of paths to directories that should be crawled
-paths: ["../repo-to-crawl"]
+test_crawler_paths: ["../repo-to-crawl"]
 # stdout or file(json)
-output: stdout
+test_crawler_output: stdout
 # if output is file, choose directory
-output_dir: outputs
+test_crawler_output_dir: outputs
 # auto or one of the supported languages for specific repo
-lang_mode: go
+test_crawler_lang_mode: go
 # should the output JSON be indented
-indent_json: true
+test_crawler_indent_json: true
 # ignore paths
-ignore: ["extern"]
+test_crawler_ignore: ["extern"]
+
+### Behavior catalogue related vars
+behavior_gen_paths: ["../repo-to-crawl"]
+behavior_gen_ignore: [".github","cmds","config","docker","docs","extern","integrate_test"]
+behavior_gen_output_dir: outputs/catalogue

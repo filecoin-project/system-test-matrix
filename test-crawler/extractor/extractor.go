@@ -260,14 +260,14 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 				child.Child(4): parameter_list:  (<-chan *types2.RequestEvent, error)
 			*/
 			if child.Type() == string(METHOD_DECLARATION) {
-				comment := content[prevNode.StartByte():prevNode.EndByte()]
+				comment := ""
 				if prevNode.Type() == string(COMMENT) {
+					comment = content[prevNode.StartByte():prevNode.EndByte()]
 					value, annotationType, _ := parser.Parse(comment)
 					if value != nil && annotationType == a.Ignore {
 						isIgnored = value.(bool)
 					}
 				}
-
 				funcName = content[child.Child(2).StartByte():child.Child(2).EndByte()]
 				params := ""
 				returnValues := ""
@@ -286,15 +286,19 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					returnValueType == string(TYPE_IDENTIFIER) {
 					returnValues = content[child.Child(4).StartByte():child.Child(4).EndByte()]
 				}
+				funcAnn := c.FunctionAnnotation{
+					Description:  comment,
+					Name:         funcName,
+					Public:       isPublic(funcName),
+					InputParams:  params,
+					ReturnValues: returnValues,
+				}
+				funcAnn.Name = c.GenerateMethodName(funcAnn.Name)
+				funcAnn.Description = c.GenerateMethodDescription(funcAnn)
+
 				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
-					Node: child,
-					Function: c.FunctionAnnotation{
-						Description:  comment,
-						Name:         funcName,
-						Public:       isPublic(funcName),
-						InputParams:  params,
-						ReturnValues: returnValues,
-					},
+					Node:     child,
+					Function: funcAnn,
 				})
 			}
 			prevNode = child

@@ -1,9 +1,12 @@
 package collector
 
 import (
+	"bytes"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
+	"unicode"
 
 	a "testsuites/annotations"
 )
@@ -125,4 +128,36 @@ func ListGoFilesInFolder(root string, ignore []string) (system string, files []s
 	}
 
 	return "", nil, nil
+}
+
+// GenerateMethodName generates name adding underscore and usecase index
+// ex: name: ListenProofRequest -> LISTEN_PROOF_REQUEST_001
+func GenerateMethodName(funcName string) string {
+	usecase := "001" // in the future it will be autoincremented depending how many return cases we have.
+	buf := &bytes.Buffer{}
+	for i, rune := range funcName {
+		if unicode.IsUpper(rune) && i > 0 {
+			buf.WriteRune('_')
+		}
+		buf.WriteRune(rune)
+	}
+
+	return fmt.Sprintf("%s_%s", strings.ToUpper(buf.String()), usecase)
+}
+
+// GenerateMethodDescription generates description based on inputParams, returnParams
+func GenerateMethodDescription(f FunctionAnnotation) string {
+	if f.Description == "" {
+		dsc := "Function description not set."
+		if (f.InputParams != "" && f.InputParams != "()") && f.ReturnValues != "" {
+			dsc = fmt.Sprintf(`Given a %s, returns %s`, f.InputParams, f.ReturnValues)
+		} else if (f.InputParams == "" || f.InputParams == "()") && f.ReturnValues != "" {
+			dsc = fmt.Sprintf(`Returns %s`, f.ReturnValues)
+		}
+		return dsc
+	} else {
+		return f.Description
+	}
+
+	return "Function description not set."
 }

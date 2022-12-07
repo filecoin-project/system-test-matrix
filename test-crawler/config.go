@@ -15,12 +15,16 @@ const (
 )
 
 type Config struct {
-	Paths      []string   `yaml:"paths"`
-	OutputMode OutputMode `yaml:"output"`
-	OutputDir  string     `yaml:"output_dir"`
-	Language   string     `yaml:"lang_mode"`
-	IndentJSON bool       `yaml:"indent_json"`
-	Ignore     []string   `yaml:"ignore"`
+	TestCrawlerPaths      []string   `yaml:"test_crawler_paths"`
+	TestCrawlerOutputMode OutputMode `yaml:"test_crawler_output"`
+	TestCrawlerOutputDir  string     `yaml:"test_crawler_output_dir"`
+	TestCrawlerLanguage   string     `yaml:"test_crawler_lang_mode"`
+	TestCrawlerIndentJSON bool       `yaml:"test_crawler_indent_json"`
+	TestCrawlerIgnore     []string   `yaml:"test_crawler_ignore"`
+
+	BehaviorGenPaths     []string `yaml:"behavior_gen_paths"`
+	BehaviorGenIgnore    []string `yaml:"behavior_gen_ignore"`
+	BehaviorGenOutputDir string   `yaml:"behavior_gen_output_dir"`
 }
 
 const filename string = "config.yaml"
@@ -50,9 +54,9 @@ func NewConfig() Config {
 
 func Default() Config {
 	return Config{
-		Paths:      []string{"_modules/lotus"},
-		OutputMode: "stdout",
-		Language:   "auto",
-		IndentJSON: false,
+		TestCrawlerPaths:      []string{"_modules/lotus"},
+		TestCrawlerOutputMode: "stdout",
+		TestCrawlerLanguage:   "auto",
+		TestCrawlerIndentJSON: false,
 	}
 }

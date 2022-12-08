@@ -41,6 +41,7 @@ type Metadata struct {
 type FileData struct {
 	Metadata  *Metadata
 	Functions []c.Function
+	Methods   []c.Method
 }
 
 type FunctionAnnotationNode struct {
@@ -90,10 +91,12 @@ func ExtractInfo(file c.TestFile, ctx context.Context, fileID c.FileID) (*FileDa
 	return fileData, hasNoTests(!checkForExistanceOfTests(fData)), nil
 }
 
-func GetExportedFunctions(ctx context.Context, filePath string) ([]c.FunctionAnnotation, error) {
+func GetExportedFunctions(ctx context.Context, filePath string, fileID c.FileID) ([]c.FunctionAnnotation, *FileData, error) {
+	fileData := &FileData{}
+
 	content, err := getFileContent(filePath)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	parser := sitter.NewParser()
@@ -101,16 +104,25 @@ func GetExportedFunctions(ctx context.Context, filePath string) ([]c.FunctionAnn
 
 	tree, err := parser.ParseCtx(ctx, nil, []byte(content))
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	cursor := sitter.NewTreeCursor(tree.RootNode())
-	fnsAnno, err := parseContentForFunctions(content, cursor)
+	fnsAnno, fData, err := parseContentForFunctions(content, cursor, filePath)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return fnsAnno, nil
+	fileData.Metadata = fData.Metadata
+	for _, method := range fData.Methods {
+		fileData.Methods = append(fileData.Methods, c.Method{
+			FileID: fileID,
+			Name:   method.Name,
+		},
+		)
+	}
+
+	return fnsAnno, fileData, nil
 }
 
 func getFileContent(filePath string) (content string, err error) {
@@ -279,19 +291,21 @@ func getFunctionNodes(content string, treeCursor *sitter.TreeCursor, parser *a.P
 					returnValueType == string(TYPE_IDENTIFIER) {
 					returnValues = content[child.Child(4).StartByte():child.Child(4).EndByte()]
 				}
-				funcAnn := c.FunctionAnnotation{
-					Name:         funcName,
-					Public:       isPublic(funcName),
-					InputParams:  params,
-					ReturnValues: returnValues,
-				}
-				funcAnn.Name = c.GenerateMethodName(funcAnn.Name)
-				funcAnn.Description = c.GenerateMethodDescription(funcAnn)
 
-				funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
-					Node:     child,
-					Function: funcAnn,
-				})
+				if isPublic(funcName) {
+					funcAnn := c.FunctionAnnotation{
+						Name:         funcName,
+						Public:       isPublic(funcName),
+						InputParams:  params,
+						ReturnValues: returnValues,
+					}
+					funcAnn.Description = c.GenerateMethodDescription(funcAnn)
+
+					funcAnnoPair = append(funcAnnoPair, FunctionAnnotationNode{
+						Node:     child,
+						Function: funcAnn,
+					})
+				}
 			}
 			prevNode = child
 		}
@@ -382,16 +396,22 @@ func makeID(filePath string, funcName string, behavior string) string {
 
 // parseContentForFunctions accepts a content which represents whole golang file as a string,
 // parses it and returns a slice of function annotations (including exported and unexported ones).
-func parseContentForFunctions(content string, cursor *sitter.TreeCursor) ([]c.FunctionAnnotation, error) {
+func parseContentForFunctions(content string, cursor *sitter.TreeCursor, filePath string) ([]c.FunctionAnnotation, *FileData, error) {
 	var annotationParser a.Parser
+	fileData := &FileData{}
+	fileData.Metadata = getMetadata(content, cursor, &annotationParser)
 
 	var fnsAnno []c.FunctionAnnotation
 	funcNodes := getFunctionNodes(content, cursor, &annotationParser)
 	for _, funcNode := range funcNodes {
+		fileData.Methods = append(fileData.Methods, c.Method{
+			Name: funcNode.Function.Name,
+		})
+		funcNode.Function.Name = c.GenerateMethodName(funcNode.Function.Name)
 		fnsAnno = append(fnsAnno, funcNode.Function)
 	}
 
-	return fnsAnno, nil
+	return fnsAnno, fileData, nil
 }
 
 func isPublic(funcName string) bool {

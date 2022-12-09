@@ -39,3 +39,7 @@ func (e *Event) FunctionWithoutParameters() {
 func (e *Event) FunctionWithPointerReturnValue() *Event {
 	return &Event{}
 }
+
+func (e *Event) FunctionWithoutComment() *Event {
+	return &Event{}
+}

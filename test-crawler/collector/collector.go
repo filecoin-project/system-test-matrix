@@ -176,17 +176,10 @@ func GenerateMethodName(funcName string) string {
 	return fmt.Sprintf("%s_%s", strings.ToUpper(buf.String()), usecase)
 }
 
-// GenerateMethodDescription generates description based on inputParams, returnParams
+// GenerateMethodDescription generates description based on comment.
 func GenerateMethodDescription(f FunctionAnnotation) string {
-	var dsc string
 	if f.Description == "" {
-		dsc = "Function description not set."
-		if (f.InputParams != "" && f.InputParams != "()") && f.ReturnValues != "" {
-			dsc = fmt.Sprintf(`Given a %s, returns %s`, f.InputParams, f.ReturnValues)
-		} else if (f.InputParams == "" || f.InputParams == "()") && f.ReturnValues != "" {
-			dsc = fmt.Sprintf(`Returns %s`, f.ReturnValues)
-		}
+		return "Function description not set."
 	}
-
-	return dsc
+	return f.Description
 }

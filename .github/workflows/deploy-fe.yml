@@ -69,7 +69,7 @@ jobs:
       #
       - name: Artifacts
         id: upload-artifact-build
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: artifact-fe
           path: |
@@ -161,7 +161,7 @@ jobs:
       # Upload cypress video to artifact
       #
       - name: Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         id: upload-artifact-cypress
         with:
           name: artifact-fe

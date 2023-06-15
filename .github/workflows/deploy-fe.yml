@@ -144,7 +144,7 @@ jobs:
       #
       # Download artifact for e2e testing
       #
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         id: download-artifact
         with:
           name: artifact-fe
@@ -199,7 +199,7 @@ jobs:
       #
       # Download the artifact
       #
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: artifact-fe
 

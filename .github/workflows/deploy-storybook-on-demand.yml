@@ -35,7 +35,7 @@ jobs:
       # Prepare the environment and let the requestor know we've accepted the command
       #
       - name: Acknowledge command
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           script: |
             const owner = context.payload.organization.login;
@@ -123,7 +123,7 @@ jobs:
       #
       - name: Post success result
         if: success()
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           script: |
             const owner = context.payload.organization.login;
@@ -154,7 +154,7 @@ jobs:
       #
       - name: Post failure information
         if: failure()
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           script: |
             const owner = context.payload.organization.login;

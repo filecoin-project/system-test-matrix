@@ -42,14 +42,14 @@ jobs:
             const repo = context.payload.repository.name;
             const comment_id = context.payload.comment.id;
 
-            github.reactions.createForIssueComment({
+            github.rest.reactions.createForIssueComment({
                 owner,
                 repo,
                 comment_id,
                 content: '+1'
             });
 
-            const { data: pull_request } = await github.pulls.get({
+            const { data: pull_request } = await github.rest.pulls.get({
                 owner,
                 repo,
                 pull_number: context.payload.issue.number,
@@ -131,7 +131,7 @@ jobs:
             const comment_id = context.payload.comment.id;
             const requestor = context.payload.comment.user.login;
 
-            github.reactions.createForIssueComment({
+            github.rest.reactions.createForIssueComment({
                 owner,
                 repo,
                 comment_id,
@@ -142,7 +142,7 @@ jobs:
             const body = `@${requestor} here is your requested Storybook deployment:\n\n` +
                   `:rocket: [${url}](${url})`
 
-            await github.issues.createComment({
+            await github.rest.issues.createComment({
               owner,
               repo,
               issue_number: process.env.GITHUB_PR,
@@ -162,14 +162,14 @@ jobs:
             const comment_id = context.payload.comment.id;
             const requestor = context.payload.comment.user.login;
 
-            github.reactions.createForIssueComment({
+            github.rest.reactions.createForIssueComment({
               owner,
               repo,
               comment_id,
               content: 'eyes'
             });
 
-            const { data: run } = await github.actions.getWorkflowRun({
+            const { data: run } = await github.rest.actions.getWorkflowRun({
               owner,
               repo,
               run_id: process.env.GITHUB_RUN_ID,
@@ -179,7 +179,7 @@ jobs:
                   `@${requestor} deploy action failed, please see `+
                   `[the workflow run details](${run.html_url}) for more information.`;
 
-            await github.issues.createComment({
+            await github.rest.issues.createComment({
               owner,
               repo,
               issue_number: process.env.GITHUB_PR,

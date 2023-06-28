@@ -85,7 +85,7 @@ jobs:
 
       # Run test crawler
       - name: Make run
-        run: make run
+        run: make run || make run || make run
         working-directory: test-crawler
 
       # Copy crawler output

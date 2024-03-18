@@ -12,7 +12,7 @@ jobs:
     steps:
       # Checkout the repository.
       - name: Checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Create date variable
       - name: Create Date Variable
@@ -55,7 +55,7 @@ jobs:
     steps:
       # Checkout the repository.
       - name: Checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_TOKEN }}
         id: checkout
@@ -72,7 +72,7 @@ jobs:
 
       # Clone lotus repo into repo-to-crawl folder
       - name: Clone lotus  repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: filecoin-project/lotus
           path: repo-to-crawl

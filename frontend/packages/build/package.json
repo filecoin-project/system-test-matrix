@@ -22,6 +22,6 @@
     "svg-inline-loader": "^0.8.2",
     "webpack-bundle-analyzer": "^4",
     "webpack-merge": "^5.3.0",
-    "workbox-webpack-plugin": "^6.0.0"
+    "workbox-webpack-plugin": "^7.0.0"
   }
 }

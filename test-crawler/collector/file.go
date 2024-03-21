@@ -29,13 +29,28 @@ func (f *FileID) ToFile(files map[FileID]*TestFile) *TestFile {
 	return nil
 }
 
-func NewFile(path string) TestFile {
+func NewTestFile(path string) TestFile {
 	parts := strings.Split(path, "/")
 
 	return TestFile{
-		File:         parts[len(parts)-1],
-		Path:         path,
-		Project:      parts[1],
-		ParentFolder: parts[len(parts)-2],
+		File: File{
+			File:         parts[len(parts)-1],
+			Path:         path,
+			Project:      parts[1],
+			ParentFolder: parts[len(parts)-2],
+		},
+	}
+}
+
+func NewSourceFile(path string) SourceFile {
+	parts := strings.Split(path, "/")
+
+	return SourceFile{
+		File: File{
+			File:         parts[len(parts)-1],
+			Path:         path,
+			Project:      parts[1],
+			ParentFolder: parts[len(parts)-2],
+		},
 	}
 }

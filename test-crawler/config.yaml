@@ -12,6 +12,8 @@ test_crawler_indent_json: true
 test_crawler_ignore: ["extern"]
 
 ### Behavior catalogue related vars
-behavior_gen_paths: ["../repo-to-crawl"]
+behavior_gen_paths: ["../repo-to-crawl/venus-gateway/marketevent","../repo-to-crawl/venus-gateway/proofevent","../repo-to-crawl/venus-gateway/walletevent"]
 behavior_gen_ignore: [".github","cmds","config","docker","docs","extern","integrate_test"]
-behavior_gen_output_dir: outputs/catalogue
+behavior_gen_output_dir: outputs
+behavior_gen_output_mode: file
+behavior_gen_indent_json: true

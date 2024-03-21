@@ -3,10 +3,12 @@ package main
 import (
 	"context"
 	"io/ioutil"
+	"os"
 	"testing"
 	c "testsuites/collector"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	y "gopkg.in/yaml.v2"
 )
 
@@ -85,4 +87,72 @@ func TestMakeYAML(t *testing.T) {
 
 	assert.Equal(t, yamlData, bytes)
 
+}
+
+func TestCrawlRepoSourceCodeAndSaveToYaml(t *testing.T) {
+	tempDir, err := os.MkdirTemp("", "")
+	require.NoError(t, err)
+	defer os.RemoveAll(tempDir)
+
+	err = crawlRepoSourceCodeAndSaveToYaml(Config{
+		BehaviorGenPaths:      []string{"./mocks"},
+		BehaviorGenOutputDir:  tempDir,
+		BehaviorGenIndentJSON: true,
+		BehaviorGenOutputMode: "file",
+	})
+	require.NoError(t, err)
+
+	fileInfos, err := os.ReadDir(tempDir)
+	require.NoError(t, err)
+	assert.Equal(t, 2, len(fileInfos)) // one yaml file (behavior catalogue) and json file as crawled output
+}
+
+func TestSave(t *testing.T) {
+	testFiles := []c.TestFile{
+		{
+			File: c.File{
+				ID:      "1",
+				File:    "event_test.go",
+				Path:    "./mocks",
+				Project: "test-crawler",
+			},
+			Functions: []c.Function{
+				{
+					Name: "TestHelloEvent",
+				},
+			},
+		},
+	}
+	srcFiles := []c.SourceFile{
+		{
+			File: c.File{
+				ID:      "1",
+				File:    "event_test.go",
+				Path:    "./mocks",
+				Project: "test-crawler",
+			},
+			Methods: []c.Method{
+				{
+					Name: "HelloEvent",
+				},
+			},
+		},
+	}
+	t.Run("Crawl test files and print to console", func(t *testing.T) {
+		Save(&testFiles, OutputMode("stdout"), "outputs", true)
+	})
+	t.Run("Crawl test files and save to file", func(t *testing.T) {
+		tempDir, err := os.MkdirTemp("", "")
+		require.NoError(t, err)
+		defer os.RemoveAll(tempDir)
+		Save(&testFiles, OutputMode("file"), tempDir, true)
+	})
+	t.Run("Crawl source files and print to console", func(t *testing.T) {
+		Save(&srcFiles, OutputMode("stdout"), "outputs", true)
+	})
+	t.Run("Crawl source files and save to file", func(t *testing.T) {
+		tempDir := os.TempDir()
+		defer os.RemoveAll(tempDir)
+		Save(&testFiles, OutputMode("file"), tempDir, true)
+	})
 }

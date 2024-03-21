@@ -11,16 +11,25 @@ import (
 	a "testsuites/annotations"
 )
 
+type File struct {
+	ID           FileID `json:"-"`
+	File         string `json:"file"`
+	Path         string `json:"path"`
+	Project      string `json:"repository"`
+	ParentFolder string `json:"parent_folder"`
+	Package      string `json:"package"`
+}
 type TestFile struct {
-	ID           FileID     `json:"-"`
-	File         string     `json:"file"`
-	Path         string     `json:"path"`
-	Project      string     `json:"repository"`
-	ParentFolder string     `json:"parent_folder"`
-	Package      string     `json:"package"`
-	TestType     string     `json:"test_type"`
-	Ignore       bool       `json:"ignore"`
-	Functions    []Function `json:"scenarios"`
+	File
+	TestType  string     `json:"test_type"`
+	Ignore    bool       `json:"ignore"`
+	Functions []Function `json:"scenarios"`
+}
+
+type SourceFile struct {
+	File
+	Ignore  bool `json:"ignore"`
+	Methods []Method
 }
 
 type Function struct {
@@ -31,13 +40,17 @@ type Function struct {
 	IsTesting       bool `json:"-"`
 }
 
+type Method struct {
+	FileID FileID `json:"-"`
+	Name   string `json:"method"`
+}
 type FunctionAnnotation struct {
-	ID           int    `yaml:"id"`
+	ID           int    `yaml:"id" json:"-"`
 	Name         string `yaml:"name"`
-	InputParams  string `yaml:"inputParams"`
-	ReturnValues string `yaml:"returnValues"`
-	Description  string `yaml:"description"`
-	Public       bool
+	InputParams  string `yaml:"inputParams" json:"-"`
+	ReturnValues string `yaml:"returnValues" json:"-"`
+	Description  string `yaml:"description" json:"-"`
+	Public       bool   `json:"-"`
 }
 
 type SystemMethods struct {
@@ -56,11 +69,29 @@ func GetTestFiles(root string, ignore []string) (files []TestFile, err error) {
 	}
 
 	for _, file := range fileArray {
-		testFile := NewFile(file)
+		testFile := NewTestFile(file)
 		files = append(files, testFile)
 	}
 
 	return files, nil
+}
+
+func GetSourceFiles(root string, ignore []string) (system string, files []SourceFile, err error) {
+	system, fs, err := ListGoFilesInFolder(root, ignore)
+	if err != nil {
+		return "", nil, err
+	}
+
+	if len(fs) == 0 {
+		return "", nil, nil
+	}
+
+	for _, file := range fs {
+		srcFiles := NewSourceFile(file)
+		files = append(files, srcFiles)
+	}
+
+	return system, files, nil
 }
 
 func listTestFiles(root string, ignore []string) (files []string, err error) {

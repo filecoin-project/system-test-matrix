@@ -30,7 +30,7 @@ jobs:
       # Cache files in ./frontend
       #
       - name: Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: use-cache
         with:
           path: |

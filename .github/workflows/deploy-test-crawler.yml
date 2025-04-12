@@ -22,7 +22,7 @@ jobs:
       # Cache .txt file and use date as dependancy to create new cache
       - name: Store/Restore file in cache
         id: cachedFile
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: filecoin-lotus-latest-push-date.txt
           key: ${{ runner.os }}-lotus-date-${{ steps.get-date.outputs.date }}

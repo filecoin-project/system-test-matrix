@@ -41,7 +41,7 @@
     "@filecoin/build": "^1.0.0",
     "@filecoin/core": "^1.0.0",
     "@filecoin/ui": "^1.0.0",
-    "fuse.js": "^6.4.6",
+    "fuse.js": "^7.1.0",
     "react-router-dom": "^6.0.2",
     "unstated-next": "^1.1.0",
     "yaml": "^1.10.2"

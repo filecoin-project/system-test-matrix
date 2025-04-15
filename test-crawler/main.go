@@ -59,7 +59,7 @@ func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 
 		for i := 0; i < len(files); i++ {
 
-			fileID := c.CreateFileID(files[i].Path, files[i].File)
+			fileID := c.CreateFileID(files[i].Path, files[i].File.File)
 
 			fileData, hasNoBehaviors, err := ex.ExtractInfo(files[i], ctx, fileID)
 			if err != nil {
@@ -93,17 +93,26 @@ func crawlRepoBehaviorsAndSaveToJSON(config Config) {
 }
 
 func crawlRepoSourceCodeAndSaveToYaml(config Config) error {
-	ctx := context.Background()
+
+	allFiles := make([]map[c.FileID]*c.SourceFile, 0)
 	for _, path := range config.BehaviorGenPaths {
-		systemMethods, err := crawlFolderForSystemMethods(path)
+		ctx := context.Background()
+
+		systemMethods, files, err := crawlFolderForSystemMethods(path, config.BehaviorGenIgnore)
 		if err != nil {
 			return err
 		}
 
+		allFiles = append(allFiles, files)
+
+		// save system methods to yaml
 		if err := makeYAMLFromSystemMethods(ctx, config, *systemMethods); err != nil {
 			return fmt.Errorf("error %w saving to yaml for system %s", err, systemMethods.System)
 		}
 	}
+
+	// create json file with all the files and methods that we crawled.
+	Save(allFiles, config.BehaviorGenOutputMode, config.BehaviorGenOutputDir, config.BehaviorGenIndentJSON)
 
 	return nil
 }
@@ -111,21 +120,23 @@ func crawlRepoSourceCodeAndSaveToYaml(config Config) error {
 // crawlSingleFileForMethods accepts path of single go file,
 // and prints extracted methods out of it.
 func crawlSingleFileForFunctions(ctx context.Context, path string) ([]c.FunctionAnnotation, error) {
-	fns, err := ex.GetExportedFunctions(ctx, path)
+	fns, _, err := ex.GetExportedFunctions(ctx, path, "")
 	if err != nil {
 		return nil, fmt.Errorf("error extracting public methods from file: %w", err)
 	}
-
 	return fns, nil
 }
 
 // crawlFolderForSystemMethods accepts folder, which represents a system that will be crawled for
 // all of his methods.
 // ex: "../repo-to-crawl/venus-gateway/proofevent"
-func crawlFolderForSystemMethods(system string) (*c.SystemMethods, error) {
-	system, files, err := c.ListGoFilesInFolder(system, nil)
+func crawlFolderForSystemMethods(system string, ignore []string) (*c.SystemMethods, map[c.FileID]*c.SourceFile, error) {
+	allFiles := make(map[c.FileID]*c.SourceFile)
+
+	// get source files and system name
+	system, sourceFiles, err := c.GetSourceFiles(system, ignore)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	systemFunctions := c.SystemMethods{
@@ -134,15 +145,24 @@ func crawlFolderForSystemMethods(system string) (*c.SystemMethods, error) {
 	}
 
 	ctx := context.Background()
-	for _, file := range files {
-		fns, err := crawlSingleFileForFunctions(ctx, file)
+	for i := 0; i < len(sourceFiles); i++ {
+		fileID := c.CreateFileID(sourceFiles[i].Path, sourceFiles[i].File.File)
+
+		fns, fileData, err := ex.GetExportedFunctions(ctx, sourceFiles[i].Path, fileID)
 		if err != nil {
-			return nil, fmt.Errorf("can not crawl file: %s, err: %w", file, err)
+			return nil, nil, fmt.Errorf("error extracting public methods from file: %w", err)
 		}
+
+		if fileData.Metadata != nil {
+			sourceFiles[i].File.Package = fileData.Metadata.Package
+		}
+		allFiles[fileID] = &sourceFiles[i]
+
 		systemFunctions.Methods = append(systemFunctions.Methods, fns...)
+		allFiles[fileID].Methods = fileData.Methods
 	}
 
-	return &systemFunctions, nil
+	return &systemFunctions, allFiles, nil
 }
 
 // makeYAMLFromSystemMethods will make yaml file from public methods.
@@ -280,7 +300,7 @@ func filterFilesWhereChildIsRoot(allFiles map[c.FileID]*c.TestFile) []c.TestFile
 	return filteredFiles
 }
 
-func Save(files []c.TestFile, mode OutputMode, outputDir string, indentJSON bool) {
+func Save(files interface{}, mode OutputMode, outputDir string, indentJSON bool) {
 	var content []byte
 	var err error
 	if indentJSON {

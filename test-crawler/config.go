@@ -22,9 +22,11 @@ type Config struct {
 	TestCrawlerIndentJSON bool       `yaml:"test_crawler_indent_json"`
 	TestCrawlerIgnore     []string   `yaml:"test_crawler_ignore"`
 
-	BehaviorGenPaths     []string `yaml:"behavior_gen_paths"`
-	BehaviorGenIgnore    []string `yaml:"behavior_gen_ignore"`
-	BehaviorGenOutputDir string   `yaml:"behavior_gen_output_dir"`
+	BehaviorGenPaths      []string   `yaml:"behavior_gen_paths"`
+	BehaviorGenIgnore     []string   `yaml:"behavior_gen_ignore"`
+	BehaviorGenOutputDir  string     `yaml:"behavior_gen_output_dir"`
+	BehaviorGenOutputMode OutputMode `yaml:"behavior_gen_output_mode"`
+	BehaviorGenIndentJSON bool       `yaml:"behavior_gen_indent_json"`
 }
 
 const filename string = "config.yaml"

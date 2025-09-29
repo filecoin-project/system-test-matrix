@@ -1,13 +1,13 @@
 # Filecoin System Test Matrix
 
-> 💊😎  The "Red Pill" for Filecoin node implementations
+> 💊😎 The "Red Pill" for Filecoin node implementations
 
 The Filecoin System Test Matrix is a dashboard with a detailed list of Filecoin features and behaviors and a mapping between those features and test suites, systems and subsystems that those features are related to.
 
 The main goal of this project is closing the discrepancy between specification and the actual state of implementations.
 
-- The *official* resource for the expected behavior of Filecoin node implementations is the Filecoin Specification [^1]. It is written as *prose* and it's quite verbose (*and that's the way it should be*).
-- The System Test Matrix can be used to evaluate the state of Filecoin node implementations (such as lotus [^2], venus [^3] etc) *at a glance* and help new contributors understand how the Filecoin network works. 
+- The _official_ resource for the expected behavior of Filecoin node implementations is the Filecoin Specification [^1]. It is written as _prose_ and it's quite verbose (_and that's the way it should be_).
+- The System Test Matrix can be used to evaluate the state of Filecoin node implementations (such as lotus [^2], venus [^3] etc) _at a glance_ and help new contributors understand how the Filecoin network works.
 
 ## Components
 
@@ -47,6 +47,7 @@ The CI scraper has it's own [README file](scraper/README.md)
 - Venus System Test Matrix: https://venus.systemtestmatrix.com/
 
 ---
+
 [^1]: https://spec.filecoin.io/
 [^2]: https://github.com/filecoin-project/lotus
 [^3]: https://github.com/filecoin-project/venus

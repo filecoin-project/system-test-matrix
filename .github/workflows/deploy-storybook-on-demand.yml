@@ -65,6 +65,11 @@ jobs:
             core.exportVariable('GITHUB_PR_HEAD_SHA', pull_request.head.sha);
             core.exportVariable('S3_FOLDER', folder);
 
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
       #
       # Checkout the repository.
       #

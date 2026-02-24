@@ -103,4 +103,5 @@ git config --list >&2
 
 echo "--- sleeping (in real attack use longer time) ---" >&2
 sleep 2 # in real attack it will be 1200 to have time to edit 
+exit 0
 

